@@ -1,0 +1,18 @@
+{
+  "name": "nexajs-docs",
+  "version": "22.8.1",
+  "license": "MIT",
+  "description": "A JavaScript NEXA library for Node.js and browsers. Written in Pure JavaScript.",
+  "main": "index.js",
+  "authors": {
+    "name": "nexajs contributors",
+    "email": ""
+  },
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "devDependencies": {
+    "vuepress": "1.5.3"
+  }
+}
