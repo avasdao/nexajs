@@ -2,7 +2,7 @@
   "name": "nexajs-lib",
   "version": "22.8.3",
   "license": "MIT",
-  "description": "Nexa JavaScript libraries.",
+  "description": "Official documenation for Nexa's JavaScript library for Node.js and browsers.",
   "author": "Bitcoin Unlimited developers",
   "main": "index.js",
   "scripts": {
