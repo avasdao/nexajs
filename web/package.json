@@ -1,6 +1,6 @@
 {
   "name": "nexajs-web",
-  "version": "22.8.1",
+  "version": "22.8.4",
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,17 +14,20 @@
     "@fortawesome/free-solid-svg-icons": "6.1.1",
     "@fortawesome/vue-fontawesome": "2.0.6",
     "core-js": "3.24.1",
+    "moment": "2.29.4",
+    "numeral": "2.0.6",
+    "uuid": "8.3.2",
     "vue": "3.2.13",
     "vue-router": "4.0.3",
     "vuex": "4.0.0"
   },
   "devDependencies": {
+    "@babel/core": "7.12.16",
+    "@babel/eslint-parser": "7.12.16",
     "@tailwindcss/aspect-ratio": "0.4.0",
     "@tailwindcss/forms": "0.3.3",
     "@tailwindcss/postcss7-compat": "2.2.4",
     "@tailwindcss/typography": "0.5.2",
-    "@babel/core": "7.12.16",
-    "@babel/eslint-parser": "7.12.16",
     "@vue/cli-plugin-babel": "5.0.0",
     "@vue/cli-plugin-eslint": "5.0.0",
     "@vue/cli-plugin-router": "5.0.0",

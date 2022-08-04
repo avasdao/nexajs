@@ -1,6 +1,6 @@
 <template>
     <main>
-        <h1>About NexaJS</h1>
+        <h1>Blank</h1>
 
     </main>
 </template>

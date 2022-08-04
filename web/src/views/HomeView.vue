@@ -1,19 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1 class="text-5xl text-pink-500 font-bold">Tailwind CSS</h1>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <main class="bg-white">
+        <HeroView />
+
+        <LogoCloud class="hidden" />
+
+        <FeaturesView class="hidden" />
+
+        <StatsView class="hidden" />
+
+        <LearnMore class="" />
+    </main>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+/* Import components. */
+import FeaturesView from '@/components/FeaturesView'
+import HeroView from '@/components/HeroView'
+import LearnMore from '@/components/LearnMore'
+import LogoCloud from '@/components/LogoCloud'
+import StatsView from '@/components/StatsView'
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+    components: {
+        FeaturesView,
+        HeroView,
+        LearnMore,
+        LogoCloud,
+        StatsView,
+    }
 }
 </script>
