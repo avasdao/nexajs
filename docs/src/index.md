@@ -1,7 +1,7 @@
 ---
 home: true
-heroImage: https://v1.vuepress.vuejs.org/hero.png
-tagline: A JavaScript NEXA library for Node.js and browsers. Written in Pure JavaScript.
+heroImage: https://nexajs.org/logo.png
+tagline: A JavaScript NEXA library for Node.js and browsers.
 actionText: Quick Start →
 actionLink: /guide/
 features:

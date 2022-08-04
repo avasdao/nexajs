@@ -1,8 +1,8 @@
 {
   "name": "nexajs-docs",
-  "version": "22.8.1",
+  "version": "22.8.4",
   "license": "MIT",
-  "description": "A JavaScript NEXA library for Node.js and browsers. Written in Pure JavaScript.",
+  "description": "A JavaScript NEXA library for Node.js and browsers.",
   "main": "index.js",
   "authors": {
     "name": "nexajs contributors",

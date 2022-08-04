@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Vuepress Docs Boilerplate',
+  title: 'NexaJS Docs',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -38,22 +38,32 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: 'Config',
-        link: '/config/'
+        text: 'Code',
+        link: '/code/'
       },
       {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
+        text: 'Demo App',
+        link: 'https://demo.nexajs.org'
       }
     ],
     sidebar: {
       '/guide/': [
         {
-          title: 'Guide',
+          title: 'Developer Guide',
           collapsable: false,
           children: [
             '',
-            'using-vue',
+            'installation',
+          ]
+        }
+      ],
+      '/code/': [
+        {
+          title: 'Sample Code',
+          collapsable: false,
+          children: [
+            '',
+            'get-tx',
           ]
         }
       ],
