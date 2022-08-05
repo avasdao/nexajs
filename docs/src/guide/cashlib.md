@@ -1,12 +1,22 @@
 # CashLib
 
-### `cashlib.cc`
+CashLib is your bridge into a Nexa full node.
+
+## cashlib.cpp
 
 [https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp)
 
+Contains the C++ source code.
+
+## cashlib.h
+
+[https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.h](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.h)
+
+Contains the Header file.
+
 ## API
 
-Here is the API.
+The CashLib API offers everything you need to build a production-ready Nexa dApp.
 
 ### Bin2Hex
 
