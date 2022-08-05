@@ -1,39 +1,40 @@
 #include <iostream>
 #include <nan.h>
+
 using namespace v8;
 
 NAN_METHOD(hello) {
     // auto number = Nan::To<int>(info[0]).FromJust();
 
-    Nan::Callback cb;
-    cb.Reset(info[0].As<v8::Function>());
-    // Nan::Callback cb = Nan::Callback(info[0].As<v8::Function>());
+    // assume info[0]->IsFunction()
+    v8::Local<v8::Function> cbFunc = v8::Local<v8::Function>::Cast(info[0]);
+    Nan::Callback cb(cbFunc);
+    // Nan::Callback cb;
+    // cb.Reset(info[0].As<v8::Function>());
 
     /* Initialize count. */
     uint count = 0;
 
     for (uint i = 0; i < 1000000000; i++) {
-        count = i;
+        count += i;
     }
 
     /* Create a JS variable to hold our response. */
-    // auto numberJs = Nan::New(count);
-    // auto stringJs = Nan::To<string>("hello").FromJust();
+    auto numberJs = Nan::New(count);
 
-    // Nan::MaybeLocal<v8::String> stringJs = Nan::To<v8::String>("hello");
+    auto boolJs = Nan::New(info[0]->IsFunction());
 
-    // v8::Local<v8::Value> argv[] = { Nan::Null(), stringJs };
-    // cb.Call(2, argv);
+    /* Create a JS variable to hold our response. */
+    auto resp = Nan::New("hi there!").ToLocalChecked();
 
-    // info.GetReturnValue().Set(New<v8::Null>());
+    // Callback
+    // v8::Local<v8::Value> argv[] = { Nan::Null(), numberJs };
+    v8::Local<v8::Value> argv[] = { Nan::Null(), resp };
+    // v8::Local<v8::Value> argv[] = { Nan::Null() };
+    cb.Call(2, argv);
 
-    Nan::Callback callback;
-    callback.Reset();
-
-    // info.GetReturnValue().Set(callback.IsEmpty());
-
-    // v8::Local<v8::Value> argv[] = { Nan::Null(), callback.IsEmpty() };
-    // info.GetReturnValue().Set(argv);
+    // Return value
+    info.GetReturnValue().Set( Nan::Null() );
 }
 
 NAN_MODULE_INIT(init) {
