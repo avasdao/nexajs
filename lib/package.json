@@ -1,12 +1,14 @@
 {
   "name": "nexajs-lib",
-  "version": "22.8.3",
+  "version": "22.8.5",
   "license": "MIT",
-  "description": "Official documenation for Nexa's JavaScript library for Node.js and browsers.",
+  "description": "A JavaScript NEXA library for Node.js and browsers.",
   "author": "Bitcoin Unlimited developers",
   "main": "index.js",
   "scripts": {
     "build": "node-gyp clean configure build",
+    "install": "node-gyp rebuild",
+    "start": "node ./index.js",
     "test": "mocha"
   },
   "repository": "https://github.com/modenero/nexajs.git",

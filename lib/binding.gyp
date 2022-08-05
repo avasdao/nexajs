@@ -1,7 +1,7 @@
 {
   "targets": [{
     "target_name": "cashlib",
-    "sources": [ "cashlib.cc" ],
+    "sources": [ "./src/cpp/cashlib.cc" ],
     "include_dirs": [ "<!(node -e \"require('nan')\")" ]
   }]
 }
