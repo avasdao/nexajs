@@ -82,8 +82,11 @@
                 </a>
             </div>
 
-            <p class="mt-8 text-center text-base text-gray-400">
-                &copy; {{curYear}} Bitcoin Unlimited. All rights reserved.
+            <p class="mt-8 text-center text-sm sm:text-base text-gray-400">
+                &copy; {{curYear}}
+                <a href="https://www.bitcoinunlimited.info/" target="_blank" class="text-blue-500 text-medium hover:underline">
+                    Bitcoin Unlimited</a>.
+                All rights reserved.
             </p>
         </div>
     </main>

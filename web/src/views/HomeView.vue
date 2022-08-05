@@ -8,23 +8,23 @@
 
         <StatsView class="hidden" />
 
-        <LearnMore class="" />
+        <GetStarted class="" />
     </main>
 </template>
 
 <script>
 /* Import components. */
 import FeaturesView from '@/components/FeaturesView'
+import GetStarted from '@/components/GetStarted'
 import HeroView from '@/components/HeroView'
-import LearnMore from '@/components/LearnMore'
 import LogoCloud from '@/components/LogoCloud'
 import StatsView from '@/components/StatsView'
 
 export default {
     components: {
         FeaturesView,
+        GetStarted,
         HeroView,
-        LearnMore,
         LogoCloud,
         StatsView,
     }

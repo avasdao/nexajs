@@ -29,11 +29,11 @@
                             Take a moment to discover the many ways Nexa can benefit you.
                         </span>
 
-                        We'll take you from <strong class="text-yellow-200">Metaverse NFTs</strong>; to <strong class="text-yellow-200">Infinite Scalability</strong>; pass through <strong class="text-yellow-200">Smart Contract Security</strong> and back again.
+                        We'll guide you from <strong class="text-yellow-200">Metaverse NFTs</strong> to <strong class="text-yellow-200">Infinite Scalability</strong>; then we'll take a walk by <strong class="text-yellow-200">Smart Contracts</strong> and finish with <strong class="text-yellow-200">Zero Confirmation</strong>.
 
                         <span class="hidden sm:inline">
                             What are you waiting for?
-                            Your journey down the rabbit hold begins now!
+                            Your journey down the rabbit hole begins now!
                         </span>
                     </p>
 
