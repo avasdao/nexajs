@@ -38,8 +38,8 @@ module.exports = {
         link: '/guide/',
       },
       {
-        text: 'Code',
-        link: '/code/'
+        text: 'Examples',
+        link: '/examples/'
       },
       {
         text: 'Demo App',
@@ -53,13 +53,14 @@ module.exports = {
           collapsable: false,
           children: [
             '',
-            'installation',
+            'install',
+            'cashlib',
           ]
         }
       ],
-      '/code/': [
+      '/examples/': [
         {
-          title: 'Sample Code',
+          title: 'Code Examples',
           collapsable: false,
           children: [
             '',
