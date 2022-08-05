@@ -12,29 +12,17 @@ NAN_METHOD(hello) {
     // Nan::Callback cb;
     // cb.Reset(info[0].As<v8::Function>());
 
-    /* Initialize count. */
-    uint count = 0;
-
-    for (uint i = 0; i < 1000000000; i++) {
-        count += i;
-    }
-
-    /* Create a JS variable to hold our response. */
-    auto numberJs = Nan::New(count);
-
-    auto boolJs = Nan::New(info[0]->IsFunction());
+    auto hasCallback = Nan::New(info[0]->IsFunction());
 
     /* Create a JS variable to hold our response. */
     auto resp = Nan::New("hi there!").ToLocalChecked();
 
-    // Callback
-    // v8::Local<v8::Value> argv[] = { Nan::Null(), numberJs };
+    /* Set callback. */
     v8::Local<v8::Value> argv[] = { Nan::Null(), resp };
-    // v8::Local<v8::Value> argv[] = { Nan::Null() };
     cb.Call(2, argv);
 
-    // Return value
-    info.GetReturnValue().Set( Nan::Null() );
+    /* Set return value. */
+    info.GetReturnValue().Set( Nan::Undefined() );
 }
 
 NAN_MODULE_INIT(init) {
