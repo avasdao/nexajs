@@ -1,10 +1,10 @@
 {
   "targets": [
     {
-      "target_name": "cashlib",
+      "target_name": "addon",
       "cflags!": [ "-fno-exceptions" ],
       "cflags_cc!": [ "-fno-exceptions" ],
-      "sources": [ "./src/cpp/cashlib.cpp" ],
+      "sources": [ "./src/cpp/addon.cpp" ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
       ],
