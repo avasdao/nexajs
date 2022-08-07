@@ -1,6 +1,6 @@
 # NexaJS CLI
 
-https://docs.nexajs.org/guide/cli
+https://docs.nexajs.org/guide/cli.html
 
 A complete guide to the JavaScript NEXA library for Node.js and browsers.
 
@@ -28,7 +28,9 @@ _TBD_
 
 ## Getting Started
 
-_TBD_
+If you running Linux, you can install this command locally by running `sudo yarn link` from within the `cli` folder.
+
+This will allow you to run `nexa [COMMAND]` from anywhere on the system.
 
 
 # Usage

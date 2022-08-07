@@ -1,15 +1,21 @@
 {
   "name": "nexajs-cli",
-  "version": "0.0.0",
-  "description": "oclif example Hello World CLI",
-  "author": "Modenero Developers @modenero",
-  "bin": {
-    "nexajs-cli": "./bin/run"
-  },
-  "homepage": "https://github.com/modenero/hello-world",
+  "version": "22.8.7",
   "license": "MIT",
+  "description": "Nexa JavaScript CLI",
   "main": "dist/index.js",
-  "repository": "modenero/hello-world",
+  "bin": {
+    "nexa": "./bin/run"
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
   "files": [
     "/bin",
     "/dist",
@@ -39,7 +45,7 @@
     "typescript": "^4.4.3"
   },
   "oclif": {
-    "bin": "nexajs-cli",
+    "bin": "nexa",
     "dirname": "nexajs-cli",
     "commands": "./dist/commands",
     "plugins": [
@@ -53,21 +59,8 @@
       }
     }
   },
-  "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
-    "lint": "eslint . --ext .ts --config .eslintrc",
-    "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "yarn lint",
-    "prepack": "yarn build && oclif manifest && oclif readme",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif readme && git add README.md"
-  },
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/modenero/hello-world/issues",
-  "keywords": [
-    "oclif"
-  ],
   "types": "dist/index.d.ts"
 }
