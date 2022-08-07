@@ -1,8 +1,8 @@
-# NexaJS Web
+# NexaJS CLI
 
-### https://nexajs.org
+https://docs.nexajs.org/guide/cli
 
-This is the "official" web portal for the NexaJS library.
+A complete guide to the JavaScript NEXA library for Node.js and browsers.
 
 # Table of contents
 

@@ -9,6 +9,68 @@ A JavaScript NEXA library for Node.js and browsers. Written in Pure JavaScript.
 Released under the terms of the [MIT LICENSE](LICENSE).
 
 
+# Table of contents
+
+- [Introduction](#introduction)
+  - [Prerequisites](#prerequisites)
+  - [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+  - [Building the workspace](#building-the-workspace)
+
+
+## Introduction
+
+_TBD_
+
+### Prerequisites
+
+_TBD_
+
+### Requirements
+
+_TBD_
+
+
+## Installation
+
+```
+npm install nexaverse
+```
+
+## Quick Start
+
+NexaJS offers a robust suite of functionality.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Example file: [__send-tx.js__](examples/send-tx.js)
+
+```
+const nexajs = require('nexajs')
+
+const privateKey = new nexajs.PrivateKey('L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy')
+
+const utxo = {
+    txId        : '115e8f72f39fad874cfab0deed11a80f24f967a84079fb56ddf53ea02e308986',
+    outputIndex : 0,
+    address     : '17XBj6iFEsf8kzDMGQk5ghZipxX49VXuaV',
+    script      : '76a91447862fe165e6121af80d5dde1ecb478ed170565b88ac',
+    satoshis    : 50000,
+}
+
+const transaction = new nexajs.Transaction()
+    .from(utxo)
+    .to('1Gokm82v6DmtwKEB8AiVhm82hyFSsEvBDK', 15000)
+    .sign(privateKey)
+```
+
+From the terminal / command-line:
+
+```
+$ node examples/send-tx.js
+```
+
+
 ## Should I use this in production?
 
 If you are thinking of using the *master* branch of this library in production, __stop__. Master is not stable; it is our development branch, and [only tagged releases may be classified as stable](https://gitlab.com/modenero/nitojs/tags).
@@ -85,9 +147,6 @@ Some examples interact (via HTTPS) with a 3rd Party Blockchain Provider (3PBP).
 - [Import a BIP32 testnet xpriv and export to WIF](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
 - [Export a BIP32 xpriv, then import it](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
 - [Export a BIP32 xpub](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
-- [Create a BIP32, bitcoin, account 0, external address](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
-- [Create a BIP44, bitcoin, account 0, external address](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
-- [Create a BIP49, bitcoin testnet, account 0, external address](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
 - [Use BIP39 to generate BIP32 addresses](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
 
 If you have a use case that you feel could be listed here, please [ask for it](https://gitlab.com/modenero/nitojs/issues/new)!
