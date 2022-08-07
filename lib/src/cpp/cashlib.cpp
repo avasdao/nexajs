@@ -1,19 +1,21 @@
 #include <cstring>
 #include <iostream>
-#include <napi.h>
 #include <openssl/rand.h>
+
+// #define NAPI_VERSION 3 // FIXME: We need to detect NODE_GYP execution
+#ifdef NAPI_VERSION
+#include <napi.h>
+#endif
+
+#include "sha256.h"
 
 #define SLAPI extern "C" __attribute__((visibility("default")))
 
 SLAPI void sha256(const unsigned char *data, unsigned int len, unsigned char *result)
 {
-    std::cout << "\nSHA in the house!";
-    // if (RAND_bytes(buf, num) != 1)
-    // {
-    //     memset(buf, 0, num);
-    //     return 0;
-    // }
-    // return 112;
+    CSHA256 sha;
+    sha.Write(data, len);
+    sha.Finalize(result);
 }
 
 SLAPI int RandomBytes(unsigned char *buf, int num)
@@ -26,6 +28,7 @@ SLAPI int RandomBytes(unsigned char *buf, int num)
     return num;
 }
 
+#ifdef NAPI_VERSION
 Napi::String hello(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
 
@@ -41,4 +44,5 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   return exports;
 }
 
-NODE_API_MODULE(cashlib, Init)
+NODE_API_MODULE(NODE_GYP_MODULE_NAME, Init)
+#endif
