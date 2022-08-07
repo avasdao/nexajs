@@ -55,6 +55,7 @@ module.exports = {
             '',
             'install',
             'cashlib',
+            'cli',
           ]
         }
       ],
