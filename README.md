@@ -2,7 +2,7 @@
 
 ### https://nexajs.org
 
-![NexaJS Banner](https://nexajs.org/banner.jpg)
+![NexaJS Banner](/web/public/banner.jpg)
 
 A JavaScript NEXA library for Node.js and browsers. Written in Pure JavaScript.
 
