@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="px-5 py-2">
-                    <a href="https://gitlab.com/modenero/nexajs" target="_blank" class="text-base text-gray-500 hover:text-gray-900">
+                    <a href="https://github.com/avasdao/nexajs" target="_blank" class="text-base text-gray-500 hover:text-gray-900">
                         Code
                     </a>
                 </div>

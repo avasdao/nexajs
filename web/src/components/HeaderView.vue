@@ -128,7 +128,7 @@
 
                 <!-- <a href="javascript://" class="text-base font-medium text-gray-500 hover:text-gray-900"> Pricing </a> -->
 
-                <a href="https://gitlab.com/modenero/nexajs" target="_blank" class="text-base font-medium text-gray-500 hover:text-gray-900">
+                <a href="https://github.com/avasdao/nexajs" target="_blank" class="text-base font-medium text-gray-500 hover:text-gray-900">
                     View Source
                 </a>
             </nav>

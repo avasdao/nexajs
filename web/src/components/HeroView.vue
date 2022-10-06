@@ -39,7 +39,7 @@
 
                     <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                         <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
-                            <a href="https://gitlab.com/modenero/nexajs" target="_blank" class="flex items-center justify-center px-4 py-3 border border-transparent text-2xl font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
+                            <a href="https://github.com/avasdao/nexajs" target="_blank" class="flex items-center justify-center px-4 py-3 border border-transparent text-2xl font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8">
                                 See the Code
                             </a>
 
