@@ -1,0 +1,30 @@
+{
+  "name": "nexajs",
+  "version": "22.12.23",
+  "license": "MIT",
+  "description": "JavaScript API Library for interacting with the NEXA blockchain.",
+  "author": "Shomari",
+  "main": "lib/index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/avasdao/nexajs.git"
+  },
+  "keywords": [
+    "javascript",
+    "blockchain",
+    "bitcoin",
+    "cryptocurrency"
+  ],
+  "bugs": {
+    "url": "https://github.com/avasdao/nexajs/issues"
+  },
+  "homepage": "https://github.com/avasdao/nexajs#readme"
+}
