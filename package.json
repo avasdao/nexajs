@@ -2,7 +2,7 @@
   "name": "nexajs",
   "version": "22.12.23",
   "license": "MIT",
-  "description": "JavaScript API Library for interacting with the NEXA blockchain.",
+  "description": "JavaScript API Library for interacting with the Nexa blockchain.",
   "author": "Shomari",
   "main": "lib/index.js",
   "directories": {
