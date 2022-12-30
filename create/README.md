@@ -1,9 +1,12 @@
-# Create a NEXA Project
+# Nexa Application Creator
 
-```
-npm create nexa
+Configure and build a brand new decentralized Nexa application with just a few clicks.
 
-OR
+### Pre-built App Modules
 
-yarn create nexa
-```
+- [ ] Web3 _(default)_
+- [ ] Wallet
+- [ ] Shopping Cart
+- [ ] Game Engine
+- [ ] Mobile (React Native)
+- [ ] Ledger (HW Wallet)
