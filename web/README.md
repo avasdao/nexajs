@@ -1,31 +1,42 @@
-# NexaJS Web
+# Nuxt 3 Minimal Starter
 
-### https://nexajs.org
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-This is the "official" web portal for the NexaJS library.
+## Setup
 
-# Table of contents
+Make sure to install the dependencies:
 
-- [Introduction](#introduction)
-  - [Prerequisites](#prerequisites)
-  - [Requirements](#requirements)
-- [Getting Started](#getting-started)
-  - [Building the workspace](#building-the-workspace)
+```bash
+# yarn
+yarn install
 
+# npm
+npm install
 
-## Introduction
+# pnpm
+pnpm install --shamefully-hoist
+```
 
-_TBD_
+## Development Server
 
-### Prerequisites
+Start the development server on http://localhost:3000
 
-_TBD_
+```bash
+npm run dev
+```
 
-### Requirements
+## Production
 
-_TBD_
+Build the application for production:
 
+```bash
+npm run build
+```
 
-## Getting Started
+Locally preview production build:
 
-_TBD_
+```bash
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

@@ -1,40 +1,16 @@
 {
   "name": "nexajs-web",
-  "version": "22.8.4",
+  "version": "23.1.6",
   "license": "MIT",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.1.1",
-    "@fortawesome/free-brands-svg-icons": "6.1.1",
-    "@fortawesome/free-regular-svg-icons": "6.1.1",
-    "@fortawesome/free-solid-svg-icons": "6.1.1",
-    "@fortawesome/vue-fontawesome": "2.0.6",
-    "core-js": "3.24.1",
-    "moment": "2.29.4",
-    "numeral": "2.0.6",
-    "uuid": "8.3.2",
-    "vue": "3.2.13",
-    "vue-router": "4.0.3",
-    "vuex": "4.0.0"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@babel/core": "7.12.16",
-    "@babel/eslint-parser": "7.12.16",
-    "@tailwindcss/aspect-ratio": "0.4.0",
-    "@tailwindcss/forms": "0.3.3",
-    "@tailwindcss/postcss7-compat": "2.2.4",
-    "@tailwindcss/typography": "0.5.2",
-    "@vue/cli-plugin-babel": "5.0.0",
-    "@vue/cli-plugin-eslint": "5.0.0",
-    "@vue/cli-plugin-router": "5.0.0",
-    "@vue/cli-plugin-vuex": "5.0.0",
-    "@vue/cli-service": "5.0.8",
-    "eslint": "7.32.0",
-    "eslint-plugin-vue": "8.0.3",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "@nuxtjs/tailwindcss": "6.2.0",
+    "nuxt": "3.0.0"
   }
 }
