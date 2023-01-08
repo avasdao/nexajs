@@ -1,9 +1,9 @@
 {
   "name": "nexajs",
-  "version": "22.12.23",
+  "version": "23.1.8",
   "license": "MIT",
-  "description": "JavaScript API Library for interacting with the Nexa blockchain.",
-  "author": "Shomari",
+  "description": "JavaScript API Library & SDK for interacting with the Nexa blockchain.",
+  "author": "NexaJS developers",
   "main": "lib/index.js",
   "directories": {
     "doc": "docs",
@@ -11,7 +11,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "jest"
+    "test": "nx exec -- jest"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,12 @@
   "bugs": {
     "url": "https://github.com/avasdao/nexajs/issues"
   },
-  "homepage": "https://github.com/avasdao/nexajs#readme"
+  "homepage": "https://github.com/avasdao/nexajs#readme",
+  "devDependencies": {
+    "nx": "15.4.5",
+    "@nrwl/nx-cloud": "latest"
+  },
+  "nx": {
+    "targets": {}
+  }
 }
