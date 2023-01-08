@@ -1,7 +1,9 @@
 <template>
     <main class="w-screen h-screen flex justify-center items-center">
         <section>
-            <h1>NexaJS</h1>
+            <h1 class="text-5xl text-indigo-500 font-medium">
+                NexaJS
+            </h1>
 
             <p>
                 A complete guide to the JavaScript NEXA library for Node.js and browsers.
@@ -15,9 +17,13 @@
                 <NuxtLink to="/gettx">
                     Get Transaction
                 </NuxtLink>
+
+                <NuxtLink to="/cli">
+                    Command-line Interface
+                </NuxtLink>
             </ol>
 
-            <p>
+            <p class="w-96">
                 # Introduction
 
                 Nexa began with the idea of creating an experimental blockchain to innovate on the bleeding edge of what Bitcoin could manage.
@@ -25,7 +31,7 @@
                 The original incantation, [NextChain](https://www.nextchain.cash/) is now known as Nexa Coin.
             </p>
 
-            <p>
+            <p class="w-96">
                 features:
                 - title: Group Tokenization
                   details: Nexa has advanced token functionality built directly into the protocol by default.
