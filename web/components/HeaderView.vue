@@ -1,10 +1,10 @@
 <template>
-    <main class="relative bg-white">
+    <main class="bg-pink-500 w-screen">
         <div class="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
             <div class="flex justify-start lg:w-0 lg:flex-1">
                 <a href="javascript://">
                     <span class="sr-only">NexaJS</span>
-                    <img class="h-12 w-auto lg:h-16" :src="require('../assets/logo.png')" alt="" />
+                    <img class="h-12 w-auto lg:h-16" src="~/assets/logo.png" alt="" />
                 </a>
             </div>
 

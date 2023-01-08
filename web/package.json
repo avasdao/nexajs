@@ -12,5 +12,10 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "6.2.0",
     "nuxt": "3.0.0"
+  },
+  "dependencies": {
+    "moment": "^2.29.4",
+    "numeral": "^2.0.6",
+    "uuid": "^9.0.0"
   }
 }

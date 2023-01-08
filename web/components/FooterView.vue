@@ -1,6 +1,6 @@
 <template>
-    <main class="bg-white">
-        <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <main class="w-screen bg-gray-200 border-t-2 border-gray-400">
+        <div class="max-w-7xl mx-auto flex flex-col gap-4 py-6 px-4 lg:px-8">
             <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
                 <div class="px-5 py-2">
                     <a href="https://nexa.org" target="_blank" class="text-base text-gray-500 hover:text-gray-900">
@@ -27,7 +27,7 @@
                 </div>
             </nav>
 
-            <div class="mt-8 flex justify-center space-x-6">
+            <div class="flex justify-center space-x-6">
                 <a href="https://www.facebook.com/nexa.org" target="_blank" class="text-gray-400 hover:text-gray-500">
                     <span class="sr-only">Facebook</span>
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -82,10 +82,10 @@
                 </a>
             </div>
 
-            <p class="mt-8 text-center text-sm sm:text-base text-gray-400">
+            <p class="text-center text-sm sm:text-base text-gray-400">
                 &copy; {{curYear}}
-                <a href="https://www.bitcoinunlimited.info/" target="_blank" class="text-blue-500 text-medium hover:underline">
-                    Bitcoin Unlimited</a>.
+                <a href="https://avasdao.org" target="_blank" class="text-blue-500 text-medium hover:underline">
+                    Ava's DAO</a>.
                 All rights reserved.
             </p>
         </div>
@@ -104,7 +104,6 @@ export default {
         curYear() {
             return moment().format('YYYY')
         },
-
     },
     methods: {
         //

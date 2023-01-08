@@ -1,5 +1,6 @@
 <template>
-    <main class="w-screen h-screen flex justify-center items-center">
+    <main class="w-full overflow-x-hidden flex flex-col justify-center items-center">
+        <HeaderView />
         <section>
             <h1 class="text-5xl text-indigo-500 font-medium">
                 NexaJS
@@ -41,6 +42,7 @@
                   details: Double-spend proofs allow businesses to offer faster payments while lowering the risks of fraud.
             </p>
         </section>
+        <FooterView />
     </main>
 </template>
 
