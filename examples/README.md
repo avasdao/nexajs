@@ -11,6 +11,7 @@ A complete guide to the JavaScript NEXA library for Node.js and browsers.
   - [Requirements](#requirements)
 - [Getting Started](#getting-started)
   - [Building the workspace](#building-the-workspace)
+- [More Examples](#more-examples)
 
 
 ## Introduction
@@ -29,3 +30,7 @@ _TBD_
 ## Getting Started
 
 _TBD_
+
+## More Examples
+
+- [RPC](/packages/rpc/examples)
