@@ -1,8 +1,8 @@
 {
-  "name": "nexajs-cli",
-  "version": "22.12.29",
+  "name": "@nexajs/cli",
+  "version": "23.1.9",
   "license": "MIT",
-  "description": "Nexa application and platform manager.",
+  "description": "A command-line Nexa application and platform manager.",
   "main": "dist/index.js",
   "bin": {
     "nexa": "./bin/run"
