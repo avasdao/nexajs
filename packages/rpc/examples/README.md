@@ -10,7 +10,7 @@ A complete guide to ALL the JSON-RPC commands available via the node.
 
 Details on the current state of the blockchain.
 
-### Sample response:
+#### Sample response:
 ```
 {
   chain: 'nexa',
