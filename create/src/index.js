@@ -2,6 +2,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import { v4 as uuidv4 } from 'uuid'
 
 // import path from 'path';
 import { fileURLToPath } from 'url'
@@ -32,5 +33,6 @@ import chalk from 'chalk'
 
 inquirer.prompt(QUESTIONS)
 .then(answers => {
-    console.log(answers)
+    const projectid = uuidv4()
+    console.log(projectid, answers)
 })
