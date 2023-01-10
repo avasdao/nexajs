@@ -1,0 +1,8 @@
+{
+  "name": "examples",
+  "version": "23.1.10",
+  "description": "NexaJS examples gallery.",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module"
+}
