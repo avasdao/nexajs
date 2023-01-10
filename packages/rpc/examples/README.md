@@ -1,10 +1,16 @@
 # NexaJS RPC Examples
 
-- [GetBlockchainInfo](#getblockchaininfo) [getblockchaininfo.js](getblockchaininfo.js)
+A complete guide to ALL the JSON-RPC commands available via the node.
+
+# Table of contents
+
+- [GetBlockchainInfo](#getblockchaininfo) [ [view the source](getblockchaininfo.js) ]
 
 ## GetBlockchainInfo
 
-Sample JSON response:
+Details on the current state of the blockchain.
+
+### Sample response:
 ```
 {
   chain: 'nexa',
