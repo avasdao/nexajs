@@ -36,39 +36,39 @@ This will allow you to run `nexa [COMMAND]` from anywhere on the system.
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g nexajs-cli
-$ nexajs-cli COMMAND
+$ npm install -g @nexajs/cli
+$ nexa COMMAND
 running command...
-$ nexajs-cli (--version)
-nexajs-cli/0.0.0 linux-x64 node-v14.17.0
-$ nexajs-cli --help [COMMAND]
+$ nexa (--version)
+@nexajs/cli/23.1.9 linux-x64 node-v16.15.0
+$ nexa --help [COMMAND]
 USAGE
-  $ nexajs-cli COMMAND
+  $ nexa COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`nexajs-cli hello PERSON`](#nexajs-cli-hello-person)
-* [`nexajs-cli hello world`](#nexajs-cli-hello-world)
-* [`nexajs-cli help [COMMAND]`](#nexajs-cli-help-command)
-* [`nexajs-cli plugins`](#nexajs-cli-plugins)
-* [`nexajs-cli plugins:install PLUGIN...`](#nexajs-cli-pluginsinstall-plugin)
-* [`nexajs-cli plugins:inspect PLUGIN...`](#nexajs-cli-pluginsinspect-plugin)
-* [`nexajs-cli plugins:install PLUGIN...`](#nexajs-cli-pluginsinstall-plugin-1)
-* [`nexajs-cli plugins:link PLUGIN`](#nexajs-cli-pluginslink-plugin)
-* [`nexajs-cli plugins:uninstall PLUGIN...`](#nexajs-cli-pluginsuninstall-plugin)
-* [`nexajs-cli plugins:uninstall PLUGIN...`](#nexajs-cli-pluginsuninstall-plugin-1)
-* [`nexajs-cli plugins:uninstall PLUGIN...`](#nexajs-cli-pluginsuninstall-plugin-2)
-* [`nexajs-cli plugins update`](#nexajs-cli-plugins-update)
+* [`nexa hello PERSON`](#nexa-hello-person)
+* [`nexa hello world`](#nexa-hello-world)
+* [`nexa help [COMMAND]`](#nexa-help-command)
+* [`nexa plugins`](#nexa-plugins)
+* [`nexa plugins:install PLUGIN...`](#nexa-pluginsinstall-plugin)
+* [`nexa plugins:inspect PLUGIN...`](#nexa-pluginsinspect-plugin)
+* [`nexa plugins:install PLUGIN...`](#nexa-pluginsinstall-plugin-1)
+* [`nexa plugins:link PLUGIN`](#nexa-pluginslink-plugin)
+* [`nexa plugins:uninstall PLUGIN...`](#nexa-pluginsuninstall-plugin)
+* [`nexa plugins:uninstall PLUGIN...`](#nexa-pluginsuninstall-plugin-1)
+* [`nexa plugins:uninstall PLUGIN...`](#nexa-pluginsuninstall-plugin-2)
+* [`nexa plugins update`](#nexa-plugins-update)
 
-## `nexajs-cli hello PERSON`
+## `nexa hello PERSON`
 
 Say hello
 
 ```
 USAGE
-  $ nexajs-cli hello [PERSON] -f <value>
+  $ nexa hello [PERSON] -f <value>
 
 ARGUMENTS
   PERSON  Person to say hello to
@@ -84,15 +84,13 @@ EXAMPLES
   hello friend from oclif! (./src/commands/hello/index.ts)
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/modenero/hello-world/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `nexajs-cli hello world`
+## `nexa hello world`
 
 Say hello world
 
 ```
 USAGE
-  $ nexajs-cli hello world
+  $ nexa hello world
 
 DESCRIPTION
   Say hello world
@@ -102,13 +100,13 @@ EXAMPLES
   hello world! (./src/commands/hello/world.ts)
 ```
 
-## `nexajs-cli help [COMMAND]`
+## `nexa help [COMMAND]`
 
-Display help for nexajs-cli.
+Display help for nexa.
 
 ```
 USAGE
-  $ nexajs-cli help [COMMAND] [-n]
+  $ nexa help [COMMAND] [-n]
 
 ARGUMENTS
   COMMAND  Command to show help for.
@@ -117,18 +115,18 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for nexajs-cli.
+  Display help for nexa.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.10/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.20/src/commands/help.ts)_
 
-## `nexajs-cli plugins`
+## `nexa plugins`
 
 List installed plugins.
 
 ```
 USAGE
-  $ nexajs-cli plugins [--core]
+  $ nexa plugins [--core]
 
 FLAGS
   --core  Show core plugins.
@@ -137,18 +135,18 @@ DESCRIPTION
   List installed plugins.
 
 EXAMPLES
-  $ nexajs-cli plugins
+  $ nexa plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.0.11/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.9/src/commands/plugins/index.ts)_
 
-## `nexajs-cli plugins:install PLUGIN...`
+## `nexa plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ nexajs-cli plugins:install PLUGIN...
+  $ nexa plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -160,7 +158,6 @@ FLAGS
 
 DESCRIPTION
   Installs a plugin into the CLI.
-
   Can be installed from npm or a git url.
 
   Installation of a user-installed plugin will override a core plugin.
@@ -169,24 +166,25 @@ DESCRIPTION
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
 
+
 ALIASES
-  $ nexajs-cli plugins add
+  $ nexa plugins add
 
 EXAMPLES
-  $ nexajs-cli plugins:install myplugin
+  $ nexa plugins:install myplugin 
 
-  $ nexajs-cli plugins:install https://github.com/someuser/someplugin
+  $ nexa plugins:install https://github.com/someuser/someplugin
 
-  $ nexajs-cli plugins:install someuser/someplugin
+  $ nexa plugins:install someuser/someplugin
 ```
 
-## `nexajs-cli plugins:inspect PLUGIN...`
+## `nexa plugins:inspect PLUGIN...`
 
 Displays installation properties of a plugin.
 
 ```
 USAGE
-  $ nexajs-cli plugins:inspect PLUGIN...
+  $ nexa plugins:inspect PLUGIN...
 
 ARGUMENTS
   PLUGIN  [default: .] Plugin to inspect.
@@ -199,16 +197,16 @@ DESCRIPTION
   Displays installation properties of a plugin.
 
 EXAMPLES
-  $ nexajs-cli plugins:inspect myplugin
+  $ nexa plugins:inspect myplugin
 ```
 
-## `nexajs-cli plugins:install PLUGIN...`
+## `nexa plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ nexajs-cli plugins:install PLUGIN...
+  $ nexa plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -220,7 +218,6 @@ FLAGS
 
 DESCRIPTION
   Installs a plugin into the CLI.
-
   Can be installed from npm or a git url.
 
   Installation of a user-installed plugin will override a core plugin.
@@ -229,24 +226,25 @@ DESCRIPTION
   will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
   the CLI without the need to patch and update the whole CLI.
 
+
 ALIASES
-  $ nexajs-cli plugins add
+  $ nexa plugins add
 
 EXAMPLES
-  $ nexajs-cli plugins:install myplugin
+  $ nexa plugins:install myplugin 
 
-  $ nexajs-cli plugins:install https://github.com/someuser/someplugin
+  $ nexa plugins:install https://github.com/someuser/someplugin
 
-  $ nexajs-cli plugins:install someuser/someplugin
+  $ nexa plugins:install someuser/someplugin
 ```
 
-## `nexajs-cli plugins:link PLUGIN`
+## `nexa plugins:link PLUGIN`
 
 Links a plugin into the CLI for development.
 
 ```
 USAGE
-  $ nexajs-cli plugins:link PLUGIN
+  $ nexa plugins:link PLUGIN
 
 ARGUMENTS
   PATH  [default: .] path to plugin
@@ -257,23 +255,23 @@ FLAGS
 
 DESCRIPTION
   Links a plugin into the CLI for development.
-
   Installation of a linked plugin will override a user-installed or core plugin.
 
   e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
   command will override the user-installed or core plugin implementation. This is useful for development work.
 
+
 EXAMPLES
-  $ nexajs-cli plugins:link myplugin
+  $ nexa plugins:link myplugin
 ```
 
-## `nexajs-cli plugins:uninstall PLUGIN...`
+## `nexa plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ nexajs-cli plugins:uninstall PLUGIN...
+  $ nexa plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -286,17 +284,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ nexajs-cli plugins unlink
-  $ nexajs-cli plugins remove
+  $ nexa plugins unlink
+  $ nexa plugins remove
 ```
 
-## `nexajs-cli plugins:uninstall PLUGIN...`
+## `nexa plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ nexajs-cli plugins:uninstall PLUGIN...
+  $ nexa plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -309,17 +307,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ nexajs-cli plugins unlink
-  $ nexajs-cli plugins remove
+  $ nexa plugins unlink
+  $ nexa plugins remove
 ```
 
-## `nexajs-cli plugins:uninstall PLUGIN...`
+## `nexa plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ nexajs-cli plugins:uninstall PLUGIN...
+  $ nexa plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -332,17 +330,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ nexajs-cli plugins unlink
-  $ nexajs-cli plugins remove
+  $ nexa plugins unlink
+  $ nexa plugins remove
 ```
 
-## `nexajs-cli plugins update`
+## `nexa plugins update`
 
 Update installed plugins.
 
 ```
 USAGE
-  $ nexajs-cli plugins update [-h] [-v]
+  $ nexa plugins update [-h] [-v]
 
 FLAGS
   -h, --help     Show CLI help.
