@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "23.1.8",
+  "version": "23.1.10",
   "license": "MIT",
   "description": "JavaScript API Library & SDK for interacting with the Nexa blockchain.",
   "author": "NexaJS developers",
@@ -27,6 +27,7 @@
     "url": "https://github.com/avasdao/nexajs/issues"
   },
   "homepage": "https://github.com/avasdao/nexajs#readme",
+  "funding": "https://nexajs.org/donate",
   "devDependencies": {
     "nx": "15.4.5",
     "@nrwl/nx-cloud": "latest"
