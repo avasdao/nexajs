@@ -1,4 +1,4 @@
-# NexaJS Address Examples
+# NexaJS Server Examples
 
 There are NO code examples for this package, as it it meant to run on the server from an API node (either via NPM or Docker).
 
