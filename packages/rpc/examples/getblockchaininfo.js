@@ -1,5 +1,5 @@
 /* Import modules. */
-import { call } from '@nexajs/rpc'
+import { call } from '../index.js' // use @nexajs/rpc in production
 
 ;(async () => {
     /* Set method. */

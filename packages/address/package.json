@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/address",
+  "version": "23.1.10",
+  "description": "TBD",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}

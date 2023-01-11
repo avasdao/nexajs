@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/id",
+  "version": "23.1.10",
+  "description": "Allows software to interface with a server, securely using the Nexa Identity protocol (nexid).",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}
