@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/express",
+  "version": "23.1.13",
+  "description": "Express JS middleware.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}
