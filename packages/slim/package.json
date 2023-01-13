@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/slim",
+  "version": "23.1.13",
+  "description": "A minimal package edition of the NexaJS library and SDK.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}
