@@ -1,7 +1,7 @@
 {
   "name": "@nexajs/server",
   "version": "23.1.10",
-  "description": "TBD",
+  "description": "A simple server to manage the backend of your Nexa application.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
