@@ -54,7 +54,7 @@ const call = async (_method, _params, _options) => {
     try {
         /* Set endpoint. */
         endpoint = `http://${username}:${password}@${host}:${port}`
-        console.log('ENDPOINT', endpoint)
+        // console.log('ENDPOINT', endpoint)
 
         /* Build package. */
         const pkg = {
@@ -63,7 +63,7 @@ const call = async (_method, _params, _options) => {
             "method": _method,
             "params": _params,
         }
-        console.log('PKG', pkg)
+        // console.log('PKG', pkg)
 
         /* Request Elasticsearch query. */
         response = await superagent
@@ -71,7 +71,7 @@ const call = async (_method, _params, _options) => {
             .set('accept', 'json')
             .send(pkg)
             .catch(_err => {
-                console.error(_err)
+                // console.error(_err)
 
                 if (_err && _err.response && _err.response.text) {
                     error = JSON.parse(_err.response.text)

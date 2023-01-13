@@ -1,7 +1,7 @@
 {
   "name": "@nexajs/rpc",
-  "version": "23.1.9",
-  "description": "Allows full control of local Nexa node using JSON-RPC.",
+  "version": "23.1.12",
+  "description": "Allows programmable control of a Nexa full node using JSON-RPC.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
