@@ -4,7 +4,7 @@
 
 ![NexaJS Banner](/web/static/banner.jpg)
 
-A JavaScript NEXA library for Node.js and browsers. Written in Pure JavaScript.
+A pure JavaScript Library and Software Development Kit (SDK) for building (decentralized) applications (dApps) powered by the [Nexa](https://nexa.org/) blockchain.
 
 Released under the terms of the [MIT LICENSE](LICENSE).
 
@@ -17,6 +17,7 @@ Released under the terms of the [MIT LICENSE](LICENSE).
 - [Installation](#installation)
 - [Quick Start](#quick-start)
   - [Building the workspace](#building-the-workspace)
+- [Package List](#package-list)
 
 
 ## Introduction
@@ -150,6 +151,38 @@ Some examples interact (via HTTPS) with a 3rd Party Blockchain Provider (3PBP).
 - [Use BIP39 to generate BIP32 addresses](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
 
 If you have a use case that you feel could be listed here, please [ask for it](https://gitlab.com/modenero/nitojs/issues/new)!
+
+
+## Package List
+
+> The following suite of 26 packages compose the entire NexaJS Library and Software Development Kit (SDK).
+
+- [Account]()
+- [Address](/packages/address)
+- [App]()
+- [Blockchain]()
+- [Charts]()
+- [Crypto]()
+- [DeFi]()
+- [Express](/packages/express)
+- [Games]()
+- [HD Node]()
+- [Nexa ID](/packages/id)
+- [Ledger HW Wallet]()
+- [Logger]()
+- [Markets]()
+- [Meta](/packages/meta)
+- [Privacy]()
+- [Purse]()
+- [RPC](/packages/rpc)
+- [Script]()
+- [Server](/packages/server)
+- [Slim](/packages/slim)
+- [Token](/packages/token)
+- [Transaction]()
+- [Trezor HW Wallet]()
+- [Utils]()
+- [Wallet]()
 
 
 ## Contributing
