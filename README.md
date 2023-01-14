@@ -4,9 +4,9 @@
 
 ![NexaJS Banner](/web/static/banner.jpg)
 
-A pure JavaScript Library and Software Development Kit (SDK) for building (decentralized) applications (dApps) powered by the [Nexa](https://nexa.org/) blockchain.
+A pure JavaScript Library and Software Development Kit (SDK) for building _decentralized_ applications (dApps) powered by the [__Nexa__](https://nexa.org/) blockchain.
 
-Released under the terms of the [MIT LICENSE](LICENSE).
+Released under the terms of the [__MIT LICENSE__](LICENSE).
 
 
 # Table of contents
@@ -17,7 +17,7 @@ Released under the terms of the [MIT LICENSE](LICENSE).
 - [Installation](#installation)
 - [Quick Start](#quick-start)
   - [Building the workspace](#building-the-workspace)
-- [Package List](#package-list)
+- [Packages List](#packages-list)
 
 
 ## Introduction
@@ -153,36 +153,36 @@ Some examples interact (via HTTPS) with a 3rd Party Blockchain Provider (3PBP).
 If you have a use case that you feel could be listed here, please [ask for it](https://gitlab.com/modenero/nitojs/issues/new)!
 
 
-## Package List
+## Packages List
 
 > The following suite of 26 packages compose the entire NexaJS Library and Software Development Kit (SDK).
 
-- [Account]()
+- [Account](/packages)
 - [Address](/packages/address)
-- [App]()
-- [Blockchain]()
-- [Charts]()
-- [Crypto]()
-- [DeFi]()
+- [App](/packages)
+- [Blockchain](/packages)
+- [Charts](/packages)
+- [Crypto](/packages)
+- [DeFi](/packages)
 - [Express](/packages/express)
-- [Games]()
-- [HD Node]()
+- [Games](/packages)
+- [HD Node](/packages)
 - [Nexa ID](/packages/id)
-- [Ledger HW Wallet]()
-- [Logger]()
-- [Markets]()
+- [Ledger HW Wallet](/packages)
+- [Logger](/packages)
+- [Markets](/packages)
 - [Meta](/packages/meta)
-- [Privacy]()
-- [Purse]()
+- [Privacy](/packages)
+- [Purse](/packages)
 - [RPC](/packages/rpc)
-- [Script]()
+- [Script](/packages)
 - [Server](/packages/server)
 - [Slim](/packages/slim)
 - [Token](/packages/token)
-- [Transaction]()
-- [Trezor HW Wallet]()
-- [Utils]()
-- [Wallet]()
+- [Transaction](/packages)
+- [Trezor HW Wallet](/packages)
+- [Utils](/packages)
+- [Wallet](/packages)
 
 
 ## Contributing
