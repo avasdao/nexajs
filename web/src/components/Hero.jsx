@@ -52,7 +52,7 @@ export function Hero() {
                 Nexa Is Building Next
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K+ TPS.
+                Start creating your next BIG idea on the 3rd generation Bitcoin network that&apos;s delivering over 100K+ TPS.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
                 <Button href="/" className="text-xl">Get started</Button>

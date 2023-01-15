@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 function LogomarkPaths() {
   return (
     <g fill="none" stroke="#38BDF8" strokeLinejoin="round" strokeWidth={3}>
@@ -9,7 +11,7 @@ function LogomarkPaths() {
 
 export function Logomark(props) {
   return (
-      <img src="/logo.png" className="lg:hidden w-12 h-12" />
+      <Image src="/logo.png" className="lg:hidden w-12 h-12" alt="NexaJS logo" />
     // <svg aria-hidden="true" viewBox="0 0 36 36" fill="none" {...props}>
       // <LogomarkPaths />
     // </svg>
@@ -19,7 +21,7 @@ export function Logomark(props) {
 export function Logo(props) {
   return (
       <div className="hidden lg:flex gap-4 items-center">
-        <img src="/logo.png" className="w-12 h-12" />
+        <Image src="/logo.png" className="w-12 h-12" alt="NexaJS logo" />
         <h1 className="text-3xl text-yellow-800 font-medium">
           NexaJS Lib + SDK
         </h1>
