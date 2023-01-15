@@ -1,18 +1,18 @@
 ---
 title: Getting started
-pageTitle: CacheAdvance - Never miss the cache again.
-description: Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.
+pageTitle: NexaJS Library and SDK
+description: Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
 ---
 
-Learn how to get CacheAdvance set up in your project in under thirty minutes or it's free. {% .lead %}
+Learn how to get Nexa set up in your JavaScript project in under sixty (60) seconds or the entire Library + SDK are FREE! {% .lead %}
 
 {% quick-links %}
 
 {% quick-link title="Installation" icon="installation" href="/" description="Step-by-step guides to setting up your system and installing the library." /%}
 
-{% quick-link title="Architecture guide" icon="presets" href="/" description="Learn how the internals work and contribute." /%}
+{% quick-link title="My First Project" icon="plugins" href="/" description="Get started with your first Nexa project in under 60 seconds." /%}
 
-{% quick-link title="Plugins" icon="plugins" href="/" description="Extend the library with third-party plugins or write your own." /%}
+{% quick-link title="EVM MIgration Guide" icon="presets" href="/" description="Learn how the leverage the full power of Nexa and scale your project to new highs." /%}
 
 {% quick-link title="API reference" icon="theming" href="/" description="Learn to easily customize and modify your app's visual design to fit your brand." /%}
 
@@ -31,7 +31,7 @@ Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut par
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
 ```shell
-npm install @tailwindlabs/cache-advance
+npm install nexajs
 ```
 
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.

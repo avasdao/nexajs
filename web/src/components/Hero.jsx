@@ -14,7 +14,7 @@ const code = `npm create nexa
   What type of project? › Vue (single page app) + TS
   Any additional features? › DB, ID, Wallet
 ...
-Your app is now running on http://127.0.0.1:3000`
+Your app is now running at http://127.0.0.1:3000`
 
 const tabs = [
   { name: 'NPM Library', isActive: false },
@@ -52,11 +52,11 @@ export function Hero() {
                 Nexa Is Building Next
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
+                Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K+ TPS.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/">Get started</Button>
-                <Button href="/" variant="secondary">
+                <Button href="/" className="text-xl">Get started</Button>
+                <Button href="https://github.com/avasdao/nexajs" className="text-xl" variant="secondary">
                   View on GitHub
                 </Button>
               </div>
