@@ -8,18 +8,18 @@ import { HeroBackground } from '@/components/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
-const codeLanguage = 'javascript'
-const code = `export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
-}`
+const codeLanguage = 'shell'
+const code = `npm create nexa
+  What's your project name? › my-killer-app
+  What type of project? › Vue (single page app) + TS
+  Any additional features? › DB, ID, Wallet
+...
+Your app is now running on http://127.0.0.1:3000`
 
 const tabs = [
-  { name: 'cache-advance.config.js', isActive: true },
-  { name: 'package.json', isActive: false },
+  { name: 'NPM Library', isActive: false },
+  { name: 'Web App Creator', isActive: true },
+  { name: 'Express App Server', isActive: false },
 ]
 
 function TrafficLightsIcon(props) {
@@ -49,11 +49,10 @@ export function Hero() {
             />
             <div className="relative">
               <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Never miss the cache again.
+                Nexa Is Building Next
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Cache every single thing your app could ever do ahead of time,
-                so your code never even has to run at all.
+                Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
                 <Button href="/">Get started</Button>
