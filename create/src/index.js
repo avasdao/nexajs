@@ -17,37 +17,33 @@ const __dirname = path.dirname(__filename)
 /* Initialize menu (question) choices. */
 const TEMPLATE_CHOICES = [
     {
-        name: 'Pure JS (no packaging, no TypeScript)',
-        value: '',
+        name: 'Vanilla JS (no packaging, no TypeScript)',
+        value: 'vanilla',
     },
     {
-        name: 'Vue',
-        value: 'vue',
-    },
-    {
-        name: 'Vue + TS (default)',
+        name: 'Vue.js (default)',
         value: 'vue-ts',
     },
     {
         name: 'React',
-        value: 'react',
-    },
-    {
-        name: 'React + TS',
         value: 'react-ts',
     },
     {
         name: 'React Native',
-        value: 'react-native',
+        value: 'react-native-ts',
     },
     {
-        name: 'React Native + TS',
-        value: 'react-native-ts',
+        name: 'Show more options...',
+        value: null,
     },
 ]
 
 /* Initialize menu (question) choices. */
 const FEATURES_CHOICES = [
+    {
+        name: 'Analytics (recommended)',
+        value: 'analytics',
+    },
     {
         name: 'Charts',
         value: 'charts',
@@ -57,12 +53,32 @@ const FEATURES_CHOICES = [
         value: 'db',
     },
     {
-        name: 'Nexa ID',
+        name: 'DeFi',
+        value: 'defi',
+    },
+    {
+        name: 'Ledger Hardware Wallet',
+        value: 'ledger',
+    },
+    {
+        name: 'Markets',
+        value: 'markets',
+    },
+    {
+        name: 'Meta Network',
+        value: 'meta',
+    },
+    {
+        name: 'Nexa ID (recommended)',
         value: 'id',
     },
     {
         name: 'Purse',
         value: 'purse',
+    },
+    {
+        name: 'Trezor',
+        value: 'trezor',
     },
     {
         name: 'Wallet',
@@ -86,11 +102,23 @@ const QUESTIONS = [
     default: 'Homemade Crypto App',
 },
 {
+    name: 'location',
+    type: 'input',
+    message: 'Where would you like your application built:',
+    default: 'app',
+},
+{
     name: 'features',
     type: 'checkbox',
     message: 'Would you like any additional features:',
     choices: FEATURES_CHOICES,
-    // default: 'DB, ID, Wallet',
+    default: ['analytics', 'id'],
+},
+{
+    name: 'custom',
+    type: 'confirm',
+    message: 'Would you like to customize your selected features:',
+    default: false,
 }]
 
 inquirer
@@ -100,14 +128,15 @@ inquirer
         const projectid = uuidv4()
 
         console.log()
-        console.log('  Your Project ID: %s', projectid)
-        console.log('                   (this is auto-generated)')
+        console.log('  Your Application ID: %s', projectid)
+        console.log('                       (this is auto-generated)')
         console.log()
-        console.log('             Name: %s', answers.name)
-        console.log('         Template: %s', displayTemplate(answers.template))
-        console.log('   Adt\'l Features: %s', answers.features)
+        console.log('                 Name: %s', answers.name)
+        console.log('             Template: %s', displayTemplate(answers.template))
+        console.log('       Adt\'l Features: %s', answers.features)
+        console.log('           Customized: %s', answers.custom)
         console.log()
-        console.log('  Is this correct?')
+        console.log('  Proceed to `<your-app-folder>` and run `npm install` OR `yarn install`.')
         console.log()
     })
 
