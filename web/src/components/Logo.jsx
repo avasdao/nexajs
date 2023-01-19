@@ -11,7 +11,7 @@ function LogomarkPaths() {
 
 export function Logomark(props) {
   return (
-      <Image src="/logo.png" className="lg:hidden w-12 h-12" alt="NexaJS logo" />
+      <Image src="/logo.png" className="lg:hidden w-12 h-12" width="12" height="12" alt="NexaJS logo" />
     // <svg aria-hidden="true" viewBox="0 0 36 36" fill="none" {...props}>
       // <LogomarkPaths />
     // </svg>
@@ -21,7 +21,7 @@ export function Logomark(props) {
 export function Logo(props) {
   return (
       <div className="hidden lg:flex gap-4 items-center">
-        <Image src="/logo.png" className="w-12 h-12" alt="NexaJS logo" />
+        <Image src="/logo.png" className="w-12 h-12" width="12" height="12" alt="NexaJS logo" />
         <h1 className="text-3xl text-yellow-800 font-medium">
           NexaJS Lib + SDK
         </h1>

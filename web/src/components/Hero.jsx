@@ -17,9 +17,9 @@ const code = `npm create nexa
 Your app is now running at http://127.0.0.1:3000`
 
 const tabs = [
-  { name: 'NPM Library', isActive: false },
-  { name: 'Web App Creator', isActive: true },
-  { name: 'Express App Server', isActive: false },
+  { name: 'JS Library', isActive: false },
+  { name: 'Nexa App Creator', isActive: true },
+  { name: 'Nexa App Server', isActive: false },
 ]
 
 function TrafficLightsIcon(props) {
@@ -52,12 +52,15 @@ export function Hero() {
                 Nexa Is Building Next
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Start creating your next BIG idea on the 3rd generation Bitcoin network that&apos;s delivering over 100K+ TPS.
+                Begin creating your next BIG idea on the 3rd generation of Bitcoin's L1 network — delivering over 100K+ TPS.
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/" className="text-xl">Get started</Button>
+                <Button href="/" className="text-xl">
+                  Start BUIDLing Now
+                </Button>
+
                 <Button href="https://github.com/avasdao/nexajs" className="text-xl" variant="secondary">
-                  View on GitHub
+                  View the Code
                 </Button>
               </div>
             </div>
