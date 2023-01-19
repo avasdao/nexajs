@@ -1,0 +1,19 @@
+{
+  "name": "id-public-service",
+  "version": "23.1.19",
+  "description": "A public Nexa ID service.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS contributors",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "moment": "2.29.4",
+    "numeral": "2.0.6",
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "@nexajs/id": "23.1.10"
+  }
+}
