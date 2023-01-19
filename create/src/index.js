@@ -121,6 +121,11 @@ const QUESTIONS = [
     default: false,
 }]
 
+// NOTE: Adding a line-break to improve the starting position of the display;
+//       before presenting the menu of options to the user.
+console.log()
+
+/* Begin user interaction. */
 inquirer
     .prompt(QUESTIONS)
     .then(answers => {
@@ -129,17 +134,27 @@ inquirer
 
         console.log()
         console.log('  Your Application ID: %s', projectid)
-        console.log('                       (this is auto-generated)')
+        console.log('                       (this is auto-generated for use with "public" services)')
         console.log()
         console.log('                 Name: %s', answers.name)
         console.log('             Template: %s', displayTemplate(answers.template))
         console.log('       Adt\'l Features: %s', answers.features)
         console.log('           Customized: %s', answers.custom)
         console.log()
-        console.log('  Proceed to `<your-app-folder>` and run `npm install` OR `yarn install`.')
+        console.log('  Your setup completed successfully!!')
+        console.log()
+        console.log(`  Now proceed to the [ ${answers.location} ] folder and run one of the following commands:`)
+        console.log('    - yarn install && yarn dev')
+        console.log('    - npm install && npm run dev')
+        console.log('    - pnpm install && pnpm run dev')
         console.log()
     })
 
+/**
+ * Display Template
+ *
+ * Formats the information displayed to the user.
+ */
 const displayTemplate = (_templateid) => {
     switch(_templateid) {
     case 'vue-ts':
