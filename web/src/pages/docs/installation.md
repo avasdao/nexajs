@@ -3,6 +3,8 @@ title: Installation
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
+Getting started is quick and easy!
+
 Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
 
 ---
