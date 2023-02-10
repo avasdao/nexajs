@@ -14,6 +14,7 @@ RUN yarn run build
 ### STAGE 2: NGINX ###
 FROM nginx:stable-alpine
 
+COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/out /usr/share/nginx/html
 
 EXPOSE 80
