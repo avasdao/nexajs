@@ -1,5 +1,4 @@
-### STAGE 1: Build ###
-FROM node:16 as build
+FROM node:16
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -9,4 +8,7 @@ COPY package.json /usr/src/app/package.json
 RUN yarn install --silent
 
 COPY . /usr/src/app
+
+EXPOSE 3000
+
 RUN yarn run start
