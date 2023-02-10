@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    image: nexajs
+    container_name: nexajs
+    restart: always
+    ports:
+      - '127.0.0.1:3000:80'
