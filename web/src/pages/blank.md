@@ -1,5 +1,5 @@
 ---
-title: Design principles
+title: Blank
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 

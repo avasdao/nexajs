@@ -1,11 +1,11 @@
-<template>
-    <main>
-        <h1>CashLib</h1>
+---
+title: CashLib
+description: Your programmable gateway into the Nexa full node.
+---
 
-        <pre><code>
-# CashLib
+The Cash Library is your programmable gateway into the Nexa full node. The API interface provides a collection of methods to perform all of the critical actions necessary to build (advanced) decentralized applications (dApps).
 
-The Cash Library is your gateway into a Nexa full node. The API interface provides a collection of methods to perform all of the critical actions necessary to build (advanced) blockchain applications.
+---
 
 ## cashlib.h
 
@@ -187,13 +187,3 @@ int txidem(
     unsigned char *result
 );
 ```
-
-        </code></pre>
-    </main>
-</template>
-
-<script>
-export default {
-    //
-}
-</script>
