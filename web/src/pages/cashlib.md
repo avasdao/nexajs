@@ -9,13 +9,13 @@ The Cash Library is your programmable gateway into the Nexa full node. The API i
 
 ## cashlib.h
 
-[https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.h](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.h)
+[view the source](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.h)
 
 Contains the Header template.
 
 ## cashlib.cpp
 
-[https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp)
+[view the source](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp)
 
 Contains the C++ source code.
 
