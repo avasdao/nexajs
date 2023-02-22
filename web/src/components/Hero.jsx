@@ -18,8 +18,8 @@ Your app is now running at http://127.0.0.1:3000`
 
 const tabs = [
     { name: 'JS Library', isActive: false },
-    { name: 'Nexa App Creator', isActive: true },
-    { name: 'Nexa App Server', isActive: false },
+    { name: 'App Creator', isActive: true },
+    { name: 'App Server', isActive: false },
 ]
 
 function TrafficLightsIcon(props) {
@@ -57,12 +57,12 @@ export function Hero() {
                                 Begin creating your next BIG idea on the 3rd generation of Bitcoin&apos;s L1 network — delivering over 100K+ TPS.
                             </p>
 
-                            <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                                <Button href="/getting-started" className="text-xl">
+                            <div className="mt-8 flex flex-col sm:flex-row gap-4 md:justify-center lg:justify-start">
+                                <Button href="/getting-started" className="text-2xl sm:text-xl text-center">
                                     Start BUIDLing Now
                                 </Button>
 
-                                <Button href="https://github.com/avasdao/nexajs" className="text-xl" variant="secondary">
+                                <Button href="https://github.com/avasdao/nexajs" className="text-2xl sm:text-xl text-center" variant="secondary">
                                     View the Code
                                 </Button>
                             </div>

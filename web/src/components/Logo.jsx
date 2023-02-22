@@ -22,8 +22,8 @@ export function Logo(props) {
   return (
       <div className="hidden lg:flex gap-4 items-center">
         <Image src="/logo.png" className="w-12 h-12" width="12" height="12" alt="NexaJS logo" />
-        <h1 className="text-3xl text-yellow-800 font-medium">
-          NexaJS Lib + SDK
+        <h1 className="text-5xl bg-gradient-to-r from-yellow-600 to-yellow-800 bg-clip-text text-transparent font-medium tracking-tighter">
+          NexaJS Lib+SDK
         </h1>
       </div>
     // <svg aria-hidden="true" viewBox="0 0 227 36" fill="none" {...props}>

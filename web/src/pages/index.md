@@ -1,10 +1,10 @@
 ---
-title: Getting started
-pageTitle: NexaJS Library and SDK
+title: What is NexaJS?
+pageTitle: NexaJS Library + SDK
 description: Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
 ---
 
-Setup your first Nexa project in under sixty (60) seconds or the entire Library + SDK are FREE! {% .lead %}
+The __NexaJS Library + SDK__ aims to be a modern & comprehensive toolkit for creating decentralized applications (dApps) on the [Nexa Blockchain](https://nexa.org/) and its expansive Web3 ecosystem. {% .lead %}
 
 {% quick-links %}
 
