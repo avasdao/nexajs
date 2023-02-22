@@ -4,11 +4,11 @@ pageTitle: NexaJS Library and SDK
 description: Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
 ---
 
-Learn how to get Nexa set up in your JavaScript project in under sixty (60) seconds or the entire Library + SDK are FREE! {% .lead %}
+Setup your first Nexa project in under sixty (60) seconds or the entire Library + SDK are FREE! {% .lead %}
 
 {% quick-links %}
 
-{% quick-link title="Installation" icon="installation" href="/" description="Step-by-step guides to setting up your system and installing the library." /%}
+{% quick-link title="Installation" icon="installation" href="/installation" description="Step-by-step guides to setting up your system and installing the library." /%}
 
 {% quick-link title="My First Project" icon="plugins" href="/" description="Get started with your first Nexa project in under 60 seconds." /%}
 
