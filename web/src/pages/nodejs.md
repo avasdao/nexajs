@@ -1,5 +1,5 @@
 ---
-title: Nexa Identity Protocol
+title: Node.js
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
@@ -7,7 +7,7 @@ Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo ex
 
 ---
 
-## Web Client API
+## Quis vel iste dicta
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
 
@@ -28,7 +28,7 @@ export default {
 
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
 
-### Considerations
+### Natus aspernatur iste
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
@@ -36,22 +36,13 @@ Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia d
 
 ---
 
-## ID Server
+## Quos porro ut molestiae
 
-An enterprise-ready [Node.js](https://nodejs.org/) server running the [Express framework](https://expressjs.com/) for delivering a secure host to manage your dApp user's profile details.
+Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
 
-### Installation
-
-You can choose to either self-host your own ID server -OR- use the "public" instance hosted at Nexa Shell. When self-hosting, you can choose from the following options:
-
-1. Docker Compose
-2. Direct install
-
-#### Docker Compose
+### Voluptatem quas possimus
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-#### Direct install
 
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
 

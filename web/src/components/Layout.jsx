@@ -20,16 +20,24 @@ const navigation = [
         ],
     },
     {
-        title: 'Client-side (Web)',
+        title: 'Client-side / Web browser',
         links: [
-            { title: 'Nexa Identity Protocol', href: '/nexid#client' },
+            { title: 'Introduction', href: '/web' },
+            { title: 'NexID web client API', href: '/nexid#web-client-api' },
         ],
     },
     {
-        title: 'Server-side (Node.js)',
+        title: 'Server-side / Node.js',
         links: [
+            { title: 'Introduction', href: '/nodejs' },
             { title: 'CashLib', href: '/cashlib' },
-            { title: 'Nexa Identity Protocol', href: '/nexid#server' },
+            { title: 'NexID Server', href: '/nexid#id-server' },
+        ],
+    },
+    {
+        title: 'Server-side / Deno',
+        links: [
+            { title: 'Introduction', href: '/deno' },
         ],
     },
     {
