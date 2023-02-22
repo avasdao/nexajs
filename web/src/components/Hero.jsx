@@ -59,7 +59,7 @@ export function Hero() {
 
                             <div className="mt-8 flex flex-col sm:flex-row gap-4 md:justify-center lg:justify-start">
                                 <Button href="/getting-started" className="text-2xl sm:text-xl text-center">
-                                    Start BUIDLing Now
+                                    Start #BUIDLing Now
                                 </Button>
 
                                 <Button href="https://github.com/avasdao/nexajs" className="text-2xl sm:text-xl text-center" variant="secondary">
