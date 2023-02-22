@@ -22,16 +22,44 @@ Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit per
 
 ---
 
-## Quick start
+## Add Nexa to your Existing Webapp
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
 
-### Installing dependencies
+### Setup using a <script> tag in HTML
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+To quickly get started using Nexa in your existing Webapp, simply include this tag in the <head> section of your HTML:
+
+```html
+<!-- CDN (Web2) integration solution -->
+<script src="https://cdn.nexajs.org/23.2.1/nexa.min.js"
+  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+  crossorigin="anonymous"></script>
+```
+
+__- OR -__
+
+```html
+<!-- IPFS Gateway (Web3) integration solution -->
+<script src="https://bafybeiczlpqx5pqjarwc4fgfk4ldfqhekvnauzeqxi67hzzkz4nsjbum2a.ipfs.dweb.link/"
+  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+  crossorigin="anonymous"></script>
+```
+
+### Setup using a package manager
+
+NexaJS is fully-supported by your favorite package manager. Choose from one of the options below to begin installation of NexaJS into your existing Webapp.
 
 ```shell
 npm install nexajs
+```
+
+```shell
+yarn add nexajs
+```
+
+```shell
+pnpm install nexajs
 ```
 
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
