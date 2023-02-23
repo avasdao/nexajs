@@ -1,0 +1,19 @@
+{
+  "name": "@nexajs/express-server",
+  "version": "23.2.22",
+  "description": "A simple server to manage the backend of your Nexa application.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "moment": "2.29.4",
+    "numeral": "2.0.6",
+    "pouchdb": "8.0.0",
+    "superagent": "8.0.6",
+    "uuid": "9.0.0"
+  }
+}
