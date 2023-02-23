@@ -4,11 +4,11 @@ A complete guide to ALL the Express JS Middleware commands available from the pr
 
 # Table of contents
 
-- [Example1](#example1) [ [view the source](example1.js) ]
+- [NexID](#nexid) [ [view the source](nexid/index.js) ]
 
-## Example1
+## NexID
 
-Details on the current example.
+Manage your Nexa Identity Protocol backend services.
 
 #### Sample response:
 ```

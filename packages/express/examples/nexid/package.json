@@ -1,0 +1,10 @@
+{
+  "name": "examples-nexid",
+  "version": "23.2.22",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}

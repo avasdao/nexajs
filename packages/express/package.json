@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/express",
-  "version": "23.1.13",
+  "version": "23.2.22",
   "description": "Express JS middleware.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
