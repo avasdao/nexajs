@@ -1,6 +1,6 @@
 {
-  "name": "@nexajs/wallet",
-  "version": "23.2.22",
+  "name": "@nexajs/nuxt",
+  "version": "23.2.23",
   "description": "TBD",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
