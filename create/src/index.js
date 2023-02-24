@@ -7,13 +7,6 @@ import inquirer from 'inquirer'
 import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 
-// NOTE: ES module bug fix.
-//       see (https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/)
-import { fileURLToPath } from 'url'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-// const templates = fs.readdirSync(path.join(__dirname, 'templates'))
-
 /* Initialize menu (question) choices. */
 const TEMPLATE_CHOICES = [
     {

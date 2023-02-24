@@ -1,5 +1,5 @@
 {
-  "name": "nexa-app",
+  "name": "nexajs-nuxt-ts",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,12 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "devDependencies": {
+  "dependencies": {
+    "ethers": "6.0.8",
+    "nexajs": "22.12.23",
     "nuxt": "3.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.4.1"
   }
 }
