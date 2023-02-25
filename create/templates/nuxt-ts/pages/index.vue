@@ -1,5 +1,5 @@
 <template>
-    <main class="max-w-7xl mx-auto border-x-4 border-rose-500">
+    <main class="max-w-7xl mx-auto">
         <header class="flex flex-col items-center">
             <img src="~/assets/nexa.svg" class="w-24 h-24" />
 
@@ -8,7 +8,7 @@
             </h1>
         </header>
 
-        <section class="mt-10 py-5 max-w-5xl mx-auto border border-purple-500 rounded-lg">
+        <section class="mt-10 py-5 max-w-5xl mx-auto border border-purple-500 rounded-lg bg-gradient-to-r from-yellow-100 via-gray-50 to-yellow-100">
             <div class="-mt-10 relative flex justify-center">
                 <span class="isolate inline-flex -space-x-px rounded-md shadow-sm">
                     <button
@@ -65,7 +65,7 @@
                 </span>
             </div>
 
-            <section>
+            <section class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
                         Get started
@@ -79,8 +79,56 @@
 
         </section>
 
-        <section>
-            <!--  -->
+        <section class="mt-5 max-w-5xl mx-auto grid grid-cols-5 gap-5">
+            <div class="flex flex-col col-span-3 gap-5">
+                <NuxtLink to="https://nexajs.org" target="_blank" class="flex items-center gap-4 bg-gradient-to-r from-rose-500 to-rose-700 rounded-lg">
+                    <svg class="mx-5 w-32 h-32 text-rose-900" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"></path>
+                    </svg>
+
+                    <div>
+                        <h2 class="text-2xl text-rose-100 font-medium">
+                            Why Build on Nexa?
+                        </h2>
+
+                        <p class="text-rose-100">
+                            Nexa offers a premium Developer Experience (DX) that favors rapid iterations to get you deployed as quickly as possible.
+                        </p>
+                    </div>
+                </NuxtLink>
+
+                <NuxtLink to="https://nexajs.org" target="_blank" class="flex items-center gap-4 bg-gradient-to-r from-yellow-500 to-yellow-700 rounded-lg">
+                    <svg class="mx-5 w-32 h-32 text-yellow-900" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"></path>
+                    </svg>
+
+                    <div>
+                        <h2 class="text-2xl text-yellow-100 font-medium">
+                            Check our more Examples
+                        </h2>
+
+                        <p class="text-yellow-100">
+                            The Nexa community offers ample examples to help you get started quickly using the industry's best practices.
+                        </p>
+                    </div>
+                </NuxtLink>
+            </div>
+
+            <NuxtLink to="https://nexajs.org" target="_blank" class="col-span-2 py-3 flex flex-col items-center gap-2 bg-gradient-to-b from-sky-700 to-sky-500 rounded-lg">
+                <div class="p-3 flex flex-col">
+                    <h2 class="text-3xl text-sky-100 font-medium text-center">
+                        Documentation
+                    </h2>
+
+                    <p class="mt-3 text-sky-100">
+                        Nexa offers excellent documentation that offers modern and up-to-date guides and tutorials for anything and everything you need.
+                    </p>
+                </div>
+
+                <svg class="mx-5 w-24 h-24 text-sky-900" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
+                </svg>
+            </NuxtLink>
         </section>
 
         <Footer />
