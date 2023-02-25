@@ -129,11 +129,13 @@ inquirer
         const foldername = answers.name
             .replaceAll(/ /g, '_')  // replace all spaces with undescore
             .toLowerCase()          // use lowercase characters
-        console.log('writing to disk', foldername)
+        // console.log('writing to disk', foldername)
 
         if (!fs.existsSync(`./${foldername}`)) {
             // fs.mkdirSync(`./${foldername}`)
             fs.cpSync(`./templates/nuxt-ts`, `./${foldername}`, { recursive: true })
+        } else {
+            return console.error(`\n  Oops! The folder [ ${foldername} ] already exists.\n`)
         }
 
         console.log()
