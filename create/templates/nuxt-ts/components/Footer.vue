@@ -4,14 +4,14 @@
             <div class="w-full border-t border-gray-300"></div>
         </div>
 
-        <div class="-mt-6 relative flex justify-center">
+        <div class="-mt-5 relative flex justify-center">
             <span class="bg-white px-3 text-gray-500">
-                <img src="~/assets/nexa.svg" class="w-10 h-10" />
+                <img src="~/assets/nexa.svg" class="w-8 h-8" />
             </span>
         </div>
 
         <section class="mt-5 px-3 flex justify-between">
-            <span class="text-sm text-gray-500">
+            <span class="text-sm text-gray-400">
                 &copy; 2022-{{new Date().getFullYear()}} NexaJS developers - MIT License
             </span>
 
