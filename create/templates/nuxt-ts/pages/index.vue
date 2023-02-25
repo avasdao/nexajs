@@ -8,6 +8,9 @@ const tabConfig = ref(false)
 const tabLabs = ref(false)
 const tabExtras = ref(false)
 
+/* Initialize blockchain handlers. */
+const blockHeight = ref(0)
+
 /**
  * Load Tab
  *
@@ -36,6 +39,20 @@ const loadTab = (_tabid: string) => {
         break
     }
 }
+
+/**
+ * Get Block Height
+ *
+ * Will query a cluster of Rostrum servers for the current block height.
+ */
+const getBlockHeight = () => {
+    /* Set block height. */
+    // FIXME FOR DEV PURPOSES ONLY
+    blockHeight.value = 1337
+}
+
+/* Request (current) block height. */
+getBlockHeight()
 </script>
 
 <template>
@@ -130,7 +147,9 @@ const loadTab = (_tabid: string) => {
                 </div>
 
                 <p class="px-10 py-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Start by modifying `nuxt.config.ts` to best suite your needs.
+                    Customize your app name, description and favorite icon.
+                    Favicon is located in `/public` folder.
                 </p>
             </section>
 
@@ -140,6 +159,10 @@ const loadTab = (_tabid: string) => {
                         Lab Experiments
                     </h2>
                 </div>
+
+                <p class="px-10 py-3">
+                    Latest block is <NuxtLink :to="'https://explorer.nexa.org/block-height/' + blockHeight" target="_blank" class="text-xl text-blue-500 font-medium hover:underline">{{blockHeight}}</NuxtLink>
+                </p>
 
                 <p class="px-10 py-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -214,8 +237,4 @@ const loadTab = (_tabid: string) => {
 
         <Footer />
     </main>
-
-    <hr class="my-10" />
-
-    <NuxtWelcome />
 </template>

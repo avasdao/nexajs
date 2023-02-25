@@ -92,7 +92,7 @@ const QUESTIONS = [
     name: 'name',
     type: 'input',
     message: 'What is the name of your application:',
-    default: 'Homemade Crypto App',
+    default: 'Homemade Crypto',
 },
 {
     name: 'location',
@@ -124,6 +124,17 @@ inquirer
     .then(answers => {
         /* Generate project id. */
         const projectid = uuidv4()
+
+        // TODO Write to disk.
+        const foldername = answers.name
+            .replaceAll(/ /g, '_')  // replace all spaces with undescore
+            .toLowerCase()          // use lowercase characters
+        console.log('writing to disk', foldername)
+
+        if (!fs.existsSync(`./${foldername}`)) {
+            // fs.mkdirSync(`./${foldername}`)
+            fs.cpSync(`./templates/nuxt-ts`, `./${foldername}`, { recursive: true })
+        }
 
         console.log()
         console.log('  Your Application ID: %s', projectid)

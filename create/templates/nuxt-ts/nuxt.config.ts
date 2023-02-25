@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Nexa dApp Boilerplate',
+            title: 'Welcome to Nexa!',
             meta: [
                 { name: 'description', content: 'NexaJS boilerplate Nuxt template.' },
             ],
@@ -15,5 +15,10 @@ export default defineNuxtConfig({
             ],
         },
     },
-    modules: ['@nuxtjs/tailwindcss'],
+
+    /* Application Modules */
+    modules: [
+        /* Tailwind CSS */
+        '@nuxtjs/tailwindcss'
+    ],
 })
