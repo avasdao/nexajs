@@ -1,3 +1,43 @@
+<script setup lang="ts">
+/* Import modules. */
+import { ref } from 'vue'
+
+/* Initialize tabs. */
+const tabStart = ref(true)
+const tabConfig = ref(false)
+const tabLabs = ref(false)
+const tabExtras = ref(false)
+
+/**
+ * Load Tab
+ *
+ * @param _tabid Specifies the "active" tab.
+ */
+const loadTab = (_tabid: string) => {
+    /* Disable ALL tabs. */
+    tabStart.value = false
+    tabConfig.value = false
+    tabLabs.value = false
+    tabExtras.value = false
+
+    /* Enable selected tab. */
+    switch(_tabid) {
+    case 'start':
+        tabStart.value = true
+        break
+    case 'config':
+        tabConfig.value = true
+        break
+    case 'labs':
+        tabLabs.value = true
+        break
+    case 'extras':
+        tabExtras.value = true
+        break
+    }
+}
+</script>
+
 <template>
     <main class="max-w-7xl mx-auto">
         <header class="flex flex-col items-center">
@@ -12,20 +52,22 @@
             <div class="-mt-10 relative flex justify-center">
                 <span class="isolate inline-flex -space-x-px rounded-md shadow-sm">
                     <button
+                        @click="loadTab('start')"
                         type="button"
                         class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <span class="sr-only">Edit</span>
+                        <span class="sr-only">Get started</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
                         </svg>
                     </button>
 
                     <button
+                        @click="loadTab('config')"
                         type="button"
                         class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <span class="sr-only">Attachment</span>
+                        <span class="sr-only">Configuration</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path
                                 fill-rule="evenodd"
@@ -36,6 +78,7 @@
                     </button>
 
                     <button
+                        @click="loadTab('labs')"
                         type="button"
                         class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
@@ -50,6 +93,7 @@
                     </button>
 
                     <button
+                        @click="loadTab('extras')"
                         type="button"
                         class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
@@ -65,7 +109,8 @@
                 </span>
             </div>
 
-            <section class="">
+<!-- BEGIN TABS -->
+            <section v-if="tabStart" class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
                         Get started
@@ -77,6 +122,42 @@
                 </p>
             </section>
 
+            <section v-if="tabConfig" class="">
+                <div class="mt-5 flex justify-center">
+                    <h2 class="text-2xl font-bold">
+                        Configuration
+                    </h2>
+                </div>
+
+                <p class="px-10 py-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </section>
+
+            <section v-if="tabLabs" class="">
+                <div class="mt-5 flex justify-center">
+                    <h2 class="text-2xl font-bold">
+                        Lab Experiments
+                    </h2>
+                </div>
+
+                <p class="px-10 py-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </section>
+
+            <section v-if="tabExtras" class="">
+                <div class="mt-5 flex justify-center">
+                    <h2 class="text-2xl font-bold">
+                        Extra Resources
+                    </h2>
+                </div>
+
+                <p class="px-10 py-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </section>
+<!-- END TABS -->
         </section>
 
         <section class="mt-5 max-w-5xl mx-auto grid grid-cols-5 gap-5">
