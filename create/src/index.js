@@ -7,6 +7,12 @@ import inquirer from 'inquirer'
 import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 
+// NOTE: ES module bug fix.
+//       see (https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/)
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 /* Initialize menu (question) choices. */
 const TEMPLATE_CHOICES = [
     {
@@ -126,16 +132,18 @@ inquirer
         const projectid = uuidv4()
 
         // TODO Write to disk.
-        const foldername = answers.name
+        const folderName = answers.location
             .replaceAll(/ /g, '_')  // replace all spaces with undescore
             .toLowerCase()          // use lowercase characters
-        // console.log('writing to disk', foldername)
+        console.log('FOLDER NAME', folderName)
 
-        if (!fs.existsSync(`./${foldername}`)) {
-            // fs.mkdirSync(`./${foldername}`)
-            fs.cpSync(`./templates/nuxt-ts`, `./${foldername}`, { recursive: true })
+        const templatePath = path.join(__dirname, '..', 'templates/nuxt-ts')
+        console.log('TEMPLATE PATH', templatePath)
+
+        if (!fs.existsSync(folderName)) {
+            fs.cpSync(templatePath, folderName, { recursive: true })
         } else {
-            return console.error(`\n  Oops! The folder [ ${foldername} ] already exists.\n`)
+            return console.error(`\n  Oops! The folder [ ${folderName} ] already exists.\n`)
         }
 
         console.log()
