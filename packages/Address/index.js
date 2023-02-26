@@ -1,6 +1,12 @@
-import { encodeAddress } from './cashaddr.js'
-import { decodeAddress } from './cashaddr.js'
+/* Import modules. */
+import { encodeAddress } from './src/cashaddr.js'
+import { decodeAddress } from './src/cashaddr.js'
 
+/**
+ * Address Class
+ *
+ * Manages address functions.
+ */
 export class Address {
     constructor(_seed) {
         console.info('\n  Creating new Address instance...\n') // eslint-disable-line no-console
@@ -53,10 +59,6 @@ export class Address {
     }
 }
 
-/* Export methods. */
-export { encodeAddress } from './cashaddr.js'
-export { decodeAddress } from './cashaddr.js'
-
 // FIXME FOR DEV PURPOSES ONLY
 export const testAddr = () => {
     console.log('NexaJS Address is a GO!')
@@ -82,3 +84,7 @@ const getSeedType = (_seed) => {
     /* Return null. */
     return null
 }
+
+/* Export modules. */
+export { encodeAddress } from './src/cashaddr.js'
+export { decodeAddress } from './src/cashaddr.js'
