@@ -32,7 +32,7 @@ console.log('ValidationError', ValidationError)
  * @returns {string}
  * @throws {ValidationError}
  */
-export function encode (prefix, type, hash) {
+export function encodeAddress (prefix, type, hash) {
     validate(typeof prefix === 'string' && isValidPrefix(prefix), 'Invalid prefix: ' + prefix + '.')
     validate(typeof type === 'string', 'Invalid type: ' + type + '.')
     validate(hash instanceof Uint8Array, 'Invalid hash: ' + hash + '.')
@@ -58,7 +58,7 @@ export function encode (prefix, type, hash) {
  * @returns {object}
  * @throws {ValidationError}
  */
-export function decode (address) {
+export function decodeAddress (address) {
     validate(typeof address === 'string' && hasSingleCase(address), 'Invalid address: ' + address + '.')
 
     var pieces = address.toLowerCase().split(':')
@@ -301,11 +301,4 @@ function validChecksum(prefix, payload) {
  */
 function hasSingleCase(string) {
     return string === string.toLowerCase() || string === string.toUpperCase()
-}
-
-/* Export module. */
-export default {
-    encode,
-    decode,
-    ValidationError,
 }

@@ -1,10 +1,5 @@
-import {
-    encode as _encode,
-    decode as _decode
-} from './cashaddr.js'
-
-export const encode = () => _encode
-export const decode = () => _decode
+import { encodeAddress } from './cashaddr.js'
+import { decodeAddress } from './cashaddr.js'
 
 export class Address {
     constructor(_seed) {
@@ -22,17 +17,17 @@ export class Address {
     }
 
     decode(_addr) {
-        return _decode(_addr)
+        return decodeAddress(_addr)
     }
     static decode(_addr) {
-        return _decode(_addr)
+        return decodeAddress(_addr)
     }
 
     encode(_prefix, _type, _hash) {
-        return _encode(_prefix, _type, _hash)
+        return encodeAddress(_prefix, _type, _hash)
     }
     static encode(_prefix, _type, _hash) {
-        return _encode(_prefix, _type, _hash)
+        return encodeAddress(_prefix, _type, _hash)
     }
 
     /**
@@ -57,6 +52,10 @@ export class Address {
         }
     }
 }
+
+/* Export methods. */
+export { encodeAddress } from './cashaddr.js'
+export { decodeAddress } from './cashaddr.js'
 
 // FIXME FOR DEV PURPOSES ONLY
 export const testAddr = () => {
