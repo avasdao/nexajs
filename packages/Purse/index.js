@@ -1,24 +1,31 @@
 export class Purse {
     constructor(_privateKey) {
-        console.log('This is the Address package.')
+        console.info('\n  Creating new Purse instance...\n') // eslint-disable-line no-console
 
-        this.privateKey = _privateKey
+        /* Set private key. */
+        this._privateKey = _privateKey
     }
 
-    hello() {
-        console.log('hello', this.privateKey)
+    get privateKey() {
+        return this._privateKey
+    }
+
+    set privateKey(_privateKey) {
+        this._privateKey = _privateKey
     }
 
     test() {
-        this.hello()
+        testPurse()
     }
 
     static staticTest() {
-        console.log('THIS IS A STATIC PURSE TEST')
+        console.log('Running STATIC Purse test...')
+        testPurse()
     }
-    // return {
-    //     doIt,
-    // }
+
+    static sendUtxo() {
+        sendUtxo()
+    }
 }
 
 // FIXME FOR DEV PURPOSES ONLY

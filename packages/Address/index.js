@@ -1,9 +1,12 @@
 export class Address {
     constructor() {
-        console.log('This is the Address package.')
+        console.info('\n  Creating new Address instance...\n') // eslint-disable-line no-console
 
     }
 
+    test() {
+        testAddr()
+    }
 }
 
 // FIXME FOR DEV PURPOSES ONLY
