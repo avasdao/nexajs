@@ -1,6 +1,6 @@
 {
   "name": "nexajs-lib",
-  "version": "22.10.30",
+  "version": "23.2.25",
   "license": "MIT",
   "description": "A JavaScript Nexa library for Node.js and browsers.",
   "author": "Ava's DAO",
@@ -11,7 +11,7 @@
   },
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {
-
+    "@nexajs/address": "23.2.25"
   },
   "devDependencies": {
     "chai": "4.3.6",
