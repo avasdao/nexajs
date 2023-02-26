@@ -1,12 +1,31 @@
+export class Purse {
+    constructor(_privateKey) {
+        console.log('This is the Address package.')
 
+        this.privateKey = _privateKey
+    }
 
-const login = async (_auth) => {
-    console.log('Ready to authenticate?')
+    hello() {
+        console.log('hello', this.privateKey)
+    }
 
-    return 'Welcome!'
+    test() {
+        this.hello()
+    }
+
+    static staticTest() {
+        console.log('THIS IS A STATIC PURSE TEST')
+    }
+    // return {
+    //     doIt,
+    // }
 }
 
-/* Export methods. */
-export {
-    login,
+// FIXME FOR DEV PURPOSES ONLY
+export const testPurse = () => {
+    console.log('NexaJS Purse is a GO!')
+}
+
+export const sendUtxo = () => {
+    console.log('Sending UTXO...')
 }
