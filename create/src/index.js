@@ -135,10 +135,10 @@ inquirer
         const folderName = answers.location
             .replaceAll(/ /g, '_')  // replace all spaces with undescore
             .toLowerCase()          // use lowercase characters
-        console.log('FOLDER NAME', folderName)
+        // console.log('FOLDER NAME', folderName)
 
         const templatePath = path.join(__dirname, '..', 'templates/nuxt-ts')
-        console.log('TEMPLATE PATH', templatePath)
+        // console.log('TEMPLATE PATH', templatePath)
 
         if (!fs.existsSync(folderName)) {
             fs.cpSync(templatePath, folderName, { recursive: true })

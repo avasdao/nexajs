@@ -7,12 +7,12 @@
  * file LICENSE or http://www.opensource.org/licenses/mit-license.php.
  */
 
-import base32 from './base32.js'
+import base32 from './base32'
 import bigInt from 'big-integer'
-import convertBits from './convertBits.js'
+import convertBits from './convertBits'
 
-import { validate } from './validation.js'
-import { ValidationError } from './validation.js'
+import { validate } from './validation'
+import { ValidationError } from './validation'
 
 /**
  * Encoding and decoding of the bech32 address format for Nexa. <br />
@@ -31,7 +31,7 @@ import { ValidationError } from './validation.js'
  * @returns {string}
  * @throws {ValidationError}
  */
-export function encodeAddress (prefix, type, hash) {
+export function encode (prefix, type, hash) {
     validate(typeof prefix === 'string' && isValidPrefix(prefix), 'Invalid prefix: ' + prefix + '.')
     validate(typeof type === 'string', 'Invalid type: ' + type + '.')
     validate(hash instanceof Uint8Array, 'Invalid hash: ' + hash + '.')
@@ -57,7 +57,7 @@ export function encodeAddress (prefix, type, hash) {
  * @returns {object}
  * @throws {ValidationError}
  */
-export function decodeAddress (address) {
+export function decode (address) {
     validate(typeof address === 'string' && hasSingleCase(address), 'Invalid address: ' + address + '.')
 
     var pieces = address.toLowerCase().split(':')
@@ -81,9 +81,9 @@ export function decodeAddress (address) {
     var type = getType(versionByte);
 
     return {
-        prefix,
-        type,
-        hash,
+        prefix: prefix,
+        type: type,
+        hash: hash,
     }
 }
 
@@ -93,14 +93,14 @@ export function decodeAddress (address) {
  * @constructor ValidationError
  * @param {string} message Error description.
  */
-// const ValidationError = validation.ValidationError
+// var ValidationError = validation.ValidationError;
 
 /**
  * Valid address prefixes.
  *
  * @private
  */
-const VALID_PREFIXES = ['nexa', 'nexatest', 'nexareg']
+var VALID_PREFIXES = ['nexa', 'nexatest', 'nexareg'];
 
 /**
  * Checks whether a string is a valid prefix; ie., it has a single letter case
@@ -111,7 +111,7 @@ const VALID_PREFIXES = ['nexa', 'nexatest', 'nexareg']
  * @returns {boolean}
  */
 function isValidPrefix(prefix) {
-    return hasSingleCase(prefix) && VALID_PREFIXES.indexOf(prefix.toLowerCase()) !== -1;
+  return hasSingleCase(prefix) && VALID_PREFIXES.indexOf(prefix.toLowerCase()) !== -1;
 }
 
 /**
@@ -285,9 +285,9 @@ function polymod(data) {
  * @returns {boolean}
  */
 function validChecksum(prefix, payload) {
-    var prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1))
-    var checksumData = concat(prefixData, payload)
-    return polymod(checksumData).equals(0)
+  var prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1));
+  var checksumData = concat(prefixData, payload);
+  return polymod(checksumData).equals(0);
 }
 
 /**
@@ -299,5 +299,12 @@ function validChecksum(prefix, payload) {
  * @returns {boolean}
  */
 function hasSingleCase(string) {
-    return string === string.toLowerCase() || string === string.toUpperCase()
+  return string === string.toLowerCase() || string === string.toUpperCase();
+}
+
+/* Export module. */
+export default {
+    encode: encode,
+    decode: decode,
+    ValidationError: ValidationError,
 }
