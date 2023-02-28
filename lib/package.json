@@ -1,5 +1,5 @@
 {
-  "name": "nexajs-lib",
+  "name": "nexajs",
   "version": "23.2.27",
   "license": "MIT",
   "description": "A JavaScript Nexa library for Node.js and browsers.",
