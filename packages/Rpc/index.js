@@ -1,6 +1,16 @@
 /* Import modules. */
 import superagent from 'superagent'
 
+export class Rpc {
+    constructor() {
+        console.info('\n  Creating new RPC instance...\n') // eslint-disable-line no-console
+    }
+
+    static call(_method, _params, _options) {
+        return callNode(_method, _params, _options)
+    }
+}
+
 /* Initialize (global) package constants. */
 let host = '127.0.0.1'
 let port = '7227'
@@ -10,7 +20,7 @@ let username
 let password
 
 
-const connect = async (_username, _password) => {
+export const connectToNode = async (_username, _password) => {
     // TODO: Test to make sure the connnection is available and ready.
 
     /* Set RPC username. */
@@ -29,7 +39,7 @@ const connect = async (_username, _password) => {
  * @param {Object} _options
  * @returns
  */
-const call = async (_method, _params, _options) => {
+export const callNode = async (_method, _params, _options) => {
     /* Verify authentication. */
     if (!username && !password && !_options) {
         throw new Error('Oops! You have to connect to the local host first.')
@@ -105,10 +115,4 @@ const call = async (_method, _params, _options) => {
     } catch (err) {
         return err
     }
-}
-
-/* Export methods. */
-export {
-    connect,
-    call,
 }
