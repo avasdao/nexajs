@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "23.2.28",
+  "version": "23.3.1",
   "license": "MIT",
   "description": "A JavaScript Nexa library for Node.js and browsers.",
   "author": "Ava's DAO",
@@ -12,7 +12,7 @@
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "23.2.25",
+    "@nexajs/address": "23.2.28",
     "@nexajs/purse": "23.2.22",
     "@nexajs/rpc": "23.2.28"
   },

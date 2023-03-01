@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@bitauth/libauth/-/libauth-1.19.1.tgz#713751bbc09815b667f8fe00a1cc5b0f3bf45dd1"
   integrity sha512-R524tD5VwOt3QRHr7N518nqTVR/HKgfWL4LypekcGuNQN8R4PWScvuRcRzrY39A28kLztMv+TJdiKuMNbkU1ug==
 
-"@nexajs/address@23.2.25":
-  version "23.2.25"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.2.25.tgz#963b3c54ac90792b68ebd712fed7d9dd555b2017"
-  integrity sha512-8ocHrKJMzCEJIa1/si5NLgX4V0cQVFtf/wND4RnbX2yMWLocFiTxFPuOKia/N1CzT92NRxaJjbA87tobhKqwlg==
+"@nexajs/address@23.2.28":
+  version "23.2.28"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.2.28.tgz#00f1c2ff02ba2f877953161bdfc7129854c0589b"
+  integrity sha512-iCufHbLoU/S+DmlAe1yy0LD5D/NX0KcsZV2omPKzqX2bYk3RnEELPAmz2nQsfp9WLzr6tX4EM//Mt0TuoutUsw==
   dependencies:
     big-integer "1.6.51"
 
