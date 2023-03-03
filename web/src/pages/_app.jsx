@@ -1,10 +1,16 @@
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
+import { init as matomo } from '@socialgouv/matomo-next'
 
 import { Layout } from '@/components/Layout'
 
 import 'focus-visible'
 import '@/styles/tailwind.css'
+
+/* Initialize Matomo parameters. */
+const MATOMO_URL = 'https://nexajs.org'
+const MATOMO_SITE_ID = '15'
 
 function getNodeText(node) {
     let text = ''
@@ -66,6 +72,11 @@ export default function App({ Component, pageProps }) {
     let tableOfContents = pageProps.markdoc?.content
         ? collectHeadings(pageProps.markdoc.content)
         : []
+
+    /* Handle (Matomo) analytics. */
+    useEffect(() => {
+        matomo({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
+    }, [])
 
     return (
         <>
