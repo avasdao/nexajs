@@ -175,37 +175,37 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 
 > The following suite of 26 packages compose the entire NexaJS Library and Software Development Kit (SDK).
 
-- [Account](/packages)
-- [Address](/packages/address)
-- [App](/packages)
-- [Blockchain](/packages)
-- [Charts](/packages)
-- [Crypto](/packages)
-- [DeFi](/packages)
-- [Express](/packages/express)
-- [Games](/packages)
-- [HD Node](/packages)
-- [Nexa ID](/packages/id)
-- [Ledger HW Wallet](/packages)
-- [Logger](/packages)
-- [Markets](/packages)
-- [Meta](/packages/meta)
-- [Privacy](/packages)
-- [Purse](/packages)
-- [RPC](/packages/rpc)
-- [Script](/packages)
-- [Server](/packages/server)
-- [Slim](/packages/slim)
-- [Token](/packages/token)
-- [Transaction](/packages)
-- [Trezor HW Wallet](/packages)
-- [Utils](/packages)
-- [Wallet](/packages)
+- [ ] [Account](/packages)
+- [x] [Address](/packages/address)
+- [ ] [App](/packages)
+- [ ] [Blockchain](/packages)
+- [ ] [Charts](/packages)
+- [ ] [Crypto](/packages)
+- [ ] [DeFi](/packages)
+- [ ] [Express](/packages)
+- [ ] [Games](/packages)
+- [ ] [HD Node](/packages)
+- [ ] [Nexa ID](/packages/id)
+- [ ] [Ledger HW Wallet](/packages)
+- [ ] [Markets](/packages)
+- [ ] [Meta](/packages/meta)
+- [ ] [Privacy](/packages)
+- [x] [Purse](/packages/purse)
+- [x] [RPC](/packages/rpc)
+- [ ] [Script](/packages)
+- [ ] [Server](/packages)
+- [ ] [Slim](/packages/slim)
+- [ ] [Token](/packages/token)
+- [ ] [Transaction](/packages)
+- [ ] [Trezor HW Wallet](/packages)
+- [ ] [Utils](/packages)
+- [ ] [Wallet](/packages)
+
+* _NOTE: Not all packages are published to the NPM registry._
 
 
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
-
 
 ### Running the test suite
 
@@ -220,6 +220,3 @@ npm run-script coverage
 - [Base58](https://github.com/cryptocoinjs/bs58) - Base58 encoding/decoding
 - [Base58 Check](https://gitlab.com/nexajs/bs58check) - Base58 check encoding/decoding
 - [Bech32](https://gitlab.com/nexajs/bech32) - A BIP173/BIP350 compliant Bech32/Bech32m encoding library
-
-
-## LICENSE [MIT](LICENSE)
