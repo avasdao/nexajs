@@ -18,8 +18,9 @@ Our docs are updated regularly.
 # Table of contents
 
 - [Quick Start](#quick-start)
-  - [CDN Installation](#cdn-installation)
-  - [IPFS Installation](#ipfs-installation)
+  - [Web2 (CDN) Installation](#web2-cdn-installation)
+  - [Web3 (IPFS) Installation](#web3-ipfs-installation)
+  - [Web4 (CAPD | Nostr) Installation](#web4-capd-nostr-installation)
   - [Package Manager Installation](#package-manager-installation)
 - [Introduction](#introduction)
   - [Prerequisites](#prerequisites)
@@ -41,7 +42,7 @@ Our docs are updated regularly.
 
 To quickly get started using Nexa in your existing Webapp, simply include this tag in the <head> section of your HTML:
 
-### CDN Installation
+### Web2 (CDN) Installation
 
 ```html
 <!-- CDN (Web2) integration solution -->
@@ -50,11 +51,20 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
   crossorigin="anonymous"></script>
 ```
 
-### IPFS Installation
+### Web3 (IPFS) Installation
 
 ```html
 <!-- IPFS Gateway (Web3) integration solution -->
 <script src="https://bafybeiczlpqx5pqjarwc4fgfk4ldfqhekvnauzeqxi67hzzkz4nsjbum2a.ipfs.dweb.link/"
+  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+  crossorigin="anonymous"></script>
+```
+
+### Web4 (CAPD | Nostr) Installation
+
+```html
+<!-- Counterparty and Protocol Discovery (Web4) integration solution -->
+<script src="proto://9addf9bc724b2e14094950598918dde63b091253e6106b7d971642e17521d13f"
   integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
   crossorigin="anonymous"></script>
 ```
