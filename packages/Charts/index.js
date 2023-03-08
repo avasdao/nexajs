@@ -4,22 +4,22 @@ import { v4 as uuidv4 } from 'uuid'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:id')
+const debug = debugFactory('nexa:charts')
 
 
-export const login = () => {
+export const welcome = () => {
     return 'Welcome!'
 }
 
 /**
- * ID Class
+ * Charts Class
  *
- * Manage Nexa Identity Protocol
+ * TBD
  */
-export class ID extends EventEmitter {
+export class Charts extends EventEmitter {
     constructor(_params) {
-        /* Initialize ID class. */
-        debug('Initializing ID...')
+        /* Initialize Charts class. */
+        debug('Initializing Charts...')
         debug(JSON.stringify(_params, null, 2))
         super()
 

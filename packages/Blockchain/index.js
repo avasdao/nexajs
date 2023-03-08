@@ -4,22 +4,22 @@ import { v4 as uuidv4 } from 'uuid'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:id')
+const debug = debugFactory('nexa:blockchain')
 
 
-export const login = () => {
+export const welcome = () => {
     return 'Welcome!'
 }
 
 /**
- * ID Class
+ * Blockchain Class
  *
- * Manage Nexa Identity Protocol
+ * TBD
  */
-export class ID extends EventEmitter {
+export class Blockchain extends EventEmitter {
     constructor(_params) {
-        /* Initialize ID class. */
-        debug('Initializing ID...')
+        /* Initialize Blockchain class. */
+        debug('Initializing Blockchain...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
