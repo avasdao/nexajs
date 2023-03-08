@@ -48,6 +48,7 @@ const makeRequest = (_request) => {
 
     /* Initialize socket connection to Rostrum server. */
     connMgr[id].socket = new WebSocket('wss://electrum.nexa.org:20004')
+    // connMgr[id].socket = new WebSocket('wss://rostrum.apecs.dev:20004')
     // connMgr[id].socket_alt = new WebSocket('wss://rostrum.apecs.dev:20004')
 
     /* Handle open connection. */
@@ -166,10 +167,35 @@ export const addressDecode = async (_address) => {
         params,
     }
 
-    /* Make request. */
-    const result = await makeRequest(request)
-    // console.log('REQUEST (result):', result)
+    /* Return (async) request. */
+    return makeRequest(request)
+}
 
-    /* Return result. */
-    return result
+/**
+ * (Blockchain) Address Balance
+ *
+ * Return the confirmed and unconfirmed balances of a Bitcoin Cash address.
+ *
+ * Version added: 1.4.3
+ */
+export const addressBalance = async (_address) => {
+    debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.address.get_balance'
+
+    /* Set parameters. */
+    const params = [
+        _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
 }
