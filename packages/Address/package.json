@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/address",
-  "version": "23.2.28",
+  "version": "23.3.7",
   "description": "The Nexa address format for Node.js and web browsers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -9,5 +9,9 @@
   "type": "module",
   "dependencies": {
     "big-integer": "1.6.51"
+  },
+  "devDependencies": {
+    "debug": "4.3.4",
+    "events": "3.3.0"
   }
 }

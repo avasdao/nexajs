@@ -1,21 +1,46 @@
 /* Import modules. */
-import { encodeAddress } from './src/cashaddr.js'
-import { decodeAddress } from './src/cashaddr.js'
+import { EventEmitter } from 'events'
+
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:address')
+
+/* Import (local) modules. */
+import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
+import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
+
+/* Export (local) modules. */
+export const encodeAddress = _encodeAddress
+export const decodeAddress = _decodeAddress
 
 /**
  * Address Class
  *
  * Manages address functions.
  */
-export class Address {
-    constructor(_seed) {
-        console.info('\n  Creating new Address instance...\n') // eslint-disable-line no-console
+export class Address extends EventEmitter {
+    constructor(_params) {
+        /* Initialize Address class. */
+        debug('Initializing Address...')
+        debug(JSON.stringify(_params, null, 2))
+        super()
 
-        /* Set address seed. */
-        this._seed = _seed
+        /* Set (address) seed. */
+        this._seed = _params?.seed
+
+        /* Validate seed. */
+        if (!this._seed) {
+            /* Set (address) seed. */
+            this._seed = _params
+        }
 
         /* Set seed type. */
-        this._seedType = getSeedType(_seed)
+        this._seedType = getSeedType(_params)
+
+        /* Validate seed type. */
+        if (!this._seedType) {
+            throw new Error(`Oops! Invalid address seed.`)
+        }
     }
 
     test() {
@@ -52,9 +77,9 @@ export class Address {
 
         /* Handle formatting flag. */
         if (_formatted) {
-            console.info(JSON.stringify(pkg, null, 2))
+            return JSON.stringify(pkg, null, 2)
         } else {
-            console.info(pkg)
+            return pkg
         }
     }
 }
@@ -73,7 +98,11 @@ const getSeedType = (_seed) => {
     if (!_seed) return null
 
     if (_seed.toLowerCase().startsWith('nexa:')) {
-        return 'address'
+        return '(Mainnet) address'
+    }
+
+    if (_seed.toLowerCase().startsWith('nexatest:')) {
+        return '(Testnet) address'
     }
 
     // FIXME
@@ -84,7 +113,3 @@ const getSeedType = (_seed) => {
     /* Return null. */
     return null
 }
-
-/* Export modules. */
-export { encodeAddress } from './src/cashaddr.js'
-export { decodeAddress } from './src/cashaddr.js'
