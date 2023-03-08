@@ -176,7 +176,7 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 > The following suite of 26 packages compose the entire NexaJS Library and Software Development Kit (SDK).
 
 - [ ] [Account](/packages)
-- [x] [Address](/packages/address)
+- [x] [__Address__](/packages/address)
 - [ ] [App](/packages)
 - [ ] [Blockchain](/packages)
 - [ ] [Charts](/packages)
@@ -190,8 +190,9 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 - [ ] [Markets](/packages)
 - [ ] [Meta](/packages/meta)
 - [ ] [Privacy](/packages)
-- [x] [Purse](/packages/purse)
-- [x] [RPC](/packages/rpc)
+- [x] [__Purse__](/packages/purse)
+- [ ] [Rostrum](/packages)
+- [x] [__RPC__](/packages/rpc)
 - [ ] [Script](/packages)
 - [ ] [Server](/packages)
 - [ ] [Slim](/packages/slim)
