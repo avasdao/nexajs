@@ -30,21 +30,26 @@ const makeRequest = (_request) => {
     /* Set request. */
     connMgr[id].request = _request
 
-    /* Initialize socket connection to Rostrum server. */
+    /* Initialize socket connection(s) to Rostrum server(s). */
+    // TODO Add support for connection clusters.
     connMgr[id].socket = new WebSocket('wss://electrum.nexa.org:20004')
-    // connMgr[id].socket = new WebSocket('wss://rostrum.apecs.dev:20004')
-    // connMgr[id].socket_alt = new WebSocket('wss://rostrum.apecs.dev:20004')
+    connMgr[id].socket_alt = new WebSocket('wss://rostrum.apecs.dev:20004')
 
     /* Handle open connection. */
     connMgr[id].socket.onopen = () => {
         debug(`Connection [ ${id} ] is OPEN!`)
 
+        /* Set method. */
+        const method = _request.method
+
+        /* Set parameters. */
+        const params = _request.params
+
         /* Create request. */
-        // const request = `{"method":"{${_request.method}}","params":["${_request.address}",true],"id":"${id}"}`
         const request = {
             id,
-            method: _request.method,
-            params: _request.params,
+            method,
+            params,
         }
 
         /* Send request. */
