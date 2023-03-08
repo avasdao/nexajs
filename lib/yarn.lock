@@ -26,6 +26,11 @@
   dependencies:
     superagent "8.0.6"
 
+"@nexajs/utils@^23.3.7":
+  version "23.3.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.3.7.tgz#788d94891cb36f48c776b1be1a6254b7d40d9b12"
+  integrity sha512-e7qKTB5pVVwz5fW1thOogDrvbpsFyWN9k3gyPjlbooEgPdDq23WfJzXg2iEix7GbCot15MA76efZI8mX+xF15A==
+
 "@ungap/promise-all-settled@1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@ungap/promise-all-settled/-/promise-all-settled-1.1.2.tgz#aa58042711d6e3275dd37dc597e5d31e8c290a44"
