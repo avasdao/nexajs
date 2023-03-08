@@ -141,6 +141,35 @@ const makeRequest = (_request) => {
 }
 
 /**
+ * (Blockchain) Address Balance
+ *
+ * Return the confirmed and unconfirmed balances of a Bitcoin Cash address.
+ *
+ * Version added: 1.4.3
+ */
+export const addressBalance = async (_address) => {
+    debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.address.get_balance'
+
+    /* Set parameters. */
+    const params = [
+        _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
  * (Blockchain) Address Decode
  *
  * Decode a Bitcoin Cash or a Nexa address to its raw payload. This method is
@@ -172,17 +201,17 @@ export const addressDecode = async (_address) => {
 }
 
 /**
- * (Blockchain) Address Balance
+ * (Blockchain) Address First Use
  *
- * Return the confirmed and unconfirmed balances of a Bitcoin Cash address.
+ * Returns a first occurance of usage of scripthash as ouput on the blockchain.
  *
- * Version added: 1.4.3
+ * Version added: Rostrum 1.2
  */
-export const addressBalance = async (_address) => {
-    debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
+export const addressFirstUse = async (_address) => {
+    debug(`Blockchain->Address->FirstUse [ address: ${_address} ]`)
 
     /* Set method. */
-    const method = 'blockchain.address.get_balance'
+    const method = 'blockchain.address.get_first_use'
 
     /* Set parameters. */
     const params = [
