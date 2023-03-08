@@ -1,7 +1,7 @@
 {
   "name": "@nexajs/utils",
-  "version": "23.2.22",
-  "description": "TBD",
+  "version": "23.3.7",
+  "description": "A dependency-free suite of useful utilities for application building.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
