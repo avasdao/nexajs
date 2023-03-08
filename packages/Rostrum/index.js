@@ -10,22 +10,6 @@ const debug = debugFactory('nexa:rostrum')
 /* Initilize connections manager. */
 const connMgr = {}
 
-/**
- * Rostrum Class
- *
- * Manages a connection and its requests to a Rostrum server.
- */
-export class Rostrum extends EventEmitter {
-    constructor(_params) {
-        /* Initialize Rostrum class. */
-        debug('Initializing Rostrum...')
-        debug(JSON.stringify(_params, null, 2))
-        super()
-
-        // TBD
-    }
-}
-
 
 /**
  * Make Request
@@ -227,4 +211,25 @@ export const addressFirstUse = async (_address) => {
 
     /* Return (async) request. */
     return makeRequest(request)
+}
+
+
+/**
+ * Rostrum Class
+ *
+ * Manages a connection and its requests to a Rostrum server.
+ */
+export class Rostrum extends EventEmitter {
+    constructor(_params) {
+        /* Initialize Rostrum class. */
+        debug('Initializing Rostrum...')
+        debug(JSON.stringify(_params, null, 2))
+        super()
+
+        // TBD
+    }
+
+    static getBalance(_address) {
+        return addressBalance(_address)
+    }
 }
