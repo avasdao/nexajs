@@ -17,16 +17,27 @@ Our docs are updated regularly.
 
 # Table of contents
 
+- [Quick Start](#quick-start)
+  - [CDN Installation](#cdn-installation)
+  - [IPFS Installation](#ipfs-installation)
+  - [Package Manager Installation](#package-manager-installation)
 - [Introduction](#introduction)
   - [Prerequisites](#prerequisites)
   - [Requirements](#requirements)
 - [Installation](#installation)
-- [Quick Start](#quick-start)
-  - [Building the workspace](#building-the-workspace)
+  - [Building the Workspace](#building-the-workspace)
+- [Should I use this in Production?](#should-i-use-this-in-production)
+- [Can I trust this Code?](#can-i-trust-this-code)
+- [Usage](#usage)
+  - [Browser](#browser)
+- [Examples](#examples)
 - [Packages List](#packages-list)
+- [Contributing](#contributing)
+  - [Running the Test Suite](#running-the-test-suite)
+- [Complementing Libraries](#complementing-libraries)
 
 
-## Getting Started
+## Quick Start
 
 To quickly get started using Nexa in your existing Webapp, simply include this tag in the <head> section of your HTML:
 
@@ -60,25 +71,32 @@ pnpm install nexajs
 
 __WARNING__: We presently don't provide any tooling to verify that the release on `npm` matches GitHub.  As such, you should verify anything downloaded by `npm` against your own verified copy.
 
+
+## Introduction
+
+The NexaJS Library + SDK aims to be a modern & comprehensive toolkit for creating decentralized applications (dApps) on the Nexa Blockchain and its expansive Web3 ecosystem.
+
 ### Prerequisites
 
-_TBD_
+- Node v12+
 
 ### Requirements
 
-_TBD_
+- Basic JavaScript knowledge
 
 
 ## Installation
 
 ```
-npm install nexaverse
+npm install nexajs
 ```
 
-## Quick Start
+### Building the Workspace
 
-NexaJS offers a robust suite of functionality.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Install your preferred Integrated Development Environment (IDE) or text editor, eg:
+- Visual Studio Code (VSC)
+- Atom
+- Sublime
 
 Example file: [__send-tx.js__](examples/send-tx.js)
 
@@ -108,12 +126,13 @@ $ node examples/send-tx.js
 ```
 
 
-## Should I use this in production?
+## Should I use this in Production?
 
 If you are thinking of using the *master* branch of this library in production, __stop__. Master is not stable; it is our development branch, and [only tagged releases may be classified as stable](https://gitlab.com/modenero/nitojs/tags).
 
 
-## Can I trust this code?
+## Can I trust this Code?
+
 > Don't trust. Verify.
 
 We recommend every user of this library and the [nexajs](https://gitlab.com/nexajs) ecosystem audit and verify any underlying code for its validity and suitability,  including reviewing any and all of your project's dependencies.
@@ -128,6 +147,7 @@ Mistakes and bugs happen, but with your help in resolving and reporting [issues]
 
 
 ## Usage
+
 Crypto is hard.
 
 When working with private keys, the random number generator is fundamentally one of the most important parts of any software you write.
@@ -146,6 +166,7 @@ We are not an authorative source of best practice, but, at the very least:
 
 
 ### Browser
+
 The recommended method of using `nexajs-lib` in your browser is through [Browserify](https://github.com/substack/node-browserify).
 If you're familiar with how to use browserify, ignore this and carry on, otherwise, it is recommended to read the tutorial at https://browserify.org/.
 
@@ -153,7 +174,9 @@ __NOTE__: We use Node Maintenance LTS features, if you need strict ES5, use [`--
 
 __WARNING__: iOS devices have [problems](https://github.com/feross/buffer/issues/136), use at least [buffer@5.0.5](https://github.com/feross/buffer/pull/155) or greater,  and enforce the test suites (for `Buffer`, and any other dependency) pass before use.
 
+
 ## Examples
+
 The below examples are implemented as integration tests, they should be very easy to understand.
 Otherwise, pull requests are appreciated.
 Some examples interact (via HTTPS) with a 3rd Party Blockchain Provider (3PBP).
@@ -208,12 +231,13 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Running the test suite
+### Running the Test Suite
 
 ``` bash
 npm test
 npm run-script coverage
 ```
+
 
 ## Complementing Libraries
 - [BIP39](https://gitlab.com/nexajs/bip39) - Mnemonic generation for deterministic keys
