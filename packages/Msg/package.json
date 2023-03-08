@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/msg",
+  "version": "23.3.8",
+  "description": "A very simple Crypto-friendly messaging library.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}
