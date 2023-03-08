@@ -7,6 +7,7 @@ echo
 echo "  Building [ Address ] package..."
 browserify ../../packages/Address/index.js -p esmify > ../dist/address.js
 echo "    - address.js"
+browserify ../../packages/Address/index.js -p esmify | uglifyjs -c > ../dist/address.min.js
 echo "    - address.min.js"
 echo "  done."
 echo
@@ -14,6 +15,7 @@ echo
 echo "  Building [ Utilities ] package..."
 browserify ../../packages/Utils/index.js -p esmify > ../dist/utils.js
 echo "    - utils.js"
+browserify ../../packages/Utils/index.js -p esmify | uglifyjs -c > ../dist/utils.min.js
 echo "    - utils.min.js"
 echo "  done."
 echo
