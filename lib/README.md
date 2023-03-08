@@ -2,11 +2,17 @@
 
 ### https://nexajs.org
 
-![NexaJS Banner](/web/static/banner.jpg)
+![NexaJS Banner](/web/public/banner.jpg)
 
 A pure JavaScript Library and Software Development Kit (SDK) for building _decentralized_ applications (dApps) powered by the [__Nexa__](https://nexa.org/) blockchain.
 
 Released under the terms of the [__MIT LICENSE__](LICENSE).
+
+## Documentation
+
+Our docs are updated regularly.
+
+### https://docs.nexajs.org
 
 
 # Table of contents
@@ -52,6 +58,8 @@ yarn add nexajs
 pnpm install nexajs
 ```
 
+__WARNING__: We presently don't provide any tooling to verify that the release on `npm` matches GitHub.  As such, you should verify anything downloaded by `npm` against your own verified copy.
+
 ### Prerequisites
 
 _TBD_
@@ -75,9 +83,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 Example file: [__send-tx.js__](examples/send-tx.js)
 
 ```
-const nexajs = require('nexajs')
+import Nexa from 'nexajs'
 
-const privateKey = new nexajs.PrivateKey('L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy')
+const privateKey = new Nexa.PrivateKey('L1uyy5qTuGrVXrmrsvHWHgVzW9kKdrp27wBC7Vs6nZDTF2BRUVwy')
 
 const utxo = {
     txId        : '115e8f72f39fad874cfab0deed11a80f24f967a84079fb56ddf53ea02e308986',
@@ -87,7 +95,7 @@ const utxo = {
     satoshis    : 50000,
 }
 
-const transaction = new nexajs.Transaction()
+const transaction = new Nexa.Transaction()
     .from(utxo)
     .to('1Gokm82v6DmtwKEB8AiVhm82hyFSsEvBDK', 15000)
     .sign(privateKey)
@@ -117,24 +125,6 @@ Mistakes and bugs happen, but with your help in resolving and reporting [issues]
 - Advanced and feature rich,
 - Standardized, using [prettier](https://github.com/prettier/prettier) and Node `Buffer`'s throughout, and
 - Friendly, with a strong and helpful community, ready to answer questions.
-
-
-## Documentation
-
-Our docs are updated regularly.
-
-### https://docs.nexajs.org
-
-## Installation
-``` bash
-npm install nexajs-lib
-# optionally, install a key derivation library as well
-npm install ecpair bip32
-# ecpair is the ECPair class for single keys
-# bip32 is for generating HD keys
-```
-
-__WARNING__: We presently don't provide any tooling to verify that the release on `npm` matches GitHub.  As such, you should verify anything downloaded by `npm` against your own verified copy.
 
 
 ## Usage
