@@ -1,8 +1,8 @@
 {
   "name": "nexajs",
-  "version": "23.3.7",
+  "version": "23.3.8",
   "license": "MIT",
-  "description": "A JavaScript Nexa library for Node.js and browsers.",
+  "description": "A comprehensive JavaScript Library + SDK for building Nexa applications on Node.js (back-end) and web browsers (front-end).",
   "author": "Ava's DAO",
   "main": "index.js",
   "type": "module",
