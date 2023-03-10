@@ -136,7 +136,7 @@ const makeRequest = (_request) => {
  *
  * Version added: 1.4.3
  */
-export const addressBalance = async (_address) => {
+export const getAddressBalance = async (_address) => {
     debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
 
     /* Set method. */
@@ -159,7 +159,7 @@ export const addressBalance = async (_address) => {
 }
 
 /**
- * (Blockchain) Address Decode
+ * (Blockchain) Decode Remote Address
  *
  * Decode a Bitcoin Cash or a Nexa address to its raw payload. This method is
  * potentially useful for clients needing to see the encoded contents of a
@@ -167,7 +167,7 @@ export const addressBalance = async (_address) => {
  *
  * Version added: Rostrum 7.0
  */
-export const addressDecode = async (_address) => {
+export const decodeRemoteAddress = async (_address) => {
     debug(`Blockchain->Address->Decode [ address: ${_address} ]`)
 
     /* Set method. */
@@ -196,7 +196,7 @@ export const addressDecode = async (_address) => {
  *
  * Version added: Rostrum 1.2
  */
-export const addressFirstUse = async (_address) => {
+export const getAddressFirstUse = async (_address) => {
     debug(`Blockchain->Address->FirstUse [ address: ${_address} ]`)
 
     /* Set method. */
@@ -205,6 +205,35 @@ export const addressFirstUse = async (_address) => {
     /* Set parameters. */
     const params = [
         _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
+ * (Token) Genesis Info
+ *
+ * Info from token creation transaction.
+ *
+ * Version added: Rostrum 6.0
+ */
+export const getGenesisInfo = async (_tokenid) => {
+    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+
+    /* Set method. */
+    const method = 'token.genesis.info'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
         true, // NOTE: Show verbose (true).
     ]
 
@@ -235,6 +264,6 @@ export class Rostrum extends EventEmitter {
     }
 
     static getBalance(_address) {
-        return addressBalance(_address)
+        return getAddressBalance(_address)
     }
 }

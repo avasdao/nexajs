@@ -9,3 +9,8 @@ services:
     ports:
       - '127.0.0.1:3000:3000'
     command: 'npm run start'
+    logging: # apply better controls to Docker overlay folder
+      driver: 'json-file'
+      options:
+        max-file: '5'
+        max-size: '10m'

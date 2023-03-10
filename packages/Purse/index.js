@@ -1,9 +1,43 @@
-export class Purse {
-    constructor(_privateKey) {
-        console.info('\n  Creating new Purse instance...\n') // eslint-disable-line no-console
+/* Import modules. */
+import { EventEmitter } from 'events'
+import { v4 as uuidv4 } from 'uuid'
+
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:purse')
+
+
+// FIXME FOR DEV PURPOSES ONLY
+export const testPurse = () => {
+    return 'NexaJS Purse is ready to GO!'
+}
+
+export const sendUtxo = (_params) => {
+    debug('Sending UTXO...')
+    debug(JSON.stringify(_params, null, 2))
+
+    return {
+        msg: 'TESTING!',
+        success: true,
+    }
+}
+
+/**
+ * Purse Class
+ *
+ * Manages individual unspent transaction outputs (UTXOs).
+ */
+export class Purse extends EventEmitter {
+    constructor(_params) {
+        /* Initialize Purse class. */
+        debug('Initializing Purse...')
+        debug(JSON.stringify(_params, null, 2))
+        super()
 
         /* Set private key. */
-        this._privateKey = _privateKey
+        this._privateKey = _params?.privateKey
+
+        // TBD
     }
 
     get privateKey() {
@@ -26,13 +60,4 @@ export class Purse {
     static sendUtxo() {
         sendUtxo()
     }
-}
-
-// FIXME FOR DEV PURPOSES ONLY
-export const testPurse = () => {
-    console.log('NexaJS Purse is a GO!')
-}
-
-export const sendUtxo = () => {
-    console.log('Sending UTXO...')
 }
