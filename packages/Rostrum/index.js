@@ -126,6 +126,35 @@ export const getAddressHistory = async (_address) => {
 }
 
 /**
+ * (Blockchain) Address History
+ *
+ * Return the unconfirmed transactions of a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+export const getAddressMempool = async (_address) => {
+    debug(`Blockchain->Address->Mempool [ address: ${_address} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.address.get_mempool'
+
+    /* Set parameters. */
+    const params = [
+        _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
  * (Token) Genesis Info
  *
  * Info from token creation transaction.
@@ -186,6 +215,10 @@ export class Rostrum extends EventEmitter {
         return getAddressHistory(params)
     }
 
+    getAddressMempool(params) {
+        return getAddressMempool(params)
+    }
+
     // ...
 
     getGenesisInfo(params) {
@@ -207,6 +240,7 @@ Nexa.getAddressBalance = getAddressBalance
 Nexa.decodeRemoteAddress = decodeRemoteAddress
 Nexa.getAddressFirstUse = getAddressFirstUse
 Nexa.getAddressHistory = getAddressHistory
+Nexa.getAddressMempool = getAddressMempool
 // ...
 Nexa.getGenesisInfo = getGenesisInfo
 // ...
