@@ -263,7 +263,41 @@ export class Rostrum extends EventEmitter {
         // TBD
     }
 
-    static getBalance(_address) {
+    getAddressBalance(_address) {
         return getAddressBalance(_address)
     }
+
+    decodeRemoteAddress(_address) {
+        return decodeRemoteAddress(_address)
+    }
+
+    getAddressFirstUse(_address) {
+        return getAddressFirstUse(_address)
+    }
+
+    // ...
+
+    getGenesisInfo(_address) {
+        return getGenesisInfo(_address)
+    }
+
+    // ...
+
 }
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize Rostrum class. */
+Nexa.Rostrum = Rostrum
+
+/* Initialize Rostrum modules. */
+Nexa.getAddressBalance = getAddressBalance
+Nexa.decodeRemoteAddress = decodeRemoteAddress
+Nexa.getAddressFirstUse = getAddressFirstUse
+
+Nexa.getGenesisInfo = getGenesisInfo
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = { ...Nexa }

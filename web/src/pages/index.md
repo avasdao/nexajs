@@ -32,7 +32,7 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ```html
 <!-- CDN (Web2) integration solution -->
-<script src="https://cdn.nexajs.org/23.3.10/nexa.min.js"
+<script src="https://cdn.nexajs.org/nexa.min.js"
   integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
   crossorigin="anonymous"></script>
 ```
