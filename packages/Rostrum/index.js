@@ -241,6 +241,67 @@ export const getGenesisInfo = async (_tokenid) => {
     return makeRequest(request)
 }
 
+/* Export alias. */
+export const getTokenInfo = getGenesisInfo
+
+/**
+ * (NFT) List
+ *
+ * Return list of all NFT's minted from a specified parent token.
+ *
+ * Version added: Rostrum 7.0
+ */
+export const getNftList = async (_tokenid) => {
+    debug(`Token->NFT->List [ token: ${_tokenid} ]`)
+
+    /* Set method. */
+    const method = 'token.nft.list'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
+ * (Token) History
+ *
+ * Return all confirmed and unconfirmed token transaction history of a given token.
+ *
+ * Version added: Rostrum 6.0
+ */
+export const getTokenHistory = async (_tokenid) => {
+    debug(`Token->Transaction->History [ token: ${_tokenid} ]`)
+
+    /* Set method. */
+    const method = 'token.transaction.get_history'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
 
 /**
  * Rostrum Class
@@ -291,8 +352,19 @@ export class Rostrum extends EventEmitter {
         return getGenesisInfo(params)
     }
 
+    getTokenInfo(params) {
+        return getTokenInfo(params)
+    }
+
+    getNftList(params) {
+        return getNftList(params)
+    }
+
     // ...
 
+    getTokenHistory(params) {
+        return getTokenHistory(params)
+    }
 }
 
 /* Initialize (globalThis) Nexa class. */
@@ -311,7 +383,10 @@ Nexa.getAddressScriptHash = getAddressScriptHash
 Nexa.getAddressUnspent = getAddressUnspent
 // ...
 Nexa.getGenesisInfo = getGenesisInfo
+Nexa.getTokenInfo = getTokenInfo // alias for `getGenesisInfo`
+Nexa.getNftList = getNftList
 // ...
+Nexa.getTokenHistory = getTokenHistory
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
