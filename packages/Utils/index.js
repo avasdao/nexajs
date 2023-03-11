@@ -1,6 +1,5 @@
 
 
-
 /**
  * Reverse Bytes
  *
@@ -23,3 +22,17 @@ export class Utils {
         return reverseBytes(_bytes)
     }
 }
+
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize Utilities class. */
+Nexa.Utils = Utils
+
+/* Initialize Utilities modules. */
+Nexa.reverseBytes = reverseBytes
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = { ...Nexa }
