@@ -16,6 +16,7 @@ const connMgr = {
     pool: [
         new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
         // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
+        new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
         // TBD
     ],
     alts: [

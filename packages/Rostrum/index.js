@@ -155,6 +155,35 @@ export const getAddressMempool = async (_address) => {
 }
 
 /**
+ * (Blockchain) Address Script Hash
+ *
+ * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is potentially useful for clients preferring to work with script hashes but lacking the local libraries necessary to generate them.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+export const getAddressScriptHash = async (_address) => {
+    debug(`Blockchain->Address->ScriptHash [ address: ${_address} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.address.get_scripthash'
+
+    /* Set parameters. */
+    const params = [
+        _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
  * (Token) Genesis Info
  *
  * Info from token creation transaction.
@@ -219,6 +248,10 @@ export class Rostrum extends EventEmitter {
         return getAddressMempool(params)
     }
 
+    getAddressScriptHash(params) {
+        return getAddressScriptHash(params)
+    }
+
     // ...
 
     getGenesisInfo(params) {
@@ -241,6 +274,7 @@ Nexa.decodeRemoteAddress = decodeRemoteAddress
 Nexa.getAddressFirstUse = getAddressFirstUse
 Nexa.getAddressHistory = getAddressHistory
 Nexa.getAddressMempool = getAddressMempool
+Nexa.getAddressScriptHash = getAddressScriptHash
 // ...
 Nexa.getGenesisInfo = getGenesisInfo
 // ...
