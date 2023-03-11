@@ -283,10 +283,10 @@
   resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.2.22.tgz#45d1396937f99e942986462068ba7dca4a1a179f"
   integrity sha512-rdBtwvjuXmVXzfZhIsF9DG3NZnvDZt3YlWnuFLIZsCiqMV1zVFMdjr870QTibrJ+faHhfNTZG9S7jKvoDHDtQA==
 
-"@nexajs/rostrum@23.3.10":
-  version "23.3.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.3.10.tgz#87d50afe96851ad9867a93c1102cdfab6a4bbd2c"
-  integrity sha512-R8iXJXC6BwPtdkL6lmEaVLDx2VY4Lplk+809OTLahG5XfzV/lne94K7oUKmA+oiLKr0QeZs5gRVTs58MKgZ+gw==
+"@nexajs/rostrum@23.3.11":
+  version "23.3.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.3.11.tgz#1f9f886e85031ba5b7856f650297c566f48852b8"
+  integrity sha512-fJyq9wFW5qziZ/w8lOrUnJyJWfkiCngiI5EBvWvjtOcKDlCjTW/jLrtKF5ho0WWmiyyMrIoNfu1FHtMnoYTSBA==
   dependencies:
     isomorphic-ws "5.0.0"
     uuid "9.0.0"
@@ -299,10 +299,10 @@
   dependencies:
     superagent "8.0.6"
 
-"@nexajs/utils@23.3.8":
-  version "23.3.8"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.3.8.tgz#1ffe9dfcdb42d46a4d2ebe52cbd0c0959965e58b"
-  integrity sha512-WFCx3mrghnxCDzlGcAWuAmJ7Jb2HWnG+7F9sboAlJ525TdSLBu5KApSKtm/mbZ4aYLXoRcnyowKGAB8j3fsMRQ==
+"@nexajs/utils@23.3.11":
+  version "23.3.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.3.11.tgz#3b007689815c535d7eca8aa64e182c83c7feb642"
+  integrity sha512-D1Btrf8unKx7PmtCkQ8CIpQ3qbDKv0d6ESbCMX8yXi1cmKyeTx6lEfv1LXyOhhiVeVbmXeMU7u8kM5OhJ4OLMQ==
 
 "@ungap/promise-all-settled@1.1.2":
   version "1.1.2"
