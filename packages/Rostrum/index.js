@@ -97,6 +97,35 @@ export const getAddressFirstUse = async (_address) => {
 }
 
 /**
+ * (Blockchain) Address History
+ *
+ * Return the confirmed and unconfirmed history of a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+export const getAddressHistory = async (_address) => {
+    debug(`Blockchain->Address->History [ address: ${_address} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.address.get_history'
+
+    /* Set parameters. */
+    const params = [
+        _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
  * (Token) Genesis Info
  *
  * Info from token creation transaction.
@@ -141,22 +170,26 @@ export class Rostrum extends EventEmitter {
         // TBD
     }
 
-    getAddressBalance(_address) {
-        return getAddressBalance(_address)
+    getAddressBalance(params) {
+        return getAddressBalance(params)
     }
 
-    decodeRemoteAddress(_address) {
-        return decodeRemoteAddress(_address)
+    decodeRemoteAddress(params) {
+        return decodeRemoteAddress(params)
     }
 
-    getAddressFirstUse(_address) {
-        return getAddressFirstUse(_address)
+    getAddressFirstUse(params) {
+        return getAddressFirstUse(params)
+    }
+
+    getAddressHistory(params) {
+        return getAddressHistory(params)
     }
 
     // ...
 
-    getGenesisInfo(_address) {
-        return getGenesisInfo(_address)
+    getGenesisInfo(params) {
+        return getGenesisInfo(params)
     }
 
     // ...
@@ -173,8 +206,10 @@ Nexa.Rostrum = Rostrum
 Nexa.getAddressBalance = getAddressBalance
 Nexa.decodeRemoteAddress = decodeRemoteAddress
 Nexa.getAddressFirstUse = getAddressFirstUse
-
+Nexa.getAddressHistory = getAddressHistory
+// ...
 Nexa.getGenesisInfo = getGenesisInfo
+// ...
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
