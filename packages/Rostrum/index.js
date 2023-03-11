@@ -368,8 +368,7 @@ export class Rostrum extends EventEmitter {
 }
 
 /* Initialize (globalThis) Nexa class. */
-// NOTE: We merge to avoid conflict with other libraries.
-const Nexa = { ...globalThis.Nexa }
+const Nexa = {}
 
 /* Initialize Rostrum class. */
 Nexa.Rostrum = Rostrum
@@ -388,3 +387,10 @@ Nexa.getTokenInfo = getTokenInfo // alias for `getGenesisInfo`
 Nexa.getNftList = getNftList
 // ...
 Nexa.getTokenHistory = getTokenHistory
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
+}

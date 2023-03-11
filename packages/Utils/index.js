@@ -25,11 +25,17 @@ export class Utils {
 
 
 /* Initialize (globalThis) Nexa class. */
-// NOTE: We merge to avoid conflict with other libraries.
-const Nexa = { ...globalThis.Nexa }
+const Nexa = {}
 
 /* Initialize Utilities class. */
 Nexa.Utils = Utils
 
 /* Initialize Utilities modules. */
 Nexa.reverseBytes = reverseBytes
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
+}
