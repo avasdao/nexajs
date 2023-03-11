@@ -14,34 +14,45 @@ rm -f yarn.lock
 yarn
 echo
 
+# Set today's date
+todays_date=$(date +'%Y.%m.%d') # ISO format is: YYYYMMDD
+
 echo "  Building [ Address ] package..."
-browserify ../packages/Address/index.js -p esmify > ./dist/address.js
+echo "/* NexaJS <Address> v${todays_date} */" > ../cdn/address.js
+browserify ../packages/Address/index.js -p esmify >> ../cdn/address.js
 echo "    - address.js"
-browserify ../packages/Address/index.js -p esmify | uglifyjs -c > ./dist/address.min.js
+echo "/* NexaJS <Address> v${todays_date} */" > ../cdn/address.min.js
+browserify ../packages/Address/index.js -p esmify | uglifyjs -c >> ../cdn/address.min.js
 echo "    - address.min.js"
 echo "  done."
 echo
 
 echo "  Building [ Rostrum ] package..."
-browserify ../packages/Rostrum/index.js -p esmify > ./dist/rostrum.js
+echo "/* NexaJS <Rostrum> v${todays_date} */" > ../cdn/rostrum.js
+browserify ../packages/Rostrum/index.js -p esmify >> ../cdn/rostrum.js
 echo "    - rostrum.js"
-browserify ../packages/Rostrum/index.js -p esmify | uglifyjs -c > ./dist/rostrum.min.js
+echo "/* NexaJS <Rostrum> v${todays_date} */" > ../cdn/rostrum.min.js
+browserify ../packages/Rostrum/index.js -p esmify | uglifyjs -c >> ../cdn/rostrum.min.js
 echo "    - rostrum.min.js"
 echo "  done."
 echo
 
 echo "  Building [ Utilities ] package..."
-browserify ../packages/Utils/index.js -p esmify > ./dist/utils.js
+echo "/* NexaJS <Utilities> v${todays_date} */" > ../cdn/utils.js
+browserify ../packages/Utils/index.js -p esmify >> ../cdn/utils.js
 echo "    - utils.js"
-browserify ../packages/Utils/index.js -p esmify | uglifyjs -c > ./dist/utils.min.js
+echo "/* NexaJS <Utilities> v${todays_date} */" > ../cdn/utils.min.js
+browserify ../packages/Utils/index.js -p esmify | uglifyjs -c >> ../cdn/utils.min.js
 echo "    - utils.min.js"
 echo "  done."
 echo
 
-echo "  Building [ Nexa (Core) ] package..."
-browserify ./index.js -p esmify > ./dist/nexa.js
+echo "  Building [Core Library ] package..."
+echo "/* NexaJS Core Library v${todays_date} */" > ../cdn/nexa.js
+browserify ./index.js -p esmify >> ../cdn/nexa.js
 echo "    - nexa.js"
-browserify ./index.js -p esmify | uglifyjs -c > ./dist/nexa.min.js
+echo "/* NexaJS Core Library v${todays_date} */" > ../cdn/nexa.min.js
+browserify ./index.js -p esmify | uglifyjs -c >> ../cdn/nexa.min.js
 echo "    - nexa.min.js"
 echo "  done."
 echo

@@ -1,3 +1,4 @@
+/* NexaJS Core Library v2023.03.11 */
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
@@ -48,10 +49,52 @@ Object.defineProperty(exports, "getAddressFirstUse", {
     return _rostrum.getAddressFirstUse;
   }
 });
+Object.defineProperty(exports, "getAddressHistory", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getAddressHistory;
+  }
+});
+Object.defineProperty(exports, "getAddressMempool", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getAddressMempool;
+  }
+});
+Object.defineProperty(exports, "getAddressScriptHash", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getAddressScriptHash;
+  }
+});
+Object.defineProperty(exports, "getAddressUnspent", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getAddressUnspent;
+  }
+});
 Object.defineProperty(exports, "getGenesisInfo", {
   enumerable: true,
   get: function () {
     return _rostrum.getGenesisInfo;
+  }
+});
+Object.defineProperty(exports, "getNftList", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getNftList;
+  }
+});
+Object.defineProperty(exports, "getTokenHistory", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getTokenHistory;
+  }
+});
+Object.defineProperty(exports, "getTokenInfo", {
+  enumerable: true,
+  get: function () {
+    return _rostrum.getTokenInfo;
   }
 });
 Object.defineProperty(exports, "reverseBytes", {
@@ -287,18 +330,9 @@ class Nexa extends _events.EventEmitter {
   //     return _Wallet
   // }
 }
-
-/* Export (default) module. */
-// NOTE: This allows importing the (NexaJS) module without curly braces.
-// export default Nexa
-// export default {
-//     Address,
-//     Purse,
-//     Rpc,
-// }
 exports.default = Nexa;
 
-},{"@nexajs/address":2,"@nexajs/purse":7,"@nexajs/rostrum":8,"@nexajs/rpc":9,"@nexajs/utils":10,"debug":16,"events":55}],2:[function(require,module,exports){
+},{"@nexajs/address":2,"@nexajs/purse":7,"@nexajs/rostrum":9,"@nexajs/rpc":10,"@nexajs/utils":11,"debug":17,"events":56}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -421,7 +455,7 @@ const getSeedType = _seed => {
   return null;
 };
 
-},{"./src/cashaddr.js":4,"debug":16,"events":55}],3:[function(require,module,exports){
+},{"./src/cashaddr.js":4,"debug":17,"events":56}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -826,7 +860,7 @@ function hasSingleCase(string) {
   return string === string.toLowerCase() || string === string.toUpperCase();
 }
 
-},{"./base32.js":3,"./convertBits.js":5,"./validation.js":6,"big-integer":11}],5:[function(require,module,exports){
+},{"./base32.js":3,"./convertBits.js":5,"./validation.js":6,"big-integer":12}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -998,8 +1032,7 @@ exports.sendUtxo = sendUtxo;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getGenesisInfo = exports.getAddressFirstUse = exports.getAddressBalance = exports.decodeRemoteAddress = exports.Rostrum = void 0;
-var _events = require("events");
+exports.makeRequest = void 0;
 var _uuid = require("uuid");
 var _isomorphicWs = _interopRequireDefault(require("isomorphic-ws"));
 var _debug = _interopRequireDefault(require("debug"));
@@ -1008,10 +1041,98 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* Setup (non-ESM) debugger. */
 
-const debug = (0, _debug.default)('nexa:rostrum');
+const debug = (0, _debug.default)('nexa:rostrum:makeRequest');
+
+/* Set active connection id. */
+const ACTIVE_CONN_ID = 0;
+const requestQueue = [];
 
 /* Initilize connections manager. */
-const connMgr = {};
+const connMgr = {
+  pool: [new _isomorphicWs.default('wss://electrum.nexa.org:20004'),
+  // Nexa.Org
+  // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
+  new _isomorphicWs.default('wss://rostrum.apecs.dev:20004') // APECS.dev
+  // TBD
+  ],
+
+  alts: [new _isomorphicWs.default('wss://rostrum.apecs.dev:20004') // APECS.dev
+  // TBD
+  ],
+
+  requests: {},
+  isReady: false
+};
+
+/* Close connection. */
+// FIXME Should this be conditional??
+// connMgr.pool[ACTIVE_CONN_ID].close()
+
+/* Handle open connection. */
+connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
+  debug(`Connection [ ${ACTIVE_CONN_ID} ] is OPEN!`);
+  // console.log('REQUEST QUEUE', requestQueue)
+
+  /* Set (connection) ready flag. */
+  connMgr.isReady = true;
+
+  /* Handle (pending) queue. */
+  requestQueue.forEach(_request => {
+    /* Send request. */
+    connMgr.pool[ACTIVE_CONN_ID].send(JSON.stringify(_request) + '\n'); // NOTE: We MUST include the "new line".
+  });
+};
+
+/* Handle message. */
+connMgr.pool[ACTIVE_CONN_ID].onmessage = async _msg => {
+  // console.info('Connection [ %s ] sent ->', id, _msg)
+
+  let id;
+
+  /* Validate message data. */
+  if (_msg?.data) {
+    try {
+      /* Parse JSON data. */
+      const data = JSON.parse(_msg.data);
+      // console.log('JSON (data):', data)
+
+      /* Validate message data. */
+      if (data?.result) {
+        // console.log('JSON (result):', data.id, data.result)
+        // resolve(data.result)
+        id = data.id;
+        connMgr.requests[id].resolve(data.result);
+      }
+
+      /* Validate message parameters. */
+      if (data?.params) {
+        // console.log('JSON (params):', data.params)
+        // resolve(data.params)
+        id = data.id;
+        connMgr.requests[id].resolve(data.params);
+      }
+    } catch (err) {
+      console.error(err);
+      reject(err);
+    }
+  }
+
+  // NOTE: Reject this promise.
+  reject({
+    error: `Oops! Sorry, we couldn't complete your request.`
+  });
+};
+
+/* Handle connection close. */
+connMgr.pool[ACTIVE_CONN_ID].onclose = function () {
+  debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`);
+};
+
+/* Handle connection error. */
+connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
+  console.error('ERROR! [ %s ]:', ACTIVE_CONN_ID, e);
+  reject(e);
+};
 
 /**
  * Make Request
@@ -1019,114 +1140,59 @@ const connMgr = {};
 const makeRequest = _request => {
   /* Generate a new (request) id. */
   const id = (0, _uuid.v4)();
-  let resolve;
-  let reject;
 
-  /* Add to connection manager. */
-  connMgr[id] = {};
+  /* Set method. */
+  const method = _request.method;
 
-  /* Set ID. */
-  connMgr[id].id = id;
+  /* Set parameters. */
+  const params = _request.params;
 
-  /* Set request. */
-  connMgr[id].request = _request;
+  /* Create request. */
+  const request = {
+    id,
+    method,
+    params
+  };
 
-  /* Initialize socket connection(s) to Rostrum server(s). */
-  // TODO Add support for connection clusters.
-  connMgr[id].socket = new _isomorphicWs.default('wss://electrum.nexa.org:20004');
-  connMgr[id].socket_alt = new _isomorphicWs.default('wss://rostrum.apecs.dev:20004');
-
-  /* Handle open connection. */
-  connMgr[id].socket.onopen = () => {
-    debug(`Connection [ ${id} ] is OPEN!`);
-
-    /* Set method. */
-    const method = _request.method;
-
-    /* Set parameters. */
-    const params = _request.params;
-
-    /* Create request. */
-    const request = {
-      id,
-      method,
-      params
-    };
-
+  /* Validate connection status. */
+  if (connMgr.isReady) {
     /* Send request. */
-    connMgr[id].socket.send(JSON.stringify(request) + '\n'); // NOTE: We MUST include the "new line".
-  };
-
-  /* Handle message. */
-  connMgr[id].socket.onmessage = async _msg => {
-    // console.info('Connection [ %s ] sent ->', id, _msg)
-
-    /* Validate message data. */
-    if (_msg?.data) {
-      try {
-        /* Parse JSON data. */
-        const data = JSON.parse(_msg.data);
-        // console.log('JSON (data):', data)
-
-        /* Validate message data. */
-        if (data?.result) {
-          // console.log('JSON (result):', data.id, data.result)
-          resolve(data.result);
-
-          /* Close connection. */
-          // FIXME Should this be conditional??
-          return connMgr[id].socket.close();
-        }
-
-        /* Validate message parameters. */
-        if (data?.params) {
-          // console.log('JSON (params):', data.params)
-          resolve(data.params);
-
-          /* Close connection. */
-          // FIXME Should this be conditional??
-          return connMgr[id].socket.close();
-        }
-      } catch (err) {
-        console.error(err);
-        reject(err);
-
-        /* Close connection. */
-        // FIXME Should this be conditional??
-        return connMgr[id].socket.close();
-      }
-    }
-
-    // NOTE: Reject this promise.
-    reject({
-      error: `Oops! Sorry, we couldn't complete your request.`
-    });
-
-    /* Close connection. */
-    // FIXME Should this be conditional??
-    connMgr[id].socket.close();
-  };
-
-  /* Handle connection close. */
-  connMgr[id].socket.onclose = function () {
-    debug(`Connection [ ${id} ] is CLOSED.`);
-  };
-
-  /* Handle connection error. */
-  connMgr[id].socket.onerror = function (e) {
-    console.error('ERROR! [ %s ]:', id, e);
-    reject(e);
-  };
+    connMgr.pool[ACTIVE_CONN_ID].send(JSON.stringify(request) + '\n'); // NOTE: We MUST include the "new line".
+  } else {
+    /* Add new request. */
+    requestQueue.push(request);
+  }
 
   /* Return a promise. */
   return new Promise(function (_resolve, _reject) {
+    /* Initialize (request) promise. */
+    connMgr.requests[id] = {};
+
     /* Set resolve. */
-    resolve = _resolve;
+    connMgr.requests[id].resolve = _resolve;
 
     /* Set reject. */
-    reject = _reject;
+    connMgr.requests[id].reject = _reject;
   });
 };
+exports.makeRequest = makeRequest;
+
+},{"debug":17,"isomorphic-ws":26,"uuid":40}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTokenInfo = exports.getTokenHistory = exports.getNftList = exports.getGenesisInfo = exports.getAddressUnspent = exports.getAddressScriptHash = exports.getAddressMempool = exports.getAddressHistory = exports.getAddressFirstUse = exports.getAddressBalance = exports.decodeRemoteAddress = exports.Rostrum = void 0;
+var _events = require("events");
+var _makeRequest = require("./_makeRequest.js");
+var _debug = _interopRequireDefault(require("debug"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+/* Import modules. */
+
+/* Setup (non-ESM) debugger. */
+
+const debug = (0, _debug.default)('nexa:rostrum');
 
 /**
  * (Blockchain) Address Balance
@@ -1152,7 +1218,7 @@ const getAddressBalance = async _address => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -1182,7 +1248,7 @@ const decodeRemoteAddress = async _address => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -1210,7 +1276,119 @@ const getAddressFirstUse = async _address => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address History
+ *
+ * Return the confirmed and unconfirmed history of a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressFirstUse = getAddressFirstUse;
+const getAddressHistory = async _address => {
+  debug(`Blockchain->Address->History [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.get_history';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address History
+ *
+ * Return the unconfirmed transactions of a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressHistory = getAddressHistory;
+const getAddressMempool = async _address => {
+  debug(`Blockchain->Address->Mempool [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.get_mempool';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address Script Hash
+ *
+ * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is potentially useful for clients preferring to work with script hashes but lacking the local libraries necessary to generate them.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressMempool = getAddressMempool;
+const getAddressScriptHash = async _address => {
+  debug(`Blockchain->Address->ScriptHash [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.get_scripthash';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address List Unspent
+ *
+ * Return an ordered list of UTXOs sent to a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressScriptHash = getAddressScriptHash;
+const getAddressUnspent = async _address => {
+  debug(`Blockchain->Address->ListUnspent [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.listunspent';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -1220,7 +1398,7 @@ const getAddressFirstUse = async _address => {
  *
  * Version added: Rostrum 6.0
  */
-exports.getAddressFirstUse = getAddressFirstUse;
+exports.getAddressUnspent = getAddressUnspent;
 const getGenesisInfo = async _tokenid => {
   debug(`Token->Genesis->Info [ token: ${_tokenid} ]`);
 
@@ -1238,7 +1416,67 @@ const getGenesisInfo = async _tokenid => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/* Export alias. */
+exports.getGenesisInfo = getGenesisInfo;
+const getTokenInfo = getGenesisInfo;
+
+/**
+ * (NFT) List
+ *
+ * Return list of all NFT's minted from a specified parent token.
+ *
+ * Version added: Rostrum 7.0
+ */
+exports.getTokenInfo = getTokenInfo;
+const getNftList = async _tokenid => {
+  debug(`Token->NFT->List [ token: ${_tokenid} ]`);
+
+  /* Set method. */
+  const method = 'token.nft.list';
+
+  /* Set parameters. */
+  const params = [_tokenid, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Token) History
+ *
+ * Return all confirmed and unconfirmed token transaction history of a given token.
+ *
+ * Version added: Rostrum 6.0
+ */
+exports.getNftList = getNftList;
+const getTokenHistory = async _tokenid => {
+  debug(`Token->Transaction->History [ token: ${_tokenid} ]`);
+
+  /* Set method. */
+  const method = 'token.transaction.get_history';
+
+  /* Set parameters. */
+  const params = [_tokenid, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -1246,7 +1484,7 @@ const getGenesisInfo = async _tokenid => {
  *
  * Manages a connection and its requests to a Rostrum server.
  */
-exports.getGenesisInfo = getGenesisInfo;
+exports.getTokenHistory = getTokenHistory;
 class Rostrum extends _events.EventEmitter {
   constructor(_params) {
     /* Initialize Rostrum class. */
@@ -1257,13 +1495,76 @@ class Rostrum extends _events.EventEmitter {
     // TBD
   }
 
-  static getBalance(_address) {
-    return getAddressBalance(_address);
+  getAddressBalance(params) {
+    return getAddressBalance(params);
+  }
+  decodeRemoteAddress(params) {
+    return decodeRemoteAddress(params);
+  }
+  getAddressFirstUse(params) {
+    return getAddressFirstUse(params);
+  }
+  getAddressHistory(params) {
+    return getAddressHistory(params);
+  }
+  getAddressMempool(params) {
+    return getAddressMempool(params);
+  }
+  getAddressScriptHash(params) {
+    return getAddressScriptHash(params);
+  }
+  getAddressUnspent(params) {
+    return getAddressUnspent(params);
+  }
+
+  // ...
+
+  getGenesisInfo(params) {
+    return getGenesisInfo(params);
+  }
+  getTokenInfo(params) {
+    return getTokenInfo(params);
+  }
+  getNftList(params) {
+    return getNftList(params);
+  }
+
+  // ...
+
+  getTokenHistory(params) {
+    return getTokenHistory(params);
   }
 }
-exports.Rostrum = Rostrum;
 
-},{"debug":16,"events":55,"isomorphic-ws":25,"uuid":39}],9:[function(require,module,exports){
+/* Initialize (globalThis) Nexa class. */
+exports.Rostrum = Rostrum;
+const Nexa = {};
+
+/* Initialize Rostrum class. */
+Nexa.Rostrum = Rostrum;
+
+/* Initialize Rostrum modules. */
+Nexa.getAddressBalance = getAddressBalance;
+Nexa.decodeRemoteAddress = decodeRemoteAddress;
+Nexa.getAddressFirstUse = getAddressFirstUse;
+Nexa.getAddressHistory = getAddressHistory;
+Nexa.getAddressMempool = getAddressMempool;
+Nexa.getAddressScriptHash = getAddressScriptHash;
+Nexa.getAddressUnspent = getAddressUnspent;
+// ...
+Nexa.getGenesisInfo = getGenesisInfo;
+Nexa.getTokenInfo = getTokenInfo; // alias for `getGenesisInfo`
+Nexa.getNftList = getNftList;
+// ...
+Nexa.getTokenHistory = getTokenHistory;
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+  ...Nexa
+};
+
+},{"./_makeRequest.js":8,"debug":17,"events":56}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1382,7 +1683,7 @@ const callNode = async (_method, _params, _options) => {
 };
 exports.callNode = callNode;
 
-},{"superagent":35}],10:[function(require,module,exports){
+},{"superagent":36}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1428,7 +1729,7 @@ globalThis.Nexa = {
   ...Nexa
 };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var bigInt = (function (undefined) {
     "use strict";
 
@@ -2883,9 +3184,9 @@ if (typeof define === "function" && define.amd) {
     });
 }
 
-},{}],12:[function(require,module,exports){
-
 },{}],13:[function(require,module,exports){
+
+},{}],14:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -2902,7 +3203,7 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":14,"get-intrinsic":21}],14:[function(require,module,exports){
+},{"./":15,"get-intrinsic":22}],15:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -2951,7 +3252,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"function-bind":20,"get-intrinsic":21}],15:[function(require,module,exports){
+},{"function-bind":21,"get-intrinsic":22}],16:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -3128,7 +3429,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 (function (process){(function (){
 /* eslint-env browser */
 
@@ -3401,7 +3702,7 @@ formatters.j = function (v) {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"./common":17,"_process":56}],17:[function(require,module,exports){
+},{"./common":18,"_process":57}],18:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -3677,7 +3978,7 @@ function setup(env) {
 
 module.exports = setup;
 
-},{"ms":26}],18:[function(require,module,exports){
+},{"ms":27}],19:[function(require,module,exports){
 module.exports = stringify
 stringify.default = stringify
 stringify.stable = deterministicStringify
@@ -3908,7 +4209,7 @@ function replaceGetterValues (replacer) {
   }
 }
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -3962,14 +4263,14 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":19}],21:[function(require,module,exports){
+},{"./implementation":20}],22:[function(require,module,exports){
 'use strict';
 
 var undefined;
@@ -4315,7 +4616,7 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"function-bind":20,"has":24,"has-symbols":22}],22:[function(require,module,exports){
+},{"function-bind":21,"has":25,"has-symbols":23}],23:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -4330,7 +4631,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":23}],23:[function(require,module,exports){
+},{"./shams":24}],24:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -4374,14 +4675,14 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":20}],25:[function(require,module,exports){
+},{"function-bind":21}],26:[function(require,module,exports){
 (function (global){(function (){
 "use strict";
 
@@ -4407,7 +4708,7 @@ var _default = ws;
 exports.default = _default;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -4571,7 +4872,7 @@ function plural(ms, msAbs, n, name) {
   return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
 }
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -5089,7 +5390,7 @@ function arrObjKeys(obj, inspect) {
     return xs;
 }
 
-},{"./util.inspect":12}],28:[function(require,module,exports){
+},{"./util.inspect":13}],29:[function(require,module,exports){
 'use strict';
 
 var replace = String.prototype.replace;
@@ -5114,7 +5415,7 @@ module.exports = {
     RFC3986: Format.RFC3986
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 var stringify = require('./stringify');
@@ -5127,7 +5428,7 @@ module.exports = {
     stringify: stringify
 };
 
-},{"./formats":28,"./parse":30,"./stringify":31}],30:[function(require,module,exports){
+},{"./formats":29,"./parse":31,"./stringify":32}],31:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -5392,7 +5693,7 @@ module.exports = function (str, opts) {
     return utils.compact(obj);
 };
 
-},{"./utils":32}],31:[function(require,module,exports){
+},{"./utils":33}],32:[function(require,module,exports){
 'use strict';
 
 var getSideChannel = require('side-channel');
@@ -5714,7 +6015,7 @@ module.exports = function (object, opts) {
     return joined.length > 0 ? prefix + joined : '';
 };
 
-},{"./formats":28,"./utils":32,"side-channel":33}],32:[function(require,module,exports){
+},{"./formats":29,"./utils":33,"side-channel":34}],33:[function(require,module,exports){
 'use strict';
 
 var formats = require('./formats');
@@ -5968,7 +6269,7 @@ module.exports = {
     merge: merge
 };
 
-},{"./formats":28}],33:[function(require,module,exports){
+},{"./formats":29}],34:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -6094,7 +6395,7 @@ module.exports = function getSideChannel() {
 	return channel;
 };
 
-},{"call-bind/callBound":13,"get-intrinsic":21,"object-inspect":27}],34:[function(require,module,exports){
+},{"call-bind/callBound":14,"get-intrinsic":22,"object-inspect":28}],35:[function(require,module,exports){
 "use strict";
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
@@ -6133,7 +6434,7 @@ Agent.prototype._setDefaults = function (request) {
 };
 module.exports = Agent;
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 "use strict";
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
@@ -7078,7 +7379,7 @@ request.put = (url, data, fn) => {
   return request_;
 };
 
-},{"./agent-base":34,"./request-base":36,"./response-base":37,"./utils":38,"component-emitter":15,"fast-safe-stringify":18,"qs":29}],36:[function(require,module,exports){
+},{"./agent-base":35,"./request-base":37,"./response-base":38,"./utils":39,"component-emitter":16,"fast-safe-stringify":19,"qs":30}],37:[function(require,module,exports){
 (function (process){(function (){
 "use strict";
 
@@ -7822,7 +8123,7 @@ RequestBase.prototype._setTimeouts = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"./utils":38,"_process":56,"semver":12}],37:[function(require,module,exports){
+},{"./utils":39,"_process":57,"semver":13}],38:[function(require,module,exports){
 "use strict";
 
 /**
@@ -7943,7 +8244,7 @@ ResponseBase.prototype._setStatusProperties = function (status) {
   this.unprocessableEntity = status === 422;
 };
 
-},{"./utils":38}],38:[function(require,module,exports){
+},{"./utils":39}],39:[function(require,module,exports){
 "use strict";
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
@@ -8067,7 +8368,7 @@ exports.mixin = (target, source) => {
   }
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8147,7 +8448,7 @@ var _stringify = _interopRequireDefault(require("./stringify.js"));
 var _parse = _interopRequireDefault(require("./parse.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./nil.js":42,"./parse.js":43,"./stringify.js":47,"./v1.js":48,"./v3.js":49,"./v4.js":51,"./v5.js":52,"./validate.js":53,"./version.js":54}],40:[function(require,module,exports){
+},{"./nil.js":43,"./parse.js":44,"./stringify.js":48,"./v1.js":49,"./v3.js":50,"./v4.js":52,"./v5.js":53,"./validate.js":54,"./version.js":55}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8371,7 +8672,7 @@ function md5ii(a, b, c, d, x, s, t) {
 
 var _default = md5;
 exports.default = _default;
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8383,7 +8684,7 @@ var _default = {
   randomUUID
 };
 exports.default = _default;
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8392,7 +8693,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = '00000000-0000-0000-0000-000000000000';
 exports.default = _default;
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8438,7 +8739,7 @@ function parse(uuid) {
 
 var _default = parse;
 exports.default = _default;
-},{"./validate.js":53}],44:[function(require,module,exports){
+},{"./validate.js":54}],45:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8447,7 +8748,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
 exports.default = _default;
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8473,7 +8774,7 @@ function rng() {
 
   return getRandomValues(rnds8);
 }
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8578,7 +8879,7 @@ function sha1(bytes) {
 
 var _default = sha1;
 exports.default = _default;
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8623,7 +8924,7 @@ function stringify(arr, offset = 0) {
 
 var _default = stringify;
 exports.default = _default;
-},{"./validate.js":53}],48:[function(require,module,exports){
+},{"./validate.js":54}],49:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8731,7 +9032,7 @@ function v1(options, buf, offset) {
 
 var _default = v1;
 exports.default = _default;
-},{"./rng.js":45,"./stringify.js":47}],49:[function(require,module,exports){
+},{"./rng.js":46,"./stringify.js":48}],50:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8748,7 +9049,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const v3 = (0, _v.default)('v3', 0x30, _md.default);
 var _default = v3;
 exports.default = _default;
-},{"./md5.js":40,"./v35.js":50}],50:[function(require,module,exports){
+},{"./md5.js":41,"./v35.js":51}],51:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8816,7 +9117,7 @@ function v35(name, version, hashfunc) {
   return generateUUID;
 }
 
-},{"./parse.js":43,"./stringify.js":47}],51:[function(require,module,exports){
+},{"./parse.js":44,"./stringify.js":48}],52:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8860,7 +9161,7 @@ function v4(options, buf, offset) {
 
 var _default = v4;
 exports.default = _default;
-},{"./native.js":41,"./rng.js":45,"./stringify.js":47}],52:[function(require,module,exports){
+},{"./native.js":42,"./rng.js":46,"./stringify.js":48}],53:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8877,7 +9178,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const v5 = (0, _v.default)('v5', 0x50, _sha.default);
 var _default = v5;
 exports.default = _default;
-},{"./sha1.js":46,"./v35.js":50}],53:[function(require,module,exports){
+},{"./sha1.js":47,"./v35.js":51}],54:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8895,7 +9196,7 @@ function validate(uuid) {
 
 var _default = validate;
 exports.default = _default;
-},{"./regex.js":44}],54:[function(require,module,exports){
+},{"./regex.js":45}],55:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8917,7 +9218,7 @@ function version(uuid) {
 
 var _default = version;
 exports.default = _default;
-},{"./validate.js":53}],55:[function(require,module,exports){
+},{"./validate.js":54}],56:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -9416,7 +9717,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

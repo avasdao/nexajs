@@ -1,11 +1,11 @@
+/* NexaJS <Rostrum> v2023.03.11 */
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getGenesisInfo = exports.getAddressFirstUse = exports.getAddressBalance = exports.decodeRemoteAddress = exports.Rostrum = void 0;
-var _events = require("events");
+exports.makeRequest = void 0;
 var _uuid = require("uuid");
 var _debug = _interopRequireDefault(require("debug"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -15,10 +15,98 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* Setup (non-ESM) debugger. */
 
-const debug = (0, _debug.default)('nexa:rostrum');
+const debug = (0, _debug.default)('nexa:rostrum:makeRequest');
+
+/* Set active connection id. */
+const ACTIVE_CONN_ID = 0;
+const requestQueue = [];
 
 /* Initilize connections manager. */
-const connMgr = {};
+const connMgr = {
+  pool: [new WebSocket('wss://electrum.nexa.org:20004'),
+  // Nexa.Org
+  // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
+  new WebSocket('wss://rostrum.apecs.dev:20004') // APECS.dev
+  // TBD
+  ],
+
+  alts: [new WebSocket('wss://rostrum.apecs.dev:20004') // APECS.dev
+  // TBD
+  ],
+
+  requests: {},
+  isReady: false
+};
+
+/* Close connection. */
+// FIXME Should this be conditional??
+// connMgr.pool[ACTIVE_CONN_ID].close()
+
+/* Handle open connection. */
+connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
+  debug(`Connection [ ${ACTIVE_CONN_ID} ] is OPEN!`);
+  // console.log('REQUEST QUEUE', requestQueue)
+
+  /* Set (connection) ready flag. */
+  connMgr.isReady = true;
+
+  /* Handle (pending) queue. */
+  requestQueue.forEach(_request => {
+    /* Send request. */
+    connMgr.pool[ACTIVE_CONN_ID].send(JSON.stringify(_request) + '\n'); // NOTE: We MUST include the "new line".
+  });
+};
+
+/* Handle message. */
+connMgr.pool[ACTIVE_CONN_ID].onmessage = async _msg => {
+  // console.info('Connection [ %s ] sent ->', id, _msg)
+
+  let id;
+
+  /* Validate message data. */
+  if (_msg?.data) {
+    try {
+      /* Parse JSON data. */
+      const data = JSON.parse(_msg.data);
+      // console.log('JSON (data):', data)
+
+      /* Validate message data. */
+      if (data?.result) {
+        // console.log('JSON (result):', data.id, data.result)
+        // resolve(data.result)
+        id = data.id;
+        connMgr.requests[id].resolve(data.result);
+      }
+
+      /* Validate message parameters. */
+      if (data?.params) {
+        // console.log('JSON (params):', data.params)
+        // resolve(data.params)
+        id = data.id;
+        connMgr.requests[id].resolve(data.params);
+      }
+    } catch (err) {
+      console.error(err);
+      reject(err);
+    }
+  }
+
+  // NOTE: Reject this promise.
+  reject({
+    error: `Oops! Sorry, we couldn't complete your request.`
+  });
+};
+
+/* Handle connection close. */
+connMgr.pool[ACTIVE_CONN_ID].onclose = function () {
+  debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`);
+};
+
+/* Handle connection error. */
+connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
+  console.error('ERROR! [ %s ]:', ACTIVE_CONN_ID, e);
+  reject(e);
+};
 
 /**
  * Make Request
@@ -26,114 +114,59 @@ const connMgr = {};
 const makeRequest = _request => {
   /* Generate a new (request) id. */
   const id = (0, _uuid.v4)();
-  let resolve;
-  let reject;
 
-  /* Add to connection manager. */
-  connMgr[id] = {};
+  /* Set method. */
+  const method = _request.method;
 
-  /* Set ID. */
-  connMgr[id].id = id;
+  /* Set parameters. */
+  const params = _request.params;
 
-  /* Set request. */
-  connMgr[id].request = _request;
+  /* Create request. */
+  const request = {
+    id,
+    method,
+    params
+  };
 
-  /* Initialize socket connection(s) to Rostrum server(s). */
-  // TODO Add support for connection clusters.
-  connMgr[id].socket = new WebSocket('wss://electrum.nexa.org:20004');
-  connMgr[id].socket_alt = new WebSocket('wss://rostrum.apecs.dev:20004');
-
-  /* Handle open connection. */
-  connMgr[id].socket.onopen = () => {
-    debug(`Connection [ ${id} ] is OPEN!`);
-
-    /* Set method. */
-    const method = _request.method;
-
-    /* Set parameters. */
-    const params = _request.params;
-
-    /* Create request. */
-    const request = {
-      id,
-      method,
-      params
-    };
-
+  /* Validate connection status. */
+  if (connMgr.isReady) {
     /* Send request. */
-    connMgr[id].socket.send(JSON.stringify(request) + '\n'); // NOTE: We MUST include the "new line".
-  };
-
-  /* Handle message. */
-  connMgr[id].socket.onmessage = async _msg => {
-    // console.info('Connection [ %s ] sent ->', id, _msg)
-
-    /* Validate message data. */
-    if (_msg?.data) {
-      try {
-        /* Parse JSON data. */
-        const data = JSON.parse(_msg.data);
-        // console.log('JSON (data):', data)
-
-        /* Validate message data. */
-        if (data?.result) {
-          // console.log('JSON (result):', data.id, data.result)
-          resolve(data.result);
-
-          /* Close connection. */
-          // FIXME Should this be conditional??
-          return connMgr[id].socket.close();
-        }
-
-        /* Validate message parameters. */
-        if (data?.params) {
-          // console.log('JSON (params):', data.params)
-          resolve(data.params);
-
-          /* Close connection. */
-          // FIXME Should this be conditional??
-          return connMgr[id].socket.close();
-        }
-      } catch (err) {
-        console.error(err);
-        reject(err);
-
-        /* Close connection. */
-        // FIXME Should this be conditional??
-        return connMgr[id].socket.close();
-      }
-    }
-
-    // NOTE: Reject this promise.
-    reject({
-      error: `Oops! Sorry, we couldn't complete your request.`
-    });
-
-    /* Close connection. */
-    // FIXME Should this be conditional??
-    connMgr[id].socket.close();
-  };
-
-  /* Handle connection close. */
-  connMgr[id].socket.onclose = function () {
-    debug(`Connection [ ${id} ] is CLOSED.`);
-  };
-
-  /* Handle connection error. */
-  connMgr[id].socket.onerror = function (e) {
-    console.error('ERROR! [ %s ]:', id, e);
-    reject(e);
-  };
+    connMgr.pool[ACTIVE_CONN_ID].send(JSON.stringify(request) + '\n'); // NOTE: We MUST include the "new line".
+  } else {
+    /* Add new request. */
+    requestQueue.push(request);
+  }
 
   /* Return a promise. */
   return new Promise(function (_resolve, _reject) {
+    /* Initialize (request) promise. */
+    connMgr.requests[id] = {};
+
     /* Set resolve. */
-    resolve = _resolve;
+    connMgr.requests[id].resolve = _resolve;
 
     /* Set reject. */
-    reject = _reject;
+    connMgr.requests[id].reject = _reject;
   });
 };
+exports.makeRequest = makeRequest;
+
+},{"debug":3,"uuid":6}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTokenInfo = exports.getTokenHistory = exports.getNftList = exports.getGenesisInfo = exports.getAddressUnspent = exports.getAddressScriptHash = exports.getAddressMempool = exports.getAddressHistory = exports.getAddressFirstUse = exports.getAddressBalance = exports.decodeRemoteAddress = exports.Rostrum = void 0;
+var _events = require("events");
+var _makeRequest = require("./_makeRequest.js");
+var _debug = _interopRequireDefault(require("debug"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+/* Import modules. */
+
+/* Setup (non-ESM) debugger. */
+
+const debug = (0, _debug.default)('nexa:rostrum');
 
 /**
  * (Blockchain) Address Balance
@@ -159,7 +192,7 @@ const getAddressBalance = async _address => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -189,7 +222,7 @@ const decodeRemoteAddress = async _address => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -217,7 +250,119 @@ const getAddressFirstUse = async _address => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address History
+ *
+ * Return the confirmed and unconfirmed history of a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressFirstUse = getAddressFirstUse;
+const getAddressHistory = async _address => {
+  debug(`Blockchain->Address->History [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.get_history';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address History
+ *
+ * Return the unconfirmed transactions of a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressHistory = getAddressHistory;
+const getAddressMempool = async _address => {
+  debug(`Blockchain->Address->Mempool [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.get_mempool';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address Script Hash
+ *
+ * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is potentially useful for clients preferring to work with script hashes but lacking the local libraries necessary to generate them.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressMempool = getAddressMempool;
+const getAddressScriptHash = async _address => {
+  debug(`Blockchain->Address->ScriptHash [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.get_scripthash';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Blockchain) Address List Unspent
+ *
+ * Return an ordered list of UTXOs sent to a Bitcoin Cash or Nexa address.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getAddressScriptHash = getAddressScriptHash;
+const getAddressUnspent = async _address => {
+  debug(`Blockchain->Address->ListUnspent [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.listunspent';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -227,7 +372,7 @@ const getAddressFirstUse = async _address => {
  *
  * Version added: Rostrum 6.0
  */
-exports.getAddressFirstUse = getAddressFirstUse;
+exports.getAddressUnspent = getAddressUnspent;
 const getGenesisInfo = async _tokenid => {
   debug(`Token->Genesis->Info [ token: ${_tokenid} ]`);
 
@@ -245,7 +390,67 @@ const getGenesisInfo = async _tokenid => {
   };
 
   /* Return (async) request. */
-  return makeRequest(request);
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/* Export alias. */
+exports.getGenesisInfo = getGenesisInfo;
+const getTokenInfo = getGenesisInfo;
+
+/**
+ * (NFT) List
+ *
+ * Return list of all NFT's minted from a specified parent token.
+ *
+ * Version added: Rostrum 7.0
+ */
+exports.getTokenInfo = getTokenInfo;
+const getNftList = async _tokenid => {
+  debug(`Token->NFT->List [ token: ${_tokenid} ]`);
+
+  /* Set method. */
+  const method = 'token.nft.list';
+
+  /* Set parameters. */
+  const params = [_tokenid, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
+};
+
+/**
+ * (Token) History
+ *
+ * Return all confirmed and unconfirmed token transaction history of a given token.
+ *
+ * Version added: Rostrum 6.0
+ */
+exports.getNftList = getNftList;
+const getTokenHistory = async _tokenid => {
+  debug(`Token->Transaction->History [ token: ${_tokenid} ]`);
+
+  /* Set method. */
+  const method = 'token.transaction.get_history';
+
+  /* Set parameters. */
+  const params = [_tokenid, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.makeRequest)(request);
 };
 
 /**
@@ -253,7 +458,7 @@ const getGenesisInfo = async _tokenid => {
  *
  * Manages a connection and its requests to a Rostrum server.
  */
-exports.getGenesisInfo = getGenesisInfo;
+exports.getTokenHistory = getTokenHistory;
 class Rostrum extends _events.EventEmitter {
   constructor(_params) {
     /* Initialize Rostrum class. */
@@ -264,13 +469,76 @@ class Rostrum extends _events.EventEmitter {
     // TBD
   }
 
-  static getBalance(_address) {
-    return getAddressBalance(_address);
+  getAddressBalance(params) {
+    return getAddressBalance(params);
+  }
+  decodeRemoteAddress(params) {
+    return decodeRemoteAddress(params);
+  }
+  getAddressFirstUse(params) {
+    return getAddressFirstUse(params);
+  }
+  getAddressHistory(params) {
+    return getAddressHistory(params);
+  }
+  getAddressMempool(params) {
+    return getAddressMempool(params);
+  }
+  getAddressScriptHash(params) {
+    return getAddressScriptHash(params);
+  }
+  getAddressUnspent(params) {
+    return getAddressUnspent(params);
+  }
+
+  // ...
+
+  getGenesisInfo(params) {
+    return getGenesisInfo(params);
+  }
+  getTokenInfo(params) {
+    return getTokenInfo(params);
+  }
+  getNftList(params) {
+    return getNftList(params);
+  }
+
+  // ...
+
+  getTokenHistory(params) {
+    return getTokenHistory(params);
   }
 }
-exports.Rostrum = Rostrum;
 
-},{"debug":2,"events":21,"uuid":5}],2:[function(require,module,exports){
+/* Initialize (globalThis) Nexa class. */
+exports.Rostrum = Rostrum;
+const Nexa = {};
+
+/* Initialize Rostrum class. */
+Nexa.Rostrum = Rostrum;
+
+/* Initialize Rostrum modules. */
+Nexa.getAddressBalance = getAddressBalance;
+Nexa.decodeRemoteAddress = decodeRemoteAddress;
+Nexa.getAddressFirstUse = getAddressFirstUse;
+Nexa.getAddressHistory = getAddressHistory;
+Nexa.getAddressMempool = getAddressMempool;
+Nexa.getAddressScriptHash = getAddressScriptHash;
+Nexa.getAddressUnspent = getAddressUnspent;
+// ...
+Nexa.getGenesisInfo = getGenesisInfo;
+Nexa.getTokenInfo = getTokenInfo; // alias for `getGenesisInfo`
+Nexa.getNftList = getNftList;
+// ...
+Nexa.getTokenHistory = getTokenHistory;
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+  ...Nexa
+};
+
+},{"./_makeRequest.js":1,"debug":3,"events":22}],3:[function(require,module,exports){
 (function (process){(function (){
 /* eslint-env browser */
 
@@ -543,7 +811,7 @@ formatters.j = function (v) {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"./common":3,"_process":22}],3:[function(require,module,exports){
+},{"./common":4,"_process":23}],4:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -819,7 +1087,7 @@ function setup(env) {
 
 module.exports = setup;
 
-},{"ms":4}],4:[function(require,module,exports){
+},{"ms":5}],5:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -983,7 +1251,7 @@ function plural(ms, msAbs, n, name) {
   return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
 }
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1063,7 +1331,7 @@ var _stringify = _interopRequireDefault(require("./stringify.js"));
 var _parse = _interopRequireDefault(require("./parse.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./nil.js":8,"./parse.js":9,"./stringify.js":13,"./v1.js":14,"./v3.js":15,"./v4.js":17,"./v5.js":18,"./validate.js":19,"./version.js":20}],6:[function(require,module,exports){
+},{"./nil.js":9,"./parse.js":10,"./stringify.js":14,"./v1.js":15,"./v3.js":16,"./v4.js":18,"./v5.js":19,"./validate.js":20,"./version.js":21}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1287,7 +1555,7 @@ function md5ii(a, b, c, d, x, s, t) {
 
 var _default = md5;
 exports.default = _default;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1299,7 +1567,7 @@ var _default = {
   randomUUID
 };
 exports.default = _default;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1308,7 +1576,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = '00000000-0000-0000-0000-000000000000';
 exports.default = _default;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1354,7 +1622,7 @@ function parse(uuid) {
 
 var _default = parse;
 exports.default = _default;
-},{"./validate.js":19}],10:[function(require,module,exports){
+},{"./validate.js":20}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1363,7 +1631,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
 exports.default = _default;
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1389,7 +1657,7 @@ function rng() {
 
   return getRandomValues(rnds8);
 }
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1494,7 +1762,7 @@ function sha1(bytes) {
 
 var _default = sha1;
 exports.default = _default;
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1539,7 +1807,7 @@ function stringify(arr, offset = 0) {
 
 var _default = stringify;
 exports.default = _default;
-},{"./validate.js":19}],14:[function(require,module,exports){
+},{"./validate.js":20}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1647,7 +1915,7 @@ function v1(options, buf, offset) {
 
 var _default = v1;
 exports.default = _default;
-},{"./rng.js":11,"./stringify.js":13}],15:[function(require,module,exports){
+},{"./rng.js":12,"./stringify.js":14}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1664,7 +1932,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const v3 = (0, _v.default)('v3', 0x30, _md.default);
 var _default = v3;
 exports.default = _default;
-},{"./md5.js":6,"./v35.js":16}],16:[function(require,module,exports){
+},{"./md5.js":7,"./v35.js":17}],17:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1745,7 +2013,7 @@ function v35(name, version, hashfunc) {
   generateUUID.URL = URL;
   return generateUUID;
 }
-},{"./parse.js":9,"./stringify.js":13}],17:[function(require,module,exports){
+},{"./parse.js":10,"./stringify.js":14}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1789,7 +2057,7 @@ function v4(options, buf, offset) {
 
 var _default = v4;
 exports.default = _default;
-},{"./native.js":7,"./rng.js":11,"./stringify.js":13}],18:[function(require,module,exports){
+},{"./native.js":8,"./rng.js":12,"./stringify.js":14}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1806,7 +2074,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const v5 = (0, _v.default)('v5', 0x50, _sha.default);
 var _default = v5;
 exports.default = _default;
-},{"./sha1.js":12,"./v35.js":16}],19:[function(require,module,exports){
+},{"./sha1.js":13,"./v35.js":17}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1824,7 +2092,7 @@ function validate(uuid) {
 
 var _default = validate;
 exports.default = _default;
-},{"./regex.js":10}],20:[function(require,module,exports){
+},{"./regex.js":11}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1846,7 +2114,7 @@ function version(uuid) {
 
 var _default = version;
 exports.default = _default;
-},{"./validate.js":19}],21:[function(require,module,exports){
+},{"./validate.js":20}],22:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2345,7 +2613,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2531,4 +2799,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[1]);
+},{}]},{},[2]);
