@@ -46,8 +46,8 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ```html
 <!-- CDN (Web2) integration solution -->
-<script src="https://cdn.nexajs.org/23.2.27/nexa.min.js"
-  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+<script src="https://cdn.nexajs.org/23.3.10/nexa.min.js"
+  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
   crossorigin="anonymous"></script>
 ```
 
@@ -55,8 +55,8 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ```html
 <!-- IPFS Gateway (Web3) integration solution -->
-<script src="https://bafybeiczlpqx5pqjarwc4fgfk4ldfqhekvnauzeqxi67hzzkz4nsjbum2a.ipfs.dweb.link/"
-  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+<script src="https://bafybeifohi5njjlohhkwcsola3346cn3ngyaqyl5bwn5k7a4mbvtzy4y3m.ipfs.dweb.link/"
+  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
   crossorigin="anonymous"></script>
 ```
 
@@ -64,8 +64,8 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ```html
 <!-- Counterparty and Protocol Discovery (Web4) integration solution -->
-<script src="proto://9addf9bc724b2e14094950598918dde63b091253e6106b7d971642e17521d13f"
-  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+<script src="proto://9addf9bc724b2e14094950598918dde63b091253e6106b7d9716nexaverse888"
+  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
   crossorigin="anonymous"></script>
 ```
 
@@ -232,7 +232,7 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 - [ ] [Token](/packages/token)
 - [ ] [Transaction](/packages)
 - [ ] [Trezor HW Wallet](/packages)
-- [ ] [Utils](/packages)
+- [x] [__Utils__](/packages/utils)
 - [ ] [Wallet](/packages)
 
 * _NOTE: Not all packages are published to the NPM registry._

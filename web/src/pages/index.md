@@ -32,8 +32,8 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ```html
 <!-- CDN (Web2) integration solution -->
-<script src="https://cdn.nexajs.org/23.2.1/nexa.min.js"
-  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+<script src="https://cdn.nexajs.org/23.3.10/nexa.min.js"
+  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
   crossorigin="anonymous"></script>
 ```
 
@@ -41,10 +41,18 @@ __- OR -__
 
 ```html
 <!-- IPFS Gateway (Web3) integration solution -->
-<script src="https://bafybeiczlpqx5pqjarwc4fgfk4ldfqhekvnauzeqxi67hzzkz4nsjbum2a.ipfs.dweb.link/"
-  integrity="sha384-GbDFpk1jS+0DeP8wxqpP7gs3Du30oduBLc9vgm/iVsxkcuvfwH3ihyhOykIkvH5p"
+<script src="https://bafybeifohi5njjlohhkwcsola3346cn3ngyaqyl5bwn5k7a4mbvtzy4y3m.ipfs.dweb.link/"
+  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
   crossorigin="anonymous"></script>
 ```
+
+{% callout type="note" title="Pro Builder Tip — Import Individual Packages" %}
+Although convenient to just import `nexa.min.js` and be on your way; we highly recommend that you import packages individually.
+
+This means that decide when `methods()` you want to use and then import `package-name.min.js` for a much smaller load your your application.
+
+Visit our [modules](/modules) section to learn more about importing packages.
+{% /callout %}
 
 ### Setup using a package manager
 
@@ -63,10 +71,6 @@ pnpm install nexajs
 ```
 
 Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-{% callout type="warning" title="Oh no! Something bad happened!" %}
-This is what a disclaimer message looks like. You might want to include inline `code` in it. Or maybe you’ll want to include a [link](/) in it. I don’t think we should get too carried away with other scenarios like lists or tables — that would be silly.
-{% /callout %}
 
 ### Configuring the library
 
