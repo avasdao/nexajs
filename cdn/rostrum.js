@@ -535,7 +535,9 @@ Nexa.getTokenHistory = getTokenHistory;
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
 globalThis.Nexa = {
-  ...Nexa
+  ...globalThis.Nexa,
+  // preserve Nexa object
+  ...Nexa // extend Nexa object
 };
 
 },{"./_makeRequest.js":1,"debug":3,"events":22}],3:[function(require,module,exports){

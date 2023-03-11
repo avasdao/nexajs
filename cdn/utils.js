@@ -42,7 +42,9 @@ Nexa.reverseBytes = reverseBytes;
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
 globalThis.Nexa = {
-  ...Nexa
+  ...globalThis.Nexa,
+  // preserve Nexa object
+  ...Nexa // extend Nexa object
 };
 
 },{}]},{},[1]);

@@ -1561,7 +1561,9 @@ Nexa.getTokenHistory = getTokenHistory;
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
 globalThis.Nexa = {
-  ...Nexa
+  ...globalThis.Nexa,
+  // preserve Nexa object
+  ...Nexa // extend Nexa object
 };
 
 },{"./_makeRequest.js":8,"debug":17,"events":56}],10:[function(require,module,exports){
@@ -1726,7 +1728,9 @@ Nexa.reverseBytes = reverseBytes;
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
 globalThis.Nexa = {
-  ...Nexa
+  ...globalThis.Nexa,
+  // preserve Nexa object
+  ...Nexa // extend Nexa object
 };
 
 },{}],12:[function(require,module,exports){
