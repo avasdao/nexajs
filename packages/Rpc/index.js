@@ -1,15 +1,10 @@
 /* Import modules. */
+import { EventEmitter } from 'events'
 import superagent from 'superagent'
 
-export class Rpc {
-    constructor() {
-        console.info('\n  Creating new RPC instance...\n') // eslint-disable-line no-console
-    }
-
-    static call(_method, _params, _options) {
-        return callNode(_method, _params, _options)
-    }
-}
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:rpc')
 
 /* Initialize (global) package constants. */
 let host = '127.0.0.1'
@@ -115,4 +110,41 @@ export const callNode = async (_method, _params, _options) => {
     } catch (err) {
         return err
     }
+}
+
+
+/**
+ * Remote Procedure Call
+ */
+export class Rpc extends EventEmitter {
+    constructor(_params) {
+        /* Initialize RPC class. */
+        debug('Initializing RPC...')
+        debug(JSON.stringify(_params, null, 2))
+        super()
+
+        // TBD
+    }
+
+    static call(_method, _params, _options) {
+        return callNode(_method, _params, _options)
+    }
+}
+
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize RPC class. */
+Nexa.Rpc = Rpc
+
+/* Initialize RPC modules. */
+Nexa.callNode = callNode
+Nexa.connectToNode = connectToNode
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
 }
