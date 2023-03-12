@@ -64,15 +64,13 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ```html
 <!-- Counterparty and Protocol Discovery (Web4) integration solution -->
-<script src="proto://9addf9bc724b2e14094950598918dde63b091253e6106b7d9716nexaverse888"
-  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
-  crossorigin="anonymous"></script>
+<script src="proto://9addf9bc724b2e14094950598918dde63b091253e6106b7d9716nexaverse888"></script>
 ```
 
 ### Package Manager Installation
 
 ``` bash
-npm install nexajs
+npm install --save nexajs
 
 yarn add nexajs
 

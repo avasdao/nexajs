@@ -7,11 +7,11 @@ Importing and using modules are the lifeblood of this library.
 
 ```js
 /* Import (NexaJS library) modules. */
-import { getAddressBalance } from '@nexajs/address'
+import { getAddressBalance } from '@nexajs/rostrum'
 
 /* Request address balance. */
 const balance = await getAddressBalance('nexa:...')
-console.log('My balance', balance)
+console.log('My balance:', balance)
 ```
 
 ---

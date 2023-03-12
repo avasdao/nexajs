@@ -34,8 +34,17 @@ export class Purse extends EventEmitter {
         debug(JSON.stringify(_params, null, 2))
         super()
 
+        /* Validate parameters. */
+        if (!_params) {
+            throw new Error(`Oops! You MUST provide a seed to initialize a Purse.`)
+        }
+
         /* Set private key. */
         this._privateKey = _params?.privateKey
+
+        if (!this._privateKey) {
+
+        }
 
         // TBD
     }
@@ -57,7 +66,28 @@ export class Purse extends EventEmitter {
         testPurse()
     }
 
-    static sendUtxo() {
-        sendUtxo()
+    sendUtxo(_params) {
+        return sendUtxo(_params)
     }
+    static sendUtxo(_params) {
+        return sendUtxo(_params)
+    }
+
+}
+
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize Purse class. */
+Nexa.Purse = Purse
+
+/* Initialize Purse modules. */
+Nexa.sendUtxo = sendUtxo
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
 }

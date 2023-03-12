@@ -59,7 +59,7 @@ Visit our [modules](/modules) section to learn more about importing packages.
 NexaJS is fully-supported by your favorite package manager. Choose from one of the options below to begin installation of NexaJS into your existing Webapp.
 
 ```shell
-npm install nexajs
+npm install --save nexajs
 ```
 
 ```shell
@@ -69,8 +69,10 @@ yarn add nexajs
 ```shell
 pnpm install nexajs
 ```
+{% callout title="You should know!" %}
+If you are NOT using a Package Manager like [Webpack](https://webpack.js.org/) or [Rollup](https://rollupjs.org/), then it is highly advised that you import individual packages, eg. [`@nexajs/rostrum`](https://github.com/avasdao/nexajs/tree/master/packages/Rostrum) to reduce your application's total package size.
+{% /callout %}
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
 
 ### Configuring the library
 
