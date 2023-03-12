@@ -1,5 +1,5 @@
 {
-  "name": "@nexajs/msg",
+  "name": "@nexajs/message",
   "version": "23.3.8",
   "description": "A very simple Crypto-friendly messaging library.",
   "main": "index.js",
