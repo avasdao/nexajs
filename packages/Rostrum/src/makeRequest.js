@@ -103,7 +103,7 @@ connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
 /**
  * Make Request
  */
-export const makeRequest = (_request) => {
+export default (_request) => {
     /* Generate a new (request) id. */
     const id = uuidv4()
 

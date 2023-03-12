@@ -1,7 +1,7 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
 
-import { makeRequest } from './_makeRequest.js'
+import makeRequest from './src/makeRequest.js'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
@@ -366,6 +366,7 @@ export class Rostrum extends EventEmitter {
         return getTokenHistory(params)
     }
 }
+
 
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}

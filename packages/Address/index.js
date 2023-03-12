@@ -6,12 +6,14 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:address')
 
 /* Import (local) modules. */
-import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
+import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
+import getSeedType from './src/getSeedType.js'
 
 /* Export (local) modules. */
-export const encodeAddress = _encodeAddress
 export const decodeAddress = _decodeAddress
+export const encodeAddress = _encodeAddress
+
 
 /**
  * Address Class
@@ -84,32 +86,20 @@ export class Address extends EventEmitter {
     }
 }
 
-// FIXME FOR DEV PURPOSES ONLY
-export const testAddr = () => {
-    console.log('NexaJS Address is a GO!')
-}
 
-/**
- * Get Seed Type
- *
- * Will parse the seed to determine the address type.
- */
-const getSeedType = (_seed) => {
-    if (!_seed) return null
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
 
-    if (_seed.toLowerCase().startsWith('nexa:')) {
-        return '(Mainnet) address'
-    }
+/* Initialize Address class. */
+Nexa.Address = Address
 
-    if (_seed.toLowerCase().startsWith('nexatest:')) {
-        return '(Testnet) address'
-    }
+/* Initialize Address modules. */
+Nexa.decodeAddress = decodeAddress
+Nexa.encodeAddress = encodeAddress
 
-    // FIXME
-    if (_seed.length > 0) {
-        return 'privatekey'
-    }
-
-    /* Return null. */
-    return null
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
 }

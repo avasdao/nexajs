@@ -1,7 +1,7 @@
 {
   "name": "@nexajs/address",
-  "version": "23.3.7",
-  "description": "The Nexa address format for Node.js and web browsers.",
+  "version": "23.3.11",
+  "description": "A suite of Nexa address formatting utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
