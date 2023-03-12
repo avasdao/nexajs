@@ -271,10 +271,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@nexajs/address@23.3.7":
-  version "23.3.7"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.3.7.tgz#a4338459de8842278bdec2eca25e588dc027d397"
-  integrity sha512-ujg7F6P4PXUDm3mIgLVh8lOVOdcS2rBPy0AbyqYpwxqa6qb3iQ5Qn2vs/VoyNkX3wxqFk6+B4+aRmUd+wUZJIQ==
+"@nexajs/address@23.3.11":
+  version "23.3.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.3.11.tgz#763b114fc1e32dfcac186defa33456f547379aa6"
+  integrity sha512-jkzEfFaJbOEFPeenvdXkLIBHuggN3y4RiTOz/Gt5Aqo6NrGtPWcF+GkxdwnA+IsGHpYe8vkixXxeWpCF61wTBw==
   dependencies:
     big-integer "1.6.51"
 
