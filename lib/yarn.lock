@@ -292,10 +292,10 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/rpc@23.2.28":
-  version "23.2.28"
-  resolved "https://registry.yarnpkg.com/@nexajs/rpc/-/rpc-23.2.28.tgz#ab0bb9cac859ec66783de5cef6876474c57b9837"
-  integrity sha512-mx+J81nfEfrPqGs9t8NNe2AdxW9qvNeRALgKtxRbu7QsDKdbpt0Bd47yaUAeqZqFSqaFSS0v0a2XiNy3cS1jyA==
+"@nexajs/rpc@23.3.11":
+  version "23.3.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/rpc/-/rpc-23.3.11.tgz#87129dc387c280eb9c7c13de706037838074370d"
+  integrity sha512-cryrfXjvd2mxfP+hkWqT/LRzqFH2hZoSW7O4LUG1E0PfOEuJG/GHpz9H1CCvT2pz3rZ6VIjCXo65PyPmClunBA==
   dependencies:
     superagent "8.0.6"
 
