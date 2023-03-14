@@ -502,6 +502,14 @@
   dependencies:
     big-integer "1.6.51"
 
+"@nexajs/blockchain@23.3.13":
+  version "23.3.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.3.13.tgz#3e62e39f61683b7fe317eb8707361c3dc9f430b3"
+  integrity sha512-My1jHqs196sJWbdVabthkuaN0xwxv37Oze8Ksp8hLXJ46OlUt512rjeiW/Lgt19gNvC44qyzvY1ahZdviD1kKQ==
+  dependencies:
+    isomorphic-ws "5.0.0"
+    ws "8.13.0"
+
 "@nexajs/purse@23.2.22":
   version "23.2.22"
   resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.2.22.tgz#45d1396937f99e942986462068ba7dca4a1a179f"
@@ -2594,6 +2602,11 @@ ws@8.12.1:
   version "8.12.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.1.tgz#c51e583d79140b5e42e39be48c934131942d4a8f"
   integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
+
+ws@8.13.0:
+  version "8.13.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.13.0.tgz#9a9fb92f93cf41512a0735c8f4dd09b8a1211cd0"
+  integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@^4.0.2, xtend@~4.0.1:
   version "4.0.2"
