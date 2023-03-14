@@ -3,13 +3,15 @@ import { EventEmitter } from 'events'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
+const debug = debugFactory('nexa:transaction')
 
 /* Import (local) modules. */
-// TBD
+import _createBchTransaction from './src/createBchTransaction.js'
+import _createNexaTransaction from './src/createNexaTransaction.js'
 
 /* Export (local) modules. */
-// TBD
+export const createBchTransaction = _createBchTransaction
+export const createNexaTransaction = _createNexaTransaction
 
 
 /**
@@ -43,7 +45,8 @@ const Nexa = {}
 Nexa.Transaction = Transaction
 
 /* Initialize Transaction modules. */
-// TBD
+Nexa.createBchTransaction = createBchTransaction
+Nexa.createNexaTransaction = createNexaTransaction
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

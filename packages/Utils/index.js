@@ -1,3 +1,12 @@
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:utils')
+
+/* Import (local) modules. */
+// TBD
+
+/* Export (local) modules. */
+// TBD
 
 
 /**

@@ -1,10 +1,13 @@
 {
   "name": "@nexajs/utils",
-  "version": "23.3.11",
+  "version": "23.3.14",
   "description": "A dependency-free suite of useful utilities for application building.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "debug": "4.3.4"
+  }
 }

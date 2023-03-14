@@ -18,7 +18,7 @@ import createValueOutput from './createP2PKTValueOutput.js'
  *
  * @returns {Uint8Array} The transaction binary.
  */
-const createNEXATransaction = async (
+export default async (
     privateKeyWIF,
     unspentOutputs,
     receiverAddress,
@@ -52,6 +52,3 @@ const createNEXATransaction = async (
     // Return the transaction.
     return transaction
 }
-
-/* Export module. */
-export default createNEXATransaction

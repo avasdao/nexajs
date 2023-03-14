@@ -18,7 +18,7 @@ import createValueOutput from './createValueOutput'
  *
  * @returns {Uint8Array} The transaction binary.
  */
-const createBCHTransaction = async (
+export default async (
     privateKeyWIF,
     unspentOutputs,
     receiverAddress,
@@ -51,6 +51,3 @@ const createBCHTransaction = async (
     // Return the transaction.
     return transaction
 }
-
-/* Export module. */
-export default createBCHTransaction
