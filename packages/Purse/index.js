@@ -6,21 +6,15 @@ import { v4 as uuidv4 } from 'uuid'
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:purse')
 
+/* Import (local) modules. */
+import _getUnspentOutputs from './src/getUnspentOutputs.js'
+import _sendUtxo from './src/sendUtxo.js'
 
-// FIXME FOR DEV PURPOSES ONLY
-export const testPurse = () => {
-    return 'NexaJS Purse is ready to GO!'
-}
+/* Export (local) modules. */
+export const getUnspentOutputs = _getUnspentOutputs
+export const send = _sendUtxo // alias
+export const sendUtxo = _sendUtxo
 
-export const sendUtxo = (_params) => {
-    debug('Sending UTXO...')
-    debug(JSON.stringify(_params, null, 2))
-
-    return {
-        msg: 'TESTING!',
-        success: true,
-    }
-}
 
 /**
  * Purse Class
@@ -58,19 +52,17 @@ export class Purse extends EventEmitter {
     }
 
     test() {
-        testPurse()
+        return 'Purse (Instance) is ready to GO!'
+    }
+    static test() {
+        return 'Purse (Static) is ready to GO!'
     }
 
-    static staticTest() {
-        console.log('Running STATIC Purse test...')
-        testPurse()
+    send(_params) {
+        return send(_params)
     }
-
-    sendUtxo(_params) {
-        return sendUtxo(_params)
-    }
-    static sendUtxo(_params) {
-        return sendUtxo(_params)
+    static send(_params) {
+        return send(_params)
     }
 
 }
@@ -83,6 +75,7 @@ const Nexa = {}
 Nexa.Purse = Purse
 
 /* Initialize Purse modules. */
+Nexa.send = send // alias
 Nexa.sendUtxo = sendUtxo
 
 /* Export Nexa to globalThis. */

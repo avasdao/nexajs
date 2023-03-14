@@ -1,3 +1,7 @@
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:purse:getUnspentOutputs')
+
 /* Set API endpoints. */
 const BCH_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
 const NEXA_ENDPOINT = 'https://nexa.sh/v1'
@@ -10,23 +14,23 @@ const NEXA_ENDPOINT = 'https://nexa.sh/v1'
  * @param {String} _address Address used to query for UTXOs.
  * @returns {Array} Returns a list of UTXOs.
  */
-const getUnspentOutputs = async (_address) => {
+export default async (_address) => {
     let utxos
 
     /* Handle address formats. */
     if (_address.includes('bitcoincash:')) {
-        utxos = await getBCHUnspent(_address)
+        utxos = await getBCHUnspentOutputs(_address)
     } else if (_address.includes('nexa:')) {
-        utxos = await getNEXAUnspent(_address)
+        utxos = await getNexaUnspentOutputs(_address)
     } else {
-        throw new Error('Oops! That address format is NOT currently supported by APECS.')
+        throw new Error('Oops! That address format is NOT currently supported by NexaJS.')
     }
 
     /* Return UTXOs. */
     return utxos
 }
 
-const getBCHUnspent = async (_address) => {
+const getBCHUnspentOutputs = async (_address) => {
     let body
     let target
     let response
@@ -60,7 +64,7 @@ const getBCHUnspent = async (_address) => {
     return utxos
 }
 
-const getNEXAUnspent = async () => {
+const getNexaUnspentOutputs = async () => {
     let outpointHash = 'e405cfdb6865fbbf6ef6a2328d13b599d57f1736634ce81608375759f7db98ca'
     outpointHash = outpointHash.match(/[a-fA-F0-9]{2}/g).reverse().join('')
 
@@ -72,6 +76,3 @@ const getNEXAUnspent = async () => {
         // address: 'nexa:nqtsq5g5afy0ggk2wp05n6w0760wy766m8s072tkx79t63xl',
     }]
 }
-
-/* Export module. */
-export default getUnspentOutputs
