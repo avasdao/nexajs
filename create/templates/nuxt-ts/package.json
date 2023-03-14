@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "ethers": "6.0.8",
-    "nexajs": "22.12.23",
+    "nexajs": "23.3.11",
     "nuxt": "3.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.4.1"
+    "@nuxtjs/tailwindcss": "6.4.1"
   }
 }

@@ -26,3 +26,20 @@ export class Charts extends EventEmitter {
         // TBD
     }
 }
+
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize Charts class. */
+Nexa.Charts = Charts
+
+/* Initialize Charts modules. */
+// TBD
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
+}

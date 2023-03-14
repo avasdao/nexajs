@@ -13,14 +13,14 @@ const debug = debugFactory('nexa:crypto')
 
 
 /**
- * Express Class
+ * Analytics Class
  *
- * Manages Express functions.
+ * Manages analytics functions.
  */
-export class Express extends EventEmitter {
+export class Analytics extends EventEmitter {
     constructor(_params) {
-        /* Initialize Express class. */
-        debug('Initializing Express...')
+        /* Initialize Analytics class. */
+        debug('Initializing Analytics...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
@@ -28,10 +28,10 @@ export class Express extends EventEmitter {
     }
 
     test() {
-        return 'Express (Instance) is working!'
+        return 'Analytics (Instance) is working!'
     }
     static test() {
-        return 'Express (Static) is working!'
+        return 'Analytics (Static) is working!'
     }
 }
 
@@ -39,10 +39,10 @@ export class Express extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Express class. */
-Nexa.Express = Express
+/* Initialize Analytics class. */
+Nexa.Analytics = Analytics
 
-/* Initialize Express modules. */
+/* Initialize Analytics modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

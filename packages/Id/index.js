@@ -14,9 +14,9 @@ export const login = () => {
 /**
  * ID Class
  *
- * Manage Nexa Identity Protocol
+ * Manage Nexa Identity Protocol client and server-side functions.
  */
-export class ID extends EventEmitter {
+export class Id extends EventEmitter {
     constructor(_params) {
         /* Initialize ID class. */
         debug('Initializing ID...')
@@ -25,4 +25,21 @@ export class ID extends EventEmitter {
 
         // TBD
     }
+}
+
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize ID class. */
+Nexa.ID = ID
+
+/* Initialize ID modules. */
+// TBD
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
 }

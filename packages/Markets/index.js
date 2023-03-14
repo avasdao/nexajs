@@ -28,3 +28,20 @@ export class Markets extends EventEmitter {
         // TBD
     }
 }
+
+
+/* Initialize (globalThis) Nexa class. */
+const Nexa = {}
+
+/* Initialize Markets class. */
+Nexa.Markets = Markets
+
+/* Initialize Markets modules. */
+// TBD
+
+/* Export Nexa to globalThis. */
+// NOTE: We merge to avoid conflict with other libraries.
+globalThis.Nexa = {
+    ...globalThis.Nexa, // preserve Nexa object
+    ...Nexa, // extend Nexa object
+}

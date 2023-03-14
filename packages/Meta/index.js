@@ -1,29 +1,37 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
-import { v4 as uuidv4 } from 'uuid'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:blockchain')
+const debug = debugFactory('nexa:crypto')
 
+/* Import (local) modules. */
+// TBD
 
-export const welcome = () => {
-    return 'Welcome!'
-}
+/* Export (local) modules. */
+// TBD
+
 
 /**
- * Blockchain Class
+ * Meta Class
  *
- * TBD
+ * Manages meta functions.
  */
-export class Blockchain extends EventEmitter {
+export class Meta extends EventEmitter {
     constructor(_params) {
-        /* Initialize Blockchain class. */
-        debug('Initializing Blockchain...')
+        /* Initialize Meta class. */
+        debug('Initializing Meta...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
         // TBD
+    }
+
+    test() {
+        return 'Meta (Instance) is working!'
+    }
+    static test() {
+        return 'Meta (Static) is working!'
     }
 }
 
@@ -31,10 +39,10 @@ export class Blockchain extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Blockchain class. */
-Nexa.Blockchain = Blockchain
+/* Initialize Meta class. */
+Nexa.Meta = Meta
 
-/* Initialize Blockchain modules. */
+/* Initialize Meta modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

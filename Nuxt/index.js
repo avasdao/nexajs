@@ -1,29 +1,37 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
-import { v4 as uuidv4 } from 'uuid'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:blockchain')
+const debug = debugFactory('nexa:crypto')
 
+/* Import (local) modules. */
+// TBD
 
-export const welcome = () => {
-    return 'Welcome!'
-}
+/* Export (local) modules. */
+// TBD
+
 
 /**
- * Blockchain Class
+ * Nuxt Class
  *
- * TBD
+ * Manages Nuxt functions.
  */
-export class Blockchain extends EventEmitter {
+export class Nuxt extends EventEmitter {
     constructor(_params) {
-        /* Initialize Blockchain class. */
-        debug('Initializing Blockchain...')
+        /* Initialize Nuxt class. */
+        debug('Initializing Nuxt...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
         // TBD
+    }
+
+    test() {
+        return 'Nuxt (Instance) is working!'
+    }
+    static test() {
+        return 'Nuxt (Static) is working!'
     }
 }
 
@@ -31,10 +39,10 @@ export class Blockchain extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Blockchain class. */
-Nexa.Blockchain = Blockchain
+/* Initialize Nuxt class. */
+Nexa.Nuxt = Nuxt
 
-/* Initialize Blockchain modules. */
+/* Initialize Nuxt modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

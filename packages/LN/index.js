@@ -13,14 +13,14 @@ const debug = debugFactory('nexa:crypto')
 
 
 /**
- * Express Class
+ * Lightning Network (LN) Class
  *
- * Manages Express functions.
+ * Manages Lightning Network (LN) functions.
  */
-export class Express extends EventEmitter {
+export class LN extends EventEmitter {
     constructor(_params) {
-        /* Initialize Express class. */
-        debug('Initializing Express...')
+        /* Initialize Lightning Network class. */
+        debug('Initializing Lightning Network...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
@@ -28,10 +28,10 @@ export class Express extends EventEmitter {
     }
 
     test() {
-        return 'Express (Instance) is working!'
+        return 'Lightning Network (Instance) is working!'
     }
     static test() {
-        return 'Express (Static) is working!'
+        return 'Lightning Network (Static) is working!'
     }
 }
 
@@ -39,10 +39,10 @@ export class Express extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Express class. */
-Nexa.Express = Express
+/* Initialize Lightning Network class. */
+Nexa.LN = LN
 
-/* Initialize Express modules. */
+/* Initialize Lightning Network modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

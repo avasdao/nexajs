@@ -13,14 +13,14 @@ const debug = debugFactory('nexa:crypto')
 
 
 /**
- * Express Class
+ * Transaction Class
  *
- * Manages Express functions.
+ * Manages transaction functions.
  */
-export class Express extends EventEmitter {
+export class Transaction extends EventEmitter {
     constructor(_params) {
-        /* Initialize Express class. */
-        debug('Initializing Express...')
+        /* Initialize Transaction class. */
+        debug('Initializing Transaction...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
@@ -28,10 +28,10 @@ export class Express extends EventEmitter {
     }
 
     test() {
-        return 'Express (Instance) is working!'
+        return 'Transaction (Instance) is working!'
     }
     static test() {
-        return 'Express (Static) is working!'
+        return 'Transaction (Static) is working!'
     }
 }
 
@@ -39,10 +39,10 @@ export class Express extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Express class. */
-Nexa.Express = Express
+/* Initialize Transaction class. */
+Nexa.Transaction = Transaction
 
-/* Initialize Express modules. */
+/* Initialize Transaction modules. */
 // TBD
 
 /* Export Nexa to globalThis. */
