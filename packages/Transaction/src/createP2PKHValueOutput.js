@@ -1,6 +1,6 @@
 /* Import modules. */
 import { bigIntToBinUint64LE } from '@bitauth/libauth'
-import getLockingBytecodeFromAddress from './getLockingBytecodeFromAddress'
+import getLockingBytecodeFromAddress from './getLockingBytecodeFromAddress.js'
 
 /**
  * Create a transaction P2PKH output with the given value.

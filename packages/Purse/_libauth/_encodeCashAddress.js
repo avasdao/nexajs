@@ -1,5 +1,5 @@
 import { encodeCashAddressNonStandard } from './_encodeCashAddressNonStandard.js'
-import { cashAddressTypeToTypeBits } from './_cashAddressTypeToTypeBits'
+import { cashAddressTypeToTypeBits } from './_cashAddressTypeToTypeBits.js'
 
 /**
  * Encode a payload as a CashAddress.

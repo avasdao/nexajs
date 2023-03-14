@@ -5,8 +5,8 @@ import {
     hexToBin,
 } from '@bitauth/libauth'
 
-import getLockingBytecodeFromAddress from './getLockingBytecodeFromAddress'
-import signTransactionInput from './signTransactionInput'
+import getLockingBytecodeFromAddress from './getLockingBytecodeFromAddress.js'
+import signTransactionInput from './signTransactionInput.js'
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.
@@ -32,9 +32,10 @@ const unlockP2PKHInput = async (
 ) => {
     // Extract the bytecode (locking script) from our return address.
     const lockScriptBin = await getLockingBytecodeFromAddress(address)
+    console.log('lockScriptBin', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
-    const SIGHASH_ALL = 0x41
+    const SIGHASH_ALL = 0x0
 
     // Generate a transaction signature for this input.
     const signatureBin = await signTransactionInput(
@@ -45,6 +46,7 @@ const unlockP2PKHInput = async (
         SIGHASH_ALL,
         hexToBin(privateKey),
     )
+    console.log('signatureBin', signatureBin)
 
     // Build the unlocking script that unlocks the P2PKH locking script.
     const unlockingBytecode = flattenBinArray(
@@ -53,9 +55,11 @@ const unlockP2PKHInput = async (
             encodeDataPush(hexToBin(publicKey))
         ]
     )
+    console.log('unlockingBytecode', unlockingBytecode)
 
     // Add the unlocking script to the input.
     const signedInput = { ...input, unlockingBytecode } // NOTE: Here we update the unlocking script.
+    console.log('signedInput', signedInput)
 
     // Return the signed input.
     return signedInput

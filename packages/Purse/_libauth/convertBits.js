@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import { validate } from './validation'
+import { validate } from './validation.js'
 
 /**
  * Converts an array of integers made up of 'from' bits into an

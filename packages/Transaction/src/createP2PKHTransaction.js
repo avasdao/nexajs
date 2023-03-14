@@ -1,14 +1,12 @@
 /* Import modules. */
 import {
     binToHex,
-    // encodeTransaction,
+    encodeTransaction,
 } from '@bitauth/libauth'
 
-import { encodeTransaction } from './_encodeTransaction.js'
-
-import createUnsignedInput from './createUnsignedInput'
-import parseWIF from './parseWIF'
-import unlockP2PKTInput from './unlockP2PKTInput'
+import createUnsignedInput from './createUnsignedInput.js'
+import parseWIF from './parseWIF.js'
+import unlockP2PKHInput from './unlockP2PKHInput.js'
 
 /**
  * Create a transaction.
@@ -21,8 +19,7 @@ import unlockP2PKTInput from './unlockP2PKTInput'
  *
  * @returns {Promise<Output>}	The OP_RETURN output script.
  */
-const createTransaction = async (privateKeyWIF, unspentOutputs, outputs) => {
-    console.error('CREATE TRANSACTION')
+export default async (privateKeyWIF, unspentOutputs, outputs) => {
     // Parse the private key wif into the keypair and address.
     const [
         privateKey,
@@ -35,7 +32,7 @@ const createTransaction = async (privateKeyWIF, unspentOutputs, outputs) => {
 
     // Assemble the unsigned transaction.
     const transaction = {
-        version: 0,
+        version: 2,
         inputs,
         outputs,
         locktime: 0,
@@ -48,7 +45,7 @@ const createTransaction = async (privateKeyWIF, unspentOutputs, outputs) => {
     // eslint-disable-next-line require-atomic-updates
     transaction.inputs = await Promise.all(
         transaction.inputs.map(
-            (input, inputIndex) => unlockP2PKTInput(
+            (input, inputIndex) => unlockP2PKHInput(
                 transaction,
                 input,
                 inputIndex,
@@ -59,14 +56,10 @@ const createTransaction = async (privateKeyWIF, unspentOutputs, outputs) => {
         )
     )
     console.log('SIGNED TRANSACTION', transaction)
-    console.log('SIGNED TRANSACTION (inputs):', transaction.inputs)
 
     // Hex encode the built transaction.
-    const encodedTransaction = encodeTransaction(transaction) // FIXME Prepend (0) version.
+    const encodedTransaction = encodeTransaction(transaction)
 
     // Return the encoded transaction.
     return encodedTransaction
 }
-
-/* Export module. */
-export default createTransaction

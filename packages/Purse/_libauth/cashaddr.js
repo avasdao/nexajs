@@ -7,12 +7,12 @@
  * file LICENSE or http://www.opensource.org/licenses/mit-license.php.
  */
 
-import base32 from './base32'
+import base32 from './base32.js'
 import bigInt from 'big-integer'
-import convertBits from './convertBits'
+import convertBits from './convertBits.js'
 
-import { validate } from './validation'
-import { ValidationError } from './validation'
+import { validate } from './validation.js'
+import { ValidationError } from './validation.js'
 
 /**
  * Encoding and decoding of the bech32 address format for Nexa. <br />

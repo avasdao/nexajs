@@ -6,7 +6,7 @@ import {
     instantiateSha256,
 } from '@bitauth/libauth'
 
-import createSigningSerialization from './createSigningSerialization'
+import createSigningSerialization from './createSigningSerialization.js'
 
 /**
  * Sign a single transaction input using a private key.

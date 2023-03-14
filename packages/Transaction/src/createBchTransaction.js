@@ -1,6 +1,6 @@
 /* Import modules. */
-import createTransaction from './createTransaction'
-import createValueOutput from './createValueOutput'
+import createTransaction from './createP2PKHTransaction.js'
+import createValueOutput from './createP2PKHValueOutput.js'
 
 /**
  * Create a Cash Bridging Transaction.
