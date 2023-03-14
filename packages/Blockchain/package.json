@@ -1,10 +1,18 @@
 {
   "name": "@nexajs/blockchain",
-  "version": "23.2.22",
-  "description": "TBD",
+  "version": "23.3.13",
+  "description": "Manages on-chain activities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "isomorphic-ws": "5.0.0",
+    "ws": "8.13.0"
+  },
+  "devDependencies": {
+    "debug": "4.3.4",
+    "events": "3.3.0"
+  }
 }

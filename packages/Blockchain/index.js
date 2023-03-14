@@ -43,7 +43,7 @@ const Nexa = {}
 Nexa.Blockchain = Blockchain
 
 /* Initialize Blockchain modules. */
-Nito.broadcast = broadcast
+Nexa.broadcast = broadcast
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

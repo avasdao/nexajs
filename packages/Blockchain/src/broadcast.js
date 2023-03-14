@@ -1,3 +1,10 @@
+/* Import modules. */
+import WebSocket from 'isomorphic-ws'
+
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:blockchain:broadcast')
+
 const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
 const ROSTRUM_ENDPOINT = 'wss://electrum.nexa.org:20004'
 // const ROSTRUM_ENDPOINT = 'wss://rostrum.nexa.sh:20004'
@@ -84,6 +91,11 @@ const broadcastNexa = (_rawTx) => {
         /* Close connection. */
         // TODO Add support for connection pooling.
         socket.close()
+    }
+
+    /* Handle socket errors. */
+    socket.onerror = (err) => {
+        reject(err)
     }
 
     /* Return (response) promise. */
