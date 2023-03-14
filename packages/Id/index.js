@@ -1,6 +1,5 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
-import { v4 as uuidv4 } from 'uuid'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
@@ -32,7 +31,7 @@ export class Id extends EventEmitter {
 const Nexa = {}
 
 /* Initialize ID class. */
-Nexa.ID = ID
+Nexa.Id = Id
 
 /* Initialize ID modules. */
 // TBD
