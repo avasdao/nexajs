@@ -1,15 +1,16 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
-import { v4 as uuidv4 } from 'uuid'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:blockchain')
 
+/* Import (local) modules. */
+import _broadcast from './src/broadcast.js'
 
-export const welcome = () => {
-    return 'Welcome!'
-}
+/* Export (local) modules. */
+export const broadcast = _broadcast
+
 
 /**
  * Blockchain Class
@@ -25,6 +26,13 @@ export class Blockchain extends EventEmitter {
 
         // TBD
     }
+
+    test() {
+        return 'Blockchain (Instance) is working!'
+    }
+    static test() {
+        return 'Blockchain (Static) is working!'
+    }
 }
 
 
@@ -35,7 +43,7 @@ const Nexa = {}
 Nexa.Blockchain = Blockchain
 
 /* Initialize Blockchain modules. */
-// TBD
+Nito.broadcast = broadcast
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
