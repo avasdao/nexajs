@@ -5,6 +5,7 @@ import {
     hexToBin,
 } from '@bitauth/libauth'
 
+import bigIntToCompactUint from './utils/bigIntToCompactUint.js'
 import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
 import signTransactionInput from './signTransactionInput.js'
 
@@ -48,11 +49,16 @@ export default async (
     )
     console.log('signatureBin', signatureBin)
 
-    // Build the unlocking script that unlocks the P2PKH locking script.
+    const encodedPubKey = encodeDataPush(hexToBin(publicKey))
+
+    const encodedSig = encodeDataPush(signatureBin)
+
+    // Build the unlocking script that unlocks the P2PKT locking script.
     const unlockingBytecode = flattenBinArray(
         [
-            encodeDataPush(hexToBin(publicKey)),
-            encodeDataPush(signatureBin),
+            bigIntToCompactUint(BigInt(encodedPubKey.length)),
+            encodedPubKey,
+            encodedSig,
         ]
     )
     console.log('unlockingBytecode', unlockingBytecode)
