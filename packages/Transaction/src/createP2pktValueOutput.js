@@ -12,7 +12,7 @@ import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddre
  *
  * @returns {Promise<Output>} The P2PKH output script.
  */
-const createValueOutput = async (address, satoshis) => {
+export default async (address, satoshis) => {
     // Create the output.
     const valueOutput = {
         lockingBytecode: await getLockingBytecodeFromAddress(address),
@@ -25,6 +25,3 @@ const createValueOutput = async (address, satoshis) => {
     // Return the output.
     return valueOutput
 }
-
-/* Export module. */
-export default createValueOutput

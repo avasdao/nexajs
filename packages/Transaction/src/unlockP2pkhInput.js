@@ -22,7 +22,7 @@ import signTransactionInput from './signTransactionInput.js'
  *
  * @returns {Promise<Input>} The P2PKH output script.
  */
-const unlockP2PKHInput = async (
+export default async (
     transaction,
     input,
     inputIndex,
@@ -60,6 +60,3 @@ const unlockP2PKHInput = async (
     // Return the signed input.
     return signedInput
 }
-
-/* Export module. */
-export default unlockP2PKHInput

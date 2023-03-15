@@ -29,14 +29,15 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
 
-    // Assemble the unsigned transaction.
+    /* Assemble the unsigned transaction. */
+    // see: https://spec.nexa.org/protocol/blockchain/transaction
     const transaction = {
         version: 0,
         inputs,
         outputs,
-        locktime: 0,
+        locktime: 0, // FIXME: We must add current block height as a new method param
     }
-    console.log('Unsigned (encoded) tx:', binToHex(encodeTransaction(transaction)))
+    // console.log('Unsigned (encoded) tx:', binToHex(encodeTransaction(transaction)))
 
     // Sign all inputs and add the generated unlocking scripts to the transaction.
     // eslint-disable-next-line require-atomic-updates
