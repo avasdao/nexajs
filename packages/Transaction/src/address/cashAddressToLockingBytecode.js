@@ -34,7 +34,6 @@ const AddressPayload = {
 
 export default (address) => {
     const decoded = decodeCashAddress(address)
-console.log('DECODED', decoded)
 
     if (typeof decoded === 'string') return decoded
 

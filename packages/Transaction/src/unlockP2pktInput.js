@@ -33,7 +33,7 @@ export default async (
 ) => {
     // Extract the bytecode (locking script) from our return address.
     const lockScriptBin = await getLockingBytecodeFromAddress(address)
-    console.log('lockScriptBin', lockScriptBin)
+    // console.log('lockScriptBin', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0
@@ -47,7 +47,7 @@ export default async (
         SIGHASH_ALL,
         hexToBin(privateKey),
     )
-    console.log('signatureBin', signatureBin)
+    // console.log('signatureBin', signatureBin)
 
     const encodedPubKey = encodeDataPush(hexToBin(publicKey))
 
@@ -61,11 +61,11 @@ export default async (
             encodedSig,
         ]
     )
-    console.log('unlockingBytecode', unlockingBytecode)
+    // console.log('unlockingBytecode', unlockingBytecode)
 
     // Add the unlocking script to the input.
     const signedInput = { ...input, unlockingBytecode } // NOTE: Here we update the unlocking script.
-    console.log('signedInput', signedInput)
+    // console.log('signedInput', signedInput)
 
     // Return the signed input.
     return signedInput

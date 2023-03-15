@@ -12,8 +12,6 @@ import bigIntToCompactUint from './utils/bigIntToCompactUint.js'
  * @param output - the output to encode
  */
 export default (output) => {
-    console.log('OUTPUT', output)
-
     return flattenBinArray([
         numberToBinUintLE(1),
         output.amount,

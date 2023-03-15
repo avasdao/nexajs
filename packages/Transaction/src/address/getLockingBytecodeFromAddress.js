@@ -37,7 +37,7 @@ export default async (_address) => {
         }
 
         const lockScriptResult = cashAddressToLockingBytecode(prefix + _address)
-        console.log('lockScriptResult', lockScriptResult)
+        // console.log('lockScriptResult', lockScriptResult)
 
         // Throw an error in case of failure (which we'll catch and ignore).
         if(typeof lockScriptResult === 'string') {

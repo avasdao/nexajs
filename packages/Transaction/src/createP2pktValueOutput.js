@@ -17,8 +17,8 @@ import { decodeAddress } from '@nexajs/address'
  * @returns {Promise<Output>} The P2PKH output script.
  */
 export default async (address, amount) => {
-    console.log('ADDRESS', address)
-    console.log('ADDRESS (decoded):', decodeAddress(address))
+    // console.log('ADDRESS', address)
+    // console.log('ADDRESS (decoded):', decodeAddress(address))
 
     const lockingBytecode = decodeAddress(address).hash
     // console.log('lockingBytecode:', lockingBytecode)
