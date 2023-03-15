@@ -1,6 +1,7 @@
 import {
     bigIntToBitcoinVarInt,
     flattenBinArray,
+    numberToBinUintLE,
     numberToBinUint32LE,
     bigIntToBinUint64LE,
 } from '@bitauth/libauth'
@@ -27,10 +28,15 @@ const encodeOutput = (output) =>
 const encodeOutpoints = (inputs) =>
     flattenBinArray(
         inputs.map((i) =>
-            flattenBinArray([
-                i.outpointTransactionHash.slice().reverse(),
-                numberToBinUint32LE(i.outpointIndex),
+            new Uint8Array([
+                numberToBinUintLE(0),
+                ...i.outpointTransactionHash.slice().reverse(),
             ])
+            // flattenBinArray([
+            //     numberToBinUintLE(0), // FIXME Won't WORK!
+            //     i.outpointTransactionHash.slice().reverse(),
+            //     // numberToBinUint32LE(i.outpointIndex),
+            // ])
         )
     )
 

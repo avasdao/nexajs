@@ -41,7 +41,7 @@ export default async (
         spendingTransaction: transaction,
     }
     // console.log('CONTEXT COMMON', ctxCommon)
-    console.log('CONTEXT COMMON', inputIndex, ctxCommon.spendingTransaction.outputs)
+    // console.log('CONTEXT COMMON', inputIndex, ctxCommon.spendingTransaction.outputs)
 
     // Create a "transaction state", used to extract a lot of the relevant information with Libauth.
     const state = createTransactionContextCommon(ctxCommon)

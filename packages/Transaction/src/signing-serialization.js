@@ -130,7 +130,7 @@ export const hashOutputs = ({
  * re-computing these values when validating many signatures within a single
  * transaction. See BIP143 for details.
  */
-export const generateSigningSerializationNexa = ({
+export const generateSigningSerializationBch = ({
     correspondingOutput,
     coveredBytecode,
     forkId = new Uint8Array([0, 0, 0]),

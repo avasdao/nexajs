@@ -55,6 +55,7 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
     )
     console.log('Signed transaction:', transaction)
     console.log('Signed transaction (inputs):', transaction.inputs)
+    console.log('Signed transaction (outputs):', transaction.outputs)
 
     // Hex encode the built transaction.
     const encodedTransaction = encodeTransaction(transaction) // FIXME Prepend (0) version.
