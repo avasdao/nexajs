@@ -1,4 +1,10 @@
-import { flattenBinArray } from '@bitauth/libauth'
+import {
+    bigIntToBinUint64LE,
+    flattenBinArray,
+    numberToBinUintLE,
+} from '@bitauth/libauth'
+
+import bigIntToCompactUint from './utils/bigIntToCompactUint.js'
 
 /**
  * Encode a single {@link Output} for inclusion in an encoded transaction.
@@ -6,13 +12,11 @@ import { flattenBinArray } from '@bitauth/libauth'
  * @param output - the output to encode
  */
 export default (output) => {
-    // const lockingBytecodeField = flattenBinArray([
-    // //   encodeTokenPrefix(output.token),
-    //   output.lockingBytecode,
-    // ]);
-    return flattenBinArray([0
-    //   valueSatoshisToBin(output.valueSatoshis),
-    //   bigIntToCompactUint(BigInt(lockingBytecodeField.length)),
-    //   lockingBytecodeField,
+    console.log('OUTPUT', output)
+
+    return flattenBinArray([
+        numberToBinUintLE(1),
+        output.amount,
+        output.lockingBytecode,
     ])
 }
