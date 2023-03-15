@@ -5,8 +5,8 @@ import {
     instantiateSha256,
 } from '@bitauth/libauth'
 
-import base58AddressToLockingBytecode from './address/base58AddressToLockingBytecode.js'
-import cashAddressToLockingBytecode from './address/cashAddressToLockingBytecode.js'
+import base58AddressToLockingBytecode from './base58AddressToLockingBytecode.js'
+import cashAddressToLockingBytecode from './cashAddressToLockingBytecode.js'
 
 /**
  * Converts an address to its locking byte-code equivalent.

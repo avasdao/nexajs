@@ -38,7 +38,7 @@ const Constants = {
  * standard CashAddress versions, see {@link CashAddressVersionByte})
  * @param payload - the payload to encode
  */
-export const encodeCashAddressFormat = (
+export default (
     prefix,
     version,
     payload

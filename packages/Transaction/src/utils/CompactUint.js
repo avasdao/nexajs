@@ -1,4 +1,4 @@
-export const CompactUint = {
+export default {
     uint8MaxValue:  0xfc,
     uint16Prefix:   0xfd,
     uint16MaxValue: 0xffff,

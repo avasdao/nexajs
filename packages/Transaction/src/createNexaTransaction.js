@@ -1,6 +1,6 @@
 /* Import modules. */
-import createTransaction from './createP2PKTTransaction.js'
-import createValueOutput from './createP2PKTValueOutput.js'
+import createTransaction from './createP2pktTransaction.js'
+import createValueOutput from './createP2pktValueOutput.js'
 
 /**
  * Create a Nexa Transaction

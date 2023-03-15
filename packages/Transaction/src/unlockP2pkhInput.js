@@ -5,7 +5,7 @@ import {
     hexToBin,
 } from '@bitauth/libauth'
 
-import getLockingBytecodeFromAddress from './getLockingBytecodeFromAddress.js'
+import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
 import signTransactionInput from './signTransactionInput.js'
 
 /**

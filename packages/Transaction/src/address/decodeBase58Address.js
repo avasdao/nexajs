@@ -1,6 +1,6 @@
 import decodeBase58AddressFormat from './decodeBase58AddressFormat.js'
 
-export const decodeBase58Address = (
+export default (
     address,
     sha256
 ) => {

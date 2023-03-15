@@ -3,7 +3,7 @@ import { binToHex } from '@bitauth/libauth'
 
 import encodeTransaction from './encodeTransaction.js'
 import createUnsignedInput from './createUnsignedInput.js'
-import unlockP2PKTInput from './unlockP2PKTInput.js'
+import unlockP2PKTInput from './unlockP2pktInput.js'
 
 import parseWIF from './address/parseWIF.js'
 

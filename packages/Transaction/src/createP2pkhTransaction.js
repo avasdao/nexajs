@@ -5,7 +5,7 @@ import {
 } from '@bitauth/libauth'
 
 import createUnsignedInput from './createUnsignedInput.js'
-import unlockP2PKHInput from './unlockP2PKHInput.js'
+import unlockP2PKHInput from './unlockP2pkhInput.js'
 
 import parseWIF from './address/parseWIF.js'
 

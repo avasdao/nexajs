@@ -21,7 +21,7 @@ import encodeCashAddress from './encodeCashAddress.js'
  *
  * @returns {Promise<Array<String>>} Array containing [0] Private Key, [1] Public Key and [2] Address.
  */
-export default (wif) => {
+export default async (wif) => {
     // Instantiate Libauth crypto interfaces
     const secp256k1 = await instantiateSecp256k1()
     const sha256 = await instantiateSha256()

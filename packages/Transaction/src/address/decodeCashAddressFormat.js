@@ -2,7 +2,7 @@ import {
     decodeBech32,
     isBech32CharacterSet,
     regroupBits,
-} from '../utils/bech32.js'
+} from './bech32.js'
 
 import CashAddressDecodingError from './CashAddressDecodingError.js'
 import cashAddressPolynomialModulo from './cashAddressPolynomialModulo.js'
