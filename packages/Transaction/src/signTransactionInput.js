@@ -39,7 +39,7 @@ const signTransactionInput = async (
         hashtype
     )
     console.log('COVERED BYTECODE BIN', coveredBytecodeBin)
-    console.log('HASH TYPE', hashtype)
+    console.log('\n  Hash Type:', hashtype, '\n')
     console.log('SIGNING SERIALIZATION', binToHex(signingSerialization))
 
     // Generate the "sighash" by taking the double SHA256 of the signing serialization.

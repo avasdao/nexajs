@@ -40,7 +40,7 @@ export default async (
                 (unspentSatoshis - minerFeeSatoshis)
             )
         )
-    // console.log('Outputs:', outputs)
+    console.log('Outputs:', outputs)
 
     /* Create the initial transaction to estimate miner fee. */
     const transaction = await createTransaction(

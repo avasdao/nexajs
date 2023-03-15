@@ -12,15 +12,14 @@ import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddre
  *
  * @returns {Promise<Output>} The P2PKH output script.
  */
-export default async (address, satoshis) => {
+export default async (address, amount) => {
     // Create the output.
     const valueOutput = {
         lockingBytecode: await getLockingBytecodeFromAddress(address),
-        satoshis: bigIntToBinUint64LE(BigInt(satoshis)),
+        amount: bigIntToBinUint64LE(BigInt(amount)),
     }
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.
-    //       However, before we do this, we must refactor our logic in Hop.Cash backend.
 
     // Return the output.
     return valueOutput
