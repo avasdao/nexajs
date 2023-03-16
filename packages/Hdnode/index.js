@@ -6,10 +6,10 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:crypto')
 
 /* Import (local) modules. */
-// TBD
+import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
 
 /* Export (local) modules. */
-// TBD
+export const deriveHdPrivateNodeFromSeed = _deriveHdPrivateNodeFromSeed
 
 
 /**

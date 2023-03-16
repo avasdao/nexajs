@@ -25,6 +25,11 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
         publicKey,
         returnAddress
     ] = await parseWIF(privateKeyWIF)
+    console.log('privateKeyWIF', {
+        privateKey,
+        publicKey,
+        returnAddress
+    })
 
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
