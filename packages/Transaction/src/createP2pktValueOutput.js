@@ -11,18 +11,17 @@ import { decodeAddress } from '@nexajs/address'
  *
  * @function
  *
- * @param address  {string} Bitcoin Cash address to convert to P2PKH lock-code.
+ * @param address  {string} Bitcoin Cash address to convert to P2PKT lock-code.
  * @param satoshis {number} Satoshi value to attach to output
  *
- * @returns {Promise<Output>} The P2PKH output script.
+ * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (address, amount) => {
-    // console.log('ADDRESS', address)
-    // console.log('ADDRESS (decoded):', decodeAddress(address))
+    console.log('\n  Receiving address:', address)
+    console.log('  Receiving address (decoded):\n', decodeAddress(address))
 
     const lockingBytecode = decodeAddress(address).hash
-    // console.log('lockingBytecode:', lockingBytecode)
-    // console.log('lockingBytecode (hex):', binToHex(lockingBytecode))
+    console.log('  lockingBytecode (hex):', binToHex(lockingBytecode))
 
     // Create the output.
     const valueOutput = {

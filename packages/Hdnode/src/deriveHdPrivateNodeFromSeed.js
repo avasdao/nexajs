@@ -19,10 +19,9 @@ const halfHmacSha512Length = 32
  * for validity, and will be assumed valid if `true` or invalid if `false` (this
  * is useful for testing)
  */
-export default = (
+export default (
     crypto,
-    seed,
-    assumeValidity = true
+    seed
 ) => {
     const mac = hmacSha512(crypto.sha512, bip32HmacSha512Key, seed)
     const privateKey = mac.slice(0, halfHmacSha512Length)
@@ -30,20 +29,15 @@ export default = (
     const depth = 0
     const childIndex = 0
     const parentFingerprint = Uint8Array.from([0, 0, 0, 0])
-    const valid = assumeValidity ?? validateSecp256k1PrivateKey(privateKey)
+    const valid = validateSecp256k1PrivateKey(privateKey)
 
-    return (valid
-        ? { chainCode, childIndex, depth, parentFingerprint, privateKey, valid }
-        : {
-            chainCode,
-            childIndex,
-            depth,
-            invalidPrivateKey: privateKey,
-            parentFingerprint,
-            valid,
-        }) as AssumedValidity extends true
-            ? HdPrivateNodeValid
-            : AssumedValidity extends false
-                ? HdPrivateNodeInvalid
-                : HdPrivateNode
+    /* Return HD Node. */
+    return {
+        chainCode,
+        childIndex,
+        depth,
+        parentFingerprint,
+        privateKey,
+        valid
+    }
 }

@@ -3,13 +3,15 @@ import { EventEmitter } from 'events'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
+const debug = debugFactory('nexa:hdnode')
 
 /* Import (local) modules. */
 import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
+import _encodePrivateKeyWif from './src/encodePrivateKeyWif.js'
 
 /* Export (local) modules. */
 export const deriveHdPrivateNodeFromSeed = _deriveHdPrivateNodeFromSeed
+export const encodePrivateKeyWif = _encodePrivateKeyWif
 
 
 /**
@@ -43,7 +45,8 @@ const Nexa = {}
 Nexa.Hdnode = Hdnode
 
 /* Initialize HD Node modules. */
-// TBD
+Nexa.deriveHdPrivateNodeFromSeed = deriveHdPrivateNodeFromSeed
+Nexa.encodePrivateKeyWif = encodePrivateKeyWif
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
