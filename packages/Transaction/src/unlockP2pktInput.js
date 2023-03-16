@@ -5,9 +5,11 @@ import {
     hexToBin,
 } from '@bitauth/libauth'
 
-import bigIntToCompactUint from './utils/bigIntToCompactUint.js'
-import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
+// import bigIntToCompactUint from './utils/bigIntToCompactUint.js'
+// import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
 import signTransactionInput from './signTransactionInput.js'
+
+import { decodeAddress } from '@nexajs/address'
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.
@@ -32,8 +34,12 @@ export default async (
     address,
 ) => {
     // Extract the bytecode (locking script) from our return address.
-    const lockScriptBin = await getLockingBytecodeFromAddress(address)
-    // console.log('lockScriptBin', lockScriptBin)
+    // const lockScriptBin = await getLockingBytecodeFromAddress(address)
+    const lockScriptBin = new Uint8Array(
+        hexToBin('17005114'),
+        await decodeAddress(address).hash
+    )
+    console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0
@@ -56,8 +62,9 @@ export default async (
     // Build the unlocking script that unlocks the P2PKT locking script.
     const unlockingBytecode = flattenBinArray(
         [
-            bigIntToCompactUint(BigInt(encodedPubKey.length)),
-            encodedPubKey,
+            // bigIntToCompactUint(BigInt(encodedPubKey.length)),
+            // encodedPubKey,
+            encodeDataPush(encodedPubKey),
             encodedSig,
         ]
     )

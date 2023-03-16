@@ -12,10 +12,12 @@ import {
  * @param output - the output to encode
  */
 const encodeOutput = (output) =>
-    flattenBinArray([
-        output.amount,
-        bigIntToBitcoinVarInt(BigInt(output.lockingBytecode.length)),
-        output.lockingBytecode,
+    // flattenBinArray([
+    new Uint8Array([
+        numberToBinUintLE(1),
+        ...output.amount,
+        ...bigIntToBitcoinVarInt(BigInt(output.lockingBytecode.length)),
+        ...output.lockingBytecode,
     ])
 
 /**
