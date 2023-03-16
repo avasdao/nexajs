@@ -1,8 +1,9 @@
 /* Import modules. */
 import {
     binToHex,
+    hexToBin,
     // CashAddressType,
-    decodePrivateKeyWif,
+    // decodePrivateKeyWif,
     // encodeCashAddress,
     instantiateRipemd160,
     instantiateSecp256k1,
@@ -10,7 +11,9 @@ import {
 } from '@bitauth/libauth'
 
 import CashAddressType from './CashAddressType.js'
-import encodeCashAddress from './encodeCashAddress.js'
+import { decodePrivateKeyWif } from './walletImportFormat.js'
+// import encodeCashAddress from './encodeCashAddress.js'
+import { encodeAddress } from '@nexajs/address'
 
 /**
  * Parse a WIF string into a private key, public key and address.
@@ -45,8 +48,10 @@ export default async (wif) => {
     const publicKeyHashBin = ripemd160.hash(sha256.hash(publicKeyBin))
 
     // Encode the public key hash into a P2PKH cash address.
-    const address = encodeCashAddress('bitcoincash', CashAddressType.P2PKH, publicKeyHashBin)
+    // const address = encodeCashAddress('bitcoincash', CashAddressType.P2PKH, publicKeyHashBin)
     // TODO: Add support for `nexa` template format.
+    const pkhScript = hexToBin('17005114' + binToHex(publicKeyHashBin))
+    const address = encodeAddress('nexa', 'TEMPLATE', pkhScript)
 
     return [
         binToHex(privateKeyBin),

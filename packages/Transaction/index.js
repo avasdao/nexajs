@@ -6,11 +6,11 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:transaction')
 
 /* Import (local) modules. */
-import _createBchTransaction from './src/createBchTransaction.js'
+// import _createBchTransaction from './src/createBchTransaction.js'
 import _createNexaTransaction from './src/createNexaTransaction.js'
 
 /* Export (local) modules. */
-export const createBchTransaction = _createBchTransaction
+// export const createBchTransaction = _createBchTransaction
 export const createNexaTransaction = _createNexaTransaction
 
 
@@ -45,7 +45,7 @@ const Nexa = {}
 Nexa.Transaction = Transaction
 
 /* Initialize Transaction modules. */
-Nexa.createBchTransaction = createBchTransaction
+// Nexa.createBchTransaction = createBchTransaction
 Nexa.createNexaTransaction = createNexaTransaction
 
 /* Export Nexa to globalThis. */

@@ -7,11 +7,11 @@
   resolved "https://registry.npmjs.org/@bitauth/libauth/-/libauth-1.19.1.tgz"
   integrity sha512-R524tD5VwOt3QRHr7N518nqTVR/HKgfWL4LypekcGuNQN8R4PWScvuRcRzrY39A28kLztMv+TJdiKuMNbkU1ug==
 
-"@nexajs/address@file:../../../../../home/shomari/.nvm/versions/node/v16.19.1/lib/node_modules/@nexajs/address":
-  version "23.3.11"
-  resolved "file:../../../../../home/shomari/.nvm/versions/node/v16.19.1/lib/node_modules/@nexajs/address"
+"@nexajs/hdnode@file:../Hdnode":
+  version "23.3.15"
+  resolved "file:../Hdnode"
   dependencies:
-    big-integer "1.6.51"
+    "@bitauth/libauth" "1.19.1"
 
 debug@4.3.4:
   version "4.3.4"

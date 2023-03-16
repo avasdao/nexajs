@@ -8,10 +8,12 @@ const debug = debugFactory('nexa:hdnode')
 /* Import (local) modules. */
 import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
 import _encodePrivateKeyWif from './src/encodePrivateKeyWif.js'
+import _parseWif from './src/parseWif.js'
 
 /* Export (local) modules. */
 export const deriveHdPrivateNodeFromSeed = _deriveHdPrivateNodeFromSeed
 export const encodePrivateKeyWif = _encodePrivateKeyWif
+export const parseWif = _parseWif
 
 
 /**
@@ -47,6 +49,7 @@ Nexa.Hdnode = Hdnode
 /* Initialize HD Node modules. */
 Nexa.deriveHdPrivateNodeFromSeed = deriveHdPrivateNodeFromSeed
 Nexa.encodePrivateKeyWif = encodePrivateKeyWif
+Nexa.parseWif = parseWif
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

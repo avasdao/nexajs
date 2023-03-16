@@ -3,29 +3,29 @@ import { binToHex } from '@bitauth/libauth'
 
 import encodeTransaction from './encodeTransaction.js'
 import createUnsignedInput from './createUnsignedInput.js'
-import unlockP2PKTInput from './unlockP2pktInput.js'
+import unlockP2PktInput from './unlockP2pktInput.js'
 
-import parseWIF from './address/parseWIF.js'
+import { parseWif } from '@nexajs/hdnode'
 
 /**
  * Create a transaction.
  *
  * @function
  *
- * @param privateKeyWIF  {string}                     Private Key in WIF format.
+ * @param privateKeyWif  {string}                     Private Key in WIF format.
  * @param unspentOutputs {AddressListUnspentResponse} Prefix (in hex) to precede data.
  * @param outputs        {Array<Output>}              Array of outputs to include in transaction.
  *
  * @returns {Promise<Output>}	The OP_RETURN output script.
  */
-export default async (privateKeyWIF, unspentOutputs, outputs) => {
+export default async (privateKeyWif, unspentOutputs, outputs) => {
     // Parse the private key wif into the keypair and address.
     const [
         privateKey,
         publicKey,
         returnAddress
-    ] = await parseWIF(privateKeyWIF)
-    console.log('privateKeyWIF', {
+    ] = await parseWif(privateKeyWif)
+    console.log('privateKeyWif', {
         privateKey,
         publicKey,
         returnAddress
@@ -48,7 +48,7 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
     // eslint-disable-next-line require-atomic-updates
     transaction.inputs = await Promise.all(
         transaction.inputs.map(
-            (input, inputIndex) => unlockP2PKTInput(
+            (input, inputIndex) => unlockP2PktInput(
                 transaction,
                 input,
                 inputIndex,

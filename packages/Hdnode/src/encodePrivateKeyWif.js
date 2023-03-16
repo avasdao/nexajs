@@ -37,7 +37,7 @@ export default (
     const payload = compressed
         ? Uint8Array.from([...privateKey, compressedByte])
         : privateKey
-    const version = 35 // (0x23) NOTE: Bitcoin Cash is [ 128 (0x80) ]
+    const version = 35 // `0x23` NOTE: Bitcoin Cash is `128`/`0x80`.
 
     return encodeBase58AddressFormat(
         sha256,
