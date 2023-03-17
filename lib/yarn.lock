@@ -502,10 +502,10 @@
   dependencies:
     big-integer "1.6.51"
 
-"@nexajs/blockchain@23.3.13":
-  version "23.3.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.3.13.tgz#3e62e39f61683b7fe317eb8707361c3dc9f430b3"
-  integrity sha512-My1jHqs196sJWbdVabthkuaN0xwxv37Oze8Ksp8hLXJ46OlUt512rjeiW/Lgt19gNvC44qyzvY1ahZdviD1kKQ==
+"@nexajs/blockchain@23.3.16":
+  version "23.3.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.3.16.tgz#e60676bcca6fd281d44324e8af3da8b7949b21e6"
+  integrity sha512-MTyVHCd4lk0kXt24Dj36nXddfjWxCAgODV6leN2Rz41O9nxegNWstkXYKNg6RyBQQ7kPfmq7AJUtWzK8x+aXQg==
   dependencies:
     isomorphic-ws "5.0.0"
     ws "8.13.0"
