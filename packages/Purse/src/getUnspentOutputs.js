@@ -65,9 +65,12 @@ const getBCHUnspentOutputs = async (_address) => {
 }
 
 const getNexaUnspentOutputs = async () => {
-    const outpointHash = 'd0c2e49c05d287c18b24f66bba000ec66751467b14318871a2d538bae83f621c'
+    let outpointHash = '6b0bff852564f5debc92c3d70b6a8e864a665e6b2e3640e44a38ffb2478def08'
+    outpointHash = outpointHash.match(/[a-fA-F0-9]{2}/g).reverse().join('')
+
     const addressScript = '00511484ac0b79c2695ceb96aa88c6f5b7bedbd5e193f2' // P2PKT
-    const value = 133445
+
+    const value = 800
 
     return [{
         outpointHash,
