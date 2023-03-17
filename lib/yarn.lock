@@ -538,6 +538,13 @@
   dependencies:
     superagent "8.0.6"
 
+"@nexajs/transaction@23.3.16":
+  version "23.3.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.3.16.tgz#bbbdff4c6a1d7c48cb4dd483865c657df81fff09"
+  integrity sha512-IhYEEy1M95sJzXbpE4ZdAN4Ngn+ko+i+iUIgk3H2FDuH9sARjRcrRlQUzQgfnvgW8QjMaK1P61aRB5K0ovQcaQ==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+
 "@nexajs/utils@23.3.16":
   version "23.3.16"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.3.16.tgz#ad1b1837105858e67c9742b47d42b95cb9be76e3"
