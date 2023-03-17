@@ -13,6 +13,7 @@ import {
     hashOutputs,
 } from './signing-serialization.js'
 
+import Opcodes from './utils/Opcodes.js'
 
 /**
  * Serialize the signature-protected properties of a transaction following the
@@ -39,38 +40,50 @@ export default ({
     transactionAmounts,
     transactionSequenceNumbers,
     version,
-}) => flattenBinArray([
-    numberToBinUintLE(0), // Won't WORK!
-    // numberToBinUint32LE(version),
+// }) => flattenBinArray([
+}) => {
+    const altLockScriptBin = new Uint8Array([
+        Opcodes.OP_FROMALTSTACK,
+        Opcodes.OP_CHECKSIGVERIFY
+    ])
+    console.log('\n  (ALT) Lock Script Bin:\n', altLockScriptBin)
 
-    hashPrevouts({ sha256, signingSerializationType, transactionOutpoints }),
+    return new Uint8Array([
+        numberToBinUintLE(0), // Doesn't work w/ flattenBinArray
+        // numberToBinUint32LE(version),
 
-    hashAmounts({ sha256, signingSerializationType, transactionAmounts }),
+        ...hashPrevouts({ sha256, signingSerializationType, transactionOutpoints }),
 
-    hashSequence({
-        sha256,
-        signingSerializationType,
-        transactionSequenceNumbers,
-    }),
+        ...hashAmounts({ sha256, signingSerializationType, transactionAmounts }),
 
-    // outpointTransactionHash.slice().reverse(),
-    // numberToBinUint32LE(outpointIndex),
+        ...hashSequence({
+            sha256,
+            signingSerializationType,
+            transactionSequenceNumbers,
+        }),
 
-    bigIntToBitcoinVarInt(BigInt(coveredBytecode.length)),
-    coveredBytecode,
+        // outpointTransactionHash.slice().reverse(),
+        // numberToBinUint32LE(outpointIndex),
 
-    // outputValue,
-    // numberToBinUint32LE(sequenceNumber),
+        // bigIntToBitcoinVarInt(BigInt(coveredBytecode.length)),
+        // ...coveredBytecode,
+        bigIntToBitcoinVarInt(BigInt(altLockScriptBin.length)),
+        ...altLockScriptBin,
 
-    hashOutputs({
-        correspondingOutput,
-        sha256,
-        signingSerializationType,
-        transactionOutputs,
-    }),
+        // outputValue,
+        // numberToBinUint32LE(sequenceNumber),
 
-    numberToBinUint32LE(locktime),
+        ...hashOutputs({
+            correspondingOutput,
+            sha256,
+            signingSerializationType,
+            transactionOutputs,
+        }),
 
-    signingSerializationType,
-    // forkId,
-])
+        ...numberToBinUint32LE(locktime),
+
+        // signingSerializationType,
+        numberToBinUintLE(0),
+        // forkId,
+    ])
+}
