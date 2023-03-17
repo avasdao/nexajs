@@ -510,12 +510,13 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/hdnode@23.3.15":
-  version "23.3.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.15.tgz#60500fba21a576f126c68c854fe1c10d6b240580"
-  integrity sha512-I8nCNhjsZgasQEZN/sls/uSJ9/RTesZtcDzg051wzFvirIrMfa7U0FnryZaoUaREXWC0MIjaFNPAbYQ0KjTsNA==
+"@nexajs/hdnode@23.3.16":
+  version "23.3.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.16.tgz#af87f55e6c07bb77af1324afde033d051a0db105"
+  integrity sha512-iULRIyO2EC3rOrPOl+YH5kwHZDBafTEA+x6nRCdf0HIk2Bqe8H7scqPwoYFDpl0Il6/mh44gEXP057P9yGVqng==
   dependencies:
     "@bitauth/libauth" "1.19.1"
+    "@ethersproject/hdnode" "5.7.0"
 
 "@nexajs/purse@23.2.22":
   version "23.2.22"
