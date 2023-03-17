@@ -34,11 +34,6 @@ const encodeOutpoints = (inputs) =>
                 numberToBinUintLE(0),
                 ...i.outpointTransactionHash.slice().reverse(),
             ])
-            // flattenBinArray([
-            //     numberToBinUintLE(0), // FIXME Won't WORK!
-            //     i.outpointTransactionHash.slice().reverse(),
-            //     // numberToBinUint32LE(i.outpointIndex),
-            // ])
         )
     )
 
