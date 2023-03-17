@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/purse",
-  "version": "23.3.9",
+  "version": "23.3.16",
   "description": "Manages individual unspent transaction outputs (UTXOs).",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,6 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@bitauth/libauth": "1.19.1",
     "uuid": "9.0.0"
   },
   "devDependencies": {

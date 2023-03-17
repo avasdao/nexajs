@@ -15,6 +15,18 @@ export const deriveHdPrivateNodeFromSeed = _deriveHdPrivateNodeFromSeed
 export const encodePrivateKeyWif = _encodePrivateKeyWif
 export const parseWif = _parseWif
 
+/* Ethers.js helpers. */
+import { entropyToMnemonic as _entropyToMnemonic } from '@ethersproject/hdnode'
+import { isValidMnemonic as _isValidMnemonic } from '@ethersproject/hdnode'
+import { mnemonicToEntropy as _mnemonicToEntropy } from '@ethersproject/hdnode'
+import { mnemonicToSeed as _mnemonicToSeed } from '@ethersproject/hdnode'
+
+/* Export (Ethers.js) modules. */
+export const entropyToMnemonic = _entropyToMnemonic
+export const isValidMnemonic = _isValidMnemonic
+export const mnemonicToEntropy = _mnemonicToEntropy
+export const mnemonicToSeed = _mnemonicToSeed
+
 
 /**
  * HD Node Class
@@ -49,6 +61,10 @@ Nexa.Hdnode = Hdnode
 /* Initialize HD Node modules. */
 Nexa.deriveHdPrivateNodeFromSeed = deriveHdPrivateNodeFromSeed
 Nexa.encodePrivateKeyWif = encodePrivateKeyWif
+Nexa.entropyToMnemonic = entropyToMnemonic
+Nexa.isValidMnemonic = isValidMnemonic
+Nexa.mnemonicToEntropy = mnemonicToEntropy
+Nexa.mnemonicToSeed = mnemonicToSeed
 Nexa.parseWif = parseWif
 
 /* Export Nexa to globalThis. */

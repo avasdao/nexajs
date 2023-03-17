@@ -75,6 +75,7 @@ const Nexa = {}
 Nexa.Purse = Purse
 
 /* Initialize Purse modules. */
+Nexa.getUnspentOutputs = getUnspentOutputs
 Nexa.send = send // alias
 Nexa.sendUtxo = sendUtxo
 

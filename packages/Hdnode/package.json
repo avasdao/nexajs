@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/hdnode",
-  "version": "23.3.15",
+  "version": "23.3.16",
   "description": "Manages the use of BIP-32 Hierarchical Deterministic (HD) wallets and nodes.",
   "main": "index.js",
   "type": "module",
@@ -8,7 +8,8 @@
   "author": "NexaJS developers",
   "license": "MIT",
   "dependencies": {
-    "@bitauth/libauth": "1.19.1"
+    "@bitauth/libauth": "1.19.1",
+    "@ethersproject/hdnode": "5.7.0"
   },
   "devDependencies": {
     "debug": "4.3.4",
