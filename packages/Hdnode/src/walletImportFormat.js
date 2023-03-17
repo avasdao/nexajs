@@ -86,7 +86,6 @@ export const decodePrivateKeyWif = (
 ) => {
     const compressedPayloadLength = 33
     const decoded = decodeBase58AddressFormat(sha256, wifKey)
-    console.log('decodeBase58AddressFormat(sha256, wifKey)', decodeBase58AddressFormat(sha256, wifKey))
 
     if (typeof decoded === 'string') return decoded
 
