@@ -7,11 +7,9 @@
   resolved "https://registry.npmjs.org/@bitauth/libauth/-/libauth-1.19.1.tgz"
   integrity sha512-R524tD5VwOt3QRHr7N518nqTVR/HKgfWL4LypekcGuNQN8R4PWScvuRcRzrY39A28kLztMv+TJdiKuMNbkU1ug==
 
-"@nexajs/hdnode@file:../Hdnode":
-  version "23.3.15"
-  resolved "file:../Hdnode"
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
+"@nexajs/utils@file:../Utils":
+  version "23.3.14"
+  resolved "file:../Utils"
 
 debug@4.3.4:
   version "4.3.4"

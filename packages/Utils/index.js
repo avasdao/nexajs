@@ -3,10 +3,12 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:utils')
 
 /* Import (local) modules. */
-// TBD
+import _bigIntToCompactUint from './src/bigIntToCompactUint.js'
+import _Opcodes from './src/Opcodes.js'
 
 /* Export (local) modules. */
-// TBD
+export const bigIntToCompactUint = _bigIntToCompactUint
+export const Opcodes = _Opcodes
 
 
 /**
@@ -14,7 +16,7 @@ const debug = debugFactory('nexa:utils')
  *
  * Reverse the bytes of a HEX string.
  */
-export const reverseBytes = (_bytes) => {
+export const reverseHex = (_bytes) => {
     return _bytes.match(/[a-fA-F0-9]{2}/g).reverse().join('')
 }
 
@@ -27,8 +29,8 @@ export const reverseBytes = (_bytes) => {
 export class Utils {
     // NOTE: We won't use a constructor, as this is a purely utility class.
 
-    static reverseBytes(_bytes) {
-        return reverseBytes(_bytes)
+    static reverseHex(_bytes) {
+        return reverseHex(_bytes)
     }
 }
 
@@ -40,7 +42,9 @@ const Nexa = {}
 Nexa.Utils = Utils
 
 /* Initialize Utilities modules. */
-Nexa.reverseBytes = reverseBytes
+Nexa.bigIntToCompactUint = bigIntToCompactUint
+Nexa.Opcodes = Opcodes
+Nexa.reverseHex = reverseHex
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

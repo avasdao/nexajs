@@ -1,10 +1,7 @@
 import {
-    bigIntToBinUint64LE,
     flattenBinArray,
     numberToBinUintLE,
 } from '@bitauth/libauth'
-
-import bigIntToCompactUint from './utils/bigIntToCompactUint.js'
 
 /**
  * Encode a single {@link Output} for inclusion in an encoded transaction.

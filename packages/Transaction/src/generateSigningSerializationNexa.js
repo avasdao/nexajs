@@ -6,14 +6,14 @@ import {
     numberToBinUint32LE,
 } from '@bitauth/libauth'
 
+import { Opcodes } from '@nexajs/utils'
+
 import {
     hashPrevouts,
     hashAmounts,
     hashSequence,
     hashOutputs,
 } from './signing-serialization.js'
-
-import Opcodes from './utils/Opcodes.js'
 
 const altLockScriptBin = new Uint8Array([
     Opcodes.OP_FROMALTSTACK,
