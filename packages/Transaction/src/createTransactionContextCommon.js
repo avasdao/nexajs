@@ -16,7 +16,7 @@ const encodeOutput = (output) =>
     new Uint8Array([
         numberToBinUintLE(1),
         ...output.amount,
-        ...bigIntToBitcoinVarInt(BigInt(output.lockingBytecode.length)),
+        // ...bigIntToBitcoinVarInt(BigInt(output.lockingBytecode.length)),
         ...output.lockingBytecode,
     ])
 
