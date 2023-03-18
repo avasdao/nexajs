@@ -1,5 +1,10 @@
 /* Import (library) modules. */
-import { mnemonicToSeed } from '@nexajs/hdnode'
+import { encodeAddress } from '@nexajs/address'
+import {
+    deriveHdPrivateNodeFromSeed,
+    encodePrivateKeyWif,
+    mnemonicToSeed
+} from '@nexajs/hdnode'
 
 /* Import (local) modules. */
 import getUnspentOutputs from './getUnspentOutputs.js'
@@ -36,12 +41,14 @@ export default async (_params) => {
 
     /* Set mnemonic. */
     const mnemonic = _params.mnemonic
+    // console.log('\nMNEMONIC', mnemonic)
 
     /* Set receiving address. */
     const receiver = _params.receiver
+    // console.log('\nRECEIVER', receiver)
 
     /* Calculate seed. */
-    const seed = mnemonicToSeed(mnemonic).slice(2)
+    const seed = hexToBin(mnemonicToSeed(mnemonic).slice(2))
     // console.log('SEED', seed)
 
     /* Initialize HD node. */
@@ -53,7 +60,7 @@ export default async (_params) => {
     // console.log('CHILD', child)
 
     const privateKey = child.privateKey
-    console.log('PRIVATE KEY (hex)', binToHex(privateKey))
+    // console.log('PRIVATE KEY (hex)', binToHex(privateKey))
 
     /* Derive the corresponding public key. */
     const publicKey = secp256k1.derivePublicKeyCompressed(privateKey)

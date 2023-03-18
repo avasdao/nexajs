@@ -5,12 +5,11 @@
 "@bitauth/libauth@1.19.1":
   version "1.19.1"
 
-"@nexajs/hdnode@file:../Hdnode":
-  version "23.3.16"
-  resolved "file:../Hdnode"
+"@nexajs/address@file:../Address":
+  version "23.3.11"
+  resolved "file:../Address"
   dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@ethersproject/hdnode" "5.7.0"
+    big-integer "1.6.51"
 
 debug@4.3.4:
   version "4.3.4"

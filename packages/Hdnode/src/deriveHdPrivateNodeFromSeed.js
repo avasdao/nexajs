@@ -23,6 +23,7 @@ export default (
     crypto,
     seed
 ) => {
+    // FIXME Verify that seed is "binary" Uint8Array.
     const mac = hmacSha512(crypto.sha512, bip32HmacSha512Key, seed)
     const privateKey = mac.slice(0, halfHmacSha512Length)
     const chainCode = mac.slice(halfHmacSha512Length)
