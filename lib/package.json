@@ -20,7 +20,7 @@
     "@nexajs/purse": "23.2.22",
     "@nexajs/rostrum": "23.3.11",
     "@nexajs/rpc": "23.3.11",
-    "@nexajs/transaction": "23.3.17",
+    "@nexajs/transaction": "23.3.18",
     "@nexajs/utils": "23.3.16"
   },
   "devDependencies": {

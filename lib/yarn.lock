@@ -510,14 +510,6 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/hdnode@23.3.16":
-  version "23.3.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.16.tgz#af87f55e6c07bb77af1324afde033d051a0db105"
-  integrity sha512-iULRIyO2EC3rOrPOl+YH5kwHZDBafTEA+x6nRCdf0HIk2Bqe8H7scqPwoYFDpl0Il6/mh44gEXP057P9yGVqng==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@ethersproject/hdnode" "5.7.0"
-
 "@nexajs/hdnode@23.3.17":
   version "23.3.17"
   resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.17.tgz#157dfcfc318c36ae26bc1597d9d194e032a8f33d"
@@ -548,14 +540,14 @@
   dependencies:
     superagent "8.0.6"
 
-"@nexajs/transaction@23.3.17":
-  version "23.3.17"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.3.17.tgz#29ebec1797586d6a30e9726fece27b162f23bcfd"
-  integrity sha512-IQbpK72d30mceB5O+eaY90LRJrZ/aQrc3dMj78LHM3CLRag7oMlUUoY3BqFkzZevUW3CoyBdKa+egY1jJvy3jg==
+"@nexajs/transaction@23.3.18":
+  version "23.3.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.3.18.tgz#3ede0ea3c8e75d529e68faa07572837b4926efae"
+  integrity sha512-otGUddJ3ARa6Iwu8s5zxsXzi0kFBtzHFtPMFmJwVRvIy4JbprWkpUFDEqZQOOPGjMHGt9PEPzDuxX8HvXlB2gA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.3.11"
-    "@nexajs/hdnode" "23.3.16"
+    "@nexajs/hdnode" "23.3.17"
     "@nexajs/utils" "23.3.16"
 
 "@nexajs/utils@23.3.16":
