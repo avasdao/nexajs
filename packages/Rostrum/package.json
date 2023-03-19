@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/rostrum",
-  "version": "23.3.11",
+  "version": "23.3.18",
   "description": "Provides convenient browser access to ALL methods supported by remote Rostrum servers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,12 +8,12 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "events": "3.3.0",
     "isomorphic-ws": "5.0.0",
     "uuid": "9.0.0",
     "ws": "8.12.1"
   },
   "devDependencies": {
-    "debug": "4.3.4",
-    "events": "3.3.0"
+    "debug": "4.3.4"
   }
 }
