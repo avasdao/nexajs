@@ -84,8 +84,9 @@ const broadcastNexa = (_rawTx) => {
 
     /* Handle socket messages. */
     socket.onmessage = (msg) => {
-        console.log('MESSAGE (data):', msg.data)
+        // console.log('MESSAGE (data):', msg.data)
 
+        /* Resolve message data. */
         resolve(msg.data)
 
         /* Close connection. */
