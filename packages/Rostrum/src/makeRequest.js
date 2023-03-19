@@ -9,7 +9,12 @@ const debug = debugFactory('nexa:rostrum:makeRequest')
 /* Set active connection id. */
 const ACTIVE_CONN_ID = 0
 
+/* Initialize request queue. */
 const requestQueue = []
+
+/* Initialize holders. */
+let resolve
+let reject
 
 /* Initilize connections manager. */
 const connMgr = {
@@ -132,6 +137,10 @@ export default (_request) => {
 
     /* Return a promise. */
     return new Promise(function (_resolve, _reject) {
+        /* Set holders. */
+        resolve = _resolve
+        reject = _reject
+
         /* Initialize (request) promise. */
         connMgr.requests[id] = {}
 
