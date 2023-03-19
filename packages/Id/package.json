@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/id",
-  "version": "23.3.13",
+  "version": "23.3.19",
   "description": "Allows software to interface with a server, securely using the Nexa Identity protocol (nexid).",
   "main": "index.js",
   "type": "module",
