@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/purse",
-  "version": "23.3.17",
+  "version": "23.3.18",
   "description": "Manages individual unspent transaction outputs (UTXOs).",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -14,10 +14,9 @@
     "@nexajs/hdnode": "23.3.17",
     "@nexajs/rostrum": "23.3.11",
     "@nexajs/transaction": "23.3.18",
+    "debug": "4.3.4",
+    "events": "3.3.0",
     "uuid": "9.0.0"
   },
-  "devDependencies": {
-    "debug": "4.3.4",
-    "events": "3.3.0"
-  }
+  "devDependencies": {}
 }

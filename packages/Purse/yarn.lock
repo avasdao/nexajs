@@ -223,14 +223,14 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.3.11", "@nexajs/address@^23.3.11":
+"@nexajs/address@23.3.11":
   version "23.3.11"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.3.11.tgz#763b114fc1e32dfcac186defa33456f547379aa6"
   integrity sha512-jkzEfFaJbOEFPeenvdXkLIBHuggN3y4RiTOz/Gt5Aqo6NrGtPWcF+GkxdwnA+IsGHpYe8vkixXxeWpCF61wTBw==
   dependencies:
     big-integer "1.6.51"
 
-"@nexajs/blockchain@^23.3.16":
+"@nexajs/blockchain@23.3.16":
   version "23.3.16"
   resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.3.16.tgz#e60676bcca6fd281d44324e8af3da8b7949b21e6"
   integrity sha512-MTyVHCd4lk0kXt24Dj36nXddfjWxCAgODV6leN2Rz41O9nxegNWstkXYKNg6RyBQQ7kPfmq7AJUtWzK8x+aXQg==
@@ -238,7 +238,7 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/hdnode@23.3.17", "@nexajs/hdnode@^23.3.17":
+"@nexajs/hdnode@23.3.17":
   version "23.3.17"
   resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.17.tgz#157dfcfc318c36ae26bc1597d9d194e032a8f33d"
   integrity sha512-t6G6jD8w09fgnaxn063EfS/lHPadYr5SqWXua26QKHF3w4iFlS7Q3l5HflbSu/bPgHejgTvPkXRWXR83XmnH8g==
@@ -256,7 +256,7 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/transaction@^23.3.18":
+"@nexajs/transaction@23.3.18":
   version "23.3.18"
   resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.3.18.tgz#3ede0ea3c8e75d529e68faa07572837b4926efae"
   integrity sha512-otGUddJ3ARa6Iwu8s5zxsXzi0kFBtzHFtPMFmJwVRvIy4JbprWkpUFDEqZQOOPGjMHGt9PEPzDuxX8HvXlB2gA==
@@ -295,7 +295,7 @@ brorand@^1.1.0:
 
 debug@4.3.4:
   version "4.3.4"
-  resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
@@ -315,7 +315,7 @@ elliptic@6.5.4:
 
 events@3.3.0:
   version "3.3.0"
-  resolved "https://registry.npmjs.org/events/-/events-3.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
@@ -362,12 +362,12 @@ minimalistic-crypto-utils@^1.0.1:
 
 ms@2.1.2:
   version "2.1.2"
-  resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
 uuid@9.0.0:
   version "9.0.0"
-  resolved "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 ws@8.12.1:
