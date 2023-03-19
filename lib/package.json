@@ -17,7 +17,7 @@
     "@nexajs/address": "23.3.11",
     "@nexajs/blockchain": "23.3.16",
     "@nexajs/hdnode": "23.3.17",
-    "@nexajs/id": "23.1.10",
+    "@nexajs/id": "23.3.19",
     "@nexajs/purse": "23.3.17",
     "@nexajs/rostrum": "23.3.11",
     "@nexajs/rpc": "23.3.11",

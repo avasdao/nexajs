@@ -519,10 +519,12 @@
     "@ethersproject/hdnode" "5.7.0"
     "@nexajs/address" "23.3.11"
 
-"@nexajs/id@23.1.10":
-  version "23.1.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/id/-/id-23.1.10.tgz#069c8c613509bd761c1ce84cb756e6de7c50b1f6"
-  integrity sha512-aakgdaV4j9O3Yk9igw4Oxuzj3F85zvIOYs20gMPNtUO4PY4coQFZermQrXrs+PGpHUNgQb6NJC433LYh6o9d+w==
+"@nexajs/id@23.3.19":
+  version "23.3.19"
+  resolved "https://registry.yarnpkg.com/@nexajs/id/-/id-23.3.19.tgz#fbd6f08a287d2ca7088b023203f16ad9327db5d8"
+  integrity sha512-PBGE+NPmfLD/SQePYgW0Sx+iOlzoUQWc5MIu2DBxzyioeysVvQHIyNw2yGfaFUs8QrOolwQonnp+YIyBW3rGwA==
+  dependencies:
+    uuid "9.0.0"
 
 "@nexajs/purse@23.3.17":
   version "23.3.17"
