@@ -1,6 +1,6 @@
 # NexaJS Packages
 
-The following suite of 26 packages compose the entire NexaJS Library and Software Development Kit (SDK).
+The following suite of 33 packages compose the entire NexaJS Library and Software Development Kit (SDK).
 
 
 ## Account
@@ -10,7 +10,18 @@ _TBD_
 
 ## Address
 
-_TBD_
+Performs various address functions like:
+- Base32 conversions
+- Base58 conversions
+- Decoding
+- Encoding
+- Formatting
+- Validation
+
+
+## Analytics
+
+Supports telemetry recording to a back-end database and report generation via web-based, responsive charts.
 
 
 ## Application
@@ -20,15 +31,31 @@ _TBD_
 
 ## Blockchain
 
-_TBD_
+Performs general on-chain functions like:
+- Broadcasting of raw transactions
 
 
 ## Charts
 
+Create web-based, responsive charts.
+
+
+## Crypto
+
 _TBD_
 
 
+## Database
+
+Manages front-end and back-end database connections and transactions. Front-end is supported by [PouchDB](https://pouchdb.com/), with back-end supporting by [CouchDB](https://couchdb.apache.org/).
+
+
 ## Decentralized Finance (DeFi)
+
+_TBD_
+
+
+## Deno
 
 _TBD_
 
@@ -38,17 +65,12 @@ _TBD_
 _TBD_
 
 
-## Games
-
-_TBD_
-
-
 ## HD Node
 
 _TBD_
 
 
-## Nexa ID
+## Nexa ID Protocol
 
 _TBD_
 
@@ -58,7 +80,7 @@ _TBD_
 _TBD_
 
 
-## Logger
+## Lightning Network
 
 _TBD_
 
@@ -68,49 +90,76 @@ _TBD_
 _TBD_
 
 
+## Message
+
+_TBD_
+
+
 ## Meta
+
+_TBD_
+
+
+## Nostr
+
+_TBD_
+
+
+## Nuxt
 
 _TBD_
 
 
 ## Privacy
 
-_TBD_
+Support for coin joining and masking protocols, including:
+1. CashShuffle
+2. CashFusion
 
 
 ## Purse
 
-_TBD_
+Manages individual Unspent Transaction Outputs (UTXOs).
+
+
+## Rostrum
+
+Exposes all of the Rostrum node endpoints. Manages a connection pool (eg. 2 of 3) for data redundancy and application security.
 
 
 ## Remote Procedure Call (RPC)
 
-_TBD_
+Provides a simple communications gateway to the Core node for Node.js.
+
+> Please Note: This package DOES NOT work on the client (in web browser).
 
 
 ## Script
 
-_TBD_
-
-
-## Server
-
-_TBD_
+Build and compile the "wise" contract scripts of Nexa.
 
 
 ## Slim
 
-_TBD_
+A minimal (lightweight) version of the full NexaJS library containing ONLY the minimum libraries required for effective operational use in environments that have strict (data/security) constraints.
 
 
 ## Token
 
-_TBD_
+Manages tokens functions, including:
+- info: Provides token information (eg. genesis details)
+- new: Create a new token group
+- mint: Create new tokens from an existing group
+- melt: Destroy existing tokens
+- send: Send tokens to an address
 
 
 ## Transaction
 
-_TBD_
+Manages a full Nexa transaction, including:
+- Unspent output retrieval
+- Transaction serialization
+- UTXO signing
 
 
 ## Trezor Hardware Wallet
@@ -120,9 +169,24 @@ _TBD_
 
 ## Utilities
 
-_TBD_
+A suite of "pure" utilities to support the other NexaJS libraries.
 
 
 ## Wallet
 
-_TBD_
+Manages the basic wallet functions, including:
+- HD wallet creation
+- Address management
+- Balance management
+
+
+## WebAssembly (WASM)
+
+A polyfill that allows WebAssembly (WASM) to be supported in environments that don't natively support it (eg. React Native).
+
+
+## Zero Knowledge
+
+Manages functions requiring use of zero knowledge proofs, including:
+- ZK-SNARKs
+- ZK-STARKs

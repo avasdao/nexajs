@@ -1,0 +1,44 @@
+{
+  "name": "react-native-wasm",
+  "title": "React Native Wasm",
+  "version": "0.1.3",
+  "description": "A polyfill to use WebAssembly in React Native.",
+  "main": "src/index.js",
+  "files": [
+    "README.md",
+    "android",
+    "ios",
+    "src",
+    "react-native-wasm.podspec"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "git clean -d -x -f ./android && git clean -d -x -f ./ios"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "0.61.5"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.59.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inokawa/react-native-wasm.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "webassembly",
+    "wasm",
+    "polyfill",
+    "ios",
+    "android"
+  ],
+  "author": "inokawa <stratoooo-taster@yahoo.co.jp> (https://github.com/inokawa/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inokawa/react-native-wasm/issues"
+  },
+  "homepage": "https://github.com/inokawa/react-native-wasm#readme"
+}
