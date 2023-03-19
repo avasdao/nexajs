@@ -97,6 +97,8 @@
 
 "@ethersproject/hdnode@5.7.0":
   version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@ethersproject/hdnode/-/hdnode-5.7.0.tgz#e627ddc6b466bc77aebf1a6b9e47405ca5aef9cf"
+  integrity sha512-OmyYo9EENBPPf4ERhR7oj6uAtUAhYGqOnIS+jE5pTXvdKBS99ikzq1E7Iv0ZQZ5V36Lqx1qZLeak0Ra16qpeOg==
   dependencies:
     "@ethersproject/abstract-signer" "^5.7.0"
     "@ethersproject/basex" "^5.7.0"
@@ -221,11 +223,17 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@file:../Address":
+"@nexajs/address@^23.3.11":
   version "23.3.11"
-  resolved "file:../Address"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.3.11.tgz#763b114fc1e32dfcac186defa33456f547379aa6"
+  integrity sha512-jkzEfFaJbOEFPeenvdXkLIBHuggN3y4RiTOz/Gt5Aqo6NrGtPWcF+GkxdwnA+IsGHpYe8vkixXxeWpCF61wTBw==
   dependencies:
     big-integer "1.6.51"
+
+big-integer@1.6.51:
+  version "1.6.51"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
+  integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
 
 bn.js@^4.11.9:
   version "4.12.0"
@@ -267,7 +275,7 @@ events@3.3.0:
   resolved "https://registry.npmjs.org/events/-/events-3.3.0.tgz"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-hash.js@^1.0.0, hash.js@^1.0.3, hash.js@1.1.7:
+hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.7"
   resolved "https://registry.npmjs.org/hash.js/-/hash.js-1.1.7.tgz"
   integrity sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
