@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "23.3.18",
+  "version": "23.3.19",
   "license": "MIT",
   "description": "A comprehensive JavaScript Library + SDK for building Nexa applications on Node.js (back-end) and web browsers (front-end).",
   "author": "Ava's DAO",
@@ -14,15 +14,16 @@
     "@bitauth/libauth": "1.19.1",
     "@ethersproject/hdnode": "5.7.0",
     "@ethersproject/random": "5.7.0",
-    "@nexajs/address": "23.3.11",
-    "@nexajs/blockchain": "23.3.16",
-    "@nexajs/hdnode": "23.3.18",
+    "@nexajs/address": "23.3.18",
+    "@nexajs/blockchain": "23.3.18",
+    "@nexajs/hdnode": "23.3.19",
     "@nexajs/id": "23.3.19",
-    "@nexajs/purse": "23.3.19",
-    "@nexajs/rostrum": "23.3.11",
-    "@nexajs/rpc": "23.3.11",
-    "@nexajs/transaction": "23.3.18",
-    "@nexajs/utils": "23.3.16"
+    "@nexajs/purse": "23.3.19-b",
+    "@nexajs/rostrum": "23.3.18",
+    "@nexajs/rpc": "23.3.18",
+    "@nexajs/transaction": "23.3.19",
+    "@nexajs/utils": "23.3.16",
+    "events": "3.3.0"
   },
   "devDependencies": {
     "browser-resolve": "2.0.0",
@@ -31,7 +32,6 @@
     "commander": "10.0.0",
     "debug": "4.3.4",
     "esmify": "2.1.1",
-    "events": "3.3.0",
     "mocha": "10.0.0",
     "uglifyjs": "2.4.11"
   }
