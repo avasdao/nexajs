@@ -539,12 +539,15 @@
   dependencies:
     superagent "8.0.6"
 
-"@nexajs/transaction@23.3.16":
-  version "23.3.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.3.16.tgz#bbbdff4c6a1d7c48cb4dd483865c657df81fff09"
-  integrity sha512-IhYEEy1M95sJzXbpE4ZdAN4Ngn+ko+i+iUIgk3H2FDuH9sARjRcrRlQUzQgfnvgW8QjMaK1P61aRB5K0ovQcaQ==
+"@nexajs/transaction@23.3.17":
+  version "23.3.17"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.3.17.tgz#29ebec1797586d6a30e9726fece27b162f23bcfd"
+  integrity sha512-IQbpK72d30mceB5O+eaY90LRJrZ/aQrc3dMj78LHM3CLRag7oMlUUoY3BqFkzZevUW3CoyBdKa+egY1jJvy3jg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
+    "@nexajs/address" "23.3.11"
+    "@nexajs/hdnode" "23.3.16"
+    "@nexajs/utils" "23.3.16"
 
 "@nexajs/utils@23.3.16":
   version "23.3.16"
