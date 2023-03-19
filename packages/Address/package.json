@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/address",
-  "version": "23.3.11",
+  "version": "23.3.18",
   "description": "A suite of Nexa address formatting utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,10 +8,10 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "big-integer": "1.6.51"
+    "big-integer": "1.6.51",
+    "events": "3.3.0"
   },
   "devDependencies": {
-    "debug": "4.3.4",
-    "events": "3.3.0"
+    "debug": "4.3.4"
   }
 }

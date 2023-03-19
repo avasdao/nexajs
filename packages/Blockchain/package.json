@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/blockchain",
-  "version": "23.3.16",
+  "version": "23.3.18",
   "description": "Manages on-chain activities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,11 +8,11 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "events": "3.3.0",
     "isomorphic-ws": "5.0.0",
     "ws": "8.13.0"
   },
   "devDependencies": {
-    "debug": "4.3.4",
-    "events": "3.3.0"
+    "debug": "4.3.4"
   }
 }
