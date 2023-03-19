@@ -519,6 +519,15 @@
     "@ethersproject/hdnode" "5.7.0"
     "@nexajs/address" "23.3.11"
 
+"@nexajs/hdnode@23.3.18":
+  version "23.3.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.18.tgz#acb2993a1419014f4da35b188a73dbd0fa1afa4a"
+  integrity sha512-KW+F05mQTPtmGTNmH2+Rc0TOSLByBRyczszQbLwEqkDq4jwK4K/GDJ/MEmDNBnVWrI/lv/rfPT7/48C9VpgY8g==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@ethersproject/hdnode" "5.7.0"
+    "@nexajs/address" "23.3.11"
+
 "@nexajs/id@23.3.19":
   version "23.3.19"
   resolved "https://registry.yarnpkg.com/@nexajs/id/-/id-23.3.19.tgz#fbd6f08a287d2ca7088b023203f16ad9327db5d8"
@@ -526,10 +535,10 @@
   dependencies:
     uuid "9.0.0"
 
-"@nexajs/purse@23.3.17":
-  version "23.3.17"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.3.17.tgz#84b09aeeb16d61fd047bdba83d01846f15bbf692"
-  integrity sha512-36Tvc7cLGngOiop4t0IeCftYKKXEnxrVnDH3v0rvgqsfGDrx67RbOhZkogPC/8ZIJZqps+Q/CSli/cmX1Kf/ig==
+"@nexajs/purse@23.3.19":
+  version "23.3.19"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.3.19.tgz#0675f900edd1e0e5f1d23cb96399e048720747ff"
+  integrity sha512-eHz5xTKY2IIgg924qW03Kc2Cmxv/l0FYE2RSbqsPWlOKzZ/Fb4m+nbMo0MKdAWoz/S2JPcFoA7HJ0P/stUlEjw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.3.11"
@@ -537,6 +546,7 @@
     "@nexajs/hdnode" "23.3.17"
     "@nexajs/rostrum" "23.3.11"
     "@nexajs/transaction" "23.3.18"
+    events "3.3.0"
     uuid "9.0.0"
 
 "@nexajs/rostrum@23.3.11":

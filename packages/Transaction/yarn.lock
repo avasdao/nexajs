@@ -230,10 +230,10 @@
   dependencies:
     big-integer "1.6.51"
 
-"@nexajs/hdnode@23.3.17":
-  version "23.3.17"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.17.tgz#157dfcfc318c36ae26bc1597d9d194e032a8f33d"
-  integrity sha512-t6G6jD8w09fgnaxn063EfS/lHPadYr5SqWXua26QKHF3w4iFlS7Q3l5HflbSu/bPgHejgTvPkXRWXR83XmnH8g==
+"@nexajs/hdnode@23.3.18":
+  version "23.3.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.18.tgz#acb2993a1419014f4da35b188a73dbd0fa1afa4a"
+  integrity sha512-KW+F05mQTPtmGTNmH2+Rc0TOSLByBRyczszQbLwEqkDq4jwK4K/GDJ/MEmDNBnVWrI/lv/rfPT7/48C9VpgY8g==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@ethersproject/hdnode" "5.7.0"

@@ -11,13 +11,13 @@
     "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.3.11",
     "@nexajs/blockchain": "23.3.16",
-    "@nexajs/hdnode": "23.3.17",
+    "@nexajs/hdnode": "23.3.18",
     "@nexajs/rostrum": "23.3.11",
     "@nexajs/transaction": "23.3.18",
     "events": "3.3.0",
     "uuid": "9.0.0"
   },
   "devDependencies": {
-      "debug": "4.3.4"
+    "debug": "4.3.4"
   }
 }
