@@ -27,6 +27,36 @@ echo "    - address.min.js"
 echo "  done."
 echo
 
+echo "  Building [ Blockchain ] package..."
+echo "/* NexaJS <Blockchain> v${todays_date} */" > ../cdn/blockchain.js
+browserify ../packages/Blockchain/index.js -p esmify >> ../cdn/blockchain.js
+echo "    - blockchain.js"
+echo "/* NexaJS <Blockchain> v${todays_date} */" > ../cdn/blockchain.min.js
+browserify ../packages/Blockchain/index.js -p esmify | uglifyjs -c >> ../cdn/blockchain.min.js
+echo "    - blockchain.min.js"
+echo "  done."
+echo
+
+echo "  Building [ HD Node ] package..."
+echo "/* NexaJS <HD Node> v${todays_date} */" > ../cdn/hdnode.js
+browserify ../packages/Hdnode/index.js -p esmify >> ../cdn/hdnode.js
+echo "    - hdnode.js"
+echo "/* NexaJS <HD Node> v${todays_date} */" > ../cdn/hdnode.min.js
+browserify ../packages/Hdnode/index.js -p esmify | uglifyjs -c >> ../cdn/hdnode.min.js
+echo "    - hdnode.min.js"
+echo "  done."
+echo
+
+echo "  Building [ Purse ] package..."
+echo "/* NexaJS <Purse> v${todays_date} */" > ../cdn/purse.js
+browserify ../packages/Purse/index.js -p esmify >> ../cdn/purse.js
+echo "    - purse.js"
+echo "/* NexaJS <Purse> v${todays_date} */" > ../cdn/purse.min.js
+browserify ../packages/Purse/index.js -p esmify | uglifyjs -c >> ../cdn/purse.min.js
+echo "    - purse.min.js"
+echo "  done."
+echo
+
 echo "  Building [ Rostrum ] package..."
 echo "/* NexaJS <Rostrum> v${todays_date} */" > ../cdn/rostrum.js
 browserify ../packages/Rostrum/index.js -p esmify >> ../cdn/rostrum.js
@@ -34,6 +64,16 @@ echo "    - rostrum.js"
 echo "/* NexaJS <Rostrum> v${todays_date} */" > ../cdn/rostrum.min.js
 browserify ../packages/Rostrum/index.js -p esmify | uglifyjs -c >> ../cdn/rostrum.min.js
 echo "    - rostrum.min.js"
+echo "  done."
+echo
+
+echo "  Building [ Transaction ] package..."
+echo "/* NexaJS <Transaction> v${todays_date} */" > ../cdn/transaction.js
+browserify ../packages/Transaction/index.js -p esmify >> ../cdn/transaction.js
+echo "    - transaction.js"
+echo "/* NexaJS <Transaction> v${todays_date} */" > ../cdn/transaction.min.js
+browserify ../packages/Transaction/index.js -p esmify | uglifyjs -c >> ../cdn/transaction.min.js
+echo "    - transaction.min.js"
 echo "  done."
 echo
 
