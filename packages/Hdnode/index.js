@@ -1,6 +1,3 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:hdnode')
@@ -33,15 +30,8 @@ export const mnemonicToSeed = _mnemonicToSeed
  *
  * Manages HD node functions.
  */
-export class Hdnode extends EventEmitter {
-    constructor(_params) {
-        /* Initialize HD Node class. */
-        debug('Initializing HD Node...')
-        debug(JSON.stringify(_params, null, 2))
-        super()
-
-        // TBD
-    }
+export class Hdnode {
+    // NOTE: We won't use a constructor, as this is a "pure" class.
 
     test() {
         return 'HD Node (Instance) is working!'

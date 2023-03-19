@@ -27,7 +27,7 @@ export const reverseHex = (_bytes) => {
  * A suite of useful utilities.
  */
 export class Utils {
-    // NOTE: We won't use a constructor, as this is a purely utility class.
+    // NOTE: We won't use a constructor, as this is a "pure" class.
 
     static reverseHex(_bytes) {
         return reverseHex(_bytes)
