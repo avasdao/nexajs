@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
+const debug = debugFactory('nexa:privacy')
 
 /* Import (local) modules. */
 // TBD
