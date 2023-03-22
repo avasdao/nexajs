@@ -5,6 +5,11 @@ import { EventEmitter } from 'events'
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:id')
 
+/* Import (local) modules. */
+import _isSafuPassword from './src/isSafuPassword.js'
+
+/* Export (local) modules. */
+export const isSafuPassword = _isSafuPassword
 
 export const login = () => {
     return 'Welcome!'
@@ -34,7 +39,7 @@ const Nexa = {}
 Nexa.Id = Id
 
 /* Initialize ID modules. */
-// TBD
+Nexa.isSafuPassword = isSafuPassword
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
