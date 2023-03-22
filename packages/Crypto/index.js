@@ -6,10 +6,14 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:crypto')
 
 /* Import (local) modules. */
-// TBD
+import decrypt as _decrypt from './decrypt'
+import encrypt as _encrypt from './encrypt'
+import passwordToSafu as _passwordToSafu from './passwordToSafu'
 
 /* Export (local) modules. */
-// TBD
+export const decrypt = _decrypt
+export const encrypt = _encrypt
+export const passwordToSafu = _passwordToSafu
 
 
 /**
@@ -43,7 +47,9 @@ const Nexa = {}
 Nexa.Crypto = Crypto
 
 /* Initialize Crypto modules. */
-// TBD
+Nexa.decrypt = decrypt
+Nexa.encrypt = encrypt
+Nexa.passwordToSafu = passwordToSafu
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
