@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/query",
+  "version": "23.3.23",
+  "description": "Manages GraphQL connections and requests.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}
