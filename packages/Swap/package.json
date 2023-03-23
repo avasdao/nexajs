@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/swap",
+  "version": "23.3.23",
+  "description": "Manages instant exchange transactions.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}
