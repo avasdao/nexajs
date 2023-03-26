@@ -3,10 +3,10 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:script')
 
 /* Import (local) modules. */
-import Opcodes as _Opcodes from './src/Opcodes.js'
+import OP as _OP from './src/Codes.js'
 
 /* Export (local) modules. */
-export const Opcodes = _Opcodes
+export const OP = _OP
 
 
 /**
@@ -39,7 +39,7 @@ const Nexa = {}
 Nexa.Script = Script
 
 /* Initialize Script modules. */
-Nexa.Opcodes = Opcodes
+Nexa.OP = OP
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
