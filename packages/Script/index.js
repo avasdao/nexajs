@@ -1,15 +1,12 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
+const debug = debugFactory('nexa:script')
 
 /* Import (local) modules. */
-// TBD
+import Opcodes as _Opcodes from './src/Opcodes.js'
 
 /* Export (local) modules. */
-// TBD
+export const Opcodes = _Opcodes
 
 
 /**
@@ -17,12 +14,11 @@ const debug = debugFactory('nexa:crypto')
  *
  * Manages script functions.
  */
-export class Script extends EventEmitter {
+export class Script {
     constructor(_params) {
         /* Initialize Script class. */
         debug('Initializing Script...')
         debug(JSON.stringify(_params, null, 2))
-        super()
 
         // TBD
     }
@@ -43,7 +39,7 @@ const Nexa = {}
 Nexa.Script = Script
 
 /* Initialize Script modules. */
-// TBD
+Nexa.Opcodes = Opcodes
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
