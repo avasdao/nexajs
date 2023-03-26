@@ -1,0 +1,10 @@
+{
+  "name": "@nexajs/bridge",
+  "version": "23.3.26",
+  "description": "Manages (cross-chain) bridged assets.",
+  "main": "index.js",
+  "repository": "https://github.com/avasdao/nexajs",
+  "author": "NexaJS developers",
+  "license": "MIT",
+  "type": "module"
+}

@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:swap')
+const debug = debugFactory('nexa:bridge')
 
 /* Import (local) modules. */
 // TBD
@@ -13,14 +13,14 @@ const debug = debugFactory('nexa:swap')
 
 
 /**
- * Swap Class
+ * Bridge Class
  *
  * Manages script functions.
  */
-export class Swap extends EventEmitter {
+export class Bridge extends EventEmitter {
     constructor(_params) {
-        /* Initialize Swap class. */
-        debug('Initializing Swap...')
+        /* Initialize Bridge class. */
+        debug('Initializing Bridge...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
@@ -28,10 +28,10 @@ export class Swap extends EventEmitter {
     }
 
     test() {
-        return 'Swap (Instance) is working!'
+        return 'Bridge (Instance) is working!'
     }
     static test() {
-        return 'Swap (Static) is working!'
+        return 'Bridge (Static) is working!'
     }
 }
 
@@ -39,10 +39,10 @@ export class Swap extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Swap class. */
-Nexa.Swap = Swap
+/* Initialize Bridge class. */
+Nexa.Bridge = Bridge
 
-/* Initialize Swap modules. */
+/* Initialize Bridge modules. */
 // TBD
 
 /* Export Nexa to globalThis. */
