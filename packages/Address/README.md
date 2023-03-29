@@ -7,20 +7,42 @@ A suite of Address query, monitoring and formatting utilities.
 
 Below is the standard block of information for a Nexa Address.
 
-```
+```graphql
 {
   balance: BigInt
   received: BigInt
   sent: BigInt
   unconfirmed: BigInt
   txcount: Integer
-  transactions: string[]
+  transactions: String[]
 }
 ```
 
+> NOTE: All values are in satoshis.
+
 ### Balance
 
-This is the current "confirmed" NEXA balance (amounts are in Satoshis).
+This is the current "confirmed" NEXA balance.
+
+### Received
+
+The total amount of NEXA received by this Address.
+
+### Sent
+
+The total amount of NEXA sent from this Address.
+
+### Unconfirmed
+
+This is the current "unconfirmed" NEXA balance.
+
+### Transaction Count
+
+The total number of transactions associated with this Address.
+
+### Transactions
+
+A list of all txidem(s) associated with this Address.
 
 
 ## Address Methods
@@ -38,7 +60,6 @@ Disassembles a Base58-encoded Nexa address.
 Retrieve the latest on-chain data about an Address.
 
 _see [Address Details](#address-details) above_
-
 
 ### `watchAddress(string|array)`
 
