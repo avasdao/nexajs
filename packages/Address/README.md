@@ -18,7 +18,7 @@ Below is the standard block of information for a Nexa Address.
 }
 ```
 
-> NOTE: All values are in satoshis.
+> ___NOTE:__ All values are in satoshis._
 
 ### Balance
 
@@ -65,6 +65,10 @@ _see [Address Details](#address-details) above_
 
 Allows you to monitor for changes to an Address.
 
+#### Method Option
+
+> __NOTE:__ This is the recommended option.
+
 ```js
 import { watchAddress } from '@nexajs/address'
 
@@ -74,6 +78,51 @@ const notifier = (updatedInfo) => {
     console.log(updatedInfo)
 }
 
-watchAddress(myAddress, notifier)
+const cleanup = watchAddress(myAddress, notifier)
+// cleanup() // Execute to cancel (and cleanup) an Address subscription.
+```
 
+#### Library Option
+
+```js
+import Nexa from 'nexajs'
+
+const myAddress = 'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5'
+
+const notifier = (updatedInfo) => {
+    console.log(updatedInfo)
+}
+
+const cleanup = Nexa.watchAddress(myAddress, notifier)
+// cleanup() // Execute to cancel (and cleanup) an Address subscription.
+```
+
+#### Advanced Option
+
+```js
+/* Set advanced parameters. */
+const params = {
+  address: [
+    myFirstAddress,
+    mySecondAddress
+  ],
+  notif: notifier,
+  conn: {
+    provider: [
+      {
+        type: 'rostrum',
+        src: 'rostrum.myawesomeproject.com:20004'
+      },
+      {
+        type: 'graphql',
+        src: 'https://myawesomeproject.com/graphql'
+      }
+    ],
+    threshold: 1,
+    timeout: 5000
+  }
+}
+
+const cleanup = watchAddress(params)
+// cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
