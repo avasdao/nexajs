@@ -213,6 +213,35 @@ export const getAddressUnspent = async (_address) => {
 }
 
 /**
+ * (Blockchain) Get Block (Info)
+ *
+ * Return an the FULL block details.
+ *
+ * Version added: Rostrum 8.1
+ */
+export const getBlock = async (_hash_or_height) => {
+    debug(`Blockchain->Block->Info [ hash or height: ${_hash_or_height} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.block.get'
+
+    /* Set parameters. */
+    const params = [
+        _hash_or_height,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
  * (Token) Genesis Info
  *
  * Info from token creation transaction.

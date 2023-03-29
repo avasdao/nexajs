@@ -7,7 +7,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 3000"
   },
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {

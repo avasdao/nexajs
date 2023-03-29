@@ -55,9 +55,26 @@ connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
 
 /* Handle message. */
 connMgr.pool[ACTIVE_CONN_ID].onmessage = async (_msg) => {
-    // console.info('Connection [ %s ] sent ->', id, _msg)
+    // console.info('Connection [ %s ] sent ->', ACTIVE_CONN_ID, _msg?.data)
 
+    let error
+    let json
     let id
+
+    const data = _msg?.data
+
+    try {
+        /* Decode data. */
+        json = JSON.parse(data)
+        // console.log('JSON', json)
+
+        // NOTE: Reject this promise.
+        if (json?.error) {
+            return reject({ error: json.error?.message })
+        }
+    } catch (err) {
+        return reject(err)
+    }
 
     /* Validate message data. */
     if (_msg?.data) {
@@ -87,10 +104,6 @@ connMgr.pool[ACTIVE_CONN_ID].onmessage = async (_msg) => {
         }
     }
 
-    // NOTE: Reject this promise.
-    reject({
-        error: `Oops! Sorry, we couldn't complete your request.`
-    })
 }
 
 /* Handle connection close. */
