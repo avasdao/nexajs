@@ -3,6 +3,21 @@
 A suite of Address query, monitoring and formatting utilities.
 
 
+## Contents
+
+- [Address Details](#address-details)
+  - [Balance](#balance)
+  - [Received](#received)
+  - [Sent](#sent)
+  - [Unconfirmed](#unconfirmed)
+  - [Transaction Count](#transaction-count)
+  - [Transactions](#transactions)
+- [Address Methods](#address-methods)
+  - [encodeAddress(string|array)](#encodeaddressstringarray)
+  - [watchAddress(string|array)](#watchaddressstringarray)
+    - [Advanced Option](#advanced-option)
+
+
 ## Address Details
 
 Below is the standard block of information for a Nexa Address.
