@@ -14,8 +14,9 @@ A suite of Address query, monitoring and formatting utilities.
   - [Transactions](#transactions)
 - [Address Methods](#address-methods)
   - [encodeAddress(string|array)](#encodeaddressstringarray)
+  - [decodeAddress(string|array)](#decodeaddressstringarray)
+  - [getAddress(string|array)](#getaddressstringarray)
   - [watchAddress(string|array)](#watchaddressstringarray)
-    - [Advanced Option](#advanced-option)
 
 
 ## Address Details
