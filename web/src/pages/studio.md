@@ -11,15 +11,15 @@ A comprehensive suite of FREE tools & services providing Nexa Builders with ever
 
 Execute one of the following commands, then follow the step-by-step guide to quickly bootstrap each of your Nexa projects.
 
-```js
+```bash
 npm create nexa
 ```
 
-```js
+```bash
 yarn create nexa
 ```
 
-```js
+```bash
 pnpm create nexa
 ```
 

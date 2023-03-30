@@ -30,14 +30,14 @@ const navigation = [
     {
         title: 'Client-side / Web browser',
         links: [
-            { title: 'Introduction', href: '/web' },
+            { title: 'Introduction', href: '/client' },
             { title: 'NexID web client API', href: '/nexid#web-client-api' },
         ],
     },
     {
         title: 'Server-side / Node.js',
         links: [
-            { title: 'Introduction', href: '/nodejs' },
+            { title: 'Introduction', href: '/server' },
             { title: 'CashLib', href: '/cashlib' },
             { title: 'NexID Server', href: '/nexid#id-server' },
         ],
