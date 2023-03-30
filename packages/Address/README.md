@@ -31,7 +31,7 @@ Here is the full data schema for a NexaJS Address.
   received: BigInt
   sent: BigInt
   unconfirmed: BigInt
-  txcount: Integer
+  txCount: Integer
   transactions: String[]
   createdAt: Integer
   updatedAt: Integer
