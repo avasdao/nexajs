@@ -44,11 +44,11 @@ Here is the full data schema for a NexaJS Address.
 
 ### Prefix
 
-This is either `nexa:` or `nexatest:` for Mainnet and Testnet respectively.
+The `prefix` can be either `nexa:` or `nexatest:` for Mainnet and Testnet respectively.
 
 ### Type
 
-The address type can be one of:
+The Address `type` can be one of:
 - P2PKH
 - SCRIPT
 - TEMPLATE
