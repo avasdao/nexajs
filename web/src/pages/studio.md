@@ -26,17 +26,17 @@ pnpm create nexa
 
 ## Creating a New Project
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+Follow the step-by-step instructions of the interactive New Project wizard to get started quickly and easily on your Nexa projects.
 
-!['NPM Create Nexa']('/screenshots/npm-create-nexa.png')
+![NPM Create Nexa](/screenshots/npm-create-nexa.png)
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+> Nexa Builder Studio offers full bootstrapping capabilities for the most popular Crypto networks, including: Ethereum, Binance, Avalanche, Tron and Polygon.
 
 ---
 
-## Quos porro ut molestiae
+## Studio Welcome
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+This is the starting point for Project journey. The first time you load your Studio page, you'll be presented with an interactive welcome guide.
 
 ### Voluptatem quas possimus
 
@@ -52,7 +52,7 @@ Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia d
 
 ---
 
-## Vitae laborum maiores
+## Studio Wallet
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
 
@@ -67,3 +67,17 @@ Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit per
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
 Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+
+---
+
+## Studio Playground
+
+This area is perfect to experiment with ALL the "cool" toys that Nexa Builder Studio offers its growing community.
+
+---
+
+## Studio Administration Center
+
+This area requires Nexa ID authorization.
+
+Enjoy the convenience of having a FULL administrative center dedicated to your new Project. A signle authorization scan allows you to easily link this Admin Center to your other Project Admin Centers for a seemless Developer Experience (DX).
