@@ -81,7 +81,7 @@ _see [Address Details](#address-details) above_
 
 Allows you to monitor for changes to an Address.
 
-#### Method Option
+#### Option #1: Import from a (Package) Method
 
 > __NOTE:__ This is the recommended option.
 
@@ -98,7 +98,7 @@ const cleanup = watchAddress(myAddress, notifier)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
-#### Library Option
+#### Option #2: Import from the Core Library
 
 ```js
 import Nexa from 'nexajs'
@@ -113,7 +113,7 @@ const cleanup = Nexa.watchAddress(myAddress, notifier)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
-#### Advanced Option
+#### Option #3: Import using a Custom configuration
 
 ```js
 /* Set advanced parameters. */
