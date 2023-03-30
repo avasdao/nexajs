@@ -126,7 +126,7 @@ const params = {
     'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
     'nexa:nqtsq5g54v4772je5xq2z2t2aqgmaayavn44ttz5qd8cmfy2',
   ],
-  handler: myHandler, // NOTE: Set your notifications handler in your parameters.
+  handler: myHandler, // (optional) Set your notifications handler in your parameters.
   conn: {
     provider: [
       {
