@@ -81,3 +81,30 @@ This area is perfect to experiment with ALL the "cool" toys that Nexa Builder St
 This area requires Nexa ID authorization.
 
 Enjoy the convenience of having a FULL administrative center dedicated to your new Project. A signle authorization scan allows you to easily link this Admin Center to your other Project Admin Centers for a seemless Developer Experience (DX).
+
+---
+
+## Case Study #1: Awesome Nexa (Vue.js)
+
+[https://awesomenexa.org](https://awesomenexa.org)
+
+A directory of the most popular Nexa services, with community ratings and reviews.
+
+Learn step-by-step how this portal was built using Nexa Builder Studio, featuring:
+- Local & remote database management
+- Nexa ID Protocol (nexid) integration
+- Real-tiime analytics
+- Administrative permissions/roles
+
+---
+
+## Case Study #2: TΞLR Mobile (React Native)
+
+[https://telr.app](https://telr.app)
+
+A non-custodial, multi-chain Crypto wallet built for spending your Crypto in the "real" world.
+
+Learn step-by-step how this "native" mobile app was built using Nexa Builder Studio, featuring:
+- Non-custodial, multi-chain integration
+- Real-time push notifications
+- Publishing to (Apple & Google) app stores
