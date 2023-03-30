@@ -158,7 +158,7 @@ const params = {
       {
         type: 'graphql',
         src: 'https://myawesomeproject.com/graphql',
-      }
+      },
     ],
     threshold: 1,
     timeout: 5000,
