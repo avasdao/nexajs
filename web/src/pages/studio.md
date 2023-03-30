@@ -91,10 +91,11 @@ Enjoy the convenience of having a FULL administrative center dedicated to your n
 A directory of the most popular Nexa services, with community ratings and reviews.
 
 Learn step-by-step how this portal was built using Nexa Builder Studio, featuring:
-- Local & remote database management
-- Nexa ID Protocol (nexid) integration
-- Real-tiime analytics
-- Administrative permissions/roles
+1. Nexa ID Protocol (nexid) integration
+2. Local & remote database management
+3. Decentralized app (dApp) monetization
+4. Real-tiime analytics
+5. Administrative permissions/roles
 
 ---
 
@@ -105,6 +106,6 @@ Learn step-by-step how this portal was built using Nexa Builder Studio, featurin
 A non-custodial, multi-chain Crypto wallet built for spending your Crypto in the "real" world.
 
 Learn step-by-step how this "native" mobile app was built using Nexa Builder Studio, featuring:
-- Non-custodial, multi-chain integration
-- Real-time push notifications
-- Publishing to (Apple & Google) app stores
+1. Non-custodial, multi-chain integration
+2. Real-time push notifications
+3. Publishing to (Apple & Google) app stores
