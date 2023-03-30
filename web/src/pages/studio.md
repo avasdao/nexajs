@@ -38,6 +38,8 @@ Follow the step-by-step instructions of the interactive New Project wizard to ge
 
 This is the starting point for Project journey. The first time you load your Studio page, you'll be presented with an interactive welcome guide.
 
+![NPM Create Nexa](/screenshots/nbs-welcome.png)
+
 ### Voluptatem quas possimus
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.

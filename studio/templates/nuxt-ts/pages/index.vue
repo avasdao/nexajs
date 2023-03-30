@@ -61,7 +61,7 @@ getBlockHeight()
             <img src="~/assets/nexa.svg" class="w-24 h-24" />
 
             <h1 class="text-5xl font-bold">
-                Welcome to Nexa!
+                %%PROJECT_NAME%%
             </h1>
         </header>
 
@@ -130,7 +130,7 @@ getBlockHeight()
             <section v-if="tabStart" class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
-                        Get started
+                        Welcome Builder!
                     </h2>
                 </div>
 
