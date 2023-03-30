@@ -69,11 +69,13 @@ To quickly get started using Nexa in your existing Webapp, simply include this t
 
 ### Package Manager Installation
 
-``` bash
+```bash
 npm install --save nexajs
-
+```
+```bash
 yarn add nexajs
-
+```
+```bash
 pnpm install nexajs
 ```
 
