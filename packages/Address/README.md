@@ -12,6 +12,8 @@ A suite of Address query, monitoring and formatting utilities.
   - [Unconfirmed](#unconfirmed)
   - [Transaction Count](#transaction-count)
   - [Transactions](#transactions)
+  - [Created At](#createdat)
+  - [Updated At](#updatedat)
 - [Address Methods](#address-methods)
   - [encodeAddress(string|array)](#encodeaddressstringarray)
   - [decodeAddress(string|array)](#decodeaddressstringarray)
@@ -21,7 +23,7 @@ A suite of Address query, monitoring and formatting utilities.
 
 ## Address Details
 
-Below is the standard block of information for a Nexa Address.
+Here is the schema for a NexaJS Address.
 
 ```graphql
 {
@@ -31,6 +33,8 @@ Below is the standard block of information for a Nexa Address.
   unconfirmed: BigInt
   txcount: Integer
   transactions: String[]
+  createdAt: Integer
+  updatedAt: Integer
 }
 ```
 
@@ -59,6 +63,14 @@ The total number of transactions associated with this Address.
 ### Transactions
 
 A list of all txidem(s) associated with this Address.
+
+### Created At
+
+The date of the first block confirmation for this Address.
+
+### Updated At
+
+The date of the last transaction associated with this Address.
 
 
 ## Address Methods
@@ -112,7 +124,7 @@ const cleanup = Nexa.watchAddress(myAddresses, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
-#### Setting a Custom configuration
+#### Setting a Custom Configuration
 
 ```js
 /* Set advanced parameters. */
