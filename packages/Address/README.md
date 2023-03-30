@@ -34,7 +34,7 @@ Below is the standard block of information for a Nexa Address.
 }
 ```
 
-> ___NOTE:__ All values are in satoshis._
+> ___NOTE:__ All values are in satoshis (0.01 NEX)._
 
 ### Balance
 
@@ -79,22 +79,22 @@ _see [Address Details](#address-details) above_
 
 ### `watchAddress(string|array)`
 
-Allows you to monitor for changes to an Address.
+Allows you to monitor ALL on-chain activity for an Address.
 
 #### Option #1: Import from a (Package) Method
 
-> __NOTE:__ This is the recommended option.
+> ___NOTE:__ This is the recommended option._
 
 ```js
 import { watchAddress } from '@nexajs/address'
 
 const myAddress = 'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5'
 
-const notifier = (updatedInfo) => {
+const handler = (updatedInfo) => {
     console.log(updatedInfo)
 }
 
-const cleanup = watchAddress(myAddress, notifier)
+const cleanup = watchAddress(myAddress, handler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
@@ -105,38 +105,38 @@ import Nexa from 'nexajs'
 
 const myAddress = 'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5'
 
-const notifier = (updatedInfo) => {
+const myHandler = (updatedInfo) => {
     console.log(updatedInfo)
 }
 
-const cleanup = Nexa.watchAddress(myAddress, notifier)
+const cleanup = Nexa.watchAddress(myAddress, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
-#### Option #3: Import using a Custom configuration
+#### Setting a Custom configuration
 
 ```js
 /* Set advanced parameters. */
 const params = {
   address: [
     myFirstAddress,
-    mySecondAddress
+    mySecondAddress,
   ],
-  notif: notifier,
+  handler: myHandler,
   conn: {
     provider: [
       {
         type: 'rostrum',
-        src: 'rostrum.myawesomeproject.com:20004'
+        src: 'rostrum.myawesomeproject.com:20004',
       },
       {
         type: 'graphql',
-        src: 'https://myawesomeproject.com/graphql'
+        src: 'https://myawesomeproject.com/graphql',
       }
     ],
     threshold: 1,
-    timeout: 5000
-  }
+    timeout: 5000,
+  },
 }
 
 const cleanup = watchAddress(params)
