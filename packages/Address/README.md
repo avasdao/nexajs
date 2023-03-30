@@ -90,11 +90,11 @@ import { watchAddress } from '@nexajs/address'
 
 const myAddress = 'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5'
 
-const handler = (updatedInfo) => {
+const myHandler = (updatedInfo) => {
     console.log(updatedInfo)
 }
 
-const cleanup = watchAddress(myAddress, handler)
+const cleanup = watchAddress(myAddress, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
