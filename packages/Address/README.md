@@ -23,7 +23,7 @@ A suite of Address query, monitoring and formatting utilities.
 
 ## Address Details
 
-Here is the schema for a NexaJS Address.
+Here is the full data schema for a NexaJS Address.
 
 ```graphql
 {
@@ -66,11 +66,11 @@ A list of all txidem(s) associated with this Address.
 
 ### Created At
 
-The date of the first block confirmation for this Address.
+The timestamp of the first block confirmation for this Address.
 
 ### Updated At
 
-The date of the last transaction associated with this Address.
+The timestamp of the most recent transaction associated with this Address.
 
 
 ## Address Methods
