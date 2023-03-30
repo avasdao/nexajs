@@ -27,6 +27,9 @@ Here is the full data schema for a NexaJS Address.
 
 ```graphql
 {
+  prefix: String
+  type: String
+  hash: String
   balance: BigInt
   received: BigInt
   sent: BigInt
@@ -39,6 +42,22 @@ Here is the full data schema for a NexaJS Address.
 ```
 
 > ___NOTE:__ All values are in satoshis (0.01 NEX)._
+
+### Prefix
+
+This is either `nexa:` or `nexatest:` for Mainnet and Testnet respectively.
+
+### Type
+
+The address type can be one of:
+- P2PKH
+- SCRIPT
+- TEMPLATE
+- GROUP
+
+### (Public Key) Hash
+
+This is the public key hash for the Address.
 
 ### Balance
 
