@@ -1,6 +1,3 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:address')
@@ -9,10 +6,12 @@ const debug = debugFactory('nexa:address')
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
 import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
 import getSeedType from './src/getSeedType.js'
+import _watchAddress from './src/watchAddress.js'
 
 /* Export (local) modules. */
 export const decodeAddress = _decodeAddress
 export const encodeAddress = _encodeAddress
+export const watchAddress = _watchAddress
 
 
 /**
@@ -20,12 +19,18 @@ export const encodeAddress = _encodeAddress
  *
  * Manages address functions.
  */
-export class Address extends EventEmitter {
-    constructor(_params) {
+export class Address {
+    constructor(_params, _notif) {
         /* Initialize Address class. */
         debug('Initializing Address...')
         debug(JSON.stringify(_params, null, 2))
-        super()
+
+        /* Handle notifications. */
+        if (_params?.notif) {
+            notif = _params.notif
+        } else if (_notif) {
+            notif = _notif
+        }
 
         /* Set (address) seed. */
         this._seed = _params?.seed
@@ -96,6 +101,7 @@ Nexa.Address = Address
 /* Initialize Address modules. */
 Nexa.decodeAddress = decodeAddress
 Nexa.encodeAddress = encodeAddress
+Nexa.watchAddress = watchAddress
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

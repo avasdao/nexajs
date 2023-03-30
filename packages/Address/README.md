@@ -1,6 +1,6 @@
 # NexaJS Address
 
-A suite of Address query, monitoring and formatting utilities.
+A comprehensive suite of Address querying, monitoring and formatting utilities.
 
 
 ## Contents
@@ -21,7 +21,7 @@ A suite of Address query, monitoring and formatting utilities.
   - [watchAddress(string|array)](#watchaddressstringarray)
 
 
-## Address Details
+## Data Schema
 
 Here is the full data schema for a NexaJS Address.
 
@@ -40,7 +40,7 @@ Here is the full data schema for a NexaJS Address.
 }
 ```
 
-> ___NOTE:__ All values are in satoshis (0.01 NEX)._
+> ___NOTE:__ All `BigInt` amounts are measured in satoshis (ie. 0.01 NEX)._
 
 ### Prefix
 

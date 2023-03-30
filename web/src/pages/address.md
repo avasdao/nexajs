@@ -1,71 +1,155 @@
 ---
 title: Address
-description: A suite of Address query, monitoring and formatting utilities.
+description: A comprehensive suite of Address querying, monitoring and formatting utilities.
 ---
 
-A suite of Address query, monitoring and formatting utilities.
+A comprehensive suite of Address querying, monitoring and formatting utilities.
 
----
 
-## Quis vel iste dicta
+## Data Schema
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+Here is the full data schema for a NexaJS Address.
 
-### Et pariatur ab quas
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-```js
-/** @type {import('@tailwindlabs/lorem').ipsum} */
-export default {
-  lorem: 'ipsum',
-  dolor: ['sit', 'amet', 'consectetur'],
-  adipiscing: {
-    elit: true,
-  },
+```graphql
+{
+  type: String
+  prefix: String
+  hash: String
+  balance: BigInt
+  received: BigInt
+  sent: BigInt
+  unconfirmed: BigInt
+  transactions: String[]
+  createdAt: Integer
+  updatedAt: Integer
 }
 ```
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+> ___NOTE:__ All `BigInt` amounts are measured in satoshis (ie. 0.01 NEX)._
 
-### Natus aspernatur iste
+### Prefix
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+The `prefix` can be either `nexa:` or `nexatest:` for Mainnet and Testnet respectively.
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+### Type
 
----
+The Address `type` can be one of:
+- P2PKH
+- SCRIPT
+- TEMPLATE
+- GROUP
 
-## Quos porro ut molestiae
+### (Public Key) Hash
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+This is the public key hash for the Address.
 
-### Voluptatem quas possimus
+### Balance
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+This is the current "confirmed" NEXA balance.
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+### Received
 
-### Id vitae minima
+The total amount of NEXA received by this Address.
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+### Sent
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+The total amount of NEXA sent from this Address.
 
----
+### Unconfirmed
 
-## Vitae laborum maiores
+This is the current "unconfirmed" NEXA balance.
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+### Transactions
 
-### Corporis exercitationem
+A list of all txidem(s) associated with this Address.
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+### Created At
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+The timestamp of the first block confirmation for this Address.
 
-### Reprehenderit magni
+### Updated At
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+The timestamp of the most recent transaction associated with this Address.
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+
+## Address Methods
+
+### `encodeAddress(string|array)`
+
+Creates a Base58-encoded Nexa address.
+
+### `decodeAddress(string|array)`
+
+Disassembles a Base58-encoded Nexa address.
+
+### `getAddress(string|array)`
+
+Retrieve the latest on-chain data about an Address.
+
+_see [Address Details](#address-details) above_
+
+### `watchAddress(string|array)`
+
+Allows you to monitor ALL on-chain activity for an Address.
+
+#### Option #1: Import from a (Package) Method
+
+> ___NOTE:__ This is the recommended option._
+
+```js
+import { watchAddress } from '@nexajs/address'
+
+const myAddress = 'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5'
+
+const myHandler = (updatedInfo) => {
+    console.log(updatedInfo)
+}
+
+const cleanup = watchAddress(myAddress, myHandler)
+// cleanup() // Execute to cancel (and cleanup) an Address subscription.
+```
+
+#### Option #2: Import from the Core Library
+
+```js
+import Nexa from 'nexajs'
+
+const myAddresses = [
+  'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5',
+  'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
+]
+
+const cleanup = Nexa.watchAddress(myAddresses, myHandler)
+// cleanup() // Execute to cancel (and cleanup) an Address subscription.
+```
+
+#### Setting a Custom Configuration
+
+```js
+/* Set advanced parameters. */
+const params = {
+  address: [
+    'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5',
+    'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
+    'nexa:nqtsq5g54v4772je5xq2z2t2aqgmaayavn44ttz5qd8cmfy2',
+  ],
+  handler: myHandler, // (optional) Set your notifications handler in your parameters.
+  conn: {
+    provider: [
+      {
+        type: 'rostrum',
+        src: 'rostrum.myawesomeproject.com:20004',
+      },
+      {
+        type: 'graphql',
+        src: 'https://myawesomeproject.com/graphql',
+      },
+    ],
+    threshold: 1,
+    timeout: 5000,
+  },
+}
+
+const cleanup = watchAddress(params)
+// cleanup() // Execute to cancel (and cleanup) an Address subscription.
+```

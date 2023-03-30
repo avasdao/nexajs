@@ -52,7 +52,7 @@ const navigation = [
         title: 'References',
         links: [
             { title: 'Nexa Identity Protocol', href: '/nexid' },
-            { title: 'Design principles', href: '/design-principles' },
+            { title: 'Design principles', href: '/principles' },
         ],
     },
     {
