@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "ethers": "6.0.8",
-    "nexajs": "23.3.11",
+    "nexajs": "23.3.19",
     "nuxt": "3.0.0"
   },
   "devDependencies": {
