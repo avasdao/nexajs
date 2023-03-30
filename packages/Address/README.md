@@ -108,10 +108,6 @@ const myAddresses = [
   'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
 ]
 
-const myHandler = (updatedInfo) => {
-    console.log(updatedInfo)
-}
-
 const cleanup = Nexa.watchAddress(myAddresses, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
