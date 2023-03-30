@@ -27,14 +27,13 @@ Here is the full data schema for a NexaJS Address.
 
 ```graphql
 {
-  prefix: String
   type: String
+  prefix: String
   hash: String
   balance: BigInt
   received: BigInt
   sent: BigInt
   unconfirmed: BigInt
-  txCount: Integer
   transactions: String[]
   createdAt: Integer
   updatedAt: Integer
@@ -74,10 +73,6 @@ The total amount of NEXA sent from this Address.
 ### Unconfirmed
 
 This is the current "unconfirmed" NEXA balance.
-
-### Transaction Count
-
-The total number of transactions associated with this Address.
 
 ### Transactions
 
