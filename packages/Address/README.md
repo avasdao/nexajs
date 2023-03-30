@@ -103,7 +103,7 @@ const cleanup = watchAddress(myAddress, handler)
 ```js
 import Nexa from 'nexajs'
 
-const myAddress = [
+const myAddresses = [
   'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5',
   'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
 ]
@@ -112,7 +112,7 @@ const myHandler = (updatedInfo) => {
     console.log(updatedInfo)
 }
 
-const cleanup = Nexa.watchAddress(myAddress, myHandler)
+const cleanup = Nexa.watchAddress(myAddresses, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
@@ -126,7 +126,7 @@ const params = {
     'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
     'nexa:nqtsq5g54v4772je5xq2z2t2aqgmaayavn44ttz5qd8cmfy2',
   ],
-  handler: myHandler,
+  handler: myHandler, // NOTE: Set your notifications handler in your parameters.
   conn: {
     provider: [
       {
