@@ -1,3 +1,12 @@
+<script setup lang="ts">
+/* Initialize runtime configuration. */
+const config = useRuntimeConfig()
+
+/* Set project name. */
+const projectName = config.public.projectName
+
+</script>
+
 <template>
     <footer class="mt-20 py-5 max-w-7xl mx-auto">
         <div class="inset-0 flex items-center" aria-hidden="true">
@@ -12,7 +21,7 @@
 
         <section class="mt-5 px-3 flex justify-between">
             <span class="text-sm text-gray-400">
-                &copy; {{new Date().getFullYear()}} %%PROJECT_NAME%% - MIT License
+                &copy; {{new Date().getFullYear()}} {{projectName}} - MIT License
             </span>
 
             <div class="flex flex-row items-center gap-2">

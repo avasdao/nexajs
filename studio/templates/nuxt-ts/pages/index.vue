@@ -2,14 +2,26 @@
 /* Import modules. */
 import { ref } from 'vue'
 
+/* Initialize runtime configuration. */
+const config = useRuntimeConfig()
+
 /* Initialize tabs. */
-const tabStart = ref(true)
-const tabConfig = ref(false)
-const tabLabs = ref(false)
-const tabExtras = ref(false)
+const tabWelcome = ref(true)
+const tabExplorers = ref(false)
+const tabWallets = ref(false)
+const tabScript = ref(false)
 
 /* Initialize blockchain handlers. */
 const blockHeight = ref(0)
+
+/* Set project id. */
+const projectid = config.public.id
+
+/* Set project name. */
+const projectName = config.public.name
+
+/* Set project mnemonic. */
+const { mnemonic } = await $fetch('/api/v1/wallet')
 
 /**
  * Load Tab
@@ -18,24 +30,24 @@ const blockHeight = ref(0)
  */
 const loadTab = (_tabid: string) => {
     /* Disable ALL tabs. */
-    tabStart.value = false
-    tabConfig.value = false
-    tabLabs.value = false
-    tabExtras.value = false
+    tabWelcome.value = false
+    tabExplorers.value = false
+    tabWallets.value = false
+    tabScript.value = false
 
     /* Enable selected tab. */
     switch(_tabid) {
-    case 'start':
-        tabStart.value = true
+    case 'welcome':
+        tabWelcome.value = true
         break
-    case 'config':
-        tabConfig.value = true
+    case 'explorers':
+        tabExplorers.value = true
         break
-    case 'labs':
-        tabLabs.value = true
+    case 'wallets':
+        tabWallets.value = true
         break
-    case 'extras':
-        tabExtras.value = true
+    case 'script':
+        tabScript.value = true
         break
     }
 }
@@ -61,7 +73,7 @@ getBlockHeight()
             <img src="~/assets/nexa.svg" class="w-24 h-24" />
 
             <h1 class="text-5xl font-bold">
-                %%PROJECT_NAME%%
+                {{projectName}}
             </h1>
         </header>
 
@@ -69,65 +81,54 @@ getBlockHeight()
             <div class="-mt-10 relative flex justify-center">
                 <span class="isolate inline-flex -space-x-px rounded-md shadow-sm">
                     <button
-                        @click="loadTab('start')"
+                        @click="loadTab('welcome')"
                         type="button"
                         class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <span class="sr-only">Get started</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z" />
+                        <span class="sr-only">Welcome to Nexa Builder Studio</span>
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"></path>
                         </svg>
                     </button>
 
                     <button
-                        @click="loadTab('config')"
+                        @click="loadTab('explorers')"
                         type="button"
                         class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <span class="sr-only">Configuration</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                fill-rule="evenodd"
-                                d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z"
-                                clip-rule="evenodd"
-                            />
+                        <span class="sr-only">Block Explorers</span>
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"></path>
                         </svg>
                     </button>
 
                     <button
-                        @click="loadTab('labs')"
+                        @click="loadTab('wallets')"
                         type="button"
                         class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <span class="sr-only">Annotate</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                fill-rule="evenodd"
-                                d="M10 2c-2.236 0-4.43.18-6.57.524C1.993 2.755 1 4.014 1 5.426v5.148c0 1.413.993 2.67 2.43 2.902 1.168.188 2.352.327 3.55.414.28.02.521.18.642.413l1.713 3.293a.75.75 0 001.33 0l1.713-3.293a.783.783 0 01.642-.413 41.102 41.102 0 003.55-.414c1.437-.231 2.43-1.49 2.43-2.902V5.426c0-1.413-.993-2.67-2.43-2.902A41.289 41.289 0 0010 2zM6.75 6a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 2.5a.75.75 0 000 1.5h3.5a.75.75 0 000-1.5h-3.5z"
-                                clip-rule="evenodd"
-                            />
+                        <span class="sr-only">Asset Wallets</span>
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"></path>
                         </svg>
                     </button>
 
                     <button
-                        @click="loadTab('extras')"
+                        @click="loadTab('script')"
                         type="button"
                         class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
-                        <span class="sr-only">Delete</span>
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path
-                                fill-rule="evenodd"
-                                d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z"
-                                clip-rule="evenodd"
-                            />
+                        <span class="sr-only">Script Plus Wise Contracts</span>
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"></path>
                         </svg>
                     </button>
                 </span>
             </div>
 
 <!-- BEGIN TABS -->
-            <section v-if="tabStart" class="">
+
+            <section v-if="tabWelcome" class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
                         Welcome Builder!
@@ -139,24 +140,10 @@ getBlockHeight()
                 </p>
             </section>
 
-            <section v-if="tabConfig" class="">
+            <section v-if="tabExplorers" class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
-                        Configuration
-                    </h2>
-                </div>
-
-                <p class="px-10 py-3">
-                    Start by modifying `nuxt.config.ts` to best suite your needs.
-                    Customize your app name, description and favorite icon.
-                    Favicon is located in `/public` folder.
-                </p>
-            </section>
-
-            <section v-if="tabLabs" class="">
-                <div class="mt-5 flex justify-center">
-                    <h2 class="text-2xl font-bold">
-                        Lab Experiments
+                        Block + Token Explorers
                     </h2>
                 </div>
 
@@ -165,14 +152,38 @@ getBlockHeight()
                 </p>
 
                 <p class="px-10 py-3">
+                    Start by modifying `nuxt.config.ts` to best suite your needs.
+                    Customize your app name, description and favorite icon.
+                    Favicon is located in `/public` folder.
+                </p>
+            </section>
+
+            <section v-if="tabWallets" class="">
+                <div class="mt-5 flex justify-center">
+                    <h2 class="text-2xl font-bold">
+                        Asset Wallets
+                    </h2>
+                </div>
+
+                <div class="px-10 py-3">
+                    <h2 class="text-xs text-gray-500 uppercase">
+                        Project Mnemonic
+                    </h2>
+
+                    <span class="w-2/3 block text-base text-rose-500 font-mono font-medium">
+                        {{mnemonic}}
+                    </span>
+                </div>
+
+                <p class="px-10 py-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
             </section>
 
-            <section v-if="tabExtras" class="">
+            <section v-if="tabScript" class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
-                        Extra Resources
+                        Nexscript + Wise Contracts
                     </h2>
                 </div>
 
@@ -180,6 +191,7 @@ getBlockHeight()
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
             </section>
+
 <!-- END TABS -->
         </section>
 
