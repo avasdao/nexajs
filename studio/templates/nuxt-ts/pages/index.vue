@@ -2,9 +2,6 @@
 /* Import modules. */
 import { ref } from 'vue'
 
-/* Initialize runtime configuration. */
-const config = useRuntimeConfig()
-
 /* Initialize tabs. */
 const tabWelcome = ref(true)
 const tabExplorers = ref(false)
@@ -14,11 +11,8 @@ const tabScript = ref(false)
 /* Initialize blockchain handlers. */
 const blockHeight = ref(0)
 
-/* Set project id. */
-const projectid = config.public.id
-
-/* Set project name. */
-const projectName = config.public.name
+/* Set project details. */
+const { projectid, projectName } = await $fetch('/api/v1/project')
 
 /* Set project mnemonic. */
 const { mnemonic } = await $fetch('/api/v1/wallet')

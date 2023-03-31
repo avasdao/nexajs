@@ -1,9 +1,6 @@
 <script setup lang="ts">
-/* Initialize runtime configuration. */
-const config = useRuntimeConfig()
-
-/* Set project name. */
-const projectName = config.public.projectName
+/* Set project details. */
+const { projectid, projectName } = await $fetch('/api/v1/project')
 
 </script>
 
