@@ -1,9 +1,6 @@
 export default defineEventHandler((event) => {
-    /* Initialize runtime configuration. */
-    const config = useRuntimeConfig()
-
     /* Set project mnemonic. */
-    const mnemonic = config.mnemonic
+    const mnemonic = process.env.PROJECT_MNEMONIC
 
     /* Build wallet. */
     const wallet = {

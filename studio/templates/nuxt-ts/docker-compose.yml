@@ -2,13 +2,7 @@ version: '3.7'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        PROJECT_ID: ${PROJECT_ID}
-        PROJECT_NAME: ${PROJECT_NAME}
-        PROJECT_MNEMONIC: ${PROJECT_MNEMONIC}
+    build: .
     image: nexajs-dapp
     container_name: nexajs-dapp
     restart: always
@@ -20,7 +14,7 @@ services:
       options:
         max-file: '5'
         max-size: '10m'
-    # environment:
-    #   - PROJECT_ID=${PROJECT_ID} # change to match your own environment
-    #   - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
-    #   - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
+    environment:
+      - PROJECT_ID=${PROJECT_ID} # change to match your own environment
+      - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
+      - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
