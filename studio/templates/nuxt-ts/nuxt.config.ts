@@ -6,9 +6,9 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Welcome to Nexa!',
+            title: 'Nexa Builder Studio',
             meta: [
-                { name: 'description', content: 'NexaJS boilerplate Nuxt template.' },
+                { name: 'description', content: 'Start your next JavaScript project using Nexa Builder Studio boilerplate templates.' },
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
