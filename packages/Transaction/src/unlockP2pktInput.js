@@ -54,15 +54,13 @@ export default async (
     )
     // console.log('signatureBin', signatureBin)
 
-    const encodedPubKey = encodeDataPush(hexToBin(publicKey))
-
-    const encodedSig = encodeDataPush(signatureBin)
+    const scriptPubKey = encodeDataPush(hexToBin(publicKey))
 
     // Build the unlocking script that unlocks the P2PKT locking script.
     const unlockingBytecode = flattenBinArray(
         [
-            encodeDataPush(encodedPubKey),
-            encodedSig,
+            encodeDataPush(scriptPubKey),
+            encodeDataPush(signatureBin),
         ]
     )
     // console.log('unlockingBytecode', unlockingBytecode)
