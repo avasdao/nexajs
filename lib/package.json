@@ -16,6 +16,7 @@
     "@ethersproject/random": "5.7.0",
     "@nexajs/address": "23.3.18",
     "@nexajs/blockchain": "23.3.18",
+    "@nexajs/crypto": "23.4.5",
     "@nexajs/hdnode": "23.3.19",
     "@nexajs/id": "23.3.19",
     "@nexajs/purse": "23.3.19-b",

@@ -4,7 +4,7 @@ const debug = debugFactory('nexa:wallet')
 
 /* Import modules. */
 import { entropyToMnemonic } from '@nexajs/hdnode'
-import { randomBytes } from '@nexajs/utils'
+import { randomBytes } from '@nexajs/crypto'
 
 /* Import modules. */
 import { EventEmitter } from 'events'
