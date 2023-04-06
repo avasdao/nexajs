@@ -12,7 +12,7 @@
     "@nexajs/address": "23.3.18",
     "@nexajs/blockchain": "23.3.18",
     "@nexajs/hdnode": "23.3.18",
-    "@nexajs/rostrum": "23.3.18",
+    "@nexajs/rostrum": "23.4.5",
     "@nexajs/transaction": "23.3.19",
     "events": "3.3.0",
     "uuid": "9.0.0"
