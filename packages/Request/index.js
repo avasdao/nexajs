@@ -6,10 +6,10 @@ const debug = debugFactory('nexa:request')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// TBD
+import _callUrl from './src/callUrl.js'
 
 /* Export (local) modules. */
-// TBD
+export const callUrl = _callUrl
 
 
 /**
@@ -44,7 +44,7 @@ const Nexa = {}
 Nexa.Request = Request
 
 /* Initialize Request modules. */
-// TBD
+Nexa.callUrl = callUrl
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
