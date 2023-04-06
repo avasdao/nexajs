@@ -10,6 +10,7 @@ rm -rf ../node_modules/@nexajs/rostrum
 rm -rf ../node_modules/@nexajs/rpc
 rm -rf ../node_modules/@nexajs/transaction
 rm -rf ../node_modules/@nexajs/utils
+rm -rf ../node_modules/@nexajs/wallet
 
 echo
 echo "  Initializing [ node_modules/@nexajs ] folder..."
@@ -26,6 +27,7 @@ ln -s ../../../packages/Rostrum ../node_modules/@nexajs/rostrum
 ln -s ../../../packages/Rpc ../node_modules/@nexajs/rpc
 ln -s ../../../packages/Transaction ../node_modules/@nexajs/transaction
 ln -s ../../../packages/Utils ../node_modules/@nexajs/utils
+ln -s ../../../packages/Wallet ../node_modules/@nexajs/wallet
 
 echo
 echo "  All mounts created successfully!"
