@@ -1,9 +1,9 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
+const debug = debugFactory('nexa:slim')
+
+/* Import modules. */
+import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
 // TBD
@@ -18,10 +18,11 @@ const debug = debugFactory('nexa:crypto')
  * Manages slim functions.
  */
 export class Slim extends EventEmitter {
-    constructor(_params) {
+    constructor(_primary, _secondary) {
         /* Initialize Slim class. */
         debug('Initializing Slim...')
-        debug(JSON.stringify(_params, null, 2))
+        debug(JSON.stringify(_primary, null, 2))
+        debug(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

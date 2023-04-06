@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/utils",
-  "version": "23.4.4",
+  "version": "23.4.5",
   "description": "A dependency-free suite of useful utilities for application building.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,8 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@bitauth/libauth": "1.19.1",
-    "@ethersproject/random": "5.7.0"
+    "@bitauth/libauth": "1.19.1"
   },
   "devDependencies": {
     "debug": "4.3.4"

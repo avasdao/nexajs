@@ -1,10 +1,10 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-import superagent from 'superagent'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:rpc')
+
+/* Import modules. */
+import { EventEmitter } from 'events'
+import superagent from 'superagent'
 
 /* Initialize (global) package constants. */
 let host = '127.0.0.1'

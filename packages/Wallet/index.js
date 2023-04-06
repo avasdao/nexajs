@@ -1,13 +1,13 @@
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:wallet')
+
 /* Import modules. */
 import { entropyToMnemonic } from '@nexajs/hdnode'
 import { randomBytes } from '@nexajs/utils'
 
 /* Import modules. */
 import { EventEmitter } from 'events'
-
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
 
 const DEFAULT_DERIVATION_PATH = `m/44'/29223'/0'`
 
@@ -44,6 +44,7 @@ export class Wallet extends EventEmitter {
         super()
 
         /* Initialize internals. */
+        this._addressIdx = 0
         this._wallet = {}
 
         /* Handle hex (strings) and bytes. */
@@ -115,6 +116,10 @@ export class Wallet extends EventEmitter {
 
     getAddress(_addressIdx = 0, _isChange = false) {
         return 'nexa:AnotherSampleAddress' + _index
+    }
+
+    getNewAddress(_isChange = false) {
+        return 'nexa:YetAnotherSampleAddress'
     }
 
     toObject() {

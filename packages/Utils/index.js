@@ -10,10 +10,6 @@ import _Opcodes from './src/Opcodes.js'
 export const bigIntToCompactUint = _bigIntToCompactUint
 export const Opcodes = _Opcodes
 
-/* Provide Ether.js helpers. */
-import { randomBytes as _randomBytes } from '@ethersproject/random'
-export const randomBytes = _randomBytes
-
 
 /**
  * Reverse Bytes
@@ -48,7 +44,6 @@ Nexa.Utils = Utils
 /* Initialize Utilities modules. */
 Nexa.bigIntToCompactUint = bigIntToCompactUint
 Nexa.Opcodes = Opcodes
-Nexa.randomBytes = randomBytes
 Nexa.reverseHex = reverseHex
 
 /* Export Nexa to globalThis. */

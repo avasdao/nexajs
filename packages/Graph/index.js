@@ -1,32 +1,38 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:markets')
+const debug = debugFactory('nexa:graph')
 
 /* Import modules. */
 import { EventEmitter } from 'events'
-import { v4 as uuidv4 } from 'uuid'
 
+/* Import (local) modules. */
+// TBD
 
-export const getPrice = () => {
-    return 0.00001337
-}
+/* Export (local) modules. */
+// TBD
+
 
 /**
- * Markets Class
+ * Graph Class
  *
- * Manage all market data, including:
- *   - price feeds
- *   - price alerts
+ * Manages script functions.
  */
-export class Markets extends EventEmitter {
+export class Graph extends EventEmitter {
     constructor(_primary, _secondary) {
-        /* Initialize Markets class. */
-        debug('Initializing Markets...')
+        /* Initialize Graph class. */
+        debug('Initializing Graph...')
         debug(JSON.stringify(_primary, null, 2))
         debug(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD
+    }
+
+    test() {
+        return 'Graph (Instance) is working!'
+    }
+    static test() {
+        return 'Graph (Static) is working!'
     }
 }
 
@@ -34,10 +40,10 @@ export class Markets extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Markets class. */
-Nexa.Markets = Markets
+/* Initialize Graph class. */
+Nexa.Graph = Graph
 
-/* Initialize Markets modules. */
+/* Initialize Graph modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

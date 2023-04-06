@@ -1,10 +1,10 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-import { v4 as uuidv4 } from 'uuid'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:purse')
+
+/* Import modules. */
+import { EventEmitter } from 'events'
+import { v4 as uuidv4 } from 'uuid'
 
 /* Import (local) modules. */
 import _getDustAmount from './src/getDustAmount.js'

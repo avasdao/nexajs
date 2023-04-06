@@ -14,6 +14,7 @@ const wallet = new Wallet()
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...
+//   updatedAt: 1234567890,
 // }
 
 const address = wallet.address
@@ -40,6 +41,7 @@ const wallet = new Wallet('correct horse battery staple')
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...
+//   updatedAt: 1234567890,
 // }
 
 const address = wallet.address
@@ -66,6 +68,7 @@ const wallet = new Wallet(0xdeadbeef)
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...
+//   updatedAt: 1234567890,
 // }
 
 const address = wallet.address
@@ -92,6 +95,7 @@ const wallet = new Wallet('satoshi@bitcoin.org', 'setecastronomy')
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...
+//   updatedAt: 1234567890,
 // }
 
 const address = wallet.address

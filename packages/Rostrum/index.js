@@ -1,11 +1,11 @@
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:rostrum')
+
 /* Import modules. */
 import { EventEmitter } from 'events'
 
 import makeRequest from './src/makeRequest.js'
-
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:rostrum')
 
 /**
  * (Blockchain) Address Balance

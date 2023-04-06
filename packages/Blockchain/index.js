@@ -1,9 +1,9 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:blockchain')
+
+/* Import modules. */
+import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
 import _broadcast from './src/broadcast.js'
