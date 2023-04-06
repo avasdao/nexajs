@@ -6,11 +6,13 @@ const debug = debugFactory('nexa:address')
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
 import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
 import getSeedType from './src/getSeedType.js'
+import _listUnspent from './src/listUnspent.js'
 import _watchAddress from './src/watchAddress.js'
 
 /* Export (local) modules. */
 export const decodeAddress = _decodeAddress
 export const encodeAddress = _encodeAddress
+export const listUnspent = _listUnspent
 export const watchAddress = _watchAddress
 
 
@@ -101,6 +103,7 @@ Nexa.Address = Address
 /* Initialize Address modules. */
 Nexa.decodeAddress = decodeAddress
 Nexa.encodeAddress = encodeAddress
+Nexa.listUnspent = listUnspent
 Nexa.watchAddress = watchAddress
 
 /* Export Nexa to globalThis. */
