@@ -148,6 +148,14 @@
   dependencies:
     "@ethersproject/logger" "^5.7.0"
 
+"@ethersproject/random@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@ethersproject/random/-/random-5.7.0.tgz#af19dcbc2484aae078bb03656ec05df66253280c"
+  integrity sha512-19WjScqRA8IIeWclFme75VMXSBvi4e6InrUNuaR4s5pTF2qNhcGdCUwdxUVGtDDqC00sDLCO93jPQoDUH4HVmQ==
+  dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/logger" "^5.7.0"
+
 "@ethersproject/rlp@^5.7.0":
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@ethersproject/rlp/-/rlp-5.7.0.tgz#de39e4d5918b9d74d46de93af80b7685a9c21304"
@@ -240,12 +248,13 @@
     "@ethersproject/hdnode" "5.7.0"
     "@nexajs/address" "23.3.18"
 
-"@nexajs/utils@23.3.16":
-  version "23.3.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.3.16.tgz#ad1b1837105858e67c9742b47d42b95cb9be76e3"
-  integrity sha512-w3i1fjXSHz8OsQGxvmQjrTRmrHauy2iqlYgsbnxTPXPYzo/gaReZlKtL8Y1NCwuQxOeuWYaXh254IbaLL9cjHg==
+"@nexajs/utils@23.4.4":
+  version "23.4.4"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.4.tgz#645d8acc57e82707b4088777b0d3c1d16b8e7b94"
+  integrity sha512-0wjALh1A4T6Z5+tCqRRE79u5udD8RVMpdpAmJvwZFz/lM9Als5lt6sNA+MgSpc7Mwwig3U6EViCFIYC6N5IPcw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
+    "@ethersproject/random" "5.7.0"
 
 big-integer@1.6.51:
   version "1.6.51"
