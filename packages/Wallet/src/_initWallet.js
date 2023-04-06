@@ -1,7 +1,7 @@
 /**
  * Initialize Wallet
  */
-const initWallet = ({ commit }) => {
+export default () => {
     console.info('Initializing wallet...') // eslint-disable-line no-console
 
     /**

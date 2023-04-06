@@ -12,10 +12,11 @@ const debug = debugFactory('nexa:crypto')
 const DEFAULT_DERIVATION_PATH = `m/44'/29223'/0'`
 
 /* Import (local) modules. */
-// TBD
+import _getDerivationPath from './src/getDerivationPath.js'
 
 /* Export (local) modules. */
-// TBD
+export const getDerivationPath = _getDerivationPath
+
 
 /**
  * Wallet Status
@@ -27,50 +28,53 @@ const WalletStatus = Object.freeze({
 	READY: Symbol('ready'),
 })
 
+
 /**
  * Wallet Class
  *
- * Manages wallet functions.
+ * A complete Wallet solution for managing a wide variety of
+ * digital assets types.
  */
 export class Wallet extends EventEmitter {
-    constructor(_params) {
+    constructor(_primary, _secondary) {
         /* Initialize Wallet class. */
         debug('Initializing Wallet...')
-        debug(JSON.stringify(_params, null, 2))
+        debug(JSON.stringify(_primary, null, 2))
+        debug(JSON.stringify(_secondary, null, 2))
         super()
 
         /* Initialize internals. */
         this._wallet = {}
 
         /* Handle hex (strings) and bytes. */
-        if (_params?.length === 32 || _params?.length === 64) {
+        if (_primary?.length === 32 || _primary?.length === 64) {
             /* Set entropy. */
-            const entropy = _params
+            const entropy = _primary
             console.log('FOUND HEX OR BYTE ENTROPY', entropy)
 
             this._wallet = {
-                entropy: _params,
+                entropy: _primary,
                 path: DEFAULT_DERIVATION_PATH,
             }
-        } else if (typeof _params === 'string') {
-            const words = _params.split(' ')
+        } else if (typeof _primary === 'string') {
+            const words = _primary.split(' ')
 
             /* Handle mnemonic (seed) phrase. */
             if (words.length === 12 || words.length === 24) {
                 console.log('FOUND A MNEMONIC SEED PHRASE', words)
 
                 this._wallet = {
-                    mnemonic: _params,
+                    mnemonic: _primary,
                     path: DEFAULT_DERIVATION_PATH,
                 }
             }
-        } else if (_params?.path.includes('m/')) {
-            console.log('FOUND DERIVATION PATH', _params.path)
+        } else if (_primary?.path.includes('m/')) {
+            console.log('FOUND DERIVATION PATH', _primary.path)
 
             this._wallet = {
-                entropy: _params.entropy,
-                mnemonic: _params.mnemonic,
-                path: _params.path,
+                entropy: _primary.entropy,
+                mnemonic: _primary.mnemonic,
+                path: _primary.path,
             }
         } else {
             console.log('CREATING NEW (RANDOM) WALLET')
@@ -109,6 +113,10 @@ export class Wallet extends EventEmitter {
         return this._wallet.mnemonic
     }
 
+    getAddress(_addressIdx = 0, _isChange = false) {
+        return 'nexa:AnotherSampleAddress' + _index
+    }
+
     toObject() {
         return this._wallet
     }
@@ -126,7 +134,7 @@ const Nexa = {}
 Nexa.Wallet = Wallet
 
 /* Initialize Wallet modules. */
-// TBD
+Nexa.getDerivationPath = getDerivationPath
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
