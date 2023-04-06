@@ -51,11 +51,11 @@ Nexa.Hdnode = Hdnode
 /* Initialize HD Node modules. */
 Nexa.deriveHdPrivateNodeFromSeed = deriveHdPrivateNodeFromSeed
 Nexa.encodePrivateKeyWif = encodePrivateKeyWif
-Nexa.entropyToMnemonic = entropyToMnemonic
-Nexa.isValidMnemonic = isValidMnemonic
-Nexa.mnemonicToEntropy = mnemonicToEntropy
-Nexa.mnemonicToSeed = mnemonicToSeed
 Nexa.parseWif = parseWif
+Nexa.entropyToMnemonic = entropyToMnemonic // Ethers.js helpers
+Nexa.isValidMnemonic = isValidMnemonic // Ethers.js helpers
+Nexa.mnemonicToEntropy = mnemonicToEntropy // Ethers.js helpers
+Nexa.mnemonicToSeed = mnemonicToSeed // Ethers.js helpers
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
