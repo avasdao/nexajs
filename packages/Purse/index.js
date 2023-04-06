@@ -7,10 +7,12 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:purse')
 
 /* Import (local) modules. */
+import _getDustAmount from './src/getDustAmount.js'
 import _getUnspentOutputs from './src/getUnspentOutputs.js'
 import _sendUtxo from './src/sendUtxo.js'
 
 /* Export (local) modules. */
+export const getDustAmount = _getDustAmount
 export const getUnspentOutputs = _getUnspentOutputs
 export const send = _sendUtxo // alias
 export const sendUtxo = _sendUtxo
@@ -75,6 +77,7 @@ const Nexa = {}
 Nexa.Purse = Purse
 
 /* Initialize Purse modules. */
+Nexa.getDustAmount = getDustAmount
 Nexa.getUnspentOutputs = getUnspentOutputs
 Nexa.send = send // alias
 Nexa.sendUtxo = sendUtxo
