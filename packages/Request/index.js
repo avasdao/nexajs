@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:graph')
+const debug = debugFactory('nexa:request')
 
 /* Import modules. */
 import { EventEmitter } from 'events'
@@ -13,14 +13,14 @@ import { EventEmitter } from 'events'
 
 
 /**
- * Graph Class
+ * Request Class
  *
  * Manages script functions.
  */
-export class Graph extends EventEmitter {
+export class Request extends EventEmitter {
     constructor(_primary, _secondary) {
-        /* Initialize Graph class. */
-        debug('Initializing Graph...')
+        /* Initialize Request class. */
+        debug('Initializing Request...')
         debug(JSON.stringify(_primary, null, 2))
         debug(JSON.stringify(_secondary, null, 2))
         super()
@@ -29,10 +29,10 @@ export class Graph extends EventEmitter {
     }
 
     test() {
-        return 'Graph (Instance) is working!'
+        return 'Request (Instance) is working!'
     }
     static test() {
-        return 'Graph (Static) is working!'
+        return 'Request (Static) is working!'
     }
 }
 
@@ -40,10 +40,10 @@ export class Graph extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Graph class. */
-Nexa.Graph = Graph
+/* Initialize Request class. */
+Nexa.Request = Request
 
-/* Initialize Graph modules. */
+/* Initialize Request modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

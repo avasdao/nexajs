@@ -1,6 +1,6 @@
-# NexaJS GraphQL Examples
+# NexaJS Request Examples
 
-A complete guide to ALL the GraphQL commands available from the protocol.
+A complete guide to ALL the Request commands available from the protocol.
 
 # Table of contents
 

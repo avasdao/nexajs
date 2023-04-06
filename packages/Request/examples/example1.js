@@ -1,5 +1,5 @@
 /* Import modules. */
-import { example1 } from '../index.js' // use @nexajs/graph in production
+import { example1 } from '../index.js' // use @nexajs/request in production
 
 ;(async () => {
     console.log('Example1')
