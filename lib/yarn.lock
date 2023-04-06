@@ -612,6 +612,13 @@
     "@bitauth/libauth" "1.19.1"
     "@ethersproject/random" "5.7.0"
 
+"@nexajs/utils@23.4.5":
+  version "23.4.5"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.5.tgz#6aa84261c38445db80f08979dc7befb8d54a2dde"
+  integrity sha512-wv4X9P6xFj1SZoBNBU/OqeoVY5RyzoMCnbqR/czN++J7EfYuUWA4DHvQATG5o/QH5EIGUiPsCLpHebY+O1bJrg==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+
 "@nexajs/wallet@23.4.4":
   version "23.4.4"
   resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.4.4.tgz#94e6ab1e06257af0367653eecdb826d5c33e4dc9"
