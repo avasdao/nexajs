@@ -580,6 +580,14 @@
     events "3.3.0"
     uuid "9.0.0"
 
+"@nexajs/request@23.4.5":
+  version "23.4.5"
+  resolved "https://registry.yarnpkg.com/@nexajs/request/-/request-23.4.5.tgz#69c8f16a106329de6ef82d01bb13f03e8e6c0502"
+  integrity sha512-hp241U1GMz6Mkf+5e5d65RKMCnnnjeFGS6Lgaf52PH4UlmJiwgmkwse+zrVYPeSjcWY5LUi5BP0TeswngE3fFg==
+  dependencies:
+    events "3.3.0"
+    node-fetch "3.3.1"
+
 "@nexajs/rostrum@23.3.18":
   version "23.3.18"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.3.18.tgz#524a6cc44339da8f1e516494f1648abbbfcc2ea7"

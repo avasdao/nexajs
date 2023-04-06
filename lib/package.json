@@ -18,6 +18,7 @@
     "@nexajs/hdnode": "23.3.19",
     "@nexajs/id": "23.3.21",
     "@nexajs/purse": "23.3.19-b",
+    "@nexajs/request": "23.4.5",
     "@nexajs/rostrum": "23.4.5",
     "@nexajs/rpc": "23.3.18",
     "@nexajs/token": "23.4.5",
