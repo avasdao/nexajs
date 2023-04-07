@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/id",
-  "version": "23.3.21",
+  "version": "23.4.5",
   "description": "Allows software to interface with a server, securely using the Nexa Identity protocol (nexid).",
   "main": "index.js",
   "type": "module",
@@ -8,11 +8,11 @@
   "author": "NexaJS developers",
   "license": "MIT",
   "dependencies": {
+    "debug": "4.3.4",
     "uuid": "9.0.0",
     "zxcvbn": "4.4.2"
   },
   "devDependencies": {
-    "debug": "4.3.4",
     "events": "3.3.0"
   }
 }
