@@ -10,7 +10,7 @@
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.3.18",
-    "@nexajs/hdnode": "23.3.19",
+    "@nexajs/hdnode": "23.4.5",
     "@nexajs/utils": "23.4.5",
     "events": "3.3.0"
   },

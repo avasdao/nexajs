@@ -223,13 +223,6 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.3.11":
-  version "23.3.11"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.3.11.tgz#763b114fc1e32dfcac186defa33456f547379aa6"
-  integrity sha512-jkzEfFaJbOEFPeenvdXkLIBHuggN3y4RiTOz/Gt5Aqo6NrGtPWcF+GkxdwnA+IsGHpYe8vkixXxeWpCF61wTBw==
-  dependencies:
-    big-integer "1.6.51"
-
 "@nexajs/address@23.3.18":
   version "23.3.18"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.3.18.tgz#0035027ba1c9889a8686eaee542ddfe6bb76ab4d"
@@ -247,19 +240,19 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/hdnode@23.3.18":
-  version "23.3.18"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.18.tgz#acb2993a1419014f4da35b188a73dbd0fa1afa4a"
-  integrity sha512-KW+F05mQTPtmGTNmH2+Rc0TOSLByBRyczszQbLwEqkDq4jwK4K/GDJ/MEmDNBnVWrI/lv/rfPT7/48C9VpgY8g==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "23.3.11"
-
 "@nexajs/hdnode@23.3.19":
   version "23.3.19"
   resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.19.tgz#fd716bb274356a949fe2091544186074a72c67f8"
   integrity sha512-61bixyhL5m/zkwkeTwLE89qvRD4yGAzOptsNg9JaWcxMi9X7D2L+6mQugmOLeZh401a7ctgifIynveam7YGdAA==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@ethersproject/hdnode" "5.7.0"
+    "@nexajs/address" "23.3.18"
+
+"@nexajs/hdnode@23.4.5":
+  version "23.4.5"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.4.5.tgz#ce14d4cb7a20e846616da84a252b6f24fd33117a"
+  integrity sha512-PtKwXtUmir9XALofhQub4o11JeQ3+SvDcHf0PrAwB18l42L0xITG5uEJMkDaaiIipkejqSMHo9+Dbj+nZajnTA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@ethersproject/hdnode" "5.7.0"
