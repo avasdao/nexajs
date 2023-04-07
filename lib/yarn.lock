@@ -510,11 +510,12 @@
     big-integer "1.6.51"
     events "3.3.0"
 
-"@nexajs/address@23.4.5":
-  version "23.4.5"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.4.5.tgz#010af36fa22c78a35a9d43c2fa2f3e894556b311"
-  integrity sha512-UolNUJXa95VuRBGAT3NC1rIl++274u3g8qjw1E2pmMoYoo9PAJX/tIuZJ0H9DxaTEh39+88QIQtTogFNt4vWng==
+"@nexajs/address@23.4.6":
+  version "23.4.6"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.4.6.tgz#d391d3322588f0dd70d87712cb304159d6b56023"
+  integrity sha512-0nT2o/bcwIu+dDWHrvzIqEBXuU98CY/02TWpcEaDTEBzGEfmqWnYOXCd5paiuL/RgKVEzt6yrNqiDqqtkb2LMQ==
   dependencies:
+    "@nexajs/rostrum" "23.4.5"
     big-integer "1.6.51"
     graphql "16.6.0"
     graphql-ws "5.12.0"
@@ -1453,9 +1454,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.353"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.353.tgz#20e9cb4c83a08e35b3314d3fa8988764c105e6b7"
-  integrity sha512-IdJVpMHJoBT/nn0GQ02wPfbhogDVpd1ud95lP//FTf5l35wzxKJwibB4HBdY7Q+xKPA1nkZ0UDLOMyRj5U5IAQ==
+  version "1.4.355"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.355.tgz#539484310e5a94133bc3df8ba4b6a9dde7a506a4"
+  integrity sha512-056hxzEE4l667YeOccgjhRr5fTiwZ6EIJ4FpzGps4k3YcS8iAhiaBYUBrv5E2LDQJsussscv9EEUwAYKnv+ZKg==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"

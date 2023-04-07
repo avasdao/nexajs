@@ -1,23 +1,54 @@
-/* Import modules. */
-const Address = require('..').Address
-const bch = require('bitcore-lib-cash')
-const debug = require('debug')('nitojs:transaction:sendcoin')
-const Transaction = require('.')
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:purse:sendCoin')
 
-/* Set dust (amount) satoshis. */
-const DUST_SATOSHIS = 546
+/* Import (library) modules. */
+import { encodeAddress } from '@nexajs/address'
+import { broadcast } from '@nexajs/blockchain'
+import {
+    deriveHdPrivateNodeFromSeed,
+    encodePrivateKeyWif,
+    mnemonicToSeed
+} from '@nexajs/hdnode'
+import { createNexaTransaction } from '@nexajs/transaction'
+
+/* Libauth helpers. */
+import {
+    binToHex,
+    deriveHdPath,
+    encodeDataPush,
+    hexToBin,
+    instantiateSha256,
+    instantiateSha512,
+    instantiateSecp256k1,
+    instantiateRipemd160,
+} from '@bitauth/libauth'
+
+/* Set constants. */
+import DUST_SATOSHIS from './getDustAmount.js'
+
+/* Instantiate Libauth crypto interfaces. */
+const ripemd160 = await instantiateRipemd160()
+const secp256k1 = await instantiateSecp256k1()
+const sha256 = await instantiateSha256()
+const sha512 = await instantiateSha512()
 
 /**
  * Send Coin
  *
- * Simple coin sending to one or more receipients.
+ * Simple coin sending to one or more recipients.
  *
  * NOTE: By default, the transaction fee will be automatically calculated
  *       and subtracted from the transaction value.
+ *
+ * Coin
+ *   - wif
+ *   - satoshis
+ *   - outpoint
  */
-const sendCoin = async (_coin, _receivers, _autoFee = true) => {
-    debug('Sending coin', _coin, _receivers)
-    // console.log('Sending coin', _coin, _receivers)
+export default async (_coin, _receiver, _autoFee = true) => {
+    debug('Sending coin', _coin, _receiver)
+    // console.log('Sending coin', _coin, _receiver)
 
     /* Initialize coin. */
     let coin
@@ -33,10 +64,10 @@ const sendCoin = async (_coin, _receivers, _autoFee = true) => {
     }
 
     /* Validate receivers. */
-    if (Array.isArray(_receivers)) {
-        receivers = _receivers
+    if (Array.isArray(_receiver)) {
+        receivers = _receiver
     } else {
-        receivers = [_receivers]
+        receivers = [_receiver]
     }
 
     /* Set address. */
@@ -141,7 +172,38 @@ const sendCoin = async (_coin, _receivers, _autoFee = true) => {
         .catch(err => {
             console.error(err) // eslint-disable-line no-console
         })
-}
 
-/* Export module. */
-module.exports = sendCoin
+
+
+
+    // Encode Private Key WIF.
+    const privateKeyWIF = encodePrivateKeyWif(sha256, privateKey, 'mainnet')
+    // console.log('PRIVATE KEY (WIF):', privateKeyWIF)
+
+    // Create a bridge transaction without miner fee to determine the transaction size and therefor the miner fee.
+    const transactionTemplate = await createNexaTransaction(
+        privateKeyWIF,
+        unspentOutputs,
+        receiver,
+        0,
+    )
+    // console.log('TRANSACTION (hex)', binToHex(transactionTemplate))
+
+    /* Set miner fee. */
+    // NOTE: We used 1.1 (an extra 0.1) for added (fee) security.
+    const minerFee = Math.floor(1.1 * transactionTemplate.length)
+    // console.info(`Calculated mining fee: [ ${minerFee} ] sats`) // eslint-disable-line no-console
+
+    // If there's funds and it matches our expectation, forward it to the bridge.
+    const bridgeTransaction = await createNexaTransaction(
+        privateKeyWIF,
+        unspentOutputs,
+        receiver,
+        minerFee,
+    )
+    console.log('\n  Transaction (hex)', binToHex(bridgeTransaction))
+
+    // Broadcast transaction
+    return broadcast(binToHex(bridgeTransaction))
+
+}

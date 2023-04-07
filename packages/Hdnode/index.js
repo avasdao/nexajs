@@ -19,10 +19,10 @@ import { mnemonicToEntropy as _mnemonicToEntropy } from '@ethersproject/hdnode'
 import { mnemonicToSeed as _mnemonicToSeed } from '@ethersproject/hdnode'
 
 /* Export (Ethers.js) modules. */
-export const entropyToMnemonic = _entropyToMnemonic
+export const entropyToMnemonic = _entropy => _entropyToMnemonic('0x' + _entropy)
 export const isValidMnemonic = _isValidMnemonic
-export const mnemonicToEntropy = _mnemonicToEntropy
-export const mnemonicToSeed = _mnemonicToSeed
+export const mnemonicToEntropy = _mnemonic => _mnemonicToEntropy(_mnemonic).slice(2)
+export const mnemonicToSeed = _mnemonic => _mnemonicToSeed(_mnemonic).slice(2)
 
 
 /**

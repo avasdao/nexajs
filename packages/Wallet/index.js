@@ -6,6 +6,33 @@ const debug = debugFactory('nexa:wallet')
 import { entropyToMnemonic } from '@nexajs/hdnode'
 import { randomBytes } from '@nexajs/crypto'
 
+/* Import (library) modules. */
+import { encodeAddress } from '@nexajs/address'
+import {
+    deriveHdPrivateNodeFromSeed,
+    encodePrivateKeyWif,
+    mnemonicToSeed
+} from '@nexajs/hdnode'
+
+/* Libauth helpers. */
+import {
+    binToHex,
+    deriveHdPath,
+    encodeDataPush,
+    hexToBin,
+    instantiateSha256,
+    instantiateSha512,
+    instantiateSecp256k1,
+    instantiateRipemd160,
+} from '@bitauth/libauth'
+
+/* Instantiate Libauth crypto interfaces. */
+const ripemd160 = await instantiateRipemd160()
+const secp256k1 = await instantiateSecp256k1()
+const sha256 = await instantiateSha256()
+const sha512 = await instantiateSha512()
+
+
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -64,6 +91,10 @@ export class Wallet extends EventEmitter {
             if (words.length === 12 || words.length === 24) {
                 console.log('FOUND A MNEMONIC SEED PHRASE', words)
 
+                /* Calculate seed. */
+                const seed = hexToBin(mnemonicToSeed(_primary).slice(2))
+                // console.log('SEED', seed)
+
                 this._wallet = {
                     mnemonic: _primary,
                     path: DEFAULT_DERIVATION_PATH,
@@ -92,6 +123,48 @@ export class Wallet extends EventEmitter {
                 path: DEFAULT_DERIVATION_PATH,
             }
         }
+
+
+        /* Set mnemonic. */
+        // const mnemonic = _params.mnemonic
+        // console.log('\nMNEMONIC', mnemonic)
+
+        /* Set receiving address. */
+        // const receiver = _params.receiver
+        // console.log('\nRECEIVER', receiver)
+
+
+        /* Initialize HD node. */
+        const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
+        // console.log('\n  HD Node:', node)
+
+        /* Derive a child from the Master node */
+        const child = deriveHdPath({ ripemd160, sha256, sha512, secp256k1 }, node, `m/44'/29223'/0'/0/0`)
+        // console.log('CHILD', child)
+
+        const privateKey = child.privateKey
+        // console.log('PRIVATE KEY (hex)', binToHex(privateKey))
+
+        /* Derive the corresponding public key. */
+        const publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
+        // console.log('PUBLIC KEY', publicKey)
+        // console.log('PUBLIC KEY (hex)', binToHex(publicKey))
+
+        /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
+        const scriptPushPubKey = encodeDataPush(publicKey)
+        // console.log('SCRIPT PUSH PUBLIC KEY', scriptPushPubKey);
+
+        const publicKeyHash = ripemd160.hash(sha256.hash(scriptPushPubKey))
+        // console.log('PUBLIC KEY HASH (hex)', binToHex(publicKeyHash))
+
+        const pkhScript = hexToBin('17005114' + binToHex(publicKeyHash))
+        // console.info('  Public key hash Script:', binToHex(pkhScript))
+
+        /* Encode the public key hash into a P2PKH nexa address. */
+        const nexaAddress = encodeAddress(
+            'nexa', 'TEMPLATE', pkhScript)
+        console.info('\n  Nexa address:', nexaAddress)
+
     }
 
     test() {
