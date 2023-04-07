@@ -2,16 +2,13 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:transaction')
 
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Import (local) modules. */
 // import _createBchTransaction from './src/createBchTransaction.js'
-import _createNexaTransaction from './src/createNexaTransaction.js'
+import createNexaTransaction from './src-REF/createNexaTransaction.js'
 
 /* Export (local) modules. */
 // export const createBchTransaction = _createBchTransaction
-export const createNexaTransaction = _createNexaTransaction
+// export const createNexaTransaction = _createNexaTransaction
 
 
 /**
@@ -19,14 +16,14 @@ export const createNexaTransaction = _createNexaTransaction
  *
  * Manages transaction functions.
  */
-export class Transaction extends EventEmitter {
+export class Transaction {
     constructor(_params) {
         /* Initialize Transaction class. */
         debug('Initializing Transaction...')
         debug(JSON.stringify(_params, null, 2))
-        super()
 
-        // TBD
+        /* Initialize flags. */
+        this._isSigned = false
     }
 
     test() {
@@ -35,6 +32,33 @@ export class Transaction extends EventEmitter {
     static test() {
         return 'Transaction (Static) is working!'
     }
+
+    addInput(_input) {
+
+    }
+
+    addOutput(_output) {
+
+    }
+
+    get isSigned() {
+        return this._isSigned
+    }
+
+    get json() {
+        return {
+            hash: 'some-32-byte-hash',
+        }
+    }
+
+    get raw() {
+        return 'raw-transaction-hex'
+    }
+
+    sign(...params) {
+
+    }
+
 }
 
 
@@ -46,7 +70,7 @@ Nexa.Transaction = Transaction
 
 /* Initialize Transaction modules. */
 // Nexa.createBchTransaction = createBchTransaction
-Nexa.createNexaTransaction = createNexaTransaction
+// Nexa.createNexaTransaction = createNexaTransaction
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
