@@ -24,25 +24,40 @@ export class Transaction {
 
         /* Initialize flags. */
         this._isSigned = false
+
+        /* Initialize inputs. */
+        this._inputs = []
+
+        /* Initialize outputs. */
+        this._outputs = []
+
+        /* Initialize lock time. */
+        // NOTE: A Unix timestamp or block number. (4 bytes)
+        this._lockTime = 0
     }
 
     test() {
         return 'Transaction (Instance) is working!'
     }
+
     static test() {
         return 'Transaction (Static) is working!'
     }
 
-    addInput(_input) {
-
-    }
-
-    addOutput(_output) {
-
+    get inputs() {
+        return this._inputs
     }
 
     get isSigned() {
         return this._isSigned
+    }
+
+    get lockTime() {
+        return this._lockTime
+    }
+
+    get outputs() {
+        return this._outputs
     }
 
     get json() {
@@ -55,10 +70,25 @@ export class Transaction {
         return 'raw-transaction-hex'
     }
 
-    sign(...params) {
-
+    addInput(_input) {
+        // TODO Validate input.
+        this._inputs.push(_input)
     }
 
+    addOutput(_output) {
+        // TODO Validate output.
+        this._outputs.push(_output)
+    }
+
+    setLockTime(_timestamp) {
+        // TODO Validate timestamp or block height.
+        this._lockTime = _timestamp
+    }
+
+    sign(_params) {
+        /* Set flag. */
+        this._isSigned = true
+    }
 }
 
 
