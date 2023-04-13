@@ -169,40 +169,24 @@ export default async (_coins, _receivers, _autoFee = true) => {
     //     })
 
 
-    const transaction = new Transaction()
-    console.log('TRANSACTION-1', transaction)
+    const transaction = await new Transaction()
 
-    const unspents = [{
-        outpoint: coins[0].outpoint,
-        satoshis: coins[0].satoshis,
-    }]
+    transaction.addInput(
+        coins[0].wif,
+        coins[0].outpoint,
+        coins[0].satoshis,
+    )
 
-    // Create a bridge transaction without miner fee to determine the transaction size and therefor the miner fee.
-    await transaction
-        .build(
-            coins[0].wif,
-            unspents,
-            receivers[0],
-        )
-        .catch(err => console.error(err))
-    console.log('TRANSACTION-2', transaction)
-    // console.log('TRANSACTION (hex)', binToHex(transactionTemplate))
+    transaction.addOutput(
+        receivers[0],
+        null,
+    )
 
-    /* Set miner fee. */
-    // NOTE: We used 1.1 (an extra 0.1) for added (fee) security.
-    // const minerFee = Math.floor(1.1 * transactionTemplate.length)
-    // console.info(`Calculated mining fee: [ ${minerFee} ] sats`) // eslint-disable-line no-console
+    // TODO Add (optional) miner fee.
+    await transaction.build()
 
-    // If there's funds and it matches our expectation, forward it to the bridge.
-    // const bridgeTransaction = await createNexaTransaction(
-    //     privateKeyWIF,
-    //     unspentOutputs,
-    //     receiver,
-    //     minerFee,
-    // )
-
-    console.log('\n  Transaction (json)', transaction.json)
     console.log('\n  Transaction (hex)', transaction.raw)
+    // console.log('\n  Transaction (json)', transaction.json)
 
     // Broadcast transaction
     return broadcast(transaction.raw)

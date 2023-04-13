@@ -51,10 +51,22 @@ export class Transaction {
         return 'Transaction (Static) is working!'
     }
 
-    async build(_wif, _unspents, _receivers, _fee = 250) {
+    async build(_fee = 250) {
         // const fee = Math.floor(1.1 * transactionTemplate.length)
 
-        this._raw = await createTransaction(_wif, _unspents, _receivers, _fee)
+        const unspents = [{
+            outpoint: this._inputs[0].outpoint,
+            satoshis: this._inputs[0].satoshis,
+        }]
+
+        console.log('this._outputs[0].receiver', this._outputs[0].receiver);
+
+        this._raw = await createTransaction(
+            this._inputs[0].wif,
+            unspents,
+            this._outputs[0].receiver,
+            _fee
+        ).catch(err => console.error(err))
         console.log('RAW TX', this._raw)
     }
 
@@ -95,14 +107,21 @@ export class Transaction {
         return binToHex(this._raw)
     }
 
-    addInput(_input) {
+    addInput(_wif, _outpoint, _satoshis) {
         // TODO Validate input.
-        this._inputs.push(_input)
+        this._inputs.push({
+            wif: _wif,
+            outpoint: _outpoint,
+            satoshis: _satoshis,
+        })
     }
 
-    addOutput(_output) {
+    addOutput(_receiver, _satoshis) {
         // TODO Validate output.
-        this._outputs.push(_output)
+        this._outputs.push({
+            receiver: _receiver,
+            satoshis: _satoshis,
+        })
     }
 
     setLockTime(_timestamp) {
