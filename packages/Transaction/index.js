@@ -8,12 +8,10 @@ import {
 } from '@bitauth/libauth'
 
 /* Import (local) modules. */
-// import _createBchTransaction from './src/createBchTransaction.js'
-import createTransaction from './src/createTransaction.js'
+import _createTransaction from './src/createTransaction.js'
 
 /* Export (local) modules. */
-// export const createBchTransaction = _createBchTransaction
-// export const createNexaTransaction = _createNexaTransaction
+export const createTransaction = _createTransaction
 
 
 /**
@@ -49,25 +47,6 @@ export class Transaction {
 
     static test() {
         return 'Transaction (Static) is working!'
-    }
-
-    async build(_fee = 250) {
-        // const fee = Math.floor(1.1 * transactionTemplate.length)
-
-        const unspents = [{
-            outpoint: this._inputs[0].outpoint,
-            satoshis: this._inputs[0].satoshis,
-        }]
-
-        console.log('this._outputs[0].receiver', this._outputs[0].receiver);
-
-        this._raw = await createTransaction(
-            this._inputs[0].wif,
-            unspents,
-            this._outputs[0].receiver,
-            _fee
-        ).catch(err => console.error(err))
-        console.log('RAW TX', this._raw)
     }
 
     get inputs() {
@@ -107,10 +86,9 @@ export class Transaction {
         return binToHex(this._raw)
     }
 
-    addInput(_wif, _outpoint, _satoshis) {
+    addInput(_outpoint, _satoshis) {
         // TODO Validate input.
         this._inputs.push({
-            wif: _wif,
             outpoint: _outpoint,
             satoshis: _satoshis,
         })
@@ -129,7 +107,24 @@ export class Transaction {
         this._lockTime = _timestamp
     }
 
-    sign(_params) {
+    async sign(_wifs) {
+        const minerFee = 225 // FIXME Calculate dynamically.
+        // const fee = Math.floor(1.1 * transactionTemplate.length)
+
+        const unspents = [{
+            outpoint: this._inputs[0].outpoint,
+            satoshis: this._inputs[0].satoshis,
+        }]
+
+        /* Generate raw transaction. */
+        this._raw = await createTransaction(
+            _wifs[0],
+            unspents,
+            this._outputs[0].receiver,
+            minerFee
+        ).catch(err => console.error(err))
+        console.log('RAW TX', this._raw)
+
         /* Set flag. */
         this._isSigned = true
     }
@@ -143,8 +138,7 @@ const Nexa = {}
 Nexa.Transaction = Transaction
 
 /* Initialize Transaction modules. */
-// Nexa.createBchTransaction = createBchTransaction
-// Nexa.createNexaTransaction = createNexaTransaction
+Nexa.createTransaction = createTransaction
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

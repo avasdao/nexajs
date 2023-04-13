@@ -31,6 +31,8 @@ export default async (
     /* Initialize an empty list of outputs. */
     const outputs = []
 
+    // TODO Add `createDataOutput`
+
     /* Add the value output. */
     // NOTE: Miner fee is deducted from output value.
     outputs

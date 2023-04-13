@@ -82,28 +82,6 @@ export default async (_coins, _receivers, _autoFee = true) => {
         throw new Error('No transaction value.')
     }
 
-    /* Set public key (hash) script. */
-    // const script = Address.toPubKeyHash(coin.cashAddress)
-
-    /* Initialize private key. */
-    // const privateKey = new bch.PrivateKey(coin.wif)
-
-    /* Build UTXO. */
-    // const utxo = { txId, outputIndex, address, script, satoshis }
-    // debug('Sending (utxo):', utxo)
-    // console.log('SEND COIN (utxo):', utxo)
-
-    /* Build transaction. */
-    // const transaction = new bch.Transaction()
-    //     .from(utxo)
-
-    /* Initialize (minimum) byte count. */
-    // FIXME: We need to properly calculate the fee.
-    //        Reference BITBOX `getByteCount` for method.
-    // const byteCount = 226
-    const byteCount = 270
-    debug('Byte count:', byteCount)
-
     /* Initialize (initial) transaction satoshis. */
     // NOTE: It's the original satoshis - 1 sat/byte for tx size
     // FIXME: Recommendation is to use 1.1 sat/byte
@@ -155,24 +133,9 @@ export default async (_coins, _receivers, _autoFee = true) => {
     //     throw new Error(`Amount is too low. Minimum is [ ${DUST_SATOSHIS} ] satoshis.`)
     // }
 
-    /* Sign transaction. */
-    // transaction.sign(privateKey)
-    // debug('Raw transaction (hex):', transaction.toString())
-    // console.info('Raw transaction:', transaction) // eslint-disable-line no-console
-    // console.info('Raw transaction (hex):', ) // eslint-disable-line no-console
-
-    /* Broadcast transaction to network. */
-    // return await Transaction
-    //     .sendRawTransaction(transaction.toString())
-    //     .catch(err => {
-    //         console.error(err) // eslint-disable-line no-console
-    //     })
-
-
     const transaction = await new Transaction()
 
     transaction.addInput(
-        coins[0].wif,
         coins[0].outpoint,
         coins[0].satoshis,
     )
@@ -183,7 +146,7 @@ export default async (_coins, _receivers, _autoFee = true) => {
     )
 
     // TODO Add (optional) miner fee.
-    await transaction.build()
+    await transaction.sign([ coins[0].wif ])
 
     console.log('\n  Transaction (hex)', transaction.raw)
     // console.log('\n  Transaction (json)', transaction.json)
