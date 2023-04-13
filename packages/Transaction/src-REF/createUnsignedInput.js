@@ -15,12 +15,10 @@ const DEFAULT_SEQNUMBER = MAXINT - 1
  */
 const createUnsignedInput = (unspentOutput) => {
     const input = {
-        // outpointIndex: unspentOutput.tx_pos || unspentOutput.txPos,
-        // outpointTransactionHash: unspentOutput.tx_hash ? hexToBin(unspentOutput.tx_hash) : hexToBin(unspentOutput.outpointHash),
-        outpointTransactionHash: unspentOutput.outpointHash ? hexToBin(unspentOutput.outpointHash) : hexToBin(unspentOutput.tx_hash),
+        outpointTransactionHash: unspentOutput.outpoint ? hexToBin(unspentOutput.outpoint) : hexToBin(unspentOutput.tx_hash),
         unlockingBytecode: new Uint8Array(), // NOTE: This is where the signature and public key will be placed.
-        satoshis: unspentOutput.value,
-        amount: unspentOutput.value,
+        satoshis: unspentOutput.satoshis,
+        amount: unspentOutput.satoshis,
         sequenceNumber: DEFAULT_SEQNUMBER, // numberToBinUint32LE??
     }
 

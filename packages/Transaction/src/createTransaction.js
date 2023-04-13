@@ -1,6 +1,6 @@
 /* Import modules. */
-import createTransaction from './createP2pktTransaction.js'
-import createValueOutput from './createP2pktValueOutput.js'
+import createTransaction from '../src-REF/createP2pktTransaction.js'
+import createValueOutput from '../src-REF/createP2pktValueOutput.js'
 
 /**
  * Create a Nexa Transaction
@@ -25,7 +25,7 @@ export default async (
     /* Calculate the total balance of the unspent outputs. */
     const unspentSatoshis = unspentOutputs
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.value), 0
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
         )
 
     /* Initialize an empty list of outputs. */

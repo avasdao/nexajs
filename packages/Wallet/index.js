@@ -92,7 +92,7 @@ export class Wallet extends EventEmitter {
                 console.log('FOUND A MNEMONIC SEED PHRASE', words)
 
                 /* Calculate seed. */
-                const seed = hexToBin(mnemonicToSeed(_primary).slice(2))
+                const seed = hexToBin(mnemonicToSeed(_primary))
                 // console.log('SEED', seed)
 
                 this._wallet = {

@@ -5,12 +5,8 @@ const debug = debugFactory('nexa:purse:sendCoin')
 /* Import (library) modules. */
 import { encodeAddress } from '@nexajs/address'
 import { broadcast } from '@nexajs/blockchain'
-import {
-    deriveHdPrivateNodeFromSeed,
-    encodePrivateKeyWif,
-    mnemonicToSeed
-} from '@nexajs/hdnode'
-import { createNexaTransaction } from '@nexajs/transaction'
+
+import { Transaction } from '@nexajs/transaction'
 
 /* Libauth helpers. */
 import {
@@ -46,41 +42,40 @@ const sha512 = await instantiateSha512()
  *   - satoshis
  *   - outpoint
  */
-export default async (_coin, _receiver, _autoFee = true) => {
-    debug('Sending coin', _coin, _receiver)
-    // console.log('Sending coin', _coin, _receiver)
+export default async (_coins, _receivers, _autoFee = true) => {
+    debug('Sending coins', _coins, _receivers)
+    // console.log('Sending coins', _coins, _receivers)
 
     /* Initialize coin. */
-    let coin
+    let coins
 
     /* Initialize receivers. */
     let receivers
 
     /* Validate coin. */
-    if (_coin) {
-        coin = _coin
+    if (_coins) {
+        /* Validate coins. */
+        if (Array.isArray(_coins)) {
+            coins = _coins
+        } else {
+            coins = [_coins]
+        }
     } else {
-        throw new Error(`The coin provided is invalid [ ${JSON.stringify(_coin)} ]`)
+        throw new Error(`The coin(s) provided are invalid [ ${JSON.stringify(_coins)} ]`)
     }
 
     /* Validate receivers. */
-    if (Array.isArray(_receiver)) {
-        receivers = _receiver
+    if (Array.isArray(_receivers)) {
+        receivers = _receivers
     } else {
-        receivers = [_receiver]
+        receivers = [_receivers]
     }
 
-    /* Set address. */
-    const address = coin.cashAddress
-
-    /* Set transaction id. */
-    const txId = coin.txid
-
-    /* Set output index. */
-    const outputIndex = coin.vout
+    /* Set outpoint. */
+    const outputpoint = coins[0].outpoint
 
     /* Set satoshis. */
-    const satoshis = coin.satoshis
+    const satoshis = coins[0].satoshis
 
     /* Validate satoshis (sending to receiver). */
     if (!satoshis) {
@@ -88,19 +83,19 @@ export default async (_coin, _receiver, _autoFee = true) => {
     }
 
     /* Set public key (hash) script. */
-    const script = Address.toPubKeyHash(coin.cashAddress)
+    // const script = Address.toPubKeyHash(coin.cashAddress)
 
     /* Initialize private key. */
-    const privateKey = new bch.PrivateKey(coin.wif)
+    // const privateKey = new bch.PrivateKey(coin.wif)
 
     /* Build UTXO. */
-    const utxo = { txId, outputIndex, address, script, satoshis }
-    debug('Sending (utxo):', utxo)
+    // const utxo = { txId, outputIndex, address, script, satoshis }
+    // debug('Sending (utxo):', utxo)
     // console.log('SEND COIN (utxo):', utxo)
 
     /* Build transaction. */
-    const transaction = new bch.Transaction()
-        .from(utxo)
+    // const transaction = new bch.Transaction()
+    //     .from(utxo)
 
     /* Initialize (minimum) byte count. */
     // FIXME: We need to properly calculate the fee.
@@ -115,95 +110,100 @@ export default async (_coin, _receiver, _autoFee = true) => {
     let txAmount = 0
 
     /* Handle all receivers. */
-    receivers.forEach(_receiver => {
-        /* Validate receiver. */
-        if (!_receiver.address) {
-            throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
-        }
-
-        if (!_receiver.satoshis) {
-            throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
-        }
-
-        /* Set receipient address. */
-        // TODO: Add protection against accidental legacy address.
-        const address = _receiver.address
-
-        /* Initialize satoshis. */
-        let satoshis = null
-
-        if (_autoFee) {
-            /* Calculate fee per recipient. */
-            // NOTE: Fee is split evenly between all recipients.
-            const feePerRecipient = Math.ceil(byteCount / receivers.length)
-
-            /* Calculate satoshis. */
-            satoshis = _receiver.satoshis - feePerRecipient
-
-            /* Add receiver to transaction. */
-            transaction.to(address, satoshis)
-        } else {
-            /* Set satoshis. */
-            satoshis = _receiver.satoshis
-
-            /* Add receiver to transaction. */
-            transaction.to(address, satoshis)
-        }
-
-        /* Calculate transaction total. */
-        txAmount += satoshis
-    })
-    debug('Transaction satoshis (incl. fee):', txAmount)
+    // receivers.forEach(_receiver => {
+    //     /* Validate receiver. */
+    //     if (!_receiver.address) {
+    //         throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
+    //     }
+    //
+    //     if (!_receiver.satoshis) {
+    //         throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
+    //     }
+    //
+    //     /* Set receipient address. */
+    //     // TODO: Add protection against accidental legacy address.
+    //     const address = _receiver.address
+    //
+    //     /* Initialize satoshis. */
+    //     let satoshis = null
+    //
+    //     if (_autoFee) {
+    //         /* Calculate fee per recipient. */
+    //         // NOTE: Fee is split evenly between all recipients.
+    //         const feePerRecipient = Math.ceil(byteCount / receivers.length)
+    //
+    //         /* Calculate satoshis. */
+    //         satoshis = _receiver.satoshis - feePerRecipient
+    //
+    //         /* Add receiver to transaction. */
+    //         transaction.to(address, satoshis)
+    //     } else {
+    //         /* Set satoshis. */
+    //         satoshis = _receiver.satoshis
+    //
+    //         /* Add receiver to transaction. */
+    //         transaction.to(address, satoshis)
+    //     }
+    //
+    //     /* Calculate transaction total. */
+    //     txAmount += satoshis
+    // })
+    // debug('Transaction satoshis (incl. fee):', txAmount)
 
     /* Validate dust amount. */
-    if (txAmount < DUST_SATOSHIS) {
-        throw new Error(`Amount is too low. Minimum is [ ${DUST_SATOSHIS} ] satoshis.`)
-    }
+    // if (txAmount < DUST_SATOSHIS) {
+    //     throw new Error(`Amount is too low. Minimum is [ ${DUST_SATOSHIS} ] satoshis.`)
+    // }
 
     /* Sign transaction. */
-    transaction.sign(privateKey)
-    debug('Raw transaction (hex):', transaction.toString())
+    // transaction.sign(privateKey)
+    // debug('Raw transaction (hex):', transaction.toString())
     // console.info('Raw transaction:', transaction) // eslint-disable-line no-console
     // console.info('Raw transaction (hex):', ) // eslint-disable-line no-console
 
     /* Broadcast transaction to network. */
-    return await Transaction
-        .sendRawTransaction(transaction.toString())
-        .catch(err => {
-            console.error(err) // eslint-disable-line no-console
-        })
+    // return await Transaction
+    //     .sendRawTransaction(transaction.toString())
+    //     .catch(err => {
+    //         console.error(err) // eslint-disable-line no-console
+    //     })
 
 
+    const transaction = new Transaction()
+    console.log('TRANSACTION-1', transaction)
 
-
-    // Encode Private Key WIF.
-    const privateKeyWIF = encodePrivateKeyWif(sha256, privateKey, 'mainnet')
-    // console.log('PRIVATE KEY (WIF):', privateKeyWIF)
+    const unspents = [{
+        outpoint: coins[0].outpoint,
+        satoshis: coins[0].satoshis,
+    }]
 
     // Create a bridge transaction without miner fee to determine the transaction size and therefor the miner fee.
-    const transactionTemplate = await createNexaTransaction(
-        privateKeyWIF,
-        unspentOutputs,
-        receiver,
-        0,
-    )
+    await transaction
+        .build(
+            coins[0].wif,
+            unspents,
+            receivers[0],
+        )
+        .catch(err => console.error(err))
+    console.log('TRANSACTION-2', transaction)
     // console.log('TRANSACTION (hex)', binToHex(transactionTemplate))
 
     /* Set miner fee. */
     // NOTE: We used 1.1 (an extra 0.1) for added (fee) security.
-    const minerFee = Math.floor(1.1 * transactionTemplate.length)
+    // const minerFee = Math.floor(1.1 * transactionTemplate.length)
     // console.info(`Calculated mining fee: [ ${minerFee} ] sats`) // eslint-disable-line no-console
 
     // If there's funds and it matches our expectation, forward it to the bridge.
-    const bridgeTransaction = await createNexaTransaction(
-        privateKeyWIF,
-        unspentOutputs,
-        receiver,
-        minerFee,
-    )
-    console.log('\n  Transaction (hex)', binToHex(bridgeTransaction))
+    // const bridgeTransaction = await createNexaTransaction(
+    //     privateKeyWIF,
+    //     unspentOutputs,
+    //     receiver,
+    //     minerFee,
+    // )
+
+    console.log('\n  Transaction (json)', transaction.json)
+    console.log('\n  Transaction (hex)', transaction.raw)
 
     // Broadcast transaction
-    return broadcast(binToHex(bridgeTransaction))
-
+    return broadcast(transaction.raw)
 }

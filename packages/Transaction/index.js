@@ -2,9 +2,14 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:transaction')
 
+/* Libauth helpers. */
+import {
+    binToHex,
+} from '@bitauth/libauth'
+
 /* Import (local) modules. */
 // import _createBchTransaction from './src/createBchTransaction.js'
-import createNexaTransaction from './src-REF/createNexaTransaction.js'
+import createTransaction from './src/createTransaction.js'
 
 /* Export (local) modules. */
 // export const createBchTransaction = _createBchTransaction
@@ -34,6 +39,8 @@ export class Transaction {
         /* Initialize lock time. */
         // NOTE: A Unix timestamp or block number. (4 bytes)
         this._lockTime = 0
+
+        this._raw = null
     }
 
     test() {
@@ -42,6 +49,13 @@ export class Transaction {
 
     static test() {
         return 'Transaction (Static) is working!'
+    }
+
+    async build(_wif, _unspents, _receivers, _fee = 250) {
+        // const fee = Math.floor(1.1 * transactionTemplate.length)
+
+        this._raw = await createTransaction(_wif, _unspents, _receivers, _fee)
+        console.log('RAW TX', this._raw)
     }
 
     get inputs() {
@@ -61,13 +75,24 @@ export class Transaction {
     }
 
     get json() {
+        /* Validate raw transaction data. */
+        if (!this._raw) {
+            return {}
+        }
+
         return {
-            hash: 'some-32-byte-hash',
+            hash: 'TODO',
         }
     }
 
     get raw() {
-        return 'raw-transaction-hex'
+        /* Validate raw transaction data. */
+        if (!this._raw) {
+            return ''
+        }
+
+        /* Return (hex-formatted) raw transaction data. */
+        return binToHex(this._raw)
     }
 
     addInput(_input) {
