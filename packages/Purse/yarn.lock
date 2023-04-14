@@ -259,14 +259,28 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/transaction@file:../Transaction":
-  version "23.4.5"
-  resolved "file:../Transaction"
+"@nexajs/script@23.4.12":
+  version "23.4.12"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.12.tgz#285e6849ac43057268b98bf88ba456737fa6ed0c"
+  integrity sha512-pAuimtqxvqa2LN3Mx8IkIVIUg3zO8D7g1+pNvwXzOl3HVKQ1cOe6k7fhcnVdaz++ACse4Ax8/63eoD3x3hRTbQ==
+
+"@nexajs/transaction@23.4.12":
+  version "23.4.12"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.4.12.tgz#dd304a01af824b362205aff1986ce7695ad04f06"
+  integrity sha512-sSlhtfqMdXEDFO7L29E8HIzdpfzBtf17q24i23TBe3dsjGAsrzk/3tcZidHD56vVwCXxHGnpeu8BmSxMFMspSA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.3.18"
     "@nexajs/hdnode" "23.4.5"
+    "@nexajs/script" "23.4.12"
     "@nexajs/utils" "23.4.5"
+
+"@nexajs/utils@23.4.5":
+  version "23.4.5"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.5.tgz#6aa84261c38445db80f08979dc7befb8d54a2dde"
+  integrity sha512-wv4X9P6xFj1SZoBNBU/OqeoVY5RyzoMCnbqR/czN++J7EfYuUWA4DHvQATG5o/QH5EIGUiPsCLpHebY+O1bJrg==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
 
 big-integer@1.6.51:
   version "1.6.51"
@@ -313,7 +327,7 @@ events@3.3.0:
   resolved "https://registry.npmjs.org/events/-/events-3.3.0.tgz"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
-hash.js@^1.0.0, hash.js@^1.0.3, hash.js@1.1.7:
+hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.7"
   resolved "https://registry.npmjs.org/hash.js/-/hash.js-1.1.7.tgz"
   integrity sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
@@ -365,12 +379,12 @@ uuid@9.0.0:
   resolved "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
-ws@*, ws@8.13.0:
-  version "8.13.0"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
-  integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==
-
 ws@8.12.1:
   version "8.12.1"
   resolved "https://registry.npmjs.org/ws/-/ws-8.12.1.tgz"
   integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
+
+ws@8.13.0:
+  version "8.13.0"
+  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
+  integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==

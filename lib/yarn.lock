@@ -648,6 +648,17 @@
     "@nexajs/utils" "23.3.16"
     events "3.3.0"
 
+"@nexajs/transaction@23.4.12":
+  version "23.4.12"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.4.12.tgz#dd304a01af824b362205aff1986ce7695ad04f06"
+  integrity sha512-sSlhtfqMdXEDFO7L29E8HIzdpfzBtf17q24i23TBe3dsjGAsrzk/3tcZidHD56vVwCXxHGnpeu8BmSxMFMspSA==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/address" "23.3.18"
+    "@nexajs/hdnode" "23.4.5"
+    "@nexajs/script" "23.4.12"
+    "@nexajs/utils" "23.4.5"
+
 "@nexajs/utils@23.3.16":
   version "23.3.16"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.3.16.tgz#ad1b1837105858e67c9742b47d42b95cb9be76e3"
@@ -1466,9 +1477,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.361"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.361.tgz#010ddd5e623470ab9d1bf776b009d11c3669a4e3"
-  integrity sha512-VocVwjPp05HUXzf3xmL0boRn5b0iyqC7amtDww84Jb1QJNPBc7F69gJyEeXRoriLBC4a5pSyckdllrXAg4mmRA==
+  version "1.4.362"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.362.tgz#1dfd7a076fc4785a16941f06410d0668e1a7a1aa"
+  integrity sha512-PYzAoScDfUcAwZfJQvr6hK2xXzLsMocj/Wuz6LpW6TZQNVv9TflBSB+UoEPuFujc478BgAxCoCFarcVPmjzsog==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"
