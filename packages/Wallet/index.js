@@ -3,15 +3,16 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:wallet')
 
 /* Import modules. */
-import { entropyToMnemonic } from '@nexajs/hdnode'
-import { randomBytes } from '@nexajs/crypto'
+import { EventEmitter } from 'events'
 
 /* Import (library) modules. */
 import { encodeAddress } from '@nexajs/address'
+import { randomBytes } from '@nexajs/crypto'
 import {
     deriveHdPrivateNodeFromSeed,
     encodePrivateKeyWif,
-    mnemonicToSeed
+    entropyToMnemonic,
+    mnemonicToSeed,
 } from '@nexajs/hdnode'
 
 /* Libauth helpers. */
@@ -26,23 +27,20 @@ import {
     instantiateRipemd160,
 } from '@bitauth/libauth'
 
+/* Import (local) modules. */
+import _getDerivationPath from './src/getDerivationPath.js'
+
+/* Export (local) modules. */
+export const getDerivationPath = _getDerivationPath
+
 /* Instantiate Libauth crypto interfaces. */
 const ripemd160 = await instantiateRipemd160()
 const secp256k1 = await instantiateSecp256k1()
 const sha256 = await instantiateSha256()
 const sha512 = await instantiateSha512()
 
-
-/* Import modules. */
-import { EventEmitter } from 'events'
-
+/* Set constants. */
 const DEFAULT_DERIVATION_PATH = `m/44'/29223'/0'`
-
-/* Import (local) modules. */
-import _getDerivationPath from './src/getDerivationPath.js'
-
-/* Export (local) modules. */
-export const getDerivationPath = _getDerivationPath
 
 
 /**
@@ -72,99 +70,54 @@ export class Wallet extends EventEmitter {
 
         /* Initialize internals. */
         this._addressIdx = 0
-        this._wallet = {}
+        this._entropy = null
+        this._mnemonic = null
+        this._path = null
+
+        this._privateKey = null
+        this._publicKey = null
+
+        this._wallet = {} // DEPRECATED
 
         /* Handle hex (strings) and bytes. */
         if (_primary?.length === 32 || _primary?.length === 64) {
             /* Set entropy. */
             const entropy = _primary
-            console.log('FOUND HEX OR BYTE ENTROPY', entropy)
+            // console.log('FOUND HEX OR BYTE ENTROPY', entropy)
 
-            this._wallet = {
-                entropy: _primary,
-                path: DEFAULT_DERIVATION_PATH,
-            }
+            this._entropy = _primary
+            this._mnemonic = entropyToMnemonic(this._entropy)
+            this._path = DEFAULT_DERIVATION_PATH
         } else if (typeof _primary === 'string') {
             const words = _primary.split(' ')
 
             /* Handle mnemonic (seed) phrase. */
             if (words.length === 12 || words.length === 24) {
-                console.log('FOUND A MNEMONIC SEED PHRASE', words)
+                // console.log('FOUND A MNEMONIC SEED PHRASE', words)
 
-                /* Calculate seed. */
-                const seed = hexToBin(mnemonicToSeed(_primary))
-                // console.log('SEED', seed)
-
-                this._wallet = {
-                    mnemonic: _primary,
-                    path: DEFAULT_DERIVATION_PATH,
-                }
+                this._mnemonic = _primary
+                this._path = DEFAULT_DERIVATION_PATH
             }
-        } else if (_primary?.path.includes('m/')) {
-            console.log('FOUND DERIVATION PATH', _primary.path)
+        } else if (_primary?.path.includes('m/') && _primary?.mnemonic) {
+            // console.log('FOUND DERIVATION PATH', _primary.path)
 
-            this._wallet = {
-                entropy: _primary.entropy,
-                mnemonic: _primary.mnemonic,
-                path: _primary.path,
-            }
+            // TODO Add support for user-defined entropy.
+            this._mnemonic = _primary.mnemonic
+            this._path = _primary.path
         } else {
-            console.log('CREATING NEW (RANDOM) WALLET')
+            // console.log('CREATING NEW (RANDOM) WALLET')
 
-            const entropy = randomBytes(16)
-            console.log('ENTROPY', entropy)
+            /* Generate entropy. */
+            this._entropy = randomBytes(16)
+            // console.log('ENTROPY', this._entropy)
 
-            const mnemonic = entropyToMnemonic(entropy)
-            console.log('MNEMONIC', mnemonic)
+            /* Derive mnemonic. */
+            this._mnemonic = entropyToMnemonic(entropy)
+            // console.log('MNEMONIC', this._mnemonic)
 
-            this._wallet = {
-                entropy,
-                mnemonic,
-                path: DEFAULT_DERIVATION_PATH,
-            }
+            /* Set (derivation) path. */
+            this._path = DEFAULT_DERIVATION_PATH
         }
-
-
-        /* Set mnemonic. */
-        // const mnemonic = _params.mnemonic
-        // console.log('\nMNEMONIC', mnemonic)
-
-        /* Set receiving address. */
-        // const receiver = _params.receiver
-        // console.log('\nRECEIVER', receiver)
-
-
-        /* Initialize HD node. */
-        const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
-        // console.log('\n  HD Node:', node)
-
-        /* Derive a child from the Master node */
-        const child = deriveHdPath({ ripemd160, sha256, sha512, secp256k1 }, node, `m/44'/29223'/0'/0/0`)
-        // console.log('CHILD', child)
-
-        const privateKey = child.privateKey
-        // console.log('PRIVATE KEY (hex)', binToHex(privateKey))
-
-        /* Derive the corresponding public key. */
-        const publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
-        // console.log('PUBLIC KEY', publicKey)
-        // console.log('PUBLIC KEY (hex)', binToHex(publicKey))
-
-        /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
-        const scriptPushPubKey = encodeDataPush(publicKey)
-        // console.log('SCRIPT PUSH PUBLIC KEY', scriptPushPubKey);
-
-        const publicKeyHash = ripemd160.hash(sha256.hash(scriptPushPubKey))
-        // console.log('PUBLIC KEY HASH (hex)', binToHex(publicKeyHash))
-
-        const pkhScript = hexToBin('17005114' + binToHex(publicKeyHash))
-        // console.info('  Public key hash Script:', binToHex(pkhScript))
-
-        /* Encode the public key hash into a P2PKH nexa address. */
-        const nexaAddress = encodeAddress(
-            'nexa', 'TEMPLATE', pkhScript)
-        console.info('\n  Nexa address:', nexaAddress)
-
     }
 
     test() {
@@ -180,15 +133,90 @@ export class Wallet extends EventEmitter {
     }
 
     get address() {
-        return 'nexa:SampleAddress'
+        /* Return current (receiving) address. */
+        return this.getAddress(this._addressIdx, false)
+    }
+
+    get change() {
+        /* Return current (change) address. */
+        return this.getAddress(this._addressIdx, true)
     }
 
     get mnemonic() {
-        return this._wallet.mnemonic
+        return this._mnemonic
+    }
+
+    get privateKey() {
+        /* Validate mnemonic. */
+        if (!this._mnemonic) {
+            return null
+        }
+
+        /* Set seed. */
+        const seed = hexToBin(mnemonicToSeed(this._mnemonic))
+
+        /* Initialize HD node. */
+        const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
+
+        /* Derive a child from the Master node */
+        const child = deriveHdPath({ ripemd160, sha256, sha512, secp256k1 }, node, `m/44'/29223'/0'/0/0`)
+
+        /* Return (child) private key. */
+        return child.privateKey
+    }
+
+    get publicKey() {
+        /* Validate private key. */
+        if (!this._privateKey) {
+            return null
+        }
+
+        /* Return public key. */
+        return secp256k1.derivePublicKeyCompressed(this._privateKey)
     }
 
     getAddress(_addressIdx = 0, _isChange = false) {
-        return 'nexa:AnotherSampleAddress' + _index
+        /* Validate mnemonic. */
+        if (!this._mnemonic) {
+            return null
+        }
+
+        /* Set change index. */
+        const changeIdx = _isChange ? 1 : 0
+
+        /* Set seed. */
+        const seed = hexToBin(mnemonicToSeed(this._mnemonic))
+
+        /* Initialize HD node. */
+        const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
+
+        /* Derive a child from the Master node */
+        const child = deriveHdPath({ ripemd160, sha256, sha512, secp256k1 }, node, `m/44'/29223'/0'/${changeIdx}/${_addressIdx}`)
+
+        /* Set private key. */
+        const privateKey = child.privateKey
+
+        /* Derive the corresponding public key. */
+        const publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
+
+        /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
+        const scriptPushPubKey = encodeDataPush(publicKey)
+
+        /* Generate public key hash. */
+        const publicKeyHash = ripemd160.hash(sha256.hash(scriptPushPubKey))
+
+        /* Generate public key hash script. */
+        const pkhScript = hexToBin('17005114' + binToHex(publicKeyHash))
+
+        /* Encode the public key hash into a P2PKH nexa address. */
+        const nexaAddress = encodeAddress(
+            'nexa',
+            'TEMPLATE',
+            pkhScript,
+        )
+
+        /* Return address. */
+        return nexaAddress
     }
 
     getNewAddress(_isChange = false) {
@@ -196,11 +224,15 @@ export class Wallet extends EventEmitter {
     }
 
     toObject() {
-        return this._wallet
+        return {
+            entropy: this._entropy,
+            mnemonic: this._mnemonic,
+            path: this._path,
+        }
     }
 
     toString() {
-        return this.mnemonic
+        return this._mnemonic
     }
 }
 
