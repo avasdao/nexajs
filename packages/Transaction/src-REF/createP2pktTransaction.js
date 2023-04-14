@@ -1,11 +1,14 @@
 /* Import modules. */
 import { binToHex } from '@bitauth/libauth'
 
+/* Import (library) modules. */
+import { parseWif } from '@nexajs/hdnode'
+
+/* Import (local) modules. */
 import encodeTransaction from './encodeTransaction.js'
 import createUnsignedInput from './createUnsignedInput.js'
 import unlockP2PktInput from './unlockP2pktInput.js'
 
-import { parseWif } from '@nexajs/hdnode'
 
 /**
  * Create a transaction.
@@ -25,11 +28,6 @@ export default async (privateKeyWif, unspentOutputs, outputs) => {
         publicKey,
         returnAddress
     ] = await parseWif(privateKeyWif)
-    console.log('privateKeyWif', {
-        privateKey,
-        publicKey,
-        returnAddress
-    })
 
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
@@ -58,9 +56,6 @@ export default async (privateKeyWif, unspentOutputs, outputs) => {
             )
         )
     )
-    console.log('  \nSigned transaction:', transaction, '\n')
-    // console.log('Signed transaction (inputs):', transaction.inputs)
-    // console.log('Signed transaction (outputs):', transaction.outputs)
 
     // Hex encode the built transaction.
     const encodedTransaction = encodeTransaction(transaction) // FIXME Prepend (0) version.
