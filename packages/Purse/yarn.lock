@@ -275,10 +275,10 @@
   resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.12.tgz#285e6849ac43057268b98bf88ba456737fa6ed0c"
   integrity sha512-pAuimtqxvqa2LN3Mx8IkIVIUg3zO8D7g1+pNvwXzOl3HVKQ1cOe6k7fhcnVdaz++ACse4Ax8/63eoD3x3hRTbQ==
 
-"@nexajs/transaction@23.4.13":
-  version "23.4.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.4.13.tgz#f2e879da95de422a33c055f096107969030b3725"
-  integrity sha512-ZsxaMhvkSTY13oYo2y6D6Utnz6m9uJMNV/oHS6/i65uM53/thAMnw+buGCez3ezUPhMiSiPfaEqlbP1Z8JRMWQ==
+"@nexajs/transaction@23.4.14":
+  version "23.4.14"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.4.14.tgz#2606f715a6bce2950ff53bce0bacbfd1156b2498"
+  integrity sha512-88HUlphdERR8z/T/4ZHE5fCVbIMZv5e5PkyoM7hLkaDxjJ585HvlOebLOM68EtJoOyTPqUZ0JJU1mx0wik20lQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.4.6"
