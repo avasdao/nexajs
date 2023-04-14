@@ -36,7 +36,7 @@ export default async (
     for (let i = 0; i < _receivers.length; i++) {
         /* Set receiver. */
         const receiver = _receivers[i]
-        console.log('RECEIVER', receiver)
+        // console.log('RECEIVER', receiver)
 
         /* Handle value output. */
         if (receiver.address) {
@@ -58,7 +58,7 @@ export default async (
             outputs.push(await createDataOutput(receiver.data))
         }
     }
-    console.log('\nOUTPUTS', outputs)
+    // console.log('\nOUTPUTS', outputs)
 
     /* Create the initial transaction to estimate miner fee. */
     const transaction = await createTransaction(

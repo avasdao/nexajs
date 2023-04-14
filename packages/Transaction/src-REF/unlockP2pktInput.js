@@ -38,7 +38,7 @@ export default async (
         ...hexToBin('17005114'),
         ...await decodeAddress(address).hash
     ])
-    console.log('\n  Lock Script Bin:\n', lockScriptBin)
+    // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0

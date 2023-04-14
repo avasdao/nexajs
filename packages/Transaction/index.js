@@ -128,7 +128,7 @@ export class Transaction {
     }
 
     async sign(_wifs) {
-        const minerFee = 225 // FIXME Calculate dynamically.
+        const minerFee = 500 // FIXME Calculate dynamically.
         // const fee = Math.floor(1.1 * transactionTemplate.length)
 
         const unspents = [{
@@ -143,7 +143,7 @@ export class Transaction {
             this._outputs,
             minerFee
         ).catch(err => console.error(err))
-        console.log('RAW TX', this._raw)
+        // console.log('RAW TX', this._raw)
 
         /* Set flag. */
         this._isSigned = true
