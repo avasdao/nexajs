@@ -128,9 +128,6 @@ export class Transaction {
     }
 
     async sign(_wifs) {
-        const minerFee = 500 // FIXME Calculate dynamically.
-        // const fee = Math.floor(1.1 * transactionTemplate.length)
-
         const unspents = [{
             outpoint: this._inputs[0].outpoint,
             satoshis: this._inputs[0].satoshis,
@@ -141,7 +138,20 @@ export class Transaction {
             _wifs[0],
             unspents,
             this._outputs,
-            minerFee
+            0, // NOTE: Fee is unknown until we calculate tx length.
+        ).catch(err => console.error(err))
+        // console.log('RAW TX', this._raw)
+
+        /* Calculate miner fee. */
+        const minerFee = Math.floor(1.1 * this._raw.length)
+        // console.log('\n  Miner fee:', minerFee)
+
+        /* Generate raw transaction. */
+        this._raw = await createTransaction(
+            _wifs[0],
+            unspents,
+            this._outputs,
+            minerFee,
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
 
