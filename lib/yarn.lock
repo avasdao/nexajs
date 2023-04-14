@@ -531,15 +531,6 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@23.3.19":
-  version "23.3.19"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.3.19.tgz#fd716bb274356a949fe2091544186074a72c67f8"
-  integrity sha512-61bixyhL5m/zkwkeTwLE89qvRD4yGAzOptsNg9JaWcxMi9X7D2L+6mQugmOLeZh401a7ctgifIynveam7YGdAA==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "23.3.18"
-
 "@nexajs/hdnode@23.4.5":
   version "23.4.5"
   resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.4.5.tgz#ce14d4cb7a20e846616da84a252b6f24fd33117a"
@@ -558,17 +549,17 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/purse@23.4.12":
-  version "23.4.12"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.4.12.tgz#8f1bdb0981ec206c1a88fb3be2151aa0a566f3f1"
-  integrity sha512-44iGJq0AzI7GF4eZau2bBvz82DqFW9qr00TdlmK4REunEkIprFfiXh4Jc2u8gNLcnOHihfUGjAbmb/WdRiaS8g==
+"@nexajs/purse@23.4.14":
+  version "23.4.14"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.4.14.tgz#3c0c1445b230d519aaaae621c21a75f642e652db"
+  integrity sha512-6+EAjQmaeysZevr+gLjEC6DDwwFFMwK9XJWbSQZtfrjcIfZTCxdKGKyo3lLXkyn5zccp5T8GavmuJ0LSFHGNxw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.3.18"
     "@nexajs/blockchain" "23.3.18"
     "@nexajs/hdnode" "23.4.5"
     "@nexajs/rostrum" "23.4.5"
-    "@nexajs/transaction" "23.4.12"
+    "@nexajs/transaction" "23.4.14"
     events "3.3.0"
     uuid "9.0.0"
 
@@ -611,24 +602,16 @@
     events "3.3.0"
     node-fetch "3.3.1"
 
-"@nexajs/transaction@23.4.12":
-  version "23.4.12"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.4.12.tgz#dd304a01af824b362205aff1986ce7695ad04f06"
-  integrity sha512-sSlhtfqMdXEDFO7L29E8HIzdpfzBtf17q24i23TBe3dsjGAsrzk/3tcZidHD56vVwCXxHGnpeu8BmSxMFMspSA==
+"@nexajs/transaction@23.4.14":
+  version "23.4.14"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.4.14.tgz#2606f715a6bce2950ff53bce0bacbfd1156b2498"
+  integrity sha512-88HUlphdERR8z/T/4ZHE5fCVbIMZv5e5PkyoM7hLkaDxjJ585HvlOebLOM68EtJoOyTPqUZ0JJU1mx0wik20lQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.3.18"
+    "@nexajs/address" "23.4.6"
     "@nexajs/hdnode" "23.4.5"
     "@nexajs/script" "23.4.12"
     "@nexajs/utils" "23.4.5"
-
-"@nexajs/utils@23.4.4":
-  version "23.4.4"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.4.tgz#645d8acc57e82707b4088777b0d3c1d16b8e7b94"
-  integrity sha512-0wjALh1A4T6Z5+tCqRRE79u5udD8RVMpdpAmJvwZFz/lM9Als5lt6sNA+MgSpc7Mwwig3U6EViCFIYC6N5IPcw==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@ethersproject/random" "5.7.0"
 
 "@nexajs/utils@23.4.5":
   version "23.4.5"
@@ -637,14 +620,16 @@
   dependencies:
     "@bitauth/libauth" "1.19.1"
 
-"@nexajs/wallet@23.4.4":
-  version "23.4.4"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.4.4.tgz#94e6ab1e06257af0367653eecdb826d5c33e4dc9"
-  integrity sha512-RTQ5UDkY6PneEPbmiKZ7mu1+9ajBXxj0l7vo416ziKXvDQ7cnBWu7sH1wMAuZukXO6jgadFZAjKa/+7ZnYXUbw==
+"@nexajs/wallet@23.4.13":
+  version "23.4.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.4.13.tgz#152b92d2085d15e32828dbf0b55eeba1b3966a4b"
+  integrity sha512-IbhuVHd3boCV5GztbV0W47jtjCzyzZsIWkJT8CkNpy4UO/zuB3CpknlEVkypm418gb59w7RCwUFOcTRiPkNlQA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/hdnode" "23.3.19"
-    "@nexajs/utils" "23.4.4"
+    "@nexajs/address" "23.4.6"
+    "@nexajs/crypto" "23.4.5"
+    "@nexajs/hdnode" "23.4.5"
+    "@nexajs/utils" "23.4.5"
     events "3.3.0"
 
 "@ungap/promise-all-settled@1.1.2":
@@ -1433,9 +1418,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.362"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.362.tgz#1dfd7a076fc4785a16941f06410d0668e1a7a1aa"
-  integrity sha512-PYzAoScDfUcAwZfJQvr6hK2xXzLsMocj/Wuz6LpW6TZQNVv9TflBSB+UoEPuFujc478BgAxCoCFarcVPmjzsog==
+  version "1.4.363"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.363.tgz#a3d51d16169d8f212f00bafb78cf0667e24c3647"
+  integrity sha512-ReX5qgmSU7ybhzMuMdlJAdYnRhT90UB3k9M05O5nF5WH3wR5wgdJjXw0uDeFyKNhmglmQiOxkAbzrP0hMKM59g==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"
