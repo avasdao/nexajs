@@ -3,31 +3,12 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:purse:sendCoin')
 
 /* Import (library) modules. */
-import { encodeAddress } from '@nexajs/address'
 import { broadcast } from '@nexajs/blockchain'
 
 import { Transaction } from '@nexajs/transaction'
 
-/* Libauth helpers. */
-import {
-    binToHex,
-    deriveHdPath,
-    encodeDataPush,
-    hexToBin,
-    instantiateSha256,
-    instantiateSha512,
-    instantiateSecp256k1,
-    instantiateRipemd160,
-} from '@bitauth/libauth'
-
 /* Set constants. */
 import DUST_SATOSHIS from './getDustAmount.js'
-
-/* Instantiate Libauth crypto interfaces. */
-const ripemd160 = await instantiateRipemd160()
-const secp256k1 = await instantiateSecp256k1()
-const sha256 = await instantiateSha256()
-const sha512 = await instantiateSha512()
 
 /**
  * Send Coin
@@ -133,19 +114,40 @@ export default async (_coins, _receivers, _autoFee = true) => {
     //     throw new Error(`Amount is too low. Minimum is [ ${DUST_SATOSHIS} ] satoshis.`)
     // }
 
-    const transaction = await new Transaction()
+    /* Create new transaction. */
+    const transaction = new Transaction()
 
-    transaction.addInput(
-        coins[0].outpoint,
-        coins[0].satoshis,
-    )
+    /* Handle coins. */
+    coins.forEach(_coin => {
+        /* Add input. */
+        transaction.addInput(
+            _coin.outpoint,
+            _coin.satoshis,
+        )
+    })
 
-    transaction.addOutput(
-        receivers[0],
-        null,
-    )
+    /* Handle receivers. */
+    receivers.forEach(_receiver => {
+        /* Handle (value) outputs. */
+        if (_receiver.address) {
+            /* Add (valu) output. */
+            transaction.addOutput(
+                _receiver.address,
+                _receiver.satoshis,
+            )
+        }
+
+        /* Handle (data) outputs. */
+        if (_receiver.data) {
+            /* Add (data) output. */
+            transaction.addOutput(
+                _receiver.data
+            )
+        }
+    })
 
     // TODO Add (optional) miner fee.
+    // FIXME Allow WIFs for each input.
     await transaction.sign([ coins[0].wif ])
 
     console.log('\n  Transaction (hex)', transaction.raw)

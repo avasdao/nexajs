@@ -6,19 +6,30 @@ import {
     bigIntToBinUint64LE,
 } from '@bitauth/libauth'
 
+import { OP } from '@nexajs/script'
+
 /**
  * Encode a single output for inclusion in an encoded transaction.
  *
  * @param output - the output to encode
  */
-const encodeOutput = (output) =>
-    // flattenBinArray([
-    new Uint8Array([
-        numberToBinUintLE(1),
+const encodeOutput = (output) => {
+    /* Initialize version. */
+    let version
+
+    /* Handle version selection. */
+    if (output.lockingBytecode[1] === OP.RETURN) {
+        version = numberToBinUintLE(0)
+    } else {
+        version = numberToBinUintLE(1)
+    }
+
+    return new Uint8Array([
+        version,
         ...output.amount,
-        // ...bigIntToBitcoinVarInt(BigInt(output.lockingBytecode.length)),
         ...output.lockingBytecode,
     ])
+}
 
 /**
  * Get the hash of all outpoints in a series of inputs. (For use in

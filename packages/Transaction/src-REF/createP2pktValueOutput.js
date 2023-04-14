@@ -3,7 +3,7 @@ import {
     bigIntToBinUint64LE,
     binToHex
 } from '@bitauth/libauth'
-// import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
+
 import { decodeAddress } from '@nexajs/address'
 
 /**
@@ -17,13 +17,13 @@ import { decodeAddress } from '@nexajs/address'
  * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (address, amount) => {
-    console.log('\n  Receiving address:', address)
-    console.log('  Receiving address (decoded):\n', decodeAddress(address))
+    // console.log('\n  Receiving address:', address)
+    // console.log('  Receiving address (decoded):\n', decodeAddress(address))
 
     const lockingBytecode = decodeAddress(address).hash
-    console.log('  lockingBytecode (hex):', binToHex(lockingBytecode))
+    // console.log('  lockingBytecode (hex):', binToHex(lockingBytecode))
 
-    // Create the output.
+    /* Create the output. */
     const valueOutput = {
         // lockingBytecode: await getLockingBytecodeFromAddress(address),
         lockingBytecode,
@@ -32,6 +32,6 @@ export default async (address, amount) => {
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.
 
-    // Return the output.
+    /* Return the output. */
     return valueOutput
 }

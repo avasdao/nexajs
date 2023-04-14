@@ -1,4 +1,5 @@
 /* Import modules. */
+import createDataOutput from '../src-REF/createP2pktDataOutput.js'
 import createTransaction from '../src-REF/createP2pktTransaction.js'
 import createValueOutput from '../src-REF/createP2pktValueOutput.js'
 
@@ -9,21 +10,21 @@ import createValueOutput from '../src-REF/createP2pktValueOutput.js'
  *
  * @function
  *
- * @param privateKeyWIF    {string}                     Private Key in WIF format.
- * @param unspentOutputs   {AddressListUnspentResponse} List of Unspent Outputs to use.
- * @param receiverAddress  {string}                     Nexa receiving address.
- * @param minerFeeSatoshis {number}                     The satoshis to pay as miner fee (deducted from value output).
+ * @param _wif    {string}                     Private Key in WIF format.
+ * @param _unspents   {AddressListUnspentResponse} List of Unspent Outputs to use.
+ * @param _receivers  {string}                     Nexa receiving address.
+ * @param _minerFee {number}                     The satoshis to pay as miner fee (deducted from value output).
  *
  * @returns {Uint8Array} The transaction binary.
  */
 export default async (
-    privateKeyWIF,
-    unspentOutputs,
-    receiverAddress,
-    minerFeeSatoshis,
+    _wif,
+    _unspents,
+    _receivers,
+    _minerFee,
 ) => {
     /* Calculate the total balance of the unspent outputs. */
-    const unspentSatoshis = unspentOutputs
+    const unspentSatoshis = _unspents
         .reduce(
             (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
         )
@@ -31,22 +32,38 @@ export default async (
     /* Initialize an empty list of outputs. */
     const outputs = []
 
-    // TODO Add `createDataOutput`
+    /* Handle receivers. */
+    for (let i = 0; i < _receivers.length; i++) {
+        /* Set receiver. */
+        const receiver = _receivers[i]
+        console.log('RECEIVER', receiver)
 
-    /* Add the value output. */
-    // NOTE: Miner fee is deducted from output value.
-    outputs
-        .push(
-            await createValueOutput(
-                receiverAddress,
-                (unspentSatoshis - minerFeeSatoshis)
-            )
-        )
+        /* Handle value output. */
+        if (receiver.address) {
+            /* Add the value output. */
+            // NOTE: Miner fee is deducted from output value.
+            outputs
+                .push(
+                    await createValueOutput(
+                        receiver.address,
+                        (unspentSatoshis - _minerFee) // FIXME Allow user-defined amount.
+                    )
+                )
+        }
+
+        /* Handle data output. */
+        if (receiver.data) {
+            /* Add the data output. */
+            // NOTE: Miner fee is deducted from output value.
+            outputs.push(await createDataOutput(receiver.data))
+        }
+    }
+    console.log('\nOUTPUTS', outputs)
 
     /* Create the initial transaction to estimate miner fee. */
     const transaction = await createTransaction(
-        privateKeyWIF,
-        unspentOutputs,
+        _wif,
+        _unspents,
         outputs
     )
 

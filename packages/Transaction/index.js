@@ -34,11 +34,24 @@ export class Transaction {
         /* Initialize outputs. */
         this._outputs = []
 
-        /* Initialize lock time. */
-        // NOTE: A Unix timestamp or block number. (4 bytes)
-        this._lockTime = 0
-
+        /* Initialze raw (hex) output. */
         this._raw = null
+
+        /* Validate fee rate. */
+        if (_params?.feeRate) {
+            this._feeRate = _params.feeRate
+        } else {
+            this._feeRate = 1.1 // 1.1 satoshis per byte
+        }
+
+        /* Validate lock time. */
+        // NOTE: A Unix timestamp or block number. (4 bytes)
+        if (_params?.lockTime) {
+            this._lockTime = _params.lockTime
+        } else {
+            this._lockTime = 0
+        }
+
     }
 
     test() {
@@ -94,12 +107,19 @@ export class Transaction {
         })
     }
 
-    addOutput(_receiver, _satoshis) {
-        // TODO Validate output.
-        this._outputs.push({
-            receiver: _receiver,
-            satoshis: _satoshis,
-        })
+    addOutput(_receiver, _satoshis = null) {
+        if (_satoshis !== null) {
+            // TODO Validate output.
+            this._outputs.push({
+                address: _receiver,
+                satoshis: _satoshis,
+            })
+        } else {
+            // TODO Validate output.
+            this._outputs.push({
+                data: _receiver
+            })
+        }
     }
 
     setLockTime(_timestamp) {
@@ -120,7 +140,7 @@ export class Transaction {
         this._raw = await createTransaction(
             _wifs[0],
             unspents,
-            this._outputs[0].receiver,
+            this._outputs,
             minerFee
         ).catch(err => console.error(err))
         console.log('RAW TX', this._raw)
