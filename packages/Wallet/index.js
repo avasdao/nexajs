@@ -38,6 +38,7 @@ const ripemd160 = await instantiateRipemd160()
 const secp256k1 = await instantiateSecp256k1()
 const sha256 = await instantiateSha256()
 const sha512 = await instantiateSha512()
+const crypto = { ripemd160, sha256, sha512, secp256k1 }
 
 /* Set constants. */
 const DEFAULT_DERIVATION_PATH = `m/44'/29223'/0'`
@@ -159,7 +160,11 @@ export class Wallet extends EventEmitter {
         const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
 
         /* Derive a child from the Master node */
-        const child = deriveHdPath({ ripemd160, sha256, sha512, secp256k1 }, node, `m/44'/29223'/0'/0/0`)
+        const child = deriveHdPath(
+            crypto,
+            node, 
+            `m/44'/29223'/0'/0/${this._addressIdx}`
+        )
 
         /* Return (child) private key. */
         return child.privateKey
@@ -191,7 +196,10 @@ export class Wallet extends EventEmitter {
         const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
 
         /* Derive a child from the Master node */
-        const child = deriveHdPath({ ripemd160, sha256, sha512, secp256k1 }, node, `m/44'/29223'/0'/${changeIdx}/${_addressIdx}`)
+        const child = deriveHdPath(
+            crypto,
+            node, `m/44'/29223'/0'/${changeIdx}/${_addressIdx}`
+        )
 
         /* Set private key. */
         const privateKey = child.privateKey
