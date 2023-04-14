@@ -1,10 +1,13 @@
 {
   "name": "@nexajs/script",
-  "version": "23.2.22",
-  "description": "TBD",
+  "version": "23.4.12",
+  "description": "Script utilities for building 'wise' contracts.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "debug": "^4.3.4"
+  }
 }

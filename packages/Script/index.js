@@ -3,7 +3,7 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:script')
 
 /* Import (local) modules. */
-import OP as _OP from './src/Codes.js'
+import _OP from './src/Opcodes.js'
 
 /* Export (local) modules. */
 export const OP = _OP
@@ -26,6 +26,7 @@ export class Script {
     test() {
         return 'Script (Instance) is working!'
     }
+
     static test() {
         return 'Script (Static) is working!'
     }

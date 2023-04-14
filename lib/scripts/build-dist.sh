@@ -67,6 +67,16 @@ echo "    - rostrum.min.js"
 echo "  done."
 echo
 
+echo "  Building [ Script ] package..."
+echo "/* NexaJS <Script> v${todays_date} */" > ../cdn/script.js
+browserify ../packages/Script/index.js -p esmify >> ../cdn/script.js
+echo "    - script.js"
+echo "/* NexaJS <Script> v${todays_date} */" > ../cdn/script.min.js
+browserify ../packages/Script/index.js -p esmify | uglifyjs -c >> ../cdn/script.min.js
+echo "    - script.min.js"
+echo "  done."
+echo
+
 echo "  Building [ Transaction ] package..."
 echo "/* NexaJS <Transaction> v${todays_date} */" > ../cdn/transaction.js
 browserify ../packages/Transaction/index.js -p esmify >> ../cdn/transaction.js
