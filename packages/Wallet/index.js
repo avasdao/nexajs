@@ -33,12 +33,21 @@ import _getDerivationPath from './src/getDerivationPath.js'
 /* Export (local) modules. */
 export const getDerivationPath = _getDerivationPath
 
+/* Initialize Libauth crypto interfaces. */
+let ripemd160
+let secp256k1
+let sha256
+let sha512
+let crypto
+
 /* Instantiate Libauth crypto interfaces. */
-const ripemd160 = await instantiateRipemd160()
-const secp256k1 = await instantiateSecp256k1()
-const sha256 = await instantiateSha256()
-const sha512 = await instantiateSha512()
-const crypto = { ripemd160, sha256, sha512, secp256k1 }
+;(async () => {
+    ripemd160 = await instantiateRipemd160()
+    secp256k1 = await instantiateSecp256k1()
+    sha256 = await instantiateSha256()
+    sha512 = await instantiateSha512()
+    crypto = { ripemd160, sha256, sha512, secp256k1 }
+})()
 
 /* Set constants. */
 const DEFAULT_DERIVATION_PATH = `m/44'/29223'/0'`
@@ -162,7 +171,7 @@ export class Wallet extends EventEmitter {
         /* Derive a child from the Master node */
         const child = deriveHdPath(
             crypto,
-            node, 
+            node,
             `m/44'/29223'/0'/0/${this._addressIdx}`
         )
 
