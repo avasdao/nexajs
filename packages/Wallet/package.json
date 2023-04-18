@@ -12,6 +12,7 @@
     "@nexajs/address": "23.4.6",
     "@nexajs/crypto": "23.4.5",
     "@nexajs/hdnode": "23.4.5",
+    "@nexajs/rostrum": "23.4.16",
     "@nexajs/utils": "23.4.5",
     "events": "3.3.0"
   },

@@ -260,6 +260,16 @@
     "@ethersproject/hdnode" "5.7.0"
     "@nexajs/address" "23.3.18"
 
+"@nexajs/rostrum@23.4.16":
+  version "23.4.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.4.16.tgz#2b9972dde03d2e6ed9f12b5b329227a78f4db427"
+  integrity sha512-KH/W+F/CO4YDz4PS/Ui0AQg1HVHltPC/9sXRx56xon+CfeMFvMfj9BIoZ+ANSUTmWSQFxTiy1NdQ/s80oHqgGQ==
+  dependencies:
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
 "@nexajs/rostrum@23.4.5":
   version "23.4.5"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.4.5.tgz#b72f3dbbb47381842eba3adb340bfa0cb05f2f74"
