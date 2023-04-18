@@ -99,7 +99,8 @@ export const getAddressFirstUse = async (_address) => {
 /**
  * (Blockchain) Address History
  *
- * Return the confirmed and unconfirmed history of a Bitcoin Cash or Nexa address.
+ * Return the confirmed and unconfirmed history of a Bitcoin Cash
+ * or Nexa address.
  *
  * Version added: Rostrum 1.4.3
  */
@@ -157,7 +158,9 @@ export const getAddressMempool = async (_address) => {
 /**
  * (Blockchain) Address Script Hash
  *
- * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is potentially useful for clients preferring to work with script hashes but lacking the local libraries necessary to generate them.
+ * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is
+ * potentially useful for clients preferring to work with script hashes but
+ * lacking the local libraries necessary to generate them.
  *
  * Version added: Rostrum 1.4.3
  */
@@ -360,6 +363,35 @@ export const getTokenHistory = async (_tokenid) => {
     return makeRequest(request)
 }
 
+/**
+ * (Blockchain) Subscribe Address
+ *
+ * Subscibe for updates on ALL address activity.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+export const subscribeAddress = async (_address, _handler) => {
+    debug(`Blockchain->Address->Subscribe [ address: ${_address} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.address.subscribe'
+
+    /* Set parameters. */
+    const params = [
+        _address,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request, _address, _handler)
+}
+
 
 /**
  * Rostrum Class
@@ -446,6 +478,9 @@ Nexa.getTokenInfo = getTokenInfo // alias for `getGenesisInfo`
 Nexa.getNftList = getNftList
 // ...
 Nexa.getTokenHistory = getTokenHistory
+// ...
+Nexa.subscribeAddress = subscribeAddress
+Nexa.subscribeOwner = subscribeAddress // alias for `subscribeAddress`
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

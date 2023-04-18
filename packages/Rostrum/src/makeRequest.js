@@ -95,8 +95,13 @@ connMgr.pool[ACTIVE_CONN_ID].onmessage = async (_msg) => {
             if (data?.params) {
                 // console.log('JSON (params):', data.params)
                 // resolve(data.params)
-                id = data.id
-                connMgr.requests[id].resolve(data.params)
+                if (data.id) {
+                    id = data.id
+                    connMgr.requests[id].resolve(data.params)
+                } else {
+                    id = data.params[0]
+                    connMgr.requests[id].callback(data.params)
+                }
             }
         } catch (err) {
             console.error(err)
@@ -121,9 +126,9 @@ connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
 /**
  * Make Request
  */
-export default (_request) => {
+export default (_request, _id, _callback) => {
     /* Generate a new (request) id. */
-    const id = uuidv4()
+    const id = _id || uuidv4()
 
     /* Set method. */
     const method = _request.method
@@ -156,6 +161,9 @@ export default (_request) => {
 
         /* Initialize (request) promise. */
         connMgr.requests[id] = {}
+
+        /* Set resolve. */
+        connMgr.requests[id].callback = _callback
 
         /* Set resolve. */
         connMgr.requests[id].resolve = _resolve
