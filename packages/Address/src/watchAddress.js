@@ -1,9 +1,9 @@
-import { createClient } from 'graphql-ws'
-import WebSocket from 'ws'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:address:subscribe')
+const debug = debugFactory('nexa:address:watchAddress')
+
+import { createClient } from 'graphql-ws'
+import WebSocket from 'ws'
 
 export default async (_params, _notif) => {
     console.log('PARAMS', _params)
