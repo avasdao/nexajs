@@ -242,6 +242,35 @@ export const getBlock = async (_hash_or_height) => {
 }
 
 /**
+ * (Blockchain) Get Transaction (Info)
+ *
+ * Return an the FULL transaction details.
+ *
+ * Version added: ??
+ */
+export const getTransaction = async (_id) => {
+    debug(`Blockchain->Block->Info [ txid or txidem: ${_id} ]`)
+
+    /* Set method. */
+    const method = 'blockchain.transaction.get'
+
+    /* Set parameters. */
+    const params = [
+        _id,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest(request)
+}
+
+/**
  * (Token) Genesis Info
  *
  * Info from token creation transaction.
