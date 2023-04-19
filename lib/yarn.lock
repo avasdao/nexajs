@@ -604,6 +604,11 @@
   resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.12.tgz#285e6849ac43057268b98bf88ba456737fa6ed0c"
   integrity sha512-pAuimtqxvqa2LN3Mx8IkIVIUg3zO8D7g1+pNvwXzOl3HVKQ1cOe6k7fhcnVdaz++ACse4Ax8/63eoD3x3hRTbQ==
 
+"@nexajs/script@23.4.18":
+  version "23.4.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.18.tgz#6c2c02836d6b96ba09b024282c89ae2bf6761711"
+  integrity sha512-rYWdEw2iq5iEOp5EiShyB8JN643oaUD96ji7ni+NrYCFOLEe999UmXGAg3lzms7J0O58WAJFIev7lSTI3Hhb5w==
+
 "@nexajs/token@23.4.5":
   version "23.4.5"
   resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.4.5.tgz#90e8e335ca7ae4286ba1ae277ceb7b3a6ed928fd"
@@ -1428,9 +1433,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.367"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.367.tgz#d9ddc529ba2315fc852b722c359e4a40e86aa742"
-  integrity sha512-mNuDxb+HpLhPGUKrg0hSxbTjHWw8EziwkwlJNkFUj3W60ypigLDRVz04vU+VRsJPi8Gub+FDhYUpuTm9xiEwRQ==
+  version "1.4.368"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.368.tgz#75901f97d3e23da2e66feb1e61fbb8e70ac96430"
+  integrity sha512-e2aeCAixCj9M7nJxdB/wDjO6mbYX+lJJxSJCXDzlr5YPGYVofuJwGN9nKg2o6wWInjX6XmxRinn3AeJMK81ltw==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"

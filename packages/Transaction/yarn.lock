@@ -261,10 +261,10 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@23.4.12":
-  version "23.4.12"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.12.tgz#285e6849ac43057268b98bf88ba456737fa6ed0c"
-  integrity sha512-pAuimtqxvqa2LN3Mx8IkIVIUg3zO8D7g1+pNvwXzOl3HVKQ1cOe6k7fhcnVdaz++ACse4Ax8/63eoD3x3hRTbQ==
+"@nexajs/script@23.4.18":
+  version "23.4.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.18.tgz#6c2c02836d6b96ba09b024282c89ae2bf6761711"
+  integrity sha512-rYWdEw2iq5iEOp5EiShyB8JN643oaUD96ji7ni+NrYCFOLEe999UmXGAg3lzms7J0O58WAJFIev7lSTI3Hhb5w==
 
 "@nexajs/utils@23.4.5":
   version "23.4.5"

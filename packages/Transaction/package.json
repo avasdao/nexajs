@@ -11,7 +11,7 @@
     "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.4.6",
     "@nexajs/hdnode": "23.4.5",
-    "@nexajs/script": "23.4.12",
+    "@nexajs/script": "23.4.18",
     "@nexajs/utils": "23.4.5"
   },
   "devDependencies": {
