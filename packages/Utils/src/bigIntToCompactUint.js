@@ -1,10 +1,8 @@
-import {
-    numberToBinUint16LE,
-    numberToBinUint32LE,
-    bigIntToBinUint64LE,
-} from '@bitauth/libauth'
-
+// TODO Add test for BigInt
+import bigIntToBinUint64LE from './bigIntToBinUint64LE.js'
 import CompactUint from './CompactUint.js'
+import numberToBinUint16LE from './numberToBinUint16LE.js'
+import numberToBinUint32LE from './numberToBinUint32LE.js'
 
 export default (value) =>
     value <= BigInt(CompactUint.uint8MaxValue)

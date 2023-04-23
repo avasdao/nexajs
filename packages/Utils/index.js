@@ -3,12 +3,20 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:utils')
 
 /* Import (local) modules. */
+import _bigIntToBinUint64LE from './src/bigIntToBinUint64LE.js'
 import _bigIntToCompactUint from './src/bigIntToCompactUint.js'
-import _Opcodes from './src/Opcodes.js'
+import _binToHex from './src/binToHex.js'
+import _hexToBin from './src/hexToBin.js'
+import _numberToBinUint16LE from './src/numberToBinUint16LE.js'
+import _numberToBinUint32LE from './src/numberToBinUint32LE.js'
 
 /* Export (local) modules. */
+export const bigIntToBinUint64LE = _bigIntToBinUint64LE
 export const bigIntToCompactUint = _bigIntToCompactUint
-export const Opcodes = _Opcodes
+export const binToHex = _binToHex
+export const hexToBin = _hexToBin
+export const numberToBinUint16LE = _numberToBinUint16LE
+export const numberToBinUint32LE = _numberToBinUint32LE
 
 
 /**
@@ -42,8 +50,12 @@ const Nexa = {}
 Nexa.Utils = Utils
 
 /* Initialize Utilities modules. */
+Nexa.bigIntToBinUint64LE = bigIntToBinUint64LE
 Nexa.bigIntToCompactUint = bigIntToCompactUint
-Nexa.Opcodes = Opcodes
+Nexa.binToHex = binToHex
+Nexa.hexToBin = hexToBin
+Nexa.numberToBinUint16LE = numberToBinUint16LE
+Nexa.numberToBinUint32LE = numberToBinUint32LE
 Nexa.reverseHex = reverseHex
 
 /* Export Nexa to globalThis. */
