@@ -290,13 +290,6 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/utils@23.4.5":
-  version "23.4.5"
-  resolved "https://registry.npmjs.org/@nexajs/utils/-/utils-23.4.5.tgz"
-  integrity sha512-wv4X9P6xFj1SZoBNBU/OqeoVY5RyzoMCnbqR/czN++J7EfYuUWA4DHvQATG5o/QH5EIGUiPsCLpHebY+O1bJrg==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-
 big-integer@1.6.51:
   version "1.6.51"
   resolved "https://registry.npmjs.org/big-integer/-/big-integer-1.6.51.tgz"
