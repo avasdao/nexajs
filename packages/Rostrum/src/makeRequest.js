@@ -1,6 +1,5 @@
 /* Import modules. */
 import { v4 as uuidv4 } from 'uuid'
-import WebSocket from 'isomorphic-ws'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
@@ -13,24 +12,37 @@ const ACTIVE_CONN_ID = 0
 const requestQueue = []
 
 /* Initialize holders. */
+let connMgr
 let resolve
 let reject
 
-/* Initilize connections manager. */
-const connMgr = {
-    pool: [
-        new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
-        // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
-        new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
-        // TBD
-    ],
-    alts: [
-        new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
-        // TBD
-    ],
-    requests: {},
-    isReady: false,
+/**
+ * Setup Connection Manager
+ */
+const setupConnMgr = async () => {
+    /* Import WebSocket. */
+    // NOTE: Ignored by esmify.
+    WebSocket = await import('isomorphic-ws')
+
+    /* Initilize connections manager. */
+    connMgr = {
+        pool: [
+            new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
+            // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
+            new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
+            // TBD
+        ],
+        alts: [
+            new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
+            // TBD
+        ],
+        requests: {},
+        isReady: false,
+    }
 }
+
+/* Setup connection manager. */
+await setupConnMgr()
 
 /* Close connection. */
 // FIXME Should this be conditional??

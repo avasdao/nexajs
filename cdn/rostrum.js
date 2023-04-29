@@ -1,20 +1,20 @@
-/* NexaJS <Rostrum> v2023.03.19 */
+/* NexaJS <Rostrum> v2023.04.28 */
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getTokenInfo = exports.getTokenHistory = exports.getNftList = exports.getGenesisInfo = exports.getAddressUnspent = exports.getAddressScriptHash = exports.getAddressMempool = exports.getAddressHistory = exports.getAddressFirstUse = exports.getAddressBalance = exports.decodeRemoteAddress = exports.Rostrum = void 0;
+exports.subscribeAddress = exports.getTransaction = exports.getTokenInfo = exports.getTokenHistory = exports.getNftList = exports.getGenesisInfo = exports.getBlock = exports.getAddressUnspent = exports.getAddressScriptHash = exports.getAddressMempool = exports.getAddressHistory = exports.getAddressFirstUse = exports.getAddressBalance = exports.decodeRemoteAddress = exports.Rostrum = void 0;
+var _debug = _interopRequireDefault(require("debug"));
 var _events = require("events");
 var _makeRequest = _interopRequireDefault(require("./src/makeRequest.js"));
-var _debug = _interopRequireDefault(require("debug"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/* Import modules. */
-
 /* Setup (non-ESM) debugger. */
 
 const debug = (0, _debug.default)('nexa:rostrum');
+
+/* Import modules. */
 
 /**
  * (Blockchain) Address Balance
@@ -104,7 +104,8 @@ const getAddressFirstUse = async _address => {
 /**
  * (Blockchain) Address History
  *
- * Return the confirmed and unconfirmed history of a Bitcoin Cash or Nexa address.
+ * Return the confirmed and unconfirmed history of a Bitcoin Cash
+ * or Nexa address.
  *
  * Version added: Rostrum 1.4.3
  */
@@ -160,7 +161,9 @@ const getAddressMempool = async _address => {
 /**
  * (Blockchain) Address Script Hash
  *
- * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is potentially useful for clients preferring to work with script hashes but lacking the local libraries necessary to generate them.
+ * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is
+ * potentially useful for clients preferring to work with script hashes but
+ * lacking the local libraries necessary to generate them.
  *
  * Version added: Rostrum 1.4.3
  */
@@ -214,13 +217,69 @@ const getAddressUnspent = async _address => {
 };
 
 /**
+ * (Blockchain) Get Block (Info)
+ *
+ * Return an the FULL block details.
+ *
+ * Version added: Rostrum 8.1
+ */
+exports.getAddressUnspent = getAddressUnspent;
+const getBlock = async _hash_or_height => {
+  debug(`Blockchain->Block->Info [ hash or height: ${_hash_or_height} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.block.get';
+
+  /* Set parameters. */
+  const params = [_hash_or_height, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.default)(request);
+};
+
+/**
+ * (Blockchain) Get Transaction (Info)
+ *
+ * Return an the FULL transaction details.
+ *
+ * Version added: ??
+ */
+exports.getBlock = getBlock;
+const getTransaction = async _id => {
+  debug(`Blockchain->Block->Info [ txid or txidem: ${_id} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.transaction.get';
+
+  /* Set parameters. */
+  const params = [_id, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.default)(request);
+};
+
+/**
  * (Token) Genesis Info
  *
  * Info from token creation transaction.
  *
  * Version added: Rostrum 6.0
  */
-exports.getAddressUnspent = getAddressUnspent;
+exports.getTransaction = getTransaction;
 const getGenesisInfo = async _tokenid => {
   debug(`Token->Genesis->Info [ token: ${_tokenid} ]`);
 
@@ -302,11 +361,39 @@ const getTokenHistory = async _tokenid => {
 };
 
 /**
+ * (Blockchain) Subscribe Address
+ *
+ * Subscibe for updates on ALL address activity.
+ *
+ * Version added: Rostrum 1.4.3
+ */
+exports.getTokenHistory = getTokenHistory;
+const subscribeAddress = async (_address, _handler) => {
+  debug(`Blockchain->Address->Subscribe [ address: ${_address} ]`);
+
+  /* Set method. */
+  const method = 'blockchain.address.subscribe';
+
+  /* Set parameters. */
+  const params = [_address, true // NOTE: Show verbose (true).
+  ];
+
+  /* Build request. */
+  const request = {
+    method,
+    params
+  };
+
+  /* Return (async) request. */
+  return (0, _makeRequest.default)(request, _address, _handler);
+};
+
+/**
  * Rostrum Class
  *
  * Manages a connection and its requests to a Rostrum server.
  */
-exports.getTokenHistory = getTokenHistory;
+exports.subscribeAddress = subscribeAddress;
 class Rostrum extends _events.EventEmitter {
   constructor(_params) {
     /* Initialize Rostrum class. */
@@ -379,6 +466,9 @@ Nexa.getTokenInfo = getTokenInfo; // alias for `getGenesisInfo`
 Nexa.getNftList = getNftList;
 // ...
 Nexa.getTokenHistory = getTokenHistory;
+// ...
+Nexa.subscribeAddress = subscribeAddress;
+Nexa.subscribeOwner = subscribeAddress; // alias for `subscribeAddress`
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
@@ -1976,15 +2066,27 @@ var _debug = _interopRequireDefault(require("debug"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /* Import modules. */
 
-// import WebSocket from 'isomorphic-ws'
-
 /* Setup (non-ESM) debugger. */
 
 const debug = (0, _debug.default)('nexa:rostrum:makeRequest');
 
 /* Set active connection id. */
 const ACTIVE_CONN_ID = 0;
+
+/* Initialize request queue. */
 const requestQueue = [];
+
+/* Initialize holders. */
+let resolve;
+let reject;
+let Websocket
+
+// NOTE: Use this to escape browserify.
+;
+async () => {
+  /* Import WebSocket. */
+  WebSocket = await import('isomorphic-ws');
+};
 
 /* Initilize connections manager. */
 const connMgr = {
@@ -2024,9 +2126,26 @@ connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
 
 /* Handle message. */
 connMgr.pool[ACTIVE_CONN_ID].onmessage = async _msg => {
-  // console.info('Connection [ %s ] sent ->', id, _msg)
+  // console.info('Connection [ %s ] sent ->', ACTIVE_CONN_ID, _msg?.data)
 
+  let error;
+  let json;
   let id;
+  const data = _msg?.data;
+  try {
+    /* Decode data. */
+    json = JSON.parse(data);
+    // console.log('JSON', json)
+
+    // NOTE: Reject this promise.
+    if (json?.error) {
+      return reject({
+        error: json.error?.message
+      });
+    }
+  } catch (err) {
+    return reject(err);
+  }
 
   /* Validate message data. */
   if (_msg?.data) {
@@ -2047,19 +2166,19 @@ connMgr.pool[ACTIVE_CONN_ID].onmessage = async _msg => {
       if (data?.params) {
         // console.log('JSON (params):', data.params)
         // resolve(data.params)
-        id = data.id;
-        connMgr.requests[id].resolve(data.params);
+        if (data.id) {
+          id = data.id;
+          connMgr.requests[id].resolve(data.params);
+        } else {
+          id = data.params[0];
+          connMgr.requests[id].callback(data.params);
+        }
       }
     } catch (err) {
       console.error(err);
       reject(err);
     }
   }
-
-  // NOTE: Reject this promise.
-  reject({
-    error: `Oops! Sorry, we couldn't complete your request.`
-  });
 };
 
 /* Handle connection close. */
@@ -2076,9 +2195,9 @@ connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
 /**
  * Make Request
  */
-var _default = _request => {
+var _default = (_request, _id, _callback) => {
   /* Generate a new (request) id. */
-  const id = (0, _uuid.v4)();
+  const id = _id || (0, _uuid.v4)();
 
   /* Set method. */
   const method = _request.method;
@@ -2104,8 +2223,15 @@ var _default = _request => {
 
   /* Return a promise. */
   return new Promise(function (_resolve, _reject) {
+    /* Set holders. */
+    resolve = _resolve;
+    reject = _reject;
+
     /* Initialize (request) promise. */
     connMgr.requests[id] = {};
+
+    /* Set resolve. */
+    connMgr.requests[id].callback = _callback;
 
     /* Set resolve. */
     connMgr.requests[id].resolve = _resolve;

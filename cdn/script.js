@@ -1,77 +1,55 @@
-/* NexaJS <Utilities> v2023.04.28 */
+/* NexaJS <Script> v2023.04.28 */
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reverseHex = exports.numberToBinUint32LE = exports.numberToBinUint16LE = exports.hexToBin = exports.binToHex = exports.bigIntToCompactUint = exports.bigIntToBinUint64LE = exports.Utils = void 0;
+exports.Script = exports.OP = void 0;
 var _debug = _interopRequireDefault(require("debug"));
-var _bigIntToBinUint64LE2 = _interopRequireDefault(require("./src/bigIntToBinUint64LE.js"));
-var _bigIntToCompactUint2 = _interopRequireDefault(require("./src/bigIntToCompactUint.js"));
-var _binToHex2 = _interopRequireDefault(require("./src/binToHex.js"));
-var _hexToBin2 = _interopRequireDefault(require("./src/hexToBin.js"));
-var _numberToBinUint16LE2 = _interopRequireDefault(require("./src/numberToBinUint16LE.js"));
-var _numberToBinUint32LE2 = _interopRequireDefault(require("./src/numberToBinUint32LE.js"));
+var _Opcodes = _interopRequireDefault(require("./src/Opcodes.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 /* Setup (non-ESM) debugger. */
 
-const debug = (0, _debug.default)('nexa:utils');
+const debug = (0, _debug.default)('nexa:script');
 
 /* Import (local) modules. */
 
 /* Export (local) modules. */
-const bigIntToBinUint64LE = _bigIntToBinUint64LE2.default;
-exports.bigIntToBinUint64LE = bigIntToBinUint64LE;
-const bigIntToCompactUint = _bigIntToCompactUint2.default;
-exports.bigIntToCompactUint = bigIntToCompactUint;
-const binToHex = _binToHex2.default;
-exports.binToHex = binToHex;
-const hexToBin = _hexToBin2.default;
-exports.hexToBin = hexToBin;
-const numberToBinUint16LE = _numberToBinUint16LE2.default;
-exports.numberToBinUint16LE = numberToBinUint16LE;
-const numberToBinUint32LE = _numberToBinUint32LE2.default;
+const OP = _Opcodes.default;
 
 /**
- * Reverse Bytes
+ * Script Class
  *
- * Reverse the bytes of a HEX string.
+ * Manages script functions.
  */
-exports.numberToBinUint32LE = numberToBinUint32LE;
-const reverseHex = _bytes => {
-  return _bytes.match(/[a-fA-F0-9]{2}/g).reverse().join('');
-};
+exports.OP = OP;
+class Script {
+  constructor(_params) {
+    /* Initialize Script class. */
+    debug('Initializing Script...');
+    debug(JSON.stringify(_params, null, 2));
 
-/**
- * Utils Class
- *
- * A suite of useful utilities.
- */
-exports.reverseHex = reverseHex;
-class Utils {
-  // NOTE: We won't use a constructor, as this is a "pure" class.
+    // TBD
+  }
 
-  static reverseHex(_bytes) {
-    return reverseHex(_bytes);
+  test() {
+    return 'Script (Instance) is working!';
+  }
+  static test() {
+    return 'Script (Static) is working!';
   }
 }
 
 /* Initialize (globalThis) Nexa class. */
-exports.Utils = Utils;
+exports.Script = Script;
 const Nexa = {};
 
-/* Initialize Utilities class. */
-Nexa.Utils = Utils;
+/* Initialize Script class. */
+Nexa.Script = Script;
 
-/* Initialize Utilities modules. */
-Nexa.bigIntToBinUint64LE = bigIntToBinUint64LE;
-Nexa.bigIntToCompactUint = bigIntToCompactUint;
-Nexa.binToHex = binToHex;
-Nexa.hexToBin = hexToBin;
-Nexa.numberToBinUint16LE = numberToBinUint16LE;
-Nexa.numberToBinUint32LE = numberToBinUint32LE;
-Nexa.reverseHex = reverseHex;
+/* Initialize Script modules. */
+Nexa.OP = OP;
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
@@ -81,7 +59,7 @@ globalThis.Nexa = {
   ...Nexa // extend Nexa object
 };
 
-},{"./src/bigIntToBinUint64LE.js":6,"./src/bigIntToCompactUint.js":9,"./src/binToHex.js":11,"./src/hexToBin.js":12,"./src/numberToBinUint16LE.js":13,"./src/numberToBinUint32LE.js":14,"debug":2}],2:[function(require,module,exports){
+},{"./src/Opcodes.js":5,"debug":2}],2:[function(require,module,exports){
 (function (process){(function (){
 /* eslint-env browser */
 
@@ -354,7 +332,7 @@ formatters.j = function (v) {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"./common":3,"_process":17}],3:[function(require,module,exports){
+},{"./common":3,"_process":6}],3:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -801,277 +779,316 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+/**
+ * The `BCH_2023_05` instruction set.
+ */
 var _default = {
-  uint8MaxValue: 0xfc,
-  uint16Prefix: 0xfd,
-  uint16MaxValue: 0xffff,
-  uint32Prefix: 0xfe,
-  uint32MaxValue: 0xffffffff,
-  uint64Prefix: 0xff,
-  uint8: 1,
-  uint16: 2,
-  uint32: 4,
-  uint64: 8
+  /**
+   * A.K.A. `FALSE` or `PUSHBYTES_0`
+   */
+  _0: 0x00,
+  ZERO: 0x00,
+  PUSHBYTES_1: 0x01,
+  PUSHBYTES_2: 0x02,
+  PUSHBYTES_3: 0x03,
+  PUSHBYTES_4: 0x04,
+  PUSHBYTES_5: 0x05,
+  PUSHBYTES_6: 0x06,
+  PUSHBYTES_7: 0x07,
+  PUSHBYTES_8: 0x08,
+  PUSHBYTES_9: 0x09,
+  PUSHBYTES_10: 0x0a,
+  PUSHBYTES_11: 0x0b,
+  PUSHBYTES_12: 0x0c,
+  PUSHBYTES_13: 0x0d,
+  PUSHBYTES_14: 0x0e,
+  PUSHBYTES_15: 0x0f,
+  PUSHBYTES_16: 0x10,
+  PUSHBYTES_17: 0x11,
+  PUSHBYTES_18: 0x12,
+  PUSHBYTES_19: 0x13,
+  PUSHBYTES_20: 0x14,
+  PUSHBYTES_21: 0x15,
+  PUSHBYTES_22: 0x16,
+  PUSHBYTES_23: 0x17,
+  PUSHBYTES_24: 0x18,
+  PUSHBYTES_25: 0x19,
+  PUSHBYTES_26: 0x1a,
+  PUSHBYTES_27: 0x1b,
+  PUSHBYTES_28: 0x1c,
+  PUSHBYTES_29: 0x1d,
+  PUSHBYTES_30: 0x1e,
+  PUSHBYTES_31: 0x1f,
+  PUSHBYTES_32: 0x20,
+  PUSHBYTES_33: 0x21,
+  PUSHBYTES_34: 0x22,
+  PUSHBYTES_35: 0x23,
+  PUSHBYTES_36: 0x24,
+  PUSHBYTES_37: 0x25,
+  PUSHBYTES_38: 0x26,
+  PUSHBYTES_39: 0x27,
+  PUSHBYTES_40: 0x28,
+  PUSHBYTES_41: 0x29,
+  PUSHBYTES_42: 0x2a,
+  PUSHBYTES_43: 0x2b,
+  PUSHBYTES_44: 0x2c,
+  PUSHBYTES_45: 0x2d,
+  PUSHBYTES_46: 0x2e,
+  PUSHBYTES_47: 0x2f,
+  PUSHBYTES_48: 0x30,
+  PUSHBYTES_49: 0x31,
+  PUSHBYTES_50: 0x32,
+  PUSHBYTES_51: 0x33,
+  PUSHBYTES_52: 0x34,
+  PUSHBYTES_53: 0x35,
+  PUSHBYTES_54: 0x36,
+  PUSHBYTES_55: 0x37,
+  PUSHBYTES_56: 0x38,
+  PUSHBYTES_57: 0x39,
+  PUSHBYTES_58: 0x3a,
+  PUSHBYTES_59: 0x3b,
+  PUSHBYTES_60: 0x3c,
+  PUSHBYTES_61: 0x3d,
+  PUSHBYTES_62: 0x3e,
+  PUSHBYTES_63: 0x3f,
+  PUSHBYTES_64: 0x40,
+  PUSHBYTES_65: 0x41,
+  PUSHBYTES_66: 0x42,
+  PUSHBYTES_67: 0x43,
+  PUSHBYTES_68: 0x44,
+  PUSHBYTES_69: 0x45,
+  PUSHBYTES_70: 0x46,
+  PUSHBYTES_71: 0x47,
+  PUSHBYTES_72: 0x48,
+  PUSHBYTES_73: 0x49,
+  PUSHBYTES_74: 0x4a,
+  PUSHBYTES_75: 0x4b,
+  PUSHDATA_1: 0x4c,
+  PUSHDATA_2: 0x4d,
+  PUSHDATA_4: 0x4e,
+  _1NEGATE: 0x4f,
+  RESERVED: 0x50,
+  /**
+   * A.K.A. `TRUE`
+   */
+  _1: 0x51,
+  ONE: 0x51,
+  _2: 0x52,
+  TWO: 0x52,
+  _3: 0x53,
+  THREE: 0x53,
+  _4: 0x54,
+  FOUR: 0x54,
+  _5: 0x55,
+  FIVE: 0x55,
+  _6: 0x56,
+  SIX: 0x56,
+  _7: 0x57,
+  SEVEN: 0x57,
+  _8: 0x58,
+  EIGHT: 0x58,
+  _9: 0x59,
+  NINE: 0x59,
+  _10: 0x5a,
+  TEN: 0x5a,
+  _11: 0x5b,
+  ELEVEN: 0x5b,
+  _12: 0x5c,
+  TWELVE: 0x5c,
+  _13: 0x5d,
+  THIRTEEN: 0x5d,
+  _14: 0x5e,
+  FOURTEEN: 0x5e,
+  _15: 0x5f,
+  FIFTEEN: 0x5f,
+  _16: 0x60,
+  SIXTEEN: 0x60,
+  NOP: 0x61,
+  VER: 0x62,
+  IF: 0x63,
+  NOTIF: 0x64,
+  VERIF: 0x65,
+  VERNOTIF: 0x66,
+  ELSE: 0x67,
+  ENDIF: 0x68,
+  VERIFY: 0x69,
+  RETURN: 0x6a,
+  TOALTSTACK: 0x6b,
+  FROMALTSTACK: 0x6c,
+  _2DROP: 0x6d,
+  TWODROP: 0x6d,
+  _2DUP: 0x6e,
+  TWODUP: 0x6e,
+  _3DUP: 0x6f,
+  THREEDUP: 0x6f,
+  _2OVER: 0x70,
+  TWOOVER: 0x70,
+  _2ROT: 0x71,
+  TWOROT: 0x71,
+  _2SWAP: 0x72,
+  TWOSWAP: 0x72,
+  IFDUP: 0x73,
+  DEPTH: 0x74,
+  DROP: 0x75,
+  DUP: 0x76,
+  NIP: 0x77,
+  OVER: 0x78,
+  PICK: 0x79,
+  ROLL: 0x7a,
+  ROT: 0x7b,
+  SWAP: 0x7c,
+  TUCK: 0x7d,
+  CAT: 0x7e,
+  SPLIT: 0x7f,
+  NUM2BIN: 0x80,
+  BIN2NUM: 0x81,
+  SIZE: 0x82,
+  INVERT: 0x83,
+  AND: 0x84,
+  OR: 0x85,
+  XOR: 0x86,
+  EQUAL: 0x87,
+  EQUALVERIFY: 0x88,
+  RESERVED1: 0x89,
+  RESERVED2: 0x8a,
+  _1ADD: 0x8b,
+  ONEADD: 0x8b,
+  _1SUB: 0x8c,
+  ONESUB: 0x8c,
+  _2MUL: 0x8d,
+  TWOMUL: 0x8d,
+  _2DIV: 0x8e,
+  TWODIV: 0x8e,
+  NEGATE: 0x8f,
+  ABS: 0x90,
+  NOT: 0x91,
+  _0NOTEQUAL: 0x92,
+  ZERONOTEQUAL: 0x92,
+  ADD: 0x93,
+  SUB: 0x94,
+  MUL: 0x95,
+  DIV: 0x96,
+  MOD: 0x97,
+  LSHIFT: 0x98,
+  RSHIFT: 0x99,
+  BOOLAND: 0x9a,
+  BOOLOR: 0x9b,
+  NUMEQUAL: 0x9c,
+  NUMEQUALVERIFY: 0x9d,
+  NUMNOTEQUAL: 0x9e,
+  LESSTHAN: 0x9f,
+  GREATERTHAN: 0xa0,
+  LESSTHANOREQUAL: 0xa1,
+  GREATERTHANOREQUAL: 0xa2,
+  MIN: 0xa3,
+  MAX: 0xa4,
+  WITHIN: 0xa5,
+  RIPEMD160: 0xa6,
+  SHA1: 0xa7,
+  SHA256: 0xa8,
+  HASH160: 0xa9,
+  HASH256: 0xaa,
+  CODESEPARATOR: 0xab,
+  CHECKSIG: 0xac,
+  CHECKSIGVERIFY: 0xad,
+  CHECKMULTISIG: 0xae,
+  CHECKMULTISIGVERIFY: 0xaf,
+  NOP1: 0xb0,
+  CHECKLOCKTIMEVERIFY: 0xb1,
+  CHECKSEQUENCEVERIFY: 0xb2,
+  NOP4: 0xb3,
+  NOP5: 0xb4,
+  NOP6: 0xb5,
+  GROUP: 0xb6,
+  NOP8: 0xb7,
+  NOP9: 0xb8,
+  NOP10: 0xb9,
+  CHECKDATASIG: 0xba,
+  CHECKDATASIGVERIFY: 0xbb,
+  REVERSEBYTES: 0xbc,
+  /**
+   * First codepoint left undefined before nullary introspection operations.
+   */
+  UNKNOWN189: 0xbd,
+  UNKNOWN190: 0xbe,
+  /**
+   * Last codepoint left undefined before nullary introspection operations.
+   */
+  UNKNOWN191: 0xbf,
+  INPUTINDEX: 0xc0,
+  ACTIVEBYTECODE: 0xc1,
+  TXVERSION: 0xc2,
+  TXINPUTCOUNT: 0xc3,
+  TXOUTPUTCOUNT: 0xc4,
+  TXLOCKTIME: 0xc5,
+  UTXOVALUE: 0xc6,
+  UTXOBYTECODE: 0xc7,
+  OUTPOINTTXHASH: 0xc8,
+  OUTPOINTINDEX: 0xc9,
+  INPUTBYTECODE: 0xca,
+  INPUTSEQUENCENUMBER: 0xcb,
+  OUTPUTVALUE: 0xcc,
+  OUTPUTBYTECODE: 0xcd,
+  UTXOTOKENCATEGORY: 0xce,
+  UTXOTOKENCOMMITMENT: 0xcf,
+  UTXOTOKENAMOUNT: 0xd0,
+  OUTPUTTOKENCATEGORY: 0xd1,
+  OUTPUTTOKENCOMMITMENT: 0xd2,
+  OUTPUTTOKENAMOUNT: 0xd3,
+  UNKNOWN212: 0xd4,
+  UNKNOWN213: 0xd5,
+  UNKNOWN214: 0xd6,
+  UNKNOWN215: 0xd7,
+  UNKNOWN216: 0xd8,
+  UNKNOWN217: 0xd9,
+  UNKNOWN218: 0xda,
+  UNKNOWN219: 0xdb,
+  UNKNOWN220: 0xdc,
+  UNKNOWN221: 0xdd,
+  UNKNOWN222: 0xde,
+  UNKNOWN223: 0xdf,
+  UNKNOWN224: 0xe0,
+  UNKNOWN225: 0xe1,
+  UNKNOWN226: 0xe2,
+  UNKNOWN227: 0xe3,
+  UNKNOWN228: 0xe4,
+  UNKNOWN229: 0xe5,
+  UNKNOWN230: 0xe6,
+  UNKNOWN231: 0xe7,
+  UNKNOWN232: 0xe8,
+  UNKNOWN233: 0xe9,
+  UNKNOWN234: 0xea,
+  UNKNOWN235: 0xeb,
+  UNKNOWN236: 0xec,
+  UNKNOWN237: 0xed,
+  UNKNOWN238: 0xee,
+  UNKNOWN239: 0xef,
+  /**
+   * A.K.A. `PREFIX_BEGIN`
+   */
+  UNKNOWN240: 0xf0,
+  UNKNOWN241: 0xf1,
+  UNKNOWN242: 0xf2,
+  UNKNOWN243: 0xf3,
+  UNKNOWN244: 0xf4,
+  UNKNOWN245: 0xf5,
+  UNKNOWN246: 0xf6,
+  /**
+   * A.K.A. `PREFIX_END`
+   */
+  UNKNOWN247: 0xf7,
+  UNKNOWN248: 0xf8,
+  UNKNOWN249: 0xf9,
+  UNKNOWN250: 0xfa,
+  UNKNOWN251: 0xfb,
+  UNKNOWN252: 0xfc,
+  UNKNOWN253: 0xfd,
+  UNKNOWN254: 0xfe,
+  UNKNOWN255: 0xff
 };
 exports.default = _default;
 
 },{}],6:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _bigIntToBinUint64LEClamped = _interopRequireDefault(require("./bigIntToBinUint64LEClamped.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/**
- * Encode a positive BigInt as an 8-byte Uint64LE Uint8Array.
- *
- * This method will return an incorrect result for values outside of the range
- * `0` to `0xffff_ffff_ffff_ffff`.
- *
- * @param value - the number to encode
- */
-var _default = value => {
-  const uint64LengthInBits = 64;
-  const valueAsUint64 = BigInt.asUintN(uint64LengthInBits, value);
-  const fixedLengthBin = (0, _bigIntToBinUint64LEClamped.default)(valueAsUint64);
-  return fixedLengthBin;
-};
-exports.default = _default;
-
-},{"./bigIntToBinUint64LEClamped.js":7}],7:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _bigIntToBinUintLE = _interopRequireDefault(require("./bigIntToBinUintLE.js"));
-var _binToFixedLength = _interopRequireDefault(require("./binToFixedLength.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/**
- * Encode a positive BigInt as an 8-byte Uint64LE Uint8Array, clamping the
- * results. (Values exceeding `0xffff_ffff_ffff_ffff` return the same result as
- * `0xffff_ffff_ffff_ffff`, negative values return the same result as `0`.)
- *
- * @param value - the number to encode
- */
-var _default = value => {
-  const uint64 = 8;
-  return (0, _binToFixedLength.default)((0, _bigIntToBinUintLE.default)(value), uint64);
-};
-exports.default = _default;
-
-},{"./bigIntToBinUintLE.js":8,"./binToFixedLength.js":10}],8:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * Encode a positive BigInt as little-endian Uint8Array. Negative values will
- * return the same result as `0`.
- *
- * @param value - the number to encode
- */
-var _default = value => {
-  const baseUint8Array = 256;
-  const base = BigInt(baseUint8Array);
-  const result = [];
-  // eslint-disable-next-line functional/no-let
-  let remaining = value;
-  // eslint-disable-next-line functional/no-loop-statement
-  while (remaining >= base) {
-    // eslint-disable-next-line functional/no-expression-statement, functional/immutable-data
-    result.push(Number(remaining % base));
-    // eslint-disable-next-line functional/no-expression-statement
-    remaining /= base;
-  }
-  // eslint-disable-next-line functional/no-conditional-statement, functional/no-expression-statement, functional/immutable-data
-  if (remaining > BigInt(0)) result.push(Number(remaining));
-  return Uint8Array.from(result.length > 0 ? result : [0]);
-};
-exports.default = _default;
-
-},{}],9:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _bigIntToBinUint64LE = _interopRequireDefault(require("./bigIntToBinUint64LE.js"));
-var _CompactUint = _interopRequireDefault(require("./CompactUint.js"));
-var _numberToBinUint16LE = _interopRequireDefault(require("./numberToBinUint16LE.js"));
-var _numberToBinUint32LE = _interopRequireDefault(require("./numberToBinUint32LE.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-// TODO Add test for BigInt
-var _default = value => value <= BigInt(_CompactUint.default.uint8MaxValue) ? Uint8Array.of(Number(value)) : value <= BigInt(_CompactUint.default.uint16MaxValue) ? Uint8Array.from([_CompactUint.default.uint16Prefix, ...(0, _numberToBinUint16LE.default)(Number(value))]) : value <= BigInt(_CompactUint.default.uint32MaxValue) ? Uint8Array.from([_CompactUint.default.uint32Prefix, ...(0, _numberToBinUint32LE.default)(Number(value))]) : Uint8Array.from([_CompactUint.default.uint64Prefix, ...(0, _bigIntToBinUint64LE.default)(value)]);
-exports.default = _default;
-
-},{"./CompactUint.js":5,"./bigIntToBinUint64LE.js":6,"./numberToBinUint16LE.js":13,"./numberToBinUint32LE.js":14}],10:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * Fill a new Uint8Array of a specific byte-length with the contents of a given
- * Uint8Array, truncating or padding the Uint8Array with zeros.
- *
- * @param bin - the Uint8Array to resize
- * @param bytes - the desired byte-length
- */
-var _default = (bin, bytes) => {
-  const fixedBytes = new Uint8Array(bytes);
-  const maxValue = 255;
-  // eslint-disable-next-line functional/no-expression-statement
-  bin.length > bytes ? fixedBytes.fill(maxValue) : fixedBytes.set(bin);
-  // TODO: re-enable eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  return fixedBytes;
-};
-exports.default = _default;
-
-},{}],11:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-const hexByteWidth = 2;
-const hexadecimal = 16;
-
-/**
- * Encode a Uint8Array into a hexadecimal-encoded string.
- *
- * E.g.: `binToHex(new Uint8Array([42, 100, 255]))` → `'2a64ff'`
- *
- * @param bytes - a Uint8Array to encode
- */
-var _default = bytes => bytes.reduce((str, byte) => str + byte.toString(hexadecimal).padStart(hexByteWidth, '0'), '');
-exports.default = _default;
-
-},{}],12:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _splitEvery = _interopRequireDefault(require("./splitEvery.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const hexByteWidth = 2;
-const hexadecimal = 16;
-
-/**
- * Decode a hexadecimal-encoded string into a Uint8Array.
- *
- * E.g.: `hexToBin('2a64ff')` → `new Uint8Array([42, 100, 255])`
- *
- * Note, this method always completes. If `validHex` is not divisible by 2,
- * the final byte will be parsed as if it were prepended with a `0` (e.g. `aaa`
- * is interpreted as `aa0a`). If `validHex` is potentially malformed, check
- * it with `isHex` before calling this method.
- *
- * @param validHex - a string of valid, hexadecimal-encoded data
- */
-var _default = validHex => Uint8Array.from((0, _splitEvery.default)(validHex, hexByteWidth).map(byte => parseInt(byte, hexadecimal)));
-exports.default = _default;
-
-},{"./splitEvery.js":16}],13:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * Encode a positive integer as a 2-byte Uint16LE Uint8Array.
- *
- * This method will return an incorrect result for values outside of the range
- * `0` to `0xffff`.
- *
- * @param value - the number to encode
- */
-var _default = value => {
-  const uint16Length = 2;
-  const bin = new Uint8Array(uint16Length);
-  const writeAsLittleEndian = true;
-  const view = new DataView(bin.buffer, bin.byteOffset, bin.byteLength);
-  // eslint-disable-next-line functional/no-expression-statement
-  view.setUint16(0, value, writeAsLittleEndian);
-  return bin;
-};
-exports.default = _default;
-
-},{}],14:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * Encode a positive number as a 4-byte Uint32LE Uint8Array.
- *
- * This method will return an incorrect result for values outside of the range
- * `0` to `0xffffffff`.
- *
- * @param value - the number to encode
- */
-var _default = value => {
-  const uint32Length = 4;
-  const bin = new Uint8Array(uint32Length);
-  const writeAsLittleEndian = true;
-  const view = new DataView(bin.buffer, bin.byteOffset, bin.byteLength);
-  // eslint-disable-next-line functional/no-expression-statement
-  view.setUint32(0, value, writeAsLittleEndian);
-  return bin;
-};
-exports.default = _default;
-
-},{}],15:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-/**
- * Returns an array of incrementing values starting at `begin` and incrementing by one for `length`.
- *
- * E.g.: `range(3)` → `[0, 1, 2]` and `range(3, 1)` → `[1, 2, 3]`
- *
- * @param length - the number of elements in the array
- * @param begin - the index at which the range starts (default: `0`)
- */
-var _default = (length, begin = 0) => Array.from({
-  length
-}, (_, index) => begin + index);
-exports.default = _default;
-
-},{}],16:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _range = _interopRequireDefault(require("./range.js"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/**
- * Split a string into an array of `chunkLength` strings. The final string may have a length between 1 and `chunkLength`.
- *
- * E.g.: `splitEvery('abcde', 2)` → `['ab', 'cd', 'e']`
- */
-var _default = (input, chunkLength) => (0, _range.default)(Math.ceil(input.length / chunkLength)).map(index => index * chunkLength).map(begin => input.slice(begin, begin + chunkLength));
-exports.default = _default;
-
-},{"./range.js":15}],17:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

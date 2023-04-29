@@ -1,6 +1,3 @@
-/* Import modules. */
-import WebSocket from 'isomorphic-ws'
-
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:blockchain:broadcast')
@@ -57,11 +54,15 @@ const broadcastBch = async (_rawTx) => {
  *
  * @param {*} transaction
  */
-const broadcastNexa = (_rawTx) => {
+const broadcastNexa = async (_rawTx) => {
     /* Initialize locals. */
     let request
     let resolve
     let reject
+
+    /* Import WebSocket. */
+    // NOTE: Ignored by esmify.
+    const WebSocket = await import('isomorphic-ws')
 
     /* Initialize socket connection. */
     // TODO Enable connection pooling.
