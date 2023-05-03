@@ -62,7 +62,7 @@ const broadcastNexa = async (_rawTx) => {
 
     /* Import WebSocket. */
     // NOTE: Ignored by esmify.
-    const WebSocket = await import('isomorphic-ws')
+    const WebSocket = (await import('isomorphic-ws')).default
 
     /* Initialize socket connection. */
     // TODO Enable connection pooling.
