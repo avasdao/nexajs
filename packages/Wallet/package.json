@@ -9,10 +9,9 @@
   "type": "module",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "23.4.6",
+    "@nexajs/address": "23.5.1",
     "@nexajs/crypto": "23.4.5",
     "@nexajs/hdnode": "23.4.5",
-    "@nexajs/rostrum": "23.4.16",
     "events": "3.3.0"
   },
   "devDependencies": {
