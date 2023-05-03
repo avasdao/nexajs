@@ -1,6 +1,7 @@
 /* Import modules. */
 import { bigIntToBinUint64LE } from '@bitauth/libauth'
-import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
+
+import { decodeAddress } from '@nexajs/address'
 
 /**
  * Create a transaction P2PKH output with the given value.
@@ -13,9 +14,12 @@ import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddre
  * @returns {Promise<Output>} The P2PKH output script.
  */
 export default async (address, satoshis) => {
+    const lockingBytecode = decodeAddress(address).hash
+
     // Create the output.
     const valueOutput = {
-        lockingBytecode: await getLockingBytecodeFromAddress(address),
+        // lockingBytecode: await getLockingBytecodeFromAddress(address),
+        lockingBytecode,
         satoshis: bigIntToBinUint64LE(BigInt(satoshis)),
     }
 

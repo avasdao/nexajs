@@ -1,12 +1,11 @@
 import {
     bigIntToBitcoinVarInt,
     flattenBinArray,
-    // hashOutputs,
     numberToBinUintLE,
     numberToBinUint32LE,
 } from '@bitauth/libauth'
 
-import { Opcodes } from '@nexajs/utils'
+import { OP } from '@nexajs/script'
 
 import {
     hashPrevouts,
@@ -16,8 +15,8 @@ import {
 } from './signing-serialization.js'
 
 const altLockScriptBin = new Uint8Array([
-    Opcodes.OP_FROMALTSTACK,
-    Opcodes.OP_CHECKSIGVERIFY,
+    OP.FROMALTSTACK,
+    OP.CHECKSIGVERIFY,
 ])
 
 /**

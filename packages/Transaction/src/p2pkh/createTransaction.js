@@ -1,13 +1,17 @@
 /* Import modules. */
 import {
-    binToHex,
     encodeTransaction,
 } from '@bitauth/libauth'
 
+import { parseWif } from '@nexajs/hdnode'
+
+import {
+    binToHex,
+} from '@nexajs/utils'
+
 import createUnsignedInput from './createUnsignedInput.js'
 import unlockP2PKHInput from './unlockP2pkhInput.js'
-
-import parseWIF from './address/parseWIF.js'
+// import parseWIF from './address/parseWIF.js'
 
 /**
  * Create a transaction.
@@ -26,7 +30,7 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
         privateKey,
         publicKey,
         returnAddress
-    ] = await parseWIF(privateKeyWIF)
+    ] = await parseWif(privateKeyWIF)
 
     // Convert all coins to the Libauth Input format (unsigned)
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
@@ -40,7 +44,7 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
     }
     console.log('UNSIGNED TRANSACTION', JSON.parse(JSON.stringify(transaction)))
     // console.log('UNSIGNED TRANSACTION (encoded):', encodeTransaction(transaction))
-    console.log('UNSIGNED TRANSACTION (encoded) (hex):', binToHex(encodeTransaction(transaction)))
+    // console.log('UNSIGNED TRANSACTION (encoded) (hex):', binToHex(encodeTransaction(transaction)))
 
     // Sign all inputs and add the generated unlocking scripts to the transaction.
     // eslint-disable-next-line require-atomic-updates
@@ -56,7 +60,11 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
             )
         )
     )
-    console.log('SIGNED TRANSACTION', transaction)
+    // console.log('\n\nSIGNED TRANSACTION', transaction)
+    // console.log('\n\nSIGNED TRANSACTION (inputs):', transaction.inputs)
+    // console.log('\n\nSIGNED TRANSACTION (outpointTransactionHash):', binToHex(transaction.inputs[0].outpointTransactionHash))
+    // console.log('\n\nSIGNED TRANSACTION (unlockingBytecode):', binToHex(transaction.inputs[0].unlockingBytecode))
+    console.log('\n\nSIGNED TRANSACTION (outputs):', transaction.outputs)
 
     // Hex encode the built transaction.
     const encodedTransaction = encodeTransaction(transaction)

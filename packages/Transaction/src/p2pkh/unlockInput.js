@@ -5,7 +5,9 @@ import {
     hexToBin,
 } from '@bitauth/libauth'
 
-import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
+import { decodeAddress } from '@nexajs/address'
+
+// import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
 import signTransactionInput from './signTransactionInput.js'
 
 /**
@@ -31,7 +33,13 @@ export default async (
     address,
 ) => {
     // Extract the bytecode (locking script) from our return address.
-    const lockScriptBin = await getLockingBytecodeFromAddress(address)
+    // const lockScriptBin = await getLockingBytecodeFromAddress(address)
+    // Extract the bytecode (locking script) from our return address.
+    // const lockScriptBin = await getLockingBytecodeFromAddress(address)
+    const lockScriptBin = new Uint8Array([
+        ...await decodeAddress(address).hash
+    ])
+    console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x41

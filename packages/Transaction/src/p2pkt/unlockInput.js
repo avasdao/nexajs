@@ -7,7 +7,7 @@ import {
 
 import { decodeAddress } from '@nexajs/address'
 
-import signTransactionInput from './signTransactionInput.js'
+import signTransactionInput from '../REF/signTransactionInput.js'
 
 
 /**

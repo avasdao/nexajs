@@ -5,9 +5,9 @@ import { binToHex } from '@bitauth/libauth'
 import { parseWif } from '@nexajs/hdnode'
 
 /* Import (local) modules. */
-import encodeTransaction from './encodeTransaction.js'
-import createUnsignedInput from './createUnsignedInput.js'
-import unlockP2PktInput from './unlockP2pktInput.js'
+import encodeTransaction from '../REF/encodeTransaction.js'
+import createUnsignedInput from '../REF/createUnsignedInput.js'
+import unlockP2PktInput from './unlockInput.js'
 
 
 /**

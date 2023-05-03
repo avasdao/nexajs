@@ -19,9 +19,6 @@ import { OP } from '@nexajs/script'
  * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (_data) => {
-    // console.log('\n  OP_Return data:', _data)
-    // console.log('\n  OP_Return data (bin):', hexToBin(_data))
-
     let lockingBytecode
 
     lockingBytecode = encodeDataPush(hexToBin(_data))

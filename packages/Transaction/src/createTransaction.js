@@ -1,7 +1,10 @@
 /* Import modules. */
-import createDataOutput from '../src-REF/createP2pktDataOutput.js'
-import createTransaction from '../src-REF/createP2pktTransaction.js'
-import createValueOutput from '../src-REF/createP2pktValueOutput.js'
+import createDataOutput from './p2pkt/createDataOutput.js'
+import createTransaction from './p2pkt/createTransaction.js'
+import createValueOutput from './p2pkt/createValueOutput.js'
+// import createDataOutput from './p2pkh/createDataOutput.js'
+// import createTransaction from './p2pkh/createTransaction.js'
+// import createValueOutput from './p2pkh/createValueOutput.js'
 
 /**
  * Create a Nexa Transaction
