@@ -242,10 +242,10 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/blockchain@23.3.18":
-  version "23.3.18"
-  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.3.18.tgz#2f43c0622b7fb44a449a0a54bb813a795537adbd"
-  integrity sha512-Ih2ytr9Qf/N5MCl3qWiqZ4ih8SOuXpMb8PWYtRd9NvkC6nWEFJL0I+nkXWr5XiCgobj5g7M2mekTXLpsiEy2Uw==
+"@nexajs/blockchain@23.5.1":
+  version "23.5.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.1.tgz#e93033ce5769fb8c8e57c528855ded1cbc08c499"
+  integrity sha512-nXv0IZirVgJS3SgIDRYdsbtSbri7SsNSlWupe3nL88tWVZRM71k+R95SV1PQdn24r6elSRWxRIH3TG5lqd7B/A==
   dependencies:
     events "3.3.0"
     isomorphic-ws "5.0.0"
