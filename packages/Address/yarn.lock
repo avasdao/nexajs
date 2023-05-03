@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@nexajs/rostrum@23.4.16":
-  version "23.4.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.4.16.tgz#2b9972dde03d2e6ed9f12b5b329227a78f4db427"
-  integrity sha512-KH/W+F/CO4YDz4PS/Ui0AQg1HVHltPC/9sXRx56xon+CfeMFvMfj9BIoZ+ANSUTmWSQFxTiy1NdQ/s80oHqgGQ==
+"@nexajs/rostrum@23.5.1":
+  version "23.5.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.1.tgz#bbd9ad3d56b95701ba1635dfaf43751028122803"
+  integrity sha512-LLAYdky5VXTRdudfhVY7eQ2ZOM3r1E33ChBpbIvfMTsy5DPV0IxmbJDS5WwCxGWKiPTftZGdWYNS73Z60LreVA==
   dependencies:
     events "3.3.0"
     isomorphic-ws "5.0.0"
