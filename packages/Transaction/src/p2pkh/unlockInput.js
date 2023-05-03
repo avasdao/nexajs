@@ -7,8 +7,7 @@ import {
 
 import { decodeAddress } from '@nexajs/address'
 
-// import getLockingBytecodeFromAddress from './address/getLockingBytecodeFromAddress.js'
-import signTransactionInput from './signTransactionInput.js'
+import signTransactionInput from '../REF/signTransactionInput.js'
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.

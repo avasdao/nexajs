@@ -1,7 +1,8 @@
 /* Import modules. */
-import {
-    encodeTransaction,
-} from '@bitauth/libauth'
+// import {
+//     encodeTransaction,
+// } from '@bitauth/libauth'
+import encodeTransaction from '../REF/encodeTransaction.js'
 
 import { parseWif } from '@nexajs/hdnode'
 
@@ -9,9 +10,8 @@ import {
     binToHex,
 } from '@nexajs/utils'
 
-import createUnsignedInput from './createUnsignedInput.js'
-import unlockP2PKHInput from './unlockP2pkhInput.js'
-// import parseWIF from './address/parseWIF.js'
+import createUnsignedInput from '../REF/createUnsignedInput.js'
+import unlockP2PKHInput from './unlockInput.js'
 
 /**
  * Create a transaction.
@@ -37,7 +37,7 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
 
     // Assemble the unsigned transaction.
     const transaction = {
-        version: 2,
+        version: 0,
         inputs,
         outputs,
         locktime: 0,
