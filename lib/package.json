@@ -17,7 +17,7 @@
     "@nexajs/crypto": "23.4.5",
     "@nexajs/hdnode": "23.4.5",
     "@nexajs/id": "23.4.5",
-    "@nexajs/purse": "23.4.14",
+    "@nexajs/purse": "23.5.1",
     "@nexajs/request": "23.4.5",
     "@nexajs/rostrum": "23.5.1",
     "@nexajs/rpc": "23.3.18",
