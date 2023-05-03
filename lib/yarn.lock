@@ -560,6 +560,16 @@
     "@ethersproject/hdnode" "5.7.0"
     "@nexajs/address" "23.3.18"
 
+"@nexajs/hdnode@23.5.1":
+  version "23.5.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.5.1.tgz#8601e453fca4a860bba2e47a0d6af59959b61e5e"
+  integrity sha512-uDew98nhXJMFXaAuPHEKr9emUi9KP5f5AbHidYhU2ai870v3UxAlRmA1ftL0C5HJtiV2blu9ZCbMtTMlTUJrew==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@ethersproject/hdnode" "5.7.0"
+    "@nexajs/address" "23.5.1"
+    "@nexajs/utils" "23.4.22"
+
 "@nexajs/id@23.4.5":
   version "23.4.5"
   resolved "https://registry.yarnpkg.com/@nexajs/id/-/id-23.4.5.tgz#731fb7f89ff851dc999ad84b8c952c45cc6a5469"
@@ -648,6 +658,17 @@
     "@nexajs/script" "23.4.12"
     "@nexajs/utils" "23.4.5"
 
+"@nexajs/transaction@23.5.1":
+  version "23.5.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.1.tgz#707391cfd218b2878b01b98b95477d474f55d379"
+  integrity sha512-Z98botMI4mePeJvU1pqBFk5uZALveXbVwUMYKhqaytgekFRmuQBzP0vF4AaOruKQAa2K192iQdl7AFbAdjmfmw==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/address" "23.5.1"
+    "@nexajs/hdnode" "23.5.1"
+    "@nexajs/script" "23.4.18"
+    "@nexajs/utils" "23.4.22"
+
 "@nexajs/utils@23.4.22":
   version "23.4.22"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.22.tgz#c40571454ceb5524d0f251b24b6841ebecea0307"
@@ -660,16 +681,15 @@
   dependencies:
     "@bitauth/libauth" "1.19.1"
 
-"@nexajs/wallet@23.4.14":
-  version "23.4.14"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.4.14.tgz#16c46c59c405a470610a2203943a5486c877a2a2"
-  integrity sha512-AmZ5RDEELAF0knJB3VWpRtVUIQ5SgLkbH5yff67ssYnvV23QdK/B6Eydwayy8yXtvRkMbwV2VXd9RY8gMezyXg==
+"@nexajs/wallet@23.5.1":
+  version "23.5.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.5.1.tgz#096ac0889078db538f568a6562235a428e10a7eb"
+  integrity sha512-I2S9LHOYMAf3Pl4ID0crI5lM/huWX+6lFMnIbdUX3MQ8/iAPWGVhVATJS3rHg0i+Og9yIYI5Q8z44BQTDHIZ+w==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.4.6"
+    "@nexajs/address" "23.5.1"
     "@nexajs/crypto" "23.4.5"
-    "@nexajs/hdnode" "23.4.5"
-    "@nexajs/utils" "23.4.5"
+    "@nexajs/hdnode" "23.5.1"
     events "3.3.0"
 
 "@ungap/promise-all-settled@1.1.2":

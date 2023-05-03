@@ -23,9 +23,9 @@
     "@nexajs/rpc": "23.3.18",
     "@nexajs/script": "23.4.18",
     "@nexajs/token": "23.4.5",
-    "@nexajs/transaction": "23.4.14",
+    "@nexajs/transaction": "23.5.1",
     "@nexajs/utils": "23.4.22",
-    "@nexajs/wallet": "23.4.14",
+    "@nexajs/wallet": "23.5.1",
     "events": "3.3.0"
   },
   "devDependencies": {
