@@ -1,9 +1,6 @@
 /* Import modules. */
 import {
     binToHex,
-    // CashAddressType,
-    // decodePrivateKeyWif,
-    // encodeCashAddress,
     encodeDataPush,
     hexToBin,
     instantiateRipemd160,
@@ -12,8 +9,7 @@ import {
 } from '@bitauth/libauth'
 
 import CashAddressType from './CashAddressType.js'
-import { decodePrivateKeyWif } from './walletImportFormat.js'
-// import encodeCashAddress from './encodeCashAddress.js'
+import decodePrivateKeyWif from './decodePrivateKeyWif.js'
 import { encodeAddress } from '@nexajs/address'
 
 /**
