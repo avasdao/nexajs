@@ -1,34 +1,38 @@
 /* Import modules. */
 import {
-    binToHex,
     encodeDataPush,
-    hexToBin,
     instantiateRipemd160,
     instantiateSecp256k1,
     instantiateSha256,
 } from '@bitauth/libauth'
 
+import { encodeAddress } from '@nexajs/address'
+
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
+
 import CashAddressType from './CashAddressType.js'
 import decodePrivateKeyWif from './decodePrivateKeyWif.js'
-import { encodeAddress } from '@nexajs/address'
 
 /**
  * Parse a WIF string into a private key, public key and address.
  *
  * @function
  *
- * @param wif {string} Wallet in WIF format.
+ * @param _wif {string} Wallet in WIF format.
  *
  * @returns {Promise<Array<String>>} Array containing [0] Private Key, [1] Public Key and [2] Address.
  */
-export default async (wif) => {
+export default async (_wif, _prefix = 'nexa', _format = 'TEMPLATE') => {
     /* Instantiate Libauth crypto interfaces */
     const secp256k1 = await instantiateSecp256k1()
     const sha256 = await instantiateSha256()
     const ripemd160 = await instantiateRipemd160()
 
     /* Attempt to decode WIF string into a private key */
-    const decodeResult = decodePrivateKeyWif(sha256, wif)
+    const decodeResult = decodePrivateKeyWif(sha256, _wif)
 
     /* If decodeResult is a string, it represents an error, so we throw it. */
     if (typeof decodeResult === 'string') {
@@ -51,7 +55,7 @@ export default async (wif) => {
     const pkhScript = hexToBin('17005114' + binToHex(publicKeyHashBin))
 
     /* Encode the address. */
-    const address = encodeAddress('nexa', 'TEMPLATE', pkhScript)
+    const address = encodeAddress(_prefix, _format, pkhScript)
 
     /* Return WIF package. */
     return [
