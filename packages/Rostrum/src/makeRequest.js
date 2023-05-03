@@ -22,7 +22,7 @@ let reject
 const setupConnMgr = async () => {
     /* Import WebSocket. */
     // NOTE: Ignored by esmify.
-    WebSocket = await import('isomorphic-ws')
+    const WebSocket = (await import('isomorphic-ws')).default
 
     /* Initilize connections manager. */
     connMgr = {
