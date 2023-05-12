@@ -5,7 +5,7 @@ import { ref } from 'vue'
 /* Initialize tabs. */
 const tabWelcome = ref(true)
 const tabExplorers = ref(false)
-const tabWallets = ref(false)
+const tabWallet = ref(false)
 const tabScript = ref(false)
 
 /* Initialize blockchain handlers. */
@@ -26,7 +26,7 @@ const loadTab = (_tabid: string) => {
     /* Disable ALL tabs. */
     tabWelcome.value = false
     tabExplorers.value = false
-    tabWallets.value = false
+    tabWallet.value = false
     tabScript.value = false
 
     /* Enable selected tab. */
@@ -37,8 +37,8 @@ const loadTab = (_tabid: string) => {
     case 'explorers':
         tabExplorers.value = true
         break
-    case 'wallets':
-        tabWallets.value = true
+    case 'wallet':
+        tabWallet.value = true
         break
     case 'script':
         tabScript.value = true
@@ -62,7 +62,7 @@ getBlockHeight()
 </script>
 
 <template>
-    <main class="max-w-7xl mx-auto">
+    <main class="max-w-7xl mx-auto py-5">
         <header class="flex flex-col items-center">
             <img src="~/assets/nexa.svg" class="w-24 h-24" />
 
@@ -97,7 +97,7 @@ getBlockHeight()
                     </button>
 
                     <button
-                        @click="loadTab('wallets')"
+                        @click="loadTab('wallet')"
                         type="button"
                         class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                     >
@@ -152,7 +152,7 @@ getBlockHeight()
                 </p>
             </section>
 
-            <section v-if="tabWallets" class="">
+            <section v-if="tabWallet" class="">
                 <div class="mt-5 flex justify-center">
                     <h2 class="text-2xl font-bold">
                         Asset Wallets
@@ -214,7 +214,7 @@ getBlockHeight()
 
                     <div>
                         <h2 class="text-2xl text-yellow-100 font-medium">
-                            Check our more Examples
+                            Check out more Examples
                         </h2>
 
                         <p class="text-yellow-100">

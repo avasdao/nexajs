@@ -42,10 +42,6 @@ const signTransactionInput = async (
     // Generate the "sighash" by taking the double SHA256 of the signing serialization.
     const sha256 = await instantiateSha256()
 
-    // let seqVal = hexToBin('feffffff')
-
-    // let seqHash = sha256.hash(sha256.hash(seqVal))
-
     let sighash = sha256.hash(sha256.hash(signingSerialization))
 
     // Instantiate the Secp256k1 interface.

@@ -57,8 +57,10 @@ export default ({
         transactionSequenceNumbers,
     }),
 
-    bigIntToBitcoinVarInt(BigInt(altLockScriptBin.length)),
-    ...altLockScriptBin,
+    // bigIntToBitcoinVarInt(BigInt(altLockScriptBin.length)),
+    // ...altLockScriptBin,
+    bigIntToBitcoinVarInt(BigInt(coveredBytecode.length)),
+    ...coveredBytecode,
 
     ...hashOutputs({
         correspondingOutput,
