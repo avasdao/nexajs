@@ -15,7 +15,7 @@
     "@nexajs/address": "23.5.13",
     "@nexajs/blockchain": "23.5.1",
     "@nexajs/crypto": "23.4.5",
-    "@nexajs/hdnode": "23.4.5",
+    "@nexajs/hdnode": "23.5.13",
     "@nexajs/id": "23.4.5",
     "@nexajs/purse": "23.5.1",
     "@nexajs/request": "23.4.5",
