@@ -4,7 +4,7 @@
 
 "@bitauth/libauth@1.19.1":
   version "1.19.1"
-  resolved "https://registry.yarnpkg.com/@bitauth/libauth/-/libauth-1.19.1.tgz#713751bbc09815b667f8fe00a1cc5b0f3bf45dd1"
+  resolved "https://registry.npmjs.org/@bitauth/libauth/-/libauth-1.19.1.tgz"
   integrity sha512-R524tD5VwOt3QRHr7N518nqTVR/HKgfWL4LypekcGuNQN8R4PWScvuRcRzrY39A28kLztMv+TJdiKuMNbkU1ug==
 
 "@ethersproject/abstract-provider@^5.7.0":
@@ -225,7 +225,7 @@
 
 "@nexajs/address@23.5.1":
   version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.1.tgz#511b7567de97be2496d5dbdb8f45ac3bd6d51dfa"
+  resolved "https://registry.npmjs.org/@nexajs/address/-/address-23.5.1.tgz"
   integrity sha512-oSGlSHq3i0F700FCHsWUUPLrSZ3D4Oo8Tchcw65DrhtUWk8xdiLG8M/OsFh/zmyIYCqAuYsLR1XK9GsNNLYy4g==
   dependencies:
     "@nexajs/rostrum" "23.5.1"
@@ -234,29 +234,50 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.13.tgz#884f9eb77f30f4eccaf8cca5ab996baddba1c87b"
+  integrity sha512-KUn0owK4Rl7GOTVcUmT0cmni4SbpZBCd2Jsvjw8bIMMa8NjcuK6r/0HkcmiXE7UJPUIB/0sKecMzNss7Bigt6g==
+  dependencies:
+    "@nexajs/rostrum" "23.5.13"
+    big-integer "1.6.51"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/blockchain@23.5.1":
   version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.1.tgz#e93033ce5769fb8c8e57c528855ded1cbc08c499"
+  resolved "https://registry.npmjs.org/@nexajs/blockchain/-/blockchain-23.5.1.tgz"
   integrity sha512-nXv0IZirVgJS3SgIDRYdsbtSbri7SsNSlWupe3nL88tWVZRM71k+R95SV1PQdn24r6elSRWxRIH3TG5lqd7B/A==
   dependencies:
     events "3.3.0"
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/hdnode@23.5.1":
-  version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.5.1.tgz#8601e453fca4a860bba2e47a0d6af59959b61e5e"
-  integrity sha512-uDew98nhXJMFXaAuPHEKr9emUi9KP5f5AbHidYhU2ai870v3UxAlRmA1ftL0C5HJtiV2blu9ZCbMtTMlTUJrew==
+"@nexajs/hdnode@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.5.13.tgz#16b89c5d83af4b3648597e6ff9077cb5425bc5a1"
+  integrity sha512-vMPJTCEzqxrjqlR8dJM/6LVrqQnmTaq5unuPUmhaT+/yw9ae2IzsRmJHEqr7WRGml3R1Dm/uF8P95XOpAKLSaA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "23.5.1"
+    "@nexajs/address" "23.5.13"
     "@nexajs/utils" "23.4.22"
 
 "@nexajs/rostrum@23.5.1":
   version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.1.tgz#bbd9ad3d56b95701ba1635dfaf43751028122803"
+  resolved "https://registry.npmjs.org/@nexajs/rostrum/-/rostrum-23.5.1.tgz"
   integrity sha512-LLAYdky5VXTRdudfhVY7eQ2ZOM3r1E33ChBpbIvfMTsy5DPV0IxmbJDS5WwCxGWKiPTftZGdWYNS73Z60LreVA==
+  dependencies:
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
+"@nexajs/rostrum@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.13.tgz#fb568e30333dd51bcc8c1f7e085a0c2aaa7bfd65"
+  integrity sha512-uk/7QQbkPCPmisq6E/26Ck86jYjptmKg+5NoD0Tau5fHTiG1EkL/1JvPnCK+XHr7i4HvCQ400CfK01dmt4uBww==
   dependencies:
     events "3.3.0"
     isomorphic-ws "5.0.0"
@@ -268,14 +289,14 @@
   resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.4.18.tgz#6c2c02836d6b96ba09b024282c89ae2bf6761711"
   integrity sha512-rYWdEw2iq5iEOp5EiShyB8JN643oaUD96ji7ni+NrYCFOLEe999UmXGAg3lzms7J0O58WAJFIev7lSTI3Hhb5w==
 
-"@nexajs/transaction@23.5.1":
-  version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.1.tgz#707391cfd218b2878b01b98b95477d474f55d379"
-  integrity sha512-Z98botMI4mePeJvU1pqBFk5uZALveXbVwUMYKhqaytgekFRmuQBzP0vF4AaOruKQAa2K192iQdl7AFbAdjmfmw==
+"@nexajs/transaction@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.13.tgz#275f531eec4b40f1057ba2456a7598a2933b569a"
+  integrity sha512-nGvfuzMbYRYP+6aY2nuJqJBdthSmcuNqXYv6gkKN+fK4ATWIXA3FJbFFisskuwIjEDpyJovIJB/DNqMkTgDBGA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.5.1"
-    "@nexajs/hdnode" "23.5.1"
+    "@nexajs/address" "23.5.13"
+    "@nexajs/hdnode" "23.5.13"
     "@nexajs/script" "23.4.18"
     "@nexajs/utils" "23.4.22"
 
@@ -286,7 +307,7 @@
 
 big-integer@1.6.51:
   version "1.6.51"
-  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
+  resolved "https://registry.npmjs.org/big-integer/-/big-integer-1.6.51.tgz"
   integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
 
 bn.js@^4.11.9:
@@ -306,7 +327,7 @@ brorand@^1.1.0:
 
 debug@4.3.4:
   version "4.3.4"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
+  resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
@@ -326,17 +347,17 @@ elliptic@6.5.4:
 
 events@3.3.0:
   version "3.3.0"
-  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  resolved "https://registry.npmjs.org/events/-/events-3.3.0.tgz"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 graphql-ws@5.12.0:
   version "5.12.0"
-  resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.12.0.tgz#d06fe38916334b4a4c827f73268cbf4359a32ed7"
+  resolved "https://registry.npmjs.org/graphql-ws/-/graphql-ws-5.12.0.tgz"
   integrity sha512-PA3ImUp8utrpEjoxBMhvxsjkStvFEdU0E1gEBREt8HZIWkxOUymwJBhFnBL7t/iHhUq1GVPeZevPinkZFENxTw==
 
 graphql@16.6.0:
   version "16.6.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
+  resolved "https://registry.npmjs.org/graphql/-/graphql-16.6.0.tgz"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
 
 hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
@@ -363,7 +384,7 @@ inherits@^2.0.3, inherits@^2.0.4:
 
 isomorphic-ws@5.0.0:
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz#e5529148912ecb9b451b46ed44d53dae1ce04bbf"
+  resolved "https://registry.npmjs.org/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz"
   integrity sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==
 
 js-sha3@0.8.0:
@@ -383,20 +404,20 @@ minimalistic-crypto-utils@^1.0.1:
 
 ms@2.1.2:
   version "2.1.2"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
+  resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
 uuid@9.0.0:
   version "9.0.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  resolved "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 ws@8.12.1:
   version "8.12.1"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.1.tgz#c51e583d79140b5e42e39be48c934131942d4a8f"
+  resolved "https://registry.npmjs.org/ws/-/ws-8.12.1.tgz"
   integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
 
 ws@8.13.0:
   version "8.13.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.13.0.tgz#9a9fb92f93cf41512a0735c8f4dd09b8a1211cd0"
+  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
   integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==

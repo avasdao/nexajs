@@ -635,6 +635,17 @@
     "@nexajs/script" "23.4.18"
     "@nexajs/utils" "23.4.22"
 
+"@nexajs/transaction@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.13.tgz#275f531eec4b40f1057ba2456a7598a2933b569a"
+  integrity sha512-nGvfuzMbYRYP+6aY2nuJqJBdthSmcuNqXYv6gkKN+fK4ATWIXA3FJbFFisskuwIjEDpyJovIJB/DNqMkTgDBGA==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/address" "23.5.13"
+    "@nexajs/hdnode" "23.5.13"
+    "@nexajs/script" "23.4.18"
+    "@nexajs/utils" "23.4.22"
+
 "@nexajs/utils@23.4.22":
   version "23.4.22"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.22.tgz#c40571454ceb5524d0f251b24b6841ebecea0307"
