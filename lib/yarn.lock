@@ -563,15 +563,15 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/purse@23.5.1":
-  version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.5.1.tgz#39b700cd391b4f5b08af4f0a4b082e8df4094317"
-  integrity sha512-cWlHt3wHCm0ycS0YaXlblgxFQRyegJNT/pP44wC/XQPod8yrZSN8UhnWUaZ0QqErx2YPBX6FxdqUIHJT9LRadg==
+"@nexajs/purse@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.5.13.tgz#5940f829649b972bd4a39a801620493aafe6aeea"
+  integrity sha512-DhrOOqDdbnPUpjovV2mt1Y9s3IzZVYqjpmW2Vtxkcsii+RfoSw4h2cGojfyhh5mOlkvHqA8Mq6VQgSRd8vgFVw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.5.1"
     "@nexajs/blockchain" "23.5.1"
-    "@nexajs/transaction" "23.5.1"
+    "@nexajs/transaction" "23.5.13"
     events "3.3.0"
     uuid "9.0.0"
 
@@ -623,17 +623,6 @@
   dependencies:
     events "3.3.0"
     node-fetch "3.3.1"
-
-"@nexajs/transaction@23.5.1":
-  version "23.5.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.1.tgz#707391cfd218b2878b01b98b95477d474f55d379"
-  integrity sha512-Z98botMI4mePeJvU1pqBFk5uZALveXbVwUMYKhqaytgekFRmuQBzP0vF4AaOruKQAa2K192iQdl7AFbAdjmfmw==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.5.1"
-    "@nexajs/hdnode" "23.5.1"
-    "@nexajs/script" "23.4.18"
-    "@nexajs/utils" "23.4.22"
 
 "@nexajs/transaction@23.5.13":
   version "23.5.13"
