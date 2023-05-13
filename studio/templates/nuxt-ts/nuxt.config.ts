@@ -19,6 +19,10 @@ export default defineNuxtConfig({
     /* Application Modules */
     modules: [
         /* Tailwind CSS */
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+
+        /* Pinia */
+        '@pinia/nuxt',
+        '@pinia-plugin-persistedstate/nuxt',
     ],
 })

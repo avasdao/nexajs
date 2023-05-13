@@ -240,7 +240,7 @@ getBlockHeight()
                 </svg>
             </NuxtLink>
         </section>
-
-        <Footer />
     </main>
+
+    <Footer />
 </template>

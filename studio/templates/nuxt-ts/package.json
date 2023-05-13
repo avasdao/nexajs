@@ -10,11 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "0.4.7",
     "ethers": "6.0.8",
     "nexajs": "23.3.19",
-    "nuxt": "3.0.0"
+    "nuxt": "3.0.0",
+    "pinia": "2.0.32"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "6.4.1"
+    "@nuxtjs/tailwindcss": "6.4.1",
+    "@pinia-plugin-persistedstate/nuxt": "1.0.0"
   }
 }
