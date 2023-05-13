@@ -589,6 +589,16 @@
     uuid "9.0.0"
     ws "8.12.1"
 
+"@nexajs/rostrum@23.5.13":
+  version "23.5.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.13.tgz#fb568e30333dd51bcc8c1f7e085a0c2aaa7bfd65"
+  integrity sha512-uk/7QQbkPCPmisq6E/26Ck86jYjptmKg+5NoD0Tau5fHTiG1EkL/1JvPnCK+XHr7i4HvCQ400CfK01dmt4uBww==
+  dependencies:
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
 "@nexajs/rpc@23.3.18":
   version "23.3.18"
   resolved "https://registry.yarnpkg.com/@nexajs/rpc/-/rpc-23.3.18.tgz#de8836f97094d059884df0f3d219123ec81df8dd"
