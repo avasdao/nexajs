@@ -7,7 +7,8 @@ import {
 } from '@bitauth/libauth'
 
 import createTransactionContextCommon from './createTransactionContextCommon.js'
-import generateSigningSerialization from '../p2pkh/generateSigningSerialization.js'
+// import generateSigningSerialization from '../p2pkh/generateSigningSerialization.js'
+import generateSigningSerialization from '../p2pkt/generateSigningSerialization.js'
 
 // const CASH_FORK_ID = new Uint8Array([ 0, 0, 0 ])
 
