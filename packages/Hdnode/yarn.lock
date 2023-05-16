@@ -223,31 +223,35 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.5.13":
-  version "23.5.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.13.tgz#884f9eb77f30f4eccaf8cca5ab996baddba1c87b"
-  integrity sha512-KUn0owK4Rl7GOTVcUmT0cmni4SbpZBCd2Jsvjw8bIMMa8NjcuK6r/0HkcmiXE7UJPUIB/0sKecMzNss7Bigt6g==
+"@nexajs/address@23.5.15":
+  version "23.5.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.15.tgz#d3b3fc23a65cb07aa663ee1647e847c9117741b2"
+  integrity sha512-fDNL5+c1OqBIF6Ngc8Cjcg9F72JajANJqQnWmD+p+uBI67oT2uap86/mAoBIwCIk4k0ZrZBAE3jWSdA+9jqBNA==
   dependencies:
-    "@nexajs/rostrum" "23.5.13"
+    "@nexajs/rostrum" "23.5.15"
     big-integer "1.6.51"
+    debug "4.3.4"
     graphql "16.6.0"
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/rostrum@23.5.13":
-  version "23.5.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.13.tgz#fb568e30333dd51bcc8c1f7e085a0c2aaa7bfd65"
-  integrity sha512-uk/7QQbkPCPmisq6E/26Ck86jYjptmKg+5NoD0Tau5fHTiG1EkL/1JvPnCK+XHr7i4HvCQ400CfK01dmt4uBww==
+"@nexajs/rostrum@23.5.15":
+  version "23.5.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.15.tgz#4cb94d16d55a2c957b76bcfdcee59d4698b5785d"
+  integrity sha512-J++CNia9ltJzIHqRciHjakH2sbtBYlbQIIg0t7xCFg8GKQ30xdEtQo2XmZbh9JcFDry9x4WPZeueE+vyfK5yRQ==
   dependencies:
+    debug "4.3.4"
     events "3.3.0"
     isomorphic-ws "5.0.0"
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/utils@23.4.22":
-  version "23.4.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.4.22.tgz#c40571454ceb5524d0f251b24b6841ebecea0307"
-  integrity sha512-MjVWbglySpS3jJT8VGA5ytUGFOINqfym+SWN2r8Dh/f4kCDXQKWh+969dHBp4eKNaPiPZwDhRaRxqhUCPeUxyA==
+"@nexajs/utils@23.5.15":
+  version "23.5.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.5.15.tgz#d4773ecf37b6bc10b35f4c4aa6be12ee721c7763"
+  integrity sha512-rDw49tjDJ6mqYQEEHeLtfMPZq8QFOzdFarYXz1Pa94k37kUKdxxSoZWdDnGKfFD7ec4Zm7BvcTp4AxAuvlMUrw==
+  dependencies:
+    debug "4.3.4"
 
 big-integer@1.6.51:
   version "1.6.51"

@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/token",
-  "version": "23.4.5",
+  "version": "23.5.15",
   "description": "Manage group token assets.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,10 +8,8 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "debug": "4.3.4",
     "events": "3.3.0",
     "node-fetch": "3.3.1"
-  },
-  "devDependencies": {
-    "debug": "4.3.4"
   }
 }
