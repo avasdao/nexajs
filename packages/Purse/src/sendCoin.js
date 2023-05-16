@@ -68,6 +68,12 @@ export default async (_coins, _receivers, _autoFee = true) => {
     // FIXME: Recommendation is to use 1.1 sat/byte
     let txAmount = 0
 
+    /* Calculate the total balance of the unspent outputs. */
+    // const unspentSatoshis = _unspents
+    //     .reduce(
+    //         (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+    //     )
+
     /* Handle all receivers. */
     // receivers.forEach(_receiver => {
     //     /* Validate receiver. */

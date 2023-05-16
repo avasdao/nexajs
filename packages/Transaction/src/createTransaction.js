@@ -26,12 +26,6 @@ export default async (
     _receivers,
     _minerFee,
 ) => {
-    /* Calculate the total balance of the unspent outputs. */
-    const unspentSatoshis = _unspents
-        .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
-        )
-
     /* Initialize an empty list of outputs. */
     const outputs = []
 
@@ -45,23 +39,27 @@ export default async (
         if (receiver.address) {
             /* Add the value output. */
             // NOTE: Miner fee is deducted from output value.
-            outputs
-                .push(
-                    await createValueOutput(
-                        receiver.address,
-                        (unspentSatoshis - _minerFee) // FIXME Allow user-defined amount.
-                    )
+            outputs.push(
+                await createValueOutput(
+                    receiver.address,
+                    receiver.satoshis,
                 )
+            )
         }
 
         /* Handle data output. */
         if (receiver.data) {
             /* Add the data output. */
             // NOTE: Miner fee is deducted from output value.
-            outputs.push(await createDataOutput(receiver.data))
+            outputs.push(
+                await createDataOutput(receiver.data)
+            )
         }
     }
     // console.log('\nOUTPUTS', outputs)
+
+    // TODO Add (miner) fee check. If greater than dust (546),
+    //      then send back to WIF address.
 
     /* Create the initial transaction to estimate miner fee. */
     const transaction = await createTransaction(

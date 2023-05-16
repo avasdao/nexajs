@@ -27,7 +27,7 @@ export default async (privateKeyWif, unspentOutputs, outputs) => {
         privateKey,
         publicKey,
         returnAddress
-    ] = await parseWif(privateKeyWif)
+    ] = await parseWif(privateKeyWif, 'nexa', 'TEMPLATE')
 
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
