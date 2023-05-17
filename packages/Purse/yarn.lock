@@ -225,7 +225,7 @@
 
 "@nexajs/address@23.5.15":
   version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.15.tgz#d3b3fc23a65cb07aa663ee1647e847c9117741b2"
+  resolved "https://registry.npmjs.org/@nexajs/address/-/address-23.5.15.tgz"
   integrity sha512-fDNL5+c1OqBIF6Ngc8Cjcg9F72JajANJqQnWmD+p+uBI67oT2uap86/mAoBIwCIk4k0ZrZBAE3jWSdA+9jqBNA==
   dependencies:
     "@nexajs/rostrum" "23.5.15"
@@ -237,7 +237,7 @@
 
 "@nexajs/blockchain@23.5.15":
   version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"
+  resolved "https://registry.npmjs.org/@nexajs/blockchain/-/blockchain-23.5.15.tgz"
   integrity sha512-eMn54+aF7pPp1RRv8b9ZlAD0Rg4KxDTcrsrmClr1ZVkygmlpPiXys4Jxnyojl30p1W8zQIVwypaUV84YfXWQ2Q==
   dependencies:
     debug "4.3.4"
@@ -258,7 +258,7 @@
 
 "@nexajs/rostrum@23.5.15":
   version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.15.tgz#4cb94d16d55a2c957b76bcfdcee59d4698b5785d"
+  resolved "https://registry.npmjs.org/@nexajs/rostrum/-/rostrum-23.5.15.tgz"
   integrity sha512-J++CNia9ltJzIHqRciHjakH2sbtBYlbQIIg0t7xCFg8GKQ30xdEtQo2XmZbh9JcFDry9x4WPZeueE+vyfK5yRQ==
   dependencies:
     debug "4.3.4"
@@ -274,10 +274,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/transaction@23.5.15":
-  version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.15.tgz#9bc5fb90813bc308b53e950ee9997743b1378293"
-  integrity sha512-ETYQButAwwmDaDRyZM5as7m+opdDaAIGMZNyH5JilW/eW98N+WY7X5wssJ04erSQacMAXwB1RV4Nol8MteM/2Q==
+"@nexajs/transaction@23.5.16":
+  version "23.5.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.16.tgz#e1447922ac32761e771df1e204c23740af214058"
+  integrity sha512-Qp5j1BfFFCUh8BKtT0UmltawyWPZf0qFhKsjXlOoC0xgbSk4GphxghePdDwjDMhm659j8bdsGPJVcTEop0XloA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.5.15"
