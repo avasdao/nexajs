@@ -158,7 +158,7 @@ export default (_request, _id, _callback) => {
     }
 
     /* Validate connection status. */
-    if (connMgr.isReady && connMgr.isOpen) {
+    if (connMgr?.isReady && connMgr?.isOpen) {
         /* Send request. */
         connMgr.pool[ACTIVE_CONN_ID]
             .send(JSON.stringify(request) + '\n') // NOTE: We MUST include the "new line".
