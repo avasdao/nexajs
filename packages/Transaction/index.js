@@ -34,7 +34,7 @@ export class Transaction {
         /* Initialize outputs. */
         this._outputs = []
 
-        /* Initialze raw (hex) output. */
+        /* Initialize raw (hex) output. */
         this._raw = null
 
         /* Validate fee rate. */
@@ -128,10 +128,16 @@ export class Transaction {
     }
 
     async sign(_wifs) {
-        const unspents = [{
-            outpoint: this._inputs[0].outpoint,
-            satoshis: this._inputs[0].satoshis,
-        }]
+        /* Initialize unspent holder. */
+        const unspents = []
+
+        /* Handle inputs. */
+        this._inputs.forEach(_input => {
+            unspents.push({
+                outpoint: _input.outpoint,
+                satoshis: _input.satoshis,
+            })
+        })
 
         /* Generate raw transaction. */
         this._raw = await createTransaction(
