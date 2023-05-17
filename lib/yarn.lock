@@ -547,15 +547,15 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/purse@23.5.16":
-  version "23.5.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.5.16.tgz#8beb2c6877d53ccfa7928ec2a21762b2c2f864fa"
-  integrity sha512-ZP3VpwXckVstPDeVmbBHLMW14uyOZMbZqzSbBDD3rLcuzLS4inhrvW2uvuHnCSgFAAs9bE7dAEVcZrK5ulLHXw==
+"@nexajs/purse@23.5.17":
+  version "23.5.17"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.5.17.tgz#6d899db77bc01327031f55c3201866035bffeb24"
+  integrity sha512-mM76CidkZP/94zWGF7HVG6I7OMPw6xMIcLOGxZElOtbkKM/u5TJPCiP0kKE2JPtL73jQKqmwAw79BPb14pyWkg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.5.15"
     "@nexajs/blockchain" "23.5.15"
-    "@nexajs/transaction" "23.5.16"
+    "@nexajs/transaction" "23.5.17"
     debug "4.3.4"
     events "3.3.0"
     uuid "9.0.0"
@@ -605,10 +605,10 @@
     events "3.3.0"
     node-fetch "3.3.1"
 
-"@nexajs/transaction@23.5.16":
-  version "23.5.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.16.tgz#e1447922ac32761e771df1e204c23740af214058"
-  integrity sha512-Qp5j1BfFFCUh8BKtT0UmltawyWPZf0qFhKsjXlOoC0xgbSk4GphxghePdDwjDMhm659j8bdsGPJVcTEop0XloA==
+"@nexajs/transaction@23.5.17":
+  version "23.5.17"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.17.tgz#fbd9b61c1bf0e93046257686e44968194188d730"
+  integrity sha512-+gWaFpX8C7zhqr1lpXyQ29I1IQgd1Y8+6j+28rtU6BBwJqAROENPVzVT7tXmfE1zS00wwiZAp+9j+IBNUb0RZg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.5.15"
@@ -624,16 +624,16 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.5.16":
-  version "23.5.16"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.5.16.tgz#ac93b6a095239a4b9d2b482637912a30cb98f24a"
-  integrity sha512-wFQ5ZQ/+ltcPeR5v3zOVjA7CVviNNslG4x4faA8y1l6ihnnT/VuG6RgFvKAmqt9rvLdGt0uG9B2h/ZXofcehHA==
+"@nexajs/wallet@23.5.17":
+  version "23.5.17"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.5.17.tgz#6ce0c4c84a11392249a970a0e5394fb1313ceebb"
+  integrity sha512-eQEZvOb32z/7TJCTD4Ql8Vb6dltJVWKwyKDdKeR/nfqZSyEhXVr6tLifbVTZuEvDMz3D0zOvRBKwc1SWpjG78Q==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.5.15"
     "@nexajs/crypto" "23.5.15"
     "@nexajs/hdnode" "23.5.15"
-    "@nexajs/purse" "23.5.16"
+    "@nexajs/purse" "23.5.17"
     debug "4.3.4"
     events "3.3.0"
 
