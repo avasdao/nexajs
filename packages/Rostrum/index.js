@@ -14,7 +14,7 @@ import makeRequest from './src/makeRequest.js'
  *
  * Version added: 1.4.3
  */
-export const getAddressBalance = async (_address) => {
+export async function getAddressBalance(_address) {
     debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
 
     /* Set method. */
@@ -33,7 +33,7 @@ export const getAddressBalance = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -393,6 +393,9 @@ export const subscribeAddress = async (_address, _handler) => {
 }
 
 
+/* Set active connection id. */
+const ACTIVE_CONN_ID = 0
+
 /**
  * Rostrum Class
  *
@@ -405,11 +408,151 @@ export class Rostrum extends EventEmitter {
         debug(JSON.stringify(_params, null, 2))
         super()
 
-        // TBD
+        /* Initialize request queue. */
+        this._requestQueue = []
+
+        /* Initialize connection manager. */
+        this._connMgr = null
+
+        /* Initialize promise holders. */
+        this._resolve
+        this._reject
+    }
+
+    static init() {
+        return (async function () {
+            let rostrum = await new Rostrum()
+
+            // Do async stuff
+            await rostrum._connect()
+
+            // Return instance
+            return rostrum
+        })()
+    }
+
+    async _connect() {
+        /* Import WebSocket. */
+        // NOTE: Ignored by esmify.
+        const WebSocket = (await import('isomorphic-ws')).default
+
+        /* Initilize connections manager. */
+        this._connMgr = {
+            pool: [
+                new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
+                // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
+                new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
+                // TBD
+            ],
+            alts: [
+                new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
+                // TBD
+            ],
+            requests: {},
+            isOpen: false,
+            isReady: false,
+        }
+
+        /* Close connection. */
+        // FIXME Should this be conditional??
+        // this._connMgr.pool[ACTIVE_CONN_ID].close()
+
+        /* Handle open connection. */
+        this._connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
+            debug(`Connection [ ${ACTIVE_CONN_ID} ] is OPEN!`)
+            // console.log('REQUEST QUEUE', requestQueue)
+
+            /* Set (connection) ready flag. */
+            this._connMgr.isOpen = true
+
+            /* Handle (pending) queue. */
+            this._requestQueue.forEach(_request => {
+                /* Send request. */
+                this._connMgr.pool[ACTIVE_CONN_ID]
+                    .send(JSON.stringify(_request) + '\n') // NOTE: We MUST include the "new line".
+            })
+
+        }
+
+        /* Handle message. */
+        this._connMgr.pool[ACTIVE_CONN_ID].onmessage = async (_msg) => {
+            // console.info('Connection [ %s ] sent ->', ACTIVE_CONN_ID, _msg?.data)
+
+            let error
+            let json
+            let id
+
+            const data = _msg?.data
+
+            try {
+                /* Decode data. */
+                json = JSON.parse(data)
+                // console.log('JSON', json)
+
+                id = data.id
+
+                // NOTE: Reject this promise.
+                if (json?.error) {
+                    return this._connMgr.requests[id]?.reject({ error: json.error?.message })
+                }
+            } catch (err) {
+                return this._connMgr.requests[id]?.reject(err)
+            }
+
+            /* Validate message data. */
+            if (_msg?.data) {
+                try {
+                    /* Parse JSON data. */
+                    const data = JSON.parse(_msg.data)
+                    // console.log('JSON (data):', data)
+
+                    /* Validate message data. */
+                    if (data?.result) {
+                        // console.log('JSON (result):', data.id, data.result)
+                        // resolve(data.result)
+                        id = data.id
+                        this._connMgr.requests[id]?.resolve(data.result)
+                    }
+
+                    /* Validate message parameters. */
+                    if (data?.params) {
+                        // console.log('JSON (params):', data.params)
+                        // resolve(data.params)
+                        if (data.id) {
+                            id = data.id
+                            this._connMgr.requests[id]?.resolve(data.params)
+                        } else {
+                            id = data.params[0]
+                            this._connMgr.requests[id]?.callback(data.params)
+                        }
+                    }
+                } catch (err) {
+                    console.error(err)
+                    this._connMgr.requests[id]?.reject(err)
+                }
+            }
+
+        }
+
+        /* Handle connection close. */
+        this._connMgr.pool[ACTIVE_CONN_ID].onclose = function () {
+            debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`)
+        }
+
+        /* Handle connection error. */
+        this._connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
+            console.error('ERROR! [ %s ]:', ACTIVE_CONN_ID, e)
+
+            // reject(e)
+        }
+    }
+
+    get status() {
+        return 'ok'
     }
 
     getAddressBalance(params) {
-        return getAddressBalance(params)
+        return getAddressBalance.bind(this)(params)
     }
 
     decodeRemoteAddress(params) {
