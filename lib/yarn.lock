@@ -603,6 +603,17 @@
     uuid "9.0.0"
     ws "8.12.1"
 
+"@nexajs/rostrum@23.5.18":
+  version "23.5.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.18.tgz#042a7196481fd33f1fac32fa7c498a4277984bb9"
+  integrity sha512-MOiT2R4mCaPOVjfPc+cJdWcj1IZZnCzgMU0ihm1AvOrQpyieJFsqYjUCKOdN1XeoeA05/mgWqlgIXCU8oCSPgw==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
 "@nexajs/rpc@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/rpc/-/rpc-23.5.15.tgz#d8bb94f8f5027019d9dd6b0c43b3bf33a90e79f0"
@@ -1441,9 +1452,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.399"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.399.tgz#df8a63d1f572124ad8b5d846e38b0532ad7d9d54"
-  integrity sha512-+V1aNvVgoWNWYIbMOiQ1n5fRIaY4SlQ/uRlrsCjLrUwr/3OvQgiX2f5vdav4oArVT9TnttJKcPCqjwPNyZqw/A==
+  version "1.4.400"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.400.tgz#bc39fd77c4280b8d9abfbd7bee17d7bf3d1ef35f"
+  integrity sha512-Lsvf7cvwbIxCfB8VqbnVtEsjGi3+48ejDiQZfWo5gkT+1vQ2DHQI5pl0nUvPD6z1IQk6JgFeMC5ZQJqVhalEHg==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"
