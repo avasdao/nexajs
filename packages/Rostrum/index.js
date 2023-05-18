@@ -26,7 +26,7 @@ export async function getAddressBalance(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getAddressBalance(_address)
+        return rostrum.getAddressBalance(_address)
     }
 
     /* Set method. */
@@ -66,7 +66,7 @@ export async function decodeRemoteAddress(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.decodeRemoteAddress(_address)
+        return rostrum.decodeRemoteAddress(_address)
     }
 
     /* Set method. */
@@ -104,7 +104,7 @@ export async function getAddressFirstUse(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getAddressFirstUse(_address)
+        return rostrum.getAddressFirstUse(_address)
     }
 
     /* Set method. */
@@ -143,7 +143,7 @@ export async function getAddressHistory(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getAddressHistory(_address)
+        return rostrum.getAddressHistory(_address)
     }
 
     /* Set method. */
@@ -181,7 +181,7 @@ export async function getAddressMempool(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getAddressMempool(_address)
+        return rostrum.getAddressMempool(_address)
     }
 
     /* Set method. */
@@ -221,7 +221,7 @@ export async function getAddressScriptHash(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getAddressScriptHash(_address)
+        return rostrum.getAddressScriptHash(_address)
     }
 
     /* Set method. */
@@ -259,7 +259,7 @@ export async function getAddressUnspent(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getAddressUnspent(_address)
+        return rostrum.getAddressUnspent(_address)
     }
 
     /* Set method. */
@@ -297,7 +297,7 @@ export async function getBlock(_hash_or_height) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getBlock(_hash_or_height)
+        return rostrum.getBlock(_hash_or_height)
     }
 
     /* Set method. */
@@ -335,7 +335,7 @@ export async function getTransaction(_id) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getTransaction(_id)
+        return rostrum.getTransaction(_id)
     }
 
     /* Set method. */
@@ -373,7 +373,7 @@ export async function getGenesisInfo(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getGenesisInfo(_tokenid)
+        return rostrum.getGenesisInfo(_tokenid)
     }
 
     /* Set method. */
@@ -414,7 +414,7 @@ export async function getNftList(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getNftList(_tokenid)
+        return rostrum.getNftList(_tokenid)
     }
 
     /* Set method. */
@@ -452,7 +452,7 @@ export async function getTokenHistory(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.getTokenHistory(_tokenid)
+        return rostrum.getTokenHistory(_tokenid)
     }
 
     /* Set method. */
@@ -490,7 +490,7 @@ export async function subscribeAddress(_address, _handler) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return await rostrum.subscribeAddress(_address, _handler)
+        return rostrum.subscribeAddress(_address, _handler)
     }
 
     /* Set method. */
