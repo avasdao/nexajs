@@ -73,7 +73,7 @@ export const decodeRemoteAddress = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -102,7 +102,7 @@ export const getAddressFirstUse = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -132,7 +132,7 @@ export const getAddressHistory = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -161,7 +161,7 @@ export const getAddressMempool = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -192,7 +192,7 @@ export const getAddressScriptHash = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -202,8 +202,17 @@ export const getAddressScriptHash = async (_address) => {
  *
  * Version added: Rostrum 1.4.3
  */
-export const getAddressUnspent = async (_address) => {
+export async function getAddressUnspent (_address) {
     debug(`Blockchain->Address->ListUnspent [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getAddressUnspent(_address)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.listunspent'
@@ -221,7 +230,7 @@ export const getAddressUnspent = async (_address) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -250,7 +259,7 @@ export const getBlock = async (_hash_or_height) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -279,7 +288,7 @@ export const getTransaction = async (_id) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -308,7 +317,7 @@ export const getGenesisInfo = async (_tokenid) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /* Export alias. */
@@ -340,7 +349,7 @@ export const getNftList = async (_tokenid) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -369,7 +378,7 @@ export const getTokenHistory = async (_tokenid) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request)
+    return makeRequest.bind(this)(request)
 }
 
 /**
@@ -572,47 +581,47 @@ export class Rostrum extends EventEmitter {
     }
 
     decodeRemoteAddress(params) {
-        return decodeRemoteAddress(params)
+        return decodeRemoteAddress.bind(this)(params)
     }
 
     getAddressFirstUse(params) {
-        return getAddressFirstUse(params)
+        return getAddressFirstUse.bind(this)(params)
     }
 
     getAddressHistory(params) {
-        return getAddressHistory(params)
+        return getAddressHistory.bind(this)(params)
     }
 
     getAddressMempool(params) {
-        return getAddressMempool(params)
+        return getAddressMempool.bind(this)(params)
     }
 
     getAddressScriptHash(params) {
-        return getAddressScriptHash(params)
+        return getAddressScriptHash.bind(this)(params)
     }
 
     getAddressUnspent(params) {
-        return getAddressUnspent(params)
+        return getAddressUnspent.bind(this)(params)
     }
 
     // ...
 
     getGenesisInfo(params) {
-        return getGenesisInfo(params)
+        return getGenesisInfo.bind(this)(params)
     }
 
     getTokenInfo(params) {
-        return getTokenInfo(params)
+        return getTokenInfo.bind(this)(params)
     }
 
     getNftList(params) {
-        return getNftList(params)
+        return getNftList.bind(this)(params)
     }
 
     // ...
 
     getTokenHistory(params) {
-        return getTokenHistory(params)
+        return getTokenHistory.bind(this)(params)
     }
 }
 
