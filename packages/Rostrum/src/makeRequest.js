@@ -8,9 +8,9 @@ const debug = debugFactory('nexa:rostrum:makeRequest')
 /**
  * Make Request
  */
-export default function (_request, _id, _callback) {
+export default function (_request, _callback) {
     /* Generate a new (request) id. */
-    const id = _id || uuidv4()
+    const id = uuidv4()
 
     /* Set method. */
     const method = _request.method
@@ -39,10 +39,6 @@ export default function (_request, _id, _callback) {
 
     /* Return a promise. */
     return new Promise(function (_resolve, _reject) {
-        /* Set holders. */
-        // resolve = _resolve
-        // reject = _reject
-
         /* Initialize (request) promise. */
         self._connMgr.requests[id] = {}
 

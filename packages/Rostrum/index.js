@@ -7,6 +7,9 @@ import { EventEmitter } from 'events'
 
 import makeRequest from './src/makeRequest.js'
 
+/* Set active connection id. */
+const ACTIVE_CONN_ID = 0
+
 /**
  * (Blockchain) Address Balance
  *
@@ -54,8 +57,17 @@ export async function getAddressBalance(_address) {
  *
  * Version added: Rostrum 7.0
  */
-export const decodeRemoteAddress = async (_address) => {
+export async function decodeRemoteAddress(_address) {
     debug(`Blockchain->Address->Decode [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.decodeRemoteAddress(_address)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.decode'
@@ -83,8 +95,17 @@ export const decodeRemoteAddress = async (_address) => {
  *
  * Version added: Rostrum 1.2
  */
-export const getAddressFirstUse = async (_address) => {
+export async function getAddressFirstUse(_address) {
     debug(`Blockchain->Address->FirstUse [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getAddressFirstUse(_address)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.get_first_use'
@@ -113,8 +134,17 @@ export const getAddressFirstUse = async (_address) => {
  *
  * Version added: Rostrum 1.4.3
  */
-export const getAddressHistory = async (_address) => {
+export async function getAddressHistory(_address) {
     debug(`Blockchain->Address->History [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getAddressHistory(_address)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.get_history'
@@ -142,8 +172,17 @@ export const getAddressHistory = async (_address) => {
  *
  * Version added: Rostrum 1.4.3
  */
-export const getAddressMempool = async (_address) => {
+export async function getAddressMempool(_address) {
     debug(`Blockchain->Address->Mempool [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getAddressMempool(_address)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.get_mempool'
@@ -173,8 +212,17 @@ export const getAddressMempool = async (_address) => {
  *
  * Version added: Rostrum 1.4.3
  */
-export const getAddressScriptHash = async (_address) => {
+export async function getAddressScriptHash(_address) {
     debug(`Blockchain->Address->ScriptHash [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getAddressScriptHash(_address)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.get_scripthash'
@@ -202,7 +250,7 @@ export const getAddressScriptHash = async (_address) => {
  *
  * Version added: Rostrum 1.4.3
  */
-export async function getAddressUnspent (_address) {
+export async function getAddressUnspent(_address) {
     debug(`Blockchain->Address->ListUnspent [ address: ${_address} ]`)
 
     /* Validate instance. */
@@ -240,8 +288,17 @@ export async function getAddressUnspent (_address) {
  *
  * Version added: Rostrum 8.1
  */
-export const getBlock = async (_hash_or_height) => {
+export async function getBlock(_hash_or_height) {
     debug(`Blockchain->Block->Info [ hash or height: ${_hash_or_height} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getBlock(_hash_or_height)
+    }
 
     /* Set method. */
     const method = 'blockchain.block.get'
@@ -269,8 +326,17 @@ export const getBlock = async (_hash_or_height) => {
  *
  * Version added: ??
  */
-export const getTransaction = async (_id) => {
+export async function getTransaction(_id) {
     debug(`Blockchain->Block->Info [ txid or txidem: ${_id} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getTransaction(_id)
+    }
 
     /* Set method. */
     const method = 'blockchain.transaction.get'
@@ -298,8 +364,17 @@ export const getTransaction = async (_id) => {
  *
  * Version added: Rostrum 6.0
  */
-export const getGenesisInfo = async (_tokenid) => {
+export async function getGenesisInfo(_tokenid) {
     debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getGenesisInfo(_tokenid)
+    }
 
     /* Set method. */
     const method = 'token.genesis.info'
@@ -330,8 +405,17 @@ export const getTokenInfo = getGenesisInfo
  *
  * Version added: Rostrum 7.0
  */
-export const getNftList = async (_tokenid) => {
+export async function getNftList(_tokenid) {
     debug(`Token->NFT->List [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getNftList(_tokenid)
+    }
 
     /* Set method. */
     const method = 'token.nft.list'
@@ -359,8 +443,17 @@ export const getNftList = async (_tokenid) => {
  *
  * Version added: Rostrum 6.0
  */
-export const getTokenHistory = async (_tokenid) => {
+export async function getTokenHistory(_tokenid) {
     debug(`Token->Transaction->History [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getTokenHistory(_tokenid)
+    }
 
     /* Set method. */
     const method = 'token.transaction.get_history'
@@ -388,8 +481,17 @@ export const getTokenHistory = async (_tokenid) => {
  *
  * Version added: Rostrum 1.4.3
  */
-export const subscribeAddress = async (_address, _handler) => {
+export async function subscribeAddress(_address, _handler) {
     debug(`Blockchain->Address->Subscribe [ address: ${_address} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.subscribeAddress(_address, _handler)
+    }
 
     /* Set method. */
     const method = 'blockchain.address.subscribe'
@@ -407,12 +509,9 @@ export const subscribeAddress = async (_address, _handler) => {
     }
 
     /* Return (async) request. */
-    return makeRequest(request, _address, _handler)
+    return makeRequest.bind(this)(request, _handler)
 }
 
-
-/* Set active connection id. */
-const ACTIVE_CONN_ID = 0
 
 /**
  * Rostrum Class
@@ -431,10 +530,6 @@ export class Rostrum extends EventEmitter {
 
         /* Initialize connection manager. */
         this._connMgr = null
-
-        /* Initialize promise holders. */
-        this._resolve
-        this._reject
     }
 
     static init() {
@@ -570,7 +665,7 @@ export class Rostrum extends EventEmitter {
             requestQueue: this?._requestQueue,
             // pool: this?._connMgr?.pool,
             // alts: this?._connMgr?.alts,
-            requests: this?._connMgr?.requests,
+            // requests: this?._connMgr?.requests,
             isOpen: this?._connMgr?.isOpen,
             isReady: this?._connMgr?.isReady,
         }
@@ -604,6 +699,14 @@ export class Rostrum extends EventEmitter {
         return getAddressUnspent.bind(this)(params)
     }
 
+    getBlock(params) {
+        return getBlock.bind(this)(params)
+    }
+
+    getTransaction(params) {
+        return getTransaction.bind(this)(params)
+    }
+
     // ...
 
     getGenesisInfo(params) {
@@ -622,6 +725,10 @@ export class Rostrum extends EventEmitter {
 
     getTokenHistory(params) {
         return getTokenHistory.bind(this)(params)
+    }
+
+    subscribeAddress(params, handler) {
+        return subscribeAddress.bind(this)(params, handler)
     }
 }
 
