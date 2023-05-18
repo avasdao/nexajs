@@ -17,6 +17,15 @@ import makeRequest from './src/makeRequest.js'
 export async function getAddressBalance(_address) {
     debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
 
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return await rostrum.getAddressBalance(_address)
+    }
+
     /* Set method. */
     const method = 'blockchain.address.get_balance'
 
@@ -548,7 +557,14 @@ export class Rostrum extends EventEmitter {
     }
 
     get status() {
-        return 'ok'
+        return {
+            requestQueue: this?._requestQueue,
+            // pool: this?._connMgr?.pool,
+            // alts: this?._connMgr?.alts,
+            requests: this?._connMgr?.requests,
+            isOpen: this?._connMgr?.isOpen,
+            isReady: this?._connMgr?.isReady,
+        }
     }
 
     getAddressBalance(params) {
