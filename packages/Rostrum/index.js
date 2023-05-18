@@ -509,7 +509,7 @@ export async function subscribeAddress(_address, _handler) {
     }
 
     /* Return (async) request. */
-    return makeRequest.bind(this)(request, _handler)
+    return makeRequest.bind(this)(request, _address, _handler)
 }
 
 
@@ -622,7 +622,7 @@ export class Rostrum extends EventEmitter {
                     /* Validate message data. */
                     if (data?.result) {
                         // console.log('JSON (result):', data.id, data.result)
-                        // resolve(data.result)
+
                         id = data.id
                         this._connMgr.requests[id]?.resolve(data.result)
                     }
@@ -630,7 +630,7 @@ export class Rostrum extends EventEmitter {
                     /* Validate message parameters. */
                     if (data?.params) {
                         // console.log('JSON (params):', data.params)
-                        // resolve(data.params)
+
                         if (data.id) {
                             id = data.id
                             this._connMgr.requests[id]?.resolve(data.params)

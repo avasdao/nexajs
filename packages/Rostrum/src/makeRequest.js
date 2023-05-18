@@ -8,9 +8,9 @@ const debug = debugFactory('nexa:rostrum:makeRequest')
 /**
  * Make Request
  */
-export default function (_request, _callback) {
+export default function (_request, _id, _callback) {
     /* Generate a new (request) id. */
-    const id = uuidv4()
+    const id = _id || uuidv4()
 
     /* Set method. */
     const method = _request.method
