@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/rostrum",
-  "version": "23.5.18",
+  "version": "23.5.19",
   "description": "Provides a convenient gateway for a web browser/client to access ALL methods supported by remote Rostrum servers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

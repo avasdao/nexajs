@@ -619,11 +619,14 @@ export class Rostrum extends EventEmitter {
                     const data = JSON.parse(_msg.data)
                     // console.log('JSON (data):', data)
 
-                    /* Validate message data. */
-                    if (data?.result) {
+                    /* Validate message id. */
+                    if (data?.id) {
                         // console.log('JSON (result):', data.id, data.result)
 
+                        /* Set message id. */
                         id = data.id
+
+                        /* Resolve (async) request. */
                         this._connMgr.requests[id]?.resolve(data.result)
                     }
 
@@ -631,11 +634,15 @@ export class Rostrum extends EventEmitter {
                     if (data?.params) {
                         // console.log('JSON (params):', data.params)
 
-                        if (data.id) {
-                            id = data.id
+                        /* Validate message id. */
+                        if (id) {
+                            /* Resolve (async) request. */
                             this._connMgr.requests[id]?.resolve(data.params)
                         } else {
+                            /* Update message id. */
                             id = data.params[0]
+
+                            /* Make callback. */
                             this._connMgr.requests[id]?.callback(data.params)
                         }
                     }
