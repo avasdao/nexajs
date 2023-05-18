@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@nexajs/rostrum": "23.5.18",
+    "@nexajs/rostrum": "23.5.19",
     "big-integer": "1.6.51",
     "debug": "4.3.4",
     "graphql": "16.6.0",
