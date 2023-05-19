@@ -79,7 +79,7 @@ const listNexaUnspent = async (_address) => {
 
     return unspents.map(_unspent => {
         return {
-            outpointHash: _unspent.outpoint_hash.match(/[a-fA-F0-9]{2}/g).reverse().join(''),
+            outpointHash: _unspent.outpoint_hash,
             value: _unspent.value,
         }
     })

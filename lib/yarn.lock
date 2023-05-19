@@ -538,6 +538,18 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
+"@nexajs/crypto@23.5.17":
+  version "23.5.17"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.17.tgz#8a8f9826a1285893debb46cf3db2df2960e62e3b"
+  integrity sha512-NSMJgClH7EZaj7RPU1LVslfrhc61gSDUoSunowts2UYkX/Wam0J5xPLjDIW3P+ueEw6wB0Sz6n648/UoiuCX7A==
+  dependencies:
+    "@ethersproject/random" "5.7.0"
+    crypto-js "4.1.1"
+    debug "4.3.4"
+    events "3.3.0"
+    scrypt-js "3.0.1"
+    secure-ls "1.2.6"
+
 "@nexajs/hdnode@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.5.15.tgz#78dec2cc947d1f8a6095c162bbb70c1851182a00"
