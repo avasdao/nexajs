@@ -6,14 +6,18 @@ const debug = debugFactory('nexa:crypto')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// import decrypt as _decrypt from './decrypt'
-// import encrypt as _encrypt from './encrypt'
-// import passwordToSafu as _passwordToSafu from './passwordToSafu'
+// import _decrypt from './src/decrypt.js'
+// import _encrypt from './src/encrypt.js'
+// import _passwordToSafu from './src/passwordToSafu.js'
+import _sha256 from './src/sha256.js'
+import _sha512 from './src/sha512.js'
 
 /* Export (local) modules. */
 // export const decrypt = _decrypt
 // export const encrypt = _encrypt
 // export const passwordToSafu = _passwordToSafu
+export const sha256 = _sha256
+export const sha512 = _sha512
 
 /* Provide Ether.js helpers. */
 import { randomBytes as _randomBytes } from '@ethersproject/random'
@@ -55,6 +59,8 @@ Nexa.Crypto = Crypto
 // Nexa.encrypt = encrypt
 // Nexa.passwordToSafu = passwordToSafu
 Nexa.randomBytes = randomBytes
+Nexa.sha256 = sha256
+Nexa.sha512 = sha512
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
