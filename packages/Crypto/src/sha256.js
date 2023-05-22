@@ -1,5 +1,6 @@
 /* Import modules. */
-import SHA256 from 'crypto-js/sha256.js'
+import CryptoJS from 'crypto-js'
+import { binToHex } from '@nexajs/utils'
 import { hexToBin } from '@nexajs/utils'
 
 /* Setup (non-ESM) debugger. */
@@ -7,23 +8,37 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:crypto:sha256')
 
 /**
- * Decrypt
+ * SHA-256
  *
- * Performs AES decryption on the encrypted body provided to the function.
+ * Performs hashing on the body provided to the function.
+ *
+ * Allows specification of the response format.
  */
-export default (_body, asBinary = false) => {
+export default (_body, _format) => {
     debug(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
 
+    /* Initialize locals. */
+    let body
+    let format
     let hash
 
-    /* Decrypt plain body. */
-    if (asBinary) {
-        hash = hexToBin(SHA256(_body).toString())
+    /* Validate body. */
+    if (typeof _body === 'string') {
+        format = _format || 'hex'
+        body = CryptoJS.enc.Utf8.parse(_body)
     } else {
-        hash = SHA256(_body).toString()
+        format = _format || 'binary'
+        body = CryptoJS.enc.Hex.parse(binToHex(_body))
     }
-    // debug(`Plain body (formatted): [ ${plainBody} ]`)
+
+    /* Hash body. */
+    hash = CryptoJS.SHA256(body).toString()
     debug(`Hashed: [ ${hash} ]`)
+
+    /* Handle format conversion. */
+    if (format === 'binary') {
+        hash = hexToBin(hash)
+    }
 
     /* Return hash. */
     return hash
