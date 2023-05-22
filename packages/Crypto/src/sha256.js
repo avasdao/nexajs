@@ -1,42 +1,27 @@
 /* Import modules. */
-import CryptoJS from 'crypto-js'
+import SHA256 from 'crypto-js/sha256.js'
+import { hexToBin } from '@nexajs/utils'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto:sha512')
+const debug = debugFactory('nexa:crypto:sha256')
 
 /**
  * Decrypt
  *
  * Performs AES decryption on the encrypted body provided to the function.
  */
-export default (_params) => {
-    debug(`Decrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
+export default (_body, asBinary = false) => {
+    debug(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
 
-    // let bodyType
     let hash
-    // let encryptedBody
-
-    /* Validate plain body. */
-    // if (typeof _plainBody === 'string' || _plainBody instanceof String) {
-    //     bodyType = 'string'
-    //
-    //     plainBody = _plainBody
-    // }
-
-    /* Validate body type. */
-    // if (!bodyType) {
-    //     try {
-    //         /* Parse plain body. */
-    //         plainBody = JSON.stringify(JSON.parse(_plainBody))
-    //
-    //         /* Set body type. */
-    //         bodyType = 'json'
-    //     } catch (e) { /* do nothing */ }
-    // }
 
     /* Decrypt plain body. */
-    hash = CryptoJS.SHA256(_params).toString(CryptoJS.enc.Hex)
+    if (asBinary) {
+        hash = hexToBin(SHA256(_body).toString())
+    } else {
+        hash = SHA256(_body).toString()
+    }
     // debug(`Plain body (formatted): [ ${plainBody} ]`)
     debug(`Hashed: [ ${hash} ]`)
 

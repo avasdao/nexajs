@@ -9,6 +9,7 @@ import { EventEmitter } from 'events'
 // import _decrypt from './src/decrypt.js'
 // import _encrypt from './src/encrypt.js'
 // import _passwordToSafu from './src/passwordToSafu.js'
+import _getHmac from './src/getHmac.js'
 import _sha256 from './src/sha256.js'
 import _sha512 from './src/sha512.js'
 
@@ -16,6 +17,7 @@ import _sha512 from './src/sha512.js'
 // export const decrypt = _decrypt
 // export const encrypt = _encrypt
 // export const passwordToSafu = _passwordToSafu
+export const getHmac = _getHmac
 export const sha256 = _sha256
 export const sha512 = _sha512
 
@@ -58,6 +60,7 @@ Nexa.Crypto = Crypto
 // Nexa.decrypt = decrypt
 // Nexa.encrypt = encrypt
 // Nexa.passwordToSafu = passwordToSafu
+Nexa.getHmac = getHmac
 Nexa.randomBytes = randomBytes
 Nexa.sha256 = sha256
 Nexa.sha512 = sha512
