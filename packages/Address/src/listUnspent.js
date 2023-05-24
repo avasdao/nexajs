@@ -79,7 +79,10 @@ const listNexaUnspent = async (_address) => {
 
     return unspents.map(_unspent => {
         return {
+            height: _unspent.height,
             outpointHash: _unspent.outpoint_hash,
+            txid: _unspent.tx_hash,
+            pos: _unspent.tx_pos,
             value: _unspent.value,
         }
     })

@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/address",
-  "version": "23.5.18",
+  "version": "23.5.22",
   "description": "A comprehensive suite of Address querying, monitoring and formatting utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
