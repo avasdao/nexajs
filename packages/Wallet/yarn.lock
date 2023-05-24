@@ -243,6 +243,18 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.5.22":
+  version "23.5.22"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.22.tgz#2dc6aa09e171d6604610a60f01624f37797ade33"
+  integrity sha512-Y9gdgHsdQM/5PL7Yx6iwYFhaxbfo+gwE1tKY9t90CxZu+wjnF77iHz/aEz+FKjYDazuwoRGTMDPbsfwgoSN7+Q==
+  dependencies:
+    "@nexajs/rostrum" "23.5.19"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/blockchain@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"
@@ -253,12 +265,13 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/crypto@23.5.15":
-  version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.15.tgz#0027fa8fa748cce37c7ff7f1a6c1dbbe750caea8"
-  integrity sha512-kMXjb+iw4iJYqfvsQPcX+bWRcunKADnbdZxrNzpi+JKzUtUplQa+wGlFqtCOcsvtMFJ34OfHZNYUADPbBfYFDA==
+"@nexajs/crypto@23.5.22":
+  version "23.5.22"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.22.tgz#1ca8e76cc18e159d18ef59f08368135dfcafee88"
+  integrity sha512-2rKBRYsWKbtD7trTa25sOAN0TuAuz7RGU7eLMDLBtgLoIbIrQ6Q8amA4BlPyLNpjc4Og/KWbncSqRrXIvpm5Lw==
   dependencies:
     "@ethersproject/random" "5.7.0"
+    "@nexajs/utils" "23.5.15"
     crypto-js "4.1.1"
     debug "4.3.4"
     events "3.3.0"
@@ -293,6 +306,17 @@
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.15.tgz#4cb94d16d55a2c957b76bcfdcee59d4698b5785d"
   integrity sha512-J++CNia9ltJzIHqRciHjakH2sbtBYlbQIIg0t7xCFg8GKQ30xdEtQo2XmZbh9JcFDry9x4WPZeueE+vyfK5yRQ==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
+"@nexajs/rostrum@23.5.19":
+  version "23.5.19"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.19.tgz#f652f3cb01145469e534b7e134a29086d533ddb0"
+  integrity sha512-Ep/KLlmVa1JxkfDpi5qty5eipMgAxj66ka9em7WHwZxch8UCmBpm8JEpFmDpxoeRneGTkfpkBgf2OOucQyDdqg==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
