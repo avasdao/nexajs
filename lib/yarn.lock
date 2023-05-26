@@ -585,6 +585,17 @@
     events "3.3.0"
     uuid "9.0.0"
 
+"@nexajs/purse@23.5.25":
+  version "23.5.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.5.25.tgz#c96d5b111ebc6aa48495b47b5b860e9c32e10d3c"
+  integrity sha512-yWPqmZ8X3WZyRl7cRwvjDZMz+7lrI/9jXCUDhzuCAg8QOfqoORaQ2x6XBT1B/5i/67jAoXY2fQQtflbmuKM8Ng==
+  dependencies:
+    "@nexajs/blockchain" "23.5.15"
+    "@nexajs/transaction" "23.5.25"
+    debug "4.3.4"
+    events "3.3.0"
+    uuid "9.0.0"
+
 "@nexajs/request@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/request/-/request-23.5.15.tgz#17bd463def47e4abf3a80a2577b10e4e5de4cd35"
