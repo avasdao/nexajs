@@ -15,19 +15,29 @@ import unlockP2PktInput from './unlockInput.js'
  *
  * @function
  *
- * @param privateKeyWif  {string}                     Private Key in WIF format.
+ * @param privateKeyWifs  {string}                     Private Key in WIF format.
  * @param unspentOutputs {AddressListUnspentResponse} Prefix (in hex) to precede data.
  * @param outputs        {Array<Output>}              Array of outputs to include in transaction.
  *
  * @returns {Promise<Output>}	The OP_RETURN output script.
  */
-export default async (privateKeyWif, unspentOutputs, outputs) => {
-    // Parse the private key wif into the keypair and address.
-    const [
-        privateKey,
-        publicKey,
-        returnAddress
-    ] = await parseWif(privateKeyWif, 'nexa', 'TEMPLATE')
+export default async (privateKeyWifs, unspentOutputs, outputs) => {
+    const wifs = []
+
+    for (let i = 0; i < privateKeyWifs.length; i++) {
+        // Parse the private key wif into the keypair and address.
+        const [
+            privateKey,
+            publicKey,
+            returnAddress
+        ] = await parseWif(privateKeyWifs[i], 'nexa', 'TEMPLATE')
+
+        wifs.push({
+            privateKey,
+            publicKey,
+            returnAddress,
+        })
+    }
 
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
@@ -50,9 +60,9 @@ export default async (privateKeyWif, unspentOutputs, outputs) => {
                 transaction,
                 input,
                 inputIndex,
-                privateKey,
-                publicKey,
-                returnAddress,
+                wifs[inputIndex].privateKey,
+                wifs[inputIndex].publicKey,
+                wifs[inputIndex].returnAddress,
             )
         )
     )

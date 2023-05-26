@@ -141,7 +141,7 @@ export class Transaction {
 
         /* Generate raw transaction. */
         this._raw = await createTransaction(
-            _wifs[0],
+            _wifs,
             unspents,
             this._outputs,
             0, // NOTE: Fee is unknown until we calculate tx length.
@@ -154,7 +154,7 @@ export class Transaction {
 
         /* Generate raw transaction. */
         this._raw = await createTransaction(
-            _wifs[0],
+            _wifs,
             unspents,
             this._outputs,
             minerFee,

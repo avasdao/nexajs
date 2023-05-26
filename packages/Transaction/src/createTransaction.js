@@ -13,7 +13,7 @@ import createValueOutput from './p2pkt/createValueOutput.js'
  *
  * @function
  *
- * @param _wif    {string}                     Private Key in WIF format.
+ * @param _wifs    {string}                     Private Key in WIF format.
  * @param _unspents   {AddressListUnspentResponse} List of Unspent Outputs to use.
  * @param _receivers  {string}                     Nexa receiving address.
  * @param _minerFee {number}                     The satoshis to pay as miner fee (deducted from value output).
@@ -21,7 +21,7 @@ import createValueOutput from './p2pkt/createValueOutput.js'
  * @returns {Uint8Array} The transaction binary.
  */
 export default async (
-    _wif,
+    _wifs,
     _unspents,
     _receivers,
     _minerFee,
@@ -63,7 +63,7 @@ export default async (
 
     /* Create the initial transaction to estimate miner fee. */
     const transaction = await createTransaction(
-        _wif,
+        _wifs,
         _unspents,
         outputs
     )

@@ -152,9 +152,14 @@ export default async (_coins, _receivers, _autoFee = true) => {
         }
     })
 
+    const wifs = coins.map(_coin => {
+        return _coin.wif
+    })
+    // console.log('WIFS', wifs)
+
     // TODO Add (optional) miner fee.
     // FIXME Allow WIFs for each input.
-    await transaction.sign([ coins[0].wif ])
+    await transaction.sign(wifs)
 
     console.log('\n  Transaction (hex)', transaction.raw)
     // console.log('\n  Transaction (json)', transaction.json)

@@ -4,7 +4,7 @@
 
 "@bitauth/libauth@1.19.1":
   version "1.19.1"
-  resolved "https://registry.npmjs.org/@bitauth/libauth/-/libauth-1.19.1.tgz"
+  resolved "https://registry.yarnpkg.com/@bitauth/libauth/-/libauth-1.19.1.tgz#713751bbc09815b667f8fe00a1cc5b0f3bf45dd1"
   integrity sha512-R524tD5VwOt3QRHr7N518nqTVR/HKgfWL4LypekcGuNQN8R4PWScvuRcRzrY39A28kLztMv+TJdiKuMNbkU1ug==
 
 "@ethersproject/abstract-provider@^5.7.0":
@@ -225,7 +225,7 @@
 
 "@nexajs/address@23.5.15":
   version "23.5.15"
-  resolved "https://registry.npmjs.org/@nexajs/address/-/address-23.5.15.tgz"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.15.tgz#d3b3fc23a65cb07aa663ee1647e847c9117741b2"
   integrity sha512-fDNL5+c1OqBIF6Ngc8Cjcg9F72JajANJqQnWmD+p+uBI67oT2uap86/mAoBIwCIk4k0ZrZBAE3jWSdA+9jqBNA==
   dependencies:
     "@nexajs/rostrum" "23.5.15"
@@ -237,7 +237,7 @@
 
 "@nexajs/blockchain@23.5.15":
   version "23.5.15"
-  resolved "https://registry.npmjs.org/@nexajs/blockchain/-/blockchain-23.5.15.tgz"
+  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"
   integrity sha512-eMn54+aF7pPp1RRv8b9ZlAD0Rg4KxDTcrsrmClr1ZVkygmlpPiXys4Jxnyojl30p1W8zQIVwypaUV84YfXWQ2Q==
   dependencies:
     debug "4.3.4"
@@ -258,7 +258,7 @@
 
 "@nexajs/rostrum@23.5.15":
   version "23.5.15"
-  resolved "https://registry.npmjs.org/@nexajs/rostrum/-/rostrum-23.5.15.tgz"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.15.tgz#4cb94d16d55a2c957b76bcfdcee59d4698b5785d"
   integrity sha512-J++CNia9ltJzIHqRciHjakH2sbtBYlbQIIg0t7xCFg8GKQ30xdEtQo2XmZbh9JcFDry9x4WPZeueE+vyfK5yRQ==
   dependencies:
     debug "4.3.4"
@@ -295,7 +295,7 @@
 
 big-integer@1.6.51:
   version "1.6.51"
-  resolved "https://registry.npmjs.org/big-integer/-/big-integer-1.6.51.tgz"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
   integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
 
 bn.js@^4.11.9:
@@ -315,7 +315,7 @@ brorand@^1.1.0:
 
 debug@4.3.4:
   version "4.3.4"
-  resolved "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
@@ -335,17 +335,17 @@ elliptic@6.5.4:
 
 events@3.3.0:
   version "3.3.0"
-  resolved "https://registry.npmjs.org/events/-/events-3.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 graphql-ws@5.12.0:
   version "5.12.0"
-  resolved "https://registry.npmjs.org/graphql-ws/-/graphql-ws-5.12.0.tgz"
+  resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.12.0.tgz#d06fe38916334b4a4c827f73268cbf4359a32ed7"
   integrity sha512-PA3ImUp8utrpEjoxBMhvxsjkStvFEdU0E1gEBREt8HZIWkxOUymwJBhFnBL7t/iHhUq1GVPeZevPinkZFENxTw==
 
 graphql@16.6.0:
   version "16.6.0"
-  resolved "https://registry.npmjs.org/graphql/-/graphql-16.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
 
 hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
@@ -372,7 +372,7 @@ inherits@^2.0.3, inherits@^2.0.4:
 
 isomorphic-ws@5.0.0:
   version "5.0.0"
-  resolved "https://registry.npmjs.org/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz#e5529148912ecb9b451b46ed44d53dae1ce04bbf"
   integrity sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==
 
 js-sha3@0.8.0:
@@ -392,20 +392,20 @@ minimalistic-crypto-utils@^1.0.1:
 
 ms@2.1.2:
   version "2.1.2"
-  resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
 uuid@9.0.0:
   version "9.0.0"
-  resolved "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 ws@8.12.1:
   version "8.12.1"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.12.1.tgz"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.1.tgz#c51e583d79140b5e42e39be48c934131942d4a8f"
   integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
 
 ws@8.13.0:
   version "8.13.0"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.13.0.tgz#9a9fb92f93cf41512a0735c8f4dd09b8a1211cd0"
   integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==
