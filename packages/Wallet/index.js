@@ -49,8 +49,13 @@ let crypto
     crypto = { ripemd160, sha256, sha512, secp256k1 }
 })()
 
-/* Set constants. */
-const DEFAULT_DERIVATION_PATH = `m/44'/29223'/0'`
+/* Set (derivation) constants. */
+// Example: m/44'/29223'/0'/0/0
+// https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
+const DEFAULT_PURPOSE = '44'
+const DEFAULT_COIN_TYPE = '29223' // (0x7227) Nexa (https://spec.nexa.org)
+const DEFAULT_ACCOUNT_IDX = '0'
+const DEFAULT_ADDRESS_IDX = '0'
 
 
 /**
@@ -79,10 +84,12 @@ export class Wallet extends EventEmitter {
         super()
 
         /* Initialize internals. */
-        this._addressIdx = 0
         this._entropy = null
         this._mnemonic = null
-        this._path = null
+
+        this._accountIdx = 0
+        this._addressIdx = 0
+        this._path = `m/${DEFAULT_PURPOSE}'/${DEFAULT_COIN_TYPE}'/${DEFAULT_ACCOUNT_IDX}'/${this._accountIdx}/${this._addressIdx}`
 
         this._privateKey = null
         this._publicKey = null
@@ -97,7 +104,7 @@ export class Wallet extends EventEmitter {
 
             this._entropy = _primary
             this._mnemonic = entropyToMnemonic(this._entropy)
-            this._path = DEFAULT_DERIVATION_PATH
+            // this._path = DEFAULT_DERIVATION_PATH
         } else if (typeof _primary === 'string') {
             const words = _primary.split(' ')
 
@@ -106,14 +113,18 @@ export class Wallet extends EventEmitter {
                 // console.log('FOUND A MNEMONIC SEED PHRASE', words)
 
                 this._mnemonic = _primary
-                this._path = DEFAULT_DERIVATION_PATH
+                // this._path = DEFAULT_DERIVATION_PATH
             }
         } else if (_primary?.path.includes('m/') && _primary?.mnemonic) {
             // console.log('FOUND DERIVATION PATH', _primary.path)
 
             // TODO Add support for user-defined entropy.
             this._mnemonic = _primary.mnemonic
-            this._path = _primary.path
+            const basePath = _primary.path
+
+            // TODO Parse base/full path
+
+            this._path = basePath
         } else {
             // console.log('CREATING NEW (RANDOM) WALLET')
 
@@ -126,7 +137,7 @@ export class Wallet extends EventEmitter {
             // console.log('MNEMONIC', this._mnemonic)
 
             /* Set (derivation) path. */
-            this._path = DEFAULT_DERIVATION_PATH
+            // this._path = DEFAULT_DERIVATION_PATH
         }
     }
 
@@ -156,6 +167,10 @@ export class Wallet extends EventEmitter {
         return this._mnemonic
     }
 
+    get path() {
+        return this._path
+    }
+
     get privateKey() {
         /* Validate mnemonic. */
         if (!this._mnemonic) {
@@ -172,7 +187,7 @@ export class Wallet extends EventEmitter {
         const child = deriveHdPath(
             crypto,
             node,
-            `m/44'/29223'/0'/0/${this._addressIdx}`
+            this._path
         )
 
         /* Return (child) private key. */
