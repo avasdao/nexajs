@@ -8,7 +8,8 @@ import { EventEmitter } from 'events'
 import makeRequest from './src/makeRequest.js'
 
 /* Set active connection id. */
-const ACTIVE_CONN_ID = 0
+// NOTE: Official node is currently accepting ZERO-fee txs.
+const ACTIVE_CONN_ID = 1
 
 /**
  * (Blockchain) Address Balance
@@ -559,6 +560,7 @@ export class Rostrum extends EventEmitter {
             ],
             alts: [
                 new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
+                new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
                 // TBD
             ],
             requests: {},
