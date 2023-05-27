@@ -663,6 +663,10 @@ export class Rostrum extends EventEmitter {
         this._connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
             console.error('ERROR! [ %s ]:', ACTIVE_CONN_ID, e)
 
+            // FIXME FOR TESTING APECS BACKUP CONNECTION
+            this._connMgr.pool[ACTIVE_CONN_ID] = this._connMgr.alts[ACTIVE_CONN_ID]
+            console.info('Now connected to ALT services...')
+
             // reject(e)
         }
     }
