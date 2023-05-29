@@ -247,10 +247,10 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/blockchain@23.5.15":
-  version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"
-  integrity sha512-eMn54+aF7pPp1RRv8b9ZlAD0Rg4KxDTcrsrmClr1ZVkygmlpPiXys4Jxnyojl30p1W8zQIVwypaUV84YfXWQ2Q==
+"@nexajs/blockchain@23.5.25":
+  version "23.5.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.25.tgz#4adf753ff91a5d694004edc044e324c8965c8f2e"
+  integrity sha512-p5TnlTRTVSV/ziDDfeH9ofs3e4Rvj007oFmJRRGVK1+Bz1Qw378ARkGl2p/ZE+2Y+OFCZlLie+c7JQXJZOJoVA==
   dependencies:
     debug "4.3.4"
     events "3.3.0"

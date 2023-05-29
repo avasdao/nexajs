@@ -3,8 +3,8 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:blockchain:broadcast')
 
 const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
-const ROSTRUM_ENDPOINT = 'wss://electrum.nexa.org:20004'
-// const ROSTRUM_ENDPOINT = 'wss://rostrum.apecs.dev:20004'
+// const ROSTRUM_ENDPOINT = 'wss://electrum.nexa.org:20004'
+const ROSTRUM_ENDPOINT = 'wss://rostrum.apecs.dev:20004'
 
 /**
  * Broadcast a (signed) transaction to the network.

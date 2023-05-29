@@ -1,7 +1,4 @@
 <script setup lang="ts">
-/* Import modules. */
-import { ref } from 'vue'
-
 /* Initialize tabs. */
 const tabWelcome = ref(true)
 const tabExplorers = ref(false)

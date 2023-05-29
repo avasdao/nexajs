@@ -1,16 +1,27 @@
 <script setup lang="ts">
-/* Initialize stores. */
-import { useSystemStore } from '@/stores/system'
-
-/* Initialize System. */
-const System = useSystemStore()
-
 useHead({
     title: 'Blank — Nexa Studio',
     meta: [
         { name: 'description', content: 'Nexa Studio makes building your next BIG idea effortless.' }
     ],
 })
+
+/* Initialize stores. */
+import { useSystemStore } from '@/stores/system'
+
+/* Initialize System. */
+const System = useSystemStore()
+
+// onMounted(() => {
+//     console.log('Mounted!')
+//     // Now it's safe to perform setup operations.
+// })
+
+// onBeforeUnmount(() => {
+//     console.log('Before Unmount!')
+//     // Now is the time to perform all cleanup operations.
+// })
+
 </script>
 
 <template>

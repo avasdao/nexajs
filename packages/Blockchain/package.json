@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/blockchain",
-  "version": "23.5.15",
+  "version": "23.5.25",
   "description": "Manages on-chain activities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

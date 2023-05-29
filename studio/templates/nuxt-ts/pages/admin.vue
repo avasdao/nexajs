@@ -1,7 +1,4 @@
 <script setup lang="ts">
-/* Import modules. */
-import { ref } from 'vue'
-
 const showProfileMenu = ref(true)
 
 </script>
