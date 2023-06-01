@@ -268,8 +268,7 @@ export async function getAddressUnspent(_address) {
 
     /* Set parameters. */
     const params = [
-        _address,
-        true, // NOTE: Show verbose (true).
+        _address
     ]
 
     /* Build request. */

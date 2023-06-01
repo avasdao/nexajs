@@ -52,16 +52,13 @@ export default async (_coins, _receivers, _autoFee = true) => {
         receivers = [_receivers]
     }
 
-    /* Set outpoint. */
-    const outputpoint = coins[0].outpoint
-
     /* Set satoshis. */
-    const satoshis = coins[0].satoshis
+    // const satoshis = coins[0].satoshis
 
     /* Validate satoshis (sending to receiver). */
-    if (!satoshis) {
-        throw new Error('No transaction value.')
-    }
+    // if (!satoshis) {
+    //     throw new Error('No transaction value.')
+    // }
 
     /* Initialize (initial) transaction satoshis. */
     // NOTE: It's the original satoshis - 1 sat/byte for tx size
@@ -136,7 +133,7 @@ export default async (_coins, _receivers, _autoFee = true) => {
     receivers.forEach(_receiver => {
         /* Handle (value) outputs. */
         if (_receiver.address) {
-            /* Add (valu) output. */
+            /* Add (value) output. */
             transaction.addOutput(
                 _receiver.address,
                 _receiver.satoshis,
