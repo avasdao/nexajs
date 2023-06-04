@@ -5,7 +5,7 @@ import {
 } from '@bitauth/libauth'
 
 import { decodeAddress } from '@nexajs/address'
-import { hexToBin } from '@nexajs/utils'
+import { binToHex, hexToBin } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
 
@@ -29,40 +29,50 @@ export default async (
     input,
     inputIndex,
     privateKeys,
-    publicKeys,
-    address,
+    redeemScript,
 ) => {
+    console.log('privateKeys', privateKeys);
+    console.log('redeemScript', redeemScript);
     // Extract the bytecode (locking script) from our return address.
-    const lockScriptBin = hexToBin(decodeAddress(address).hash)
+    // const lockScriptBin = hexToBin(decodeAddress(address).hash)
     // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0
 
     // Generate a transaction signature for this input.
-    const signatureBin = await signTransactionInput(
+    const signatureBin1 = await signTransactionInput(
         transaction,
         input.amount,
         inputIndex,
-        lockScriptBin,
         SIGHASH_ALL,
-        hexToBin(privateKey),
+        hexToBin(privateKeys[0]),
     )
-    // console.log('signatureBin', signatureBin)
+    console.log('signatureBin-1', signatureBin1)
 
-    const scriptPubKey = encodeDataPush(hexToBin(publicKeys))
+    // Generate a transaction signature for this input.
+    const signatureBin2 = await signTransactionInput(
+        transaction,
+        input.amount,
+        inputIndex,
+        SIGHASH_ALL,
+        hexToBin(privateKeys[1]),
+    )
+    console.log('signatureBin-2', signatureBin2)
+
+    // const scriptPubKey = encodeDataPush(hexToBin(publicKeys))
 
     // Build the unlocking script that unlocks the P2PKT locking script.
     const unlockingBytecode = flattenBinArray(
         [
-            encodeDataPush(scriptPubKey),
+            hexToBin(redeemScript),
 
-            hexToBin('53')
-            encodeDataPush(signatureBin),
-            encodeDataPush(signatureBin),
+            hexToBin('53'),
+            encodeDataPush(signatureBin1),
+            encodeDataPush(signatureBin2),
         ]
     )
-    // console.log('unlockingBytecode', unlockingBytecode)
+    console.log('unlockingBytecode', binToHex(unlockingBytecode))
 
     // Add the unlocking script to the input.
     const signedInput = { ...input, unlockingBytecode } // NOTE: Here we update the unlocking script.

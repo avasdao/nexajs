@@ -25,7 +25,7 @@ import {
  */
 export default ({
     correspondingOutput,
-    coveredBytecode,
+    // coveredBytecode,
     locktime,
     // outpointIndex,
     // outpointTransactionHash,

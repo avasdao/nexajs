@@ -29,19 +29,29 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
         /* Set WIF. */
         const wif = privateKeyWifs[i]
 
-        if (Array.isArray(wifs[0])) {
-            /* Parse the WIF into the keypair and address. */
-            const [
-                privateKey,
-                publicKey,
-                returnAddress
-            ] = await parseWif(wif, 'nexa', 'TEMPLATE')
+        if (Array.isArray(privateKeyWifs[0])) {
+            for (let j = 0; j < wif.length; j++) {
+                if (!wif[j]) {
+                    continue
+                }
 
-            wifs.push({
-                privateKey,
-                publicKey,
-                returnAddress,
-            })
+                /* Parse the WIF into the keypair. */
+                const [
+                    privateKey,
+                    publicKey,
+                    returnAddress
+                ] = await parseWif(wif[j], 'nexa', 'TEMPLATE')
+
+                if (!wifs[i]) {
+                    wifs[i] = []
+                }
+
+                wifs[i].push({
+                    privateKey,
+                    publicKey,
+                    // returnAddress,
+                })
+            }
         } else {
             /* Parse the WIF into the keypair and address. */
             const [
@@ -53,7 +63,7 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
             wifs.push({
                 privateKey,
                 publicKey,
-                returnAddress,
+                // returnAddress,
             })
         }
     }
@@ -70,8 +80,8 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
         locktime: 0, // FIXME: We must add current block height as a new method param
     }
     // console.log('Unsigned (encoded) tx:', binToHex(encodeTransaction(transaction)))
-
-    if (Array.isArray(wifs[0])) {
+const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28547d7c1dd4762103802a8952f26f69fdd2301c7f91571f56165ba8af5dc0f5272ae23af226774856210293112f13c7295880317a16e8b8552e8d5d3fc9ff28bdade2e9532ffa063928cd53af'
+    if (Array.isArray(privateKeyWifs[0])) {
         // Sign all inputs and add the generated unlocking scripts to the transaction.
         // eslint-disable-next-line require-atomic-updates
         transaction.inputs = await Promise.all(
@@ -80,8 +90,10 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
                     transaction,
                     input,
                     inputIndex,
-                    wifs[inputIndex],
-                    wifs[inputIndex],
+                    wifs[inputIndex].map(_wif => {
+                        return _wif.privateKey
+                    }),
+                    redeemScript,
                 )
             )
         )
@@ -96,7 +108,7 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
                     inputIndex,
                     wifs[inputIndex].privateKey,
                     wifs[inputIndex].publicKey,
-                    wifs[inputIndex].returnAddress,
+                    // wifs[inputIndex].returnAddress,
                 )
             )
         )

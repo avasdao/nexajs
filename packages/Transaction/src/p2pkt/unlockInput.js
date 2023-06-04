@@ -30,10 +30,10 @@ export default async (
     inputIndex,
     privateKey,
     publicKey,
-    address,
+    // address,
 ) => {
     // Extract the bytecode (locking script) from our return address.
-    const lockScriptBin = hexToBin(decodeAddress(address).hash)
+    // const lockScriptBin = hexToBin(decodeAddress(address).hash)
     // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
@@ -44,7 +44,7 @@ export default async (
         transaction,
         input.amount,
         inputIndex,
-        lockScriptBin,
+        // lockScriptBin,
         SIGHASH_ALL,
         hexToBin(privateKey),
     )

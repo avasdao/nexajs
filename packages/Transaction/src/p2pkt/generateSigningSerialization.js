@@ -30,7 +30,7 @@ const altLockScriptBin = new Uint8Array([
  */
 export default ({
     correspondingOutput,
-    coveredBytecode, // NOT USED WITH P2PKT
+    // coveredBytecode, // NOT USED WITH P2PKT
     locktime,
     outpointIndex,  // NOT USED WITH P2PKT
     outpointTransactionHash,  // NOT USED WITH P2PKT
