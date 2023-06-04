@@ -150,7 +150,7 @@ export default async (_coins, _receivers, _autoFee = true) => {
     })
 
     const wifs = coins.map(_coin => {
-        return _coin.wif
+        return _coin.wif || _coin.wifs
     })
     // console.log('WIFS', wifs)
 

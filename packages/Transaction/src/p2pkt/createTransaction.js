@@ -7,7 +7,8 @@ import { parseWif } from '@nexajs/hdnode'
 /* Import (local) modules. */
 import encodeTransaction from '../REF/encodeTransaction.js'
 import createUnsignedInput from '../REF/createUnsignedInput.js'
-import unlockP2PktInput from './unlockInput.js'
+import unlockInput from './unlockInput.js'
+import unlockInputMulti from './unlockInputMulti.js'
 
 
 /**
@@ -25,18 +26,36 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
     const wifs = []
 
     for (let i = 0; i < privateKeyWifs.length; i++) {
-        // Parse the private key wif into the keypair and address.
-        const [
-            privateKey,
-            publicKey,
-            returnAddress
-        ] = await parseWif(privateKeyWifs[i], 'nexa', 'TEMPLATE')
+        /* Set WIF. */
+        const wif = privateKeyWifs[i]
 
-        wifs.push({
-            privateKey,
-            publicKey,
-            returnAddress,
-        })
+        if (Array.isArray(wifs[0])) {
+            /* Parse the WIF into the keypair and address. */
+            const [
+                privateKey,
+                publicKey,
+                returnAddress
+            ] = await parseWif(wif, 'nexa', 'TEMPLATE')
+
+            wifs.push({
+                privateKey,
+                publicKey,
+                returnAddress,
+            })
+        } else {
+            /* Parse the WIF into the keypair and address. */
+            const [
+                privateKey,
+                publicKey,
+                returnAddress
+            ] = await parseWif(wif, 'nexa', 'TEMPLATE')
+
+            wifs.push({
+                privateKey,
+                publicKey,
+                returnAddress,
+            })
+        }
     }
 
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
@@ -52,20 +71,36 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
     }
     // console.log('Unsigned (encoded) tx:', binToHex(encodeTransaction(transaction)))
 
-    // Sign all inputs and add the generated unlocking scripts to the transaction.
-    // eslint-disable-next-line require-atomic-updates
-    transaction.inputs = await Promise.all(
-        transaction.inputs.map(
-            (input, inputIndex) => unlockP2PktInput(
-                transaction,
-                input,
-                inputIndex,
-                wifs[inputIndex].privateKey,
-                wifs[inputIndex].publicKey,
-                wifs[inputIndex].returnAddress,
+    if (Array.isArray(wifs[0])) {
+        // Sign all inputs and add the generated unlocking scripts to the transaction.
+        // eslint-disable-next-line require-atomic-updates
+        transaction.inputs = await Promise.all(
+            transaction.inputs.map(
+                (input, inputIndex) => unlockInputMulti(
+                    transaction,
+                    input,
+                    inputIndex,
+                    wifs[inputIndex],
+                    wifs[inputIndex],
+                )
             )
         )
-    )
+    } else {
+        // Sign all inputs and add the generated unlocking scripts to the transaction.
+        // eslint-disable-next-line require-atomic-updates
+        transaction.inputs = await Promise.all(
+            transaction.inputs.map(
+                (input, inputIndex) => unlockInput(
+                    transaction,
+                    input,
+                    inputIndex,
+                    wifs[inputIndex].privateKey,
+                    wifs[inputIndex].publicKey,
+                    wifs[inputIndex].returnAddress,
+                )
+            )
+        )
+    }
 
     // Hex encode the built transaction.
     const encodedTransaction = encodeTransaction(transaction) // FIXME Prepend (0) version.

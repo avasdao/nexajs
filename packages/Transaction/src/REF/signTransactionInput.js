@@ -1,10 +1,9 @@
 /* Import modules. */
-import {
-    binToHex,
-    hexToBin,
-    instantiateSecp256k1,
-    instantiateSha256,
-} from '@bitauth/libauth'
+import { binToHex, hexToBin } from '@nexajs/utils'
+import { sha256 } from '@nexajs/crypto'
+
+/* Libauth helpers. */
+import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 import createSigningSerialization from './createSigningSerialization.js'
 
@@ -30,7 +29,7 @@ const signTransactionInput = async (
     hashtype,
     privateKeyBin,
 ) => {
-    // Generate the signing serialization for this transaction input.
+    /* Generate the signing serialization for this transaction input. */
     const signingSerialization = await createSigningSerialization(
         transaction,
         satoshis,
@@ -39,10 +38,8 @@ const signTransactionInput = async (
         hashtype
     )
 
-    // Generate the "sighash" by taking the double SHA256 of the signing serialization.
-    const sha256 = await instantiateSha256()
-
-    let sighash = sha256.hash(sha256.hash(signingSerialization))
+    /* Create signing serialization hash. */
+    const sighash = sha256(sha256(signingSerialization))
 
     // Instantiate the Secp256k1 interface.
     const secp256k1 = await instantiateSecp256k1()
@@ -54,6 +51,7 @@ const signTransactionInput = async (
     const transactionSignature = new Uint8Array(signatureBin)
     // console.log('\n  Transaction signature:', binToHex(transactionSignature), '\n')
 
+    /* Return transaction signature. */
     return transactionSignature
 }
 

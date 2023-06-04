@@ -9,13 +9,11 @@ import { v4 as uuidv4 } from 'uuid'
 /* Import (local) modules. */
 import _getDustAmount from './src/getDustAmount.js'
 import _sendCoin from './src/sendCoin.js'
-import _sendCoinMulti from './src/sendCoinMulti.js'
 
 /* Export (local) modules. */
 export const getDustAmount = _getDustAmount
 export const send = _sendCoin // alias
 export const sendCoin = _sendCoin
-export const sendCoinMulti = _sendCoinMulti
 
 
 /**
@@ -80,7 +78,6 @@ Nexa.Purse = Purse
 Nexa.getDustAmount = getDustAmount
 Nexa.send = send // alias
 Nexa.sendCoin = sendCoin
-Nexa.sendCoinMulti = sendCoinMulti
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

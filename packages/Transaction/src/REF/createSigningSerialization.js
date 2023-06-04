@@ -47,7 +47,7 @@ export default async (
     // Generate the signing serialization using mostly information from the generated "transaction state".
     const signingSerialization = generateSigningSerialization({
         correspondingOutput: state.correspondingOutput,
-        coveredBytecode: coveredBytecodeBin,
+        coveredBytecode: coveredBytecodeBin, // NOT USED WITH P2PKT
         locktime: state.locktime,
         // outpointIndex: state.outpointIndex,
         // outpointTransactionHash: state.outpointTransactionHash,

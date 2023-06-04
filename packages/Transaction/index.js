@@ -9,11 +9,9 @@ import {
 
 /* Import (local) modules. */
 import _createTransaction from './src/createTransaction.js'
-import _createTransactionMulti from './src/createTransactionMulti.js'
 
 /* Export (local) modules. */
 export const createTransaction = _createTransaction
-export const createTransactionMulti = _createTransactionMulti
 
 
 /**
@@ -149,14 +147,6 @@ export class Transaction {
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
 
-        /* Generate raw transaction. */
-        this._raw = await createTransaction(
-            _wifs,
-            unspents,
-            this._outputs,
-        ).catch(err => console.error(err))
-        // console.log('RAW TX', this._raw)
-
         /* Set flag. */
         this._isSigned = true
     }
@@ -171,7 +161,6 @@ Nexa.Transaction = Transaction
 
 /* Initialize Transaction modules. */
 Nexa.createTransaction = createTransaction
-Nexa.createTransactionMulti = createTransactionMulti
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
