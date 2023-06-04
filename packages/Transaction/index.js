@@ -9,9 +9,11 @@ import {
 
 /* Import (local) modules. */
 import _createTransaction from './src/createTransaction.js'
+import _createTransactionMulti from './src/createTransactionMulti.js'
 
 /* Export (local) modules. */
 export const createTransaction = _createTransaction
+export const createTransactionMulti = _createTransactionMulti
 
 
 /**
@@ -144,20 +146,14 @@ export class Transaction {
             _wifs,
             unspents,
             this._outputs,
-            0, // NOTE: Fee is unknown until we calculate tx length.
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
-
-        /* Calculate miner fee. */
-        const minerFee = Math.floor(1.1 * this._raw.length)
-        // console.log('\n  Miner fee:', minerFee)
 
         /* Generate raw transaction. */
         this._raw = await createTransaction(
             _wifs,
             unspents,
             this._outputs,
-            minerFee,
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
 
@@ -175,6 +171,7 @@ Nexa.Transaction = Transaction
 
 /* Initialize Transaction modules. */
 Nexa.createTransaction = createTransaction
+Nexa.createTransactionMulti = createTransactionMulti
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

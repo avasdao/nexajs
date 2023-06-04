@@ -10,7 +10,6 @@ import createTransactionContextCommon from './createTransactionContextCommon.js'
 // import generateSigningSerialization from '../p2pkh/generateSigningSerialization.js'
 import generateSigningSerialization from '../p2pkt/generateSigningSerialization.js'
 
-// const CASH_FORK_ID = new Uint8Array([ 0, 0, 0 ])
 
 /**
  * Create the signing serialization for a given transaction input.
@@ -41,8 +40,6 @@ export default async (
         sourceOutput: { satoshis: bigIntToBinUint64LE(BigInt(satoshis)) },
         spendingTransaction: transaction,
     }
-    // console.log('CONTEXT COMMON', ctxCommon)
-    // console.log('CONTEXT COMMON', inputIndex, ctxCommon.spendingTransaction.outputs)
 
     // Create a "transaction state", used to extract a lot of the relevant information with Libauth.
     const state = createTransactionContextCommon(ctxCommon)
@@ -51,7 +48,6 @@ export default async (
     const signingSerialization = generateSigningSerialization({
         correspondingOutput: state.correspondingOutput,
         coveredBytecode: coveredBytecodeBin,
-        // forkId: CASH_FORK_ID,
         locktime: state.locktime,
         // outpointIndex: state.outpointIndex,
         // outpointTransactionHash: state.outpointTransactionHash,
@@ -63,7 +59,7 @@ export default async (
         transactionOutputs: state.transactionOutputs,
         transactionAmounts: state.transactionAmounts,
         transactionSequenceNumbers: state.transactionSequenceNumbers,
-        version: 0,
+        // version: 0,
     })
 
     return signingSerialization
