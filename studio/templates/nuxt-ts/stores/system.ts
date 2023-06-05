@@ -1,6 +1,5 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
-import { ethers } from 'ethers'
 
 /**
  * System Store
