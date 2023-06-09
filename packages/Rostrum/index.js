@@ -549,6 +549,14 @@ export class Rostrum extends EventEmitter {
         // NOTE: Ignored by esmify.
         const WebSocket = (await import('isomorphic-ws')).default
 
+        /* Validate (global) shared connection. */
+        if (globalThis.Nexa.Rostrum._connMgr) {
+            this._connMgr = globalThis.Nexa.Rostrum._connMgr
+
+            // console.log('Connected to SHARED Rostrum connection...')
+            return
+        }
+
         /* Initilize connections manager. */
         this._connMgr = {
             pool: [
@@ -566,6 +574,19 @@ export class Rostrum extends EventEmitter {
             isOpen: false,
             isReady: false,
         }
+
+        /* Validate (global) Nexa object. */
+        if (!globalThis.Nexa) {
+            globalThis.Nexa = {}
+        }
+
+        /* Validate (global) Rostrum object. */
+        if (!globalThis.Nexa.Rostrum) {
+            globalThis.Nexa.Rostrum = {}
+        }
+
+        /* Set global (shared) connection manager. */
+        globalThis.Nexa.Rostrum._connMgr = this._connMgr
 
         /* Close connection. */
         // FIXME Should this be conditional??
