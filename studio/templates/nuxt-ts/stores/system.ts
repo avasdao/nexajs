@@ -14,7 +14,7 @@ export const useSystemStore = defineStore('system', {
         ONE_META: BigInt('1000000000000000000'),
 
         /* Initialize notifications. */
-        notif: {
+        _notif: {
             isShowing: false,
             icon: null,
             title: null,
@@ -25,12 +25,12 @@ export const useSystemStore = defineStore('system', {
         /**
          * Application Starts
          */
-        appStarts: 0,
+        _appStarts: 0,
 
         /**
          * Application Version
          */
-        appVersion: null,
+        _appVersion: null,
 
         /**
          * Flags
@@ -38,7 +38,7 @@ export const useSystemStore = defineStore('system', {
          * 1. Dark mode
          * 2. Unconfirmed transactions
          */
-        flags: null,
+        _flags: null,
 
         /**
          * Locale
@@ -46,7 +46,7 @@ export const useSystemStore = defineStore('system', {
          * Controls the localization language.
          * (default is english)
          */
-        locale: null,
+        _locale: null,
 
         /**
          * Notices
@@ -58,7 +58,7 @@ export const useSystemStore = defineStore('system', {
          * NOTE: Unique 1-byte (hex) codes (up to 255) are used to reduce the size
          *       of this storage field.
          */
-        notices: null,
+        _notices: null,
     }),
 
     getters: {
@@ -71,10 +71,8 @@ export const useSystemStore = defineStore('system', {
          *
          * Performs startup activities.
          */
-        initApp(state) {
-            state.appStarts++
+        initApp() {
+            this._appStarts++
         },
     },
-
-    persist: true,
 })
