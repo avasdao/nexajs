@@ -12,6 +12,16 @@ import { useSystemStore } from '@/stores/system'
 /* Initialize System. */
 const System = useSystemStore()
 
+onBeforeMount(() => {
+    System.$state = JSON.parse(localStorage.getItem('system'))
+    // add additional states here...
+})
+
+watch(System.$state, (_state) => {
+    localStorage.setItem('system', JSON.stringify(_state))
+})
+// watch additional states here...
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.

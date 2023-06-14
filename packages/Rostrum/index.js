@@ -399,6 +399,158 @@ export async function getGenesisInfo(_tokenid) {
 export const getTokenInfo = getGenesisInfo
 
 /**
+* (Token) Address Balance
+*
+* Return the confirmed and unconfirmed balances of tokens in a Bitcoin Cash or Nexa address.
+*
+* Version added: Rostrum 6.0
+*/
+export async function getAddressTokenBalance(_tokenid) {
+    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return rostrum.getAddressTokenBalance(_tokenid)
+    }
+
+    /* Set method. */
+    const method = 'token.address.get_balance'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest.bind(this)(request)
+}
+
+/**
+* (Token) Address History
+*
+* Return the confirmed and unconfirmed token history of a Nexa or Bitcoin Cash address.
+*
+* Version added: Rostrum 6.0
+*/
+export async function getAddressTokenHistory(_tokenid) {
+    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return rostrum.getAddressTokenHistory(_tokenid)
+    }
+
+    /* Set method. */
+    const method = 'token.address.get_history'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest.bind(this)(request)
+}
+
+/**
+* (Token) Address Mempool
+*
+* Return the unconfirmed token transactions of a Nexa or Bitcoin Cash address.
+*
+* Version added: Rostrum 6.0
+*/
+export async function getAddressTokenMempool(_tokenid) {
+    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return rostrum.getAddressTokenMempool(_tokenid)
+    }
+
+    /* Set method. */
+    const method = 'token.address.get_mempool'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest.bind(this)(request)
+}
+
+/**
+* (Token) Address Unspent
+*
+* Return an list of token UTXOs sent to a Nexa or Bitcoin Cash address.
+*
+* Version added: Rostrum 6.0
+*/
+export async function getAddressTokenUnspent(_tokenid) {
+    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return rostrum.getAddressTokenUnspent(_tokenid)
+    }
+
+    /* Set method. */
+    const method = 'token.address.listunspent'
+
+    /* Set parameters. */
+    const params = [
+        _tokenid,
+        true, // NOTE: Show verbose (true).
+    ]
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest.bind(this)(request)
+}
+
+/**
  * (NFT) List
  *
  * Return list of all NFT's minted from a specified parent token.
@@ -750,11 +902,25 @@ export class Rostrum extends EventEmitter {
         return getTokenInfo.bind(this)(params)
     }
 
+    getAddressTokenBalance(params) {
+        return getAddressTokenBalance.bind(this)(params)
+    }
+
+    getAddressTokenHistory(params) {
+        return getAddressTokenHistory.bind(this)(params)
+    }
+
+    getAddressTokenMempool(params) {
+        return getAddressTokenMempool.bind(this)(params)
+    }
+
+    getAddressTokenUnspent(params) {
+        return getAddressTokenUnspent.bind(this)(params)
+    }
+
     getNftList(params) {
         return getNftList.bind(this)(params)
     }
-
-    // ...
 
     getTokenHistory(params) {
         return getTokenHistory.bind(this)(params)
@@ -783,8 +949,11 @@ Nexa.getAddressUnspent = getAddressUnspent
 // ...
 Nexa.getGenesisInfo = getGenesisInfo
 Nexa.getTokenInfo = getTokenInfo // alias for `getGenesisInfo`
+Nexa.getAddressTokenBalance = getAddressTokenBalance
+Nexa.getAddressTokenHistory = getAddressTokenHistory
+Nexa.getAddressTokenMempool = getAddressTokenMempool
+Nexa.getAddressTokenUnspent = getAddressTokenUnspent
 Nexa.getNftList = getNftList
-// ...
 Nexa.getTokenHistory = getTokenHistory
 // ...
 Nexa.subscribeAddress = subscribeAddress
