@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:blockchain')
+const debug = debugFactory('nexa:provider')
 
 /* Import modules. */
 import { EventEmitter } from 'events'
@@ -13,14 +13,14 @@ export const broadcast = _broadcast
 
 
 /**
- * Blockchain Class
+ * Provider Class
  *
  * TBD
  */
-export class Blockchain extends EventEmitter {
+export class Provider extends EventEmitter {
     constructor(_params) {
-        /* Initialize Blockchain class. */
-        debug('Initializing Blockchain...')
+        /* Initialize Provider class. */
+        debug('Initializing Provider...')
         debug(JSON.stringify(_params, null, 2))
         super()
 
@@ -28,10 +28,10 @@ export class Blockchain extends EventEmitter {
     }
 
     test() {
-        return 'Blockchain (Instance) is working!'
+        return 'Provider (Instance) is working!'
     }
     static test() {
-        return 'Blockchain (Static) is working!'
+        return 'Provider (Static) is working!'
     }
 }
 
@@ -39,10 +39,10 @@ export class Blockchain extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Blockchain class. */
-Nexa.Blockchain = Blockchain
+/* Initialize Provider class. */
+Nexa.Provider = Provider
 
-/* Initialize Blockchain modules. */
+/* Initialize Provider modules. */
 Nexa.broadcast = broadcast
 
 /* Export Nexa to globalThis. */

@@ -1,6 +1,6 @@
-# NexaJS Blockchain Examples
+# NexaJS Provider Examples
 
-A complete guide to ALL the Blockchain commands available from the protocol.
+A complete guide to ALL the Provider commands available from the protocol.
 
 # Table of contents
 

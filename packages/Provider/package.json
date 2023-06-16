@@ -1,7 +1,7 @@
 {
-  "name": "@nexajs/blockchain",
-  "version": "23.5.25",
-  "description": "Manages on-chain activities.",
+  "name": "@nexajs/provider",
+  "version": "23.6.16",
+  "description": "Manages individual (on-chain) service providers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",

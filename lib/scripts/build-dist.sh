@@ -27,16 +27,6 @@ echo "    - address.min.js"
 echo "  done."
 echo
 
-echo "  Building [ Blockchain ] package..."
-echo "/* NexaJS <Blockchain> v${todays_date} */" > ../cdn/blockchain.js
-browserify ../packages/Blockchain/index.js -p esmify >> ../cdn/blockchain.js
-echo "    - blockchain.js"
-echo "/* NexaJS <Blockchain> v${todays_date} */" > ../cdn/blockchain.min.js
-browserify ../packages/Blockchain/index.js -p esmify | npx uglifyjs -c >> ../cdn/blockchain.min.js
-echo "    - blockchain.min.js"
-echo "  done."
-echo
-
 echo "  Building [ HD Node ] package..."
 echo "/* NexaJS <HD Node> v${todays_date} */" > ../cdn/hdnode.js
 browserify ../packages/Hdnode/index.js -p esmify >> ../cdn/hdnode.js
@@ -44,6 +34,16 @@ echo "    - hdnode.js"
 echo "/* NexaJS <HD Node> v${todays_date} */" > ../cdn/hdnode.min.js
 browserify ../packages/Hdnode/index.js -p esmify | npx uglifyjs -c >> ../cdn/hdnode.min.js
 echo "    - hdnode.min.js"
+echo "  done."
+echo
+
+echo "  Building [ Provider ] package..."
+echo "/* NexaJS <Provider> v${todays_date} */" > ../cdn/provider.js
+browserify ../packages/Provider/index.js -p esmify >> ../cdn/provider.js
+echo "    - provider.js"
+echo "/* NexaJS <Provider> v${todays_date} */" > ../cdn/provider.min.js
+browserify ../packages/Provider/index.js -p esmify | npx uglifyjs -c >> ../cdn/provider.min.js
+echo "    - provider.min.js"
 echo "  done."
 echo
 

@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:blockchain:broadcast')
+const debug = debugFactory('nexa:provider:broadcast')
 
 const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
 // const ROSTRUM_ENDPOINT = 'wss://electrum.nexa.org:20004'
