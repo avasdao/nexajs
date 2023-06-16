@@ -664,6 +664,43 @@ export async function subscribeAddress(_address, _handler) {
     return makeRequest.bind(this)(request, _address, _handler)
 }
 
+/**
+ * (Server) Ping
+ *
+ * Ping the server to ensure it is responding, and to keep the session alive.
+ * The server may disconnect clients that have sent no requests
+ * for roughly 10 minutes.
+ *
+ * Version added: 1.2
+ */
+export async function _ping() {
+    debug(`Server->Ping`)
+
+    /* Validate instance. */
+    if (typeof this === 'undefined') {
+        /* Initialize Rostrum instance. */
+        const rostrum = await Rostrum.init()
+
+        /* Call self (via instance). */
+        return rostrum.ping()
+    }
+
+    /* Set method. */
+    const method = 'server.ping'
+
+    /* Set parameters. */
+    const params = []
+
+    /* Build request. */
+    const request = {
+        method,
+        params,
+    }
+
+    /* Return (async) request. */
+    return makeRequest.bind(this)(request)
+}
+
 
 /**
  * Rostrum Class
@@ -759,6 +796,10 @@ export class Rostrum extends EventEmitter {
                     .send(JSON.stringify(_request) + '\n') // NOTE: We MUST include the "new line".
             })
 
+            /* Manage session keep-alive. */
+            setInterval(async () => {
+                this._ping()
+            }, 60000) // every 1 minute
         }
 
         /* Handle message. */
@@ -831,17 +872,30 @@ export class Rostrum extends EventEmitter {
         /* Handle connection close. */
         this._connMgr.pool[ACTIVE_CONN_ID].onclose = function () {
             debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`)
+            console.log('CONNECTION CLOSED')
+
+            if (this._connMgr?.isOpen) {
+                /* Set (connection) ready flag. */
+                this._connMgr.isOpen = false
+            }
         }
 
         /* Handle connection error. */
         this._connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
             console.error('ERROR! [ %s ]:', ACTIVE_CONN_ID, e)
 
-            // FIXME FOR TESTING APECS BACKUP CONNECTION
-            this._connMgr.pool[ACTIVE_CONN_ID] = this._connMgr.alts[ACTIVE_CONN_ID]
-            console.info('Now connected to ALT services...')
+            if (this._connMgr?.isOpen) {
+                /* Set (connection) ready flag. */
+                this._connMgr.isOpen = false
+            }
 
-            // reject(e)
+            /* Attempt to re-connect. */
+            // NOTE: We will lose ALL subscriptions.
+            this._connect()
+
+            // FIXME FOR TESTING APECS RE-CONNECTION
+            // console.info('Re-connecting to Rostrum provider...')
+            // this._connMgr.pool[ACTIVE_CONN_ID] = new WebSocket('wss://rostrum.apecs.dev:20004')
         }
     }
 
@@ -928,6 +982,10 @@ export class Rostrum extends EventEmitter {
 
     subscribeAddress(params, handler) {
         return subscribeAddress.bind(this)(params, handler)
+    }
+
+    _ping() {
+        return _ping.bind(this)()
     }
 }
 
