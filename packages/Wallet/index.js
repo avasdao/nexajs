@@ -86,6 +86,10 @@ export class Wallet extends EventEmitter {
         /* Initialize internals. */
         this._entropy = null
         this._mnemonic = null
+        this._network = null
+        this._provider = null
+        this._isTestnet = null
+        this._hrp = null // prefix eg. bitcoincash: or nexa:
 
         this._accountIdx = 0
         this._addressIdx = 0
@@ -93,6 +97,13 @@ export class Wallet extends EventEmitter {
 
         this._privateKey = null
         this._publicKey = null
+        this._publicKeyHash = null
+        this._xpriv = null
+        this._xpub = null
+        this._wif = null
+
+        this._title = null
+        this._description = null
 
         this._wallet = {} // DEPRECATED
 
