@@ -3,7 +3,7 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:purse:sendCoin')
 
 /* Import (library) modules. */
-import { broadcast } from '@nexajs/blockchain'
+import { broadcast } from '@nexajs/provider'
 
 import { Transaction } from '@nexajs/transaction'
 
