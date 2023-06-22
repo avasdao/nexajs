@@ -9,7 +9,7 @@ import makeRequest from './src/makeRequest.js'
 
 /* Set active connection id. */
 // NOTE: Official node is currently accepting ZERO-fee txs.
-const ACTIVE_CONN_ID = 1
+const ACTIVE_CONN_ID = 0
 
 /**
  * (Blockchain) Address Balance
@@ -749,14 +749,14 @@ export class Rostrum extends EventEmitter {
         /* Initilize connections manager. */
         this._connMgr = {
             pool: [
-                new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
-                // new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
-                new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
+                new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
+                // new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
+                // new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
                 // TBD
             ],
             alts: [
-                new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
                 new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
+                // new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
                 // TBD
             ],
             requests: {},

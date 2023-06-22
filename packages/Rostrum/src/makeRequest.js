@@ -7,7 +7,7 @@ const debug = debugFactory('nexa:rostrum:makeRequest')
 
 /* Set active connection id. */
 // NOTE: Official node is currently accepting ZERO-fee txs.
-const ACTIVE_CONN_ID = 1
+const ACTIVE_CONN_ID = 0
 
 /**
  * Make Request
