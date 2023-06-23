@@ -538,16 +538,6 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/blockchain@23.5.25":
-  version "23.5.25"
-  resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.25.tgz#4adf753ff91a5d694004edc044e324c8965c8f2e"
-  integrity sha512-p5TnlTRTVSV/ziDDfeH9ofs3e4Rvj007oFmJRRGVK1+Bz1Qw378ARkGl2p/ZE+2Y+OFCZlLie+c7JQXJZOJoVA==
-  dependencies:
-    debug "4.3.4"
-    events "3.3.0"
-    isomorphic-ws "5.0.0"
-    ws "8.13.0"
-
 "@nexajs/crypto@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.15.tgz#0027fa8fa748cce37c7ff7f1a6c1dbbe750caea8"
@@ -617,12 +607,12 @@
     events "3.3.0"
     uuid "9.0.0"
 
-"@nexajs/purse@23.5.26":
-  version "23.5.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.5.26.tgz#3ee5867378b4fbfa49e34102bbb0b2984415de5e"
-  integrity sha512-kBNlKNWfahGCf8U50suqCgBPIuviq6WoHZn/4+h71crOvYYtUxF8zMukJCNFv1J39AvPPLZXY8bPEe5Y5I4Qxg==
+"@nexajs/purse@23.6.21":
+  version "23.6.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.6.21.tgz#c3cacf06b0949126bf0876d73d1afe0cb9a06973"
+  integrity sha512-Yq8n457Rtd0sa/XEQJZ6MuF3ycGauv9bUa7esIiDXChFZNpChgRk0sCH18jjRifu75SqYVPwVgGy1Nk4YwTjAw==
   dependencies:
-    "@nexajs/blockchain" "23.5.25"
+    "@nexajs/provider" "23.6.21"
     "@nexajs/transaction" "23.5.25"
     debug "4.3.4"
     events "3.3.0"
