@@ -1,9 +1,10 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:address:getUnspentOutputs')
+const debug = debugFactory('nexa:address:listUnspent')
 
 /* Import modules. */
 import { getAddressUnspent } from '@nexajs/rostrum'
+import { getAddressTokenUnspent } from '@nexajs/rostrum'
 
 /* Set API endpoints. */
 const BCH_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
@@ -72,18 +73,48 @@ const getUtxos = (_address) => {
 }
 
 const listNexaUnspent = async (_address) => {
-    let resolve
-    let reject
+    /* Initialize locals. */
+    let token
+    let unspentCoins
+    let unspentTokens
 
-    const unspents = await getAddressUnspent(_address)
+    /* Request unspent coins. */
+    unspentCoins = await getAddressUnspent(_address)
 
-    return unspents.map(_unspent => {
-        return {
-            height: _unspent.height,
-            outpointHash: _unspent.outpoint_hash,
-            txid: _unspent.tx_hash,
-            pos: _unspent.tx_pos,
-            value: _unspent.value,
+    /* Request unspent tokens. */
+    unspentTokens = (await getAddressTokenUnspent(_address)).unspent
+
+    /* Aggregate asset lists. */
+    return unspentCoins.map(_unspent => {
+        /* Search for token info. */
+        token = unspentTokens.find(_token => {
+            return _token.outpoint_hash === _unspent.outpoint_hash
+        })
+
+        /* Validate token. */
+        if (token) {
+            return {
+                height: _unspent.height,
+                outpoint: _unspent.outpoint_hash,
+                txid: _unspent.tx_hash,
+                pos: _unspent.tx_pos,
+                amount: parseFloat(_unspent.value / 100.0),
+                satoshis: _unspent.value,
+                tokenid: token.group,
+                tokenidHex: token.token_id_hex,
+                tokens: token.token_amount,
+                isToken: true,
+            }
+        } else {
+            return {
+                height: _unspent.height,
+                outpoint: _unspent.outpoint_hash,
+                txid: _unspent.tx_hash,
+                pos: _unspent.tx_pos,
+                amount: parseFloat(_unspent.value / 100.0),
+                satoshis: _unspent.value,
+                isToken: false,
+            }
         }
     })
 }

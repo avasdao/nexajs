@@ -406,7 +406,7 @@ export const getTokenInfo = getGenesisInfo
 * Version added: Rostrum 6.0
 */
 export async function getAddressTokenBalance(_tokenid) {
-    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+    debug(`Token->Address->TokenBalance [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
     if (typeof this === 'undefined') {
@@ -444,7 +444,7 @@ export async function getAddressTokenBalance(_tokenid) {
 * Version added: Rostrum 6.0
 */
 export async function getAddressTokenHistory(_tokenid) {
-    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+    debug(`Token->Address->TokenHistory [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
     if (typeof this === 'undefined') {
@@ -482,7 +482,7 @@ export async function getAddressTokenHistory(_tokenid) {
 * Version added: Rostrum 6.0
 */
 export async function getAddressTokenMempool(_tokenid) {
-    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+    debug(`Token->Address->TokenMempool [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
     if (typeof this === 'undefined') {
@@ -520,7 +520,7 @@ export async function getAddressTokenMempool(_tokenid) {
 * Version added: Rostrum 6.0
 */
 export async function getAddressTokenUnspent(_tokenid) {
-    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
+    debug(`Token->Address->Unspent [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
     if (typeof this === 'undefined') {
