@@ -18,6 +18,7 @@ A comprehensive suite of Address querying, monitoring and formatting utilities.
   - [encodeAddress(string|array)](#encodeaddressstringarray)
   - [decodeAddress(string|array)](#decodeaddressstringarray)
   - [getAddress(string|array)](#getaddressstringarray)
+  - [listUnspent(string|array)](#listunspentstringarray)
   - [watchAddress(string|array)](#watchaddressstringarray)
 
 
@@ -34,13 +35,13 @@ Here is the full data schema for a NexaJS Address.
   received: BigInt
   sent: BigInt
   unconfirmed: BigInt
-  transactions: String[]
+  transactions: String[txid]
   createdAt: Integer
   updatedAt: Integer
 }
 ```
 
-> ___NOTE:__ All `BigInt` amounts are measured in satoshis (ie. 0.01 NEX)._
+> __NOTE:__ All `BigInt` amounts are measured in satoshis (ie. 0.01 NEX).
 
 ### Prefix
 
@@ -103,13 +104,68 @@ Retrieve the latest on-chain data about an Address.
 
 _see [Address Details](#address-details) above_
 
+### `listUnspent(string|array)`
+
+Retrieve a list of ALL unspent transaction outputs.
+
+#### Option #1: Import from (Package) Method
+
+> __NOTE:__ This is the recommended option.
+
+```js
+import { listUnspent } from '@nexajs/address'
+
+const myAddress = 'nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz'
+
+const unspent = await listUnspent(myAddress)
+console.log(unspent)
+/*
+[
+  {
+    height: 301991,
+    outpoint: '65102a067b574b7bd3cad9ad51f1907d94dadebdc24fd1db3742e76d6f1786b7',
+    txid: '0cb7c4825931c696be4bc55185a534aeb08596860eaf97356ed978fcd3f3c06b',
+    pos: 0,
+    amount: 5.46,
+    satoshis: 546,
+    tokenid: 'nexa:tptlgmqhvmwqppajq7kduxenwt5ljzcccln8ysn9wdzde540vcqqqcra40x0x',
+    tokenidHex: '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000',
+    tokens: 100000000,
+    isToken: true
+  },
+  {
+    height: 303280,
+    outpoint: 'e6cecbc1c67d3b8587986abc768f2be946d3515442e61b3869953807dae69579',
+    txid: '6af1d65fdc3a858ff8d1ce2044532f3765d4848eba1e8ae08609519436793e37',
+    pos: 2,
+    amount: 49910.15,
+    satoshis: 4991015,
+    isToken: false
+  }
+]
+*/
+```
+
+#### Option #2: Import from (Core Library) Method
+
+```js
+import Nexa from 'nexajs'
+
+const myAddresses = [
+  'nexa:nqtsq5g5sjkqk7wzd9wwh9423rr0tda7m027ryljkfy84cjz',
+  'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
+]
+
+await Nexa.listUnspent(myAddresses, myHandler)
+```
+
 ### `watchAddress(string|array)`
 
 Allows you to monitor ALL on-chain activity for an Address.
 
-#### Option #1: Import from a (Package) Method
+#### Option #1: Import from (Package) Method
 
-> ___NOTE:__ This is the recommended option._
+> __NOTE:__ This is the recommended option.
 
 ```js
 import { watchAddress } from '@nexajs/address'
@@ -120,11 +176,11 @@ const myHandler = (updatedInfo) => {
     console.log(updatedInfo)
 }
 
-const cleanup = watchAddress(myAddress, myHandler)
+const cleanup = await watchAddress(myAddress, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
-#### Option #2: Import from the Core Library
+#### Option #2: Import from (Core Library) Method
 
 ```js
 import Nexa from 'nexajs'
@@ -134,7 +190,7 @@ const myAddresses = [
   'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
 ]
 
-const cleanup = Nexa.watchAddress(myAddresses, myHandler)
+const cleanup = await Nexa.watchAddress(myAddresses, myHandler)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```
 
@@ -165,6 +221,6 @@ const params = {
   },
 }
 
-const cleanup = watchAddress(params)
+const cleanup = await watchAddress(params)
 // cleanup() // Execute to cancel (and cleanup) an Address subscription.
 ```

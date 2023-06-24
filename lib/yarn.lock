@@ -516,10 +516,10 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.6.21":
-  version "23.6.21"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.6.21.tgz#35247e6745bf53bf10db587e7ee440a066d578d5"
-  integrity sha512-liJZQAD9Rqth1gVapsNXHpz9EiAZblbVR3uE/foRZAWw6Y24kdF1x6n2y0iditpc/9kDNz13yqITs0oYwDp2rQ==
+"@nexajs/address@23.6.23":
+  version "23.6.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.6.23.tgz#ebe3e2381208f35636e572692964d96b68624d80"
+  integrity sha512-qtnsQzz7hrHMHp2lqspUn8yxIgvmVhdJDQ4GlKDjcBLBlUrGjSAcf2uRoANVsFv+X18JSNS0k/CYj1ibc+CHug==
   dependencies:
     "@nexajs/rostrum" "23.6.21"
     big-integer "1.6.51"
