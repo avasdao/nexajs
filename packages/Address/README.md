@@ -156,7 +156,7 @@ const myAddresses = [
   'nexa:nqtsq5g5lsgc2yns89kjp2ws4u7wk2d3lvzjznt3v8k2td59',
 ]
 
-await Nexa.listUnspent(myAddresses, myHandler)
+await Nexa.listUnspent(myAddresses)
 ```
 
 ### `watchAddress(string|array)`
