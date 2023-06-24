@@ -102,7 +102,7 @@ Disassembles a Base58-encoded Nexa address.
 
 Retrieve the latest on-chain data about an Address.
 
-_see [Address Details](#address-details) above_
+_see [Data Schema](#data-schema) above_
 
 ### `listUnspent(string|array)`
 
