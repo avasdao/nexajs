@@ -107,12 +107,14 @@ export class Transaction {
         })
     }
 
-    addOutput(_receiver, _satoshis = null) {
+    addOutput(_receiver, _satoshis = null, _tokenid = null, _tokens = null) {
         if (_satoshis !== null) {
             // TODO Validate output.
             this._outputs.push({
                 address: _receiver,
                 satoshis: _satoshis,
+                tokenid: _tokenid,
+                tokens: _tokens,
             })
         } else {
             // TODO Validate output.

@@ -6,10 +6,14 @@ const debug = debugFactory('nexa:token')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
+import _getDustAmount from './src/getDustAmount.js'
 import _getTopTokens from './src/getTopTokens.js'
+import _sendToken from './src/sendToken.js'
 
 /* Export (local) modules. */
+export const getDustAmount = _getDustAmount
 export const getTopTokens = _getTopTokens
+export const sendToken = _sendToken
 
 
 /**
@@ -45,6 +49,7 @@ Nexa.Token = Token
 
 /* Initialize Token modules. */
 Nexa.getTopTokens = getTopTokens
+Nexa.sendToken = sendToken
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
