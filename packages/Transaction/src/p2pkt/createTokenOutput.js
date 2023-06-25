@@ -44,7 +44,13 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
     scriptAmount = encodeDataPush(scriptAmount)
 
     if (_tokenid) {
-        lockingBytecode = scriptAmount
+        lockingBytecode = new Uint8Array([
+            ...encodeDataPush(hexToBin(_tokenid)),
+            ...scriptAmount,
+            ...decodeAddress(_address).hash.slice(2), // remove 1700
+        ])
+
+        lockingBytecode = encodeDataPush(lockingBytecode)
     } else {
         lockingBytecode = decodeAddress(_address).hash
     }

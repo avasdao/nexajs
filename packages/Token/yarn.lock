@@ -4,6 +4,8 @@
 
 "@nexajs/provider@23.6.21":
   version "23.6.21"
+  resolved "https://registry.npmjs.org/@nexajs/provider/-/provider-23.6.21.tgz"
+  integrity sha512-qin/4nKNStmt/oq26zsXjofY6O8Y6D0TkgJn0Rp5mxY3Ri05tg+zEarkynurgxbmHXwf8S2M4f4YScN+BD4Eyw==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
