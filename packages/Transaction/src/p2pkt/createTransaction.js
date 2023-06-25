@@ -1,8 +1,6 @@
-/* Import modules. */
-import { binToHex } from '@bitauth/libauth'
-
 /* Import (library) modules. */
 import { parseWif } from '@nexajs/hdnode'
+import { binToHex } from '@nexajs/utils'
 
 /* Import (local) modules. */
 import encodeTransaction from '../REF/encodeTransaction.js'
@@ -22,14 +20,17 @@ import unlockInputMulti from './unlockInputMulti.js'
  *
  * @returns {Promise<Output>}	The OP_RETURN output script.
  */
-export default async (privateKeyWifs, unspentOutputs, outputs) => {
+export default async (_privateKeyWifs, _unspentOutputs, _outputs) => {
+    /* Initialize WIFs. */
     const wifs = []
 
-    for (let i = 0; i < privateKeyWifs.length; i++) {
+    /* Handle WIFs. */
+    for (let i = 0; i < _privateKeyWifs.length; i++) {
         /* Set WIF. */
-        const wif = privateKeyWifs[i]
+        const wif = _privateKeyWifs[i]
 
-        if (Array.isArray(privateKeyWifs[0])) {
+        /* Validate array. */
+        if (Array.isArray(_privateKeyWifs[0])) {
             for (let j = 0; j < wif.length; j++) {
                 if (!wif[j]) {
                     continue
@@ -69,19 +70,20 @@ export default async (privateKeyWifs, unspentOutputs, outputs) => {
     }
 
     // NOTE: Convert all coins to the Libauth Input format (unsigned).
-    const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
+    const inputs = [ ..._unspentOutputs ].map(createUnsignedInput)
 
     /* Assemble the unsigned transaction. */
     // see: https://spec.nexa.org/protocol/blockchain/transaction
     const transaction = {
         version: 0,
         inputs,
-        outputs,
+        outputs: _outputs,
         locktime: 0, // FIXME: We must add current block height as a new method param
     }
     // console.log('Unsigned (encoded) tx:', binToHex(encodeTransaction(transaction)))
+// FIXME FOR DEV PURPOSES ONLY
 const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28547d7c1dd4762103802a8952f26f69fdd2301c7f91571f56165ba8af5dc0f5272ae23af226774856210293112f13c7295880317a16e8b8552e8d5d3fc9ff28bdade2e9532ffa063928cd53af'
-    if (Array.isArray(privateKeyWifs[0])) {
+    if (Array.isArray(_privateKeyWifs[0])) {
         // Sign all inputs and add the generated unlocking scripts to the transaction.
         // eslint-disable-next-line require-atomic-updates
         transaction.inputs = await Promise.all(
@@ -114,9 +116,9 @@ const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28
         )
     }
 
-    // Hex encode the built transaction.
-    const encodedTransaction = encodeTransaction(transaction) // FIXME Prepend (0) version.
+    /* Encode the built transaction. */
+    const encodedTransaction = encodeTransaction(transaction)
 
-    // Return the encoded transaction.
+    /* Return the encoded transaction. */
     return encodedTransaction
 }

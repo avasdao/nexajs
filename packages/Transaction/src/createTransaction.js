@@ -1,5 +1,6 @@
 /* Import modules. */
 import createDataOutput from './p2pkt/createDataOutput.js'
+import createTokenOutput from './p2pkt/createTokenOutput.js'
 import createTransaction from './p2pkt/createTransaction.js'
 import createValueOutput from './p2pkt/createValueOutput.js'
 // import createDataOutput from './p2pkh/createDataOutput.js'
@@ -31,10 +32,21 @@ export default async (
     for (let i = 0; i < _receivers.length; i++) {
         /* Set receiver. */
         const receiver = _receivers[i]
-        // console.log('RECEIVER', receiver)
+        console.log('RECEIVER', receiver)
 
-        /* Handle value output. */
-        if (receiver.address) {
+        /* Handle token output. */
+        if (receiver.tokenid) {
+            /* Add the value output. */
+            // NOTE: Miner fee is deducted from output value.
+            outputs.push(
+                await createTokenOutput(
+                    receiver.address,
+                    receiver.satoshis,
+                    receiver.tokenid,
+                    receiver.tokens,
+                )
+            )
+        } else if (receiver.address) {
             /* Add the value output. */
             // NOTE: Miner fee is deducted from output value.
             outputs.push(

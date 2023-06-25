@@ -1,10 +1,15 @@
 /* Import modules. */
 import {
     bigIntToBinUint64LE,
-    binToHex
 } from '@bitauth/libauth'
 
 import { decodeAddress } from '@nexajs/address'
+
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
+
 
 /**
  * Create a transaction P2PKH output with the given value.
@@ -16,22 +21,26 @@ import { decodeAddress } from '@nexajs/address'
  *
  * @returns {Promise<Output>} The P2PKT output script.
  */
-export default async (address, amount) => {
-    // console.log('\n  Receiving address:', address)
-    // console.log('  Receiving address (decoded):\n', decodeAddress(address))
+export default async (_address, _satoshis, _tokenid, _tokens) => {
+    console.log('\n  Receiving address:', _address)
+    console.log('\n  Receiving satoshis:', _satoshis)
+    console.log('\n  Receiving token id:', _tokenid)
+    console.log('\n  Receiving # tokens:', _tokens)
 
-    const lockingBytecode = decodeAddress(address).hash
-    // console.log('  lockingBytecode (hex):', binToHex(lockingBytecode))
+    const lockingBytecode = decodeAddress(_address).hash
+    console.log('\n  lockingBytecode (hex):', binToHex(lockingBytecode))
 
-    /* Create the output. */
-    const valueOutput = {
-        // lockingBytecode: await getLockingBytecodeFromAddress(address),
+    /* Create (token) output. */
+    const tokenOutput = {
         lockingBytecode,
-        amount: bigIntToBinUint64LE(BigInt(amount)),
+        amount: bigIntToBinUint64LE(BigInt(_satoshis)),
+        tokenidHex: hexToBin(_tokenid),
+        tokens: bigIntToBinUint64LE(BigInt(_tokens)),
     }
+    console.log('\n  tokenOutput:', tokenOutput)
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.
 
     /* Return the output. */
-    return valueOutput
+    return tokenOutput
 }

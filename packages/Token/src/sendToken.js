@@ -23,15 +23,30 @@ import DUST_SATOSHIS from './getDustAmount.js'
  *   - satoshis
  *   - outpoint
  */
-export default async (_tokens, _receivers, _autoFee = true) => {
-    debug('Sending tokens', _tokens, _receivers)
-    // console.log('Sending tokens', _tokens, _receivers)
+export default async (_coins, _tokens, _receivers, _autoFee = true) => {
+    debug('Sending tokens', _coins, _tokens, _receivers)
+    // console.log('Sending tokens', _coins, _tokens, _receivers)
 
-    /* Initialize token. */
+    /* Initialize coins. */
+    let coins
+
+    /* Initialize tokens. */
     let tokens
 
     /* Initialize receivers. */
     let receivers
+
+    /* Validate coin. */
+    if (_coins) {
+        /* Validate coins. */
+        if (Array.isArray(_coins)) {
+            coins = _coins
+        } else {
+            coins = [_coins]
+        }
+    } else {
+        throw new Error(`The coin(s) provided are invalid [ ${JSON.stringify(_coins)} ]`)
+    }
 
     /* Validate token. */
     if (_tokens) {
@@ -69,10 +84,27 @@ export default async (_tokens, _receivers, _autoFee = true) => {
         )
     })
 
+    /* Handle coins. */
+    coins.forEach(_coin => {
+        /* Add input. */
+        transaction.addInput(
+            _coin.outpoint,
+            _coin.satoshis,
+        )
+    })
+
     /* Handle receivers. */
     receivers.forEach(_receiver => {
-        /* Handle (value) outputs. */
-        if (_receiver.address) {
+        /* Handle (token) outputs. */
+        if (_receiver.tokenid) {
+            /* Add (token) output. */
+            transaction.addOutput(
+                _receiver.address,
+                DUST_SATOSHIS,
+                _receiver.tokenid,
+                _receiver.tokens,
+            )
+        } else if (_receiver.address) {
             /* Add (value) output. */
             transaction.addOutput(
                 _receiver.address,
@@ -89,16 +121,25 @@ export default async (_tokens, _receivers, _autoFee = true) => {
         }
     })
 
-    const wifs = tokens.map(_token => {
+    const wifsCoins = coins.map(_coin => {
+        return _coin.wif || _coin.wifs
+    })
+
+    const wifsTokens = tokens.map(_token => {
         return _token.wif || _token.wifs
     })
-    // console.log('WIFS', wifs)
+
+    const wifs = [
+        ...wifsCoins,
+        ...wifsTokens,
+    ]
+    console.log('WIFS', wifs)
 
     // TODO Add (optional) miner fee.
     // FIXME Allow WIFs for each input.
     await transaction.sign(wifs)
 
-    console.log('\n  Transaction (hex)', transaction.raw)
+    return console.log('\n  Transaction (hex)', transaction.raw)
     // console.log('\n  Transaction (json)', transaction.json)
 
     // Broadcast transaction
