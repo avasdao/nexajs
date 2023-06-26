@@ -1,7 +1,7 @@
 {
   "name": "@nexajs/wallet",
-  "version": "23.5.17",
-  "description": "Manage an collection of assets.",
+  "version": "23.6.25",
+  "description": "Manage a collection of assets spread across multiple blockchains.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
@@ -13,6 +13,7 @@
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.5.15",
     "@nexajs/purse": "23.5.17",
+    "@nexajs/token": "23.6.24",
     "debug": "4.3.4",
     "events": "3.3.0"
   }

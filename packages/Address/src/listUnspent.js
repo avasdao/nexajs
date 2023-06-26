@@ -102,7 +102,7 @@ const listNexaUnspent = async (_address) => {
                 satoshis: _unspent.value,
                 tokenid: token.group,
                 tokenidHex: token.token_id_hex,
-                tokens: token.token_amount,
+                tokens: token.token_amount.toString(), // NOTE: This is a BigInt.
                 isToken: true,
             }
         } else {
