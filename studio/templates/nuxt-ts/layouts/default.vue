@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: 'Blank — Nexa Studio',
+    title: 'PROJECT_NAME — Nexa Studio',
     meta: [
         { name: 'description', content: 'Nexa Studio makes building your next BIG idea effortless.' }
     ],
@@ -11,6 +11,16 @@ import { useSystemStore } from '@/stores/system'
 
 /* Initialize System. */
 const System = useSystemStore()
+
+onBeforeMount(() => {
+    System.$state = JSON.parse(localStorage.getItem('system'))
+    // add additional states here...
+})
+
+watch(System.$state, (_state) => {
+    localStorage.setItem('system', JSON.stringify(_state))
+})
+// watch additional states here...
 
 // onMounted(() => {
 //     console.log('Mounted!')
@@ -25,15 +35,5 @@ const System = useSystemStore()
 </script>
 
 <template>
-    <main class="max-w-7xl mx-auto py-5">
-        <h1 class="text-5xl font-medium">
-            Blank
-        </h1>
-
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
-        </p>
-    </main>
-
-    <Footer />
+    <slot />
 </template>
