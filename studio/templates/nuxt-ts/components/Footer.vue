@@ -5,7 +5,7 @@ const { projectid, projectName } = await $fetch('/api/v1/project')
 </script>
 
 <template>
-    <footer class="mt-20 py-5 max-w-7xl mx-auto">
+    <footer class="w-full mt-20 py-5 max-w-7xl mx-auto">
         <div class="inset-0 flex items-center" aria-hidden="true">
             <div class="w-full border-t border-gray-300"></div>
         </div>
