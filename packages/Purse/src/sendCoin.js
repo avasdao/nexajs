@@ -8,7 +8,7 @@ import { broadcast } from '@nexajs/provider'
 import { Transaction } from '@nexajs/transaction'
 
 /* Set constants. */
-import DUST_SATOSHIS from './getDustAmount.js'
+import DUST_LIMIT from './getDustLimit.js'
 
 /**
  * Send Coin
@@ -19,19 +19,23 @@ import DUST_SATOSHIS from './getDustAmount.js'
  *       and subtracted from the transaction value.
  *
  * Coin
- *   - wif
- *   - satoshis
  *   - outpoint
+ *   - satoshis
+ *   - wif
  */
-export default async (_coins, _receivers, _autoFee = true) => {
+export default async (_coins, _receivers, _feeRate = 2.0) => {
     debug('Sending coins', _coins, _receivers)
     // console.log('Sending coins', _coins, _receivers)
 
-    /* Initialize coin. */
+    /* Initialize locals. */
+    let address
     let coins
-
-    /* Initialize receivers. */
+    let feePerRecipient
     let receivers
+    let satoshis
+    let transaction
+    let unspentSatoshis
+    let wifs
 
     /* Validate coin. */
     if (_coins) {
@@ -46,79 +50,52 @@ export default async (_coins, _receivers, _autoFee = true) => {
     }
 
     /* Validate receivers. */
-    if (Array.isArray(_receivers)) {
-        receivers = _receivers
+    if (_receivers) {
+        if (Array.isArray(_receivers)) {
+            receivers = _receivers
+        } else {
+            receivers = [_receivers]
+        }
     } else {
-        receivers = [_receivers]
+        throw new Error(`The receiver(s) provided are invalid [ ${JSON.stringify(_receivers)} ]`)
     }
 
-    /* Set satoshis. */
-    // const satoshis = coins[0].satoshis
-
-    /* Validate satoshis (sending to receiver). */
-    // if (!satoshis) {
-    //     throw new Error('No transaction value.')
-    // }
-
     /* Initialize (initial) transaction satoshis. */
-    // NOTE: It's the original satoshis - 1 sat/byte for tx size
-    // FIXME: Recommendation is to use 1.1 sat/byte
-    let txAmount = 0
+    satoshis = 0
 
     /* Calculate the total balance of the unspent outputs. */
-    // const unspentSatoshis = _unspents
-    //     .reduce(
-    //         (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
-    //     )
+    unspentSatoshis = _unspents
+        .reduce(
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+        )
 
     /* Handle all receivers. */
-    // receivers.forEach(_receiver => {
-    //     /* Validate receiver. */
-    //     if (!_receiver.address) {
-    //         throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
-    //     }
-    //
-    //     if (!_receiver.satoshis) {
-    //         throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
-    //     }
-    //
-    //     /* Set receipient address. */
-    //     // TODO: Add protection against accidental legacy address.
-    //     const address = _receiver.address
-    //
-    //     /* Initialize satoshis. */
-    //     let satoshis = null
-    //
-    //     if (_autoFee) {
-    //         /* Calculate fee per recipient. */
-    //         // NOTE: Fee is split evenly between all recipients.
-    //         const feePerRecipient = Math.ceil(byteCount / receivers.length)
-    //
-    //         /* Calculate satoshis. */
-    //         satoshis = _receiver.satoshis - feePerRecipient
-    //
-    //         /* Add receiver to transaction. */
-    //         transaction.to(address, satoshis)
-    //     } else {
-    //         /* Set satoshis. */
-    //         satoshis = _receiver.satoshis
-    //
-    //         /* Add receiver to transaction. */
-    //         transaction.to(address, satoshis)
-    //     }
-    //
-    //     /* Calculate transaction total. */
-    //     txAmount += satoshis
-    // })
-    // debug('Transaction satoshis (incl. fee):', txAmount)
+    receivers.forEach(_receiver => {
+        /* Validate receiver. */
+        if (!_receiver.address) {
+            throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
+        }
+
+        if (!_receiver.satoshis) {
+            throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
+        }
+
+        /* Set receipient address. */
+        // TODO: Add protection against accidental legacy address.
+        address = _receiver.address
+
+        /* Calculate transaction total. */
+        satoshis += _receiver.satoshis
+    })
+    debug('Transaction satoshis (incl. fee):', satoshis)
 
     /* Validate dust amount. */
-    // if (txAmount < DUST_SATOSHIS) {
-    //     throw new Error(`Amount is too low. Minimum is [ ${DUST_SATOSHIS} ] satoshis.`)
-    // }
+    if (satoshis < DUST_LIMIT) {
+        throw new Error(`Amount is too low. Minimum is [ ${DUST_LIMIT} ] satoshis.`)
+    }
 
     /* Create new transaction. */
-    const transaction = new Transaction()
+    transaction = new Transaction()
 
     /* Handle coins. */
     coins.forEach(_coin => {
@@ -149,7 +126,7 @@ export default async (_coins, _receivers, _autoFee = true) => {
         }
     })
 
-    const wifs = coins.map(_coin => {
+    wifs = coins.map(_coin => {
         return _coin.wif || _coin.wifs
     })
     // console.log('WIFS', wifs)

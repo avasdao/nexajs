@@ -8,12 +8,12 @@ import { v4 as uuidv4 } from 'uuid'
 
 /* Import (local) modules. */
 import _getCoins from './src/getCoins.js'
-import _getDustAmount from './src/getDustAmount.js'
+import _getDustLimit from './src/getDustLimit.js'
 import _sendCoin from './src/sendCoin.js'
 
 /* Export (local) modules. */
 export const getCoins = _getCoins
-export const getDustAmount = _getDustAmount
+export const getDustLimit = _getDustLimit
 export const send = _sendCoin // alias
 export const sendCoin = _sendCoin
 
@@ -78,7 +78,7 @@ Nexa.Purse = Purse
 
 /* Initialize Purse modules. */
 Nexa.getCoins = getCoins
-Nexa.getDustAmount = getDustAmount
+Nexa.getDustLimit = getDustLimit
 Nexa.send = send // alias
 Nexa.sendCoin = sendCoin
 

@@ -8,7 +8,7 @@ import { broadcast } from '@nexajs/provider'
 import { Transaction } from '@nexajs/transaction'
 
 /* Set constants. */
-import DUST_SATOSHIS from './getDustAmount.js'
+import DUST_LIMIT from './getDustLimit.js'
 
 /**
  * Send Token
@@ -100,7 +100,7 @@ export default async (_coins, _tokens, _receivers, _autoFee = true) => {
             /* Add (token) output. */
             transaction.addOutput(
                 _receiver.address,
-                DUST_SATOSHIS,
+                DUST_LIMIT,
                 _receiver.tokenid,
                 _receiver.tokens,
             )
