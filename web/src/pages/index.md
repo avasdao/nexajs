@@ -74,7 +74,7 @@ If you are NOT using a Package Manager like [Webpack](https://webpack.js.org/) o
 
 ---
 
-## Create a Nexa dApp
+## Create a NEW Nexa dApp
 
 Setup takes just a few minutes to configure your features. The build and deployment process takes less than 60 seconds.
 
@@ -89,6 +89,8 @@ yarn create nexa
 ```shell
 pnpm create nexa
 ```
+
+![NPM Create Nexa](/screenshots/npm-create-nexa.png)
 
 The default setup takes just 2 minutes to build and deploy with the following features:
 
