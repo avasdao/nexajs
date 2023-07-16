@@ -41,7 +41,8 @@ export class Transaction {
         if (_params?.feeRate) {
             this._feeRate = _params.feeRate
         } else {
-            this._feeRate = 1.1 // 1.1 satoshis per byte
+            // NOTE: This is the new Qt default (1.0/byte is for consolidation).
+            this._feeRate = 2.0 // 2.0 satoshis per byte
         }
 
         /* Validate lock time. */
