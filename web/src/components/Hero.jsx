@@ -17,9 +17,10 @@ const code = `npm create nexa
 Your app is now running at http://127.0.0.1:3000`
 
 const tabs = [
-    { name: 'JS Library', isActive: false },
-    { name: 'App Creator', isActive: true },
-    { name: 'App Server', isActive: false },
+    { name: 'Create', isActive: true },
+    { name: 'Test', isActive: false },
+    { name: 'Publish', isActive: false },
+    { name: 'Manage', isActive: false },
 ]
 
 function TrafficLightsIcon(props) {
