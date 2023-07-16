@@ -243,12 +243,12 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.5.24":
-  version "23.5.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.24.tgz#8a80119cbd95f3946cf9e54db80b8ccdaaf1b583"
-  integrity sha512-hXeeHyjT+/a0bOlAJ9dnfzjUNVnVjwLGJxa9tHBPU8ZQlmT0TrKi3c/biu79x4LN4vwCRdiHSF10ZvrVx1SM7A==
+"@nexajs/address@23.6.23":
+  version "23.6.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.6.23.tgz#ebe3e2381208f35636e572692964d96b68624d80"
+  integrity sha512-qtnsQzz7hrHMHp2lqspUn8yxIgvmVhdJDQ4GlKDjcBLBlUrGjSAcf2uRoANVsFv+X18JSNS0k/CYj1ibc+CHug==
   dependencies:
-    "@nexajs/rostrum" "23.5.24"
+    "@nexajs/rostrum" "23.6.21"
     big-integer "1.6.51"
     debug "4.3.4"
     graphql "16.6.0"
@@ -268,7 +268,7 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@23.5.15":
+"@nexajs/hdnode@^23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.5.15.tgz#78dec2cc947d1f8a6095c162bbb70c1851182a00"
   integrity sha512-nAmUvj51ACSKrBdMOtU4UJyCPB0eztpQyrCAk/KePWFOKSDwrwoBCUNBFRV/bqeuPyGJ53hL2Z2ziaW7fKIjlg==
@@ -290,10 +290,10 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/rostrum@23.5.24":
-  version "23.5.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.24.tgz#060c7f717dbcebd7baf16338c26c0a9d6c7580c0"
-  integrity sha512-tzlwxP+DChHNgZijAu3zN6AlxEzLMI/hWa8jzWkEl2kN3XpKAHjhCGPjDo9fvGLKTCXaBqRRtvb3tK427YZufA==
+"@nexajs/rostrum@23.6.21":
+  version "23.6.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.6.21.tgz#a87a45d79644b844d053affd6b825d6b20fce108"
+  integrity sha512-czMS3o1gVXLS5VOk0Izr1KBZnputiAp3F+LxJKTdIczxhn7cGXwxKFgKxjqIIbXBTuzBevj3eiWUfUnTEphLlw==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
@@ -301,14 +301,14 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@23.5.15":
-  version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.5.15.tgz#6cc197e13a30b9eb31f53afd6cc0c3319d91c955"
-  integrity sha512-yAohX0s03mWPF6o/N5ugNDQKQ7K3JHEtZOupQ4zKReD3kLnamkxJ2wl/uHDfjxCtTUQlBySvFYL0/d5WAepeNA==
+"@nexajs/script@23.7.15":
+  version "23.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.7.15.tgz#60a59d968dd962ea5b70759cb9312fca307e0bb9"
+  integrity sha512-AltfQDu9LDu3q35TGtrHzGVpk3Jw4xfdKVkKB5SYI8jHmGVQca8JiYKFgELBwLxr4Z52ZeJsvuWAUzR9nKITEw==
   dependencies:
     debug "4.3.4"
 
-"@nexajs/utils@23.5.15":
+"@nexajs/utils@23.5.15", "@nexajs/utils@^23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.5.15.tgz#d4773ecf37b6bc10b35f4c4aa6be12ee721c7763"
   integrity sha512-rDw49tjDJ6mqYQEEHeLtfMPZq8QFOzdFarYXz1Pa94k37kUKdxxSoZWdDnGKfFD7ec4Zm7BvcTp4AxAuvlMUrw==
