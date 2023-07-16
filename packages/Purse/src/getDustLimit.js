@@ -8,7 +8,4 @@
  *   - https://bitcoin.stackexchange.com/a/71782
  *   - https://bitcoin.stackexchange.com/a/86069
  */
-export default () => {
-    /* Return dust amount. */
-    return 546
-}
+export default 546

@@ -3,9 +3,13 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:script')
 
 /* Import (local) modules. */
+import _decodeNullData from './src/decodeNullData.js'
+import _encodeNullData from './src/encodeNullData.js'
 import _OP from './src/Opcodes.js'
 
 /* Export (local) modules. */
+export const decodeNullData = _decodeNullData
+export const encodeNullData = _encodeNullData
 export const OP = _OP
 
 
@@ -40,6 +44,8 @@ const Nexa = {}
 Nexa.Script = Script
 
 /* Initialize Script modules. */
+Nexa.decodeNullData = decodeNullData
+Nexa.encodeNullData = encodeNullData
 Nexa.OP = OP
 
 /* Export Nexa to globalThis. */

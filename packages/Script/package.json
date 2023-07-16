@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/script",
-  "version": "23.5.15",
+  "version": "23.7.15",
   "description": "Script utilities for advanced transactions, including 'wise' contracts.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
