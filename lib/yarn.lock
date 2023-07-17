@@ -604,11 +604,12 @@
     events "3.3.0"
     uuid "9.0.0"
 
-"@nexajs/purse@23.6.21":
-  version "23.6.21"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.6.21.tgz#c3cacf06b0949126bf0876d73d1afe0cb9a06973"
-  integrity sha512-Yq8n457Rtd0sa/XEQJZ6MuF3ycGauv9bUa7esIiDXChFZNpChgRk0sCH18jjRifu75SqYVPwVgGy1Nk4YwTjAw==
+"@nexajs/purse@23.7.16":
+  version "23.7.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.7.16.tgz#b111b3348f79ffee073f9b82c7daa130eb87ceab"
+  integrity sha512-HmfaDgRydk+TUG+p8mMVAu/PbqJoQh6mJzl/kN1YR4XdupvXBG9EeebfCkiiDOQwUs3gt05F5s+n0BJZxjhPhQ==
   dependencies:
+    "@nexajs/address" "23.6.23"
     "@nexajs/provider" "23.6.21"
     "@nexajs/transaction" "23.5.25"
     debug "4.3.4"
