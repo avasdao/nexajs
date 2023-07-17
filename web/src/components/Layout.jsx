@@ -21,15 +21,6 @@ const navigation = [
         ],
     },
     {
-        title: 'Library Packages',
-        links: [
-            { title: 'Introduction', href: '/packages' },
-            { title: 'Address', href: '/pkg/address' },
-            { title: 'Rostrum', href: '/pkg/rostrum' },
-            { title: 'Wallet', href: '/pkg/wallet' },
-        ],
-    },
-    {
         title: 'Client-side / Web browser',
         links: [
             { title: 'Introduction', href: '/client' },
@@ -48,6 +39,15 @@ const navigation = [
         title: 'Server-side / Deno',
         links: [
             { title: 'Introduction', href: '/deno' },
+        ],
+    },
+    {
+        title: 'Library Packages',
+        links: [
+            { title: 'Introduction', href: '/packages' },
+            { title: 'Address', href: '/pkg/address' },
+            { title: 'Rostrum', href: '/pkg/rostrum' },
+            { title: 'Wallet', href: '/pkg/wallet' },
         ],
     },
     {

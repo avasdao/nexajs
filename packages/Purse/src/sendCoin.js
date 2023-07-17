@@ -163,7 +163,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
         feeTotalWithChange = ((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate
-        console.log('FEE TOTAL (w/ change):', feeTotal)
+        console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */
         if ((unspentSatoshis - satoshis - feeTotalWithChange) >= DUST_LIMIT) {
