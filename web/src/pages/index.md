@@ -47,7 +47,7 @@ The default setup takes just 2 minutes to build and deploy with the following fe
 
 {% callout title="You should know!" %}
 Nexa Studio allows you to choose from a full suite of features, including: charts & graphs, EVM-chain support, database plugins and more...
-  {% /callout %}
+{% /callout %}
 
 
 ### Managing Your Project
