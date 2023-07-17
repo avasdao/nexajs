@@ -10,6 +10,8 @@ import { Transaction } from '@nexajs/transaction'
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
 
+const TYPE1_OUTPUT_LENGTH = 33
+
 /**
  * Send Coin
  *
@@ -29,8 +31,11 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
 
     /* Initialize locals. */
     let address
+    let change
     let coins
-    let feePerRecipient
+    let feeTotal
+    let feeTotalWithChange
+    let receiver
     let receivers
     let satoshis
     let transaction
@@ -63,26 +68,21 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     /* Initialize (initial) transaction satoshis. */
     satoshis = 0
 
-    /* Calculate the total balance of the unspent outputs. */
-    unspentSatoshis = _unspents
-        .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
-        )
-
-    /* Handle all receivers. */
+    /* Calculate total satoshis. */
     receivers.forEach(_receiver => {
         /* Validate receiver. */
-        if (!_receiver.address) {
-            throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
-        }
+        // if (!_receiver.address) {
+        //     throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
+        // }
 
         if (!_receiver.satoshis) {
-            throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
+            return
+            // throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
         }
 
         /* Set receipient address. */
         // TODO: Add protection against accidental legacy address.
-        address = _receiver.address
+        // address = _receiver.address
 
         /* Calculate transaction total. */
         satoshis += _receiver.satoshis
@@ -95,7 +95,9 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     }
 
     /* Create new transaction. */
-    transaction = new Transaction()
+    transaction = new Transaction({
+        feeRate: _feeRate
+    })
 
     /* Handle coins. */
     coins.forEach(_coin => {
@@ -109,7 +111,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     /* Handle receivers. */
     receivers.forEach(_receiver => {
         /* Handle (value) outputs. */
-        if (_receiver.address) {
+        if (_receiver.address && _receiver.satoshis) {
             /* Add (value) output. */
             transaction.addOutput(
                 _receiver.address,
@@ -126,6 +128,14 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
         }
     })
 
+    /* Calculate the total balance of the unspent outputs. */
+    unspentSatoshis = _coins
+        .reduce(
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+        )
+
+    // TODO CALCLATE CHANGE OUTPUT LENGTH/SIZE
+    /* Prepare WIFs. */
     wifs = coins.map(_coin => {
         return _coin.wif || _coin.wifs
     })
@@ -135,6 +145,57 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     // FIXME Allow WIFs for each input.
     await transaction.sign(wifs)
 
+    console.log('TX LENGTH', transaction.raw.length / 2)
+
+    // NOTE: 33 bytes for a Type-1 change output.
+    // FIXME: Calculate length based on address type.
+    feeTotal = (transaction.raw.length / 2) * _feeRate
+    console.log('FEE TOTAL (w/out change):', feeTotal)
+
+    /* Calculate change amount. */
+    change = (unspentSatoshis - satoshis - feeTotal)
+
+    /* Validate change amount. */
+    if (change < 0.0) {
+        throw new Error(`Oops! Insufficient funds to complete this transaction.`)
+    }
+
+    /* Validate change amount. */
+    if (change >= DUST_LIMIT) {
+        feeTotalWithChange = ((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate
+        console.log('FEE TOTAL (w/ change):', feeTotal)
+
+        /* Validate dust limit w/ additional output. */
+        if ((unspentSatoshis - satoshis - feeTotalWithChange) >= DUST_LIMIT) {
+            /* Calculate (NEW) change amount. */
+            change = (unspentSatoshis - satoshis - feeTotalWithChange)
+
+            /* Find the change receiver. */
+            receiver = receivers.find(_receiver => {
+                return _receiver.address && (typeof _receiver.satoshis === 'undefined' || _receiver.satoshis === null || _receiver.satoshis === '')
+            })
+
+            /* Validate receiver. */
+            if (receiver) {
+                console.log('FOUND CHANGE RECEIVER', receiver)
+
+                /* Add (value) output. */
+                transaction.addOutput(
+                    receiver.address,
+                    change,
+                )
+            } else {
+                // TODO Fallback to the first input/signer address
+                throw new Error('ERROR! Find a change receiver!')
+            }
+        }
+    }
+
+    // TODO Add (optional) miner fee.
+    // FIXME Allow WIFs for each input.
+    await transaction.sign(wifs)
+
+    // console.log('\n  Transaction', transaction)
     console.log('\n  Transaction (hex)', transaction.raw)
     // console.log('\n  Transaction (json)', transaction.json)
 
