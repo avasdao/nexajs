@@ -24,7 +24,9 @@ const navigation = [
         title: 'Library Packages',
         links: [
             { title: 'Introduction', href: '/packages' },
-            { title: 'Address', href: '/address' },
+            { title: 'Address', href: '/pkg/address' },
+            { title: 'Rostrum', href: '/pkg/rostrum' },
+            { title: 'Wallet', href: '/pkg/wallet' },
         ],
     },
     {

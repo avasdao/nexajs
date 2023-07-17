@@ -1,14 +1,15 @@
 ---
-title: Blank
+title: Rostrum
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
+Connect to a global network of nodes providing real-time access to Nexa blockchain data.
 
+---
 
-## Introduction
+## What is Rostrum?
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+An efficient implementation of Electrum Server for Bitcoin Cash and Nexa with token support.
 
 ### Et pariatur ab quas
 

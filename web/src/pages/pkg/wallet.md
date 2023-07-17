@@ -1,16 +1,17 @@
 ---
-title: Blank
+title: Wallet
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
+Manage your Nexa coins and token assets.
 
+---
 
 ## Introduction
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+There are a few key concepts and principles that you will need to know in order to successfully integrate this package. Read the Quick Start then follow the Examples below and you should be up and running in no time.
 
-### Et pariatur ab quas
+### Quick Start
 
 Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
