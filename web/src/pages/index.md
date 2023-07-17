@@ -1,10 +1,11 @@
 ---
 title: What is NexaJS?
-pageTitle: NexaJS Library + SDK
+pageTitle: NexaJS Library + Software Development Kit (SDK)
 description: Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
 ---
 
-The __NexaJS Library + SDK__ aims to be a modern & comprehensive toolkit for creating decentralized applications (dApps) on the [Nexa Blockchain](https://nexa.org/) and its expansive Web3 ecosystem. {% .lead %}
+The NexaJS Library + Software Development Kit (SDK) offers a [Premium Developer Experience (DX)](/dx) for creating decentralized applications (dApps) running on the [Nexa L1 blockchain](https://nexa.org/) and its expansive [Web3 L2 ecosystem](https://nexa.sh/meta). {% .lead %}
+
 
 {% quick-links %}
 
@@ -18,77 +19,21 @@ The __NexaJS Library + SDK__ aims to be a modern & comprehensive toolkit for cre
 
 {% /quick-links %}
 
-## Add Nexa to your Existing Webapp
 
-Ready to add Crypto to your current application?
+## Why NexaJS?
 
-It's easy to drop-in the NexaJS core library to your existing application, then add the individual features you need one at a time.
+NexaJS is a fully-compliant, pure JavaScript library and software development kit (SDK) offering the following KEY benefits for ALL levels of Nexa application builders:
 
-### Setup using a <script> tag in HTML
+1. Robust API with sane defaults, making development a breeze
+2. Isomorphic architecture fully supports: Browser, Server and Mobile
+3. Extensive documentation with LIVE code examples & snippets
+4. Uses WebAssembly to maximum speed, e.g. performing Schnorr signatures
+5. Compliant to ALL implemented Nexa Improvement Protocols (NIPs)
 
-To quickly get started using Nexa in your existing Webapp, simply include this tag in the <head> section of your HTML:
 
-```html
-<!-- CDN (Web2) integration solution -->
-<script src="https://cdn.nexajs.org/nexa.min.js"
-  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
-  crossorigin="anonymous"></script>
-```
+## Decentralized Application (dApp) Development
 
-__- OR -__
-
-```html
-<!-- IPFS Gateway (Web3) integration solution -->
-<script src="https://bafybeifohi5njjlohhkwcsola3346cn3ngyaqyl5bwn5k7a4mbvtzy4y3m.ipfs.dweb.link/"
-  integrity="sha384-qBLa2DVAThYbLO3kajnReZVS5cG3m3swWmBL0tNN7CxvzgRZQw/cfwsmbXOGma7K"
-  crossorigin="anonymous"></script>
-```
-
-{% callout type="note" title="Pro Builder Tip — Import Individual Packages" %}
-Although convenient to just import `nexa.min.js` and be on your way; we highly recommend that you import packages individually.
-
-This means that decide when `methods()` you want to use and then import `package-name.min.js` for a much smaller load your your application.
-
-Visit our [modules](/modules) section to learn more about importing packages.
-{% /callout %}
-
-### Setup using a package manager
-
-NexaJS is fully-supported by your favorite package manager. Choose from one of the options below to begin installation of NexaJS into your existing Webapp.
-
-```shell
-npm install --save nexajs
-```
-
-```shell
-yarn add nexajs
-```
-
-```shell
-pnpm install nexajs
-```
-
-{% callout title="You should know!" %}
-If you are NOT using a Package Manager like [Webpack](https://webpack.js.org/) or [Rollup](https://rollupjs.org/), then it is highly advised that you import individual packages, eg. [`@nexajs/rostrum`](https://github.com/avasdao/nexajs/tree/master/packages/Rostrum) to reduce your application's total package size.
-{% /callout %}
-
----
-
-## Create a NEW Nexa dApp
-
-Setup takes just a few minutes to configure your features. The build and deployment process takes less than 60 seconds.
-
-```shell
-npm create nexa
-```
-
-```shell
-yarn create nexa
-```
-
-```shell
-pnpm create nexa
-```
+Nexa Studio is an advanced toolkit for building robust, decentralized applications powered by the Nexa blockchain.
 
 ![NPM Create Nexa](/screenshots/npm-create-nexa.png)
 
@@ -102,7 +47,7 @@ The default setup takes just 2 minutes to build and deploy with the following fe
 
 {% callout title="You should know!" %}
 Nexa Studio allows you to choose from a full suite of features, including: charts & graphs, EVM-chain support, database plugins and more...
-{% /callout %}
+  {% /callout %}
 
 
 ### Managing Your Project
