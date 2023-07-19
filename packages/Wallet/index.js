@@ -7,7 +7,13 @@ import { EventEmitter } from 'events'
 
 /* Import (library) modules. */
 import { encodeAddress } from '@nexajs/address'
-import { randomBytes } from '@nexajs/crypto'
+
+import {
+    randomBytes,
+    sha256,
+    sha512,
+} from '@nexajs/crypto'
+
 import {
     deriveHdPrivateNodeFromSeed,
     encodePrivateKeyWif,
@@ -15,14 +21,15 @@ import {
     mnemonicToSeed,
 } from '@nexajs/hdnode'
 
-/* Libauth helpers. */
 import {
     binToHex,
+    hexToBin,
+} from '@nexajs/utils'
+
+/* Libauth helpers. */
+import {
     deriveHdPath,
     encodeDataPush,
-    hexToBin,
-    instantiateSha256,
-    instantiateSha512,
     instantiateSecp256k1,
     instantiateRipemd160,
 } from '@bitauth/libauth'
@@ -36,18 +43,22 @@ export const getDerivationPath = _getDerivationPath
 /* Initialize Libauth crypto interfaces. */
 let ripemd160
 let secp256k1
-let sha256
-let sha512
 let crypto
 
 /* Instantiate Libauth crypto interfaces. */
 ;(async () => {
     ripemd160 = await instantiateRipemd160()
     secp256k1 = await instantiateSecp256k1()
-    sha256 = await instantiateSha256()
-    sha512 = await instantiateSha512()
-    crypto = { ripemd160, sha256, sha512, secp256k1 }
+
+    /* Initialize crypto. */
+    crypto = {
+        ripemd160,
+        sha256: { hash: sha256 },
+        sha512: { hash: sha512 },
+        secp256k1,
+    }
 })()
+
 
 /* Set (derivation) constants. */
 // Example: m/44'/29223'/0'/0/0
@@ -55,6 +66,7 @@ let crypto
 const DEFAULT_PURPOSE = '44'
 const DEFAULT_COIN_TYPE = '29223' // (0x7227) Nexa (https://spec.nexa.org)
 const DEFAULT_ACCOUNT_IDX = '0'
+const DEFAULT_CHANGE = '0'
 const DEFAULT_ADDRESS_IDX = '0'
 
 
@@ -67,6 +79,20 @@ const WalletStatus = Object.freeze({
 	LOADING: Symbol('loading'),
 	READY: Symbol('ready'),
 })
+
+
+/**
+ * Parse (Derivation) Path
+ */
+const parsePath = (_path) => {
+    return [
+        '44',
+        'null',
+        'null',
+        'null',
+        'null',
+    ]
+}
 
 
 /**
@@ -91,10 +117,16 @@ export class Wallet extends EventEmitter {
         this._isTestnet = null
         this._hrp = null // prefix eg. bitcoincash: or nexa:
 
-        this._accountIdx = 0
-        this._addressIdx = 0
-        this._path = `m/${DEFAULT_PURPOSE}'/${DEFAULT_COIN_TYPE}'/${DEFAULT_ACCOUNT_IDX}'/${this._accountIdx}/${this._addressIdx}`
+        /* Initialize derivation path defaults. */
+        this._coinPurpose = DEFAULT_PURPOSE
+        this._coinType = DEFAULT_COIN_TYPE
+        this._accountIdx = DEFAULT_ACCOUNT_IDX
+        this._addressIdx = DEFAULT_ADDRESS_IDX
 
+        /* Initialize derivation path. */
+        this._path = `m/${this._coinPurpose}'/${this._coinType}'/${this._accountIdx}'/${DEFAULT_CHANGE}/${this._addressIdx}`
+
+        /* Initialize cryptography holders. */
         this._privateKey = null
         this._publicKey = null
         this._publicKeyHash = null
@@ -102,20 +134,23 @@ export class Wallet extends EventEmitter {
         this._xpub = null
         this._wif = null
 
+        /* Initialize UTXO holders. */
+        this._coins = []
+        this._tokens = []
+
+        /* Initialize metadata. */
         this._title = null
         this._description = null
 
-        this._wallet = {} // DEPRECATED
+        // this._wallet = {} // DEPRECATED
 
         /* Handle hex (strings) and bytes. */
-        if (_primary?.length === 32 || _primary?.length === 64) {
-            /* Set entropy. */
-            const entropy = _primary
-            // console.log('FOUND HEX OR BYTE ENTROPY', entropy)
-
+        if (Array.isArray(_primary) && _primary?.length === 32) {
+            /* Set private key. */
+            this._privateKey = _primary
+        } else if (typeof _primary === 'string' && (_primary?.length === 32 || _primary?.length === 64)) {
             this._entropy = _primary
             this._mnemonic = entropyToMnemonic(this._entropy)
-            // this._path = DEFAULT_DERIVATION_PATH
         } else if (typeof _primary === 'string') {
             const words = _primary.split(' ')
 
@@ -127,28 +162,39 @@ export class Wallet extends EventEmitter {
                 // this._path = DEFAULT_DERIVATION_PATH
             }
         } else if (_primary?.path.includes('m/') && _primary?.mnemonic) {
-            // console.log('FOUND DERIVATION PATH', _primary.path)
+            console.log('FOUND DERIVATION PATH', _primary.path)
 
+            /* Set mnemonic. */
             // TODO Add support for user-defined entropy.
             this._mnemonic = _primary.mnemonic
-            const basePath = _primary.path
 
-            // TODO Parse base/full path
+            /* Parse base/full path. */
+            let [
+                purpose,
+                coinType,
+                account,
+                change,
+                addressIdx,
+            ] = parsePath(_primary.path)
+            console.log('purpose', purpose)
+            console.log('coinType', coinType)
+            console.log('account', account)
+            console.log('change', change)
+            console.log('addressIdx', addressIdx)
 
-            this._path = basePath
+            /* Validate (BIP-44) scheme. */
+            if (_primary.path.slice(0, 2) === 'm/' && purpose === '44') {
+                /* Set (derivation) path. */
+                this._path = _primary.path
+            }
+
         } else {
-            // console.log('CREATING NEW (RANDOM) WALLET')
-
             /* Generate entropy. */
             this._entropy = randomBytes(16)
-            // console.log('ENTROPY', this._entropy)
 
             /* Derive mnemonic. */
-            this._mnemonic = entropyToMnemonic(entropy)
-            // console.log('MNEMONIC', this._mnemonic)
-
-            /* Set (derivation) path. */
-            // this._path = DEFAULT_DERIVATION_PATH
+            // NOTE: This is a 12-word seed phrase.
+            this._mnemonic = entropyToMnemonic(binToHex(this._entropy))
         }
     }
 
@@ -183,6 +229,11 @@ export class Wallet extends EventEmitter {
     }
 
     get privateKey() {
+        /* Validate private key. */
+        if (this._privateKey) {
+            return this._privateKey
+        }
+
         /* Validate mnemonic. */
         if (!this._mnemonic) {
             return null
@@ -192,7 +243,7 @@ export class Wallet extends EventEmitter {
         const seed = hexToBin(mnemonicToSeed(this._mnemonic))
 
         /* Initialize HD node. */
-        const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
+        const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
 
         /* Derive a child from the Master node */
         const child = deriveHdPath(
@@ -207,33 +258,34 @@ export class Wallet extends EventEmitter {
 
     get publicKey() {
         /* Validate private key. */
-        if (!this._privateKey) {
+        if (!this.privateKey) {
             return null
         }
 
         /* Return public key. */
-        return secp256k1.derivePublicKeyCompressed(this._privateKey)
+        return secp256k1.derivePublicKeyCompressed(this.privateKey)
     }
 
-    getAddress(_addressIdx = 0, _isChange = false) {
+    getAddress(_addressIdx = '0', _isChange) {
         /* Validate mnemonic. */
         if (!this._mnemonic) {
             return null
         }
 
         /* Set change index. */
-        const changeIdx = _isChange ? 1 : 0
+        const changeIdx = _isChange ? '1' : '0'
 
         /* Set seed. */
         const seed = hexToBin(mnemonicToSeed(this._mnemonic))
 
         /* Initialize HD node. */
-        const node = deriveHdPrivateNodeFromSeed({ sha512 }, seed)
+        const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
 
         /* Derive a child from the Master node */
         const child = deriveHdPath(
             crypto,
-            node, `m/44'/29223'/0'/${changeIdx}/${_addressIdx}`
+            node,
+            `m/${this._coinPurpose}'/${this._coinType}'/${this._accountIdx}'/${changeIdx}/${_addressIdx}`
         )
 
         /* Set private key. */
@@ -246,7 +298,7 @@ export class Wallet extends EventEmitter {
         const scriptPushPubKey = encodeDataPush(publicKey)
 
         /* Generate public key hash. */
-        const publicKeyHash = ripemd160.hash(sha256.hash(scriptPushPubKey))
+        const publicKeyHash = ripemd160.hash(sha256(scriptPushPubKey))
 
         /* Generate public key hash script. */
         const pkhScript = hexToBin('17005114' + binToHex(publicKeyHash))
@@ -266,15 +318,130 @@ export class Wallet extends EventEmitter {
         return 'nexa:YetAnotherSampleAddress'
     }
 
+    getBalances(_hasFiat) {
+        let satoshis
+        let tokens
+        let usd
+
+        satoshis = 133700
+
+        tokens = {
+            tokenid1: '333',
+            tokenid2: '88888888',
+        }
+
+        if (_hasFiat) {
+            usd = 13.37
+        }
+
+        return {
+            satoshis,
+            tokens,
+            usd,
+        }
+    }
+
+    setPathAccount(_index) {
+        /* Set account index. */
+        this._accountIdx = parseInt(_index)
+    }
+
+    setPathAddress(_index) {
+        /* Set address index. */
+        this._addressIdx = parseInt(_index)
+    }
+
+    async update(_subscribe = false, _hasFiat = false) {
+        console.info('Wallet address:', this.address)
+
+        /* Initialize locals. */
+        let unspent
+        let wif
+
+        /* Subscribe to (receiving) addresses. */
+        if (_subscribe === true) {
+            /* Subscribe to address. */
+            await subscribeAddress(this.address, async () => {
+                await this.update()
+
+                // emit to subscribers
+                this.emit('onUpdate', {
+                    balances: this.getBalances(_hasFiat),
+                    coins: this._coins,
+                    tokens: this._tokens,
+                })
+            })
+        }
+
+        /* Encode Private Key WIF. */
+        wif = encodePrivateKeyWif({ hash: sha256 }, this.privateKey, 'mainnet')
+
+        // Fetch all unspent transaction outputs for the temporary in-browser wallet.
+        unspent = await listUnspent(this.address)
+            .catch(err => console.error(err))
+        console.log('UNSPENT', unspent)
+
+        const mempool = await getAddressMempool(this.address)
+            .catch(err => console.error(err))
+        console.log('MEMPOOL', mempool)
+
+        /* Validate unspent outputs. */
+        if (unspent.length === 0) {
+            return console.error('There are NO unspent outputs available.')
+        }
+
+        /* Retrieve coins. */
+        this._coins = unspent
+            .filter(_u => _u.isToken === false)
+            .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
+            .map(_unspent => {
+                const outpoint = _unspent.outpoint
+                const satoshis = _unspent.satoshis
+
+                return {
+                    outpoint,
+                    satoshis,
+                    wif: this._wif,
+                }
+            })
+        console.log('\n  Coins:', this.coins)
+
+        /* Retrieve tokens. */
+        this._tokens = unspent
+            .filter(_u => _u.isToken === true)
+            .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
+            .map(_unspent => {
+                const outpoint = _unspent.outpoint
+                const satoshis = _unspent.satoshis
+                const tokenid = _unspent.tokenid
+                const tokens = _unspent.tokens
+
+                return {
+                    outpoint,
+                    satoshis,
+                    tokenid,
+                    tokens,
+                    wif: this._wif,
+                }
+            })
+        console.log('\n  Tokens:', this.tokens)
+    }
+
     toObject() {
+        /* Return primary details. */
         return {
             entropy: this._entropy,
             mnemonic: this._mnemonic,
             path: this._path,
+            privateKey: this.privateKey,
+            publicKey: this.publicKey,
+            address: this.address,
+            change: this.change,
         }
     }
 
     toString() {
+        /* Return mnemonic. */
         return this._mnemonic
     }
 }
