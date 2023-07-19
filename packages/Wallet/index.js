@@ -36,6 +36,7 @@ import {
 
 /* Import (local) modules. */
 import _getDerivationPath from './src/getDerivationPath.js'
+import _parseDerivationPath from './src/parseDerivationPath.js'
 
 /* Export (local) modules. */
 export const getDerivationPath = _getDerivationPath
@@ -63,9 +64,9 @@ let crypto
 /* Set (derivation) constants. */
 // Example: m/44'/29223'/0'/0/0
 // https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
-const DEFAULT_PURPOSE = '44'
-const DEFAULT_COIN_TYPE = '29223' // (0x7227) Nexa (https://spec.nexa.org)
-const DEFAULT_ACCOUNT_IDX = '0'
+const DEFAULT_PURPOSE = `44'`
+const DEFAULT_COIN_TYPE = `29223'` // (0x7227) Nexa (https://spec.nexa.org)
+const DEFAULT_ACCOUNT_IDX = `0'`
 const DEFAULT_CHANGE = '0'
 const DEFAULT_ADDRESS_IDX = '0'
 
@@ -79,20 +80,6 @@ const WalletStatus = Object.freeze({
 	LOADING: Symbol('loading'),
 	READY: Symbol('ready'),
 })
-
-
-/**
- * Parse (Derivation) Path
- */
-const parsePath = (_path) => {
-    return [
-        '44',
-        'null',
-        'null',
-        'null',
-        'null',
-    ]
-}
 
 
 /**
@@ -162,8 +149,6 @@ export class Wallet extends EventEmitter {
                 // this._path = DEFAULT_DERIVATION_PATH
             }
         } else if (_primary?.path.includes('m/') && _primary?.mnemonic) {
-            console.log('FOUND DERIVATION PATH', _primary.path)
-
             /* Set mnemonic. */
             // TODO Add support for user-defined entropy.
             this._mnemonic = _primary.mnemonic
@@ -172,22 +157,22 @@ export class Wallet extends EventEmitter {
             let [
                 purpose,
                 coinType,
-                account,
+                accountIdx,
                 change,
                 addressIdx,
-            ] = parsePath(_primary.path)
-            console.log('purpose', purpose)
-            console.log('coinType', coinType)
-            console.log('account', account)
-            console.log('change', change)
-            console.log('addressIdx', addressIdx)
+            ] = _parseDerivationPath(_primary.path)
 
-            /* Validate (BIP-44) scheme. */
-            if (_primary.path.slice(0, 2) === 'm/' && purpose === '44') {
+            /* Validate (BIP-44) schema. */
+            if (purpose && coinType && accountIdx && change && addressIdx) {
                 /* Set (derivation) path. */
                 this._path = _primary.path
-            }
 
+                /* Set (derivation) parts. */
+                this._coinPurpose = purpose
+                this._coinType = coinType
+                this._accountIdx = accountIdx
+                this._addressIdx = addressIdx
+            }
         } else {
             /* Generate entropy. */
             this._entropy = randomBytes(16)
@@ -285,7 +270,7 @@ export class Wallet extends EventEmitter {
         const child = deriveHdPath(
             crypto,
             node,
-            `m/${this._coinPurpose}'/${this._coinType}'/${this._accountIdx}'/${changeIdx}/${_addressIdx}`
+            `m/${this._coinPurpose}/${this._coinType}/${this._accountIdx}/${changeIdx}/${_addressIdx}`
         )
 
         /* Set private key. */
