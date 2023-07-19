@@ -9,6 +9,7 @@ import { Transaction } from '@nexajs/transaction'
 
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
+const TYPE1_OUTPUT_LENGTH = 33
 
 /**
  * Send Token
@@ -23,18 +24,25 @@ import DUST_LIMIT from './getDustLimit.js'
  *   - satoshis
  *   - outpoint
  */
-export default async (_coins, _tokens, _receivers, _autoFee = true) => {
-    debug('Sending tokens', _coins, _tokens, _receivers)
-    // console.log('Sending tokens', _coins, _tokens, _receivers)
+export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
+    debug('Sending tokens', _coins, _tokens, _receivers, _feeRate)
+    // console.log('Sending tokens', _coins, _tokens, _receivers, _feeRate)
 
-    /* Initialize coins. */
+    /* Initialize locals. */
+    let address
+    let change
     let coins
-
-    /* Initialize tokens. */
-    let tokens
-
-    /* Initialize receivers. */
+    let feeTotal
+    let feeTotalWithChange
+    let receiver
     let receivers
+    let satoshis
+    let tokens
+    let transaction
+    let unspentCoins
+    let unspentTokens
+    let unspentSatoshis
+    let wifs
 
     /* Validate coin. */
     if (_coins) {
@@ -68,12 +76,27 @@ export default async (_coins, _tokens, _receivers, _autoFee = true) => {
     }
 
     /* Initialize (initial) transaction satoshis. */
-    // NOTE: It's the original satoshis - 1 sat/byte for tx size
-    // FIXME: Recommendation is to use 1.1 sat/byte
-    let txAmount = 0
+    satoshis = 0
+
+    /* Calculate total satoshis. */
+    receivers.forEach(_receiver => {
+        if (_receiver.satoshis) {
+            /* Add satoshis to total. */
+            satoshis += _receiver.satoshis
+        }
+
+        if (_receiver.tokens) {
+            /* Add satoshis to total. */
+            satoshis += DUST_LIMIT
+        }
+    })
+    debug('Transaction satoshis (incl. fee):', satoshis)
+    console.log('SATOSHIS', satoshis)
 
     /* Create new transaction. */
-    const transaction = new Transaction()
+    transaction = new Transaction({
+        feeRate: _feeRate
+    })
 
     /* Handle tokens. */
     tokens.forEach(_token => {
@@ -104,7 +127,7 @@ export default async (_coins, _tokens, _receivers, _autoFee = true) => {
                 _receiver.tokenid,
                 _receiver.tokens,
             )
-        } else if (_receiver.address) {
+        } else if (_receiver.address && _receiver.satoshis) {
             /* Add (value) output. */
             transaction.addOutput(
                 _receiver.address,
@@ -121,6 +144,25 @@ export default async (_coins, _tokens, _receivers, _autoFee = true) => {
         }
     })
 
+    /* Calculate the total balance of the unspent outputs. */
+    unspentCoins = coins
+        .reduce(
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+        )
+
+    /* Calculate the total balance of the unspent outputs. */
+    unspentTokens = tokens
+        .reduce(
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+        )
+
+    unspentSatoshis = (unspentCoins + unspentTokens)
+
+    /* Validate dust amount. */
+    if (unspentSatoshis < DUST_LIMIT) {
+        throw new Error(`Amount is too low. Minimum is [ ${DUST_LIMIT} ] satoshis.`)
+    }
+
     const wifsCoins = coins.map(_coin => {
         return _coin.wif || _coin.wifs
     })
@@ -129,11 +171,63 @@ export default async (_coins, _tokens, _receivers, _autoFee = true) => {
         return _token.wif || _token.wifs
     })
 
-    const wifs = [
+    wifs = [
         ...wifsCoins,
         ...wifsTokens,
     ]
     console.log('WIFS', wifs)
+    // console.log('WIFS', wifs)
+
+    // TODO Add (optional) miner fee.
+    // FIXME Allow WIFs for each input.
+    await transaction.sign(wifs)
+
+    console.log('TX LENGTH', transaction.raw.length / 2)
+
+    // NOTE: 33 bytes for a Type-1 change output.
+    // FIXME: Calculate length based on address type.
+    feeTotal = (transaction.raw.length / 2) * _feeRate
+    console.log('FEE TOTAL (w/out change):', feeTotal)
+
+    /* Calculate change amount. */
+    change = (unspentSatoshis - satoshis - feeTotal)
+    console.log('CHANGE', change)
+
+    /* Validate change amount. */
+    if (change < 0.0) {
+        throw new Error(`Oops! Insufficient funds to complete this transaction.`)
+    }
+
+    /* Validate change amount. */
+    if (change >= DUST_LIMIT) {
+        feeTotalWithChange = ((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate
+        console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
+
+        /* Validate dust limit w/ additional output. */
+        if ((unspentSatoshis - satoshis - feeTotalWithChange) >= DUST_LIMIT) {
+            /* Calculate (NEW) change amount. */
+            change = (unspentSatoshis - satoshis - feeTotalWithChange)
+
+            /* Find the change receiver. */
+            receiver = receivers.find(_receiver => {
+                return _receiver.address && (typeof _receiver.satoshis === 'undefined' || _receiver.satoshis === null || _receiver.satoshis === '')
+            })
+
+            /* Validate receiver. */
+            if (receiver) {
+                console.log('FOUND CHANGE RECEIVER', receiver)
+
+                /* Add (value) output. */
+                transaction.addOutput(
+                    receiver.address,
+                    change,
+                )
+            } else {
+                // TODO Fallback to the first input/signer address
+                throw new Error('ERROR! Find a change receiver!')
+            }
+        }
+    }
 
     // TODO Add (optional) miner fee.
     // FIXME Allow WIFs for each input.

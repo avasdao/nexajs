@@ -9,7 +9,6 @@ import { Transaction } from '@nexajs/transaction'
 
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
-
 const TYPE1_OUTPUT_LENGTH = 33
 
 /**
@@ -26,8 +25,8 @@ const TYPE1_OUTPUT_LENGTH = 33
  *   - wif
  */
 export default async (_coins, _receivers, _feeRate = 2.0) => {
-    debug('Sending coins', _coins, _receivers)
-    // console.log('Sending coins', _coins, _receivers)
+    debug('Sending coins', _coins, _receivers, _feeRate)
+    // console.log('Sending coins', _coins, _receivers, _feeRate)
 
     /* Initialize locals. */
     let address
@@ -70,22 +69,10 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
 
     /* Calculate total satoshis. */
     receivers.forEach(_receiver => {
-        /* Validate receiver. */
-        // if (!_receiver.address) {
-        //     throw new Error(`Invalid receiver address [ ${JSON.stringify(_receiver.address)} ]`)
-        // }
-
-        if (!_receiver.satoshis) {
-            return
-            // throw new Error(`Invalid receiver value [ ${JSON.stringify(_receiver.satoshis)} ]`)
+        if (_receiver.satoshis > 0) {
+            /* Add satoshis to total. */
+            satoshis += _receiver.satoshis
         }
-
-        /* Set receipient address. */
-        // TODO: Add protection against accidental legacy address.
-        // address = _receiver.address
-
-        /* Calculate transaction total. */
-        satoshis += _receiver.satoshis
     })
     debug('Transaction satoshis (incl. fee):', satoshis)
 
@@ -129,12 +116,11 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     })
 
     /* Calculate the total balance of the unspent outputs. */
-    unspentSatoshis = _coins
+    unspentSatoshis = coins
         .reduce(
             (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
         )
 
-    // TODO CALCLATE CHANGE OUTPUT LENGTH/SIZE
     /* Prepare WIFs. */
     wifs = coins.map(_coin => {
         return _coin.wif || _coin.wifs
