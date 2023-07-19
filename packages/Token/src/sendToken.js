@@ -210,7 +210,17 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
 
             /* Find the change receiver. */
             receiver = receivers.find(_receiver => {
-                return _receiver.address && (typeof _receiver.satoshis === 'undefined' || _receiver.satoshis === null || _receiver.satoshis === '')
+                return _receiver.address &&
+                    (
+                        typeof _receiver.satoshis === 'undefined' ||
+                        _receiver.satoshis === null ||
+                        _receiver.satoshis === ''
+                    ) &&
+                    (
+                        typeof _receiver.tokens === 'undefined' ||
+                        _receiver.tokens === null ||
+                        _receiver.tokens === ''
+                    )
             })
 
             /* Validate receiver. */
