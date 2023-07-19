@@ -13,7 +13,7 @@
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.5.15",
     "@nexajs/purse": "23.7.18",
-    "@nexajs/token": "23.6.24",
+    "@nexajs/token": "23.7.18",
     "debug": "4.3.4",
     "events": "3.3.0"
   }

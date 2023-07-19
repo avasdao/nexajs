@@ -682,11 +682,15 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/token@23.5.15":
-  version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.5.15.tgz#d5782df5e98e8e49c52b7322955cdd62784f152b"
-  integrity sha512-PzRnEYl3yiPTRN2//so5QIZ3QP8Ut/1tELac2us9vnUBOhIdzst0d5th/3WSEvAYc7dyT8oFU+5f/faV54dbkQ==
+"@nexajs/token@23.7.18":
+  version "23.7.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.18.tgz#fe93e31224f657554e2cc5aa5422ab0110d13f9a"
+  integrity sha512-ciWqhlRzHKc6xucnA6YPU4FkNY2FM+JjU5wuZDIaUn3h+TpzILXY25stIa8mQ+SHg7XMHlE6x1Gz2gR2TFMjYA==
   dependencies:
+    "@nexajs/address" "23.6.23"
+    "@nexajs/hdnode" "23.5.15"
+    "@nexajs/provider" "23.6.21"
+    "@nexajs/transaction" "23.7.15"
     debug "4.3.4"
     events "3.3.0"
     node-fetch "3.3.1"
