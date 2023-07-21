@@ -32,7 +32,7 @@ export default async (
     for (let i = 0; i < _receivers.length; i++) {
         /* Set receiver. */
         const receiver = _receivers[i]
-        console.log('RECEIVER', receiver)
+        // console.log('RECEIVER', receiver)
 
         /* Handle token output. */
         if (receiver.tokenid) {

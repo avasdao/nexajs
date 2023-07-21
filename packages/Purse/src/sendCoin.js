@@ -131,12 +131,12 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     // FIXME Allow WIFs for each input.
     await transaction.sign(wifs)
 
-    console.log('TX LENGTH', transaction.raw.length / 2)
+    // console.log('TX LENGTH', transaction.raw.length / 2)
 
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
     feeTotal = (transaction.raw.length / 2) * _feeRate
-    console.log('FEE TOTAL (w/out change):', feeTotal)
+    // console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
     change = (unspentSatoshis - satoshis - feeTotal)
@@ -149,7 +149,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
         feeTotalWithChange = ((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate
-        console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
+        // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */
         if ((unspentSatoshis - satoshis - feeTotalWithChange) >= DUST_LIMIT) {
@@ -158,7 +158,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
 
             /* Find the change receiver. */
             receiver = receivers.find(_receiver => {
-                return _receiver.address && 
+                return _receiver.address &&
                     (
                         typeof _receiver.satoshis === 'undefined' ||
                         _receiver.satoshis === null ||
@@ -168,7 +168,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
 
             /* Validate receiver. */
             if (receiver) {
-                console.log('FOUND CHANGE RECEIVER', receiver)
+                // console.log('FOUND CHANGE RECEIVER', receiver)
 
                 /* Add (value) output. */
                 transaction.addOutput(
