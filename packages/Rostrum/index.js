@@ -5,6 +5,9 @@ const debug = debugFactory('nexa:rostrum')
 /* Import modules. */
 import { EventEmitter } from 'events'
 
+import _getTransaction from './src/getTransaction.js'
+import _getGenesisInfo from './src/getGenesisInfo.js'
+
 import makeRequest from './src/makeRequest.js'
 
 /* Set active connection id. */
@@ -319,84 +322,11 @@ export async function getBlock(_hash_or_height) {
     return makeRequest.bind(this)(request)
 }
 
-/**
- * (Blockchain) Get Transaction (Info)
- *
- * Return an the FULL transaction details.
- *
- * Version added: ??
- */
-export async function getTransaction(_id) {
-    debug(`Blockchain->Block->Info [ txid or txidem: ${_id} ]`)
 
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
+export const getTransaction = _getTransaction
+export const getGenesisInfo = _getGenesisInfo
+export const getTokenInfo = getGenesisInfo // Export alias.
 
-        /* Call self (via instance). */
-        return rostrum.getTransaction(_id)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.transaction.get'
-
-    /* Set parameters. */
-    const params = [
-        _id,
-        true, // NOTE: Show verbose (true).
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Token) Genesis Info
- *
- * Info from token creation transaction.
- *
- * Version added: Rostrum 6.0
- */
-export async function getGenesisInfo(_tokenid) {
-    debug(`Token->Genesis->Info [ token: ${_tokenid} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getGenesisInfo(_tokenid)
-    }
-
-    /* Set method. */
-    const method = 'token.genesis.info'
-
-    /* Set parameters. */
-    const params = [
-        _tokenid,
-        true, // NOTE: Show verbose (true).
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/* Export alias. */
-export const getTokenInfo = getGenesisInfo
 
 /**
 * (Token) Address Balance
@@ -754,7 +684,7 @@ export class Rostrum extends EventEmitter {
                 // new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
                 // TBD
             ],
-            alts: [
+            peers: [
                 new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
                 // new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
                 // TBD
@@ -777,14 +707,10 @@ export class Rostrum extends EventEmitter {
         /* Set global (shared) connection manager. */
         globalThis.Nexa.Rostrum._connMgr = this._connMgr
 
-        /* Close connection. */
-        // FIXME Should this be conditional??
-        // this._connMgr.pool[ACTIVE_CONN_ID].close()
-
         /* Handle open connection. */
         this._connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
             debug(`Connection [ ${ACTIVE_CONN_ID} ] is OPEN!`)
-            // console.log('REQUEST QUEUE', requestQueue)
+            console.info('Connected to (Rostrum) ->', ACTIVE_CONN_ID)
 
             /* Set (connection) ready flag. */
             this._connMgr.isOpen = true
@@ -903,7 +829,7 @@ export class Rostrum extends EventEmitter {
         return {
             requestQueue: this?._requestQueue,
             // pool: this?._connMgr?.pool,
-            // alts: this?._connMgr?.alts,
+            // peers: this?._connMgr?.peers,
             // requests: this?._connMgr?.requests,
             isOpen: this?._connMgr?.isOpen,
             isReady: this?._connMgr?.isReady,

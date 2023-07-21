@@ -111,7 +111,7 @@ export class Wallet extends EventEmitter {
         this._addressIdx = DEFAULT_ADDRESS_IDX
 
         /* Initialize derivation path. */
-        this._path = `m/${this._coinPurpose}'/${this._coinType}'/${this._accountIdx}'/${DEFAULT_CHANGE}/${this._addressIdx}`
+        this._path = `m/${this._coinPurpose}/${this._coinType}/${this._accountIdx}/${DEFAULT_CHANGE}/${this._addressIdx}`
 
         /* Initialize cryptography holders. */
         this._privateKey = null
@@ -234,7 +234,7 @@ export class Wallet extends EventEmitter {
         const child = deriveHdPath(
             crypto,
             node,
-            this._path
+            this.path
         )
 
         /* Return (child) private key. */
