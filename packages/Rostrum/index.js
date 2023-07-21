@@ -9,6 +9,8 @@ import _getAddressBalance from './src/getAddressBalance.js'
 // ...
 import _getTransaction from './src/getTransaction.js'
 import _getGenesisInfo from './src/getGenesisInfo.js'
+// ...
+import _getAddressTokenHistory from './src/getAddressTokenHistory.js'
 
 import makeRequest from './src/makeRequest.js'
 
@@ -45,10 +47,7 @@ export async function decodeRemoteAddress(_address) {
     const method = 'blockchain.address.decode'
 
     /* Set parameters. */
-    const params = [
-        _address,
-        true, // NOTE: Show verbose (true).
-    ]
+    const params = [ _address ]
 
     /* Build request. */
     const request = {
@@ -67,7 +66,7 @@ export async function decodeRemoteAddress(_address) {
  *
  * Version added: Rostrum 1.2
  */
-export async function getAddressFirstUse(_address) {
+export async function getAddressFirstUse(_address, _filter = 'include_tokens') {
     debug(`Blockchain->Address->FirstUse [ address: ${_address} ]`)
 
     /* Validate instance. */
@@ -76,7 +75,7 @@ export async function getAddressFirstUse(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getAddressFirstUse(_address)
+        return rostrum.getAddressFirstUse(_address, _filter)
     }
 
     /* Set method. */
@@ -85,7 +84,7 @@ export async function getAddressFirstUse(_address) {
     /* Set parameters. */
     const params = [
         _address,
-        true, // NOTE: Show verbose (true).
+        _filter,
     ]
 
     /* Build request. */
@@ -106,7 +105,7 @@ export async function getAddressFirstUse(_address) {
  *
  * Version added: Rostrum 1.4.3
  */
-export async function getAddressHistory(_address) {
+export async function getAddressHistory(_address, _filter = 'include_tokens') {
     debug(`Blockchain->Address->History [ address: ${_address} ]`)
 
     /* Validate instance. */
@@ -115,7 +114,7 @@ export async function getAddressHistory(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getAddressHistory(_address)
+        return rostrum.getAddressHistory(_address, _filter)
     }
 
     /* Set method. */
@@ -124,7 +123,7 @@ export async function getAddressHistory(_address) {
     /* Set parameters. */
     const params = [
         _address,
-        true, // NOTE: Show verbose (true).
+        _filter,
     ]
 
     /* Build request. */
@@ -144,7 +143,7 @@ export async function getAddressHistory(_address) {
  *
  * Version added: Rostrum 1.4.3
  */
-export async function getAddressMempool(_address) {
+export async function getAddressMempool(_address, _filter = 'include_tokens') {
     debug(`Blockchain->Address->Mempool [ address: ${_address} ]`)
 
     /* Validate instance. */
@@ -153,7 +152,7 @@ export async function getAddressMempool(_address) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getAddressMempool(_address)
+        return rostrum.getAddressMempool(_address, _filter)
     }
 
     /* Set method. */
@@ -162,7 +161,7 @@ export async function getAddressMempool(_address) {
     /* Set parameters. */
     const params = [
         _address,
-        true, // NOTE: Show verbose (true).
+        _filter,
     ]
 
     /* Build request. */
@@ -200,10 +199,7 @@ export async function getAddressScriptHash(_address) {
     const method = 'blockchain.address.get_scripthash'
 
     /* Set parameters. */
-    const params = [
-        _address,
-        true, // NOTE: Show verbose (true).
-    ]
+    const params = [ _address ]
 
     /* Build request. */
     const request = {
@@ -275,10 +271,7 @@ export async function getBlock(_hash_or_height) {
     const method = 'blockchain.block.get'
 
     /* Set parameters. */
-    const params = [
-        _hash_or_height,
-        true, // NOTE: Show verbose (true).
-    ]
+    const params = [ _hash_or_height ]
 
     /* Build request. */
     const request = {
@@ -303,7 +296,7 @@ export const getTokenInfo = getGenesisInfo // Export alias.
 *
 * Version added: Rostrum 6.0
 */
-export async function getAddressTokenBalance(_tokenid) {
+export async function getAddressTokenBalance(_address, _cursor, _tokenid) {
     debug(`Token->Address->TokenBalance [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
@@ -312,7 +305,7 @@ export async function getAddressTokenBalance(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getAddressTokenBalance(_tokenid)
+        return rostrum.getAddressTokenBalance(_address, _cursor, _tokenid)
     }
 
     /* Set method. */
@@ -320,8 +313,9 @@ export async function getAddressTokenBalance(_tokenid) {
 
     /* Set parameters. */
     const params = [
+        _address,
+        _cursor,
         _tokenid,
-        true, // NOTE: Show verbose (true).
     ]
 
     /* Build request. */
@@ -334,43 +328,9 @@ export async function getAddressTokenBalance(_tokenid) {
     return makeRequest.bind(this)(request)
 }
 
-/**
-* (Token) Address History
-*
-* Return the confirmed and unconfirmed token history of a Nexa or Bitcoin Cash address.
-*
-* Version added: Rostrum 6.0
-*/
-export async function getAddressTokenHistory(_tokenid) {
-    debug(`Token->Address->TokenHistory [ token: ${_tokenid} ]`)
 
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
+export const getAddressTokenHistory = _getAddressTokenHistory
 
-        /* Call self (via instance). */
-        return rostrum.getAddressTokenHistory(_tokenid)
-    }
-
-    /* Set method. */
-    const method = 'token.address.get_history'
-
-    /* Set parameters. */
-    const params = [
-        _tokenid,
-        true, // NOTE: Show verbose (true).
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
 
 /**
 * (Token) Address Mempool
@@ -379,7 +339,7 @@ export async function getAddressTokenHistory(_tokenid) {
 *
 * Version added: Rostrum 6.0
 */
-export async function getAddressTokenMempool(_tokenid) {
+export async function getAddressTokenMempool(_address, _cursor, _tokenid) {
     debug(`Token->Address->TokenMempool [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
@@ -388,7 +348,7 @@ export async function getAddressTokenMempool(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getAddressTokenMempool(_tokenid)
+        return rostrum.getAddressTokenMempool(_address, _cursor, _tokenid)
     }
 
     /* Set method. */
@@ -396,8 +356,9 @@ export async function getAddressTokenMempool(_tokenid) {
 
     /* Set parameters. */
     const params = [
+        _address,
+        _cursor,
         _tokenid,
-        true, // NOTE: Show verbose (true).
     ]
 
     /* Build request. */
@@ -417,7 +378,7 @@ export async function getAddressTokenMempool(_tokenid) {
 *
 * Version added: Rostrum 6.0
 */
-export async function getAddressTokenUnspent(_tokenid) {
+export async function getAddressTokenUnspent(_address, _cursor, _tokenid) {
     debug(`Token->Address->Unspent [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
@@ -426,7 +387,7 @@ export async function getAddressTokenUnspent(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getAddressTokenUnspent(_tokenid)
+        return rostrum.getAddressTokenUnspent(_address, _cursor, _tokenid)
     }
 
     /* Set method. */
@@ -434,8 +395,9 @@ export async function getAddressTokenUnspent(_tokenid) {
 
     /* Set parameters. */
     const params = [
+        _address,
+        _cursor,
         _tokenid,
-        true, // NOTE: Show verbose (true).
     ]
 
     /* Build request. */
@@ -455,7 +417,7 @@ export async function getAddressTokenUnspent(_tokenid) {
  *
  * Version added: Rostrum 7.0
  */
-export async function getNftList(_tokenid) {
+export async function getNftList(_tokenid, _cursor) {
     debug(`Token->NFT->List [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
@@ -464,7 +426,7 @@ export async function getNftList(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getNftList(_tokenid)
+        return rostrum.getNftList(_tokenid, _cursor)
     }
 
     /* Set method. */
@@ -473,7 +435,7 @@ export async function getNftList(_tokenid) {
     /* Set parameters. */
     const params = [
         _tokenid,
-        true, // NOTE: Show verbose (true).
+        _cursor,
     ]
 
     /* Build request. */
@@ -493,7 +455,7 @@ export async function getNftList(_tokenid) {
  *
  * Version added: Rostrum 6.0
  */
-export async function getTokenHistory(_tokenid) {
+export async function getTokenHistory(_address, _cursor, _tokenid) {
     debug(`Token->Transaction->History [ token: ${_tokenid} ]`)
 
     /* Validate instance. */
@@ -502,7 +464,7 @@ export async function getTokenHistory(_tokenid) {
         const rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getTokenHistory(_tokenid)
+        return rostrum.getTokenHistory(_address, _cursor, _tokenid)
     }
 
     /* Set method. */
@@ -510,8 +472,9 @@ export async function getTokenHistory(_tokenid) {
 
     /* Set parameters. */
     const params = [
+        _address,
+        _cursor,
         _tokenid,
-        true, // NOTE: Show verbose (true).
     ]
 
     /* Build request. */
@@ -547,10 +510,7 @@ export async function subscribeAddress(_address, _handler) {
     const method = 'blockchain.address.subscribe'
 
     /* Set parameters. */
-    const params = [
-        _address,
-        true, // NOTE: Show verbose (true).
-    ]
+    const params = [ _address ]
 
     /* Build request. */
     const request = {
@@ -804,24 +764,24 @@ export class Rostrum extends EventEmitter {
         }
     }
 
-    getAddressBalance(params, filter) {
-        return getAddressBalance.bind(this)(params, filter)
+    getAddressBalance(address, filter) {
+        return getAddressBalance.bind(this)(address, filter)
     }
 
-    decodeRemoteAddress(params) {
-        return decodeRemoteAddress.bind(this)(params)
+    decodeRemoteAddress(address) {
+        return decodeRemoteAddress.bind(this)(address)
     }
 
-    getAddressFirstUse(params) {
-        return getAddressFirstUse.bind(this)(params)
+    getAddressFirstUse(address, filter) {
+        return getAddressFirstUse.bind(this)(address, filter)
     }
 
-    getAddressHistory(params) {
-        return getAddressHistory.bind(this)(params)
+    getAddressHistory(address, filter) {
+        return getAddressHistory.bind(this)(address, filter)
     }
 
-    getAddressMempool(params) {
-        return getAddressMempool.bind(this)(params)
+    getAddressMempool(address, filter) {
+        return getAddressMempool.bind(this)(address, filter)
     }
 
     getAddressScriptHash(params) {
@@ -832,12 +792,12 @@ export class Rostrum extends EventEmitter {
         return getAddressUnspent.bind(this)(params)
     }
 
-    getBlock(params) {
-        return getBlock.bind(this)(params)
+    getBlock(id) {
+        return getBlock.bind(this)(id)
     }
 
-    getTransaction(params) {
-        return getTransaction.bind(this)(params)
+    getTransaction(id, verbose) {
+        return getTransaction.bind(this)(id, verbose)
     }
 
     // ...
@@ -850,28 +810,28 @@ export class Rostrum extends EventEmitter {
         return getTokenInfo.bind(this)(params)
     }
 
-    getAddressTokenBalance(params) {
-        return getAddressTokenBalance.bind(this)(params)
+    getAddressTokenBalance(address, cursor, tokenid) {
+        return getAddressTokenBalance.bind(this)(address, cursor, tokenid)
     }
 
-    getAddressTokenHistory(params) {
-        return getAddressTokenHistory.bind(this)(params)
+    getAddressTokenHistory(address, cursor, tokenid) {
+        return getAddressTokenHistory.bind(this)(address, cursor, tokenid)
     }
 
-    getAddressTokenMempool(params) {
-        return getAddressTokenMempool.bind(this)(params)
+    getAddressTokenMempool(address, cursor, tokenid) {
+        return getAddressTokenMempool.bind(this)(address, cursor, tokenid)
     }
 
-    getAddressTokenUnspent(params) {
-        return getAddressTokenUnspent.bind(this)(params)
+    getAddressTokenUnspent(address, cursor, tokenid) {
+        return getAddressTokenUnspent.bind(this)(address, cursor, tokenid)
     }
 
-    getNftList(params) {
-        return getNftList.bind(this)(params)
+    getNftList(tokenid, cursor) {
+        return getNftList.bind(this)(tokenid, cursor)
     }
 
-    getTokenHistory(params) {
-        return getTokenHistory.bind(this)(params)
+    getTokenHistory(address, cursor, tokenid) {
+        return getTokenHistory.bind(this)(address, cursor, tokenid)
     }
 
     subscribeAddress(params, handler) {

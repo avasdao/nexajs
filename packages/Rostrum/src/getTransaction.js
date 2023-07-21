@@ -9,27 +9,33 @@ import makeRequest from './makeRequest.js'
  *
  * Version added: ??
  */
-export default async function (_id) {
+export default async function (_id, _verbose = true) {
+    /* Initialize locals. */
+    let method
+    let params
+    let request
+    let rostrum
+
     /* Validate instance. */
     if (typeof this === 'undefined') {
         /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
+        rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
         return rostrum.getTransaction(_id)
     }
 
     /* Set method. */
-    const method = 'blockchain.transaction.get'
+    method = 'blockchain.transaction.get'
 
     /* Set parameters. */
-    const params = [
+    params = [
         _id,
-        true, // NOTE: Show verbose (true).
+        _verbose,
     ]
 
     /* Build request. */
-    const request = {
+    request = {
         method,
         params,
     }

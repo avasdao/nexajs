@@ -3,13 +3,13 @@ import { Rostrum } from '../index.js'
 import makeRequest from './makeRequest.js'
 
 /**
- * (Token) Genesis Info
- *
- * Info from token creation transaction.
- *
- * Version added: Rostrum 6.0
- */
-export default async function (_tokenid) {
+* (Token) Address History
+*
+* Return the confirmed and unconfirmed token history of a Nexa or Bitcoin Cash address.
+*
+* Version added: Rostrum 6.0
+*/
+export default async function (_address, _cursor, _tokenid) {
     /* Initialize locals. */
     let method
     let params
@@ -22,14 +22,25 @@ export default async function (_tokenid) {
         rostrum = await Rostrum.init()
 
         /* Call self (via instance). */
-        return rostrum.getGenesisInfo(_tokenid)
+        return rostrum.getAddressTokenHistory(_address, _cursor, _tokenid)
     }
 
     /* Set method. */
-    method = 'token.genesis.info'
+    method = 'token.address.get_history'
 
     /* Set parameters. */
-    params = [ _tokenid ]
+    if (_cursor) {
+        params = [
+            _address,
+            _cursor,
+            _tokenid,
+        ]
+    } else {
+        params = [
+            _address,
+            _tokenid,
+        ]
+    }
 
     /* Build request. */
     request = {
