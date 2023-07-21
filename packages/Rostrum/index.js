@@ -5,559 +5,58 @@ const debug = debugFactory('nexa:rostrum')
 /* Import modules. */
 import { EventEmitter } from 'events'
 
+/* Import Rostrum methods. */
 import _getAddressBalance from './src/getAddressBalance.js'
-// ...
+import _decodeRemoteAddress from './src/decodeRemoteAddress.js'
+import _getAddressFirstUse from './src/getAddressFirstUse.js'
+import _getAddressHistory from './src/getAddressHistory.js'
+import _getAddressMempool from './src/getAddressMempool.js'
+import _getAddressScriptHash from './src/getAddressScriptHash.js'
+import _getAddressUnspent from './src/getAddressUnspent.js'
+import _getBlock from './src/getBlock.js'
 import _getTransaction from './src/getTransaction.js'
-import _getGenesisInfo from './src/getGenesisInfo.js'
-// ...
+import _getAddressTokenBalance from './src/getAddressTokenBalance.js'
 import _getAddressTokenHistory from './src/getAddressTokenHistory.js'
+import _getAddressTokenMempool from './src/getAddressTokenMempool.js'
+import _getAddressTokenUnspent from './src/getAddressTokenUnspent.js'
+import _getNftList from './src/getNftList.js'
+import _getTokenHistory from './src/getTokenHistory.js'
+import _getGenesisInfo from './src/getGenesisInfo.js'
+import _subscribeAddress from './src/subscribeAddress.js'
 
+/* Import ping handler. */
+import ping from './src/ping.js'
+
+/* Import request handler. */
 import makeRequest from './src/makeRequest.js'
 
 /* Set active connection id. */
 // NOTE: Official node is currently accepting ZERO-fee txs.
 const ACTIVE_CONN_ID = 0
 
-
+/* Export Rostrum methods. */
 export const getAddressBalance = _getAddressBalance
-
-
-/**
- * (Blockchain) Decode Remote Address
- *
- * Decode a Bitcoin Cash or a Nexa address to its raw payload. This method is
- * potentially useful for clients needing to see the encoded contents of a
- * address but lacking the local libraries necessary to decode them.
- *
- * Version added: Rostrum 7.0
- */
-export async function decodeRemoteAddress(_address) {
-    debug(`Blockchain->Address->Decode [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.decodeRemoteAddress(_address)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.decode'
-
-    /* Set parameters. */
-    const params = [ _address ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Address First Use
- *
- * Returns a first occurance of usage of scripthash as ouput on the blockchain.
- *
- * Version added: Rostrum 1.2
- */
-export async function getAddressFirstUse(_address, _filter = 'include_tokens') {
-    debug(`Blockchain->Address->FirstUse [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressFirstUse(_address, _filter)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.get_first_use'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _filter,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Address History
- *
- * Return the confirmed and unconfirmed history of a Bitcoin Cash
- * or Nexa address.
- *
- * Version added: Rostrum 1.4.3
- */
-export async function getAddressHistory(_address, _filter = 'include_tokens') {
-    debug(`Blockchain->Address->History [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressHistory(_address, _filter)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.get_history'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _filter,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Address History
- *
- * Return the unconfirmed transactions of a Bitcoin Cash or Nexa address.
- *
- * Version added: Rostrum 1.4.3
- */
-export async function getAddressMempool(_address, _filter = 'include_tokens') {
-    debug(`Blockchain->Address->Mempool [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressMempool(_address, _filter)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.get_mempool'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _filter,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Address Script Hash
- *
- * Translate a Bitcoin Cash or a Nexa address to a script hash. This method is
- * potentially useful for clients preferring to work with script hashes but
- * lacking the local libraries necessary to generate them.
- *
- * Version added: Rostrum 1.4.3
- */
-export async function getAddressScriptHash(_address) {
-    debug(`Blockchain->Address->ScriptHash [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressScriptHash(_address)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.get_scripthash'
-
-    /* Set parameters. */
-    const params = [ _address ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Address List Unspent
- *
- * Return an ordered list of UTXOs sent to a Bitcoin Cash or Nexa address.
- *
- * Version added: Rostrum 1.4.3
- */
-export async function getAddressUnspent(_address) {
-    debug(`Blockchain->Address->ListUnspent [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressUnspent(_address)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.listunspent'
-
-    /* Set parameters. */
-    const params = [
-        _address
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Get Block (Info)
- *
- * Return an the FULL block details.
- *
- * Version added: Rostrum 8.1
- */
-export async function getBlock(_hash_or_height) {
-    debug(`Blockchain->Block->Info [ hash or height: ${_hash_or_height} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getBlock(_hash_or_height)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.block.get'
-
-    /* Set parameters. */
-    const params = [ _hash_or_height ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-
+export const decodeRemoteAddress = _decodeRemoteAddress
+export const getAddressFirstUse = _getAddressFirstUse
+export const getAddressHistory = _getAddressHistory
+export const getAddressMempool = _getAddressMempool
+export const getAddressScriptHash = _getAddressScriptHash
+export const getAddressUnspent = _getAddressUnspent
+export const getBlock = _getBlock
 export const getTransaction = _getTransaction
+export const getAddressTokenBalance = _getAddressTokenBalance
+export const getAddressTokenHistory = _getAddressTokenHistory
+export const getAddressTokenMempool = _getAddressTokenMempool
+export const getAddressTokenUnspent = _getAddressTokenUnspent
+export const getNftList = _getNftList
+export const getTokenHistory = _getTokenHistory
 export const getGenesisInfo = _getGenesisInfo
 export const getTokenInfo = getGenesisInfo // Export alias.
+export const subscribeAddress = _subscribeAddress
 
 
-/**
-* (Token) Address Balance
-*
-* Return the confirmed and unconfirmed balances of tokens in a Bitcoin Cash or Nexa address.
-*
-* Version added: Rostrum 6.0
-*/
-export async function getAddressTokenBalance(_address, _cursor, _tokenid) {
-    debug(`Token->Address->TokenBalance [ token: ${_tokenid} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressTokenBalance(_address, _cursor, _tokenid)
-    }
-
-    /* Set method. */
-    const method = 'token.address.get_balance'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _cursor,
-        _tokenid,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
 
 
-export const getAddressTokenHistory = _getAddressTokenHistory
-
-
-/**
-* (Token) Address Mempool
-*
-* Return the unconfirmed token transactions of a Nexa or Bitcoin Cash address.
-*
-* Version added: Rostrum 6.0
-*/
-export async function getAddressTokenMempool(_address, _cursor, _tokenid) {
-    debug(`Token->Address->TokenMempool [ token: ${_tokenid} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressTokenMempool(_address, _cursor, _tokenid)
-    }
-
-    /* Set method. */
-    const method = 'token.address.get_mempool'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _cursor,
-        _tokenid,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
-* (Token) Address Unspent
-*
-* Return an list of token UTXOs sent to a Nexa or Bitcoin Cash address.
-*
-* Version added: Rostrum 6.0
-*/
-export async function getAddressTokenUnspent(_address, _cursor, _tokenid) {
-    debug(`Token->Address->Unspent [ token: ${_tokenid} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getAddressTokenUnspent(_address, _cursor, _tokenid)
-    }
-
-    /* Set method. */
-    const method = 'token.address.listunspent'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _cursor,
-        _tokenid,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (NFT) List
- *
- * Return list of all NFT's minted from a specified parent token.
- *
- * Version added: Rostrum 7.0
- */
-export async function getNftList(_tokenid, _cursor) {
-    debug(`Token->NFT->List [ token: ${_tokenid} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getNftList(_tokenid, _cursor)
-    }
-
-    /* Set method. */
-    const method = 'token.nft.list'
-
-    /* Set parameters. */
-    const params = [
-        _tokenid,
-        _cursor,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Token) History
- *
- * Return all confirmed and unconfirmed token transaction history of a given token.
- *
- * Version added: Rostrum 6.0
- */
-export async function getTokenHistory(_address, _cursor, _tokenid) {
-    debug(`Token->Transaction->History [ token: ${_tokenid} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.getTokenHistory(_address, _cursor, _tokenid)
-    }
-
-    /* Set method. */
-    const method = 'token.transaction.get_history'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        _cursor,
-        _tokenid,
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
-
-/**
- * (Blockchain) Subscribe Address
- *
- * Subscibe for updates on ALL address activity.
- *
- * Version added: Rostrum 1.4.3
- */
-export async function subscribeAddress(_address, _handler) {
-    debug(`Blockchain->Address->Subscribe [ address: ${_address} ]`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.subscribeAddress(_address, _handler)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.subscribe'
-
-    /* Set parameters. */
-    const params = [ _address ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request, _address, _handler)
-}
-
-/**
- * (Server) Ping
- *
- * Ping the server to ensure it is responding, and to keep the session alive.
- * The server may disconnect clients that have sent no requests
- * for roughly 10 minutes.
- *
- * Version added: 1.2
- */
-export async function _ping() {
-    debug(`Server->Ping`)
-
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
-
-        /* Call self (via instance). */
-        return rostrum.ping()
-    }
-
-    /* Set method. */
-    const method = 'server.ping'
-
-    /* Set parameters. */
-    const params = []
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
 
 
 /**
@@ -652,7 +151,7 @@ export class Rostrum extends EventEmitter {
 
             /* Manage session keep-alive. */
             setInterval(async () => {
-                this._ping()
+                this.ping()
             }, 60000) // every 1 minute
         }
 
@@ -838,8 +337,8 @@ export class Rostrum extends EventEmitter {
         return subscribeAddress.bind(this)(params, handler)
     }
 
-    _ping() {
-        return _ping.bind(this)()
+    ping() {
+        return ping.bind(this)()
     }
 }
 
