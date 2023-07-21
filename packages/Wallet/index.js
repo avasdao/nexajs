@@ -366,10 +366,6 @@ export class Wallet extends EventEmitter {
             .catch(err => console.error(err))
         console.log('UNSPENT', unspent)
 
-        const mempool = await getAddressMempool(this.address)
-            .catch(err => console.error(err))
-        console.log('MEMPOOL', mempool)
-
         /* Validate unspent outputs. */
         if (unspent.length === 0) {
             return console.error('There are NO unspent outputs available.')
