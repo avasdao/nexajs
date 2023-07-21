@@ -223,22 +223,22 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.5.24":
-  version "23.5.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.24.tgz#8a80119cbd95f3946cf9e54db80b8ccdaaf1b583"
-  integrity sha512-hXeeHyjT+/a0bOlAJ9dnfzjUNVnVjwLGJxa9tHBPU8ZQlmT0TrKi3c/biu79x4LN4vwCRdiHSF10ZvrVx1SM7A==
+"@nexajs/address@23.7.20":
+  version "23.7.20"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.20.tgz#568c48a7754fbbfe928d6e3811ffb0288449cde3"
+  integrity sha512-c3NctJfRH5QXmWacT1IV9y9wnvjsGFAHb8Gy7y3HdHKsspQ+0ui1ODO6cXLNYr3+tjml6dVt8MNJV/nL0cUNIg==
   dependencies:
-    "@nexajs/rostrum" "23.5.24"
+    "@nexajs/rostrum" "23.7.20"
     big-integer "1.6.51"
     debug "4.3.4"
     graphql "16.6.0"
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/rostrum@23.5.24":
-  version "23.5.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.24.tgz#060c7f717dbcebd7baf16338c26c0a9d6c7580c0"
-  integrity sha512-tzlwxP+DChHNgZijAu3zN6AlxEzLMI/hWa8jzWkEl2kN3XpKAHjhCGPjDo9fvGLKTCXaBqRRtvb3tK427YZufA==
+"@nexajs/rostrum@23.7.20":
+  version "23.7.20"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.7.20.tgz#f4d6ec66d9dd7a8be024459ec78704f71211899a"
+  integrity sha512-lA30LOIKOrSBd8nbhehtGzme2BLojNA/7eAyhXB+RXwyazCC+CRSoCLNjQVlAJp6Mua9vXLn5pIrjnVIXQqr2Q==
   dependencies:
     debug "4.3.4"
     events "3.3.0"

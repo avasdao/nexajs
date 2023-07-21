@@ -525,6 +525,18 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.7.20":
+  version "23.7.20"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.20.tgz#568c48a7754fbbfe928d6e3811ffb0288449cde3"
+  integrity sha512-c3NctJfRH5QXmWacT1IV9y9wnvjsGFAHb8Gy7y3HdHKsspQ+0ui1ODO6cXLNYr3+tjml6dVt8MNJV/nL0cUNIg==
+  dependencies:
+    "@nexajs/rostrum" "23.7.20"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/blockchain@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"
@@ -652,6 +664,17 @@
   version "23.6.21"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.6.21.tgz#a87a45d79644b844d053affd6b825d6b20fce108"
   integrity sha512-czMS3o1gVXLS5VOk0Izr1KBZnputiAp3F+LxJKTdIczxhn7cGXwxKFgKxjqIIbXBTuzBevj3eiWUfUnTEphLlw==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
+"@nexajs/rostrum@23.7.20":
+  version "23.7.20"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.7.20.tgz#f4d6ec66d9dd7a8be024459ec78704f71211899a"
+  integrity sha512-lA30LOIKOrSBd8nbhehtGzme2BLojNA/7eAyhXB+RXwyazCC+CRSoCLNjQVlAJp6Mua9vXLn5pIrjnVIXQqr2Q==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
