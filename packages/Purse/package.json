@@ -11,7 +11,7 @@
     "@nexajs/address": "23.7.20",
     "@nexajs/hdnode": "23.7.20",
     "@nexajs/provider": "23.6.21",
-    "@nexajs/transaction": "23.7.15",
+    "@nexajs/transaction": "23.7.21",
     "debug": "4.3.4",
     "events": "3.3.0",
     "uuid": "9.0.0"

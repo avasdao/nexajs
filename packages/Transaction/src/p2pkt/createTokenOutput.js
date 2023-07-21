@@ -24,10 +24,10 @@ import {
  * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (_address, _satoshis, _tokenid, _tokens) => {
-    console.log('\n  Receiving address:', _address)
-    console.log('\n  Receiving satoshis:', _satoshis)
-    console.log('\n  Receiving token id:', _tokenid)
-    console.log('\n  Receiving # tokens:', _tokens)
+    // console.log('\n  Receiving address:', _address)
+    // console.log('\n  Receiving satoshis:', _satoshis)
+    // console.log('\n  Receiving token id:', _tokenid)
+    // console.log('\n  Receiving # tokens:', _tokens)
 
     let lockingBytecode
     let scriptAmount
@@ -54,7 +54,7 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
     } else {
         lockingBytecode = decodeAddress(_address).hash
     }
-    console.log('\n  lockingBytecode (hex):', binToHex(lockingBytecode))
+    // console.log('\n  lockingBytecode (hex):', binToHex(lockingBytecode))
 
     /* Create (token) output. */
     tokenOutput = {
@@ -63,7 +63,7 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
         tokenidHex: _tokenid,
         tokens: bigIntToBinUint64LE(BigInt(_tokens)),
     }
-    console.log('\n  tokenOutput:', tokenOutput)
+    // console.log('\n  tokenOutput:', tokenOutput)
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.
 

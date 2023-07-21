@@ -21,7 +21,7 @@ export default async (_wif) => {
 
     /* Fetch all unspent transaction outputs. */
     unspent = await listUnspent(depositAddress)
-    console.log('UNSPENT', unspent)
+    // console.log('UNSPENT', unspent)
 
     /* Validate unspent. */
     if (unspent.length === 0) {
