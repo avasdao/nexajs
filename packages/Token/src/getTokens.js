@@ -4,7 +4,6 @@ import { parseWif } from '@nexajs/hdnode'
 
 export default async (_wif) => {
     let tokens
-    let mempool
     let unspent
     let wif
 
@@ -36,17 +35,6 @@ export default async (_wif) => {
         return _unspent.isToken === true
     })
     // console.log('UNSPENT (tokens):', unspent)
-
-    mempool = unspent.find(_unspent=> {
-        return _unspent.height === 0
-    })
-    // console.log('MEMPOOL', mempool)
-
-    // FIXME Force mempool UTXOs.
-    // NOTE: This is a bugfix until Rostrum 9.0 fix.
-    if (mempool) {
-        unspent = [mempool]
-    }
 
     /* Build tokens. */
     tokens = unspent.map(_unspent => {
