@@ -5,6 +5,8 @@ const debug = debugFactory('nexa:rostrum')
 /* Import modules. */
 import { EventEmitter } from 'events'
 
+import _getAddressBalance from './src/getAddressBalance.js'
+// ...
 import _getTransaction from './src/getTransaction.js'
 import _getGenesisInfo from './src/getGenesisInfo.js'
 
@@ -14,43 +16,9 @@ import makeRequest from './src/makeRequest.js'
 // NOTE: Official node is currently accepting ZERO-fee txs.
 const ACTIVE_CONN_ID = 0
 
-/**
- * (Blockchain) Address Balance
- *
- * Return the confirmed and unconfirmed balances of a Bitcoin Cash address.
- *
- * Version added: 1.4.3
- */
-export async function getAddressBalance(_address) {
-    debug(`Blockchain->Address->Balance [ address: ${_address} ]`)
 
-    /* Validate instance. */
-    if (typeof this === 'undefined') {
-        /* Initialize Rostrum instance. */
-        const rostrum = await Rostrum.init()
+export const getAddressBalance = _getAddressBalance
 
-        /* Call self (via instance). */
-        return rostrum.getAddressBalance(_address)
-    }
-
-    /* Set method. */
-    const method = 'blockchain.address.get_balance'
-
-    /* Set parameters. */
-    const params = [
-        _address,
-        true, // NOTE: Show verbose (true).
-    ]
-
-    /* Build request. */
-    const request = {
-        method,
-        params,
-    }
-
-    /* Return (async) request. */
-    return makeRequest.bind(this)(request)
-}
 
 /**
  * (Blockchain) Decode Remote Address
@@ -836,8 +804,8 @@ export class Rostrum extends EventEmitter {
         }
     }
 
-    getAddressBalance(params) {
-        return getAddressBalance.bind(this)(params)
+    getAddressBalance(params, filter) {
+        return getAddressBalance.bind(this)(params, filter)
     }
 
     decodeRemoteAddress(params) {
