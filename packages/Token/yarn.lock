@@ -291,6 +291,17 @@
     "@nexajs/utils" "23.5.15"
     debug "4.3.4"
 
+"@nexajs/hdnode@23.7.20":
+  version "23.7.20"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.7.20.tgz#400390b1829b4ca2076e0231797102587199b85e"
+  integrity sha512-ypNeCyCWmXOKQ3SRrE1F1qH54vsn61985aK9KNd2W7E+9JQ64Y5IvjJyhDLEKSJLaedBFXVclUm+0uVSo30uRg==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@ethersproject/hdnode" "5.7.0"
+    "@nexajs/address" "23.7.20"
+    "@nexajs/utils" "23.5.15"
+    debug "4.3.4"
+
 "@nexajs/provider@23.6.21":
   version "23.6.21"
   resolved "https://registry.npmjs.org/@nexajs/provider/-/provider-23.6.21.tgz"
