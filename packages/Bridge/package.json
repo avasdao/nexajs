@@ -1,10 +1,14 @@
 {
   "name": "@nexajs/bridge",
-  "version": "23.3.26",
-  "description": "Manages (cross-chain) bridged assets.",
+  "version": "23.7.21",
+  "description": "Manages assets bridged to/from Nexa and other asset-enabled blockchains.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "debug": "4.3.4",
+    "events": "3.3.0"
+  }
 }

@@ -30,6 +30,7 @@ export class Bridge extends EventEmitter {
     test() {
         return 'Bridge (Instance) is working!'
     }
+
     static test() {
         return 'Bridge (Static) is working!'
     }

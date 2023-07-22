@@ -1,3 +1,3 @@
 # NexaJS Bridge
 
-Manages (cross-chain) bridged assets.
+Manages assets bridged to/from Nexa and other asset-enabled blockchains.
