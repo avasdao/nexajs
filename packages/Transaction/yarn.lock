@@ -278,10 +278,10 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@23.7.15":
-  version "23.7.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.7.15.tgz#60a59d968dd962ea5b70759cb9312fca307e0bb9"
-  integrity sha512-AltfQDu9LDu3q35TGtrHzGVpk3Jw4xfdKVkKB5SYI8jHmGVQca8JiYKFgELBwLxr4Z52ZeJsvuWAUzR9nKITEw==
+"@nexajs/script@23.7.21":
+  version "23.7.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.7.21.tgz#eed0ce4386f506a85e7a16cc7535a433c5b694f0"
+  integrity sha512-PJiDMviFYmPYXE6GTcj1CBcAi/GRaJCbpByScMjbGdOl2pCQG3oOmYBMn38rVzHJq/Wsp+AvVOQ8mbEQ0PvqGw==
   dependencies:
     debug "4.3.4"
 

@@ -716,6 +716,13 @@
   dependencies:
     debug "4.3.4"
 
+"@nexajs/script@23.7.21":
+  version "23.7.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.7.21.tgz#eed0ce4386f506a85e7a16cc7535a433c5b694f0"
+  integrity sha512-PJiDMviFYmPYXE6GTcj1CBcAi/GRaJCbpByScMjbGdOl2pCQG3oOmYBMn38rVzHJq/Wsp+AvVOQ8mbEQ0PvqGw==
+  dependencies:
+    debug "4.3.4"
+
 "@nexajs/token@23.7.18":
   version "23.7.18"
   resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.18.tgz#fe93e31224f657554e2cc5aa5422ab0110d13f9a"
