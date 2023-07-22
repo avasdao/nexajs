@@ -501,30 +501,6 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.5.22":
-  version "23.5.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.5.22.tgz#2dc6aa09e171d6604610a60f01624f37797ade33"
-  integrity sha512-Y9gdgHsdQM/5PL7Yx6iwYFhaxbfo+gwE1tKY9t90CxZu+wjnF77iHz/aEz+FKjYDazuwoRGTMDPbsfwgoSN7+Q==
-  dependencies:
-    "@nexajs/rostrum" "23.5.19"
-    big-integer "1.6.51"
-    debug "4.3.4"
-    graphql "16.6.0"
-    graphql-ws "5.12.0"
-    ws "8.13.0"
-
-"@nexajs/address@23.6.23":
-  version "23.6.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.6.23.tgz#ebe3e2381208f35636e572692964d96b68624d80"
-  integrity sha512-qtnsQzz7hrHMHp2lqspUn8yxIgvmVhdJDQ4GlKDjcBLBlUrGjSAcf2uRoANVsFv+X18JSNS0k/CYj1ibc+CHug==
-  dependencies:
-    "@nexajs/rostrum" "23.6.21"
-    big-integer "1.6.51"
-    debug "4.3.4"
-    graphql "16.6.0"
-    graphql-ws "5.12.0"
-    ws "8.13.0"
-
 "@nexajs/address@23.7.20":
   version "23.7.20"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.20.tgz#568c48a7754fbbfe928d6e3811ffb0288449cde3"
@@ -639,15 +615,15 @@
     events "3.3.0"
     uuid "9.0.0"
 
-"@nexajs/purse@23.7.18":
-  version "23.7.18"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.7.18.tgz#88b0a52fc33866dd978c93a61d794d163d3d12f0"
-  integrity sha512-azNCCo4UTZ/hM0nJh0MSKV1cV94kmz2kV3glzI7bmBF9y6ScMAo2GAx2UKhAvQNSU48dVpCoPHt9Xl7RSif4+g==
+"@nexajs/purse@23.7.21":
+  version "23.7.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.7.21.tgz#60088da033841cb2ebdb2112b17c23dd182dd542"
+  integrity sha512-ygVodfYdw5wxeSm1jDyznsRovcTFbEfsAa3MwCYzuC518fXEszlclRxElwd4CVKxNSRNI2a6f6U/b6qWO56bQQ==
   dependencies:
-    "@nexajs/address" "23.6.23"
-    "@nexajs/hdnode" "23.5.15"
+    "@nexajs/address" "23.7.21"
+    "@nexajs/hdnode" "23.7.20"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/transaction" "23.5.25"
+    "@nexajs/transaction" "23.7.21"
     debug "4.3.4"
     events "3.3.0"
     uuid "9.0.0"
@@ -665,28 +641,6 @@
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.15.tgz#4cb94d16d55a2c957b76bcfdcee59d4698b5785d"
   integrity sha512-J++CNia9ltJzIHqRciHjakH2sbtBYlbQIIg0t7xCFg8GKQ30xdEtQo2XmZbh9JcFDry9x4WPZeueE+vyfK5yRQ==
-  dependencies:
-    debug "4.3.4"
-    events "3.3.0"
-    isomorphic-ws "5.0.0"
-    uuid "9.0.0"
-    ws "8.12.1"
-
-"@nexajs/rostrum@23.5.19":
-  version "23.5.19"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.5.19.tgz#f652f3cb01145469e534b7e134a29086d533ddb0"
-  integrity sha512-Ep/KLlmVa1JxkfDpi5qty5eipMgAxj66ka9em7WHwZxch8UCmBpm8JEpFmDpxoeRneGTkfpkBgf2OOucQyDdqg==
-  dependencies:
-    debug "4.3.4"
-    events "3.3.0"
-    isomorphic-ws "5.0.0"
-    uuid "9.0.0"
-    ws "8.12.1"
-
-"@nexajs/rostrum@23.6.21":
-  version "23.6.21"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.6.21.tgz#a87a45d79644b844d053affd6b825d6b20fce108"
-  integrity sha512-czMS3o1gVXLS5VOk0Izr1KBZnputiAp3F+LxJKTdIczxhn7cGXwxKFgKxjqIIbXBTuzBevj3eiWUfUnTEphLlw==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
@@ -735,15 +689,15 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/token@23.7.18":
-  version "23.7.18"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.18.tgz#fe93e31224f657554e2cc5aa5422ab0110d13f9a"
-  integrity sha512-ciWqhlRzHKc6xucnA6YPU4FkNY2FM+JjU5wuZDIaUn3h+TpzILXY25stIa8mQ+SHg7XMHlE6x1Gz2gR2TFMjYA==
+"@nexajs/token@23.7.21":
+  version "23.7.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.21.tgz#d6e57d4a09e1050606bd9624ee16d16c9f1a4d83"
+  integrity sha512-qeXaL4EGX1Ljyp3yCHd86UxWNuMKq0IDVwGVeV6c45K/KmM35wFyEd+xzDilrmrDkxnmEbjh55IX9OsM+GGLfg==
   dependencies:
-    "@nexajs/address" "23.6.23"
-    "@nexajs/hdnode" "23.5.15"
+    "@nexajs/address" "23.7.21"
+    "@nexajs/hdnode" "23.7.20"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/transaction" "23.7.15"
+    "@nexajs/transaction" "23.7.21"
     debug "4.3.4"
     events "3.3.0"
     node-fetch "3.3.1"
@@ -757,31 +711,6 @@
     "@nexajs/address" "23.5.15"
     "@nexajs/hdnode" "23.5.15"
     "@nexajs/script" "23.5.15"
-    "@nexajs/utils" "23.5.15"
-    debug "4.3.4"
-
-"@nexajs/transaction@23.5.25":
-  version "23.5.25"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.5.25.tgz#37f52b2d5138f3ab543a40b5ed2de9fbc60062bd"
-  integrity sha512-qPE7grUuTk1FL2caRxHpgBnNsKySwhEiNztY0ev6EG/ev5wOsq9eKOE3jyiRMuHHJ7JkAoghqb5/zIlrMDwv3g==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.5.22"
-    "@nexajs/hdnode" "23.5.15"
-    "@nexajs/script" "23.5.15"
-    "@nexajs/utils" "23.5.15"
-    debug "4.3.4"
-
-"@nexajs/transaction@23.7.15":
-  version "23.7.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.15.tgz#253d30497bf5a75fb9dcaf206035c6570b4ddf4f"
-  integrity sha512-LwMvxLgJG/RrKssvYChNSyyaFPWQkoyhEUX8Gq2OtKXfEbnCuCSgEgQa9bf7Qofm+WbiVoWa/YObGhfrTsPMVQ==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.6.23"
-    "@nexajs/crypto" "23.5.22"
-    "@nexajs/hdnode" "23.5.15"
-    "@nexajs/script" "23.7.15"
     "@nexajs/utils" "23.5.15"
     debug "4.3.4"
 
@@ -1255,9 +1184,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001503:
-  version "1.0.30001516"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001516.tgz#621b1be7d85a8843ee7d210fd9d87b52e3daab3a"
-  integrity sha512-Wmec9pCBY8CWbmI4HsjBeQLqDTqV91nFVR83DnZpYyRnPI1wePDsTg0bGLPC5VU/3OIZV1fmxEea1b+tFKe86g==
+  version "1.0.30001517"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001517.tgz#90fabae294215c3495807eb24fc809e11dc2f0a8"
+  integrity sha512-Vdhm5S11DaFVLlyiKu4hiUTkpZu+y1KA/rZZqVQfOD5YdDT/eQKlkt7NaE0WGOFgX32diqt9MiP9CAiFeRklaA==
 
 chai@4.3.6:
   version "4.3.6"
@@ -1599,9 +1528,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.431:
-  version "1.4.461"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.461.tgz#6b14af66042732bf883ab63a4d82cac8f35eb252"
-  integrity sha512-1JkvV2sgEGTDXjdsaQCeSwYYuhLRphRpc+g6EHTFELJXEiznLt3/0pZ9JuAOQ5p2rI3YxKTbivtvajirIfhrEQ==
+  version "1.4.468"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.468.tgz#3cbf64ad67d9f12bfe69fefe5eb1935ec4f6ab7a"
+  integrity sha512-6M1qyhaJOt7rQtNti1lBA0GwclPH+oKCmsra/hkcWs5INLxfXXD/dtdnaKUYQu/pjOBP/8Osoe4mAcNvvzoFag==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"
@@ -2045,16 +1974,12 @@ is-plain-obj@^2.1.0:
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-2.1.0.tgz#45e42e37fccf1f40da8e5f76ee21515840c09287"
   integrity sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==
 
-is-typed-array@^1.1.10, is-typed-array@^1.1.3:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/is-typed-array/-/is-typed-array-1.1.10.tgz#36a5b5cb4189b575d1a3e4b08536bfb485801e3f"
-  integrity sha512-PJqgEHiWZvMpaFZ3uTc8kHPM4+4ADTlDniuQL7cU/UDA0Ql7F70yGfHph3cLNe+c9toaigv+DFzTJKhc2CtO6A==
+is-typed-array@^1.1.3:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/is-typed-array/-/is-typed-array-1.1.12.tgz#d0bab5686ef4a76f7a73097b95470ab199c57d4a"
+  integrity sha512-Z14TF2JNG8Lss5/HMqt0//T9JeHXttXy5pH/DBU4vi98ozO2btxzq9MwYDZYnKwU8nRsz/+GVFVRDq3DkVuSPg==
   dependencies:
-    available-typed-arrays "^1.0.5"
-    call-bind "^1.0.2"
-    for-each "^0.3.3"
-    gopd "^1.0.1"
-    has-tostringtag "^1.0.0"
+    which-typed-array "^1.1.11"
 
 is-unicode-supported@^0.1.0:
   version "0.1.0"
@@ -2917,17 +2842,16 @@ web-streams-polyfill@^3.0.3:
   resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
   integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==
 
-which-typed-array@^1.1.2:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/which-typed-array/-/which-typed-array-1.1.10.tgz#74baa2789991905c2076abb317103b866c64e69e"
-  integrity sha512-uxoA5vLUfRPdjCuJ1h5LlYdmTLbYfums398v3WLkM+i/Wltl2/XyZpQWKbN++ck5L64SR/grOHqtXCUKmlZPNA==
+which-typed-array@^1.1.11, which-typed-array@^1.1.2:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/which-typed-array/-/which-typed-array-1.1.11.tgz#99d691f23c72aab6768680805a271b69761ed61a"
+  integrity sha512-qe9UWWpkeG5yzZ0tNYxDmd7vo58HDBc39mZ0xWWpolAGADdFOzkfamWLDxkOWcvHQKVmdTyQdLD4NOfjLWTKew==
   dependencies:
     available-typed-arrays "^1.0.5"
     call-bind "^1.0.2"
     for-each "^0.3.3"
     gopd "^1.0.1"
     has-tostringtag "^1.0.0"
-    is-typed-array "^1.1.10"
 
 workerpool@6.2.1:
   version "6.2.1"
