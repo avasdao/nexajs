@@ -373,7 +373,7 @@ export class Wallet extends EventEmitter {
 
         /* Retrieve coins. */
         this._coins = unspent
-            .filter(_u => _u.isToken === false)
+            .filter(_u => _u.hasToken === false)
             .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
             .map(_unspent => {
                 const outpoint = _unspent.outpoint
@@ -389,7 +389,7 @@ export class Wallet extends EventEmitter {
 
         /* Retrieve tokens. */
         this._tokens = unspent
-            .filter(_u => _u.isToken === true)
+            .filter(_u => _u.hasToken === true)
             .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
             .map(_unspent => {
                 const outpoint = _unspent.outpoint

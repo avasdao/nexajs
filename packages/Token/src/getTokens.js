@@ -32,7 +32,7 @@ export default async (_wif) => {
 
     /* Remove tokens. */
     unspent = unspent.filter(_unspent => {
-        return _unspent.isToken === true
+        return _unspent.hasToken === true
     })
     // console.log('UNSPENT (tokens):', unspent)
 

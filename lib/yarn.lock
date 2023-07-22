@@ -537,6 +537,18 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.7.21":
+  version "23.7.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.21.tgz#de78dd301544d7b1aca3ba6268180dea8fe981c3"
+  integrity sha512-OwORxFKlUWGSVZ6knJOKcYxgjVmkm4Qccjrw+8DfNsPI90K2Wu67p3wPryi+i9EfoUdYEuPtYGtyrD87uG8P1w==
+  dependencies:
+    "@nexajs/rostrum" "23.7.20"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/blockchain@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"

@@ -33,7 +33,7 @@ export default async (_wif) => {
 
     /* Remove tokens. */
     unspent = unspent.filter(_unspent => {
-        return _unspent.isToken === false
+        return _unspent.hasToken === false
     })
 
     /* Build coins. */
