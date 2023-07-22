@@ -103,7 +103,7 @@ const listNexaUnspent = async (_address) => {
                 tokenid: token.group,
                 tokenidHex: token.token_id_hex,
                 tokens: token.token_amount.toString(), // NOTE: This is a BigInt.
-                isToken: true,
+                hasToken: true,
             }
         } else {
             return {
@@ -113,7 +113,7 @@ const listNexaUnspent = async (_address) => {
                 pos: _unspent.tx_pos,
                 amount: parseFloat(_unspent.value / 100.0),
                 satoshis: _unspent.value,
-                isToken: false,
+                hasToken: false,
             }
         }
     })

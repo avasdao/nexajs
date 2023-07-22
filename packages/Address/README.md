@@ -130,8 +130,8 @@ console.log(unspent)
     satoshis: 546,
     tokenid: 'nexa:tptlgmqhvmwqppajq7kduxenwt5ljzcccln8ysn9wdzde540vcqqqcra40x0x',
     tokenidHex: '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000',
-    tokens: 100000000,
-    isToken: true
+    tokens: '100000000',
+    hasToken: true
   },
   {
     height: 303280,
@@ -140,7 +140,7 @@ console.log(unspent)
     pos: 2,
     amount: 49910.15,
     satoshis: 4991015,
-    isToken: false
+    hasToken: false
   }
 ]
 */
