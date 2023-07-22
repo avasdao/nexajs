@@ -5,11 +5,13 @@ const debug = debugFactory('nexa:script')
 /* Import (local) modules. */
 import _decodeNullData from './src/decodeNullData.js'
 import _encodeNullData from './src/encodeNullData.js'
+import _getOpcode from './src/getOpcode.js'
 import _OP from './src/Opcodes.js'
 
 /* Export (local) modules. */
 export const decodeNullData = _decodeNullData
 export const encodeNullData = _encodeNullData
+export const getOpcode = _getOpcode
 export const OP = _OP
 
 
@@ -24,7 +26,13 @@ export class Script {
         debug('Initializing Script...')
         debug(JSON.stringify(_params, null, 2))
 
-        // TBD
+        this._data = null
+
+        if (_params) {
+            this._data = _params
+        }
+
+        return this
     }
 
     test() {
@@ -33,6 +41,60 @@ export class Script {
 
     static test() {
         return 'Script (Static) is working!'
+    }
+
+    static empty() {
+        const initialData = []
+
+        return new Script(initialData) // For method chaining.
+    }
+
+    get chunks() {
+        return this.data // alias for `data`
+    }
+
+    get data() {
+        return this._data
+    }
+
+    get length() {
+        return this._data.length
+    }
+
+    get raw() {
+        return this.data // alias for `data`
+    }
+
+    add(_data) {
+        /* Initailize data holder. */
+        let data
+
+        if (_data instanceof Uint8Array) {
+            data = _data
+        } else if (Array.isArray(_data)) {
+            data = new Uint8Array(_data)
+        } else {
+            data = new Uint8Array([_data])
+        }
+
+        /* Add data to existing array. */
+        this._data = new Uint8Array([
+            ...this._data,
+            ...data,
+        ])
+
+        return this // For method chaining.
+    }
+
+    toString() {
+        /* Initialize OPs. */
+        const ops = []
+
+        this.data.forEach(_code => {
+            ops.push(getOpcode(_code))
+        })
+
+        return ops.join(' ')
     }
 }
 
@@ -46,6 +108,7 @@ Nexa.Script = Script
 /* Initialize Script modules. */
 Nexa.decodeNullData = decodeNullData
 Nexa.encodeNullData = encodeNullData
+Nexa.getOpcode = getOpcode
 Nexa.OP = OP
 
 /* Export Nexa to globalThis. */
