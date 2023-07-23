@@ -29,18 +29,12 @@ Supports telemetry recording to a back-end database and report generation via we
 _TBD_
 
 
-## Blockchain
-
-Performs general on-chain functions like:
-- Broadcasting of raw transactions
-
-
 ## Charts
 
 Create web-based, responsive charts.
 
 
-## Crypto
+## [Crypto](/packages/Crypto)
 
 _TBD_
 
@@ -65,12 +59,12 @@ _TBD_
 _TBD_
 
 
-## HD Node
+## [HD Node](/packages/Hdnode)
 
 _TBD_
 
 
-## Nexa ID Protocol
+## [Nexa ID Protocol](/packages/Id)
 
 _TBD_
 
@@ -85,7 +79,7 @@ _TBD_
 _TBD_
 
 
-## Markets
+## [Markets](/packages/Markets)
 
 _TBD_
 
@@ -95,7 +89,7 @@ _TBD_
 _TBD_
 
 
-## Meta
+## [Meta](/packages/Meta)
 
 _TBD_
 
@@ -110,31 +104,37 @@ _TBD_
 _TBD_
 
 
-## Privacy
+## [Privacy](/packages/Privacy)
 
 Support for coin joining and masking protocols, including:
 1. CashShuffle
 2. CashFusion
 
 
-## Purse
+## [Provider](/packages/Provider)
+
+Performs general on-chain functions like:
+- Broadcasting of raw transactions
+
+
+## [Purse](/packages/Purse)
 
 Manages individual Unspent Transaction Outputs (UTXOs).
 
 
-## Rostrum
+## [Rostrum](/packages/Rostrum)
 
 Exposes all of the Rostrum node endpoints. Manages a connection pool (eg. 2 of 3) for data redundancy and application security.
 
 
-## Remote Procedure Call (RPC)
+## [Remote Procedure Call (RPC)](/packages/Rpc)
 
 Provides a simple communications gateway to the Core node for Node.js.
 
 > Please Note: This package DOES NOT work on the client (in web browser).
 
 
-## Script
+## [Script](/packages/Script)
 
 Build and compile the "wise" contract scripts of Nexa.
 
@@ -144,7 +144,7 @@ Build and compile the "wise" contract scripts of Nexa.
 A minimal (lightweight) version of the full NexaJS library containing ONLY the minimum libraries required for effective operational use in environments that have strict (data/security) constraints.
 
 
-## Token
+## [Token](/packages/Token)
 
 Manages tokens functions, including:
 - info: Provides token information (eg. genesis details)
@@ -154,7 +154,7 @@ Manages tokens functions, including:
 - send: Send tokens to an address
 
 
-## Transaction
+## [Transaction](/packages/Transaction)
 
 Manages a full Nexa transaction, including:
 - Unspent output retrieval
@@ -167,12 +167,12 @@ Manages a full Nexa transaction, including:
 _TBD_
 
 
-## Utilities
+## [Utilities](/packages/Utils)
 
 A suite of "pure" utilities to support the other NexaJS libraries.
 
 
-## Wallet
+## [Wallet](/packages/Wallet)
 
 Manages the basic wallet functions, including:
 - HD wallet creation
