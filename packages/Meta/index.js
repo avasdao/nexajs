@@ -10,7 +10,7 @@ import { EventEmitter } from 'events'
 
 /* Export (local) modules. */
 // TBD
-
+import { ethers } from 'ethers'
 
 /**
  * Meta Class
@@ -30,9 +30,33 @@ export class Meta extends EventEmitter {
     test() {
         return 'Meta (Instance) is working!'
     }
+
     static test() {
         return 'Meta (Static) is working!'
     }
+
+    async getBlockHeight() {
+        // return 'Meta (Instance) is working!'
+        const url = 'https://nexa.sh/metatest'
+        const provider = new ethers.JsonRpcProvider(url)
+
+        const blockCount = await provider
+            .getBlockNumber()
+            .catch(err => console.error(err))
+        return blockCount
+    }
+
+    async getBalance(_address) {
+        // return 'Meta (Instance) is working!'
+        const url = 'https://nexa.sh/metatest'
+        const provider = new ethers.JsonRpcProvider(url)
+
+        const blockCount = await provider
+            .getBalance(_address)
+            .catch(err => console.error(err))
+        return blockCount
+    }
+
 }
 
 
