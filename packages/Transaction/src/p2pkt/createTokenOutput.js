@@ -9,6 +9,8 @@ import {
     bigIntToCompactUint,
     numberToBinUint16LE,
     numberToBinUint32LE,
+    bigIntToBinUint16LE,
+    bigIntToBinUint32LE,
     bigIntToBinUint64LE
 } from '@nexajs/utils'
 
@@ -33,12 +35,12 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
     let scriptAmount
     let tokenOutput
 
-    if (BigInt(_tokens) > BigInt(0xFFFFFFFF)) {
-        scriptAmount = bigIntToBinUint64LE(BigInt(_tokens))
-    } else if (BigInt(_tokens) > BigInt(0xFFFF)) {
-        scriptAmount = numberToBinUint32LE(_tokens)
+    if (_tokens > BigInt(0xFFFFFFFF)) {
+        scriptAmount = bigIntToBinUint64LE(_tokens)
+    } else if (_tokens > BigInt(0xFFFF)) {
+        scriptAmount = bigIntToBinUint32LE(_tokens)
     } else {
-        scriptAmount = numberToBinUint16LE(_tokens)
+        scriptAmount = bigIntToBinUint16LE(_tokens)
     }
 
     scriptAmount = encodeDataPush(scriptAmount)
@@ -61,7 +63,7 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
         lockingBytecode,
         amount: bigIntToBinUint64LE(BigInt(_satoshis)),
         tokenidHex: _tokenid,
-        tokens: bigIntToBinUint64LE(BigInt(_tokens)),
+        tokens: bigIntToBinUint64LE(_tokens),
     }
     // console.log('\n  tokenOutput:', tokenOutput)
 
