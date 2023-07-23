@@ -26,6 +26,10 @@ import {
     hexToBin,
 } from '@nexajs/utils'
 
+import { getCoins } from '@nexajs/purse'
+
+import { getTokens } from '@nexajs/token'
+
 /* Libauth helpers. */
 import {
     deriveHdPath,
@@ -205,6 +209,10 @@ export class Wallet extends EventEmitter {
         return this.getAddress(this._addressIdx, true)
     }
 
+    get entropy() {
+        return this._entropy
+    }
+
     get mnemonic() {
         return this._mnemonic
     }
@@ -220,12 +228,12 @@ export class Wallet extends EventEmitter {
         }
 
         /* Validate mnemonic. */
-        if (!this._mnemonic) {
+        if (!this.mnemonic) {
             return null
         }
 
         /* Set seed. */
-        const seed = hexToBin(mnemonicToSeed(this._mnemonic))
+        const seed = hexToBin(mnemonicToSeed(this.mnemonic))
 
         /* Initialize HD node. */
         const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
@@ -253,7 +261,7 @@ export class Wallet extends EventEmitter {
 
     getAddress(_addressIdx = '0', _isChange) {
         /* Validate mnemonic. */
-        if (!this._mnemonic) {
+        if (!this.mnemonic) {
             return null
         }
 
@@ -261,7 +269,7 @@ export class Wallet extends EventEmitter {
         const changeIdx = _isChange ? '1' : '0'
 
         /* Set seed. */
-        const seed = hexToBin(mnemonicToSeed(this._mnemonic))
+        const seed = hexToBin(mnemonicToSeed(this.mnemonic))
 
         /* Initialize HD node. */
         const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
@@ -334,6 +342,106 @@ export class Wallet extends EventEmitter {
     setPathAddress(_index) {
         /* Set address index. */
         this._addressIdx = parseInt(_index)
+    }
+
+    async send(_tokenid, _receiver, _amount) {
+        let address
+        let coins
+        let feeRate
+        let nullData
+        let receivers
+        let response
+        let tokens
+        let txResult
+        let unspentCoins
+        let unspentTokens
+        let userData
+        let wallet
+        let wif
+
+        /* Initialize wallet. */
+        wallet = new Wallet(this.mnemonic)
+        // console.log('WALLET', wallet)
+
+        /* Request (current) address. */
+        address = wallet.address
+        // console.log('ADDRESS', address)
+
+        /* Encode Private Key WIF. */
+        wif = encodePrivateKeyWif({ hash: sha256 }, wallet.privateKey, 'mainnet')
+        console.log('PRIVATE KEY (WIF):', wif)
+
+        coins = await getCoins(wif)
+            .catch(err => console.error(err))
+        console.log('\n  Coins:', coins)
+
+        tokens = await getTokens(wif)
+            .catch(err => console.error(err))
+        console.log('\n  Tokens:', tokens)
+
+        /* Calculate the total balance of the unspent outputs. */
+        // FIXME: Add support for BigInt.
+        unspentTokens = tokens
+            .reduce(
+                (totalValue, unspentOutput) => (totalValue + parseInt(unspentOutput.tokens)), 0
+            )
+        console.log('UNSPENT TOKENS', unspentTokens)
+
+        userData = [
+            'NexaJS\tComboTest',
+            uuidv4(),
+        ]
+
+        /* Initialize hex data. */
+        nullData = encodeNullData(userData)
+        console.log('HEX DATA', nullData)
+
+        receivers = [
+            {
+                data: nullData
+            },
+            {
+                address: NEXA_DUMP_ADDRESS,
+                tokenid: TOKEN_ID_HEX, // TODO Allow auto-format conversion.
+                tokens: TOKENS,
+            },
+        ]
+
+        /* Handle (automatic) TOKEN change. */
+        if (unspentTokens - TOKENS > 0) {
+            receivers.push({
+                address: wallet.address,
+                tokenid: TOKEN_ID_HEX, // TODO Allow auto-format conversion.
+                tokens: (unspentTokens - TOKENS),
+            })
+        }
+
+        // FIXME: FOR DEV PURPOSES ONLY
+        receivers.push({
+            address: wallet.address,
+        })
+        console.log('\n  Receivers:', receivers)
+        return 'txid-goes-here'
+
+        /* Set automatic fee (handling) flag. */
+        feeRate = 2.0
+
+        /* Send UTXO request. */
+        response = await sendToken(coins, tokens, receivers, feeRate)
+        console.log('Send UTXO (response):', response)
+
+        try {
+            txResult = JSON.parse(response)
+            console.log('TX RESULT', txResult)
+
+            if (txResult.error) {
+                return console.error(txResult.message)
+            }
+
+            expect(txResult.result).to.have.length(64)
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     async update(_subscribe = false, _hasFiat = false) {
@@ -411,9 +519,9 @@ export class Wallet extends EventEmitter {
     toObject() {
         /* Return primary details. */
         return {
-            entropy: this._entropy,
-            mnemonic: this._mnemonic,
-            path: this._path,
+            entropy: this.entropy,
+            mnemonic: this.mnemonic,
+            path: this.path,
             privateKey: this.privateKey,
             publicKey: this.publicKey,
             address: this.address,
@@ -423,7 +531,7 @@ export class Wallet extends EventEmitter {
 
     toString() {
         /* Return mnemonic. */
-        return this._mnemonic
+        return this.mnemonic
     }
 }
 
