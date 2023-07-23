@@ -4,6 +4,8 @@
 
 The Markets package is used to connect and trade with cryptocurrency exchanges and payment processing services worldwide. It provides quick access to market data for storage, analysis, visualization, indicator development, algorithmic trading, strategy backtesting, bot programming, and related software engineering.
 
+![CCXT Markets Ani](./assets/ccxt-markets-ani.gif)
+
 It is intended to be used by coders, developers, technically-skilled traders, data-scientists and financial analysts for building trading algorithms.
 
 __Current feature list:__
@@ -59,23 +61,54 @@ __Private APIs allow the following:__
 - transfer funds between accounts
 - use merchant services
 
+### Initializing
 
-## Examples
+> Authentication credentials are (optional), but are _required_ for private API (data) endpoints.
 
 ```js
-import { version, mexc } from '@nexajs/markets'
+import { Markets, version } from '@nexajs/markets'
+
+const mexc = new Markets.mexc({
+    apiKey: 'YOUR_PUBLIC_API_KEY',
+    secret: 'YOUR_SECRET_PRIVATE_KEY',
+})
 
 console.log(version)
+// 23.7.21
+```
+
+### Fetch Ticker
+
+```js
+import { mexc } from '@nexajs/markets'
 
 const exchange = new mexc()
 
-const ticker = await exchange.fetchTicker('NEXA/USDT')
-
+const ticker = await exchange.getTicker('NEXA/USDT')
 console.log(ticker)
-
 /*
 {
  ...
+}
+*/
+```
+
+### Make Trade
+
+```js
+import { coinex } from '@nexajs/markets'
+
+const exchange = new coinex()
+
+const orderParams = {
+    pair: 'NEXA/USDT',
+}
+
+const orderDetails = await exchange.createOrder(orderParams)
+console.log(orderDetails)
+/*
+{
+ orderId: ...,
 }
 */
 ```
