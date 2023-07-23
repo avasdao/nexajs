@@ -22,7 +22,7 @@ export default async (_address, _satoshis) => {
     /* Create (value) output. */
     const valueOutput = {
         lockingBytecode,
-        amount: bigIntToBinUint64LE(BigInt(_satoshis)),
+        amount: bigIntToBinUint64LE(_satoshis),
     }
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.

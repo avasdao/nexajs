@@ -36,7 +36,7 @@ export default async (
     // Create a "transaction state", used to extract a lot of the relevant information with Libauth.
     const state = createTransactionContextCommon({
         inputIndex,
-        sourceOutput: { satoshis: bigIntToBinUint64LE(BigInt(satoshis)) },
+        sourceOutput: { satoshis: bigIntToBinUint64LE(satoshis) },
         spendingTransaction: transaction,
     })
 

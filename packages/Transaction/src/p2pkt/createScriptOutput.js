@@ -9,8 +9,6 @@ import {
     bigIntToCompactUint,
     numberToBinUint16LE,
     numberToBinUint32LE,
-    bigIntToBinUint16LE,
-    bigIntToBinUint32LE,
     bigIntToBinUint64LE
 } from '@nexajs/utils'
 

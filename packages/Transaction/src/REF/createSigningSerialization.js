@@ -37,7 +37,7 @@ export default async (
 
     const ctxCommon = {
         inputIndex,
-        sourceOutput: { satoshis: bigIntToBinUint64LE(BigInt(satoshis)) },
+        sourceOutput: { satoshis: bigIntToBinUint64LE(satoshis) },
         spendingTransaction: transaction,
     }
 
