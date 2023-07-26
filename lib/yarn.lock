@@ -525,6 +525,18 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.7.22":
+  version "23.7.22"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.22.tgz#6fd5180ab52188e23d40f963e9fc48fe96d8aef7"
+  integrity sha512-OPsucaJRo2zRvCqE7gJoqPv58DsTDTXCd1Dm7l/m7Dqq42sdI3EIm0O0EiOsF9gOvt/Hh7hfCxxlnYXQHcA5wQ==
+  dependencies:
+    "@nexajs/rostrum" "23.7.20"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/blockchain@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/blockchain/-/blockchain-23.5.15.tgz#ea3078d2a7425e8a3f9154847872572105e99c7c"
@@ -725,6 +737,19 @@
     "@nexajs/hdnode" "23.7.20"
     "@nexajs/script" "23.7.15"
     "@nexajs/utils" "23.5.15"
+    debug "4.3.4"
+
+"@nexajs/transaction@23.7.22":
+  version "23.7.22"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.22.tgz#661a6100638016a37b3a26bc7997eb326059d19a"
+  integrity sha512-Qtw5mPtNB4ozYx7laLAAWO0MsWn6jxlAc8hhypMOQBkohWbJ1/FQqNx2eVGxu8U6FqQWE+U0OlfejWNp4YaV8Q==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/address" "23.7.22"
+    "@nexajs/crypto" "23.5.22"
+    "@nexajs/hdnode" "23.7.20"
+    "@nexajs/script" "23.7.21"
+    "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
 "@nexajs/utils@23.5.15":

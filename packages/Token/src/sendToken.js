@@ -76,16 +76,16 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     }
 
     /* Initialize (initial) transaction satoshis. */
-    satoshis = 0
+    satoshis = 0n
 
     /* Calculate total satoshis. */
     receivers.forEach(_receiver => {
-        if (_receiver.satoshis) {
+        if (_receiver.satoshis > 0n) {
             /* Add satoshis to total. */
             satoshis += _receiver.satoshis
         }
 
-        if (_receiver.tokens) {
+        if (_receiver.tokens > 0n) {
             /* Add satoshis to total. */
             satoshis += DUST_LIMIT
         }
@@ -147,13 +147,13 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     /* Calculate the total balance of the unspent outputs. */
     unspentCoins = coins
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
         )
 
     /* Calculate the total balance of the unspent outputs. */
     unspentTokens = tokens
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
         )
 
     unspentSatoshis = (unspentCoins + unspentTokens)
@@ -186,7 +186,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
 
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
-    feeTotal = (transaction.raw.length / 2) * _feeRate
+    feeTotal = BigInt((transaction.raw.length / 2) * _feeRate)
     // console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
@@ -194,13 +194,13 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     // console.log('CHANGE', change)
 
     /* Validate change amount. */
-    if (change < 0.0) {
+    if (change < 0n) {
         throw new Error(`Oops! Insufficient funds to complete this transaction.`)
     }
 
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
-        feeTotalWithChange = ((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate
+        feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate)
         // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */

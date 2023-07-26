@@ -8,10 +8,10 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@nexajs/address": "23.7.21",
+    "@nexajs/address": "23.7.22",
     "@nexajs/hdnode": "23.7.20",
     "@nexajs/provider": "23.6.21",
-    "@nexajs/transaction": "23.7.21",
+    "@nexajs/transaction": "23.7.22",
     "debug": "4.3.4",
     "events": "3.3.0",
     "node-fetch": "3.3.1"

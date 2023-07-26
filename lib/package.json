@@ -12,7 +12,7 @@
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "23.7.21",
+    "@nexajs/address": "23.7.22",
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.7.20",
     "@nexajs/id": "23.5.15",
@@ -23,7 +23,7 @@
     "@nexajs/rpc": "23.5.15",
     "@nexajs/script": "23.7.21",
     "@nexajs/token": "23.7.21",
-    "@nexajs/transaction": "23.7.21",
+    "@nexajs/transaction": "23.7.22",
     "@nexajs/utils": "23.7.22",
     "@nexajs/wallet": "23.5.17",
     "debug": "4.3.4",
