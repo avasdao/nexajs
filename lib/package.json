@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "23.6.21",
+  "version": "23.7.25",
   "license": "MIT",
   "description": "A comprehensive JavaScript Library + SDK for building Nexa applications on Node.js (back-end) and web browsers (front-end).",
   "author": "Ava's DAO",
@@ -25,7 +25,7 @@
     "@nexajs/token": "23.7.25",
     "@nexajs/transaction": "23.7.22",
     "@nexajs/utils": "23.7.22",
-    "@nexajs/wallet": "23.5.17",
+    "@nexajs/wallet": "23.7.25",
     "debug": "4.3.4",
     "events": "3.3.0"
   },

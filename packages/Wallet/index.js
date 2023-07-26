@@ -377,20 +377,21 @@ export class Wallet extends EventEmitter {
 
         /* Encode Private Key WIF. */
         wif = encodePrivateKeyWif({ hash: sha256 }, wallet.privateKey, 'mainnet')
-        console.log('PRIVATE KEY (WIF):', wif)
-// console.log('_amount instanceof BigInt', _amount instanceof BigInt, _amount, typeof _amount);
-// console.log('_receiver instanceof BigInt', _receiver instanceof BigInt, _receiver, typeof _receiver);
+
+        /* Validate amount. */
         if (typeof _amount === 'bigint') {
             /* Set token amount. */
             tokenAmount = _amount
 
+            /* Get coins. */
             coins = await getCoins(wif)
                 .catch(err => console.error(err))
-            console.log('\n  Coins:', coins)
+            console.log('COINS', coins)
 
+            /* Get tokens. */
             tokens = await getTokens(wif)
                 .catch(err => console.error(err))
-            console.log('\n  Tokens:', tokens)
+            console.log('TOKENS', tokens)
 
             /* Calculate the total balance of the unspent outputs. */
             // FIXME: Add support for BigInt.
@@ -421,7 +422,7 @@ export class Wallet extends EventEmitter {
             receivers.push({
                 address: wallet.address,
             })
-            console.log('\n  Receivers:', receivers)
+            console.log('RECEIVERS', receivers)
 
             /* Set automatic fee (handling) flag. */
             feeRate = 2.0
@@ -438,7 +439,7 @@ export class Wallet extends EventEmitter {
 
             coins = await getCoins(wif)
                 .catch(err => console.error(err))
-            console.log('\n  Coins:', coins)
+            console.log('COINS', coins)
 
             const receivers = [
                 {
@@ -451,7 +452,7 @@ export class Wallet extends EventEmitter {
             receivers.push({
                 address: wallet.address,
             })
-            console.log('\n  Receivers:', receivers)
+            console.log('RECEIVERS', receivers)
 
             /* Set automatic fee (handling) flag. */
             feeRate = 2.0
