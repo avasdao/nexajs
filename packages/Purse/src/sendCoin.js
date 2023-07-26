@@ -7,6 +7,8 @@ import { broadcast } from '@nexajs/provider'
 
 import { Transaction } from '@nexajs/transaction'
 
+import getChangeReceiver from './getChangeReceiver.js'
+
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
 const TYPE1_OUTPUT_LENGTH = 33
@@ -157,14 +159,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
             change = (unspentSatoshis - satoshis - feeTotalWithChange)
 
             /* Find the change receiver. */
-            receiver = receivers.find(_receiver => {
-                return _receiver.address &&
-                    (
-                        typeof _receiver.satoshis === 'undefined' ||
-                        _receiver.satoshis === null ||
-                        _receiver.satoshis === ''
-                    )
-            })
+            receiver = getChangeReceiver(receivers)
 
             /* Validate receiver. */
             if (receiver) {

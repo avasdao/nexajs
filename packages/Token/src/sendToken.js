@@ -7,6 +7,8 @@ import { broadcast } from '@nexajs/provider'
 
 import { Transaction } from '@nexajs/transaction'
 
+import getChangeReceiver from './getChangeReceiver.js'
+
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
 const TYPE1_OUTPUT_LENGTH = 33
@@ -37,6 +39,8 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     let receiver
     let receivers
     let satoshis
+    let tokenAmount
+    let tokenid
     let tokens
     let transaction
     let unspentCoins
@@ -78,8 +82,9 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
 
     /* Initialize (initial) transaction satoshis. */
     satoshis = 0n
+    tokenAmount = 0n
 
-    /* Calculate total satoshis. */
+    /* Calculate total satoshis and tokens. */
     receivers.forEach(_receiver => {
         if (_receiver.satoshis > 0n) {
             /* Add satoshis to total. */
@@ -89,9 +94,13 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
         if (_receiver.tokens > 0n) {
             /* Add satoshis to total. */
             satoshis += DUST_LIMIT
+
+            /* Add tokens to total. */
+            tokenAmount += _receiver.tokens
         }
     })
-    debug('Transaction satoshis (incl. fee):', satoshis)
+    debug('Transaction satoshis (excl. fee):', satoshis)
+    debug('Transaction token amount:', tokenAmount)
     // console.log('SATOSHIS', satoshis)
 
     /* Create new transaction. */
@@ -128,6 +137,10 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
                 _receiver.tokenid,
                 _receiver.tokens,
             )
+
+            if (!tokenid) {
+                tokenid = _receiver.tokenid
+            }
         } else if (_receiver.address && _receiver.satoshis) {
             /* Add (value) output. */
             transaction.addOutput(
@@ -157,7 +170,40 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
             (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
         )
 
+    /* Total satoshis for coins and tokens (dust value). */
     unspentSatoshis = (unspentCoins + unspentDustCoins)
+
+    unspentTokens = tokens
+        .reduce(
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), 0n
+        )
+    console.log('UNSPENT TOKENS', unspentTokens)
+    console.log('TOKEN AMOUNT', tokenAmount)
+
+    if (unspentTokens - tokenAmount > 0n) {
+        /* Find the change receiver. */
+        receiver = getChangeReceiver(receivers)
+        console.log('RECEIVER', receiver)
+
+        /* Validate receiver. */
+        if (receiver) {
+            console.log('FOUND CHANGE RECEIVER', receiver)
+
+            /* Add satoshis to total. */
+            satoshis += DUST_LIMIT
+
+            /* Add (token) output. */
+            transaction.addOutput(
+                receiver.address,
+                DUST_LIMIT,
+                tokenid,
+                (unspentTokens - tokenAmount),
+            )
+        } else {
+            // TODO Fallback to the first input/signer address
+            throw new Error('ERROR! Find a change receiver!')
+        }
+    }
 
     /* Validate dust amount. */
     if (unspentSatoshis < DUST_LIMIT) {
@@ -188,11 +234,11 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
     feeTotal = BigInt((transaction.raw.length / 2) * _feeRate)
-    // console.log('FEE TOTAL (w/out change):', feeTotal)
+    console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
     change = (unspentSatoshis - satoshis - feeTotal)
-    // console.log('CHANGE', change)
+    console.log('CHANGE', change)
 
     /* Validate change amount. */
     if (change < 0n) {
@@ -202,7 +248,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
         feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate)
-        // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
+        console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */
         if ((unspentSatoshis - satoshis - feeTotalWithChange) >= DUST_LIMIT) {
@@ -210,19 +256,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
             change = (unspentSatoshis - satoshis - feeTotalWithChange)
 
             /* Find the change receiver. */
-            receiver = receivers.find(_receiver => {
-                return _receiver.address &&
-                    (
-                        typeof _receiver.satoshis === 'undefined' ||
-                        _receiver.satoshis === null ||
-                        _receiver.satoshis === ''
-                    ) &&
-                    (
-                        typeof _receiver.tokens === 'undefined' ||
-                        _receiver.tokens === null ||
-                        _receiver.tokens === ''
-                    )
-            })
+            receiver = getChangeReceiver(receivers)
 
             /* Validate receiver. */
             if (receiver) {
