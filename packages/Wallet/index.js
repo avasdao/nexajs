@@ -26,9 +26,15 @@ import {
     hexToBin,
 } from '@nexajs/utils'
 
-import { getCoins } from '@nexajs/purse'
+import {
+    getCoins,
+    sendCoin,
+} from '@nexajs/purse'
 
-import { getTokens } from '@nexajs/token'
+import {
+    getTokens,
+    sendToken,
+} from '@nexajs/token'
 
 /* Libauth helpers. */
 import {
@@ -349,13 +355,15 @@ export class Wallet extends EventEmitter {
         let coins
         let feeRate
         let nullData
+        let receiver
         let receivers
         let response
+        let satoshis
+        let tokenAmount
         let tokens
         let txResult
         let unspentCoins
         let unspentTokens
-        let userData
         let wallet
         let wif
 
@@ -370,65 +378,90 @@ export class Wallet extends EventEmitter {
         /* Encode Private Key WIF. */
         wif = encodePrivateKeyWif({ hash: sha256 }, wallet.privateKey, 'mainnet')
         console.log('PRIVATE KEY (WIF):', wif)
+// console.log('_amount instanceof BigInt', _amount instanceof BigInt, _amount, typeof _amount);
+// console.log('_receiver instanceof BigInt', _receiver instanceof BigInt, _receiver, typeof _receiver);
+        if (typeof _amount === 'bigint') {
+            /* Set token amount. */
+            tokenAmount = _amount
 
-        coins = await getCoins(wif)
-            .catch(err => console.error(err))
-        console.log('\n  Coins:', coins)
+            coins = await getCoins(wif)
+                .catch(err => console.error(err))
+            console.log('\n  Coins:', coins)
 
-        tokens = await getTokens(wif)
-            .catch(err => console.error(err))
-        console.log('\n  Tokens:', tokens)
+            tokens = await getTokens(wif)
+                .catch(err => console.error(err))
+            console.log('\n  Tokens:', tokens)
 
-        /* Calculate the total balance of the unspent outputs. */
-        // FIXME: Add support for BigInt.
-        unspentTokens = tokens
-            .reduce(
-                (totalValue, unspentOutput) => (totalValue + parseInt(unspentOutput.tokens)), 0
-            )
-        console.log('UNSPENT TOKENS', unspentTokens)
+            /* Calculate the total balance of the unspent outputs. */
+            // FIXME: Add support for BigInt.
+            unspentTokens = tokens
+                .reduce(
+                    (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), 0n
+                )
+            console.log('UNSPENT TOKENS', unspentTokens)
 
-        userData = [
-            'NexaJS\tComboTest',
-            uuidv4(),
-        ]
+            receivers = [
+                {
+                    address: _receiver,
+                    tokenid: _tokenid, // TODO Allow auto-format conversion.
+                    tokens: tokenAmount,
+                },
+            ]
 
-        /* Initialize hex data. */
-        nullData = encodeNullData(userData)
-        console.log('HEX DATA', nullData)
+            /* Handle (automatic) TOKEN change. */
+            if (unspentTokens - tokenAmount > 0n) {
+                receivers.push({
+                    address: wallet.address,
+                    tokenid: _tokenid, // TODO Allow auto-format conversion.
+                    tokens: (unspentTokens - tokenAmount),
+                })
+            }
 
-        receivers = [
-            {
-                data: nullData
-            },
-            {
-                address: NEXA_DUMP_ADDRESS,
-                tokenid: TOKEN_ID_HEX, // TODO Allow auto-format conversion.
-                tokens: TOKENS,
-            },
-        ]
-
-        /* Handle (automatic) TOKEN change. */
-        if (unspentTokens - TOKENS > 0) {
+            // FIXME: FOR DEV PURPOSES ONLY
             receivers.push({
                 address: wallet.address,
-                tokenid: TOKEN_ID_HEX, // TODO Allow auto-format conversion.
-                tokens: (unspentTokens - TOKENS),
             })
+            console.log('\n  Receivers:', receivers)
+
+            /* Set automatic fee (handling) flag. */
+            feeRate = 2.0
+
+            /* Send UTXO request. */
+            response = await sendToken(coins, tokens, receivers, feeRate)
+            console.log('Send UTXO (response):', response)
+        } else if (typeof _receiver === 'bigint') {
+            /* Set receiver. */
+            receiver = _tokenid
+
+            /* Set satoshis. */
+            satoshis = _receiver
+
+            coins = await getCoins(wif)
+                .catch(err => console.error(err))
+            console.log('\n  Coins:', coins)
+
+            const receivers = [
+                {
+                    address: receiver,
+                    satoshis,
+                },
+            ]
+
+            // FIXME: FOR DEV PURPOSES ONLY
+            receivers.push({
+                address: wallet.address,
+            })
+            console.log('\n  Receivers:', receivers)
+
+            /* Set automatic fee (handling) flag. */
+            feeRate = 2.0
+
+            /* Send UTXO request. */
+            response = await sendCoin(coins, receivers, feeRate)
+            console.log('Send UTXO (response):', response)
+        } else {
+            throw new Error('Invalid amount.')
         }
-
-        // FIXME: FOR DEV PURPOSES ONLY
-        receivers.push({
-            address: wallet.address,
-        })
-        console.log('\n  Receivers:', receivers)
-        return 'txid-goes-here'
-
-        /* Set automatic fee (handling) flag. */
-        feeRate = 2.0
-
-        /* Send UTXO request. */
-        response = await sendToken(coins, tokens, receivers, feeRate)
-        console.log('Send UTXO (response):', response)
 
         try {
             txResult = JSON.parse(response)
@@ -437,11 +470,11 @@ export class Wallet extends EventEmitter {
             if (txResult.error) {
                 return console.error(txResult.message)
             }
-
-            expect(txResult.result).to.have.length(64)
         } catch (err) {
             console.error(err)
         }
+
+        return txResult
     }
 
     async update(_subscribe = false, _hasFiat = false) {

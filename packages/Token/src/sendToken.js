@@ -40,6 +40,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     let tokens
     let transaction
     let unspentCoins
+    let unspentDustCoins
     let unspentTokens
     let unspentSatoshis
     let wifs
@@ -151,12 +152,12 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
         )
 
     /* Calculate the total balance of the unspent outputs. */
-    unspentTokens = tokens
+    unspentDustCoins = tokens
         .reduce(
             (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
         )
 
-    unspentSatoshis = (unspentCoins + unspentTokens)
+    unspentSatoshis = (unspentCoins + unspentDustCoins)
 
     /* Validate dust amount. */
     if (unspentSatoshis < DUST_LIMIT) {
