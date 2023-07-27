@@ -295,10 +295,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/transaction@23.7.26":
-  version "23.7.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.26.tgz#c8ff4861f24c694a0301159580ceebf0acd6a5b5"
-  integrity sha512-WdhWqhQ2+8rOas8UsDqJQoEC1IABZWeXahCJYIaORZpE7Va0EGvMMEdoT7dBY51ciS/sbLZcs/KTjAN1ibRbog==
+"@nexajs/transaction@23.7.27":
+  version "23.7.27"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.27.tgz#dc9408a29e8a48af12ccb6b8ec1ce6835ac5905b"
+  integrity sha512-EALo6L4nd5hrw3AtLCCt0Nl8i4l8dmBi7ny1r1ZM3hlJKoSuhLKjbqLkCjKxU+5OMHp4nmSsAgyaI9QCxWNgzA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.7.22"

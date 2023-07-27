@@ -277,15 +277,15 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/purse@23.7.26":
-  version "23.7.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.7.26.tgz#446bd979429d5acde1b4f6c32056c06ce71ee16b"
-  integrity sha512-zMl8A0ONJGN/2K/HSNafu6os/jCe86fDvrdSEysAU/qM+dAQ5rlYgewNLYA2TYnqqU7dI34gRIsdppDE4B6yVg==
+"@nexajs/purse@23.7.27":
+  version "23.7.27"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.7.27.tgz#0f32e420f83f59a0cca4adc48a8237b584f5bc02"
+  integrity sha512-UMbLzQCh7dZln1oYXWOH6BD2VEF2fix6AXJr+p+38JVzj40mq+ZjqL4OW2l0myEDXFs8eGeWgZRmKzvkJR8uvg==
   dependencies:
     "@nexajs/address" "23.7.22"
     "@nexajs/hdnode" "23.7.26"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/transaction" "23.7.26"
+    "@nexajs/transaction" "23.7.27"
     debug "4.3.4"
     events "3.3.0"
     uuid "9.0.0"
@@ -308,23 +308,23 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/token@23.7.26":
-  version "23.7.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.26.tgz#601c25450f0fdddc4636b5998f7f0407a0a7c2c1"
-  integrity sha512-MhOdECVQNr7FZacpV78dk7jzZYJFUADGSULhgOUUFHwo8psnJkomJt9fiElg1IvL/w8qOq467SLb4MqV/d+d9w==
+"@nexajs/token@23.7.27":
+  version "23.7.27"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.27.tgz#e0a74669e5c415c5da096ea3cf9ff66c5bcfd65f"
+  integrity sha512-hQ9VJ/bnJ984EI6wH97jQGBek8XGiAxlQnrUG375Wq2dSpdsxCHFpzTkSUCT0xJfzfRDK/mVD1moFY4xJfBJLw==
   dependencies:
     "@nexajs/address" "23.7.22"
     "@nexajs/hdnode" "23.7.26"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/transaction" "23.7.26"
+    "@nexajs/transaction" "23.7.27"
     debug "4.3.4"
     events "3.3.0"
     node-fetch "3.3.1"
 
-"@nexajs/transaction@23.7.26":
-  version "23.7.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.26.tgz#c8ff4861f24c694a0301159580ceebf0acd6a5b5"
-  integrity sha512-WdhWqhQ2+8rOas8UsDqJQoEC1IABZWeXahCJYIaORZpE7Va0EGvMMEdoT7dBY51ciS/sbLZcs/KTjAN1ibRbog==
+"@nexajs/transaction@23.7.27":
+  version "23.7.27"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.27.tgz#dc9408a29e8a48af12ccb6b8ec1ce6835ac5905b"
+  integrity sha512-EALo6L4nd5hrw3AtLCCt0Nl8i4l8dmBi7ny1r1ZM3hlJKoSuhLKjbqLkCjKxU+5OMHp4nmSsAgyaI9QCxWNgzA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.7.22"

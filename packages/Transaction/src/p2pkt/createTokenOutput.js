@@ -26,18 +26,14 @@ import {
  * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (_address, _satoshis, _tokenid, _tokens) => {
-    // console.log('\n  Receiving address:', _address)
-    // console.log('\n  Receiving satoshis:', _satoshis)
-    // console.log('\n  Receiving token id:', _tokenid)
-    // console.log('\n  Receiving # tokens:', _tokens)
 
     let lockingBytecode
     let scriptAmount
     let tokenOutput
 
-    if (_tokens > 0xFFFFFFFFn) {
+    if (_tokens > BigInt(0xFFFFFFFF)) {
         scriptAmount = bigIntToBinUint64LE(_tokens)
-    } else if (_tokens > 0xFFFFn) {
+    } else if (_tokens > BigInt(0xFFFF) ) {
         scriptAmount = bigIntToBinUint32LE(_tokens)
     } else {
         scriptAmount = bigIntToBinUint16LE(_tokens)
