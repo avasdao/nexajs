@@ -81,17 +81,17 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     }
 
     /* Initialize (initial) transaction satoshis. */
-    satoshis = 0n
-    tokenAmount = 0n
+    satoshis = BigInt(0)
+    tokenAmount = BigInt(0)
 
     /* Calculate total satoshis and tokens. */
     receivers.forEach(_receiver => {
-        if (_receiver.satoshis > 0n) {
+        if (_receiver.satoshis > BigInt(0)) {
             /* Add satoshis to total. */
             satoshis += _receiver.satoshis
         }
 
-        if (_receiver.tokens > 0n) {
+        if (_receiver.tokens > BigInt(0)) {
             /* Add satoshis to total. */
             satoshis += DUST_LIMIT
 
@@ -161,13 +161,13 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     /* Calculate the total balance of the unspent outputs. */
     unspentCoins = coins
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), BigInt(0)
         )
 
     /* Calculate the total balance of the unspent outputs. */
     unspentDustCoins = tokens
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), BigInt(0)
         )
 
     /* Total satoshis for coins and tokens (dust value). */
@@ -175,12 +175,12 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
 
     unspentTokens = tokens
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), 0n
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), BigInt(0)
         )
     console.log('UNSPENT TOKENS', unspentTokens)
     console.log('TOKEN AMOUNT', tokenAmount)
 
-    if (unspentTokens - tokenAmount > 0n) {
+    if (unspentTokens - tokenAmount > BigInt(0)) {
         /* Find the change receiver. */
         receiver = getChangeReceiver(receivers)
         console.log('RECEIVER', receiver)
@@ -241,7 +241,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     console.log('CHANGE', change)
 
     /* Validate change amount. */
-    if (change < 0n) {
+    if (change < BigInt(0)) {
         throw new Error(`Oops! Insufficient funds to complete this transaction.`)
     }
 

@@ -231,18 +231,6 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.7.20":
-  version "23.7.20"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.20.tgz#568c48a7754fbbfe928d6e3811ffb0288449cde3"
-  integrity sha512-c3NctJfRH5QXmWacT1IV9y9wnvjsGFAHb8Gy7y3HdHKsspQ+0ui1ODO6cXLNYr3+tjml6dVt8MNJV/nL0cUNIg==
-  dependencies:
-    "@nexajs/rostrum" "23.7.20"
-    big-integer "1.6.51"
-    debug "4.3.4"
-    graphql "16.6.0"
-    graphql-ws "5.12.0"
-    ws "8.13.0"
-
 "@nexajs/address@23.7.22":
   version "23.7.22"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.7.22.tgz#6fd5180ab52188e23d40f963e9fc48fe96d8aef7"
@@ -267,17 +255,6 @@
     events "3.3.0"
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
-
-"@nexajs/hdnode@23.7.20":
-  version "23.7.20"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.7.20.tgz#400390b1829b4ca2076e0231797102587199b85e"
-  integrity sha512-ypNeCyCWmXOKQ3SRrE1F1qH54vsn61985aK9KNd2W7E+9JQ64Y5IvjJyhDLEKSJLaedBFXVclUm+0uVSo30uRg==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "23.7.20"
-    "@nexajs/utils" "23.5.15"
-    debug "4.3.4"
 
 "@nexajs/hdnode@23.7.26":
   version "23.7.26"
@@ -318,15 +295,15 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/transaction@23.7.22":
-  version "23.7.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.22.tgz#661a6100638016a37b3a26bc7997eb326059d19a"
-  integrity sha512-Qtw5mPtNB4ozYx7laLAAWO0MsWn6jxlAc8hhypMOQBkohWbJ1/FQqNx2eVGxu8U6FqQWE+U0OlfejWNp4YaV8Q==
+"@nexajs/transaction@23.7.26":
+  version "23.7.26"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.7.26.tgz#c8ff4861f24c694a0301159580ceebf0acd6a5b5"
+  integrity sha512-WdhWqhQ2+8rOas8UsDqJQoEC1IABZWeXahCJYIaORZpE7Va0EGvMMEdoT7dBY51ciS/sbLZcs/KTjAN1ibRbog==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.7.22"
     "@nexajs/crypto" "23.5.22"
-    "@nexajs/hdnode" "23.7.20"
+    "@nexajs/hdnode" "23.7.26"
     "@nexajs/script" "23.7.21"
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"

@@ -397,7 +397,7 @@ export class Wallet extends EventEmitter {
             // FIXME: Add support for BigInt.
             unspentTokens = tokens
                 .reduce(
-                    (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), 0n
+                    (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), BigInt(0)
                 )
             console.log('UNSPENT TOKENS', unspentTokens)
 
@@ -410,7 +410,7 @@ export class Wallet extends EventEmitter {
             ]
 
             /* Handle (automatic) TOKEN change. */
-            if (unspentTokens - tokenAmount > 0n) {
+            if (unspentTokens - tokenAmount > BigInt(0)) {
                 receivers.push({
                     address: wallet.address,
                     tokenid: _tokenid, // TODO Allow auto-format conversion.

@@ -41,7 +41,7 @@ export default async (_data) => {
     /* Create (data) output. */
     const dataOutput = {
         lockingBytecode,
-        amount: bigIntToBinUint64LE(0n),
+        amount: bigIntToBinUint64LE(BigInt(0)),
     }
 
     /* Return the output. */

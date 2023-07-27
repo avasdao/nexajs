@@ -67,11 +67,11 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     }
 
     /* Initialize (initial) transaction satoshis. */
-    satoshis = 0n
+    satoshis = BigInt(0)
 
     /* Calculate total satoshis. */
     receivers.forEach(_receiver => {
-        if (_receiver.satoshis > 0n) {
+        if (_receiver.satoshis > BigInt(0)) {
             /* Add satoshis to total. */
             satoshis += _receiver.satoshis
         }
@@ -120,7 +120,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     /* Calculate the total balance of the unspent outputs. */
     unspentSatoshis = coins
         .reduce(
-            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), 0n
+            (totalValue, unspentOutput) => (totalValue + unspentOutput.satoshis), BigInt(0)
         )
 
     /* Prepare WIFs. */
@@ -144,7 +144,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
     change = (unspentSatoshis - satoshis - feeTotal)
 
     /* Validate change amount. */
-    if (change < 0n) {
+    if (change < BigInt(0)) {
         throw new Error(`Oops! Insufficient funds to complete this transaction.`)
     }
 
