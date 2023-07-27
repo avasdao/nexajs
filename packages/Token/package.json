@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/token",
-  "version": "23.7.27",
+  "version": "23.7.28",
   "description": "Manage group token assets.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
