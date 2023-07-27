@@ -227,6 +227,9 @@ export class Rostrum extends EventEmitter {
             debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`)
             console.log('CONNECTION CLOSED')
 
+// FIXME AT THIS POINT WE MUST MUST MUST RE-CONNENCT
+//       AND MAINTAIN THE ACTIVE REQUEST POOL!!!
+
             if (this._connMgr?.isOpen) {
                 /* Set (connection) ready flag. */
                 this._connMgr.isOpen = false
