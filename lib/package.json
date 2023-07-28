@@ -22,10 +22,10 @@
     "@nexajs/rostrum": "23.7.20",
     "@nexajs/rpc": "23.5.15",
     "@nexajs/script": "23.7.21",
-    "@nexajs/token": "23.7.28",
+    "@nexajs/token": "23.7.29",
     "@nexajs/transaction": "23.7.27",
     "@nexajs/utils": "23.7.22",
-    "@nexajs/wallet": "23.7.29",
+    "@nexajs/wallet": "23.7.30",
     "debug": "4.3.4",
     "events": "3.3.0"
   },
@@ -37,8 +37,8 @@
     "mocha": "10.0.0",
     "uglifyjs": "2.4.11"
   },
-  "engines" : {
-    "npm" : ">=9.0.0",
-    "node" : ">=18.0.0"
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=18.0.0"
   }
 }
