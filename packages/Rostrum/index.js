@@ -55,10 +55,6 @@ export const getTokenInfo = getGenesisInfo // Export alias.
 export const subscribeAddress = _subscribeAddress
 
 
-
-
-
-
 /**
  * Rostrum Class
  *

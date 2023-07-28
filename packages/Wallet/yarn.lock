@@ -308,10 +308,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/token@23.7.27":
-  version "23.7.27"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.27.tgz#e0a74669e5c415c5da096ea3cf9ff66c5bcfd65f"
-  integrity sha512-hQ9VJ/bnJ984EI6wH97jQGBek8XGiAxlQnrUG375Wq2dSpdsxCHFpzTkSUCT0xJfzfRDK/mVD1moFY4xJfBJLw==
+"@nexajs/token@23.7.28":
+  version "23.7.28"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.28.tgz#462b725ea765bd6043ef204993388b9e1571eb8f"
+  integrity sha512-OIwJzINdt/T6LO83TraR5JqK1ucOzUHp2/WxW+o64pRJZ4quxPgQc6J2R5bPJKkEiTyqGSqnBRg/fh54zBvETA==
   dependencies:
     "@nexajs/address" "23.7.22"
     "@nexajs/hdnode" "23.7.26"

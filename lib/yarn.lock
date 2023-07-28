@@ -594,10 +594,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/token@23.7.27":
-  version "23.7.27"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.27.tgz#e0a74669e5c415c5da096ea3cf9ff66c5bcfd65f"
-  integrity sha512-hQ9VJ/bnJ984EI6wH97jQGBek8XGiAxlQnrUG375Wq2dSpdsxCHFpzTkSUCT0xJfzfRDK/mVD1moFY4xJfBJLw==
+"@nexajs/token@23.7.28":
+  version "23.7.28"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.7.28.tgz#462b725ea765bd6043ef204993388b9e1571eb8f"
+  integrity sha512-OIwJzINdt/T6LO83TraR5JqK1ucOzUHp2/WxW+o64pRJZ4quxPgQc6J2R5bPJKkEiTyqGSqnBRg/fh54zBvETA==
   dependencies:
     "@nexajs/address" "23.7.22"
     "@nexajs/hdnode" "23.7.26"
@@ -634,17 +634,17 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.7.28":
-  version "23.7.28"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.7.28.tgz#578589862763b108345091158a421b6f2b2821fd"
-  integrity sha512-LqZJrYbX/6A037yrljB8bsNw4+m2GUB9O5CnNcimZtfsJ5nIJjgqk0mfHYe2+iHs5Qn30G8aoLKjSZwudrV0sw==
+"@nexajs/wallet@23.7.29":
+  version "23.7.29"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.7.29.tgz#189d8f6cd257c331e81e73f296ceae19a1cb63c1"
+  integrity sha512-nTYKdDYZkVrh8gZAwmypSpYb86YZcX8b+tNKuOy5HjxyM32G0Bi69q63v8gZQHgtTG8axhxgqE5WulRuIWxMHA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.7.22"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.7.26"
     "@nexajs/purse" "23.7.27"
-    "@nexajs/token" "23.7.27"
+    "@nexajs/token" "23.7.28"
     debug "4.3.4"
     events "3.3.0"
 
