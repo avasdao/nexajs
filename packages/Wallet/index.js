@@ -386,21 +386,21 @@ export class Wallet extends EventEmitter {
             /* Get coins. */
             coins = await getCoins(wif)
                 .catch(err => console.error(err))
-            console.log('COINS', coins)
+            // console.log('COINS', coins)
 
             /* Get tokens. */
             tokens = await getTokens(wif)
                 .catch(err => console.error(err))
-            console.log('TOKENS', tokens)
+            // console.log('TOKENS', tokens)
 
             /* Calculate the total balance of the unspent outputs. */
-            // FIXME: Add support for BigInt.
             unspentTokens = tokens
                 .reduce(
                     (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), BigInt(0)
                 )
-            console.log('UNSPENT TOKENS', unspentTokens)
+            // console.log('UNSPENT TOKENS', unspentTokens)
 
+            /* Add primary (asset) receiver. */
             receivers = [
                 {
                     address: _receiver,
@@ -422,14 +422,14 @@ export class Wallet extends EventEmitter {
             receivers.push({
                 address: wallet.address,
             })
-            console.log('RECEIVERS', receivers)
+            // console.log('RECEIVERS', receivers)
 
             /* Set automatic fee (handling) flag. */
             feeRate = 2.0
 
             /* Send UTXO request. */
             response = await sendToken(coins, tokens, receivers, feeRate)
-            console.log('Send UTXO (response):', response)
+            // console.log('Send UTXO (response):', response)
         } else if (typeof _receiver === 'bigint') {
             /* Set receiver. */
             receiver = _tokenid
@@ -439,7 +439,7 @@ export class Wallet extends EventEmitter {
 
             coins = await getCoins(wif)
                 .catch(err => console.error(err))
-            console.log('COINS', coins)
+            // console.log('COINS', coins)
 
             const receivers = [
                 {
@@ -452,21 +452,21 @@ export class Wallet extends EventEmitter {
             receivers.push({
                 address: wallet.address,
             })
-            console.log('RECEIVERS', receivers)
+            // console.log('RECEIVERS', receivers)
 
             /* Set automatic fee (handling) flag. */
             feeRate = 2.0
 
             /* Send UTXO request. */
             response = await sendCoin(coins, receivers, feeRate)
-            console.log('Send UTXO (response):', response)
+            // console.log('Send UTXO (response):', response)
         } else {
             throw new Error('Invalid amount.')
         }
 
         try {
             txResult = JSON.parse(response)
-            console.log('TX RESULT', txResult)
+            // console.log('TX RESULT', txResult)
 
             if (txResult.error) {
                 return console.error(txResult.message)
