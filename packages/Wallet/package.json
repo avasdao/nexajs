@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/wallet",
-  "version": "23.7.30",
+  "version": "23.8.9",
   "description": "Manage a collection of assets spread across multiple blockchains.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -9,11 +9,11 @@
   "type": "module",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "23.7.22",
+    "@nexajs/address": "23.8.9",
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.7.26",
-    "@nexajs/purse": "23.7.27",
-    "@nexajs/token": "23.7.29",
+    "@nexajs/purse": "23.8.9",
+    "@nexajs/token": "23.8.9",
     "debug": "4.3.4",
     "events": "3.3.0"
   }
