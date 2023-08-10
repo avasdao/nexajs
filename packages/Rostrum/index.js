@@ -133,7 +133,7 @@ export class Rostrum extends EventEmitter {
         /* Handle open connection. */
         this._connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
             debug(`Connection [ ${ACTIVE_CONN_ID} ] is OPEN!`)
-            console.info('Connected to (Rostrum) ->', ACTIVE_CONN_ID)
+            console.info('Connected to Rostrum ->', ACTIVE_CONN_ID, new Date().getTime())
 
             /* Set (connection) ready flag. */
             this._connMgr.isOpen = true
@@ -219,35 +219,36 @@ export class Rostrum extends EventEmitter {
         }
 
         /* Handle connection close. */
+        // NOTE: We currently NEVER allow this connect to be closed.
+        //       We will ALWAYS attempt to re-connect.
+        // TODO: Allow connection to be "manually" closed.
         this._connMgr.pool[ACTIVE_CONN_ID].onclose = function () {
             debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`)
-            console.log('CONNECTION CLOSED')
+            console.log('CONNECTION CLOSED', new Date().getTime())
 
-// FIXME AT THIS POINT WE MUST MUST MUST RE-CONNENCT
-//       AND MAINTAIN THE ACTIVE REQUEST POOL!!!
-
+            /* Validate connection status. */
             if (this._connMgr?.isOpen) {
                 /* Set (connection) ready flag. */
                 this._connMgr.isOpen = false
             }
+
+            // FIXME: Testing connection re-connect.
+            this._connect()
         }
 
         /* Handle connection error. */
         this._connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
-            console.error('ERROR! [ %s ]:', ACTIVE_CONN_ID, e)
+            console.error('ERROR! [ %s ]:',
+                ACTIVE_CONN_ID, new Date().getTime(), e)
 
+            /* Validate connection status. */
             if (this._connMgr?.isOpen) {
                 /* Set (connection) ready flag. */
                 this._connMgr.isOpen = false
             }
 
-            /* Attempt to re-connect. */
-            // NOTE: We will lose ALL subscriptions.
+            // FIXME: Testing connection re-connect.
             this._connect()
-
-            // FIXME FOR TESTING APECS RE-CONNECTION
-            // console.info('Re-connecting to Rostrum provider...')
-            // this._connMgr.pool[ACTIVE_CONN_ID] = new WebSocket('wss://rostrum.apecs.dev:20004')
         }
     }
 

@@ -1,6 +1,9 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
 
+/* Import (browser) clipboard manager. */
+import './system/clipboard.ts'
+
 /**
  * System Store
  */

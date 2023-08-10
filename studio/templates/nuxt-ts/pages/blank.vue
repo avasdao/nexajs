@@ -8,8 +8,6 @@ useHead({
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
-
-/* Initialize System. */
 const System = useSystemStore()
 
 // onMounted(() => {
