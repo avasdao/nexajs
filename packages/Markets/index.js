@@ -6,10 +6,16 @@ const debug = debugFactory('nexa:markets')
 import { EventEmitter } from 'events'
 import { v4 as uuidv4 } from 'uuid'
 
+/* Import (local) modules. */
+import _getPrice from './src/getPrice.js'
+import _getQuote from './src/getQuote.js'
+import _getTicker from './src/getTicker.js'
 
-export const getPrice = () => {
-    return 0.00001337
-}
+/* Export (local) modules. */
+export const getPrice = _getPrice
+export const getQuote = _getQuote
+export const getTicker = _getTicker
+
 
 /**
  * Markets Class
@@ -38,7 +44,9 @@ const Nexa = {}
 Nexa.Markets = Markets
 
 /* Initialize Markets modules. */
-// TBD
+Nexa.getPrice = getPrice // FIXME: Make this an alias for `getQuote`.
+Nexa.getQuote = getQuote
+Nexa.getTicker = getTicker
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

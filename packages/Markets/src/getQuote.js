@@ -1,18 +1,18 @@
-/* Import modules. */
-const debug = require('debug')('nitojs:markets:getquote')
-const superagent = require('superagent')
+/* Setup (non-ESM) debugger. */
+import debugFactory from 'debug'
+const debug = debugFactory('nexa:markets:getquote')
 
 /* Set endpoint. */
-const ENDPOINT = 'https://api.telr.io/v1/ticker/quote/'
+const ENDPOINT = 'https://nexa.exchange/v1'
 
 /**
- * Get Quote
+ * Get Price
  *
  * Returns an object containing the most recent ticker data.
  *
  * TODO: Add support for multiple base currencies.
  */
-const getQuote = async function (_baseCurrency, _quoteCurrency = 'USD') {
+export default async (_baseCurrency = 'NEXA', _quoteCurrency = 'USD') => {
     /* Validate currencies. */
     if (!_baseCurrency || !_quoteCurrency) {
         return null
@@ -34,8 +34,4 @@ const getQuote = async function (_baseCurrency, _quoteCurrency = 'USD') {
         /* Return null. */
         return null
     }
-
 }
-
-/* Export module. */
-module.exports = getQuote

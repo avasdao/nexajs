@@ -547,6 +547,17 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
+"@nexajs/markets@23.8.11":
+  version "23.8.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/markets/-/markets-23.8.11.tgz#7e0b935cdaeb08d118c49eedf4d9a484e94f07fc"
+  integrity sha512-AnJ9wkAIEnYVDk8BrsoW9zV1gjGdEGEf1H3yRo5eVU5gAiGMfS5FYBW/xe4auS/ifwegTMhpWx85GAsOVLVF6A==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    moment "2.29.4"
+    numeral "2.0.6"
+    uuid "9.0.0"
+
 "@nexajs/provider@23.6.21":
   version "23.6.21"
   resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-23.6.21.tgz#6f7e63b29d42ae0621d74e0dcf5a6a5301a8052b"
@@ -2143,6 +2154,11 @@ module-deps@^6.2.3:
     through2 "^2.0.0"
     xtend "^4.0.0"
 
+moment@2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -2186,6 +2202,11 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
+
+numeral@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/numeral/-/numeral-2.0.6.tgz#4ad080936d443c2561aed9f2197efffe25f4e506"
+  integrity sha512-qaKRmtYPZ5qdw4jWJD6bxEf1FJEqllJrwxCLIm0sQU/A7v2/czigzOb+C2uSiFsa9lBUzeH7M1oK+Q+OLxL3kA==
 
 object-assign@^4.1.1:
   version "4.1.1"
