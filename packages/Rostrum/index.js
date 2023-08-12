@@ -222,7 +222,7 @@ export class Rostrum extends EventEmitter {
         // NOTE: We currently NEVER allow this connect to be closed.
         //       We will ALWAYS attempt to re-connect.
         // TODO: Allow connection to be "manually" closed.
-        this._connMgr.pool[ACTIVE_CONN_ID].onclose = function () {
+        this._connMgr.pool[ACTIVE_CONN_ID].onclose = () => {
             debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`)
             console.log('CONNECTION CLOSED', new Date().getTime())
 
@@ -237,7 +237,7 @@ export class Rostrum extends EventEmitter {
         }
 
         /* Handle connection error. */
-        this._connMgr.pool[ACTIVE_CONN_ID].onerror = function (e) {
+        this._connMgr.pool[ACTIVE_CONN_ID].onerror = (e) => {
             console.error('ERROR! [ %s ]:',
                 ACTIVE_CONN_ID, new Date().getTime(), e)
 
