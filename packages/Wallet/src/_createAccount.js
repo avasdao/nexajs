@@ -1,6 +1,6 @@
 /* Import modules. */
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('nitojs:wallet:createaccount')
+const debug = require('debug')('nexajs:wallet:createaccount')
 const Crypto = require('../Crypto')
 
 /**

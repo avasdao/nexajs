@@ -1,4 +1,4 @@
-const debug = require('debug')('nitojs:privacy:score')
+const debug = require('debug')('nexajs:privacy:score')
 const EventEmitter = require('events').EventEmitter
 
 /**

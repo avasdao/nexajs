@@ -1,5 +1,5 @@
 /* Import modules. */
-const debug = require('debug')('nitojs:address:addaccount')
+const debug = require('debug')('nexajs:address:addaccount')
 
 /**
  * Add Account

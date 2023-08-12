@@ -1,5 +1,5 @@
 /* Import components. */
-import Nito from 'nitojs'
+import Nexa from 'nexajs'
 
 /**
  * Update Status

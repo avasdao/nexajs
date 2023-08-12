@@ -1,4 +1,4 @@
-const debug = require('debug')('nitojs:privacy:shufflemanager')
+const debug = require('debug')('nexajs:privacy:shufflemanager')
 const EventEmitter = require('events').EventEmitter
 
 /* Initialize shuffle client. */
