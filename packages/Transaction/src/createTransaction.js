@@ -24,6 +24,7 @@ export default async (
     _wifs,
     _unspents,
     _receivers,
+    _locktime = 0,
 ) => {
     /* Initialize an empty list of outputs. */
     const outputs = []
@@ -40,7 +41,7 @@ export default async (
             // NOTE: Miner fee is deducted from output value.
             outputs.push(
                 await createTokenOutput(
-                    receiver.address,
+                    receiver.script || receiver.address,
                     receiver.satoshis,
                     receiver.tokenid,
                     receiver.tokens,
@@ -51,7 +52,7 @@ export default async (
             // NOTE: Miner fee is deducted from output value.
             outputs.push(
                 await createValueOutput(
-                    receiver.address,
+                    receiver.script || receiver.address,
                     receiver.satoshis,
                 )
             )
@@ -72,10 +73,12 @@ export default async (
     //      then send back to WIF address.
 
     /* Create the initial transaction to estimate miner fee. */
+    // FIXME: We must add current block height as a 4th method param.
     const transaction = await createTransaction(
         _wifs,
         _unspents,
-        outputs
+        outputs,
+        _locktime,
     )
 
     /* Return the transaction. */

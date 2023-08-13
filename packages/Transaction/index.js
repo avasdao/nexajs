@@ -130,7 +130,7 @@ export class Transaction {
         this._lockTime = _timestamp
     }
 
-    async sign(_wifs) {
+    async sign(_wifs, _locktime = 0) {
         /* Initialize unspent holder. */
         const unspents = []
 
@@ -147,6 +147,7 @@ export class Transaction {
             _wifs,
             unspents,
             this._outputs,
+            _locktime,
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
 

@@ -20,7 +20,7 @@ import unlockInputMulti from './unlockInputMulti.js'
  *
  * @returns {Promise<Output>}	The OP_RETURN output script.
  */
-export default async (_privateKeyWifs, _unspentOutputs, _outputs) => {
+export default async (_privateKeyWifs, _unspentOutputs, _outputs, _locktime = 0) => {
     /* Initialize WIFs. */
     const wifs = []
 
@@ -78,7 +78,7 @@ export default async (_privateKeyWifs, _unspentOutputs, _outputs) => {
         version: 0,
         inputs,
         outputs: _outputs,
-        locktime: 0, // FIXME: We must add current block height as a new method param
+        locktime: _locktime,
     }
     // console.log('Unsigned (encoded) tx:', binToHex(encodeTransaction(transaction)))
 // FIXME FOR DEV PURPOSES ONLY
