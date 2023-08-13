@@ -41,7 +41,7 @@ export default async (
             // NOTE: Miner fee is deducted from output value.
             outputs.push(
                 await createTokenOutput(
-                    receiver.script || receiver.address,
+                    receiver.address,
                     receiver.satoshis,
                     receiver.tokenid,
                     receiver.tokens,
@@ -52,7 +52,7 @@ export default async (
             // NOTE: Miner fee is deducted from output value.
             outputs.push(
                 await createValueOutput(
-                    receiver.script || receiver.address,
+                    receiver.address,
                     receiver.satoshis,
                 )
             )

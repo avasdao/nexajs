@@ -9,6 +9,8 @@ import {
     bigIntToCompactUint,
     numberToBinUint16LE,
     numberToBinUint32LE,
+    bigIntToBinUint16LE,
+    bigIntToBinUint32LE,
     bigIntToBinUint64LE
 } from '@nexajs/utils'
 
@@ -23,15 +25,13 @@ import {
  *
  * @returns {Promise<Output>} The P2PKT output script.
  */
-export default async (_address, _satoshis, _tokenid, _tokens) => {
-    // console.log('\n  Receiving address:', _address)
-    // console.log('\n  Receiving satoshis:', _satoshis)
-    // console.log('\n  Receiving token id:', _tokenid)
-    // console.log('\n  Receiving # tokens:', _tokens)
+export default async (_script, _satoshis) => {
+    console.log('\n  Receiving script:', _script)
+    console.log('\n  Receiving satoshis:', _satoshis)
 
     let lockingBytecode
     let scriptAmount
-    let tokenOutput
+    let scriptOutput
 
     if (_tokens > 0xFFFFFFFFn) {
         scriptAmount = bigIntToBinUint64LE(_tokens)
@@ -43,30 +43,26 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
 
     scriptAmount = encodeDataPush(scriptAmount)
 
-    if (_tokenid) {
-        lockingBytecode = new Uint8Array([
-            ...encodeDataPush(hexToBin(_tokenid)),
-            ...scriptAmount,
-            ...decodeAddress(_address).hash.slice(2), // remove 1700
-        ])
+    lockingBytecode = new Uint8Array([
+        ...encodeDataPush(hexToBin(_tokenid)),
+        ...scriptAmount,
+        ...decodeAddress(_address).hash.slice(2), // remove 0x1700
+    ])
 
-        lockingBytecode = encodeDataPush(lockingBytecode)
-    } else {
-        lockingBytecode = decodeAddress(_address).hash
-    }
+    lockingBytecode = encodeDataPush(lockingBytecode)
     // console.log('\n  lockingBytecode (hex):', binToHex(lockingBytecode))
 
-    /* Create (token) output. */
-    tokenOutput = {
+    /* Create (script) output. */
+    scriptOutput = {
         lockingBytecode,
         amount: bigIntToBinUint64LE(_satoshis),
         tokenidHex: _tokenid,
         tokens: bigIntToBinUint64LE(_tokens),
     }
-    // console.log('\n  tokenOutput:', tokenOutput)
+    // console.log('\n  scriptOutput:', scriptOutput)
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.
 
     /* Return the output. */
-    return tokenOutput
+    return scriptOutput
 }
