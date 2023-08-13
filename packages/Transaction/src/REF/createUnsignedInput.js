@@ -1,9 +1,8 @@
 /* Import modules. */
 import { hexToBin } from '@nexajs/utils'
 
-const MAXINT = 0xffffffff // Math.pow(2, 32) - 1
+const MAXINT = 0xffffffff
 const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
-// const DEFAULT_SEQNUMBER = MAXINT
 
 /**
  * Utility function to convert an electrum unspent output to a libauth compatible input.

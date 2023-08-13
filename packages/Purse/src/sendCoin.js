@@ -177,9 +177,11 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
         }
     }
 
+    const blockHeight = 338621 // FIXME: FOR DEV PURPOSES ONLY
+
     // TODO Add (optional) miner fee.
     // FIXME Allow WIFs for each input.
-    await transaction.sign(wifs)
+    await transaction.sign(wifs, blockHeight)
 
     // console.log('\n  Transaction', transaction)
     console.log('\n  Transaction (hex)', transaction.raw)
