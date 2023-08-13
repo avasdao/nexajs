@@ -26,7 +26,12 @@ import {
  * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (_address, _satoshis, _tokenid, _tokens) => {
+    /* Validate token (hex) id. */
+    if (!_tokenid) {
+        throw new Error(`Oops! Missing token (hex) id.`)
+    }
 
+    /* Initialize locals. */
     let lockingBytecode
     let scriptAmount
     let tokenOutput
@@ -41,17 +46,13 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
 
     scriptAmount = encodeDataPush(scriptAmount)
 
-    if (_tokenid) {
-        lockingBytecode = new Uint8Array([
-            ...encodeDataPush(hexToBin(_tokenid)),
-            ...scriptAmount,
-            ...decodeAddress(_address).hash.slice(2), // remove 1700
-        ])
+    lockingBytecode = new Uint8Array([
+        ...encodeDataPush(hexToBin(_tokenid)),
+        ...scriptAmount,
+        ...decodeAddress(_address).hash.slice(2), // remove 0x1700
+    ])
 
-        lockingBytecode = encodeDataPush(lockingBytecode)
-    } else {
-        lockingBytecode = decodeAddress(_address).hash
-    }
+    lockingBytecode = encodeDataPush(lockingBytecode)
     // console.log('\n  lockingBytecode (hex):', binToHex(lockingBytecode))
 
     /* Create (token) output. */
