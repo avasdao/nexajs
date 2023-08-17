@@ -34,6 +34,9 @@ import makeRequest from './src/makeRequest.js'
 // NOTE: Official node is currently accepting ZERO-fee txs.
 const ACTIVE_CONN_ID = 0
 
+/* Initialize ping handler. */
+let pingHandler
+
 /* Export Rostrum methods. */
 export const getAddressBalance = _getAddressBalance
 export const decodeRemoteAddress = _decodeRemoteAddress
@@ -146,7 +149,7 @@ export class Rostrum extends EventEmitter {
             })
 
             /* Manage session keep-alive. */
-            setInterval(async () => {
+            pingHandler = setInterval(async () => {
                 this.ping()
             }, 60000) // every 1 minute
         }
@@ -232,6 +235,13 @@ export class Rostrum extends EventEmitter {
                 this._connMgr.isOpen = false
             }
 
+            /* Validate ping (interval) handler. */
+            if (pingHandler) {
+                clearInterval(pingHandler)
+
+                pingHandler = null
+            }
+
             // FIXME: Testing connection re-connect.
             this._connect()
         }
@@ -245,6 +255,13 @@ export class Rostrum extends EventEmitter {
             if (this._connMgr?.isOpen) {
                 /* Set (connection) ready flag. */
                 this._connMgr.isOpen = false
+            }
+
+            /* Validate ping (interval) handler. */
+            if (pingHandler) {
+                clearInterval(pingHandler)
+
+                pingHandler = null
             }
 
             // FIXME: Testing connection re-connect.
