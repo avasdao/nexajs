@@ -8,10 +8,18 @@ import { decodeAddress } from '@nexajs/address'
 
 import { OP } from '@nexajs/script'
 
-import { hexToBin } from '@nexajs/utils'
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
 
+/* Initialize default script bytecode. */
+const DEFAULT_SCRIPT_BYTECODE = new Uint8Array([
+    OP.FROMALTSTACK,
+        OP.CHECKSIGVERIFY,
+])
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.
@@ -35,17 +43,17 @@ export default async (
     publicKey,
     // address,
 ) => {
-    // Extract the bytecode (locking script) from our return address.
-    // const lockScriptBin = hexToBin(decodeAddress(address).hash)
-    // console.log('\n  Lock Script Bin:\n', lockScriptBin)
+    let unlockingBytecode
 
+    // TBD
     const lockScriptBin = new Uint8Array([
-        // OP.FROMALTSTACK,
-        //     OP.CHECKLOCKTIMEVERIFY,
-        //     OP.DROP,
+        OP.FROMALTSTACK,
+            OP.CHECKLOCKTIMEVERIFY,
+            OP.DROP,
         OP.FROMALTSTACK,
             OP.CHECKSIGVERIFY,
     ])
+    // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0
@@ -64,12 +72,23 @@ export default async (
     const scriptPubKey = encodeDataPush(hexToBin(publicKey))
 
     // Build the unlocking script that unlocks the P2PKT locking script.
-    const unlockingBytecode = flattenBinArray(
-        [
-            encodeDataPush(scriptPubKey),
-            encodeDataPush(signatureBin),
-        ]
-    )
+    if (binToHex(lockScriptBin) === binToHex(DEFAULT_SCRIPT_BYTECODE)) {
+        unlockingBytecode = flattenBinArray(
+            [
+                // NOTE: We exclude "popular" script contracts.
+                encodeDataPush(scriptPubKey),
+                encodeDataPush(signatureBin),
+            ]
+        )
+    } else {
+        unlockingBytecode = flattenBinArray(
+            [
+                encodeDataPush(lockScriptBin),
+                encodeDataPush(scriptPubKey),
+                encodeDataPush(signatureBin),
+            ]
+        )
+    }
     // console.log('unlockingBytecode', unlockingBytecode)
 
     // Add the unlocking script to the input.
