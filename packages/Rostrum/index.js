@@ -20,6 +20,8 @@ import _getAddressTokenHistory from './src/getAddressTokenHistory.js'
 import _getAddressTokenMempool from './src/getAddressTokenMempool.js'
 import _getAddressTokenUnspent from './src/getAddressTokenUnspent.js'
 import _getNftList from './src/getNftList.js'
+import _getOutpoint from './src/getOutpoint.js'
+import _getTip from './src/getTip.js'
 import _getTokenHistory from './src/getTokenHistory.js'
 import _getGenesisInfo from './src/getGenesisInfo.js'
 import _subscribeAddress from './src/subscribeAddress.js'
@@ -52,6 +54,8 @@ export const getAddressTokenHistory = _getAddressTokenHistory
 export const getAddressTokenMempool = _getAddressTokenMempool
 export const getAddressTokenUnspent = _getAddressTokenUnspent
 export const getNftList = _getNftList
+export const getOutpoint = _getOutpoint
+export const getTip = _getTip
 export const getTokenHistory = _getTokenHistory
 export const getGenesisInfo = _getGenesisInfo
 export const getTokenInfo = getGenesisInfo // Export alias.
@@ -316,8 +320,6 @@ export class Rostrum extends EventEmitter {
         return getTransaction.bind(this)(id, verbose)
     }
 
-    // ...
-
     getGenesisInfo(params) {
         return getGenesisInfo.bind(this)(params)
     }
@@ -344,6 +346,14 @@ export class Rostrum extends EventEmitter {
 
     getNftList(tokenid, cursor) {
         return getNftList.bind(this)(tokenid, cursor)
+    }
+
+    getOutpoint(outpoint_hash) {
+        return getOutpoint.bind(this)(outpoint_hash)
+    }
+
+    getTip() {
+        return getTip.bind(this)()
     }
 
     getTokenHistory(address, cursor, tokenid) {
@@ -382,6 +392,8 @@ Nexa.getAddressTokenHistory = getAddressTokenHistory
 Nexa.getAddressTokenMempool = getAddressTokenMempool
 Nexa.getAddressTokenUnspent = getAddressTokenUnspent
 Nexa.getNftList = getNftList
+Nexa.getOutpoint = getOutpoint
+Nexa.getTip = getTip
 Nexa.getTokenHistory = getTokenHistory
 // ...
 Nexa.subscribeAddress = subscribeAddress
