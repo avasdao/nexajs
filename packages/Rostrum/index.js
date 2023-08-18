@@ -86,20 +86,21 @@ export class Rostrum extends EventEmitter {
             let rostrum = await new Rostrum()
 
             // Do async stuff
-            await rostrum._connect()
+            await rostrum._connect(false)
 
             // Return instance
             return rostrum
         })()
     }
 
-    async _connect() {
+    async _connect(_isReconnecting = false) {
         /* Import WebSocket. */
         // NOTE: Ignored by esmify.
         const WebSocket = (await import('isomorphic-ws')).default
 
-        /* Validate (global) shared connection. */
-        if (globalThis.Nexa.Rostrum._connMgr) {
+        /* Validate (global-shared) connection manager. */
+        if (globalThis.Nexa.Rostrum._connMgr && !_isReconnecting) {
+            /* Use existing (global-shared) connection. */
             this._connMgr = globalThis.Nexa.Rostrum._connMgr
 
             // console.log('Connected to SHARED Rostrum connection...')
@@ -134,7 +135,7 @@ export class Rostrum extends EventEmitter {
             globalThis.Nexa.Rostrum = {}
         }
 
-        /* Set global (shared) connection manager. */
+        /* Set (global-shared) connection manager. */
         globalThis.Nexa.Rostrum._connMgr = this._connMgr
 
         /* Handle open connection. */
@@ -246,8 +247,15 @@ export class Rostrum extends EventEmitter {
                 pingHandler = null
             }
 
-            // FIXME: Testing connection re-connect.
-            this._connect()
+            // TODO Preserve `_connMgr.requests` from failed connection.
+
+            /* Clear (global-shared) connection manager. */
+            globalThis.Nexa.Rostrum._connMgr = null
+
+            /* Re-establish connection to remote server(s). */
+            // NOTE: Add re-try delay and max attempts.
+            // FIXME Do we need to `await`?
+            this._connect(true)
         }
 
         /* Handle connection error. */
@@ -268,8 +276,15 @@ export class Rostrum extends EventEmitter {
                 pingHandler = null
             }
 
-            // FIXME: Testing connection re-connect.
-            this._connect()
+            // TODO Preserve `_connMgr.requests` from failed connection.
+
+            /* Clear (global-shared) connection manager. */
+            globalThis.Nexa.Rostrum._connMgr = null
+
+            /* Re-establish connection to remote server(s). */
+            // NOTE: Add re-try delay and max attempts.
+            // FIXME Do we need to `await`?
+            this._connect(true)
         }
     }
 
