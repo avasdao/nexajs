@@ -5,19 +5,12 @@ import {
     numberToBinUint32LE,
 } from '@bitauth/libauth'
 
-import { OP } from '@nexajs/script'
-
 import {
     hashPrevouts,
     hashAmounts,
     hashSequence,
     hashOutputs,
 } from './signing-serialization.js'
-
-const altLockScriptBin = new Uint8Array([
-    OP.FROMALTSTACK,
-    OP.CHECKSIGVERIFY,
-])
 
 /**
  * Serialize the signature-protected properties of a transaction following the
@@ -30,7 +23,7 @@ const altLockScriptBin = new Uint8Array([
  */
 export default ({
     correspondingOutput,
-    // coveredBytecode, // NOT USED WITH P2PKT
+    coveredBytecode,
     locktime,
     outpointIndex,  // NOT USED WITH P2PKT
     outpointTransactionHash,  // NOT USED WITH P2PKT
@@ -56,8 +49,8 @@ export default ({
         transactionSequenceNumbers,
     }),
 
-    bigIntToBitcoinVarInt(BigInt(altLockScriptBin.length)),
-    ...altLockScriptBin,
+    bigIntToBitcoinVarInt(BigInt(coveredBytecode.length)),
+    ...coveredBytecode,
 
     ...hashOutputs({
         correspondingOutput,

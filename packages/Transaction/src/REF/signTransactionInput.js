@@ -25,7 +25,7 @@ const signTransactionInput = async (
     transaction,
     satoshis,
     inputIndex,
-    // coveredBytecodeBin,
+    coveredBytecodeBin,
     hashtype,
     privateKeyBin,
 ) => {
@@ -34,7 +34,7 @@ const signTransactionInput = async (
         transaction,
         satoshis,
         inputIndex,
-        // coveredBytecodeBin,
+        coveredBytecodeBin,
         hashtype,
     )
 

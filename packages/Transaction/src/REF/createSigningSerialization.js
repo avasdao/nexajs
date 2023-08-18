@@ -28,7 +28,7 @@ export default async (
     transaction,
     satoshis,
     inputIndex,
-    // coveredBytecodeBin,
+    coveredBytecodeBin,
     hashtype,
 ) => {
     // NOTE: A signing serialization are the parts of the transaction that should be signed based on a given sighash type.
@@ -47,7 +47,7 @@ export default async (
     // Generate the signing serialization using mostly information from the generated "transaction state".
     const signingSerialization = generateSigningSerialization({
         correspondingOutput: state.correspondingOutput,
-        // coveredBytecode: coveredBytecodeBin, // NOT USED WITH P2PKT
+        coveredBytecode: coveredBytecodeBin,
         locktime: state.locktime,
         // outpointIndex: state.outpointIndex,
         // outpointTransactionHash: state.outpointTransactionHash,

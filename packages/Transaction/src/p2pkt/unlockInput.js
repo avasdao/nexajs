@@ -5,6 +5,9 @@ import {
 } from '@bitauth/libauth'
 
 import { decodeAddress } from '@nexajs/address'
+
+import { OP } from '@nexajs/script'
+
 import { hexToBin } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
@@ -36,6 +39,14 @@ export default async (
     // const lockScriptBin = hexToBin(decodeAddress(address).hash)
     // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
+    const lockScriptBin = new Uint8Array([
+        // OP.FROMALTSTACK,
+        //     OP.CHECKLOCKTIMEVERIFY,
+        //     OP.DROP,
+        OP.FROMALTSTACK,
+            OP.CHECKSIGVERIFY,
+    ])
+
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0
 
@@ -44,7 +55,7 @@ export default async (
         transaction,
         input.amount,
         inputIndex,
-        // lockScriptBin,
+        lockScriptBin,
         SIGHASH_ALL,
         hexToBin(privateKey),
     )

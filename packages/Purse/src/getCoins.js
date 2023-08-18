@@ -11,9 +11,6 @@ import {binToHex} from '@nexajs/utils' // TEMP
 import { encodeDataPush } from '@bitauth/libauth'
 
 export default async (_wif, _scriptPubKey = null) => {
-    console.log('GET COINS (_wif):', _wif);
-    console.log('GET COINS (_scriptPubKey):', _scriptPubKey);
-    console.log('GET COINS (_scriptPubKey) HEX:', binToHex(_scriptPubKey));
     let coins
     let depositAddress
     let publicKey
