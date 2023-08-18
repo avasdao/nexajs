@@ -235,12 +235,12 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.8.17":
-  version "23.8.17"
-  resolved "https://registry.npmjs.org/@nexajs/address/-/address-23.8.17.tgz"
-  integrity sha512-PgSKDYrihqRMOYe6FJ6MTUe23M8sN4dqxB2MaomZhT66L+Q1jATvuROUFxvypxa6kS3kIJcfc2rtoDuvTH8euQ==
+"@nexajs/address@23.8.18":
+  version "23.8.18"
+  resolved "https://registry.npmjs.org/@nexajs/address/-/address-23.8.18.tgz"
+  integrity sha512-uL4Rk8l4Dzuvkbyg8f4TD9vLnY63TE3xjsZP67NIb65LTKZ8Mzw8dx56kxssUZL+1vkbDheAn2Fl0Ga2WqhtRg==
   dependencies:
-    "@nexajs/rostrum" "23.8.17"
+    "@nexajs/rostrum" "23.8.18"
     big-integer "1.6.51"
     debug "4.3.4"
     graphql "16.6.0"
@@ -279,10 +279,10 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/rostrum@23.8.17":
-  version "23.8.17"
-  resolved "https://registry.npmjs.org/@nexajs/rostrum/-/rostrum-23.8.17.tgz"
-  integrity sha512-XS+oUlAoYDdWUrO6hSH6nIIeS9Ueh0iW9USlQy8qJzEmBqYDBvU1pl9131fAKX++B5NNwhYDtNTBo716X7fA3A==
+"@nexajs/rostrum@23.8.18":
+  version "23.8.18"
+  resolved "https://registry.npmjs.org/@nexajs/rostrum/-/rostrum-23.8.18.tgz"
+  integrity sha512-sHWaYHEw4Bi2+gEWQvO/ddf6kyHb5m4Wcfx5NS+VIZ+JnmFt32GjEporrsY6/Kk0lzuuFU6/CAbEa6svtgEj8A==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
