@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "23.8.12",
+  "version": "23.8.17",
   "license": "MIT",
   "description": "A comprehensive JavaScript Library + SDK for building Nexa applications on Node.js (back-end) and web browsers (front-end).",
   "author": "Ava's DAO",
@@ -12,7 +12,7 @@
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "23.8.11",
+    "@nexajs/address": "23.8.17",
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.7.26",
     "@nexajs/id": "23.5.15",
@@ -20,7 +20,7 @@
     "@nexajs/provider": "23.6.21",
     "@nexajs/purse": "23.8.11",
     "@nexajs/request": "23.5.15",
-    "@nexajs/rostrum": "23.8.11",
+    "@nexajs/rostrum": "23.8.17",
     "@nexajs/rpc": "23.5.15",
     "@nexajs/script": "23.7.21",
     "@nexajs/token": "23.8.11",
