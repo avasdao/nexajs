@@ -35,7 +35,7 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
 
     if (_tokens > BigInt(0xFFFFFFFF)) {
         scriptAmount = bigIntToBinUint64LE(_tokens)
-    } else if (_tokens > BigInt(0xFFFF) ) {
+    } else if (_tokens > BigInt(0xFFFF)) {
         scriptAmount = bigIntToBinUint32LE(_tokens)
     } else {
         scriptAmount = bigIntToBinUint16LE(_tokens)
