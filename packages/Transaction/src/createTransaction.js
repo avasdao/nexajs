@@ -24,7 +24,8 @@ export default async (
     _wifs,
     _unspents,
     _receivers,
-    _locktime = 0,
+    _locktime,
+    _lockScriptBin,
 ) => {
     /* Initialize an empty list of outputs. */
     const outputs = []
@@ -79,6 +80,7 @@ export default async (
         _unspents,
         outputs,
         _locktime,
+        _lockScriptBin,
     )
 
     /* Return the transaction. */

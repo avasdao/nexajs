@@ -11,7 +11,10 @@ import getChangeReceiver from './getChangeReceiver.js'
 
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
+
 const TYPE1_OUTPUT_LENGTH = 33
+const MAXINT = 0xffffffff
+const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
 
 /**
  * Send Coin
@@ -26,19 +29,23 @@ const TYPE1_OUTPUT_LENGTH = 33
  *   - satoshis
  *   - wif
  */
-export default async (_coins, _receivers, _feeRate = 2.0) => {
-    debug('Sending coins', _coins, _receivers, _feeRate)
-    // console.log('Sending coins', _coins, _receivers, _feeRate)
+export default async (_coins, _receivers) => {
+    debug('Sending coins', _coins, _receivers)
+    // console.log('Sending coins', _coins, _receivers)
 
     /* Initialize locals. */
     let address
     let change
     let coins
+    let feeRate
     let feeTotal
     let feeTotalWithChange
+    let lockTime
     let receiver
     let receivers
     let satoshis
+    let script
+    let sequence
     let transaction
     let unspentSatoshis
     let wifs
@@ -62,6 +69,12 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
         } else {
             receivers = [_receivers]
         }
+    } else if (_coins.receivers) {
+        if (Array.isArray(_coins.receivers)) {
+            receivers = _coins.receivers
+        } else {
+            receivers = [_coins.receivers]
+        }
     } else {
         throw new Error(`The receiver(s) provided are invalid [ ${JSON.stringify(_receivers)} ]`)
     }
@@ -83,9 +96,38 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
         throw new Error(`Amount is too low. Minimum is [ ${DUST_LIMIT} ] satoshis.`)
     }
 
+    /* Validate fee rate. */
+    if (_coins.feeRate) {
+        feeRate = _coins.feeRate
+    } else {
+        feeRate = 2.0 // NOTE: This is the Qt node (UI) wallet default.
+    }
+
+    /* Validate lock time. */
+    if (_coins.lockTime) {
+        lockTime = _coins.lockTime
+    } else {
+        lockTime = 0 // NOTE: This disables CLTV.
+    }
+
+    /* Validate sequence (number). */
+    if (_coins.sequence) {
+        sequence = _coins.sequence
+    } else {
+        sequence = DEFAULT_SEQNUMBER
+    }
+
+    /* Validate (locking) script. */
+    if (_coins.script) {
+        script = _coins.script
+    }
+
     /* Create new transaction. */
     transaction = new Transaction({
-        feeRate: _feeRate
+        feeRate,
+        lockTime,
+        sequence,
+        script,
     })
 
     /* Handle coins. */
@@ -137,7 +179,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
 
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
-    feeTotal = BigInt((transaction.raw.length / 2) * _feeRate)
+    feeTotal = BigInt((transaction.raw.length / 2) * feeRate)
     // console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
@@ -150,7 +192,7 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
 
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
-        feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate)
+        feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * feeRate)
         // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */
@@ -177,11 +219,9 @@ export default async (_coins, _receivers, _feeRate = 2.0) => {
         }
     }
 
-    const blockHeight = 338621 // FIXME: FOR DEV PURPOSES ONLY
-
     // TODO Add (optional) miner fee.
     // FIXME Allow WIFs for each input.
-    await transaction.sign(wifs, blockHeight)
+    await transaction.sign(wifs)
 
     // console.log('\n  Transaction', transaction)
     console.log('\n  Transaction (hex)', transaction.raw)

@@ -11,7 +11,10 @@ import getChangeReceiver from './getChangeReceiver.js'
 
 /* Set constants. */
 import DUST_LIMIT from './getDustLimit.js'
+
 const TYPE1_OUTPUT_LENGTH = 33
+const MAXINT = 0xffffffff
+const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
 
 /**
  * Send Token
@@ -26,19 +29,23 @@ const TYPE1_OUTPUT_LENGTH = 33
  *   - satoshis
  *   - outpoint
  */
-export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
-    debug('Sending tokens', _coins, _tokens, _receivers, _feeRate)
-    // console.log('Sending tokens', _coins, _tokens, _receivers, _feeRate)
+export default async (_coins, _tokens, _receivers) => {
+    debug('Sending tokens', _coins, _tokens, _receivers)
+    // console.log('Sending tokens', _coins, _tokens, _receivers)
 
     /* Initialize locals. */
     let address
     let change
     let coins
+    let feeRate
     let feeTotal
     let feeTotalWithChange
+    let lockTime
     let receiver
     let receivers
     let satoshis
+    let script
+    let sequence
     let tokenAmount
     let tokenid
     let tokens
@@ -69,15 +76,32 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
         } else {
             tokens = [_tokens]
         }
+    } else if (_coins.tokens) {
+        /* Validate tokens. */
+        if (Array.isArray(_coins.tokens)) {
+            tokens = _coins.tokens
+        } else {
+            tokens = [_coins.tokens]
+        }
     } else {
         throw new Error(`The token(s) provided are invalid [ ${JSON.stringify(_tokens)} ]`)
     }
 
     /* Validate receivers. */
-    if (Array.isArray(_receivers)) {
-        receivers = _receivers
+    if (_receivers) {
+        if (Array.isArray(_receivers)) {
+            receivers = _receivers
+        } else {
+            receivers = [_receivers]
+        }
+    } else if (_coins.receivers) {
+        if (Array.isArray(_coins.receivers)) {
+            receivers = _coins.receivers
+        } else {
+            receivers = [_coins.receivers]
+        }
     } else {
-        receivers = [_receivers]
+        throw new Error(`The receiver(s) provided are invalid [ ${JSON.stringify(_receivers)} ]`)
     }
 
     /* Initialize (initial) transaction satoshis. */
@@ -103,9 +127,43 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     debug('Transaction token amount:', tokenAmount)
     // console.log('SATOSHIS', satoshis)
 
+    /* Validate dust amount. */
+    if (satoshis < DUST_LIMIT) {
+        throw new Error(`Amount is too low. Minimum is [ ${DUST_LIMIT} ] satoshis.`)
+    }
+
+    /* Validate fee rate. */
+    if (_coins.feeRate) {
+        feeRate = _coins.feeRate
+    } else {
+        feeRate = 2.0 // NOTE: This is the Qt node (UI) wallet default.
+    }
+
+    /* Validate lock time. */
+    if (_coins.lockTime) {
+        lockTime = _coins.lockTime
+    } else {
+        lockTime = 0 // NOTE: This disables CLTV.
+    }
+
+    /* Validate sequence (number). */
+    if (_coins.sequence) {
+        sequence = _coins.sequence
+    } else {
+        sequence = DEFAULT_SEQNUMBER
+    }
+
+    /* Validate (locking) script. */
+    if (_coins.script) {
+        script = _coins.script
+    }
+
     /* Create new transaction. */
     transaction = new Transaction({
-        feeRate: _feeRate
+        feeRate,
+        lockTime,
+        sequence,
+        script,
     })
 
     /* Handle tokens. */
@@ -233,7 +291,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
 
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
-    feeTotal = BigInt((transaction.raw.length / 2) * _feeRate)
+    feeTotal = BigInt((transaction.raw.length / 2) * feeRate)
     // console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
@@ -247,7 +305,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
 
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
-        feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate)
+        feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * feeRate)
         // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */

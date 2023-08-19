@@ -1,9 +1,4 @@
 /* Import modules. */
-import {
-    encodeDataPush,
-    flattenBinArray,
-} from '@bitauth/libauth'
-
 import { decodeAddress } from '@nexajs/address'
 
 import { OP } from '@nexajs/script'
@@ -13,10 +8,15 @@ import {
     hexToBin,
 } from '@nexajs/utils'
 
+import {
+    encodeDataPush,
+    flattenBinArray,
+} from '@bitauth/libauth'
+
 import signTransactionInput from '../REF/signTransactionInput.js'
 
 /* Initialize default script bytecode. */
-const DEFAULT_SCRIPT_BYTECODE = new Uint8Array([
+const SCRIPT_TEMPLATE_1 = new Uint8Array([
     OP.FROMALTSTACK,
         OP.CHECKSIGVERIFY,
 ])
@@ -41,25 +41,16 @@ export default async (
     inputIndex,
     privateKey,
     publicKey,
-    // address,
+    lockScriptBin,
 ) => {
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x0
 
     /* Initialize locals. */
-    let lockScriptBin
+    let scriptPubKey
     let signatureBin
+    let signedInput
     let unlockingBytecode
-
-    // TBD
-    lockScriptBin = new Uint8Array([
-        // OP.FROMALTSTACK,
-        //     OP.CHECKLOCKTIMEVERIFY,
-        //     OP.DROP,
-        OP.FROMALTSTACK,
-            OP.CHECKSIGVERIFY,
-    ])
-    // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
     // Generate a transaction signature for this input.
     signatureBin = await signTransactionInput(
@@ -72,30 +63,32 @@ export default async (
     )
     // console.log('signatureBin', signatureBin)
 
-    const scriptPubKey = encodeDataPush(hexToBin(publicKey))
+    scriptPubKey = encodeDataPush(hexToBin(publicKey))
 
     // Build the unlocking script that unlocks the P2PKT locking script.
-    if (binToHex(lockScriptBin) === binToHex(DEFAULT_SCRIPT_BYTECODE)) {
-        unlockingBytecode = flattenBinArray(
-            [
-                // NOTE: We exclude "popular" script contracts.
-                encodeDataPush(scriptPubKey),
-                encodeDataPush(signatureBin),
-            ]
-        )
-    } else {
-        unlockingBytecode = flattenBinArray(
-            [
-                encodeDataPush(lockScriptBin),
-                encodeDataPush(scriptPubKey),
-                encodeDataPush(signatureBin),
-            ]
-        )
+    unlockingBytecode = flattenBinArray(
+        [
+            // NOTE: We exclude all "well-known" script templates.
+            encodeDataPush(scriptPubKey),
+            encodeDataPush(signatureBin),
+        ]
+    )
+
+    /* Validate locking script. */
+    if (lockScriptBin !== null &&
+        typeof lockScriptBin !== 'undefined' &&
+        binToHex(lockScriptBin) !== binToHex(SCRIPT_TEMPLATE_1)
+        // add more script templates...
+    ) {
+        unlockingBytecode = flattenBinArray([
+            encodeDataPush(lockScriptBin),
+            unlockingBytecode,
+        ])
     }
     // console.log('unlockingBytecode', unlockingBytecode)
 
     // Add the unlocking script to the input.
-    const signedInput = { ...input, unlockingBytecode } // NOTE: Here we update the unlocking script.
+    signedInput = { ...input, unlockingBytecode } // NOTE: Here we update the unlocking script.
     // console.log('signedInput', signedInput)
 
     // Return the signed input.

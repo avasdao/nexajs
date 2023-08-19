@@ -1,5 +1,6 @@
 /* Import (library) modules. */
 import { parseWif } from '@nexajs/hdnode'
+
 import { binToHex } from '@nexajs/utils'
 
 /* Import (local) modules. */
@@ -7,7 +8,6 @@ import encodeTransaction from '../REF/encodeTransaction.js'
 import createUnsignedInput from '../REF/createUnsignedInput.js'
 import unlockInput from './unlockInput.js'
 import unlockInputMulti from './unlockInputMulti.js'
-
 
 /**
  * Create a transaction.
@@ -20,7 +20,15 @@ import unlockInputMulti from './unlockInputMulti.js'
  *
  * @returns {Promise<Output>}	The OP_RETURN output script.
  */
-export default async (_privateKeyWifs, _unspentOutputs, _outputs, _locktime = 0) => {
+export default async (
+    _privateKeyWifs,
+    _unspentOutputs,
+    _outputs,
+    _locktime,
+    _lockScriptBin,
+) => {
+    let lockScriptBin
+
     /* Initialize WIFs. */
     const wifs = []
 
@@ -96,6 +104,7 @@ const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28
                         return _wif.privateKey
                     }),
                     redeemScript,
+                    _lockScriptBin,
                 )
             )
         )
@@ -110,7 +119,7 @@ const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28
                     inputIndex,
                     wifs[inputIndex].privateKey,
                     wifs[inputIndex].publicKey,
-                    // wifs[inputIndex].returnAddress,
+                    _lockScriptBin,
                 )
             )
         )

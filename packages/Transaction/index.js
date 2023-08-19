@@ -2,6 +2,9 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:transaction')
 
+/* Import modules. */
+import { OP } from '@nexajs/script'
+
 /* Libauth helpers. */
 import {
     binToHex,
@@ -13,6 +16,14 @@ import _createTransaction from './src/createTransaction.js'
 /* Export (local) modules. */
 export const createTransaction = _createTransaction
 
+/* Initialize default script bytecode. */
+const SCRIPT_TEMPLATE_1 = new Uint8Array([
+    OP.FROMALTSTACK,
+        OP.CHECKSIGVERIFY,
+])
+
+const MAXINT = 0xffffffff
+const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
 
 /**
  * Transaction Class
@@ -53,6 +64,19 @@ export class Transaction {
             this._lockTime = 0
         }
 
+        /* Validate sequence (number). */
+        if (_params?.sequence) {
+            this._sequence = _params.sequence
+        } else {
+            this._sequence = DEFAULT_SEQNUMBER
+        }
+
+        /* Validate (locking) script. */
+        if (_params?.script) {
+            this._script = _params.script
+        } else {
+            this._script = SCRIPT_TEMPLATE_1
+        }
     }
 
     test() {
@@ -100,6 +124,14 @@ export class Transaction {
         return binToHex(this._raw)
     }
 
+    get script() {
+        return this._script
+    }
+
+    get sequence() {
+        return this._sequence
+    }
+
     addInput(_outpoint, _satoshis) {
         // TODO Validate input.
         this._inputs.push({
@@ -108,7 +140,12 @@ export class Transaction {
         })
     }
 
-    addOutput(_receiver, _satoshis = null, _tokenid = null, _tokens = null) {
+    addOutput(
+        _receiver,
+        _satoshis = null,
+        _tokenid = null,
+        _tokens = null
+    ) {
         if (_satoshis !== null) {
             // TODO Validate output.
             this._outputs.push({
@@ -125,12 +162,7 @@ export class Transaction {
         }
     }
 
-    setLockTime(_timestamp) {
-        // TODO Validate timestamp or block height.
-        this._lockTime = _timestamp
-    }
-
-    async sign(_wifs, _locktime = 0) {
+    async sign(_wifs) {
         /* Initialize unspent holder. */
         const unspents = []
 
@@ -146,8 +178,9 @@ export class Transaction {
         this._raw = await createTransaction(
             _wifs,
             unspents,
-            this._outputs,
-            _locktime,
+            this.outputs,
+            this.lockTime,
+            this.script,
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
 
