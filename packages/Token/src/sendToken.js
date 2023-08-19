@@ -177,17 +177,17 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
         .reduce(
             (totalValue, unspentOutput) => (totalValue + unspentOutput.tokens), BigInt(0)
         )
-    console.log('UNSPENT TOKENS', unspentTokens)
-    console.log('TOKEN AMOUNT', tokenAmount)
+    // console.log('UNSPENT TOKENS', unspentTokens)
+    // console.log('TOKEN AMOUNT', tokenAmount)
 
     if (unspentTokens - tokenAmount > BigInt(0)) {
         /* Find the change receiver. */
         receiver = getChangeReceiver(receivers)
-        console.log('RECEIVER', receiver)
+        // console.log('RECEIVER', receiver)
 
         /* Validate receiver. */
         if (receiver) {
-            console.log('FOUND CHANGE RECEIVER', receiver)
+            // console.log('FOUND CHANGE RECEIVER', receiver)
 
             /* Add satoshis to total. */
             satoshis += DUST_LIMIT
@@ -234,11 +234,11 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
     feeTotal = BigInt((transaction.raw.length / 2) * _feeRate)
-    console.log('FEE TOTAL (w/out change):', feeTotal)
+    // console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
     change = (unspentSatoshis - satoshis - feeTotal)
-    console.log('CHANGE', change)
+    // console.log('CHANGE', change)
 
     /* Validate change amount. */
     if (change < BigInt(0)) {
@@ -248,7 +248,7 @@ export default async (_coins, _tokens, _receivers, _feeRate = 2.0) => {
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
         feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * _feeRate)
-        console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
+        // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */
         if ((unspentSatoshis - satoshis - feeTotalWithChange) >= DUST_LIMIT) {

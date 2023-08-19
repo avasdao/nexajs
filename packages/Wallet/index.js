@@ -353,14 +353,17 @@ export class Wallet extends EventEmitter {
     async send(_tokenid, _receiver, _amount) {
         let address
         let coins
+        let error
         let feeRate
         let nullData
         let receiver
         let receivers
         let response
         let satoshis
+        let suggestions
         let tokenAmount
         let tokens
+        let txidem
         let txResult
         let unspentCoins
         let unspentTokens
@@ -392,6 +395,13 @@ export class Wallet extends EventEmitter {
             tokens = await getTokens(wif)
                 .catch(err => console.error(err))
             // console.log('TOKENS', tokens)
+
+            /* Filter tokens. */
+            // NOTE: Currently limited to a "single" Id.
+            tokens = tokens.filter(_token => {
+                return _token.tokenidHex === _tokenid
+            })
+            // console.log('TOKENS (filtered)', tokens)
 
             /* Calculate the total balance of the unspent outputs. */
             unspentTokens = tokens
@@ -468,14 +478,43 @@ export class Wallet extends EventEmitter {
             txResult = JSON.parse(response)
             // console.log('TX RESULT', txResult)
 
-            if (txResult.error) {
-                return console.error(txResult.message)
+            /* Validate result (txidem). */
+            if (txResult.result) {
+                console.log(txResult.result)
+
+                /* Set transaction idem. */
+                txidem = txResult.result
+
+                /* Set error. */
+                error = null
+            }
+
+            /* Validate error. */
+            if (txResult.error?.message) {
+                // console.error(txResult.error.message)
+                /* Set transaction idem. */
+                txidem = null
+
+                /* Initialize suggestions. */
+                suggestions = []
+
+                // FIXME FOR DEV PURPOSES ONLY
+                suggestions.push('Sorry, no advice.')
+
+                /* Set error. */
+                error = {
+                    ...txResult.error,
+                    suggestions,
+                }
             }
         } catch (err) {
             console.error(err)
         }
 
-        return txResult
+        return {
+            txidem,
+            error,
+        }
     }
 
     async update(_subscribe = false, _hasFiat = false) {

@@ -43,23 +43,26 @@ export default async (
     publicKey,
     // address,
 ) => {
+    // Define SIGHASH_ALL constant.
+    const SIGHASH_ALL = 0x0
+
+    /* Initialize locals. */
+    let lockScriptBin
+    let signatureBin
     let unlockingBytecode
 
     // TBD
-    const lockScriptBin = new Uint8Array([
-        OP.FROMALTSTACK,
-            OP.CHECKLOCKTIMEVERIFY,
-            OP.DROP,
+    lockScriptBin = new Uint8Array([
+        // OP.FROMALTSTACK,
+        //     OP.CHECKLOCKTIMEVERIFY,
+        //     OP.DROP,
         OP.FROMALTSTACK,
             OP.CHECKSIGVERIFY,
     ])
     // console.log('\n  Lock Script Bin:\n', lockScriptBin)
 
-    // Define SIGHASH_ALL constant.
-    const SIGHASH_ALL = 0x0
-
     // Generate a transaction signature for this input.
-    const signatureBin = await signTransactionInput(
+    signatureBin = await signTransactionInput(
         transaction,
         input.amount,
         inputIndex,
