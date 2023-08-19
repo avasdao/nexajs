@@ -52,11 +52,18 @@ export default async (_coins, _receivers) => {
 
     /* Validate coin. */
     if (_coins) {
-        /* Validate coins. */
-        if (Array.isArray(_coins)) {
-            coins = _coins
+        /* Validate coins (object). */
+        if (_coins.coins) {
+            coins = _coins.coins
         } else {
-            coins = [_coins]
+            coins = _coins
+        }
+
+        /* Validate coins. */
+        if (Array.isArray(coins)) {
+            coins = coins
+        } else {
+            coins = [coins]
         }
     } else {
         throw new Error(`The coin(s) provided are invalid [ ${JSON.stringify(_coins)} ]`)

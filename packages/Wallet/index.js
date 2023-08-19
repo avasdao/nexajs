@@ -354,7 +354,6 @@ export class Wallet extends EventEmitter {
         let address
         let coins
         let error
-        let feeRate
         let nullData
         let receiver
         let receivers
@@ -434,11 +433,8 @@ export class Wallet extends EventEmitter {
             })
             // console.log('RECEIVERS', receivers)
 
-            /* Set automatic fee (handling) flag. */
-            feeRate = 2.0
-
             /* Send UTXO request. */
-            response = await sendToken(coins, tokens, receivers, feeRate)
+            response = await sendToken(coins, tokens, receivers)
             // console.log('Send UTXO (response):', response)
         } else if (typeof _receiver === 'bigint') {
             /* Set receiver. */
@@ -464,11 +460,8 @@ export class Wallet extends EventEmitter {
             })
             // console.log('RECEIVERS', receivers)
 
-            /* Set automatic fee (handling) flag. */
-            feeRate = 2.0
-
             /* Send UTXO request. */
-            response = await sendCoin(coins, receivers, feeRate)
+            response = await sendCoin(coins, receivers)
             // console.log('Send UTXO (response):', response)
         } else {
             throw new Error('Invalid amount.')
