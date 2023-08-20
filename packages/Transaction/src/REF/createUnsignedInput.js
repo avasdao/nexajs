@@ -1,9 +1,6 @@
 /* Import modules. */
 import { hexToBin } from '@nexajs/utils'
 
-const MAXINT = 0xffffffff
-const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
-
 /**
  * Utility function to convert an electrum unspent output to a libauth compatible input.
  *
@@ -19,7 +16,7 @@ export default (unspentOutput) => {
         unlockingBytecode: new Uint8Array(), // NOTE: This is where the signature and public key will be placed.
         satoshis: unspentOutput.satoshis,
         amount: unspentOutput.satoshis,
-        sequenceNumber: DEFAULT_SEQNUMBER, // numberToBinUint32LE??
+        sequenceNumber: unspentOutput.sequence,
     }
 
     /* Return input. */
