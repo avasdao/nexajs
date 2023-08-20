@@ -148,6 +148,14 @@
   dependencies:
     "@ethersproject/logger" "^5.7.0"
 
+"@ethersproject/random@5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@ethersproject/random/-/random-5.7.0.tgz#af19dcbc2484aae078bb03656ec05df66253280c"
+  integrity sha512-19WjScqRA8IIeWclFme75VMXSBvi4e6InrUNuaR4s5pTF2qNhcGdCUwdxUVGtDDqC00sDLCO93jPQoDUH4HVmQ==
+  dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/logger" "^5.7.0"
+
 "@ethersproject/rlp@^5.7.0":
   version "5.7.0"
   resolved "https://registry.npmjs.org/@ethersproject/rlp/-/rlp-5.7.0.tgz"
@@ -247,6 +255,19 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/crypto@23.5.22":
+  version "23.5.22"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.22.tgz#1ca8e76cc18e159d18ef59f08368135dfcafee88"
+  integrity sha512-2rKBRYsWKbtD7trTa25sOAN0TuAuz7RGU7eLMDLBtgLoIbIrQ6Q8amA4BlPyLNpjc4Og/KWbncSqRrXIvpm5Lw==
+  dependencies:
+    "@ethersproject/random" "5.7.0"
+    "@nexajs/utils" "23.5.15"
+    crypto-js "4.1.1"
+    debug "4.3.4"
+    events "3.3.0"
+    scrypt-js "3.0.1"
+    secure-ls "1.2.6"
+
 "@nexajs/hdnode@23.7.26":
   version "23.7.26"
   resolved "https://registry.npmjs.org/@nexajs/hdnode/-/hdnode-23.7.26.tgz"
@@ -290,16 +311,31 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/transaction@file:../Transaction":
-  version "23.8.12"
-  resolved "file:../Transaction"
+"@nexajs/script@23.7.21":
+  version "23.7.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.7.21.tgz#eed0ce4386f506a85e7a16cc7535a433c5b694f0"
+  integrity sha512-PJiDMviFYmPYXE6GTcj1CBcAi/GRaJCbpByScMjbGdOl2pCQG3oOmYBMn38rVzHJq/Wsp+AvVOQ8mbEQ0PvqGw==
+  dependencies:
+    debug "4.3.4"
+
+"@nexajs/transaction@23.8.18":
+  version "23.8.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.8.18.tgz#34ad498d5eec67f1e0f57c09053747e4c6b4b75e"
+  integrity sha512-VMCUC/8XWILxZrmS6JROuR6k3iiOJ1bextmkTso+Kz1VWfiQAsFEGzbm6CELtd65f4YhrXMhssNPlDraXFiOBg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.8.9"
+    "@nexajs/address" "23.8.18"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.7.26"
     "@nexajs/script" "23.7.21"
     "@nexajs/utils" "23.7.22"
+    debug "4.3.4"
+
+"@nexajs/utils@23.5.15":
+  version "23.5.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.5.15.tgz#d4773ecf37b6bc10b35f4c4aa6be12ee721c7763"
+  integrity sha512-rDw49tjDJ6mqYQEEHeLtfMPZq8QFOzdFarYXz1Pa94k37kUKdxxSoZWdDnGKfFD7ec4Zm7BvcTp4AxAuvlMUrw==
+  dependencies:
     debug "4.3.4"
 
 "@nexajs/utils@23.7.22":
@@ -328,6 +364,16 @@ brorand@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/brorand/-/brorand-1.1.0.tgz"
   integrity sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==
+
+crypto-js@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
+  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+
+crypto-js@^3.1.6:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
+  integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
 
 debug@4.3.4:
   version "4.3.4"
@@ -359,12 +405,12 @@ graphql-ws@5.12.0:
   resolved "https://registry.npmjs.org/graphql-ws/-/graphql-ws-5.12.0.tgz"
   integrity sha512-PA3ImUp8utrpEjoxBMhvxsjkStvFEdU0E1gEBREt8HZIWkxOUymwJBhFnBL7t/iHhUq1GVPeZevPinkZFENxTw==
 
-"graphql@>=0.11 <=16", graphql@16.6.0:
+graphql@16.6.0:
   version "16.6.0"
   resolved "https://registry.npmjs.org/graphql/-/graphql-16.6.0.tgz"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
 
-hash.js@^1.0.0, hash.js@^1.0.3, hash.js@1.1.7:
+hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.7"
   resolved "https://registry.npmjs.org/hash.js/-/hash.js-1.1.7.tgz"
   integrity sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
@@ -396,6 +442,11 @@ js-sha3@0.8.0:
   resolved "https://registry.npmjs.org/js-sha3/-/js-sha3-0.8.0.tgz"
   integrity sha512-gF1cRrHhIzNfToc802P800N8PpXS+evLLXfsVpowqmAFR9uwbi89WvXg2QspOmXL8QL86J4T1EpFu+yUkwJY3Q==
 
+lz-string@^1.4.4:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.5.0.tgz#c1ab50f77887b712621201ba9fd4e3a6ed099941"
+  integrity sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==
+
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz"
@@ -411,17 +462,30 @@ ms@2.1.2:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+scrypt-js@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/scrypt-js/-/scrypt-js-3.0.1.tgz#d314a57c2aef69d1ad98a138a21fe9eafa9ee312"
+  integrity sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA==
+
+secure-ls@1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/secure-ls/-/secure-ls-1.2.6.tgz#0c54a4c7fa8317c3c101accbf6bb38d8d2072e46"
+  integrity sha512-g8vUSKl6elSfyAUHodybnNkuZW+mUYEOWj4SZIDg+xoQ1dq5ddktBoOFrtxQBUl88ZyAJOtGWQ1PRaOxkTAuZQ==
+  dependencies:
+    crypto-js "^3.1.6"
+    lz-string "^1.4.4"
+
 uuid@9.0.0:
   version "9.0.0"
   resolved "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
-ws@*, ws@8.13.0:
-  version "8.13.0"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
-  integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==
-
 ws@8.12.1:
   version "8.12.1"
   resolved "https://registry.npmjs.org/ws/-/ws-8.12.1.tgz"
   integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
+
+ws@8.13.0:
+  version "8.13.0"
+  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
+  integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==

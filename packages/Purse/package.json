@@ -11,7 +11,7 @@
     "@nexajs/address": "23.8.18",
     "@nexajs/hdnode": "23.7.26",
     "@nexajs/provider": "23.6.21",
-    "@nexajs/transaction": "23.7.27",
+    "@nexajs/transaction": "23.8.18",
     "debug": "4.3.4",
     "events": "3.3.0"
   }
