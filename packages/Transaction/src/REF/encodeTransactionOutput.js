@@ -3,6 +3,8 @@ import {
     numberToBinUintLE,
 } from '@bitauth/libauth'
 
+// import { binToHex } from '@nexajs/utils'
+
 import { OP } from '@nexajs/script'
 
 /**
@@ -11,7 +13,7 @@ import { OP } from '@nexajs/script'
  * @param output - the output to encode
  */
 export default (output) => {
-    // console.log('\n  output.lockingBytecode', output.lockingBytecode);
+    // console.log('\n  output.lockingBytecode', binToHex(output.lockingBytecode));
 
     /* Initialize version. */
     let version

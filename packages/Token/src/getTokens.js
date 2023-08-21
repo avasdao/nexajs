@@ -1,13 +1,22 @@
 /* Import (local) modules. */
-import { listUnspent } from '@nexajs/address'
+import {
+    encodeAddress,
+    listUnspent,
+} from '@nexajs/address'
+
 import { parseWif } from '@nexajs/hdnode'
 
-export default async (_wif) => {
+import { encodeDataPush } from '@bitauth/libauth'
+
+export default async (_wif, _scriptPubKey = null) => {
+    let depositAddress
+    let privateKey
+    let publicKey
     let tokens
     let unspent
     let wif
 
-    const [
+    [
         privateKey,
         publicKey,
         depositAddress,
@@ -17,6 +26,15 @@ export default async (_wif) => {
     if (privateKey && publicKey && depositAddress) {
         /* Set WIF. */
         wif = _wif
+    }
+
+    /* Handle "script" addresses. */
+    if (_scriptPubKey) {
+        depositAddress = encodeAddress(
+            'nexa',
+            'TEMPLATE',
+            encodeDataPush(_scriptPubKey),
+        )
     }
 
     /* Fetch all unspent transaction outputs. */

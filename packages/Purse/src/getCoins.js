@@ -6,15 +6,13 @@ import {
 
 import { parseWif } from '@nexajs/hdnode'
 
-import {binToHex} from '@nexajs/utils' // TEMP
-
 import { encodeDataPush } from '@bitauth/libauth'
 
 export default async (_wif, _scriptPubKey = null) => {
     let coins
     let depositAddress
-    let publicKey
     let privateKey
+    let publicKey
     let unspent
     let wif
 

@@ -1,5 +1,8 @@
 /* Import modules. */
-import { encodeDataPush } from '@bitauth/libauth'
+import {
+    bigIntToBitcoinVarInt,
+    encodeDataPush,
+} from '@bitauth/libauth'
 
 import { decodeAddress } from '@nexajs/address'
 
@@ -41,16 +44,19 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
         scriptAmount = bigIntToBinUint16LE(_tokens)
     }
 
-    scriptAmount = encodeDataPush(scriptAmount)
-
     lockingBytecode = new Uint8Array([
         ...encodeDataPush(hexToBin(_tokenid)),
-        ...scriptAmount,
+        ...encodeDataPush(scriptAmount),
         ...decodeAddress(_address).hash.slice(2), // remove 0x1700
     ])
+    // console.log('\n  lockingBytecode (hex) 1:', binToHex(lockingBytecode))
 
-    lockingBytecode = encodeDataPush(lockingBytecode)
-    // console.log('\n  lockingBytecode (hex):', binToHex(lockingBytecode))
+    /* Prepend locking bytecode length. */
+    lockingBytecode = new Uint8Array([
+        bigIntToBitcoinVarInt(BigInt(lockingBytecode.length)),
+        ...lockingBytecode,
+    ])
+    // return console.log('\n  lockingBytecode (hex) 2:', binToHex(lockingBytecode))
 
     /* Create (token) output. */
     tokenOutput = {
