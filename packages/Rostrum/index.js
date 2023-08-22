@@ -35,6 +35,7 @@ import makeRequest from './src/makeRequest.js'
 /* Set active connection id. */
 // NOTE: Official node is currently accepting ZERO-fee txs.
 const ACTIVE_CONN_ID = 0
+const RECONNECTION_DELAY = 3000 // default is 3 seconds
 
 /* Initialize ping handler. */
 let pingHandler
@@ -254,8 +255,7 @@ export class Rostrum extends EventEmitter {
 
             /* Re-establish connection to remote server(s). */
             // NOTE: Add re-try delay and max attempts.
-            // FIXME Do we need to `await`?
-            this._connect(true)
+            setTimeout(() => this._connect(true), RECONNECTION_DELAY)
         }
 
         /* Handle connection error. */
@@ -283,8 +283,7 @@ export class Rostrum extends EventEmitter {
 
             /* Re-establish connection to remote server(s). */
             // NOTE: Add re-try delay and max attempts.
-            // FIXME Do we need to `await`?
-            this._connect(true)
+            setTimeout(() => this._connect(true), RECONNECTION_DELAY)
         }
     }
 
