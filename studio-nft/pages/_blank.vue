@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Blank — Nexa Studio`,
+    title: `Blank — NFT/SFT Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -31,6 +31,4 @@ const System = useSystemStore()
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
         </p>
     </main>
-
-    <Footer />
 </template>

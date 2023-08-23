@@ -1,243 +1,302 @@
 <script setup lang="ts">
-/* Initialize tabs. */
-const tabWelcome = ref(true)
-const tabExplorers = ref(false)
-const tabWallet = ref(false)
-const tabScript = ref(false)
+useHead({
+    title: `NFT/SFT Studio for Creators`,
+    meta: [
+        { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
+    ],
+})
 
-/* Initialize blockchain handlers. */
-const blockHeight = ref(0)
+/* Initialize stores. */
+import { useSystemStore } from '@/stores/system'
+const System = useSystemStore()
 
-/* Set project details. */
-const { projectid, projectName } = await $fetch('/api/v1/project')
+// onMounted(() => {
+//     console.log('Mounted!')
+//     // Now it's safe to perform setup operations.
+// })
 
-/* Set project mnemonic. */
-const { mnemonic } = await $fetch('/api/v1/wallet')
-
-/**
- * Load Tab
- *
- * @param _tabid Specifies the "active" tab.
- */
-const loadTab = (_tabid: string) => {
-    /* Disable ALL tabs. */
-    tabWelcome.value = false
-    tabExplorers.value = false
-    tabWallet.value = false
-    tabScript.value = false
-
-    /* Enable selected tab. */
-    switch(_tabid) {
-    case 'welcome':
-        tabWelcome.value = true
-        break
-    case 'explorers':
-        tabExplorers.value = true
-        break
-    case 'wallet':
-        tabWallet.value = true
-        break
-    case 'script':
-        tabScript.value = true
-        break
-    }
-}
-
-/**
- * Get Block Height
- *
- * Will query a cluster of Rostrum servers for the current block height.
- */
-const getBlockHeight = () => {
-    /* Set block height. */
-    // FIXME FOR DEV PURPOSES ONLY
-    blockHeight.value = 1337
-}
-
-/* Request (current) block height. */
-getBlockHeight()
+// onBeforeUnmount(() => {
+//     console.log('Before Unmount!')
+//     // Now is the time to perform all cleanup operations.
+// })
 </script>
 
 <template>
-    <main class="max-w-7xl mx-auto py-5">
-        <header class="flex flex-col items-center">
-            <img src="~/assets/nexa.svg" class="w-24 h-24" />
+    <main>
+        <h1 class="text-5xl font-medium">
+            NFT<span class="text-6xl text-sky-600 font-light">/</span>SFT Studio
+        </h1>
 
-            <h1 class="text-5xl font-bold">
-                {{projectName}}
-            </h1>
-        </header>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+        </p>
 
-        <section class="mt-10 py-5 max-w-5xl mx-auto border border-purple-500 rounded-lg bg-gradient-to-r from-yellow-100 via-gray-50 to-yellow-100">
-            <div class="-mt-10 relative flex justify-center">
-                <span class="isolate inline-flex -space-x-px rounded-md shadow-sm">
-                    <button
-                        @click="loadTab('welcome')"
-                        type="button"
-                        class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                    >
-                        <span class="sr-only">Welcome to Nexa Builder Studio</span>
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"></path>
-                        </svg>
-                    </button>
+        <div class="my-10 mx-10 border-t border-gray-300" />
 
-                    <button
-                        @click="loadTab('explorers')"
-                        type="button"
-                        class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                    >
-                        <span class="sr-only">Block Explorers</span>
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"></path>
-                        </svg>
-                    </button>
+        <div class="space-y-12">
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+                <div>
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+                </div>
 
-                    <button
-                        @click="loadTab('wallet')"
-                        type="button"
-                        class="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                    >
-                        <span class="sr-only">Asset Wallets</span>
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"></path>
-                        </svg>
-                    </button>
+                <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+                    <div class="sm:col-span-4">
+                        <label for="website" class="block text-sm font-medium leading-6 text-gray-900">Website</label>
+                        <div class="mt-2">
+                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">http://</span>
+                                <input
+                                    type="text"
+                                    name="website"
+                                    id="website"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                    placeholder="www.example.com"
+                                />
+                            </div>
+                        </div>
+                    </div>
 
-                    <button
-                        @click="loadTab('script')"
-                        type="button"
-                        class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                    >
-                        <span class="sr-only">Script Plus Wise Contracts</span>
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"></path>
-                        </svg>
-                    </button>
-                </span>
+                    <div class="col-span-full">
+                        <label for="about" class="block text-sm font-medium leading-6 text-gray-900">About</label>
+                        <div class="mt-2">
+                            <textarea
+                                id="about"
+                                name="about"
+                                rows="3"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            ></textarea>
+                        </div>
+                        <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
+                        <div class="mt-2 flex items-center gap-x-3">
+                            <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Cover photo</label>
+                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                    <label
+                                        for="file-upload"
+                                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                                    >
+                                        <span>Upload a file</span>
+                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" />
+                                    </label>
+                                    <p class="pl-1">or drag and drop</p>
+                                </div>
+                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-<!-- BEGIN TABS -->
-
-            <section v-if="tabWelcome" class="">
-                <div class="mt-5 flex justify-center">
-                    <h2 class="text-2xl font-bold">
-                        Welcome Builder!
-                    </h2>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+                <div>
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
                 </div>
 
-                <p class="px-10 py-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </section>
-
-            <section v-if="tabExplorers" class="">
-                <div class="mt-5 flex justify-center">
-                    <h2 class="text-2xl font-bold">
-                        Block + Token Explorers
-                    </h2>
-                </div>
-
-                <p class="px-10 py-3">
-                    Latest block is <NuxtLink :to="'https://explorer.nexa.org/block-height/' + blockHeight" target="_blank" class="text-xl text-blue-500 font-medium hover:underline">{{blockHeight}}</NuxtLink>
-                </p>
-
-                <p class="px-10 py-3">
-                    Start by modifying `nuxt.config.ts` to best suite your needs.
-                    Customize your app name, description and favorite icon.
-                    Favicon is located in `/public` folder.
-                </p>
-            </section>
-
-            <section v-if="tabWallet" class="">
-                <div class="mt-5 flex justify-center">
-                    <h2 class="text-2xl font-bold">
-                        Asset Wallets
-                    </h2>
-                </div>
-
-                <div class="px-10 py-3">
-                    <h2 class="text-xs text-gray-500 uppercase">
-                        Project Mnemonic
-                    </h2>
-
-                    <span class="w-2/3 block text-base text-rose-500 font-mono font-medium">
-                        {{mnemonic}}
-                    </span>
-                </div>
-
-                <p class="px-10 py-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </section>
-
-            <section v-if="tabScript" class="">
-                <div class="mt-5 flex justify-center">
-                    <h2 class="text-2xl font-bold">
-                        Nexscript + Wise Contracts
-                    </h2>
-                </div>
-
-                <p class="px-10 py-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </section>
-
-<!-- END TABS -->
-        </section>
-
-        <section class="mt-5 max-w-5xl mx-auto grid grid-cols-5 gap-5">
-            <div class="flex flex-col col-span-3 gap-5">
-                <NuxtLink to="https://nexajs.org" target="_blank" class="flex items-center gap-4 bg-gradient-to-r from-rose-500 to-rose-700 rounded-lg">
-                    <svg class="mx-5 w-32 h-32 text-rose-900" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"></path>
-                    </svg>
-
-                    <div>
-                        <h2 class="text-2xl text-rose-100 font-medium">
-                            Why Build on Nexa?
-                        </h2>
-
-                        <p class="text-rose-100">
-                            Nexa offers a premium Developer Experience (DX) that favors rapid iterations to get you deployed as quickly as possible.
-                        </p>
+                <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+                    <div class="sm:col-span-3">
+                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                        <div class="mt-2">
+                            <input
+                                type="text"
+                                name="first-name"
+                                id="first-name"
+                                autocomplete="given-name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
                     </div>
-                </NuxtLink>
 
-                <NuxtLink to="https://nexajs.org" target="_blank" class="flex items-center gap-4 bg-gradient-to-r from-yellow-500 to-yellow-700 rounded-lg">
-                    <svg class="mx-5 w-32 h-32 text-yellow-900" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"></path>
-                    </svg>
-
-                    <div>
-                        <h2 class="text-2xl text-yellow-100 font-medium">
-                            Check out more Examples
-                        </h2>
-
-                        <p class="text-yellow-100">
-                            The Nexa community offers ample examples to help you get started quickly using the industry's best practices.
-                        </p>
+                    <div class="sm:col-span-3">
+                        <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                        <div class="mt-2">
+                            <input
+                                type="text"
+                                name="last-name"
+                                id="last-name"
+                                autocomplete="family-name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
                     </div>
-                </NuxtLink>
+
+                    <div class="sm:col-span-4">
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                        <div class="mt-2">
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                        <div class="mt-2">
+                            <select
+                                id="country"
+                                name="country"
+                                autocomplete="country-name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                            >
+                                <option>United States</option>
+                                <option>Canada</option>
+                                <option>Mexico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
+                        <div class="mt-2">
+                            <input
+                                type="text"
+                                name="street-address"
+                                id="street-address"
+                                autocomplete="street-address"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 sm:col-start-1">
+                        <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                        <div class="mt-2">
+                            <input
+                                type="text"
+                                name="city"
+                                id="city"
+                                autocomplete="address-level2"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
+                        <div class="mt-2">
+                            <input
+                                type="text"
+                                name="region"
+                                id="region"
+                                autocomplete="address-level1"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
+                        <div class="mt-2">
+                            <input
+                                type="text"
+                                name="postal-code"
+                                id="postal-code"
+                                autocomplete="postal-code"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <NuxtLink to="https://nexajs.org" target="_blank" class="col-span-2 py-3 flex flex-col items-center gap-2 bg-gradient-to-b from-sky-700 to-sky-500 rounded-lg">
-                <div class="p-3 flex flex-col">
-                    <h2 class="text-3xl text-sky-100 font-medium text-center">
-                        Documentation
-                    </h2>
-
-                    <p class="mt-3 text-sky-100">
-                        Nexa offers excellent documentation that offers modern and up-to-date guides and tutorials for anything and everything you need.
-                    </p>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+                <div>
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
                 </div>
 
-                <svg class="mx-5 w-24 h-24 text-sky-900" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
-                </svg>
-            </NuxtLink>
-        </section>
+                <div class="max-w-2xl space-y-10 md:col-span-2">
+                    <fieldset>
+                        <legend class="text-sm font-semibold leading-6 text-gray-900">By Email</legend>
+                        <div class="mt-6 space-y-6">
+                            <div class="relative flex gap-x-3">
+                                <div class="flex h-6 items-center">
+                                    <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                </div>
+                                <div class="text-sm leading-6">
+                                    <label for="comments" class="font-medium text-gray-900">Comments</label>
+                                    <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                                </div>
+                            </div>
+                            <div class="relative flex gap-x-3">
+                                <div class="flex h-6 items-center">
+                                    <input id="candidates" name="candidates" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                </div>
+                                <div class="text-sm leading-6">
+                                    <label for="candidates" class="font-medium text-gray-900">Candidates</label>
+                                    <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                                </div>
+                            </div>
+                            <div class="relative flex gap-x-3">
+                                <div class="flex h-6 items-center">
+                                    <input id="offers" name="offers" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                </div>
+                                <div class="text-sm leading-6">
+                                    <label for="offers" class="font-medium text-gray-900">Offers</label>
+                                    <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
+                        <p class="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
+                        <div class="mt-6 space-y-6">
+                            <div class="flex items-center gap-x-3">
+                                <input id="push-everything" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                <label for="push-everything" class="block text-sm font-medium leading-6 text-gray-900">Everything</label>
+                            </div>
+                            <div class="flex items-center gap-x-3">
+                                <input id="push-email" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                <label for="push-email" class="block text-sm font-medium leading-6 text-gray-900">Same as email</label>
+                            </div>
+                            <div class="flex items-center gap-x-3">
+                                <input id="push-nothing" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" />
+                                <label for="push-nothing" class="block text-sm font-medium leading-6 text-gray-900">No push notifications</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6 flex items-center justify-end gap-x-6">
+            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+            <button
+                type="submit"
+                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+                Save
+            </button>
+        </div>
     </main>
-
-    <Footer />
 </template>
