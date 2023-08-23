@@ -23,15 +23,15 @@ const System = useSystemStore()
 
 <template>
     <main>
-        <h1 class="text-5xl font-medium">
-            NFT<span class="text-6xl text-sky-600 font-light">/</span>SFT Studio
+        <h1 class="text-4xl lg:text-5xl font-medium">
+            NFT<span class="text-5xl lg:text-6xl text-sky-600 font-light">/</span>SFT Studio
         </h1>
 
-        <p>
+        <p class="mt-2 lg:mt-5 w-full lg:w-2/3 text-sm lg:text-base">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
         </p>
 
-        <div class="my-10 mx-10 border-t border-gray-300" />
+        <div class="mx-0 lg:mx-10 my-5 lg:my-10 border-t border-gray-300" />
 
         <div class="space-y-12">
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
