@@ -42,6 +42,13 @@ const navigation = [
         ],
     },
     {
+        title: 'Studio',
+        links: [
+            { title: 'NFT/SFT Studio', href: '/studio/nft' },
+            { title: 'Wallet', href: '/studio/wallet' },
+        ],
+    },
+    {
         title: 'Library Packages',
         links: [
             { title: 'Introduction', href: '/packages' },

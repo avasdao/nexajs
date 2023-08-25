@@ -40,35 +40,44 @@ This is the starting point for Project journey. The first time you load your Stu
 
 ![NPM Create Nexa](/screenshots/nbs-welcome.png)
 
-### Voluptatem quas possimus
+### Customize the Boilerplate Template
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+We know how challenging it can be to engineer the perfect setup for your projects, so we've taken much of the difficult decisions for you. Don't worry, you can easily adjust and/or disable ANY features that don't suit your needs.
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+Default boilerplate templates come with everything under the sun:
 
-### Id vitae minima
+- Profile Management
+    1. Session manager (w/ authorization)
+    2. User permissions
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+- System Management
+    1. Clipboard copy & paste
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+- [Wallet](/studio/wallet)
+    1. Create & import seed phrases
+    2. Password protection
+
+- Server
+    1. Public API endpoints
+    2. Private API endpoints
 
 ---
 
-## Studio Wallet
+## NFT Studio
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+Create custom NFTs & SFTs using this total solution for Creators.
 
-### Corporis exercitationem
+Build an entire collection, using our Traits Manager.
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+---
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+## Time Capsule
 
-### Reprehenderit magni
+Manage your "time-locked" assets with this convenient tool.
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+Supporting most contracts:
+- Ava's Stakehouses
+- Otoplo HODL Vaults
 
 ---
 
