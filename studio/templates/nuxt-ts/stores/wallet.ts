@@ -89,23 +89,23 @@ export const useWalletStore = defineStore('wallet', {
             return entropyToMnemonic(_state._entropy)
         },
         entropy(_state) {
-            return _state._entropy
+            return _state._entropy || null
         },
 
         wallet(_state) {
-            return _state._wallet
+            return _state._wallet || null
         },
 
         wif(_state) {
-            return _state._wif
+            return _state._wif || null
         },
 
         coins(_state) {
-            return _state._coins
+            return _state._coins || []
         },
 
         tokens(_state) {
-            return _state._tokens
+            return _state._tokens || []
         },
 
         balance(_state) {

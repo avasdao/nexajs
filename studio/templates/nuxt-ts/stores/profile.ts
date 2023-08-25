@@ -14,19 +14,19 @@ export const useProfileStore = defineStore('profile', {
 
     getters: {
         session(_state) {
-            return _state._session
+            return _state._session || null
         },
 
         sessionid(_state) {
-            return _state._session?.id
+            return _state._session?.id || null
         },
 
         challenge(_state) {
-            return _state._session?.challenge
+            return _state._session?.challenge || null
         },
 
         apiKey(_state) {
-            return (_exchangeid) => _state._apiKeys[_exchangeid]
+            return (_exchangeid) => _state._apiKeys[_exchangeid] || null
         },
     },
 
