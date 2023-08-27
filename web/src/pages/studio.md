@@ -91,7 +91,7 @@ This area is perfect to experiment with ALL the "cool" toys that Nexa Builder St
 
 This area requires Nexa ID authorization.
 
-Enjoy the convenience of having a FULL administrative center dedicated to your new Project. A signle authorization scan allows you to easily link this Admin Center to your other Project Admin Centers for a seemless Developer Experience (DX).
+Enjoy the convenience of having a FULL administrative center dedicated to your new Project. A signle authorization scan allows you to easily link this Admin Center to your other Project Admin Centers for a seemless Builder Experience (BX).
 
 ---
 

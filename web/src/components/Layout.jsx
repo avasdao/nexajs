@@ -60,7 +60,7 @@ const navigation = [
     {
         title: 'References',
         links: [
-            { title: 'Developer Experience (DX)', href: '/dx' },
+            { title: 'Builder Experience (BX)', href: '/bx' },
             { title: 'Design principles', href: '/principles' },
             { title: 'Nexa Identity Protocol', href: '/nexid' },
             { title: 'OP Codes', href: '/opcodes' },

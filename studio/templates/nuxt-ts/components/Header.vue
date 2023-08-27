@@ -26,7 +26,7 @@ const isShowingMenu = ref(false)
             <div class="flex lg:flex-1">
                 <a href="javascript://" class="-m-1.5 p-1.5">
                     <span class="sr-only">PROJECT_NAME</span>
-                    <img class="h-14 w-auto" src="~/assets/nexa.svg" alt="" />
+                    <img class="h-16 w-auto" src="~/assets/nexa.svg" alt="" />
                 </a>
             </div>
             <div class="flex lg:hidden">

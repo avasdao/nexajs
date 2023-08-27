@@ -33,7 +33,10 @@
                     <div class="mx-auto max-w-7xl px-6 pb-32 pt-36 sm:pt-60 lg:px-8 lg:pt-32">
                         <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                             <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">We’re changing the way people connect.</h1>
+                                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                                    Introducing a <span class="text-7xl text-amber-400 italic font-light">Re-imagined</span> Web3 Builder <span class="text-7xl text-amber-400 italic font-light">Experience</span>
+                                </h1>
+
                                 <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
                                     Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et labore commodo nulla aliqua proident mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt mollit id
                                     pariatur in voluptate cillum. Eu voluptate tempor esse minim amet fugiat veniam occaecat aliqua.
@@ -43,7 +46,7 @@
                                 <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                                            src="https://plus.unsplash.com/premium_photo-1683120966127-14162cdd0935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1863&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -53,7 +56,7 @@
                                 <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                                     <div class="relative">
                                         <img
-                                            src="https://plus.unsplash.com/premium_photo-1683120966127-14162cdd0935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1863&q=80"
+                                            src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -61,7 +64,7 @@
                                     </div>
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80"
+                                            src="https://images.unsplash.com/photo-1530977875151-aae9742fde19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -71,7 +74,7 @@
                                 <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1519241047957-be31d7379a5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                                            src="https://images.unsplash.com/photo-1535957998253-26ae1ef29506?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -99,30 +102,34 @@
                     <div class="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
                         <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
                             <p class="text-xl leading-8 text-gray-600">
-                                Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget. Eleifend
-                                egestas fringilla sapien.
+                                Nexa offers a premium Builder Experience (BX) that favors rapid iterations to get you deployed as quickly as possible.
                             </p>
+
                             <div class="mt-10 max-w-xl text-base leading-7 text-gray-700">
                                 <p>
-                                    Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque
-                                    erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.
+                                    The Nexa community offers ample examples to help you get started quickly using the industry's best practices.
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                 </p>
+
                                 <p class="mt-10">
-                                    Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis odio id et. Id blandit molestie auctor fermentum dignissim. Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate et ultrices hac
-                                    adipiscing egestas. Iaculis convallis ac tempor et ut. Ac lorem vel integer orci.
+                                    Nexa offers excellent documentation that offers modern and up-to-date guides and tutorials for anything and everything you need.
+                                    Beatae ut illum suscipit excepturi reprehenderit omnis, eius laudantium dolorum possimus animi cupiditate libero? Non illum, veritatis nemo quis hic ut? Officiis?
                                 </p>
                             </div>
                         </div>
+
                         <div class="lg:flex lg:flex-auto lg:justify-center">
                             <dl class="w-64 space-y-8 xl:w-80">
                                 <div class="flex flex-col-reverse gap-y-4">
                                     <dt class="text-base leading-7 text-gray-600">Transactions every 24 hours</dt>
                                     <dd class="text-5xl font-semibold tracking-tight text-gray-900">44 million</dd>
                                 </div>
+
                                 <div class="flex flex-col-reverse gap-y-4">
                                     <dt class="text-base leading-7 text-gray-600">Assets under holding</dt>
                                     <dd class="text-5xl font-semibold tracking-tight text-gray-900">$119 trillion</dd>
                                 </div>
+
                                 <div class="flex flex-col-reverse gap-y-4">
                                     <dt class="text-base leading-7 text-gray-600">New users annually</dt>
                                     <dd class="text-5xl font-semibold tracking-tight text-gray-900">46,000</dd>
@@ -168,7 +175,7 @@
                     </h2>
 
                     <p class="w-full lg:w-2/3 mt-2 text-lg leading-8 text-gray-600">
-                        Enjoy unlimited access to the premium <span class="text-indigo-500 font-medium">Developer Experience (DX)</span> the we've crafted into the various studios presented below:
+                        Enjoy unlimited access to the premium <span class="text-indigo-500 font-medium">Builder Experience (BX)</span> the we've crafted into the various studios presented below:
                     </p>
                 </div>
 
