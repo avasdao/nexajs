@@ -43,7 +43,7 @@
                                 <div class="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                                            src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -53,7 +53,7 @@
                                 <div class="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                                            src="https://plus.unsplash.com/premium_photo-1683120966127-14162cdd0935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1863&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                                            src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -71,7 +71,7 @@
                                 <div class="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                                            src="https://images.unsplash.com/photo-1519241047957-be31d7379a5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="relative">
                                         <img
-                                            src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                                            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
                                             alt=""
                                             class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -133,49 +133,6 @@
                 </div>
             </div>
 
-            <!-- Image section -->
-            <div class="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
-                <img
-                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"
-                    alt=""
-                    class="aspect-[5/2] w-full object-cover xl:rounded-3xl"
-                />
-            </div>
-
-            <!-- Values section -->
-            <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-                <div class="mx-auto max-w-2xl lg:mx-0">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our values</h2>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.</p>
-                </div>
-                <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    <div>
-                        <dt class="font-semibold text-gray-900">Be world-class</dt>
-                        <dd class="mt-1 text-gray-600">Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.</dd>
-                    </div>
-                    <div>
-                        <dt class="font-semibold text-gray-900">Share everything you know</dt>
-                        <dd class="mt-1 text-gray-600">Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.</dd>
-                    </div>
-                    <div>
-                        <dt class="font-semibold text-gray-900">Always learning</dt>
-                        <dd class="mt-1 text-gray-600">Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.</dd>
-                    </div>
-                    <div>
-                        <dt class="font-semibold text-gray-900">Be supportive</dt>
-                        <dd class="mt-1 text-gray-600">Magnam provident veritatis odit. Vitae eligendi repellat non. Eum fugit impedit veritatis ducimus. Non qui aspernatur laudantium modi. Praesentium rerum error deserunt harum.</dd>
-                    </div>
-                    <div>
-                        <dt class="font-semibold text-gray-900">Take responsibility</dt>
-                        <dd class="mt-1 text-gray-600">Sit minus expedita quam in ullam molestiae dignissimos in harum. Tenetur dolorem iure. Non nesciunt dolorem veniam necessitatibus laboriosam voluptas perspiciatis error.</dd>
-                    </div>
-                    <div>
-                        <dt class="font-semibold text-gray-900">Enjoy downtime</dt>
-                        <dd class="mt-1 text-gray-600">Ipsa in earum deserunt aut. Quos minus aut animi et soluta. Ipsum dicta ut quia eius. Possimus reprehenderit iste aspernatur ut est velit consequatur distinctio.</dd>
-                    </div>
-                </dl>
-            </div>
-
             <!-- Logo cloud -->
             <div class="relative isolate -z-10 mt-32 sm:mt-48">
                 <div class="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,white,transparent)]">
@@ -207,19 +164,19 @@
             <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        Our Studios
+                        FOSS Builder Studios
                     </h2>
 
-                    <p class="mt-2 text-lg leading-8 text-gray-600">
-                        Browse our Builder Studios and join the effort!
+                    <p class="w-full lg:w-2/3 mt-2 text-lg leading-8 text-gray-600">
+                        Enjoy unlimited access to the premium <span class="text-indigo-500 font-medium">Developer Experience (DX)</span> the we've crafted into the various studios presented below:
                     </p>
                 </div>
 
                 <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
 
-                    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+                    <NuxtLink to="/nft" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
                         <img
-                            src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"
+                            src="https://images.unsplash.com/photo-1564585447193-cd9a0cf42a36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80"
                             alt=""
                             class="absolute inset-0 -z-10 h-full w-full object-cover"
                         />
@@ -227,22 +184,22 @@
                         <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
                         <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-400 font-medium tracking-widest">
+                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
                                 NFT/SFT Studio
                             </h2>
                         </div>
 
                         <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="#">
+                            <a href="javascript://">
                                 <span class="absolute inset-0"></span>
-                                Design, Create and Share custom NFTs with the people you love.
+                                Design, Create and Share custom NFTs with the people you love
                             </a>
                         </h3>
-                    </article>
+                    </NuxtLink>
 
-                    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+                    <NuxtLink to="/components" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
                         <img
-                            src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"
+                            src="https://images.unsplash.com/photo-1633469924738-52101af51d87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
                             alt=""
                             class="absolute inset-0 -z-10 h-full w-full object-cover"
                         />
@@ -250,44 +207,150 @@
                         <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
 
                         <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-400 font-medium tracking-widest">
-                                Icon/Logo Studio
-                            </h2>
-                        </div>
-
-                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="#">
-                                <span class="absolute inset-0"></span>
-                                Design custom icons and logos for your next project.
-                            </a>
-                        </h3>
-                    </article>
-
-                    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                        <img
-                            src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3603&q=80"
-                            alt=""
-                            class="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
-
-                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-400 font-medium tracking-widest">
+                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
                                 Component Studio
                             </h2>
                         </div>
 
                         <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="#">
+                            <a href="javascript://">
                                 <span class="absolute inset-0"></span>
-                                Pro-quality components to include in your Vue and React projects.
+                                Pro-quality components to include in your Vue and React projects
                             </a>
                         </h3>
-                    </article>
+                    </NuxtLink>
+
+                    <NuxtLink to="/media" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+                        <img
+                            src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                            alt=""
+                            class="absolute inset-0 -z-10 h-full w-full object-cover"
+                        />
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+
+                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
+                                Icon/Logo Studio
+                            </h2>
+                        </div>
+
+                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
+                            <a href="javascript://">
+                                <span class="absolute inset-0"></span>
+                                Design custom icons and logos for your next project
+                            </a>
+                        </h3>
+                    </NuxtLink>
+
+                    <NuxtLink to="/publish" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+                        <img
+                            src="https://images.unsplash.com/photo-1553096442-8fe2118fb927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                            alt=""
+                            class="absolute inset-0 -z-10 h-full w-full object-cover"
+                        />
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+
+                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
+                                Publishing Studio
+                            </h2>
+                        </div>
+
+                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
+                            <a href="javascript://">
+                                <span class="absolute inset-0"></span>
+                                Prepare and submit your finished project to stores and marketplaces
+                            </a>
+                        </h3>
+                    </NuxtLink>
+
+                    <NuxtLink to="/media" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+                        <img
+                            src="https://images.unsplash.com/photo-1520444451380-ebe0f7b9cfd5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                            alt=""
+                            class="absolute inset-0 -z-10 h-full w-full object-cover"
+                        />
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+
+                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
+                                A/V Media Studio
+                            </h2>
+                        </div>
+
+                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
+                            <a href="javascript://">
+                                <span class="absolute inset-0"></span>
+                                Create sounds and video clips for yor projects
+                            </a>
+                        </h3>
+                    </NuxtLink>
 
                 </div>
             </div>
+
+            <!-- Values section -->
+            <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+                <div class="mx-auto max-w-2xl lg:mx-0">
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        Ava's Code of Conduct
+                    </h2>
+
+                    <p class="mt-6 text-lg leading-8 text-gray-600">
+                        Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.
+                    </p>
+                </div>
+
+                <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    <div>
+                        <dt class="font-semibold text-gray-900">Be world-class</dt>
+                        <dd class="mt-1 text-gray-600">Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.</dd>
+                    </div>
+
+                    <div>
+                        <dt class="font-semibold text-gray-900">Share everything you know</dt>
+                        <dd class="mt-1 text-gray-600">Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.</dd>
+                    </div>
+
+                    <div>
+                        <dt class="font-semibold text-gray-900">Always learning</dt>
+                        <dd class="mt-1 text-gray-600">Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <!-- Image section -->
+            <div class="my-10 xl:mx-auto xl:max-w-7xl xl:px-8">
+                <img
+                    src="https://i.ibb.co/CmsD97f/avas-code-of-conduct.jpg"
+                    alt=""
+                    class="aspect-[5/2] w-full object-cover xl:rounded-3xl"
+                />
+            </div>
+
+            <!-- Values section -->
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <dl class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    <div>
+                        <dt class="font-semibold text-gray-900">Be supportive</dt>
+                        <dd class="mt-1 text-gray-600">Magnam provident veritatis odit. Vitae eligendi repellat non. Eum fugit impedit veritatis ducimus. Non qui aspernatur laudantium modi. Praesentium rerum error deserunt harum.</dd>
+                    </div>
+
+                    <div>
+                        <dt class="font-semibold text-gray-900">Take responsibility</dt>
+                        <dd class="mt-1 text-gray-600">Sit minus expedita quam in ullam molestiae dignissimos in harum. Tenetur dolorem iure. Non nesciunt dolorem veniam necessitatibus laboriosam voluptas perspiciatis error.</dd>
+                    </div>
+
+                    <div>
+                        <dt class="font-semibold text-gray-900">Enjoy downtime</dt>
+                        <dd class="mt-1 text-gray-600">Ipsa in earum deserunt aut. Quos minus aut animi et soluta. Ipsum dicta ut quia eius. Possimus reprehenderit iste aspernatur ut est velit consequatur distinctio.</dd>
+                    </div>
+                </dl>
+            </div>
+
         </main>
     </div>
 

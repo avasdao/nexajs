@@ -7,6 +7,8 @@ const props = defineProps({
     },
 })
 
+const isShowingMenu = ref(false)
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.
@@ -36,17 +38,17 @@ const props = defineProps({
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a href="javascript://" class="text-lg font-semibold leading-6 text-gray-900">Product</a>
-                <a href="javascript://" class="text-lg font-semibold leading-6 text-gray-900">Features</a>
-                <a href="javascript://" class="text-lg font-semibold leading-6 text-gray-900">Resources</a>
-                <a href="javascript://" class="text-lg font-semibold leading-6 text-gray-900">Company</a>
+                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Product</a>
+                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Features</a>
+                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Resources</a>
+                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Company</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="javascript://" class="text-lg font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
-        <div class="lg:hidden" role="dialog" aria-modal="true">
+        <div v-if="isShowingMenu" class="lg:hidden" role="dialog" aria-modal="true">
             <!-- Background backdrop, show/hide based on slide-over state. -->
             <div class="fixed inset-0 z-50"></div>
             <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
