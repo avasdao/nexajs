@@ -414,11 +414,9 @@ const showProfileMenu = ref(true)
                 </div>
             </div>
 
-            <main class="py-10">
-                <div class="px-4 sm:px-6 lg:px-8">
-                    <!-- Your content -->
-                </div>
-            </main>
+            <div class="m-5">
+                <slot />
+            </div>
         </div>
     </main>
 </template>
