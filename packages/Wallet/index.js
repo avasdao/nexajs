@@ -464,6 +464,7 @@ export class Wallet extends EventEmitter {
             response = await sendCoin(coins, receivers)
             // console.log('Send UTXO (response):', response)
         } else {
+            // TODO Add support for OBJECT parameters.
             throw new Error('Invalid amount.')
         }
 
