@@ -31,4 +31,11 @@ export default defineNuxtConfig({
         /* Internationalization for Nuxt */
         '@nuxtjs/i18n',
     ],
+
+    /* Route Rules */
+    routeRules: {
+        /* Add CORS headers to root. */
+        // NOTE: We need this to make <token>.json files available to web apps.
+        '/**': { cors: true },
+    },
 })

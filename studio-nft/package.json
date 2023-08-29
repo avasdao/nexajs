@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-nft",
-  "version": "23.8.22",
+  "version": "23.8.29",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -12,9 +12,12 @@
   "dependencies": {
     "@pinia/nuxt": "0.4.7",
     "fflate": "0.8.0",
+    "moment": "2.29.4",
     "nexajs": "23.8.21",
+    "numeral": "2.0.6",
     "nuxt": "3.0.0",
-    "pinia": "2.0.32"
+    "pinia": "2.0.32",
+    "uuid": "9.0.0"
   },
   "devDependencies": {
     "@nuxtjs/i18n": "8.0.0-rc.2",

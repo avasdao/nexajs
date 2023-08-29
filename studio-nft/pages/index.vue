@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /* Import modules. */
 import * as fflate from 'fflate'
+import numeral from 'numeral'
 
 useHead({
     title: `NFT/SFT Studio for Creators`,
@@ -13,39 +14,27 @@ useHead({
 import { useSystemStore } from '@/stores/system'
 const System = useSystemStore()
 
+const ENDPOINT = 'https://nexa.garden/v1/asset'
+
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
 
 
 const handleChange = async (e) => {
-    const file = e
-    console.log('FILE', file)
-    console.log('FILE (files):', file.files)
     const input = e.target
     console.log('INPUT', input)
 
-    if (!file) {
-        return
+    if (!input.files) {
+        return console.error(`Oops! Missing file(s).`)
     }
 
-    // const readData = (f) => {
-    //     new Promise(resolve => {
-    //         const reader = new FileReader()
-    //         reader.onloadend = () => resolve(reader.result)
-    //         reader.readAsDataURL(f)
-    //     })
-    // }
-
-    // imagePreviewUrl.value = await readData(file)
-
-    if (input.files) {
-        const reader = new FileReader()
-        reader.onload = (e) => {
-            imagePreviewUrl.value = e.target.result
-        }
-        imageData.value = input.files[0]
-        reader.readAsDataURL(input.files[0])
+    const reader = new FileReader()
+    reader.onload = (e) => {
+        /* Set preview URL. */
+        imagePreviewUrl.value = e.target.result
     }
+    imageData.value = input.files[0]
+    reader.readAsDataURL(input.files[0])
 }
 
 const mint = () => {
@@ -109,6 +98,33 @@ const mint = () => {
     })
     // console.log('zipped', zipped)
     System.downloadBlob(zipped, 'download.zip', 'application/octet-stream')
+}
+
+const build = async () => {
+    console.log('building...')
+
+    if (!imageData.value) {
+        return alert(`Oops! You must select a file to upload.`)
+    }
+
+    /* Initialize locals. */
+    let response
+
+    let formData = new FormData()
+
+    formData.append('name', imageData.value?.name)
+
+    formData.append('hi', 'there!')
+    formData.append('hi', 'again...')
+
+    formData.append('images[0]', imageData.value)
+
+    response = await $fetch(ENDPOINT, {
+        method: 'POST',
+        body: formData,
+    })
+    .catch(err => console.error(err))
+    console.log('RESPONSE (upload):', response)
 }
 
 // onMounted(() => {
@@ -201,6 +217,17 @@ const mint = () => {
                                         clip-rule="evenodd"
                                     />
                                 </svg>
+
+                                <div v-if="imageData">
+                                    <h3>
+                                        Name: {{imageData?.name}}
+                                    </h3>
+
+                                    <h3>
+                                        Size: {{numeral(imageData?.size).format('0.0b')}}
+                                    </h3>
+                                </div>
+
                                 <div class="mt-4 flex text-sm leading-6 text-gray-600">
                                     <label
                                         for="file-upload"
@@ -219,7 +246,9 @@ const mint = () => {
                                     <p class="pl-1">or drag and drop</p>
                                 </div>
 
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-xs leading-5 text-gray-600">
+                                    PNG, JPG, GIF up to 10MB
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -404,12 +433,15 @@ const mint = () => {
         </div>
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
+                Reset
+            </button>
+
             <button
-                type="submit"
+                @click="build"
                 class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-                Save
+                Build
             </button>
         </div>
     </main>
