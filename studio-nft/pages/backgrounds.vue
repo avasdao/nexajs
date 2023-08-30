@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Blank — NFT/SFT Studio`,
+    title: `Backgrounds — NFT/SFT Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -24,11 +24,15 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Blank
+            Backgrounds
         </h1>
 
         <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+            Find the perfect backdrop for your NFT masterpiece.
         </p>
+
+        <ol class="pl-10 list-decimal">
+            <li>https://backgrounds.com</li>
+        </ol>
     </main>
 </template>
