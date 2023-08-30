@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: 'PROJECT_NAME — Nexa Studio',
+    title: 'Nexa NFT/SFT Studio',
     meta: [
         { name: 'description', content: 'Nexa Studio makes building your next BIG idea effortless.' }
     ],
@@ -78,7 +78,6 @@ const isShowingMenu = ref(false)
 //     console.log('Before Unmount!')
 //     // Now is the time to perform all cleanup operations.
 // })
-
 </script>
 
 <template>
@@ -342,7 +341,7 @@ const isShowingMenu = ref(false)
 
                         <li>
                             <div class="text-xs font-semibold leading-6 text-gray-400">
-                                More Studios
+                                Builder Studios
                             </div>
 
                             <ul role="list" class="-mx-2 space-y-1">
@@ -399,7 +398,7 @@ const isShowingMenu = ref(false)
                         </li>
 
                         <li class="mt-auto">
-                            <a href="javascript://" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white">
+                            <NuxtLink to="/settings" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white">
                                 <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path
                                         stroke-linecap="round"
@@ -409,7 +408,7 @@ const isShowingMenu = ref(false)
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                                 Settings
-                            </a>
+                            </NuxtLink>
                         </li>
                     </ul>
                 </nav>
@@ -437,6 +436,17 @@ const isShowingMenu = ref(false)
                         <input id="search-field" class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm" placeholder="Search..." type="search" name="search" />
                     </form>
                     <div class="flex items-center gap-x-4 lg:gap-x-6">
+                        <NuxtLink to="/wallet">
+                            <span class="sr-only">Open wallet</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
+                                />
+                            </svg>
+                        </NuxtLink>
+
                         <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                             <span class="sr-only">View notifications</span>
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -467,8 +477,9 @@ const isShowingMenu = ref(false)
                                         clip-rule="evenodd"
                                     />
                                 </svg>
+
                                 <span class="hidden lg:flex lg:items-center">
-                                    <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
+                                    <span class="ml-4 text-sm font-medium leading-6 text-gray-900" aria-hidden="true">
                                         Guest User
                                     </span>
 

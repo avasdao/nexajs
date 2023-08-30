@@ -150,38 +150,74 @@ const build = async () => {
             </p>
         </div>
 
-        <div class="col-span-2 h-full flex flex-col">
+        <MyLibrary />
+    </section>
+
+    <section class="h-96 my-5 flex flex-row gap-6">
+        <div class="flex-1">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                My Projects
+                My Assets
             </h2>
 
-            <div class="w-full h-full bg-sky-100 border border-sky-300 rounded-lg shadow">
-
+            <div class="h-full bg-rose-100 border border-rose-300 rounded-xl shadow">
+                <!-- preview windows -->
             </div>
+        </div>
+
+        <div class="w-[500px] h-[500px]">
+            <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
+                Cover Preview
+            </h2>
+
+            <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" />
         </div>
     </section>
 
-    <div class="my-5 border-t border-gray-300" />
+    <div class="mt-10 pr-6 flex items-center justify-end gap-x-6">
+        <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
+            Reset
+        </button>
+
+        <button
+            @click="build"
+            class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
+        >
+            Preview My Token
+        </button>
+    </div>
+
+    <div class="my-10 border-t border-gray-300" />
 
     <main class="">
         <div class="space-y-12">
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
                 <div>
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">
+                        Metadata
+                    </h2>
+
+                    <p class="mt-1 text-sm leading-6 text-gray-600">
+                        This information will be inscribed onto the Nexa blockchain FOREVER, so be careful what information you enter here.
+                    </p>
                 </div>
 
                 <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                     <div class="sm:col-span-4">
-                        <label for="website" class="block text-sm font-medium leading-6 text-gray-900">Website</label>
+                        <label for="website" class="block text-sm font-medium leading-6 text-gray-900">
+                            Website URL
+                        </label>
+
                         <div class="mt-2">
                             <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">http://</span>
+                                <span class="flex select-none items-center pl-3 text-gray-500 text-lg">
+                                    https://
+                                </span>
+
                                 <input
                                     type="text"
                                     name="website"
                                     id="website"
-                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 text-lg sm:leading-6 focus:outline-0"
                                     placeholder="www.example.com"
                                 />
                             </div>
@@ -271,124 +307,13 @@ const build = async () => {
 
             <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
                 <div>
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
-                </div>
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">
+                        Royalties (optional)
+                    </h2>
 
-                <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-                    <div class="sm:col-span-3">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
-                        <div class="mt-2">
-                            <input
-                                type="text"
-                                name="first-name"
-                                id="first-name"
-                                autocomplete="given-name"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-3">
-                        <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
-                        <div class="mt-2">
-                            <input
-                                type="text"
-                                name="last-name"
-                                id="last-name"
-                                autocomplete="family-name"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-4">
-                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                        <div class="mt-2">
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                autocomplete="email"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-3">
-                        <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
-                        <div class="mt-2">
-                            <select
-                                id="country"
-                                name="country"
-                                autocomplete="country-name"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                            >
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-span-full">
-                        <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
-                        <div class="mt-2">
-                            <input
-                                type="text"
-                                name="street-address"
-                                id="street-address"
-                                autocomplete="street-address"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-2 sm:col-start-1">
-                        <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
-                        <div class="mt-2">
-                            <input
-                                type="text"
-                                name="city"
-                                id="city"
-                                autocomplete="address-level2"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-2">
-                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
-                        <div class="mt-2">
-                            <input
-                                type="text"
-                                name="region"
-                                id="region"
-                                autocomplete="address-level1"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="sm:col-span-2">
-                        <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
-                        <div class="mt-2">
-                            <input
-                                type="text"
-                                name="postal-code"
-                                id="postal-code"
-                                autocomplete="postal-code"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-                <div>
-                    <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
-                    <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">
+                        Use this section to specify asset transfer restrictions that payout to the Creator.
+                    </p>
                 </div>
 
                 <div class="max-w-2xl space-y-10 md:col-span-2">
@@ -446,17 +371,5 @@ const build = async () => {
             </div>
         </div>
 
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
-                Reset
-            </button>
-
-            <button
-                @click="build"
-                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-                Build
-            </button>
-        </div>
     </main>
 </template>
