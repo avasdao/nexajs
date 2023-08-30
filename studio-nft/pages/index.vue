@@ -153,7 +153,7 @@ const build = async () => {
         <MyLibrary />
     </section>
 
-    <section class="my-5 flex flex-row gap-6">
+    <section class="my-5 flex flex-row gap-4">
         <div class="flex-1 h-96">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
                 Asset Designer
@@ -164,75 +164,8 @@ const build = async () => {
             </div>
         </div>
 
-        <div class="mt-5 w-32 h-96 flex flex-col gap-3">
-            <label
-                for="file-upload"
-                class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
-            >
-                <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                    Add Cover
-                </h3>
-
-                <span class="text-gray-700">
-                    Upload a file
-                </span>
-
-                <p class="block text-xs text-gray-500 line-through">
-                    or drag and drop
-                </p>
-
-                <input
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    @change="handleChange"
-                    class="sr-only"
-                />
-            </label>
-
-            <label
-                class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
-            >
-                <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                    Add Front
-                </h3>
-
-                <span class="text-gray-700">
-                    Upload a file
-                </span>
-
-                <p class="block text-xs text-gray-500 line-through">
-                    or drag and drop
-                </p>
-
-                <input
-                    type="file"
-                    @change="handleChange"
-                    class="sr-only"
-                />
-            </label>
-
-            <label
-                class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
-            >
-                <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                    Add Back
-                </h3>
-
-                <span class="text-gray-700">
-                    Upload a file
-                </span>
-
-                <p class="block text-xs text-gray-500 line-through">
-                    or drag and drop
-                </p>
-
-                <input
-                    type="file"
-                    @change="handleChange"
-                    class="sr-only"
-                />
-            </label>
+        <div class="mt-5 w-32 h-96">
+            <Thumbnails />
         </div>
 
         <div class="w-[500px]">
@@ -253,7 +186,7 @@ const build = async () => {
             @click="build"
             class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
         >
-            Preview My Token
+            Preview My Card
         </button>
     </div>
 
@@ -265,5 +198,18 @@ const build = async () => {
         <Collection />
 
         <Royalties />
+    </div>
+
+    <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
+        <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
+            Reset
+        </button>
+
+        <button
+            @click="build"
+            class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
+        >
+            Preview My Token
+        </button>
     </div>
 </template>
