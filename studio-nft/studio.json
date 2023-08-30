@@ -1,11 +1,10 @@
 {
     "ticker": "STUDIO",
-    "name": "NFT/SFT Studio",
-    "summary": "Generate and share your NFTs and SFTs in seconds.",
-    "description": "Creators are presented with a comprehensive studio to work on their NFT/SFT projects. Easily design, generate and share new artworks with this studio's engine.",
+    "name": "Studio Time + Gallery Collection",
+    "summary": "Builders gain access to ALL premium Studio services, including an exclusive NFT/SFT art gallery.",
+    "description": "Builders can use their studio time to Plan, Build, Share and Grow their projects. Creators may choose to publish their NFTs and SFTs to the exclusive Studio Gallery collection.",
     "legal": "Artist's works are their own.",
     "creator": "Ava's DAO",
     "contact": { "address": "3455 Peachtree Rd NE, Suite #500, Atlanta, GA 30326", "email": "support@avasdao.org", "twitter.com": "@AvasDAO" },
-    "icon": "/icon.svg",
-    "category": "NFT"
+    "icon": "/icon.svg"
 }

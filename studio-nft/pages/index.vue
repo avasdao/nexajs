@@ -153,10 +153,10 @@ const build = async () => {
         <MyLibrary />
     </section>
 
-    <section class="h-96 my-5 flex flex-row gap-6">
-        <div class="flex-1">
+    <section class="my-5 flex flex-row gap-6">
+        <div class="flex-1 h-96">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                My Assets
+                Asset Designer
             </h2>
 
             <div class="h-full bg-rose-100 border border-rose-300 rounded-xl shadow">
@@ -164,7 +164,78 @@ const build = async () => {
             </div>
         </div>
 
-        <div class="w-[500px] h-[500px]">
+        <div class="mt-5 w-32 h-96 flex flex-col gap-3">
+            <label
+                for="file-upload"
+                class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
+            >
+                <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
+                    Add Cover
+                </h3>
+
+                <span class="text-gray-700">
+                    Upload a file
+                </span>
+
+                <p class="block text-xs text-gray-500 line-through">
+                    or drag and drop
+                </p>
+
+                <input
+                    id="file-upload"
+                    name="file-upload"
+                    type="file"
+                    @change="handleChange"
+                    class="sr-only"
+                />
+            </label>
+
+            <label
+                class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
+            >
+                <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
+                    Add Front
+                </h3>
+
+                <span class="text-gray-700">
+                    Upload a file
+                </span>
+
+                <p class="block text-xs text-gray-500 line-through">
+                    or drag and drop
+                </p>
+
+                <input
+                    type="file"
+                    @change="handleChange"
+                    class="sr-only"
+                />
+            </label>
+
+            <label
+                class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
+            >
+                <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
+                    Add Back
+                </h3>
+
+                <span class="text-gray-700">
+                    Upload a file
+                </span>
+
+                <p class="block text-xs text-gray-500 line-through">
+                    or drag and drop
+                </p>
+
+                <input
+                    type="file"
+                    @change="handleChange"
+                    class="sr-only"
+                />
+            </label>
+        </div>
+
+        <div class="w-[500px]">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
                 Cover Preview
             </h2>
@@ -173,7 +244,7 @@ const build = async () => {
         </div>
     </section>
 
-    <div class="mt-10 pr-6 flex items-center justify-end gap-x-6">
+    <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
         <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
             Reset
         </button>
