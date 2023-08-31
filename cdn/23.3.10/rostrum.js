@@ -17,7 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const debug = (0, _debug.default)('nexa:rostrum');
 
-/* Initilize connections manager. */
+/* Initialize connections manager. */
 const connMgr = {};
 
 /**

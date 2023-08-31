@@ -737,7 +737,7 @@ class Rostrum extends _events.EventEmitter {
       return;
     }
 
-    /* Initilize connections manager. */
+    /* Initialize connections manager. */
     this._connMgr = {
       pool: [new WebSocket('wss://rostrum.nexa.sh:20004') // Nexa.Sh
       // new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org

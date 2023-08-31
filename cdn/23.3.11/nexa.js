@@ -1047,7 +1047,7 @@ const debug = (0, _debug.default)('nexa:rostrum:makeRequest');
 const ACTIVE_CONN_ID = 0;
 const requestQueue = [];
 
-/* Initilize connections manager. */
+/* Initialize connections manager. */
 const connMgr = {
   pool: [new _isomorphicWs.default('wss://electrum.nexa.org:20004'),
   // Nexa.Org
