@@ -30,11 +30,13 @@ import _subscribeAddress from './src/subscribeAddress.js'
 import ping from './src/ping.js'
 
 /* Import request handler. */
-import makeRequest from './src/makeRequest.js'
+// import makeRequest from './src/makeRequest.js'
 
 /* Set active connection id. */
 // NOTE: Official node is currently accepting ZERO-fee txs.
-const ACTIVE_CONN_ID = 0
+const DEFAULT_CONN_ID = 0
+
+/* Initialize constants. */
 const RECONNECTION_DELAY = 3000 // default is 3 seconds
 
 /* Initialize ping handler. */
@@ -62,6 +64,29 @@ export const getGenesisInfo = _getGenesisInfo
 export const getTokenInfo = getGenesisInfo // Export alias.
 export const subscribeAddress = _subscribeAddress
 
+/**
+ * Get Connection
+ *
+ * Returns a new connection to a remote Rostrum server.
+ */
+const getConnection = async function (_connid) {
+    /* Import WebSocket. */
+    // NOTE: Ignored by esmify.
+    const WebSocket = (await import('isomorphic-ws')).default
+
+    /* Handle connection selection. */
+    switch(_connid) {
+    case 0:
+        return new WebSocket('wss://rostrum.nexa.sh:20004')
+    case 1:
+        return new WebSocket('wss://electrum.nexa.org:20004')
+    case 2:
+        return new WebSocket('wss://rostrum.apecs.dev:20004')
+    // TODO Add 2 more production-ready Rostrum servers (for a min of 5)
+    default:
+        return new WebSocket('wss://rostrum.nexa.sh:20004')
+    }
+}
 
 /**
  * Rostrum Class
@@ -95,10 +120,7 @@ export class Rostrum extends EventEmitter {
     }
 
     async _connect(_isReconnecting = false) {
-        /* Import WebSocket. */
-        // NOTE: Ignored by esmify.
-        const WebSocket = (await import('isomorphic-ws')).default
-
+// console.log('WE ARE CONNECTING AGAIN...')
         /* Validate (global-shared) connection manager. */
         if (globalThis.Nexa.Rostrum._connMgr && !_isReconnecting) {
             /* Use existing (global-shared) connection. */
@@ -108,21 +130,26 @@ export class Rostrum extends EventEmitter {
             return
         }
 
-        /* Initilize connections manager. */
+        /* Initialize connections manager. */
         this._connMgr = {
             pool: [
-                new WebSocket('wss://rostrum.nexa.sh:20004'),   // Nexa.Sh
-                // new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
-                // new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
-                // TBD
+                await getConnection.bind(this)(DEFAULT_CONN_ID),       // nexa.sh
+                // NOTE: Official node is currently accepting ZERO-fee txs.
+                await getConnection.bind(this)(DEFAULT_CONN_ID + 1),   // nexa.org
+                await getConnection.bind(this)(DEFAULT_CONN_ID + 2),   // apecs.dev
             ],
-            peers: [
-                new WebSocket('wss://electrum.nexa.org:20004'), // Nexa.Org
-                // new WebSocket('wss://rostrum.apecs.dev:20004'), // APECS.dev
-                // TBD
+            status: [
+                {
+                    isOpen: false,
+                },
+                {
+                    isOpen: false,
+                },
+                {
+                    isOpen: false,
+                },
             ],
             requests: {},
-            isOpen: false,
             isReady: false,
         }
 
@@ -139,161 +166,140 @@ export class Rostrum extends EventEmitter {
         /* Set (global-shared) connection manager. */
         globalThis.Nexa.Rostrum._connMgr = this._connMgr
 
-        /* Handle open connection. */
-        this._connMgr.pool[ACTIVE_CONN_ID].onopen = () => {
-            debug(`Connection [ ${ACTIVE_CONN_ID} ] is OPEN!`)
-            console.info('Connected to Rostrum ->', ACTIVE_CONN_ID, new Date().getTime())
+        /* Initialize connection handlers. */
+        for (let i = 0; i < this._connMgr.pool.length; i++) {
+            /* Handle open connection. */
+            this._connMgr.pool[i].onopen = () => {
+                debug(`Connection [ ${i} ] is OPEN!`)
+                console.info('Connected to Rostrum ->', i, new Date().getTime())
 
-            /* Set (connection) ready flag. */
-            this._connMgr.isOpen = true
+                /* Set (connection) ready flag. */
+                // this._connMgr.isOpen = true
+                this._connMgr.status[i].isOpen = true
 
-            /* Handle (pending) queue. */
-            this._requestQueue.forEach(_request => {
-                /* Send request. */
-                this._connMgr.pool[ACTIVE_CONN_ID]
-                    .send(JSON.stringify(_request) + '\n') // NOTE: We MUST include the "new line".
-            })
+                /* Handle (pending) queue. */
+                this._requestQueue.forEach(_request => {
+                    /* Send request. */
+                    this._connMgr.pool[i]
+                        .send(JSON.stringify(_request) + '\n') // NOTE: We MUST include the "new line".
+                })
 
-            /* Manage session keep-alive. */
-            pingHandler = setInterval(async () => {
-                this.ping()
-            }, 60000) // every 1 minute
-        }
-
-        /* Handle message. */
-        this._connMgr.pool[ACTIVE_CONN_ID].onmessage = async (_msg) => {
-            // console.info('Connection [ %s ] sent ->', ACTIVE_CONN_ID, _msg?.data)
-
-            let error
-            let json
-            let id
-
-            const data = _msg?.data
-
-            try {
-                /* Decode data. */
-                json = JSON.parse(data)
-                // console.log('JSON', json)
-
-                id = data.id
-
-                // NOTE: Reject this promise.
-                if (json?.error) {
-                    return this._connMgr.requests[id]?.reject({ error: json.error?.message })
-                }
-            } catch (err) {
-                return this._connMgr.requests[id]?.reject(err)
+                /* Manage session keep-alive. */
+                pingHandler = setInterval(async () => {
+                    this.ping()
+                }, 60000) // every 1 minute
             }
 
-            /* Validate message data. */
-            if (_msg?.data) {
+            /* Handle message. */
+            this._connMgr.pool[i].onmessage = async (_msg) => {
+                // console.info('Connection [ %s ] sent ->', i, _msg?.data)
+
+                let error
+                let json
+                let id
+
+                const data = _msg?.data
+
                 try {
-                    /* Parse JSON data. */
-                    const data = JSON.parse(_msg.data)
-                    // console.log('JSON (data):', data)
+                    /* Decode data. */
+                    json = JSON.parse(data)
+                    // console.log('JSON', json)
 
-                    /* Validate message id. */
-                    if (data?.id) {
-                        // console.log('JSON (result):', data.id, data.result)
+                    id = data.id
 
-                        /* Set message id. */
-                        id = data.id
-
-                        /* Resolve (async) request. */
-                        this._connMgr.requests[id]?.resolve(data.result)
-                    }
-
-                    /* Validate message parameters. */
-                    if (data?.params) {
-                        // console.log('JSON (params):', data.params)
-
-                        /* Validate message id. */
-                        if (id) {
-                            /* Resolve (async) request. */
-                            this._connMgr.requests[id]?.resolve(data.params)
-                        } else {
-                            /* Update message id. */
-                            id = data.params[0]
-
-                            /* Make callback. */
-                            this._connMgr.requests[id]?.callback(data.params)
-                        }
+                    // NOTE: Reject this promise.
+                    if (json?.error) {
+                        return this._connMgr.requests[id]?.reject({ error: json.error?.message })
                     }
                 } catch (err) {
-                    console.error(err)
-                    this._connMgr.requests[id]?.reject(err)
+                    return this._connMgr.requests[id]?.reject(err)
                 }
+
+                /* Validate message data. */
+                if (_msg?.data) {
+                    try {
+                        /* Parse JSON data. */
+                        const data = JSON.parse(_msg.data)
+                        // console.log('JSON (data):', data)
+
+                        /* Validate message id. */
+                        if (data?.id) {
+                            // console.log('JSON (result):', data.id, data.result)
+
+                            /* Set message id. */
+                            id = data.id
+
+                            /* Resolve (async) request. */
+                            this._connMgr.requests[id]?.resolve(data.result)
+                        }
+
+                        /* Validate message parameters. */
+                        if (data?.params) {
+                            // console.log('JSON (params):', data.params)
+
+                            /* Validate message id. */
+                            if (id) {
+                                /* Resolve (async) request. */
+                                this._connMgr.requests[id]?.resolve(data.params)
+                            } else {
+                                /* Update message id. */
+                                id = data.params[0]
+
+                                /* Make callback. */
+                                this._connMgr.requests[id]?.callback(data.params)
+                            }
+                        }
+                    } catch (err) {
+                        console.error(err)
+                        this._connMgr.requests[id]?.reject(err)
+                    }
+                }
+
             }
 
-        }
+            /* Handle connection close. */
+            // NOTE: We currently NEVER allow this connect to be closed.
+            //       We will ALWAYS attempt to re-connect.
+            // TODO: Allow connection to be "manually" closed.
+            this._connMgr.pool[i].onclose = () => {
+                debug(`Connection [ ${i} ] is CLOSED.`)
+                console.log('CONNECTION CLOSED', i, new Date().getTime())
 
-        /* Handle connection close. */
-        // NOTE: We currently NEVER allow this connect to be closed.
-        //       We will ALWAYS attempt to re-connect.
-        // TODO: Allow connection to be "manually" closed.
-        this._connMgr.pool[ACTIVE_CONN_ID].onclose = () => {
-            debug(`Connection [ ${ACTIVE_CONN_ID} ] is CLOSED.`)
-            console.log('CONNECTION CLOSED', new Date().getTime())
+                /* Validate connection status. */
+                if (this._connMgr.status[i].isOpen) {
+                    /* Set (connection) ready flag. */
+                    this._connMgr.status[i].isOpen = false
+                }
 
-            /* Validate connection status. */
-            if (this._connMgr?.isOpen) {
-                /* Set (connection) ready flag. */
-                this._connMgr.isOpen = false
+                /* Validate ping (interval) handler. */
+                // if (pingHandler) {
+                //     clearInterval(pingHandler)
+                //
+                //     pingHandler = null
+                // }
+
+                // TODO Preserve `_connMgr.requests` from failed connection.
+
+                /* Clear (global-shared) connection manager. */
+                // globalThis.Nexa.Rostrum._connMgr = null
+
+                /* Re-establish connection to remote server(s). */
+                // NOTE: Add re-try delay and max attempts.
+                // setTimeout(() => this._connect(true), RECONNECTION_DELAY)
             }
 
-            /* Validate ping (interval) handler. */
-            if (pingHandler) {
-                clearInterval(pingHandler)
-
-                pingHandler = null
+            /* Handle connection error. */
+            this._connMgr.pool[i].onerror = (e) => {
+                console.error('ERROR! [ %s ]:',
+                    i, new Date().getTime(), e)
             }
-
-            // TODO Preserve `_connMgr.requests` from failed connection.
-
-            /* Clear (global-shared) connection manager. */
-            globalThis.Nexa.Rostrum._connMgr = null
-
-            /* Re-establish connection to remote server(s). */
-            // NOTE: Add re-try delay and max attempts.
-            setTimeout(() => this._connect(true), RECONNECTION_DELAY)
-        }
-
-        /* Handle connection error. */
-        this._connMgr.pool[ACTIVE_CONN_ID].onerror = (e) => {
-            console.error('ERROR! [ %s ]:',
-                ACTIVE_CONN_ID, new Date().getTime(), e)
-
-            /* Validate connection status. */
-            if (this._connMgr?.isOpen) {
-                /* Set (connection) ready flag. */
-                this._connMgr.isOpen = false
-            }
-
-            /* Validate ping (interval) handler. */
-            if (pingHandler) {
-                clearInterval(pingHandler)
-
-                pingHandler = null
-            }
-
-            // TODO Preserve `_connMgr.requests` from failed connection.
-
-            /* Clear (global-shared) connection manager. */
-            globalThis.Nexa.Rostrum._connMgr = null
-
-            /* Re-establish connection to remote server(s). */
-            // NOTE: Add re-try delay and max attempts.
-            setTimeout(() => this._connect(true), RECONNECTION_DELAY)
         }
     }
 
     get status() {
         return {
             requestQueue: this?._requestQueue,
-            // pool: this?._connMgr?.pool,
-            // peers: this?._connMgr?.peers,
-            // requests: this?._connMgr?.requests,
-            isOpen: this?._connMgr?.isOpen,
+            // isOpen: this?._connMgr?.isOpen,
             isReady: this?._connMgr?.isReady,
         }
     }

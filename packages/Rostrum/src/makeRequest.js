@@ -5,10 +5,6 @@ import { v4 as uuidv4 } from 'uuid'
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:rostrum:makeRequest')
 
-/* Set active connection id. */
-// NOTE: Official node is currently accepting ZERO-fee txs.
-const ACTIVE_CONN_ID = 0
-
 /**
  * Make Request
  */
@@ -29,11 +25,28 @@ export default function (_request, _id, _callback) {
         params,
     }
 
-    /* Validate connection status. */
-    if (this._connMgr?.isReady && this._connMgr?.isOpen) {
-        /* Send request. */
-        this._connMgr.pool[ACTIVE_CONN_ID]
-            .send(JSON.stringify(request) + '\n') // NOTE: We MUST include the "new line".
+    /* Validate Rostrum (module) status. */
+    // if (this._connMgr?.isReady && this._connMgr?.isOpen) {
+    if (this._connMgr?.isReady) {
+        /* Validate connection. */
+        if (
+            this._connMgr.status[0].isOpen ||
+            this._connMgr.status[1].isOpen ||
+            this._connMgr.status[2].isOpen
+        ) {
+            for (let i = 0; i < this._connMgr.pool.length; i++) {
+                if (this._connMgr.status[i].isOpen) {
+                    /* Send request. */
+                    this._connMgr.pool[i]
+                        .send(JSON.stringify(request) + '\n') // NOTE: We MUST include the "new line".
+                    // console.log('SENT REQUEST', i, request)
+                }
+            }
+        } else {
+            /* Add new request. */
+            this._requestQueue.push(request)
+            console.log('ADDED REQUEST TO QUEUE', request)
+        }
     } else {
         /* Add new request. */
         this._requestQueue.push(request)
