@@ -17,30 +17,47 @@ import {
  *
  * Generate an ID for a new group.
  */
-export default (_dataScript) => {
+export default (_outpoint, _dataScript) => {
+    /* Initialize locals. */
+    let bitmask
+    let counter
     let dataScript
     let groupData
     let groupid
     let nonce
-    let outpoint
 
-    outpoint = hexToBin('48f3a733fa9346b161454b15a72f27f90634a2dd20208fcb52c046472d384ef6')
+    /* Initialize counter. */
+    counter = 0
 
-    nonce = bigIntToBinUint64LE(BigInt(263321))
-    nonce = hexToBin('99040400000000fc')
+    do {
+        nonce = bigIntToBinUint64LE(BigInt(counter++))
+        // console.log('NONCE-1', binToHex(nonce));
 
-    dataScript = new Uint8Array([
-        bigIntToBitcoinVarInt(BigInt(_dataScript.length)),
-        ..._dataScript,
-    ])
+        nonce = binToHex(nonce).slice(0, 14) + 'fc'
+        // console.log('NONCE-1c', binToHex(nonce));
+        console.log('NONCE-2', nonce);
 
-    groupData = new Uint8Array([
-        ...outpoint,
-        ...dataScript,
-        ...nonce,
-    ])
+        // nonce = hexToBin('99040400000000fc')
+        // console.log('NONCE-3', binToHex(nonce));
 
-    groupid = sha256(sha256(groupData))
+        nonce = hexToBin(nonce)
 
-    return groupid
+        dataScript = new Uint8Array([
+            bigIntToBitcoinVarInt(BigInt(_dataScript.length)),
+            ..._dataScript,
+        ])
+
+        groupData = new Uint8Array([
+            ..._outpoint,
+            ...dataScript,
+            ...nonce,
+        ])
+
+        groupid = sha256(sha256(groupData))
+    } while (binToHex(groupid).slice(-4) !== '0000')
+
+    return {
+        groupid,
+        nonce,
+    }
 }
