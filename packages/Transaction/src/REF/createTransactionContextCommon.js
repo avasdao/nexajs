@@ -1,5 +1,4 @@
 import {
-    bigIntToBitcoinVarInt,
     flattenBinArray,
     numberToBinUintLE,
     numberToBinUint32LE,

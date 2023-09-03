@@ -1,3 +1,9 @@
+/* Import modules. */
+import { hexToBin } from '@nexajs/utils'
+
+import { OP } from '../index.js'
+import { encodeDataPush } from '../index.js'
+
 /**
  * Encode Null Data
  *
@@ -5,6 +11,7 @@
  */
 export default (_data) => {
     /* Initialize locals. */
+    let binData
     let code
     let hexData
     let part
@@ -37,14 +44,18 @@ export default (_data) => {
                 .charCodeAt(j)
                 .toString(16)
                 .padStart(2, '0')
-            // console.log('CODE', part[j], code, code.length)
 
             /* Add hex code to string. */
             hexData += code
         }
-        // console.log('HEX DATA', hexData)
     }
 
-    /* Return (encoded) hex data. */
-    return hexData
+    /* Convert to binary data. */
+    binData = hexToBin(hexData)
+
+    /* Return (binary) script data. */
+    return new Uint8Array([
+        OP.RETURN,
+        ...encodeDataPush(binData),
+    ])
 }

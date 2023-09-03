@@ -4,12 +4,14 @@ const debug = debugFactory('nexa:script')
 
 /* Import (local) modules. */
 import _decodeNullData from './src/decodeNullData.js'
+import _encodeDataPush from './src/encodeDataPush.js'
 import _encodeNullData from './src/encodeNullData.js'
 import _getOpcode from './src/getOpcode.js'
 import _OP from './src/Opcodes.js'
 
 /* Export (local) modules. */
 export const decodeNullData = _decodeNullData
+export const encodeDataPush = _encodeDataPush
 export const encodeNullData = _encodeNullData
 export const getOpcode = _getOpcode
 export const OP = _OP
@@ -107,6 +109,7 @@ Nexa.Script = Script
 
 /* Initialize Script modules. */
 Nexa.decodeNullData = decodeNullData
+Nexa.encodeDataPush = encodeDataPush
 Nexa.encodeNullData = encodeNullData
 Nexa.getOpcode = getOpcode
 Nexa.OP = OP

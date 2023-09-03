@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/script",
-  "version": "23.7.21",
+  "version": "23.9.2",
   "description": "Script utilities for advanced transactions, including 'wise' contracts.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,6 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@nexajs/utils": "23.7.22",
     "debug": "4.3.4"
   }
 }

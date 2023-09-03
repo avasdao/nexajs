@@ -30,15 +30,15 @@ export default (_outpoint, _dataScript) => {
     counter = 0
 
     do {
+        if (counter % 1000 === 0) {
+            console.info('hashing...') // show progress indicator
+        }
+
         nonce = bigIntToBinUint64LE(BigInt(counter++))
         // console.log('NONCE-1', binToHex(nonce));
 
         nonce = binToHex(nonce).slice(0, 14) + 'fc'
-        // console.log('NONCE-1c', binToHex(nonce));
-        console.log('NONCE-2', nonce);
-
-        // nonce = hexToBin('99040400000000fc')
-        // console.log('NONCE-3', binToHex(nonce));
+        // console.log('NONCE-2', nonce);
 
         nonce = hexToBin(nonce)
 
