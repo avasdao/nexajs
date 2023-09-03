@@ -7,12 +7,14 @@ import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
 import _getDustLimit from './src/getDustLimit.js'
+import _getGroupDataScript from './src/getGroupDataScript.js'
 import _getTokens from './src/getTokens.js'
 import _getTopTokens from './src/getTopTokens.js'
 import _sendToken from './src/sendToken.js'
 
 /* Export (local) modules. */
 export const getDustLimit = _getDustLimit
+export const getGroupDataScript = _getGroupDataScript
 export const getTokens = _getTokens
 export const getTopTokens = _getTopTokens
 export const sendToken = _sendToken
@@ -50,6 +52,7 @@ const Nexa = {}
 Nexa.Token = Token
 
 /* Initialize Token modules. */
+Nexa.getGroupDataScript = getGroupDataScript
 Nexa.getTokens = getTokens
 Nexa.getTopTokens = getTopTokens
 Nexa.sendToken = sendToken
