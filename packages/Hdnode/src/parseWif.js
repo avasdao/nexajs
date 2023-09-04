@@ -1,17 +1,16 @@
 /* Import modules. */
+import { encodeAddress } from '@nexajs/address'
+
 import {
     encodeDataPush,
+    OP,
+} from '@nexajs/script'
+
+import {
     instantiateRipemd160,
     instantiateSecp256k1,
     instantiateSha256,
 } from '@bitauth/libauth'
-
-import { encodeAddress } from '@nexajs/address'
-
-import {
-    binToHex,
-    hexToBin,
-} from '@nexajs/utils'
 
 import CashAddressType from './CashAddressType.js'
 import decodePrivateKeyWif from './decodePrivateKeyWif.js'
@@ -40,27 +39,31 @@ export default async (_wif, _prefix = 'nexa', _format = 'TEMPLATE') => {
     }
 
     /* Extract the private key from the decodeResult. */
-    const privateKeyBin = decodeResult.privateKey
+    const privateKey = decodeResult.privateKey
 
     /* Derive the corresponding public key. */
-    const publicKeyBin = secp256k1.derivePublicKeyCompressed(privateKeyBin)
+    const publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
 
     /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
-    const scriptPushPubKey = encodeDataPush(publicKeyBin)
+    const scriptPushPubKey = encodeDataPush(publicKey)
 
     /* Hash the public key hash according to the P2PKH scheme. */
-    const publicKeyHashBin = ripemd160.hash(sha256.hash(scriptPushPubKey))
+    const publicKeyHash = ripemd160.hash(sha256.hash(scriptPushPubKey))
 
     /* Encode the public key hash into a P2PKH cash address. */
-    const pkhScript = hexToBin('17005114' + binToHex(publicKeyHashBin))
+    const pkhScript = new Uint8Array([
+        OP.ZERO,
+        OP.ONE,
+        ...encodeDataPush(publicKeyHash),
+    ])
 
     /* Encode the address. */
     const address = encodeAddress(_prefix, _format, pkhScript)
 
     /* Return WIF package. */
-    return [
-        binToHex(privateKeyBin),
-        binToHex(publicKeyBin),
+    return {
         address,
-    ]
+        privateKey,
+        publicKey,
+    }
 }
