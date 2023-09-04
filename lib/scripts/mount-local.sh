@@ -2,6 +2,7 @@ echo
 echo "  Cleaning up local mounts..."
 
 rm -rf ../node_modules/@nexajs/address
+rm -rf ../node_modules/@nexajs/app
 rm -rf ../node_modules/@nexajs/crypto
 rm -rf ../node_modules/@nexajs/hdnode
 rm -rf ../node_modules/@nexajs/id
@@ -28,6 +29,7 @@ mkdir -p ../node_modules/@nexajs
 echo
 echo "  Creating local mounts..."
 ln -s ../../../packages/Address ../node_modules/@nexajs/address
+ln -s ../../../packages/App ../node_modules/@nexajs/app
 ln -s ../../../packages/Crypto ../node_modules/@nexajs/crypto
 ln -s ../../../packages/Hdnode ../node_modules/@nexajs/hdnode
 ln -s ../../../packages/Id ../node_modules/@nexajs/id

@@ -6,10 +6,12 @@ const debug = debugFactory('nexa:message')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// TBD
+import _sign from './src/sign.js'
+import _verify from './src/verify.js'
 
 /* Export (local) modules. */
-// TBD
+export const sign = _sign
+export const verify = _verify
 
 
 /**
@@ -43,7 +45,8 @@ const Nexa = {}
 Nexa.Message = Message
 
 /* Initialize Message modules. */
-// TBD
+Nexa.signMessage = sign
+Nexa.verifyMessage = verify
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
