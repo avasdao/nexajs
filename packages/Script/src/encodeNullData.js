@@ -4,6 +4,9 @@ import { hexToBin } from '@nexajs/utils'
 import { OP } from '../index.js'
 import { encodeDataPush } from '../index.js'
 
+const isHex = (_maybeHex) =>
+    _maybeHex.length % 2 === 0 && !/[^a-fA-F0-9]/u.test(_maybeHex)
+
 /**
  * Encode Null Data
  *
@@ -43,20 +46,31 @@ export default (_data) => {
         /* Set (data) part. */
         part = parts[i]
 
-        /* Convert user data (string) to hex. */
-        for (let j = 0; j < part.length; j++) {
-            /* Convert to hex code. */
-            code = part
-                .charCodeAt(j)
-                .toString(16)
-                .padStart(2, '0')
+        if (typeof part === 'string') {
+            /* Validate hexadecimal data. */
+            if (isHex(part)) {
+                /* Set part as hexadecimal. */
+                hexPart = part
+            } else {
+                /* Convert user data (string) to hex. */
+                for (let j = 0; j < part.length; j++) {
+                    /* Convert to hex code. */
+                    code = part
+                        .charCodeAt(j)
+                        .toString(16)
+                        .padStart(2, '0')
 
-            /* Add hex code to string. */
-            hexPart += code
+                    /* Add hex code to string. */
+                    hexPart += code
+                }
+            }
+
+            /* Convert to binary (data) part. */
+            binPart = encodeDataPush(hexToBin(hexPart))
+        } else {
+            /* Set binary part (from TypedArray). */
+            binPart = encodeDataPush(part)
         }
-
-        /* Convert to binary (data) part. */
-        binPart = encodeDataPush(hexToBin(hexPart))
 
         /* Append binary part. */
         binData = new Uint8Array([
