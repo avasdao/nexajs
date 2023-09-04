@@ -31,7 +31,7 @@ export default (_outpoint, _dataScript) => {
 
     do {
         if (counter % 1000 === 0) {
-            console.info('hashing...') // show progress indicator
+            console.info('  hashing...') // show progress indicator
         }
 
         nonce = bigIntToBinUint64LE(BigInt(counter++))

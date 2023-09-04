@@ -71,10 +71,13 @@ export function decodeAddress (address) {
     validate(validChecksum(prefix, payload), 'Invalid checksum: ' + address + '.');
 
     var payloadData = fromUint5Array(payload.subarray(0, -8));
+    console.log('payloadData', payloadData);
 
     var versionByte = payloadData[0];
+    console.log('versionByte', versionByte);
 
     var hash = payloadData.subarray(1);
+    console.log('hash', hash);
 
     // no length limits in nexa: validate(getHashSize(versionByte) === hash.length * 8, 'Invalid hash size: ' + address + '.');
 

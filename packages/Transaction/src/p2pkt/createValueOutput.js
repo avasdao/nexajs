@@ -16,13 +16,20 @@ import { binToHex } from '@nexajs/utils'
  * @returns {Promise<Output>} The P2PKT output script.
  */
 export default async (_address, _satoshis) => {
+    /* Initialize locals. */
+    let amount
+    let lockingBytecode
+
+    /* Encode amount. */
+    amount = bigIntToBinUint64LE(_satoshis)
+
     /* Set locking byte code. */
-    const lockingBytecode = decodeAddress(_address).hash
+    lockingBytecode = decodeAddress(_address).hash
 
     /* Create (value) output. */
     const valueOutput = {
+        amount,
         lockingBytecode,
-        amount: bigIntToBinUint64LE(_satoshis),
     }
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.

@@ -8,12 +8,20 @@ import { encodeDataPush } from '../index.js'
  * Encode Null Data
  *
  * Encodes data for insertion into OP_RETURN null data field.
+ *
+ * Supported formats include:
+ *   1. String (text)
+ *   2. Hexadecimal (text)
+ *   3. TypedArray (binary)
+ *
+ * NOTE: Data may be provided as a single element OR as an array of elements.
  */
 export default (_data) => {
     /* Initialize locals. */
     let binData
+    let binPart
     let code
-    let hexData
+    let hexPart
     let part
     let parts
 
@@ -24,18 +32,16 @@ export default (_data) => {
         parts = _data
     }
 
-    /* Initialize hex data. */
-    hexData = ''
+    /* Initialize binary data. */
+    binData = new Uint8Array(0)
 
     /* Handle parts. */
     for (let i = 0; i < parts.length; i++) {
+        /* Initialize hex (data) part. */
+        hexPart = ''
+
         /* Set (data) part. */
         part = parts[i]
-
-        /* Add special (unit separator) character. */
-        if (i > 0) {
-            hexData += '1f'
-        }
 
         /* Convert user data (string) to hex. */
         for (let j = 0; j < part.length; j++) {
@@ -46,16 +52,22 @@ export default (_data) => {
                 .padStart(2, '0')
 
             /* Add hex code to string. */
-            hexData += code
+            hexPart += code
         }
-    }
 
-    /* Convert to binary data. */
-    binData = hexToBin(hexData)
+        /* Convert to binary (data) part. */
+        binPart = encodeDataPush(hexToBin(hexPart))
+
+        /* Append binary part. */
+        binData = new Uint8Array([
+            ...binData,
+            ...binPart,
+        ])
+    }
 
     /* Return (binary) script data. */
     return new Uint8Array([
         OP.RETURN,
-        ...encodeDataPush(binData),
+        ...binData,
     ])
 }

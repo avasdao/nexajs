@@ -1,6 +1,11 @@
 /* Import modules. */
 import { OP } from '../index.js'
 
+import {
+    numberToBinUint16LE,
+    numberToBinUint32LE,
+} from '@bitauth/libauth'
+
 const PushOperationConstants = {
     OP_0: 0,
     /**

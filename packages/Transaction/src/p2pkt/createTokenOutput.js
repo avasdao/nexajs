@@ -49,14 +49,12 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
         ...encodeDataPush(scriptAmount),
         ...decodeAddress(_address).hash.slice(2), // remove 0x1700
     ])
-    // console.log('\n  lockingBytecode (hex) 1:', binToHex(lockingBytecode))
 
     /* Prepend locking bytecode length. */
     lockingBytecode = new Uint8Array([
         bigIntToBitcoinVarInt(BigInt(lockingBytecode.length)),
         ...lockingBytecode,
     ])
-    // return console.log('\n  lockingBytecode (hex) 2:', binToHex(lockingBytecode))
 
     /* Create (token) output. */
     tokenOutput = {
@@ -65,7 +63,6 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
         tokenidHex: _tokenid,
         tokens: bigIntToBinUint64LE(_tokens),
     }
-    // console.log('\n  tokenOutput:', tokenOutput)
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.
 

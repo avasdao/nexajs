@@ -1,15 +1,8 @@
 /* Import modules. */
 import {
     bigIntToBinUint64LE,
-    encodeDataPush,
+    bigIntToBitcoinVarInt,
 } from '@bitauth/libauth'
-
-import {
-    binToHex,
-    hexToBin,
-} from '@nexajs/utils'
-
-import { OP } from '@nexajs/script'
 
 /**
  * Create a transaction P2PKT output with the data value.
@@ -25,16 +18,20 @@ export default async (_data) => {
     let amount
     let lockingBytecode
 
-    /* Encode locking byte code. */
-    lockingBytecode = encodeDataPush(_data)
-
     /* Encode amount. */
     amount = bigIntToBinUint64LE(BigInt(0))
 
+    /* Encode locking byte code. */
+    // NOTE: Prepend locking bytecode length.
+    lockingBytecode = new Uint8Array([
+        bigIntToBitcoinVarInt(BigInt(lockingBytecode.length)),
+        ...lockingBytecode,
+    ])
+
     /* Create (data) output. */
     const dataOutput = {
-        lockingBytecode,
         amount,
+        lockingBytecode,
     }
 
     /* Return the output. */
