@@ -8,6 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@bitauth/libauth": "1.19.1",
     "debug": "4.3.4",
     "events": "3.3.0"
   }

@@ -7,6 +7,7 @@ rm -rf ../node_modules/@nexajs/hdnode
 rm -rf ../node_modules/@nexajs/id
 rm -rf ../node_modules/@nexajs/ledger
 rm -rf ../node_modules/@nexajs/markets
+rm -rf ../node_modules/@nexajs/message
 rm -rf ../node_modules/@nexajs/privacy
 rm -rf ../node_modules/@nexajs/provider
 rm -rf ../node_modules/@nexajs/purse
@@ -32,6 +33,7 @@ ln -s ../../../packages/Hdnode ../node_modules/@nexajs/hdnode
 ln -s ../../../packages/Id ../node_modules/@nexajs/id
 ln -s ../../../packages/Ledger ../node_modules/@nexajs/ledger
 ln -s ../../../packages/Markets ../node_modules/@nexajs/markets
+ln -s ../../../packages/Message ../node_modules/@nexajs/message
 ln -s ../../../packages/Privacy ../node_modules/@nexajs/privacy
 ln -s ../../../packages/Provider ../node_modules/@nexajs/provider
 ln -s ../../../packages/Purse ../node_modules/@nexajs/purse

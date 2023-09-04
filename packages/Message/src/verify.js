@@ -1,7 +1,7 @@
 /* Import modules. */
 // const Message = require('bitcore-message')
-const Address = require('..').Address
-const bitcoinMessage = require('bitcoinjs-message')
+// const Address = require('..').Address
+// const bitcoinMessage = require('bitcoinjs-message')
 
 /**
  * Verify Message
@@ -13,16 +13,17 @@ const bitcoinMessage = require('bitcoinjs-message')
 //     /* Return verification. */
 //     return verified
 // }
-const verify = (_message, _address, _signature) => {
+export default (_message, _address, _signature) => {
+    /* Initialize locals. */
+    let verified
+
+    verified = false
     /* Set (legacy) address. */
-    const address = Address.toLegacyAddress(_address)
+    // const address = Address.toLegacyAddress(_address)
 
     /* Handle verification. */
-    const verified = bitcoinMessage.verify(_message, address, _signature)
+    // const verified = bitcoinMessage.verify(_message, address, _signature)
 
     /* Return verification. */
     return verified
 }
-
-/* Export module. */
-module.exports = verify
