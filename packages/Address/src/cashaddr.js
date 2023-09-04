@@ -40,7 +40,7 @@ export function encodeAddress (prefix, type, hash) {
 
     const versionByte = getTypeBits(type) + getHashSizeBits(hash)
 
-    const payloadData = toUint5Array(concat(new Uint8Array([versionByte]), hash))
+    const payloadData = toUint5Array(concat(new Uint8Array([versionByte, hash.length]), hash))
 
     const checksumData = concat(concat(prefixData, payloadData), new Uint8Array(8))
 
@@ -60,28 +60,23 @@ export function encodeAddress (prefix, type, hash) {
 export function decodeAddress (address) {
     validate(typeof address === 'string' && hasSingleCase(address), 'Invalid address: ' + address + '.')
 
-    var pieces = address.toLowerCase().split(':')
+    const pieces = address.toLowerCase().split(':')
 
-    validate(pieces.length === 2, 'Missing prefix: ' + address + '.');
+    validate(pieces.length === 2, 'Missing prefix: ' + address + '.')
 
-    var prefix = pieces[0];
+    const prefix = pieces[0]
 
-    var payload = base32.decode(pieces[1]);
+    const payload = base32.decode(pieces[1])
 
-    validate(validChecksum(prefix, payload), 'Invalid checksum: ' + address + '.');
+    validate(validChecksum(prefix, payload), 'Invalid checksum: ' + address + '.')
 
-    var payloadData = fromUint5Array(payload.subarray(0, -8));
-    console.log('payloadData', payloadData);
+    const payloadData = fromUint5Array(payload.subarray(0, -8))
 
-    var versionByte = payloadData[0];
-    console.log('versionByte', versionByte);
+    const versionByte = payloadData[0]
 
-    var hash = payloadData.subarray(1);
-    console.log('hash', hash);
+    const hash = payloadData.subarray(2)
 
-    // no length limits in nexa: validate(getHashSize(versionByte) === hash.length * 8, 'Invalid hash size: ' + address + '.');
-
-    var type = getType(versionByte);
+    const type = getType(versionByte)
 
     return {
         prefix,
@@ -126,11 +121,13 @@ function isValidPrefix(prefix) {
  * @returns {Uint8Array}
  */
 function prefixToUint5Array(prefix) {
-  var result = new Uint8Array(prefix.length);
-  for (var i = 0; i < prefix.length; ++i) {
-    result[i] = prefix[i].charCodeAt(0) & 31;
-  }
-  return result;
+    const result = new Uint8Array(prefix.length)
+
+    for (var i = 0; i < prefix.length; ++i) {
+        result[i] = prefix[i].charCodeAt(0) & 31
+    }
+
+    return result
 }
 
 /**
@@ -142,12 +139,15 @@ function prefixToUint5Array(prefix) {
  * @returns {Uint8Array}
  */
 function checksumToUint5Array(checksum) {
-  var result = new Uint8Array(8);
-  for (var i = 0; i < 8; ++i) {
-    result[7 - i] = checksum.and(31).toJSNumber();
-    checksum = checksum.shiftRight(5);
-  }
-  return result;
+    const result = new Uint8Array(8)
+
+    for (var i = 0; i < 8; ++i) {
+        result[7 - i] = checksum.and(31).toJSNumber()
+
+        checksum = checksum.shiftRight(5)
+    }
+
+    return result
 }
 
 /**
@@ -160,18 +160,18 @@ function checksumToUint5Array(checksum) {
  * @throws {ValidationError}
  */
 function getTypeBits(type) {
-  switch (type) {
-  case 'P2PKH':
-    return 0;
-  case 'SCRIPT':
-    return 1<<3;
-  case 'TEMPLATE':
-    return 19<<3;
-  case 'GROUP':
-    return 11<<3;
-  default:
-    throw new ValidationError('Invalid type: ' + type + '.');
-  }
+    switch (type) {
+    case 'P2PKH':
+        return 0
+    case 'SCRIPT':
+        return (1 << 3)
+    case 'TEMPLATE':
+        return (19 << 3)
+    case 'GROUP':
+        return (11 << 3)
+    default:
+        throw new ValidationError('Invalid type: ' + type + '.')
+    }
 }
 
 /**
@@ -184,18 +184,18 @@ function getTypeBits(type) {
  * @throws {ValidationError}
  */
 function getType(versionByte) {
-  switch (versionByte & 248) {
-  case 0:
-    return 'P2PKH';
-  case 1<<3:
-    return 'SCRIPT';
-  case 19<<3:
-    return 'TEMPLATE';
-  case 11<<3:
-    return 'GROUP';
-  default:
-    throw new ValidationError('Invalid address type in version byte: ' + versionByte + '.');
-  }
+    switch (versionByte & 248) {
+    case 0:
+        return 'P2PKH'
+    case (1 << 3):
+        return 'SCRIPT'
+    case (19 << 3):
+        return 'TEMPLATE'
+    case (11 << 3):
+        return 'GROUP'
+    default:
+        throw new ValidationError('Invalid address type in version byte: ' + versionByte + '.')
+    }
 }
 
 /**
@@ -208,8 +208,8 @@ function getType(versionByte) {
  * @throws {ValidationError}
  */
 function getHashSizeBits(hash) {
-  hash.length;  // Fake use of this
-  return 0;  // nexa hash size bits are always 0
+    hash.length  // Fake use of this
+    return 0  // nexa hash size bits are always 0
 }
 
 /**
@@ -221,7 +221,7 @@ function getHashSizeBits(hash) {
  * @returns {Uint8Array}
  */
 function toUint5Array(data) {
-  return convertBits(data, 8, 5);
+    return convertBits(data, 8, 5)
 }
 
 /**
@@ -235,7 +235,7 @@ function toUint5Array(data) {
  * @throws {ValidationError}
  */
 function fromUint5Array(data) {
-  return convertBits(data, 5, 8, true);
+    return convertBits(data, 5, 8, true)
 }
 
 /**
@@ -248,10 +248,12 @@ function fromUint5Array(data) {
  * @throws {ValidationError}
  */
 function concat(a, b) {
-  var ab = new Uint8Array(a.length + b.length);
-  ab.set(a);
-  ab.set(b, a.length);
-  return ab;
+    const ab = new Uint8Array(a.length + b.length)
+
+    ab.set(a)
+    ab.set(b, a.length)
+
+    return ab
 }
 
 /**
@@ -263,19 +265,30 @@ function concat(a, b) {
  * @returns {BigInteger}
  */
 function polymod(data) {
-  var GENERATOR = [0x98f2bc8e61, 0x79b76d99e2, 0xf33e5fb3c4, 0xae2eabe2a8, 0x1e4f43e470];
-  var checksum = bigInt(1);
-  for (var i = 0; i < data.length; ++i) {
-    var value = data[i];
-    var topBits = checksum.shiftRight(35);
-    checksum = checksum.and(0x07ffffffff).shiftLeft(5).xor(value);
-    for (var j = 0; j < GENERATOR.length; ++j) {
-      if (topBits.shiftRight(j).and(1).equals(1)) {
-        checksum = checksum.xor(GENERATOR[j]);
-      }
+    const GENERATOR = [
+        0x98f2bc8e61,
+        0x79b76d99e2,
+        0xf33e5fb3c4,
+        0xae2eabe2a8,
+        0x1e4f43e470
+    ]
+
+    var checksum = bigInt(1)
+
+    for (let i = 0; i < data.length; ++i) {
+        var value = data[i]
+        var topBits = checksum.shiftRight(35)
+
+        checksum = checksum.and(0x07ffffffff).shiftLeft(5).xor(value)
+
+        for (var j = 0; j < GENERATOR.length; ++j) {
+            if (topBits.shiftRight(j).and(1).equals(1)) {
+                checksum = checksum.xor(GENERATOR[j])
+            }
+        }
     }
-  }
-  return checksum.xor(1);
+
+    return checksum.xor(1)
 }
 
 /**
@@ -288,8 +301,9 @@ function polymod(data) {
  * @returns {boolean}
  */
 function validChecksum(prefix, payload) {
-    var prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1))
-    var checksumData = concat(prefixData, payload)
+    const prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1))
+    const checksumData = concat(prefixData, payload)
+
     return polymod(checksumData).equals(0)
 }
 
