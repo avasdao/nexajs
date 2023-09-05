@@ -1,0 +1,8 @@
+{
+  "label": "Components Library",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Access to a full library of components for: React, Vue and Gatsby web apps."
+  }
+}
