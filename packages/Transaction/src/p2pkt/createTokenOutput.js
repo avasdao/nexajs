@@ -25,9 +25,9 @@ import {
  *
  * @returns {Promise<Output>} The P2PKT output script.
  */
-export default async (_address, _satoshis, _tokenid, _tokens) => {
+export default async (_address, _satoshis, _tokenidHex, _tokens) => {
     /* Validate token (hex) id. */
-    if (!_tokenid) {
+    if (!_tokenidHex) {
         throw new Error(`Oops! Missing token (hex) id.`)
     }
 
@@ -45,7 +45,7 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
     }
 
     lockingBytecode = new Uint8Array([
-        ...encodeDataPush(_tokenid),
+        ...encodeDataPush(hexToBin(_tokenidHex)),
         ...encodeDataPush(scriptAmount),
         ...decodeAddress(_address).hash.slice(1), // remove group id 0x00
     ])
@@ -60,8 +60,8 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
     tokenOutput = {
         lockingBytecode,
         amount: bigIntToBinUint64LE(_satoshis),
-        tokenidHex: _tokenid,
-        tokens: bigIntToBinUint64LE(_tokens),
+        // tokenidBin: hexToBin(_tokenidHex),
+        // tokens: bigIntToBinUint64LE(_tokens),
     }
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.

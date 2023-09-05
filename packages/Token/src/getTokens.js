@@ -6,39 +6,38 @@ import {
 
 import { parseWif } from '@nexajs/hdnode'
 
+import { hexToBin } from '@nexajs/utils'
+
 import { encodeDataPush } from '@bitauth/libauth'
 
 export default async (_wif, _scriptPubKey = null) => {
-    let depositAddress
-    let privateKey
-    let publicKey
     let tokens
     let unspent
     let wif
 
-    [
+    let {
         privateKey,
         publicKey,
-        depositAddress,
-    ] = await parseWif(_wif)
+        address,
+    } = await parseWif(_wif)
 
     /* Validate WIF details. */
-    if (privateKey && publicKey && depositAddress) {
+    if (privateKey && publicKey && address) {
         /* Set WIF. */
         wif = _wif
     }
 
     /* Handle "script" addresses. */
     if (_scriptPubKey) {
-        depositAddress = encodeAddress(
+        address = encodeAddress(
             'nexa',
             'TEMPLATE',
-            encodeDataPush(_scriptPubKey),
+            _scriptPubKey,
         )
     }
 
     /* Fetch all unspent transaction outputs. */
-    unspent = await listUnspent(depositAddress)
+    unspent = await listUnspent(address)
 
     /* Validate unspent. */
     if (unspent.length === 0) {
@@ -58,7 +57,7 @@ export default async (_wif, _scriptPubKey = null) => {
     tokens = unspent.map(_unspent => {
         const outpoint = _unspent.outpoint
         const satoshis = _unspent.satoshis
-        const tokenid = _unspent.tokenid || null
+        const tokenid = hexToBin(_unspent.tokenid) || null
         const tokenidHex = _unspent.tokenidHex || null
         const tokens = _unspent.tokens || null
 

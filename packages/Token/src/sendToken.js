@@ -343,7 +343,7 @@ export default async (_coins, _tokens, _receivers) => {
     // FIXME Allow WIFs for each input.
     await transaction.sign(wifs)
 
-    return console.log('\n  Transaction (hex)', transaction.raw)
+    console.log('\n  Transaction (hex)', transaction.raw)
     // console.log('\n  Transaction (json)', transaction.json)
 
     // Broadcast transaction
