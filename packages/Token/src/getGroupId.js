@@ -23,24 +23,29 @@ export default (_outpoint, _dataScript) => {
     let counter
     let dataScript
     let groupData
-    let groupid
-    let nonce
+    let groupidBin
+    let nonceBin
+    let nonceHex
+    let outpoint
 
     /* Initialize counter. */
     counter = 0
+
+    /* Set outpoint .*/
+    outpoint = hexToBin(_outpoint)
 
     do {
         if (counter % 1000 === 0) {
             console.info('  hashing...') // show progress indicator
         }
 
-        nonce = bigIntToBinUint64LE(BigInt(counter++))
-        // console.log('NONCE-1', binToHex(nonce));
+        nonceHex = bigIntToBinUint64LE(BigInt(counter++))
+        // console.log('NONCE-1', binToHex(nonceHex));
 
-        nonce = binToHex(nonce).slice(0, 14) + 'fc'
-        // console.log('NONCE-2', nonce);
+        nonceHex = binToHex(nonceHex).slice(0, 14) + 'fc'
+        // console.log('NONCE-2', nonceHex);
 
-        nonce = hexToBin(nonce)
+        nonceBin = hexToBin(nonceHex)
 
         dataScript = new Uint8Array([
             bigIntToBitcoinVarInt(BigInt(_dataScript.length)),
@@ -48,16 +53,16 @@ export default (_outpoint, _dataScript) => {
         ])
 
         groupData = new Uint8Array([
-            ..._outpoint,
+            ...outpoint.reverse(), // NOTE: Where is this located in the spec??
             ...dataScript,
-            ...nonce,
+            ...nonceBin,
         ])
 
-        groupid = sha256(sha256(groupData))
-    } while (binToHex(groupid).slice(-4) !== '0000')
+        groupidBin = sha256(sha256(groupData))
+    } while (binToHex(groupidBin).slice(-4) !== '0000')
 
     return {
-        groupid,
-        nonce,
+        groupidBin,
+        nonceBin,
     }
 }
