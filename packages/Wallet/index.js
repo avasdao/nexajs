@@ -32,6 +32,11 @@ import {
 } from '@nexajs/purse'
 
 import {
+    encodeDataPush,
+    OP,
+} from '@nexajs/script'
+
+import {
     getTokens,
     sendToken,
 } from '@nexajs/token'
@@ -39,7 +44,6 @@ import {
 /* Libauth helpers. */
 import {
     deriveHdPath,
-    encodeDataPush,
     instantiateSecp256k1,
     instantiateRipemd160,
 } from '@bitauth/libauth'
@@ -271,46 +275,62 @@ export class Wallet extends EventEmitter {
             return null
         }
 
+        /* Initialize locals. */
+        let address
+        let changeIdx
+        let child
+        let node
+        let privateKey
+        let publicKey
+        let publicKeyHash
+        let scriptPubKey
+        let scriptPushPubKey
+        let seed
+
         /* Set change index. */
-        const changeIdx = _isChange ? '1' : '0'
+        changeIdx = _isChange ? '1' : '0'
 
         /* Set seed. */
-        const seed = hexToBin(mnemonicToSeed(this.mnemonic))
+        seed = hexToBin(mnemonicToSeed(this.mnemonic))
 
         /* Initialize HD node. */
-        const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
+        node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
 
         /* Derive a child from the Master node */
-        const child = deriveHdPath(
+        child = deriveHdPath(
             crypto,
             node,
             `m/${this._coinPurpose}/${this._coinType}/${this._accountIdx}/${changeIdx}/${_addressIdx}`
         )
 
         /* Set private key. */
-        const privateKey = child.privateKey
+        privateKey = child.privateKey
 
         /* Derive the corresponding public key. */
-        const publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
+        publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
 
         /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
-        const scriptPushPubKey = encodeDataPush(publicKey)
+        scriptPushPubKey = encodeDataPush(publicKey)
 
         /* Generate public key hash. */
-        const publicKeyHash = ripemd160.hash(sha256(scriptPushPubKey))
+        publicKeyHash = ripemd160.hash(sha256(scriptPushPubKey))
 
         /* Generate public key hash script. */
-        const pkhScript = hexToBin('17005114' + binToHex(publicKeyHash))
+        scriptPubKey = new Uint8Array([
+            OP.ZERO,
+            OP.ONE,
+            ...encodeDataPush(publicKeyHash),
+        ])
 
         /* Encode the public key hash into a P2PKH nexa address. */
-        const nexaAddress = encodeAddress(
+        address = encodeAddress(
             'nexa',
             'TEMPLATE',
-            pkhScript,
+            scriptPubKey,
         )
 
         /* Return address. */
-        return nexaAddress
+        return address
     }
 
     getNewAddress(_isChange = false) {
