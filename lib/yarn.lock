@@ -533,6 +533,14 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/app@23.9.2":
+  version "23.9.2"
+  resolved "https://registry.yarnpkg.com/@nexajs/app/-/app-23.9.2.tgz#4679a5aa4a66c57fbcf5e1cba6d2acf2bee571ef"
+  integrity sha512-9diXp8ratGnLZ3OwI55mLQ2l9zXfFRGtFFmUMLI3UPM+FTpfIzsYrgwLMNgH3KOGY5Oig6q3HM/YhBZS2F2I7A==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+
 "@nexajs/crypto@23.5.22":
   version "23.5.22"
   resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.22.tgz#1ca8e76cc18e159d18ef59f08368135dfcafee88"
@@ -589,6 +597,15 @@
     moment "2.29.4"
     numeral "2.0.6"
     uuid "9.0.0"
+
+"@nexajs/message@23.9.2":
+  version "23.9.2"
+  resolved "https://registry.yarnpkg.com/@nexajs/message/-/message-23.9.2.tgz#fc55b9d58a32e02172a306851d425cf74f6ddcc9"
+  integrity sha512-TGPovcvWMom4mgyqhtgwUmxby3cbwJS0gPYgOtbKdXrcoY8Qaz57svh8KFeGa+emJh7fIk5hFOipvrlMte3hlw==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    debug "4.3.4"
+    events "3.3.0"
 
 "@nexajs/provider@23.6.21":
   version "23.6.21"

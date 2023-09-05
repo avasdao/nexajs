@@ -13,10 +13,12 @@
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.9.3",
+    "@nexajs/app": "23.9.2",
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.9.3",
     "@nexajs/id": "23.5.15",
     "@nexajs/markets": "23.8.11",
+    "@nexajs/message": "23.9.2",
     "@nexajs/provider": "23.6.21",
     "@nexajs/purse": "23.8.30",
     "@nexajs/request": "23.5.15",

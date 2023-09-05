@@ -6,10 +6,10 @@ const debug = debugFactory('nexa:app')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// TBD
+import _copyToClipboard from './src/copyToClipboard.js'
 
 /* Export (local) modules. */
-// TBD
+export const copyToClipboard = _copyToClipboard
 
 
 /**
@@ -43,7 +43,7 @@ const Nexa = {}
 Nexa.App = App
 
 /* Initialize App modules. */
-// TBD
+Nexa.copyToClipboard = copyToClipboard
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
