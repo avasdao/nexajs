@@ -45,9 +45,9 @@ export default async (_address, _satoshis, _tokenid, _tokens) => {
     }
 
     lockingBytecode = new Uint8Array([
-        ...encodeDataPush(hexToBin(_tokenid)),
+        ...encodeDataPush(_tokenid),
         ...encodeDataPush(scriptAmount),
-        ...decodeAddress(_address).hash.slice(2), // remove 0x1700
+        ...decodeAddress(_address).hash.slice(1), // remove group id 0x00
     ])
 
     /* Prepend locking bytecode length. */

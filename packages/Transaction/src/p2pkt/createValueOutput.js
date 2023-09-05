@@ -3,6 +3,8 @@ import { bigIntToBinUint64LE } from '@bitauth/libauth'
 
 import { decodeAddress } from '@nexajs/address'
 
+import { encodeDataPush } from '@nexajs/script'
+
 import { binToHex } from '@nexajs/utils'
 
 /**
@@ -25,6 +27,9 @@ export default async (_address, _satoshis) => {
 
     /* Set locking byte code. */
     lockingBytecode = decodeAddress(_address).hash
+
+    /* Add data script. */
+    lockingBytecode = encodeDataPush(lockingBytecode)
 
     /* Create (value) output. */
     const valueOutput = {

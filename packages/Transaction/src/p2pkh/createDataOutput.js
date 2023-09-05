@@ -3,7 +3,6 @@ import {
     bigIntToBinUint64LE,
     binToHex,
     encodeDataPush,
-    hexToBin,
 } from '@bitauth/libauth'
 
 import { OP } from '@nexajs/script'
@@ -21,7 +20,7 @@ import { OP } from '@nexajs/script'
 export default async (_data) => {
     let lockingBytecode
 
-    lockingBytecode = encodeDataPush(hexToBin(_data))
+    lockingBytecode = encodeDataPush(_data)
 
     lockingBytecode = new Uint8Array([
         OP.RETURN,

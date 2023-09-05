@@ -11,7 +11,7 @@
     "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "23.9.3",
     "@nexajs/crypto": "23.5.22",
-    "@nexajs/hdnode": "23.7.26",
+    "@nexajs/hdnode": "23.9.3",
     "@nexajs/purse": "23.8.30",
     "@nexajs/token": "23.8.30",
     "debug": "4.3.4",

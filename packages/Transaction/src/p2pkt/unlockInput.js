@@ -1,17 +1,16 @@
 /* Import modules. */
 import { decodeAddress } from '@nexajs/address'
 
-import { OP } from '@nexajs/script'
+import {
+    encodeDataPush,
+    OP,
+} from '@nexajs/script'
 
 import {
     binToHex,
-    hexToBin,
 } from '@nexajs/utils'
 
-import {
-    encodeDataPush,
-    flattenBinArray,
-} from '@bitauth/libauth'
+import { flattenBinArray } from '@bitauth/libauth'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
 
@@ -59,11 +58,11 @@ export default async (
         inputIndex,
         lockScriptBin,
         SIGHASH_ALL,
-        hexToBin(privateKey),
+        privateKey,
     )
     // console.log('signatureBin', signatureBin)
 
-    scriptPubKey = encodeDataPush(hexToBin(publicKey))
+    scriptPubKey = encodeDataPush(publicKey)
 
     // Build the unlocking script that unlocks the P2PKT locking script.
     unlockingBytecode = flattenBinArray(

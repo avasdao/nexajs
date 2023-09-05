@@ -1,11 +1,14 @@
 import {
+    encodeDataPush,
+    OP,
+} from '@nexajs/script'
+
+import {
     flattenBinArray,
     numberToBinUintLE,
     numberToBinUint32LE,
     bigIntToBinUint64LE,
 } from '@bitauth/libauth'
-
-import { OP } from '@nexajs/script'
 
 /**
  * Encode a single output for inclusion in an encoded transaction.

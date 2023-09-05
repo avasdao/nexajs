@@ -3,7 +3,7 @@ import { encodeDataPush } from '@bitauth/libauth'
 
 import { decodeAddress } from '@nexajs/address'
 import { OP } from '@nexajs/script'
-import { binToHex, hexToBin } from '@nexajs/utils'
+import { binToHex } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
 
@@ -28,15 +28,6 @@ export default async (
     privateKeys,
     redeemScript,
 ) => {
-    console.log('INPUT INDEX', inputIndex);
-    console.log('privateKeys[0]', privateKeys[0]);
-    console.log('privateKeys[1]', privateKeys[1]);
-    // console.log('privateKeys', privateKeys);
-    // console.log('redeemScript', redeemScript);
-    // Extract the bytecode (locking script) from our return address.
-    // const lockScriptBin = hexToBin(decodeAddress(address).hash)
-    // console.log('\n  Lock Script Bin:\n', lockScriptBin)
-
     let unlockingBytecode
 
     // Define SIGHASH_ALL constant.
@@ -48,7 +39,7 @@ export default async (
         input.amount,
         inputIndex,
         SIGHASH_ALL,
-        hexToBin(privateKeys[0]),
+        privateKeys[0],
     )
     // console.log('signatureBin-1', signatureBin1)
 
@@ -58,14 +49,14 @@ export default async (
         input.amount,
         inputIndex,
         SIGHASH_ALL,
-        hexToBin(privateKeys[1]),
+        privateKeys[1],
     )
     // console.log('signatureBin-2', signatureBin2)
 
     // Build the unlocking script that unlocks the P2PKT locking script.
     unlockingBytecode = new Uint8Array(
         [
-            ...encodeDataPush(hexToBin(redeemScript)),
+            ...encodeDataPush(redeemScript),
 
             OP.THREE, // checkbits (0000 0011)
             ...encodeDataPush(signatureBin1),

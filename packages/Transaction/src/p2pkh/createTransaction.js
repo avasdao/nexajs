@@ -26,14 +26,14 @@ import unlockP2PKHInput from './unlockInput.js'
  */
 export default async (privateKeyWIF, unspentOutputs, outputs) => {
     // Parse the private key wif into the keypair and address.
-    const [
+    const {
         privateKey,
         publicKey,
-        // returnAddress
-    ] = await parseWif(privateKeyWIF, 'nexa', 'P2PKH')
+        // address
+    } = await parseWif(privateKeyWIF, 'nexa', 'P2PKH')
 
     // FIXME FOR DEV PURPOSES ONLY
-    const returnAddress = 'nexa:qqf2mwpynv8f26v53sqcaldvwujt9fuu5sdw3yxjl3'
+    const address = 'nexa:qqf2mwpynv8f26v53sqcaldvwujt9fuu5sdw3yxjl3'
 
     // Convert all coins to the Libauth Input format (unsigned)
     const inputs = [ ...unspentOutputs ].map(createUnsignedInput)
@@ -59,7 +59,7 @@ export default async (privateKeyWIF, unspentOutputs, outputs) => {
                 inputIndex,
                 privateKey,
                 publicKey,
-                returnAddress,
+                address,
             )
         )
     )

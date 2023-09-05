@@ -8,7 +8,6 @@ import { decodeAddress } from '@nexajs/address'
 
 import {
     binToHex,
-    hexToBin
 } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
@@ -44,12 +43,6 @@ export default async (
     //     ...await decodeAddress(address).hash
     // ])
 
-    // FIXME FOR DEV PURPOSES ONLY
-    const lockScriptBin = hexToBin('76a91412adb8249b0e9569948c018efdac7724b2a79ca488ac')
-    console.log('\n  Lock Script Bin:\n', lockScriptBin)
-    console.log('  Lock Script Bin:', binToHex(lockScriptBin))
-    console.log('  Lock Script Bin (address):', address)
-
     // Define SIGHASH_ALL constant.
     const SIGHASH_ALL = 0x41
 
@@ -60,14 +53,14 @@ export default async (
         inputIndex,
         lockScriptBin,
         SIGHASH_ALL,
-        hexToBin(privateKey),
+        privateKey,
     )
 
     // Build the unlocking script that unlocks the P2PKH locking script.
     const unlockingBytecode = flattenBinArray(
         [
             encodeDataPush(signatureBin),
-            encodeDataPush(hexToBin(publicKey))
+            encodeDataPush(publicKey)
         ]
     )
 

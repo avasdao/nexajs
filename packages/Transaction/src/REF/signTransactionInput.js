@@ -1,5 +1,5 @@
 /* Import modules. */
-import { binToHex, hexToBin } from '@nexajs/utils'
+import { binToHex } from '@nexajs/utils'
 import { sha256 } from '@nexajs/crypto'
 
 /* Libauth helpers. */

@@ -9,36 +9,34 @@ import { parseWif } from '@nexajs/hdnode'
 import { encodeDataPush } from '@bitauth/libauth'
 
 export default async (_wif, _scriptPubKey = null) => {
+    /* Initialize locals. */
     let coins
-    let depositAddress
-    let privateKey
-    let publicKey
     let unspent
     let wif
 
-    [
+    let {
         privateKey,
         publicKey,
-        depositAddress,
-    ] = await parseWif(_wif)
+        address,
+    } = await parseWif(_wif)
 
     /* Validate WIF details. */
-    if (privateKey && publicKey && depositAddress) {
+    if (privateKey && publicKey && address) {
         /* Set WIF. */
         wif = _wif
     }
 
     /* Handle "script" addresses. */
     if (_scriptPubKey) {
-        depositAddress = encodeAddress(
+        address = encodeAddress(
             'nexa',
             'TEMPLATE',
-            encodeDataPush(_scriptPubKey),
+            _scriptPubKey,
         )
     }
 
     /* Fetch all unspent transaction outputs. */
-    unspent = await listUnspent(depositAddress)
+    unspent = await listUnspent(address)
     // console.log('UNSPENT', unspent)
 
     /* Validate unspent. */
