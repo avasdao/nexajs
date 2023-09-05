@@ -1,11 +1,7 @@
-import {
-    encodeDataPush,
-    OP,
-} from '@nexajs/script'
+import { OP } from '@nexajs/script'
 
 import {
     flattenBinArray,
-    numberToBinUintLE,
     numberToBinUint32LE,
     bigIntToBinUint64LE,
 } from '@bitauth/libauth'
@@ -15,21 +11,21 @@ import {
  *
  * @param output - the output to encode
  */
-const encodeOutput = (output) => {
-    /* Initialize version. */
+const encodeOutput = (_output) => {
+    /* Initialize locals. */
     let version
 
     /* Handle version selection. */
-    if (output.lockingBytecode[1] === OP.RETURN) {
-        version = numberToBinUintLE(0)
+    if (_output.lockingBytecode[1] === OP.RETURN) {
+        version = new Uint8Array([0]) // v0
     } else {
-        version = numberToBinUintLE(1)
+        version = new Uint8Array([1]) // v1
     }
 
     return new Uint8Array([
         version,
-        ...output.amount,
-        ...output.lockingBytecode,
+        ..._output.amount,
+        ..._output.lockingBytecode,
     ])
 }
 
@@ -44,7 +40,7 @@ const encodeOutpoints = (inputs) =>
     flattenBinArray(
         inputs.map((i) =>
             new Uint8Array([
-                numberToBinUintLE(0),
+                0,
                 ...i.outpointTransactionHash.slice().reverse(),
             ])
         )

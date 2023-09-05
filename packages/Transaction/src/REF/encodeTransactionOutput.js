@@ -1,34 +1,25 @@
-import {
-    encodeDataPush,
-    OP,
-} from '@nexajs/script'
-
-import {
-    flattenBinArray,
-    numberToBinUintLE,
-} from '@bitauth/libauth'
+/* Import modules. */
+import { OP } from '@nexajs/script'
 
 /**
  * Encode a single {@link Output} for inclusion in an encoded transaction.
  *
  * @param output - the output to encode
  */
-export default (output) => {
-    // console.log('\n  output.lockingBytecode', binToHex(output.lockingBytecode));
-
-    /* Initialize version. */
+export default (_output) => {
+    /* Initialize locals. */
     let version
 
     /* Handle version selection. */
-    if (output.lockingBytecode[1] === OP.RETURN) {
-        version = numberToBinUintLE(0)
+    if (_output.lockingBytecode[1] === OP.RETURN) {
+        version = new Uint8Array([0]) // v0
     } else {
-        version = numberToBinUintLE(1)
+        version = new Uint8Array([1]) // v1
     }
 
     return new Uint8Array([
         version,
-        ...output.amount,
-        ...output.lockingBytecode,
+        ..._output.amount,
+        ..._output.lockingBytecode,
     ])
 }
