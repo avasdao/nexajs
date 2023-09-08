@@ -13,7 +13,7 @@
 //     /* Return verification. */
 //     return verified
 // }
-export default (_message, _address, _signature) => {
+export default (_address, _message, _signature) => {
     /* Initialize locals. */
     let verified
 

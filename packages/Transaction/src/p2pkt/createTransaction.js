@@ -46,9 +46,9 @@ export default async (
 
                 /* Parse the WIF into the keypair. */
                 const {
+                    address,
                     privateKey,
                     publicKey,
-                    address
                 } = await parseWif(wif[j], 'nexa', 'TEMPLATE')
 
                 if (!wifs[i]) {
@@ -64,9 +64,9 @@ export default async (
         } else {
             /* Parse the WIF into the keypair and address. */
             const {
+                address,
                 privateKey,
                 publicKey,
-                address,
             } = await parseWif(wif, 'nexa', 'TEMPLATE')
 
             wifs.push({
