@@ -9,8 +9,8 @@ import 'focus-visible'
 import '@/styles/tailwind.css'
 
 /* Initialize Matomo parameters. */
-const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL || 'https://matomo.avasdao.org'
-const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID || '15'
+const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL
+const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID
 
 function getNodeText(node) {
     let text = ''
