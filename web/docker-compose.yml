@@ -9,11 +9,11 @@ services:
     ports:
       - '127.0.0.1:3000:3000'
     command: 'npm run start'
+    environment:
+      - NEXT_PUBLIC_MATOMO_URL=${NEXT_PUBLIC_MATOMO_URL}
+      - NEXT_PUBLIC_MATOMO_SITE_ID=${NEXT_PUBLIC_MATOMO_SITE_ID}
     logging: # apply better controls to Docker overlay folder
       driver: 'json-file'
       options:
         max-file: '5'
         max-size: '10m'
-    environment:
-      - NEXT_PUBLIC_MATOMO_URL=${NEXT_PUBLIC_MATOMO_URL}
-      - NEXT_PUBLIC_MATOMO_SITE_ID=${NEXT_PUBLIC_MATOMO_SITE_ID}
