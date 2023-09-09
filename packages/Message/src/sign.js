@@ -15,26 +15,6 @@ let secp256k1
 //     secp256k1 = await instantiateSecp256k1()
 // })()
 
-/**
- * Sign Message
- */
-// const sign = (_wif, _message) => {
-//     /* Set private key. */
-//     const privateKey = new bch.PrivateKey(_wif)
-//     // console.log('PRIVATE KEY', privateKey)
-//
-//     /* Set message. */
-//     const message = new Message(_message)
-//     // console.log('MESSAGE', message)
-//
-//     /* Generate signature. */
-//     const signature = message.sign(privateKey)
-//     // console.log('SIGNATURE', signature)
-//
-//     /* Return signature. */
-//     return signature
-// }
-
 const hexToBase64 = (_hex) => {
     return btoa(_hex.match(/\w{2}/g).map(function(a) {
         return String.fromCharCode(parseInt(a, 16))
