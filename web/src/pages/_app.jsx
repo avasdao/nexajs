@@ -8,9 +8,12 @@ import { Layout } from '@/components/Layout'
 import 'focus-visible'
 import '@/styles/tailwind.css'
 
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+
 /* Initialize Matomo parameters. */
-const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL
-const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID
+const MATOMO_URL = publicRuntimeConfig.NEXT_PUBLIC_MATOMO_URL
+const MATOMO_SITE_ID = publicRuntimeConfig.NEXT_PUBLIC_MATOMO_SITE_ID
 
 function getNodeText(node) {
     let text = ''
