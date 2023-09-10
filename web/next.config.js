@@ -11,8 +11,8 @@ const nextConfig = {
     unoptimized: true,
   },
   env: {
-    NEXT_PUBLIC_MATOMO_URL,: process.env.NEXT_PUBLIC_MATOMO_URL,
-    NEXT_PUBLIC_MATOMO_SITE_ID,: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
+    NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
+    NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
   },
 }
 
