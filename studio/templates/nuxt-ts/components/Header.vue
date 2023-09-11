@@ -24,11 +24,12 @@ const isShowingMenu = ref(false)
     <header class="absolute inset-x-0 top-0 z-50">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="javascript://" class="-m-1.5 p-1.5">
+                <NuxtLink to="/" class="-m-1.5 p-1.5">
                     <span class="sr-only">Nexa Studio</span>
                     <img class="h-12 w-auto" src="~/assets/icon.svg" alt="" />
-                </a>
+                </NuxtLink>
             </div>
+
             <div class="flex lg:hidden">
                 <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                     <span class="sr-only">Open main menu</span>
@@ -37,6 +38,7 @@ const isShowingMenu = ref(false)
                     </svg>
                 </button>
             </div>
+
             <div class="hidden lg:flex lg:gap-x-12">
                 <NuxtLink to="https://nexajs.org/studio" target="_blank" class="text-xl font-semibold leading-6 text-gray-900">
                     Docs
@@ -61,6 +63,7 @@ const isShowingMenu = ref(false)
                 </NuxtLink>
             </div>
         </nav>
+
         <!-- Mobile menu, show/hide based on menu open state. -->
         <div v-if="isShowingMenu" class="lg:hidden" role="dialog" aria-modal="true">
             <!-- Background backdrop, show/hide based on slide-over state. -->

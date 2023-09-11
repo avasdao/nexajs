@@ -1,5 +1,10 @@
 <script setup lang="ts">
-
+useHead({
+    title: `Nexa Builder Studio`,
+    meta: [
+        { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
+    ],
+})
 
 </script>
 
@@ -40,12 +45,15 @@
                                 </p>
 
                                 <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                                    Nexa Studio presents a premium Builder Experience (BX) that will leave you speechless.
+                                    Nexa Studio provides Nexicans who dream BIG with a premium suite of tools and services to Plan, Build and maximize a sustainable Profit!
                                 </p>
 
                                 <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                                    Cupidatat minim id magna ipsum sint dolor qui. Sunt sit in quis cupidatat mollit aute velit. Et labore commodo nulla aliqua proident mollit ullamco exercitation tempor. Sint aliqua anim nulla sunt mollit id
-                                    pariatur in voluptate cillum. Eu voluptate tempor esse minim amet fugiat veniam occaecat aliqua.
+                                    Builders burn & stake $STUDIO Time for access to premium tools & services, featuring: bleeding-edge AI, uncensorable content storage & delivery, plus a direct line to Ava's world-class support team.
+                                </p>
+
+                                <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                                    Creators may choose to publish one or more of their original NFTs and SFTs to The Nexican Gallery — Nexa's premier, ultra-exclusive, digital art collection.
                                 </p>
                             </div>
 
@@ -147,33 +155,6 @@
                 </div>
             </div>
 
-            <!-- Logo cloud -->
-            <div class="relative isolate -z-10 mt-32 sm:mt-48">
-                <div class="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,white,transparent)]">
-                    <svg class="h-[40rem] w-[80rem] flex-none stroke-gray-200" aria-hidden="true">
-                        <defs>
-                            <pattern id="e9033f3e-f665-41a6-84ef-756f6778e6fe" width="200" height="200" x="50%" y="50%" patternUnits="userSpaceOnUse" patternTransform="translate(-100 0)">
-                                <path d="M.5 200V.5H200" fill="none" />
-                            </pattern>
-                        </defs>
-                        <svg x="50%" y="50%" class="overflow-visible fill-gray-50">
-                            <path d="M-300 0h201v201h-201Z M300 200h201v201h-201Z" stroke-width="0" />
-                        </svg>
-                        <rect width="100%" height="100%" stroke-width="0" fill="url(#e9033f3e-f665-41a6-84ef-756f6778e6fe)" />
-                    </svg>
-                </div>
-                <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                    <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">Trusted by the world’s most innovative teams</h2>
-                    <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48" />
-                        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48" />
-                        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48" />
-                        <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48" />
-                        <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48" />
-                    </div>
-                </div>
-            </div>
-
             <!-- Studios section -->
             <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
@@ -188,120 +169,40 @@
 
                 <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
 
-                    <NuxtLink to="/nft" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                        <img
-                            src="https://images.unsplash.com/photo-1564585447193-cd9a0cf42a36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80"
-                            alt=""
-                            class="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                    <StudioCard
+                        title="NFT/SFT Studio"
+                        link="/nft"
+                        background="https://images.unsplash.com/photo-1564585447193-cd9a0cf42a36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80"
+                        caption="Design, Create and Share custom NFTs with the people you love"
+                    />
 
-                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
-                                NFT/SFT Studio
-                            </h2>
-                        </div>
+                    <StudioCard
+                        title="Component Studio"
+                        link="/"
+                        background="https://images.unsplash.com/photo-1633469924738-52101af51d87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                        caption="Pro-quality components to include in your Vue and React projects"
+                    />
 
-                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="javascript://">
-                                <span class="absolute inset-0"></span>
-                                Design, Create and Share custom NFTs with the people you love
-                            </a>
-                        </h3>
-                    </NuxtLink>
+                    <StudioCard
+                        title="Icon/Logo Studio"
+                        link="/"
+                        background="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                        caption="Design custom icons and logos for your next project"
+                    />
 
-                    <NuxtLink to="/components" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                        <img
-                            src="https://images.unsplash.com/photo-1633469924738-52101af51d87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-                            alt=""
-                            class="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+                    <StudioCard
+                        title="Publishing Studio"
+                        link="/"
+                        background="https://images.unsplash.com/photo-1553096442-8fe2118fb927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                        caption="Prepare and submit your finished project to stores and marketplaces"
+                    />
 
-                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
-                                Component Studio
-                            </h2>
-                        </div>
-
-                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="javascript://">
-                                <span class="absolute inset-0"></span>
-                                Pro-quality components to include in your Vue and React projects
-                            </a>
-                        </h3>
-                    </NuxtLink>
-
-                    <NuxtLink to="/media" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                        <img
-                            src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                            alt=""
-                            class="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
-
-                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
-                                Icon/Logo Studio
-                            </h2>
-                        </div>
-
-                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="javascript://">
-                                <span class="absolute inset-0"></span>
-                                Design custom icons and logos for your next project
-                            </a>
-                        </h3>
-                    </NuxtLink>
-
-                    <NuxtLink to="/publish" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                        <img
-                            src="https://images.unsplash.com/photo-1553096442-8fe2118fb927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-                            alt=""
-                            class="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
-
-                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
-                                Publishing Studio
-                            </h2>
-                        </div>
-
-                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="javascript://">
-                                <span class="absolute inset-0"></span>
-                                Prepare and submit your finished project to stores and marketplaces
-                            </a>
-                        </h3>
-                    </NuxtLink>
-
-                    <NuxtLink to="/media" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
-                        <img
-                            src="https://images.unsplash.com/photo-1520444451380-ebe0f7b9cfd5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-                            alt=""
-                            class="absolute inset-0 -z-10 h-full w-full object-cover"
-                        />
-                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
-
-                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
-                            <h2 class="text-2xl text-amber-300 font-medium tracking-widest">
-                                A/V Media Studio
-                            </h2>
-                        </div>
-
-                        <h3 class="mt-2 text-lg font-semibold leading-6 text-white">
-                            <a href="javascript://">
-                                <span class="absolute inset-0"></span>
-                                Create sounds and video clips for yor projects
-                            </a>
-                        </h3>
-                    </NuxtLink>
+                    <StudioCard
+                        title="A/V Media Studio"
+                        link="/"
+                        background="https://images.unsplash.com/photo-1520444451380-ebe0f7b9cfd5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                        caption="Create sounds and video clips for yor projects"
+                    />
 
                 </div>
             </div>
