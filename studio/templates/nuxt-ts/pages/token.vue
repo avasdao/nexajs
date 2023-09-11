@@ -49,14 +49,24 @@ const System = useSystemStore()
                     <div class="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                         <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                             <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                                $STUDIO Tokenomics
+                                $STUDIO Time
                             </h1>
 
                             <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                                Official Governance Token of Ava's DAO.
-                                $AVAS offer crypto enthusiasts and investors alike an opportunity like never seen before.
-                                Every $AVAS holder is permitted to <strong>Vote</strong> <em>(on-chain)</em> for public proposals.
-                                "Qualified" $AVAS holders receive <strong>Daily Payouts</strong> <em>(to their respective Nexa or Meta address)</em> from revenues deposited into Ava's Treasury.
+                                Official burning &amp; staking token of Nexa Studio.
+                            </p>
+
+                            <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                                Providing Nexicans who dream BIG with a premium suite of tools and services to Plan, Build and maximize a sustainable Profit!
+                            </p>
+
+                            <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                                Builders burn & stake $STUDIO Time for access to premium tools & services, featuring: bleeding-edge AI, uncensorable content storage & delivery, plus a direct line to Ava's world-class support team.
+                                Creators may choose to publish one or more of their original NFTs and SFTs to The Nexican Gallery — Nexa's premier, ultra-exclusive, digital art collection.
+                            </p>
+
+                            <p class="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
+                                Builder's & Creator's works are their own.
                             </p>
                         </div>
 
