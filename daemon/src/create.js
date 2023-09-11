@@ -45,8 +45,8 @@ import {
     sendToken,
 } from '@nexajs/token'
 
-const TOKEN_ID = 'nexa:tq4624c2tg3xxcjrpmu3sed9fwzq5g56krc44csx49t67sru6yqqqdu2htfk3' // STUDIO
-const TOKEN_ID_HEX = '2ba5570a5a226362430ef91865a54b840a229ab0f15ae206a957af407cd10000' // STUDIO
+const TOKEN_ID = 'nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8' // STUDIO
+const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
 
 export default async () => {
     let coins
@@ -113,7 +113,7 @@ export default async () => {
     params = {
         ticker: 'STUDIO',
         name: `Studio Time + Collection`,
-        uri: 'https://nexa.studio',
+        uri: 'https://nexa.studio/studio.json',
         hash: reverseHex('af84241f6a8975094efb1072fc927d27af71dba3d27d6d63f437fa42aa9909c4'),
         decimals: 0,
     }
@@ -172,7 +172,7 @@ export default async () => {
     receivers.push({
         address: wallet.address,
     })
-    return console.log('\n  Receivers:', receivers)
+    console.log('\n  Receivers:', receivers)
 
     /* Send UTXO request. */
     response = await sendToken(coins, tokens, receivers)

@@ -147,15 +147,13 @@ const System = useSystemStore()
                             </h3>
 
                             <span class="sm:hidden text-lg">
-                                tq4624c2tg3xx...6yqqqdu2htfk3
-                                tptlgmqhvmwqp...vcqqqcra40x0x
+                                tztnyazksgqpk...pqqqq99lxywr8
                             </span>
                             <span class="hidden sm:block lg:hidden text-lg">
-                                tq4624c2tg3xxcjrpmu3sed9...csx49t67sru6yqqqdu2htfk3
-                                tptlgmqhvmwqppajq7kduxen...sn9wdzde540vcqqqcra40x0x
+                                tztnyazksgqpkphrx2m2fgxa...7xtlc8k4xcjpqqqq99lxywr8
                             </span>
                             <span class="hidden lg:block text-xl">
-                                nexa:tq4624c2tg3xxcjrpmu3sed9fwzq5g56krc44csx49t67sru6yqqqdu2htfk3
+                                nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8
                             </span>
 
                         </NuxtLink>

@@ -47,8 +47,8 @@ import {
     sendToken,
 } from '@nexajs/token'
 
-const TOKEN_ID = 'nexa:tq4624c2tg3xxcjrpmu3sed9fwzq5g56krc44csx49t67sru6yqqqdu2htfk3' // STUDIO
-const TOKEN_ID_HEX = '2ba5570a5a226362430ef91865a54b840a229ab0f15ae206a957af407cd10000' // STUDIO
+const TOKEN_ID = 'nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8' // STUDIO
+const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
 
 export default async (_wallet, _receiver, _amount) => {
     let coins
@@ -60,18 +60,17 @@ export default async (_wallet, _receiver, _amount) => {
     let userData
     let wif
 
-    console.log('WALLET ADDRESS', _wallet.address)
-
     /* Encode Private Key WIF. */
     wif = encodePrivateKeyWif({ hash: sha256 }, _wallet.privateKey, 'mainnet')
+    console.log('WIF', wif)
 
     coins = await getCoins(wif)
         .catch(err => console.error(err))
-    console.log('COINS', coins)
+    // console.log('COINS', coins)
 
     tokens = await getTokens(wif)
         .catch(err => console.error(err))
-    console.log('TOKENS', tokens)
+    // console.log('TOKENS', tokens)
 
     /* Filter tokens. */
     // NOTE: Currently limited to a "single" Id.
