@@ -25,8 +25,8 @@ const isShowingMenu = ref(false)
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="javascript://" class="-m-1.5 p-1.5">
-                    <span class="sr-only">PROJECT_NAME</span>
-                    <img class="h-16 w-auto" src="~/assets/nexa.svg" alt="" />
+                    <span class="sr-only">Nexa Studio</span>
+                    <img class="h-12 w-auto" src="~/assets/icon.svg" alt="" />
                 </a>
             </div>
             <div class="flex lg:hidden">
@@ -38,13 +38,27 @@ const isShowingMenu = ref(false)
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Product</a>
-                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Features</a>
-                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Resources</a>
-                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Company</a>
+                <NuxtLink to="https://nexajs.org/studio" target="_blank" class="text-xl font-semibold leading-6 text-gray-900">
+                    Docs
+                </NuxtLink>
+
+                <NuxtLink to="https://avas.cash/bootstrap" target="_blank" class="text-xl font-semibold leading-6 text-gray-900">
+                    Bootstrap
+                </NuxtLink>
+
+                <NuxtLink to="/token" class="text-xl font-semibold leading-6 text-gray-900">
+                    $STUDIO
+                </NuxtLink>
+
+                <NuxtLink to="/help" class="text-xl font-semibold leading-6 text-gray-900">
+                    Help
+                </NuxtLink>
             </div>
+
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="javascript://" class="text-xl font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+                <NuxtLink to="/buy" class="text-xl font-semibold leading-6 text-gray-900">
+                    Buy $STUDIO Time
+                </NuxtLink>
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
@@ -57,6 +71,7 @@ const isShowingMenu = ref(false)
                         <span class="sr-only">Your Company</span>
                         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
                     </a>
+
                     <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
                         <span class="sr-only">Close menu</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -64,16 +79,31 @@ const isShowingMenu = ref(false)
                         </svg>
                     </button>
                 </div>
+
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                            <a href="javascript://" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Product</a>
-                            <a href="javascript://" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-                            <a href="javascript://" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Resources</a>
-                            <a href="javascript://" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+                            <NuxtLink to="https://nexajs.org/studio" target="_blank" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                Docs
+                            </NuxtLink>
+
+                            <NuxtLink to="https://avas.cash/bootstrap" target="_blank" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                Bootstrap
+                            </NuxtLink>
+
+                            <NuxtLink to="/token" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                $STUDIO
+                            </NuxtLink>
+
+                            <NuxtLink to="/help" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                Help
+                            </NuxtLink>
                         </div>
+
                         <div class="py-6">
-                            <a href="javascript://" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                            <NuxtLink to="/buy" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                Buy $STUDIO Time
+                            </NuxtLink>
                         </div>
                     </div>
                 </div>

@@ -80,5 +80,9 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
 </script>
 
 <template>
-    <slot />
+    <Header />
+
+    <div class="pt-32">
+        <slot />
+    </div>
 </template>

@@ -5,8 +5,6 @@
 
 <template>
     <div class="bg-white">
-        <Header />
-
         <main class="isolate">
             <!-- Hero section -->
             <div class="relative isolate -z-10">
