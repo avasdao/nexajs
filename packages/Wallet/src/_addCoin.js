@@ -3,7 +3,7 @@
  *
  * Adds new coin details to its respective session.
  */
-const addCoin = ({ commit, getters }, _coin) => {
+export default function (_coin) {
     console.info('Adding new coin...', _coin) // eslint-disable-line no-console
 
     /* Request indices. */
@@ -60,6 +60,3 @@ const addCoin = ({ commit, getters }, _coin) => {
     /* Commit updated coins`. */
     commit('setCoins', coins)
 }
-
-/* Export module. */
-export default addCoin
