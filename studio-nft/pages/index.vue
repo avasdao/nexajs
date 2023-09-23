@@ -2,6 +2,8 @@
 /* Import modules. */
 import * as fflate from 'fflate'
 import numeral from 'numeral'
+import { sha256 } from '@nexajs/crypto'
+import { binToHex } from '@nexajs/utils'
 
 useHead({
     title: `NFT/SFT Studio for Creators`,
@@ -14,11 +16,62 @@ useHead({
 import { useSystemStore } from '@/stores/system'
 const System = useSystemStore()
 
+const _jsonToArray = function(json) {
+    const str = JSON.stringify(json, null, 0)
+    const ret = new Uint8Array(str.length)
+
+    for (var i = 0; i < str.length; i++) {
+        ret[i] = str.charCodeAt(i)
+    }
+
+    return ret
+}
+
+
 const ENDPOINT = 'https://nexa.garden/v1/asset'
 
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
 
+const README = `
+       N E X A
+   _______  ______________________   _________ __            .___.__
+   \\      \\ \\_   _____/\\__    ___/  /   _____//  |_ __ __  __| _/|__| ____
+   /   |   \\ |    __)    |    |     \\_____  \\\\   __\\  |  \\/ __ | |  |/  _ \\
+  /    |    \\|     \\     |    |     /        \\|  | |  |  / /_/ | |  (  <_> )
+  \\____|__  /\\___  /     |____|    /_______  /|__| |____/\\____ | |__|\\____/
+          \\/     \\/                        \\/                 \\/
+
+                                                    https://nexa.studio/nft
+
+                                     Thank you for choosing Nexa NFT Studio
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+
+  [ NFT details go here... ]
+
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+  Are you a Creative person with a passion for technology? If so, then you
+  should really consider getting involved in the wonderfully disruptive and
+  immensely rewarding world of Decentralized Application (dApp) building?
+
+  Get started here --> https://nexa.studio
+
+
+  Then check out some of our other Builder studios:
+    1. https://nexa.studio/ai
+    2. https://nexa.studio/wallet
+
+
+  When you feel ready for a challenge, come participate in one of our seasonal
+  Builder Festivals.
+
+  Visit https://nexicana.org for more details.
+
+`
 
 const handleChange = async (e) => {
     const input = e.target
@@ -37,67 +90,237 @@ const handleChange = async (e) => {
     reader.readAsDataURL(input.files[0])
 }
 
-const mint = () => {
-    const json = {
-        niftyVer: '2.0',
-        title: `Penny-a-Nexa #1337`,
-        series: `Noob: My First Collection`,
-        author: `Causes Cash`,
+const mint = async () => {
+    /* Initialize locals. */
+    let buf
+    let cardBack
+    let cardBackId
+    let cardFront
+    let cardFrontId
+    let cardPlayMp3
+    let cardPlayMp3Id
+    let cardPlayMp4
+    let cardPlayMp4Id
+    let cardPlayOgg
+    let cardPlayOggId
+    let cardPlayWav
+    let cardPlayWavId
+    let cardPublic
+    let cardPublicId
+    let json
+    let gardenVer
+    let title
+    let zipped
+
+    /* Set garden version. */
+    gardenVer = '0.1'
+
+    /* Set title. */
+    title = `A Builder's Breakfast`
+
+    /* Request (remote) asset. */
+    buf = await $fetch('https://bafkreicqwnf5fdoxgzw7dpq6t5q7qhm33p644qi3rkwd5idyuy4sdtuiiy.nexa.garden')
+        .catch(err => console.error(err))
+
+    /* Convert (blob) to array buffer. */
+    cardBack = new Uint8Array(await buf.arrayBuffer())
+    cardBackId = sha256(sha256(cardBack))
+    console.log('CARD BACK (sha256):', binToHex(cardBackId))
+
+    /* Request (remote) asset. */
+    buf = await $fetch('https://bafybeifojzblnubcobpzgdcwk62iwfo74b3oamtmv5fjesgb3hdczta6fm.nexa.garden')
+        .catch(err => console.error(err))
+
+    /* Convert (blob) to array buffer. */
+    cardFront = new Uint8Array(await buf.arrayBuffer())
+    cardFrontId = sha256(sha256(cardFront))
+    console.log('CARD FRONT (sha256):', binToHex(cardFrontId))
+
+    /* Request (remote) asset. */
+    buf = await $fetch('https://bafybeic7crntw5ycafsfdnsw4hku32jlqmgrux2kqgsxrdi3hche7ashmq.nexa.garden')
+        .catch(err => console.error(err))
+
+    /* Convert (blob) to array buffer. */
+    cardPublic = new Uint8Array(await buf.arrayBuffer())
+    cardPublicId = sha256(sha256(cardPublic))
+    console.log('CARD PUBLIC (sha256):', binToHex(cardPublicId))
+
+    /* Request (remote) asset. */
+    buf = await $fetch('https://bafkreid332pr3yybhbk3gc46yycnlgy263sutwgv2unucumfvh6esyzffe.nexa.garden')
+        .catch(err => console.error(err))
+
+    /* Convert (blob) to array buffer. */
+    cardPlayMp3 = new Uint8Array(await buf.arrayBuffer())
+    cardPlayMp3Id = sha256(sha256(cardPlayMp3))
+    console.log('CARD PLAY MP3 (sha256):', binToHex(cardPlayMp3Id))
+
+    /* Request (remote) asset. */
+    buf = await $fetch('https://bafkreifefgf3udmjlw5jl6uo5zx3gmrm7gywoavhtpzn57u5r2mdimjlgi.nexa.garden')
+        .catch(err => console.error(err))
+
+    /* Convert (blob) to array buffer. */
+    cardPlayOgg = new Uint8Array(await buf.arrayBuffer())
+    cardPlayOggId = sha256(sha256(cardPlayOgg))
+    console.log('CARD PLAY OGG (sha256):', binToHex(cardPlayOggId))
+
+    /* Request (remote) asset. */
+    buf = await $fetch('https://bafkreic6on3pfgpsvpmj43u6pvt4eppnjptiybv6st7m3fesefjrt3uqru.nexa.garden')
+        .catch(err => console.error(err))
+
+    /* Convert (blob) to array buffer. */
+    cardPlayWav = new Uint8Array(await buf.arrayBuffer())
+    cardPlayWavId = sha256(sha256(cardPlayWav))
+    console.log('CARD PLAY WAV (sha256):', binToHex(cardPlayWavId))
+
+    /* Build JSON package. */
+    json = {
+        gardenVer,
+        title,
+        author: `Shomari`,
+        series: `The Nexican Gallery`,
+        subseries: `Gm!`,
+        info: `This is the 1st NFT to bootstrap The Nexican Gallery's exclusive new collection.`,
         keywords: [
-            'nft',
-            'sft',
+            'steak',
+            'eggs',
+            'ipa',
+            'builder',
+            'breakfast',
+            'gm',
+            'good morning',
+            'amazon',
+            'sunrise',
+            'LFG'
         ],
-        appuri: 'https://causes.cash/noob/token/',
+        appuri: 'https://nexa.studio/app',
         category: 'NFT',
-        info: `Enjoy en exclusive SFT from one of the earliest Nexican artists.`,
-        bindata: '0539',
-        data: {
-            id: '1337',
-            traits: {},
+        assets: {
+            public: {
+                id: binToHex(cardPublicId),
+                title: `Amazon Sunrise`,
+                src: '/public.png',
+                license: [
+                    'CC-BY-NC-SA'
+                ],
+                royalty: [
+                    {
+                        receiver: 'ava.nexa',
+                        rate: 333
+                    }
+                ]
+            },
+            cardf: {
+                id: binToHex(cardFrontId),
+                title: `Steak & Eggs à la IPA`,
+                src: '/cardf.png',
+                license: [
+                    'SAMPLE_ASSET_ID0000000000000000000000000000000000000000000000001',
+                    'SAMPLE_ASSET_ID0000000000000000000000000000000000000000000000022',
+                    'SAMPLE_ASSET_ID0000000000000000000000000000000000000000000000333'
+                ],
+                royalty: {}
+            },
+            cardb: {
+                id: binToHex(cardBackId),
+                title: `LFG!`,
+                src: '/cardb.png',
+                license: [
+                    'CC0'
+                ],
+                royalty: {}
+            },
+            play: [
+                {
+                    id: binToHex(cardPlayMp3Id),
+                    title: `Ohh.. good morning!`,
+                    src: '/play.mp3',
+                    license: [
+                        'CC-BY-NC-SA'
+                    ],
+                    royalty: [
+                        {
+                            receiver: 'shomari.nexa',
+                            rate: 546
+                        }
+                    ],
+                    autoplay: false,
+                    repeat: false,
+                    loops: 0
+                },
+                {
+                    id: binToHex(cardPlayOggId),
+                    title: `Ohh.. good morning!`,
+                    src: '/play.ogg',
+                    license: [
+                        'CC-BY-NC-SA'
+                    ],
+                    royalty: [
+                        {
+                            receiver: 'shomari.nexa',
+                            rate: 546
+                        }
+                    ],
+                    autoplay: true,
+                    repeat: false,
+                    loops: 0
+                },
+                {
+                    id: binToHex(cardPlayWavId),
+                    title: `Ohh.. good morning!`,
+                    src: '/play.wav',
+                    license: [
+                        'CC-BY-NC-SA'
+                    ],
+                    royalty: [
+                        {
+                            receiver: 'shomari.nexa',
+                            rate: 1337
+                        }
+                    ],
+                    autoplay: false,
+                    repeat: false,
+                    loops: 0
+                }
+            ]
         },
-        license: `You can do whatever you want with these SFTs.`,
+        bindata: '0000000000000001',
+        data: {
+            mintid: 1
+        },
+        license: '',
     }
 
-    const zipped = fflate.zipSync({
-        // Directories can be nested structures, as in an actual filesystem
-        'dir1': {
-            'nested': {
-                'hi-again.txt': fflate.strToU8('Hi again!')
-            },
-            // You can also manually write out a directory path
-            'other/tmp.txt': new Uint8Array([97, 98, 99, 100])
-        },
+    zipped = fflate.zipSync({
 
-        'info.json': fflate.strToU8(JSON.stringify(json)),
+        /* Add card back. */
+        'cardb.png': [ cardBack, { level: 0 } ],
 
-        // You can also provide compression options
-        //   'massiveImage.bmp': [aMassiveFile, {
-        //     level: 9,
-        //     mem: 12
-        //   }],
-        // PNG is pre-compressed; no need to waste time
-        //   'superTinyFile.png': [aPNGFile, { level: 0 }],
+        /* Add card front. */
+        'cardf.png': [ cardFront, { level: 0 } ],
 
-        'exec': [{
-            'causes.sh': [fflate.strToU8('echo \nWelcome Guest!\n'), {
-                // ZIP only: Set the operating system to Unix
-                os: 3,
-                // ZIP only: Make this file executable on Unix
-                attrs: 0o755 << 16
-            }]
-        }, {
-            // ZIP and GZIP support mtime (defaults to current time)
-            mtime: new Date('10/20/2020')
-        }]
+        /* Add card public. */
+        'public.png': [ cardPublic, { level: 0 } ],
+
+        /* Add card play(s). */
+        'play.mp3': [ cardPlayMp3, { level: 0 } ],
+        'play.ogg': [ cardPlayOgg, { level: 0 } ],
+        'play.wav': [ cardPlayWav, { level: 9 } ],
+
+        /* Add card info. */
+        'info.json': fflate.strToU8(JSON.stringify(json, null, 2)),
+
+        /* Add README. */
+        'README.TXT': fflate.strToU8(README),
+
     }, {
-        // These options are the defaults for all files, but file-specific
-        // options take precedence.
-        level: 1,
-        // Obfuscate last modified time by default
-        mtime: new Date('1/1/1980')
+        // NOTE: Disables compression.
+        level: 0,
     })
-    // console.log('zipped', zipped)
-    System.downloadBlob(zipped, 'download.zip', 'application/octet-stream')
+    console.log('zipped', zipped)
+
+    /* Download ZIP archive. */
+    // TODO Generate sub-group id to use as filename, ie `Nexa_NFT_Studio-<sub-group-id>.zip`.
+    System.downloadBlob(zipped, 'Nexa_NFT_Studio.zip', 'application/octet-stream')
 }
 
 const build = async () => {
@@ -153,8 +376,8 @@ const build = async () => {
         <MyLibrary />
     </section>
 
-    <section class="my-5 flex flex-row gap-4">
-        <div class="flex-1 h-96">
+    <section class="my-5 flex flex-col lg:flex-row gap-4">
+        <div class="flex-1 h-96 order-3">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
                 Asset Designer
             </h2>
@@ -164,11 +387,11 @@ const build = async () => {
             </div>
         </div>
 
-        <div class="mt-5 w-32 h-96">
+        <div class="mt-5 w-full lg:w-32 h-32 lg:h-96 order-2">
             <Thumbnails />
         </div>
 
-        <div class="w-[500px]">
+        <div class="w-[500px] order-1">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
                 Cover Preview
             </h2>
@@ -183,7 +406,7 @@ const build = async () => {
         </button>
 
         <button
-            @click="build"
+            @click="mint"
             class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
         >
             Preview My Card

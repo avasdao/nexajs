@@ -47,8 +47,9 @@ import {
     sendToken,
 } from '@nexajs/token'
 
-const TOKEN_ID = 'nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8' // STUDIO
-const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
+// nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqqk9wxykhauk0chytjzxz869wgpax5g8ksh7vr27tse83374asn3ayqymlzt0
+const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b1208000058ae312d7ef2cfc5c8b908c23e8ae407a6a20f685fcc1abcb864f18fabd84e3d' // NFT #1
+const TOKEN_PARENT_ID_HEX = TOKEN_ID_HEX.slice(0, 64) // STUDIO
 
 export default async (_wallet, _receiver, _amount) => {
     let coins
@@ -62,7 +63,7 @@ export default async (_wallet, _receiver, _amount) => {
 
     /* Encode Private Key WIF. */
     wif = encodePrivateKeyWif({ hash: sha256 }, _wallet.privateKey, 'mainnet')
-    console.log('WIF', wif)
+    // console.log('WIF', wif)
 
     coins = await getCoins(wif)
         .catch(err => console.error(err))
@@ -74,8 +75,9 @@ export default async (_wallet, _receiver, _amount) => {
 
     /* Filter tokens. */
     // NOTE: Currently limited to a "single" Id.
+    // TODO Improve filter for the parent (authority) UTXO.
     tokens = tokens.filter(_token => {
-        return _token.tokenidHex === TOKEN_ID_HEX
+        return _token.tokenidHex === TOKEN_PARENT_ID_HEX
     })
     // console.log('\n  Tokens (filtered):', tokens)
 
@@ -102,7 +104,7 @@ export default async (_wallet, _receiver, _amount) => {
     // NOTE: Return the authority baton.
     receivers.push({
         address: _wallet.address,
-        tokenid: TOKEN_ID_HEX, // TODO Allow auto-format conversion.
+        tokenid: TOKEN_PARENT_ID_HEX, // TODO Allow auto-format conversion.
         tokens: BigInt(0xfc00000000000000), // All permissions enabled
     })
 
@@ -111,7 +113,7 @@ export default async (_wallet, _receiver, _amount) => {
         address: _wallet.address,
     })
     console.log('\n  Receivers:', receivers)
-// return
+return
     /* Send UTXO request. */
     response = await sendToken(coins, tokens, receivers)
     console.log('Send UTXO (response):', response)

@@ -19,7 +19,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <main class="h-full flex flex-col gap-4">
+    <main class="h-full flex flex-row lg:flex-col gap-4">
         <label
             for="file-upload"
             class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
