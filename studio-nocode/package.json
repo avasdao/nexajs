@@ -1,0 +1,25 @@
+{
+  "name": "nexajs-studio-nocode",
+  "version": "23.9.23",
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "0.4.7",
+    "moment": "2.29.4",
+    "nexajs": "23.9.5",
+    "numeral": "2.0.6",
+    "nuxt": "3.0.0",
+    "pinia": "2.0.32",
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "8.0.0-rc.2",
+    "@nuxtjs/tailwindcss": "6.4.1"
+  }
+}
