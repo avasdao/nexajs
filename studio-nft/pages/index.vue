@@ -92,6 +92,8 @@ const handleChange = async (e) => {
 
 const mint = async () => {
     /* Initialize locals. */
+    let author
+    let bindata
     let buf
     let cardBack
     let cardBackId
@@ -107,8 +109,11 @@ const mint = async () => {
     let cardPlayWavId
     let cardPublic
     let cardPublicId
-    let json
+    let data
     let gardenVer
+    let hash256
+    let json
+    let license
     let title
     let zipped
 
@@ -118,65 +123,73 @@ const mint = async () => {
     /* Set title. */
     title = `A Builder's Breakfast`
 
+    /* Set author. */
+    author = `Shomari`
+
+    /* Set binary data. */
+    bindata = '0000000000000001'
+
+    /* Set data. */
+    data = {
+        mintid: 1
+    }
+
+    /* Set license. */
+    license = ''
+
     /* Request (remote) asset. */
     buf = await $fetch('https://bafkreicqwnf5fdoxgzw7dpq6t5q7qhm33p644qi3rkwd5idyuy4sdtuiiy.nexa.garden')
         .catch(err => console.error(err))
-
     /* Convert (blob) to array buffer. */
     cardBack = new Uint8Array(await buf.arrayBuffer())
     cardBackId = sha256(sha256(cardBack))
-    console.log('CARD BACK (sha256):', binToHex(cardBackId))
+    // console.log('CARD BACK (sha256):', binToHex(cardBackId))
 
     /* Request (remote) asset. */
     buf = await $fetch('https://bafybeifojzblnubcobpzgdcwk62iwfo74b3oamtmv5fjesgb3hdczta6fm.nexa.garden')
         .catch(err => console.error(err))
-
     /* Convert (blob) to array buffer. */
     cardFront = new Uint8Array(await buf.arrayBuffer())
     cardFrontId = sha256(sha256(cardFront))
-    console.log('CARD FRONT (sha256):', binToHex(cardFrontId))
+    // console.log('CARD FRONT (sha256):', binToHex(cardFrontId))
 
     /* Request (remote) asset. */
     buf = await $fetch('https://bafybeic7crntw5ycafsfdnsw4hku32jlqmgrux2kqgsxrdi3hche7ashmq.nexa.garden')
         .catch(err => console.error(err))
-
     /* Convert (blob) to array buffer. */
     cardPublic = new Uint8Array(await buf.arrayBuffer())
     cardPublicId = sha256(sha256(cardPublic))
-    console.log('CARD PUBLIC (sha256):', binToHex(cardPublicId))
+    // console.log('CARD PUBLIC (sha256):', binToHex(cardPublicId))
 
     /* Request (remote) asset. */
     buf = await $fetch('https://bafkreid332pr3yybhbk3gc46yycnlgy263sutwgv2unucumfvh6esyzffe.nexa.garden')
         .catch(err => console.error(err))
-
     /* Convert (blob) to array buffer. */
     cardPlayMp3 = new Uint8Array(await buf.arrayBuffer())
     cardPlayMp3Id = sha256(sha256(cardPlayMp3))
-    console.log('CARD PLAY MP3 (sha256):', binToHex(cardPlayMp3Id))
+    // console.log('CARD PLAY MP3 (sha256):', binToHex(cardPlayMp3Id))
 
     /* Request (remote) asset. */
     buf = await $fetch('https://bafkreifefgf3udmjlw5jl6uo5zx3gmrm7gywoavhtpzn57u5r2mdimjlgi.nexa.garden')
         .catch(err => console.error(err))
-
     /* Convert (blob) to array buffer. */
     cardPlayOgg = new Uint8Array(await buf.arrayBuffer())
     cardPlayOggId = sha256(sha256(cardPlayOgg))
-    console.log('CARD PLAY OGG (sha256):', binToHex(cardPlayOggId))
+    // console.log('CARD PLAY OGG (sha256):', binToHex(cardPlayOggId))
 
     /* Request (remote) asset. */
     buf = await $fetch('https://bafkreic6on3pfgpsvpmj43u6pvt4eppnjptiybv6st7m3fesefjrt3uqru.nexa.garden')
         .catch(err => console.error(err))
-
     /* Convert (blob) to array buffer. */
     cardPlayWav = new Uint8Array(await buf.arrayBuffer())
     cardPlayWavId = sha256(sha256(cardPlayWav))
-    console.log('CARD PLAY WAV (sha256):', binToHex(cardPlayWavId))
+    // console.log('CARD PLAY WAV (sha256):', binToHex(cardPlayWavId))
 
     /* Build JSON package. */
     json = {
         gardenVer,
         title,
-        author: `Shomari`,
+        author,
         series: `The Nexican Gallery`,
         subseries: `Gm!`,
         info: `This is the 1st NFT to bootstrap The Nexican Gallery's exclusive new collection.`,
@@ -199,6 +212,7 @@ const mint = async () => {
                 id: binToHex(cardPublicId),
                 title: `Amazon Sunrise`,
                 src: '/public.png',
+                keywords: [],
                 license: [
                     'CC-BY-NC-SA'
                 ],
@@ -213,6 +227,7 @@ const mint = async () => {
                 id: binToHex(cardFrontId),
                 title: `Steak & Eggs à la IPA`,
                 src: '/cardf.png',
+                keywords: [],
                 license: [
                     'SAMPLE_ASSET_ID0000000000000000000000000000000000000000000000001',
                     'SAMPLE_ASSET_ID0000000000000000000000000000000000000000000000022',
@@ -224,6 +239,7 @@ const mint = async () => {
                 id: binToHex(cardBackId),
                 title: `LFG!`,
                 src: '/cardb.png',
+                keywords: [],
                 license: [
                     'CC0'
                 ],
@@ -234,6 +250,7 @@ const mint = async () => {
                     id: binToHex(cardPlayMp3Id),
                     title: `Ohh.. good morning!`,
                     src: '/play.mp3',
+                    keywords: [],
                     license: [
                         'CC-BY-NC-SA'
                     ],
@@ -251,6 +268,7 @@ const mint = async () => {
                     id: binToHex(cardPlayOggId),
                     title: `Ohh.. good morning!`,
                     src: '/play.ogg',
+                    keywords: [],
                     license: [
                         'CC-BY-NC-SA'
                     ],
@@ -268,6 +286,7 @@ const mint = async () => {
                     id: binToHex(cardPlayWavId),
                     title: `Ohh.. good morning!`,
                     src: '/play.wav',
+                    keywords: [],
                     license: [
                         'CC-BY-NC-SA'
                     ],
@@ -283,15 +302,12 @@ const mint = async () => {
                 }
             ]
         },
-        bindata: '0000000000000001',
-        data: {
-            mintid: 1
-        },
-        license: '',
+        bindata,
+        data,
+        license,
     }
 
     zipped = fflate.zipSync({
-
         /* Add card back. */
         'cardb.png': [ cardBack, { level: 0 } ],
 
@@ -316,11 +332,17 @@ const mint = async () => {
         // NOTE: Disables compression.
         level: 0,
     })
-    console.log('zipped', zipped)
+    console.log('ZIPPED', zipped)
+
+    // let decompressed = fflate.unzipSync(zipped)
+    // console.log('DECOMPRESSED', decompressed)
+
+    /* Calculate double SHA-256 hash. */
+    hash256 = sha256(sha256(zipped))
+    console.log('HASH256', binToHex(hash256))
 
     /* Download ZIP archive. */
-    // TODO Generate sub-group id to use as filename, ie `Nexa_NFT_Studio-<sub-group-id>.zip`.
-    System.downloadBlob(zipped, 'Nexa_NFT_Studio.zip', 'application/octet-stream')
+    System.downloadBlob(zipped, `Nexa_NFT_Studio-${binToHex(hash256)}.zip`, 'application/octet-stream')
 }
 
 const build = async () => {

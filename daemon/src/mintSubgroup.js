@@ -51,7 +51,7 @@ import {
 const TOKEN_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b1208000058ae312d7ef2cfc5c8b908c23e8ae407a6a20f685fcc1abcb864f18fabd84e3d' // NFT #1
 const TOKEN_PARENT_ID_HEX = TOKEN_ID_HEX.slice(0, 64) // STUDIO
 
-export default async (_wallet, _receiver, _amount) => {
+export default async (_wallet, _receiver, _amount, isLive = false) => {
     let coins
     let nullData
     let receivers
@@ -113,15 +113,17 @@ export default async (_wallet, _receiver, _amount) => {
         address: _wallet.address,
     })
     console.log('\n  Receivers:', receivers)
-return
-    /* Send UTXO request. */
-    response = await sendToken(coins, tokens, receivers)
-    console.log('Send UTXO (response):', response)
 
-    try {
-        txResult = JSON.parse(response)
-        console.log('TX RESULT', txResult)
-    } catch (err) {
-        console.error(err)
+    if (isLive) {
+        /* Send UTXO request. */
+        response = await sendToken(coins, tokens, receivers)
+        console.log('Send UTXO (response):', response)
+
+        try {
+            txResult = JSON.parse(response)
+            console.log('TX RESULT', txResult)
+        } catch (err) {
+            console.error(err)
+        }
     }
 }
