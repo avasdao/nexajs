@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Studio Wallet',
+            title: 'Studio Wallet for Creators',
             meta: [
                 { name: 'description', content: 'Create non-fungible and semi-fungible tokens.' },
             ],
