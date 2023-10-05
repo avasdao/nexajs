@@ -4,7 +4,7 @@ import * as fflate from 'fflate'
 import numeral from 'numeral'
 
 useHead({
-    title: `AI Studio for Creators`,
+    title: `Stable Diffusion Studio for Creators`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -142,7 +142,7 @@ const build = async () => {
     <section class="block grid grid-cols-5 gap-6">
         <div class="col-span-3">
             <h1 class="text-4xl lg:text-5xl font-medium">
-                AI Dashboard
+                Stable Diffusion
             </h1>
 
             <p class="mt-2 lg:mt-5 text-sm lg:text-base">

@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-ai",
-  "version": "23.9.23",
+  "version": "23.10.5",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -10,12 +10,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.425.0",
     "@pinia/nuxt": "0.4.7",
+    "fflate": "0.8.1",
     "moment": "2.29.4",
     "nexajs": "23.9.5",
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
     "pinia": "2.0.32",
+    "pouchdb": "8.0.1",
     "uuid": "9.0.0"
   },
   "devDependencies": {
