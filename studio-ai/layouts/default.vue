@@ -61,6 +61,7 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
 })
 
 const isShowingMenu = ref(false)
+const isShowingProfileMenu = ref(false)
 
 // onMounted(() => {
 //     console.log('Mounted!')
@@ -473,7 +474,7 @@ const isShowingMenu = ref(false)
                     To: "transform opacity-0 scale-95"
                 -->
                             <div
-                                v-if="showProfileMenu"
+                                v-if="isShowingProfileMenu"
                                 class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                                 role="menu"
                                 aria-orientation="vertical"

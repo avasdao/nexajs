@@ -1,6 +1,5 @@
 <script setup lang="ts">
 /* Import modules. */
-import * as fflate from 'fflate'
 import numeral from 'numeral'
 
 useHead({
@@ -19,118 +18,37 @@ const ENDPOINT = 'https://nexa.garden/v1/asset'
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
 
-
-const handleChange = async (e) => {
-    const input = e.target
-    console.log('INPUT', input)
-
-    if (!input.files) {
-        return console.error(`Oops! Missing file(s).`)
-    }
-
-    const reader = new FileReader()
-    reader.onload = (e) => {
-        /* Set preview URL. */
-        imagePreviewUrl.value = e.target.result
-    }
-    imageData.value = input.files[0]
-    reader.readAsDataURL(input.files[0])
-}
-
-const mint = () => {
-    const json = {
-        niftyVer: '2.0',
-        title: `Penny-a-Nexa #1337`,
-        series: `Noob: My First Collection`,
-        author: `Causes Cash`,
-        keywords: [
-            'nft',
-            'sft',
-        ],
-        appuri: 'https://causes.cash/noob/token/',
-        category: 'NFT',
-        info: `Enjoy en exclusive SFT from one of the earliest Nexican artists.`,
-        bindata: '0539',
-        data: {
-            id: '1337',
-            traits: {},
-        },
-        license: `You can do whatever you want with these SFTs.`,
-    }
-
-    const zipped = fflate.zipSync({
-        // Directories can be nested structures, as in an actual filesystem
-        'dir1': {
-            'nested': {
-                'hi-again.txt': fflate.strToU8('Hi again!')
-            },
-            // You can also manually write out a directory path
-            'other/tmp.txt': new Uint8Array([97, 98, 99, 100])
-        },
-
-        'info.json': fflate.strToU8(JSON.stringify(json)),
-
-        // You can also provide compression options
-        //   'massiveImage.bmp': [aMassiveFile, {
-        //     level: 9,
-        //     mem: 12
-        //   }],
-        // PNG is pre-compressed; no need to waste time
-        //   'superTinyFile.png': [aPNGFile, { level: 0 }],
-
-        'exec': [{
-            'causes.sh': [fflate.strToU8('echo \nWelcome Guest!\n'), {
-                // ZIP only: Set the operating system to Unix
-                os: 3,
-                // ZIP only: Make this file executable on Unix
-                attrs: 0o755 << 16
-            }]
-        }, {
-            // ZIP and GZIP support mtime (defaults to current time)
-            mtime: new Date('10/20/2020')
-        }]
-    }, {
-        // These options are the defaults for all files, but file-specific
-        // options take precedence.
-        level: 1,
-        // Obfuscate last modified time by default
-        mtime: new Date('1/1/1980')
-    })
-    // console.log('zipped', zipped)
-    System.downloadBlob(zipped, 'download.zip', 'application/octet-stream')
-}
-
-const build = async () => {
-    console.log('building...')
-
-    if (!imageData.value) {
-        return alert(`Oops! You must select a file to upload.`)
-    }
-
-    /* Initialize locals. */
-    let response
-
-    let formData = new FormData()
-
-    formData.append('name', imageData.value?.name)
-
-    formData.append('hi', 'there!')
-    formData.append('hi', 'again...')
-
-    formData.append('images[0]', imageData.value)
-
-    response = await $fetch(ENDPOINT, {
+const init = async () => {
+    const status = await $fetch('/api/s3', {
         method: 'POST',
-        body: formData,
+        body: {
+            hi: 'there!',
+        }
     })
     .catch(err => console.error(err))
-    console.log('RESPONSE (upload):', response)
+    console.log('STATUS', status)
 }
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+// const handleChange = async (e) => {
+//     const input = e.target
+//     console.log('INPUT', input)
+
+//     if (!input.files) {
+//         return console.error(`Oops! Missing file(s).`)
+//     }
+
+//     const reader = new FileReader()
+//     reader.onload = (e) => {
+//         /* Set preview URL. */
+//         imagePreviewUrl.value = e.target.result
+//     }
+//     imageData.value = input.files[0]
+//     reader.readAsDataURL(input.files[0])
+// }
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
