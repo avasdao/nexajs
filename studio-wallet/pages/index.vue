@@ -1,13 +1,9 @@
 <script setup lang="ts">
 /* Import modules. */
-import numeral from 'numeral'
+// import TrezorConnect from '@trezor/connect-web'
+import TrezorConnect, { DEVICE_EVENT, DEVICE } from '@trezor/connect-web'
 
-useHead({
-    title: `NFT/SFT Studio for Creators`,
-    meta: [
-        { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
-    ],
-})
+import numeral from 'numeral'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
@@ -36,11 +32,41 @@ const imageData = ref(null)
 //     reader.readAsDataURL(input.files[0])
 // }
 
+const init = async () => {
+    /* Initialize Trezor Connect. */
+    // source: https://docs.trezor.io/trezor-suite/packages/connect/index.html
+    TrezorConnect.init({
+        lazyLoad: true, // this param will prevent iframe injection until TrezorConnect.method will be called
+        manifest: {
+            email: 'support@avasdao.org',
+            appUrl: 'https://nexa.studio',
+        },
+    })
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+    const params = {
+        path: `m/44'/29223'/0'`,
+        // coin: 'nexa',
+    }
+
+    const result = await TrezorConnect.getPublicKey(params)
+    console.log('TREZOR CONNECT (result):', result)
+
+    /* Initialize Trezor event handler. */
+    TrezorConnect.on(DEVICE_EVENT, event => {
+        console.log('TREZOR EVENT', event)
+        if (event.type === DEVICE.CONNECT) {
+        } else if (event.type === DEVICE.DISCONNECT) {
+        }
+    })
+    // const publicKey = await TrezorConnect.getPublicKey({
+    //     path: `m/44'/29223'/0'/0/0`,
+    // })
+    // console.log('PUBLIC KEY (BTC):', publicKey)
+}
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
