@@ -43,21 +43,21 @@ const init = async () => {
         },
     })
 
-    // const params = {
-    //     path: `m/44'/29223'/0'`,
-    //     // coin: 'nexa',
-    // }
+    const params = {
+        path: `m/44'/29223'/0'`,
+        // coin: 'nexa',
+    }
 
-    // const result = await TrezorConnect.getPublicKey(params)
-    // console.log('TREZOR CONNECT (result):', result)
+    const result = await TrezorConnect.getPublicKey(params)
+    console.log('TREZOR CONNECT (result):', result)
 
     /* Initialize Trezor event handler. */
-    // TrezorConnect.on(DEVICE_EVENT, event => {
-    //     console.log('TREZOR EVENT', event)
-    //     if (event.type === DEVICE.CONNECT) {
-    //     } else if (event.type === DEVICE.DISCONNECT) {
-    //     }
-    // })
+    TrezorConnect.on(DEVICE_EVENT, event => {
+        console.log('TREZOR EVENT', event)
+        if (event.type === DEVICE.CONNECT) {
+        } else if (event.type === DEVICE.DISCONNECT) {
+        }
+    })
     // const publicKey = await TrezorConnect.getPublicKey({
     //     path: `m/44'/29223'/0'/0/0`,
     // })
