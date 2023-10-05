@@ -3,8 +3,8 @@ version: '3.7'
 services:
   app:
     build: .
-    image: studio-nft
-    container_name: studio-nft
+    image: studio-wallet
+    container_name: studio-wallet
     restart: always
     ports:
       - '127.0.0.1:5800:3000'   # use with proxy server (eg. Nginx)
