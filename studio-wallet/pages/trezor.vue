@@ -1,5 +1,7 @@
 <script setup lang="ts">
 /* Import modules. */
+import TrezorConnect, { DEVICE_EVENT, DEVICE } from '@trezor/connect-web'
+
 import numeral from 'numeral'
 
 /* Initialize stores. */
@@ -30,7 +32,35 @@ const imageData = ref(null)
 // }
 
 const init = async () => {
-    // TODO
+    /* Initialize Trezor Connect. */
+    // source: https://docs.trezor.io/trezor-suite/packages/connect/index.html
+    TrezorConnect.init({
+        lazyLoad: true, // this param will prevent iframe injection until TrezorConnect.method will be called
+        manifest: {
+            email: 'support@avasdao.org',
+            appUrl: 'https://nexa.studio',
+        },
+    })
+
+    const params = {
+        path: `m/44'/29223'/0'`,
+        // coin: 'nexa',
+    }
+
+    const result = await TrezorConnect.getPublicKey(params)
+    console.log('TREZOR CONNECT (result):', result)
+
+    /* Initialize Trezor event handler. */
+    TrezorConnect.on(DEVICE_EVENT, event => {
+        console.log('TREZOR EVENT', event)
+        if (event.type === DEVICE.CONNECT) {
+        } else if (event.type === DEVICE.DISCONNECT) {
+        }
+    })
+    // const publicKey = await TrezorConnect.getPublicKey({
+    //     path: `m/44'/29223'/0'/0/0`,
+    // })
+    // console.log('PUBLIC KEY (BTC):', publicKey)
 }
 
 onMounted(() => {
@@ -47,7 +77,7 @@ onMounted(() => {
     <section class="block grid grid-cols-5 gap-6">
         <div class="col-span-3">
             <h1 class="text-4xl lg:text-5xl font-medium">
-                Portfolio
+                Trezor<span class="text-5xl lg:text-6xl text-sky-600 font-light">/</span>OneKey Manager
             </h1>
 
             <p class="mt-2 lg:mt-5 text-sm lg:text-base">
