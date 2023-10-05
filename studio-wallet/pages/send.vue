@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Multimedia — NFT/SFT Studio`,
+    title: `Send — NFT/SFT Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -24,15 +24,11 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Multimedia
+            Send
         </h1>
 
         <p>
-            Find the perfect media for your NFT masterpiece.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
         </p>
-
-        <ol class="pl-10 list-decimal">
-            <li>https://media.com</li>
-        </ol>
     </main>
 </template>

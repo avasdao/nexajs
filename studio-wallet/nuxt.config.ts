@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'NFT/SFT Studio for Creators',
+            title: 'Studio Wallet',
             meta: [
                 { name: 'description', content: 'Create non-fungible and semi-fungible tokens.' },
             ],
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
                 { src: '/js/matomo.js' },
             ],
         },
-        baseURL: '/nft',
+        baseURL: '/wallet',
     },
 
     /* Application Modules */

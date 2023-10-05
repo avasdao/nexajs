@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Wallet — NFT/SFT Studio`,
+    title: `Deposit — NFT/SFT Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -24,7 +24,7 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Wallet
+            Deposit
         </h1>
 
         <p>

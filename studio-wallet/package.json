@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-wallet",
-  "version": "23.9.23",
+  "version": "23.10.5",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
