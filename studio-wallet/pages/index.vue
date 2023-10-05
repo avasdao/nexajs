@@ -35,13 +35,13 @@ const imageData = ref(null)
 const init = async () => {
     /* Initialize Trezor Connect. */
     // source: https://docs.trezor.io/trezor-suite/packages/connect/index.html
-    // TrezorConnect.init({
-    //     lazyLoad: true, // this param will prevent iframe injection until TrezorConnect.method will be called
-    //     manifest: {
-    //         email: 'support@avasdao.org',
-    //         appUrl: 'https://nexa.studio',
-    //     },
-    // })
+    TrezorConnect.init({
+        lazyLoad: true, // this param will prevent iframe injection until TrezorConnect.method will be called
+        manifest: {
+            email: 'support@avasdao.org',
+            appUrl: 'https://nexa.studio',
+        },
+    })
 
     // const params = {
     //     path: `m/44'/29223'/0'`,
