@@ -7,7 +7,7 @@ services:
     container_name: studio-nft
     restart: always
     ports:
-      - '127.0.0.1:5000:3000'   # use with proxy server (eg. Nginx)
+      - '127.0.0.1:5200:3000'   # use with proxy server (eg. Nginx)
       # - '0.0.0.0:80:3000'     # use without proxy server
     logging: # apply better controls to Docker overlay folder
       driver: 'json-file'
