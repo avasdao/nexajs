@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:markets:getquote')
+const debug = debugFactory('nexa:market:getquote')
 
 /* Set endpoint. */
 const ENDPOINT = 'https://nexa.exchange/v1'

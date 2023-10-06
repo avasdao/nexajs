@@ -92,8 +92,8 @@ const FEATURE_CHOICES = [
         value: 'ledger',
     },
     {
-        name: 'Markets',
-        value: 'markets',
+        name: 'Market',
+        value: 'market',
     },
     {
         name: 'Meta Network',
@@ -321,8 +321,8 @@ const displayFeatures = (_features) => {
         case 'ledger':
             display += 'Ledger, '
             break
-        case 'markets':
-            display += 'Markets, '
+        case 'market':
+            display += 'Market, '
             break
         case 'meta':
             display += 'Meta, '

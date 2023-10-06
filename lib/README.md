@@ -138,7 +138,7 @@ $ node examples/send-tx.js
 
 ## Should I use this in Production?
 
-If you are thinking of using the *master* branch of this library in production, __stop__. Master is not stable; it is our development branch, and [only tagged releases may be classified as stable](https://gitlab.com/modenero/nitojs/tags).
+If you are thinking of using the *master* branch of this library in production, __stop__. Master is not stable; it is our development branch, and [only tagged releases may be classified as stable](https://github.com/avasdao/nexajs/tags).
 
 
 ## Can I trust this Code?
@@ -147,7 +147,7 @@ If you are thinking of using the *master* branch of this library in production, 
 
 We recommend every user of this library and the [nexajs](https://gitlab.com/nexajs) ecosystem audit and verify any underlying code for its validity and suitability,  including reviewing any and all of your project's dependencies.
 
-Mistakes and bugs happen, but with your help in resolving and reporting [issues](https://gitlab.com/modenero/nitojs/issues), together we can produce open source software that is:
+Mistakes and bugs happen, but with your help in resolving and reporting [issues](https://github.com/avasdao/nexajs/issues), together we can produce open source software that is:
 
 - Easy to audit and verify,
 - Tested, with test coverage >95%,
@@ -168,7 +168,7 @@ You should always verify this yourself to your own standards.
 Finally, __adhere to best practice__.
 We are not an authorative source of best practice, but, at the very least:
 
-* [Don't re-use addresses](https://en.bitcoin.it/wiki/Address_reuse).
+* [~~Don't re-use addresses~~](https://en.bitcoin.it/wiki/Address_reuse).
 * Don't share BIP32 extended public keys ('xpubs'). [They are a liability](https://bitcoin.stackexchange.com/questions/56916/derivation-of-parent-private-key-from-non-hardened-child), and it only takes 1 misplaced private key (or a buggy implementation!) and you are vulnerable to __catastrophic fund loss__.
 * [Don't use `Math.random`](https://security.stackexchange.com/questions/181580/why-is-math-random-not-designed-to-be-cryptographically-secure) - in any way - don't.
 * Enforce that users always verify (manually) a freshly-decoded human-readable version of their intended transaction before broadcast.
@@ -191,17 +191,17 @@ The below examples are implemented as integration tests, they should be very eas
 Otherwise, pull requests are appreciated.
 Some examples interact (via HTTPS) with a 3rd Party Blockchain Provider (3PBP).
 
-- [Generate a random address](https://gitlab.com/modenero/nitojs/blob/master/test/integration/addresses.spec.ts)
-- [Import an address via WIF](https://gitlab.com/modenero/nitojs/blob/master/test/integration/addresses.spec.ts)
-- [Generate a 2-of-3 P2SH multisig address](https://gitlab.com/modenero/nitojs/blob/master/test/integration/addresses.spec.ts)
-- [Generate a Testnet address](https://gitlab.com/modenero/nitojs/blob/master/test/integration/addresses.spec.ts)
-- [Create a 1-to-1 Transaction](https://gitlab.com/modenero/nitojs/blob/master/test/integration/transactions.spec.ts)
-- [Import a BIP32 testnet xpriv and export to WIF](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
-- [Export a BIP32 xpriv, then import it](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
-- [Export a BIP32 xpub](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
-- [Use BIP39 to generate BIP32 addresses](https://gitlab.com/modenero/nitojs/blob/master/test/integration/bip32.spec.ts)
+- [Generate a random address]()
+- [Import an address via WIF]()
+- [Generate a 2-of-3 P2SH multisig address]()
+- [Generate a Testnet address]()
+- [Create a 1-to-1 Transaction]()
+- [Import a BIP32 testnet xpriv and export to WIF]()
+- [Export a BIP32 xpriv, then import it]()
+- [Export a BIP32 xpub]()
+- [Use BIP39 to generate BIP32 addresses]()
 
-If you have a use case that you feel could be listed here, please [ask for it](https://gitlab.com/modenero/nitojs/issues/new)!
+If you have a use case that you feel could be listed here, please [ask for it](https://github.com/avasdao/nexajs/issues/new)!
 
 
 ## Packages List
@@ -213,27 +213,27 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 - [ ] [App](/packages)
 - [ ] [Blockchain](/packages)
 - [ ] [Charts](/packages)
-- [ ] [Crypto](/packages)
+- [x] [__Crypto__](/packages/crypto)
 - [ ] [DeFi](/packages)
 - [ ] [Express](/packages)
 - [ ] [Games](/packages)
-- [ ] [HD Node](/packages)
-- [ ] [Nexa ID](/packages/id)
+- [x] [__HD Node__](/packages/hdnode)
+- [x] [__Nexa ID__](/packages/id)
 - [ ] [Ledger HW Wallet](/packages)
-- [ ] [Markets](/packages)
+- [x] [__Market__](/packages/market)
 - [ ] [Meta](/packages/meta)
 - [ ] [Privacy](/packages)
 - [x] [__Purse__](/packages/purse)
-- [ ] [Rostrum](/packages)
+- [x] [__Rostrum__](/packages/rostrum)
 - [x] [__RPC__](/packages/rpc)
-- [ ] [Script](/packages)
+- [x] [__Script__](/packages/script)
 - [ ] [Server](/packages)
 - [ ] [Slim](/packages/slim)
-- [ ] [Token](/packages/token)
-- [ ] [Transaction](/packages)
+- [x] [__Token__](/packages/token)
+- [x] [__Transaction__](/packages/transaction)
 - [ ] [Trezor HW Wallet](/packages)
 - [x] [__Utils__](/packages/utils)
-- [ ] [Wallet](/packages)
+- [x] [__Wallet__](/packages/wallet)
 
 * _NOTE: Not all packages are published to the NPM registry._
 
@@ -249,9 +249,5 @@ npm run-script coverage
 ```
 
 
-## Complementing Libraries
-- [BIP39](https://gitlab.com/nexajs/bip39) - Mnemonic generation for deterministic keys
-- [BIP32-Utils](https://gitlab.com/nexajs/bip32-utils) - A set of utilities for working with BIP32
-- [Base58](https://github.com/cryptocoinjs/bs58) - Base58 encoding/decoding
-- [Base58 Check](https://gitlab.com/nexajs/bs58check) - Base58 check encoding/decoding
-- [Bech32](https://gitlab.com/nexajs/bech32) - A BIP173/BIP350 compliant Bech32/Bech32m encoding library
+## Similar Libraries
+- [Nexcore Lib](https://gitlab.com/otoplo/nexa-libs/nexcore-lib) — a fork of [Bitcore Lib Cash library](https://github.com/bitpay/bitcore/tree/master/packages/bitcore-lib-cash) with changes to make it work for Nexa project.

@@ -540,10 +540,10 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/markets@23.8.11":
-  version "23.8.11"
-  resolved "https://registry.yarnpkg.com/@nexajs/markets/-/markets-23.8.11.tgz#7e0b935cdaeb08d118c49eedf4d9a484e94f07fc"
-  integrity sha512-AnJ9wkAIEnYVDk8BrsoW9zV1gjGdEGEf1H3yRo5eVU5gAiGMfS5FYBW/xe4auS/ifwegTMhpWx85GAsOVLVF6A==
+"@nexajs/market@23.10.5":
+  version "23.10.5"
+  resolved "https://registry.yarnpkg.com/@nexajs/market/-/market-23.10.5.tgz#c22c61644a9549ca0d5c51f4ac64762cabef72ed"
+  integrity sha512-aiOlbzyL+eoOyop8HhCqlWR55KAjeBoEWyAFEl1BgIIGRO740EGBMVr9JULvZPFhVmr3vnRLXmQBorF/DKo3XQ==
   dependencies:
     debug "4.3.4"
     events "3.3.0"

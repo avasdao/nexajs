@@ -1,8 +1,8 @@
-# NexaJS Markets
+# NexaJS Market
 
 ### Access to ALL of Nexa's exchange partners in one place.
 
-The Markets package is used to connect and trade with cryptocurrency exchanges and payment processing services worldwide. It provides quick access to market data for storage, analysis, visualization, indicator development, algorithmic trading, strategy backtesting, bot programming, and related software engineering.
+The `Market` package is used to connect and trade with cryptocurrency exchanges and payment processing services worldwide. It provides quick access to market data for storage, analysis, visualization, indicator development, algorithmic trading, strategy backtesting, bot programming, and related software engineering.
 
 ![CCXT Markets Ani](./assets/ccxt-markets-ani.gif)
 
@@ -29,7 +29,7 @@ __Current feature list:__
 
 ## Documentation
 
-Read the [Manual](https;//nexajs.org/markets) for more details.
+Read the [Manual](https;//nexajs.org/market) for more details.
 
 ## Usage
 
@@ -66,9 +66,9 @@ __Private APIs allow the following:__
 > Authentication credentials are (optional), but are _required_ for private API (data) endpoints.
 
 ```js
-import { Markets, version } from '@nexajs/markets'
+import { Market, version } from '@nexajs/market'
 
-const mexc = new Markets.mexc({
+const mexc = new Market.mexc({
     apiKey: 'YOUR_PUBLIC_API_KEY',
     secret: 'YOUR_SECRET_PRIVATE_KEY',
 })
@@ -80,7 +80,7 @@ console.log(version)
 ### Fetch Ticker
 
 ```js
-import { mexc } from '@nexajs/markets'
+import { mexc } from '@nexajs/market'
 
 const exchange = new mexc()
 
@@ -96,7 +96,7 @@ console.log(ticker)
 ### Make Trade
 
 ```js
-import { coinex } from '@nexajs/markets'
+import { coinex } from '@nexajs/market'
 
 const exchange = new coinex()
 

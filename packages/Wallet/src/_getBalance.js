@@ -62,7 +62,7 @@ const getBalanceBySessionId = (
     }
 
     /* Retrieve market price. */
-    const marketPrice = await Nexa.Markets.getTicker(baseCurrency, _quoteCurrency)
+    const marketPrice = await Nexa.Market.getTicker(baseCurrency, _quoteCurrency)
     console.info(`Market price (${_quoteCurrency})`, marketPrice) // eslint-disable-line no-console
 
     /* Validate market price. */

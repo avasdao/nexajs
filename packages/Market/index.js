@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:markets')
+const debug = debugFactory('nexa:market')
 
 /* Import modules. */
 import { EventEmitter } from 'events'
@@ -18,16 +18,16 @@ export const getTicker = _getTicker
 
 
 /**
- * Markets Class
+ * Market Class
  *
  * Manage all market data, including:
  *   - price feeds
  *   - price alerts
  */
-export class Markets extends EventEmitter {
+export class Market extends EventEmitter {
     constructor(_primary, _secondary) {
-        /* Initialize Markets class. */
-        debug('Initializing Markets...')
+        /* Initialize Market class. */
+        debug('Initializing Market...')
         debug(JSON.stringify(_primary, null, 2))
         debug(JSON.stringify(_secondary, null, 2))
         super()
@@ -40,10 +40,10 @@ export class Markets extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Markets class. */
-Nexa.Markets = Markets
+/* Initialize Market class. */
+Nexa.Market = Market
 
-/* Initialize Markets modules. */
+/* Initialize Market modules. */
 Nexa.getPrice = getPrice // FIXME: Make this an alias for `getQuote`.
 Nexa.getQuote = getQuote
 Nexa.getTicker = getTicker

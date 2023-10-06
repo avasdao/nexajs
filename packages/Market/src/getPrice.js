@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:markets:getprice')
+const debug = debugFactory('nexa:market:getprice')
 
 /**
  * Get Price

@@ -1,7 +1,7 @@
 {
-  "name": "@nexajs/markets",
-  "version": "23.8.11",
-  "description": "Access to ALL of Nexa's exchange partners in one place.",
+  "name": "@nexajs/market",
+  "version": "23.10.5",
+  "description": "Access and trae with Nexa's exchange partners all from one place.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NexaJS developers",

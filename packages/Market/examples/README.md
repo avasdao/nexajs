@@ -1,6 +1,6 @@
-# NexaJS Markets Examples
+# NexaJS Market Examples
 
-A complete guide to ALL the Markets commands available from the protocol.
+A complete guide to ALL the Market commands available from the protocol.
 
 # Table of contents
 
