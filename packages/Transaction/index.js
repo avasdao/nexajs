@@ -71,11 +71,20 @@ export class Transaction {
             this._sequence = DEFAULT_SEQNUMBER
         }
 
-        /* Validate (locking) script. */
-        if (_params?.script) {
-            this._script = _params.script
+        /* Validate locking (script). */
+        if (_params?.locking) {
+            this._locking = _params.locking
         } else {
-            this._script = SCRIPT_TEMPLATE_1
+            this._locking = SCRIPT_TEMPLATE_1
+        }
+
+        /* Validate unlocking (script). */
+        if (_params?.unlocking === null) {
+            // NOTE: disables "automatic" transaction signing.
+            this._unlocking = null
+        } else {
+            // NOTE: expect `undefined` for "standard" pubkey+sig procedure.
+            this._unlocking = _params.unlocking
         }
     }
 
@@ -124,12 +133,16 @@ export class Transaction {
         return binToHex(this._raw)
     }
 
-    get script() {
-        return this._script
+    get locking() {
+        return this._locking
     }
 
     get sequence() {
         return this._sequence
+    }
+
+    get unlocking() {
+        return this._unlocking
     }
 
     addInput(_outpoint, _satoshis) {
@@ -181,7 +194,8 @@ export class Transaction {
             unspents,
             this.outputs,
             this.lockTime,
-            this.script,
+            this.locking,
+            this.unlocking,
         ).catch(err => console.error(err))
         // console.log('RAW TX', this._raw)
 

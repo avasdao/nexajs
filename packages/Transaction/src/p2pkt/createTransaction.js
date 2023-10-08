@@ -25,10 +25,9 @@ export default async (
     _unspentOutputs,
     _outputs,
     _locktime,
-    _lockScriptBin,
+    _lockingScript,
+    _unlockingScript,
 ) => {
-    let lockScriptBin
-
     /* Initialize WIFs. */
     const wifs = []
 
@@ -104,7 +103,8 @@ const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28
                         return _wif.privateKey
                     }),
                     redeemScript,
-                    _lockScriptBin,
+                    _lockingScript,
+                    _unlockingScript,
                 )
             )
         )
@@ -119,7 +119,8 @@ const redeemScript = '522102bd13fc253edbcbcbfa1c21b7ba63336c30dbd3b51bdb4deb3e28
                     inputIndex,
                     wifs[inputIndex].privateKey,
                     wifs[inputIndex].publicKey,
-                    _lockScriptBin,
+                    _lockingScript,
+                    _unlockingScript,
                 )
             )
         )

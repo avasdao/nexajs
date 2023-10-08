@@ -40,16 +40,17 @@ export default async (_coins, _tokens, _receivers) => {
     let feeRate
     let feeTotal
     let feeTotalWithChange
+    let locking
     let lockTime
     let receiver
     let receivers
     let satoshis
-    let script
     let sequence
     let tokenAmount
     let tokenid
     let tokens
     let transaction
+    let unlocking
     let unspentCoins
     let unspentDustCoins
     let unspentTokens
@@ -160,9 +161,18 @@ export default async (_coins, _tokens, _receivers) => {
         sequence = DEFAULT_SEQNUMBER
     }
 
-    /* Validate (locking) script. */
-    if (_coins.script) {
-        script = _coins.script
+    /* Validate locking (script). */
+    if (_coins.locking) {
+        locking = _coins.locking
+    }
+
+    /* Validate unlocking (script). */
+    if (_coins.unlocking === null) {
+        // NOTE: disables "automatic" transaction signing.
+        unlocking = null
+    } else {
+        // NOTE: expect `undefined` for "standard" pubkey+sig procedure.
+        unlocking = _coins.unlocking
     }
 
     /* Create new transaction. */
@@ -170,7 +180,8 @@ export default async (_coins, _tokens, _receivers) => {
         feeRate,
         lockTime,
         sequence,
-        script,
+        locking,
+        unlocking,
     })
 
     /* Handle tokens. */

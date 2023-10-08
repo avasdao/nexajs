@@ -40,56 +40,74 @@ export default async (
     inputIndex,
     privateKey,
     publicKey,
-    lockScriptBin,
+    lockingScript,
+    unlockingScript,
 ) => {
     // Define SIGHASH_ALL constant.
+    // TODO Add support for ALL signature types.
+    //      (source: https://spec.nexa.org/nexa/sighashtype.md)
     const SIGHASH_ALL = 0x0
 
     /* Initialize locals. */
     let scriptPubKey
-    let signatureBin
+    let signature
     let signedInput
     let unlockingBytecode
 
     // Generate a transaction signature for this input.
-    signatureBin = await signTransactionInput(
+    signature = await signTransactionInput(
         transaction,
         input.amount,
         inputIndex,
-        lockScriptBin,
+        lockingScript,
         SIGHASH_ALL,
         privateKey,
     )
-    // console.log('signatureBin', signatureBin)
+    // console.log('signature', signature)
 
     scriptPubKey = encodeDataPush(publicKey)
 
-    // Build the unlocking script that unlocks the P2PKT locking script.
-    unlockingBytecode = flattenBinArray(
-        [
-            // NOTE: We exclude all "well-known" script templates.
-            encodeDataPush(scriptPubKey),
-            encodeDataPush(signatureBin),
-        ]
-    )
+    /* Validate unlocking script. */
+    // NOTE: We exclude all "well-known" script templates.
+    if (typeof unlockingScript === 'undefined') {
+        /* Build "standard" script for unlocking P2PKT transactions. */
+        unlockingBytecode = flattenBinArray(
+            [
+                encodeDataPush(scriptPubKey),
+                encodeDataPush(signature),
+            ]
+        )
+    } else {
+        /* Validate unlocking script. */
+        if (unlockingScript === null || unlockingScript === false) {
+            /* Build an "empty" unlocking script. */
+            unlockingBytecode = new Uint8Array(0)
+        } else {
+            /* Set unlocking byte code. */
+            unlockingBytecode = unlockingScript
+        }
+    }
 
     /* Validate locking script. */
-    if (lockScriptBin !== null &&
-        typeof lockScriptBin !== 'undefined' &&
-        binToHex(lockScriptBin) !== binToHex(SCRIPT_TEMPLATE_1)
-        // add more script templates...
+    if (lockingScript !== null &&
+        typeof lockingScript !== 'undefined' &&
+        binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1)
+        // TODO add support for ALL script templates...
     ) {
         unlockingBytecode = flattenBinArray([
-            encodeDataPush(lockScriptBin),
+            encodeDataPush(lockingScript), // NOTE: add "locking" prefix ??
             unlockingBytecode,
         ])
     }
-    // console.log('unlockingBytecode', unlockingBytecode)
+    console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
 
-    // Add the unlocking script to the input.
-    signedInput = { ...input, unlockingBytecode } // NOTE: Here we update the unlocking script.
+    /* Add unlocking script to (signed) input package. */
+    signedInput = {
+        ...input,
+        unlockingBytecode,
+    }
     // console.log('signedInput', signedInput)
 
-    // Return the signed input.
+    // Return the signed input (package).
     return signedInput
 }
