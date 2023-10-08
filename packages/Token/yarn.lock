@@ -298,10 +298,10 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/transaction@23.9.2":
-  version "23.9.2"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.9.2.tgz#292aa2e043b3d87374bcd7831e4709007adcdb07"
-  integrity sha512-maTqosXx9yq4LSfUzoBfERU7HED0eeR2pVBneiJz5SHJVxASwnjQjRvAMnJ507/NZybFtnPWaUK+w+GPq0mdXg==
+"@nexajs/transaction@23.10.7":
+  version "23.10.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.10.7.tgz#9a9d7618cbfbe686cd2cfd74e0ee05e57de8e681"
+  integrity sha512-MaFpFuaAgqvBrW1o+PrNaDQEpQJKPYjeqRPjec0Ix1QqiS3DEHVlcNxwYKxnFw/GaOy1lwU6Nz5jtzYVWBJ19w==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.9.3"
