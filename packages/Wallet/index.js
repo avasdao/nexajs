@@ -197,8 +197,27 @@ export class Wallet extends EventEmitter {
         }
     }
 
-    test() {
-        return 'Wallet (Instance) is working!'
+    /**
+     * Initialization
+     *
+     * Create a new Wallet instance (passing optional primary & secondary
+     * parameters).
+     */
+    static init(_primary, _secondary) {
+        const _sleep = (_ms) => {
+            return new Promise(resolve => setTimeout(resolve, _ms))
+        }
+
+        return (async function () {
+            /* Create new instance. */
+            const wallet = new Wallet(_primary, _secondary)
+
+            // NOTE: We pause 1/2 second to allow the wallet to complete setup.
+            await _sleep(500)
+
+            // Return instance
+            return wallet
+        })()
     }
 
     get status() {
