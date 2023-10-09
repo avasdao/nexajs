@@ -102,13 +102,7 @@ const imageData = ref(null)
 
     <div class="my-10 border-t border-gray-300" />
 
-    <div class="space-y-12">
-        <Metadata />
-
-        <Collection />
-
-        <Royalties />
-    </div>
+    <Metadata />
 
     <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
         <button type="button" class="text-xl font-semibold leading-6 text-gray-900">

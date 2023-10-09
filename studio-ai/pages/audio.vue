@@ -56,7 +56,12 @@ const imageData = ref(null)
             </h1>
 
             <p class="mt-2 lg:mt-5 text-sm lg:text-base">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+                Create custom-length music just by describing it.
+                Powered by the latest audio diffusion models.
+            </p>
+
+            <p class="mt-2 lg:mt-5 text-sm lg:text-base">
+                Trance, Ibiza, Beach, Sun, 4 AM, Progressive, Synthesizer, 909, Dramatic Chords, Choir, Euphoric, Nostalgic, Dynamic, Flowing
             </p>
         </div>
 
@@ -102,13 +107,7 @@ const imageData = ref(null)
 
     <div class="my-10 border-t border-gray-300" />
 
-    <div class="space-y-12">
-        <Metadata />
-
-        <Collection />
-
-        <Royalties />
-    </div>
+    <Metadata />
 
     <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
         <button type="button" class="text-xl font-semibold leading-6 text-gray-900">

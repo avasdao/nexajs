@@ -72,23 +72,24 @@ onMounted(() => {
     </section>
 
     <section class="my-5 flex flex-row gap-4">
-        <div class="flex-1 h-96">
+        <div class="flex-1 h-72">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Asset Designer
+                Text Prompt
             </h2>
 
-            <div class="h-full bg-rose-100 border border-rose-300 rounded-xl shadow">
-                <!-- preview windows -->
-            </div>
+            <textarea
+                placeholder="enter your prompt here (photo-realistic)"
+                class="p-3 w-full h-full bg-amber-100 border border-amber-300 rounded-xl shadow placeholder:text-amber-500"
+            />
         </div>
 
         <div class="mt-5 w-32 h-96">
-            <Thumbnails />
+            <Themes />
         </div>
 
         <div class="w-[500px]">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Cover Preview
+                Generative Preview
             </h2>
 
             <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" />
@@ -110,13 +111,7 @@ onMounted(() => {
 
     <div class="my-10 border-t border-gray-300" />
 
-    <div class="space-y-12">
-        <Metadata />
-
-        <Collection />
-
-        <Royalties />
-    </div>
+    <Metadata />
 
     <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
         <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
