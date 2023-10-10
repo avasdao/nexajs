@@ -16,7 +16,7 @@ const IS_LIVE_BROADCAST = true
     // return createGroup()
     // return signMessage()
 
-    wallet = new Wallet(process.env.MNEMONIC)
+    wallet = await Wallet.init(process.env.MNEMONIC)
 
     setTimeout(() => {
         console.log('\nWALLET ADDRESS', wallet.address, '\n')

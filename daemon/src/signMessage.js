@@ -73,7 +73,7 @@ export default async () => {
     const secp256k1 = await instantiateSecp256k1()
     const sha256 = await instantiateSha256()
 
-    let wallet = new Wallet(process.env.MNEMONIC)
+    let wallet = await Wallet.init(process.env.MNEMONIC)
 
     /* Encode Private Key WIF. */
     wif = encodePrivateKeyWif(sha256, wallet.privateKey, 'mainnet')

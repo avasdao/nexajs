@@ -219,14 +219,11 @@ export const useWalletStore = defineStore('wallet', {
                 throw new Error('Missing mnemonic (seed) phrase.')
             }
 
-            this._wallet = new Wallet(this.mnemonic)
+            this._wallet = await Wallet.init(this.mnemonic)
             // console.log('RE-CREATED WALLET', this._wallet)
 
-            // FIXME Workaround to solve race condition.
-            setTimeout(this.loadAssets, 100)
-
-            /* Authorize session. */
-            // setTimeout(_authSession.bind(this), 100)
+            /* Load coins. */
+            this.loadCoins
         },
 
         createWallet(_entropy) {

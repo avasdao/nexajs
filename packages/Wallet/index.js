@@ -411,7 +411,7 @@ export class Wallet extends EventEmitter {
         let wif
 
         /* Initialize wallet. */
-        wallet = new Wallet(this.mnemonic)
+        wallet = await Wallet.init(this.mnemonic)
         // console.log('WALLET', wallet)
 
         /* Request (current) address. */

@@ -8,7 +8,7 @@ Create a Nexa Wallet to manage your assets.
 ```js
 import { Wallet } from '@nexajs/wallet'
 
-const wallet = new Wallet()
+const wallet = await Wallet.init()
 // {
 //   mnemonic: 'correct horse battery staple',
 //   path: `m/44'/29223'/0'`,
@@ -35,7 +35,7 @@ console.log(balance)
 ```js
 import { Wallet } from '@nexajs/wallet'
 
-const wallet = new Wallet('correct horse battery staple')
+const wallet = await Wallet.init('correct horse battery staple')
 // {
 //   mnemonic: 'correct horse battery staple',
 //   path: `m/44'/29223'/0'`,
@@ -62,7 +62,7 @@ console.log(balance)
 ```js
 import { Wallet } from '@nexajs/wallet'
 
-const wallet = new Wallet(0xdeadbeef)
+const wallet = await Wallet.init(0xdeadbeef)
 // {
 //   mnemonic: 'correct horse battery staple',
 //   path: `m/44'/29223'/0'`,
@@ -89,7 +89,7 @@ console.log(balance)
 ```js
 import { Wallet } from '@nexajs/wallet'
 
-const wallet = new Wallet('satoshi@bitcoin.org', 'setecastronomy')
+const wallet = await Wallet.init('satoshi@bitcoin.org', 'setecastronomy')
 // {
 //   mnemonic: 'correct horse battery staple',
 //   path: `m/44'/29223'/0'`,

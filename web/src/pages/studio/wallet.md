@@ -23,7 +23,7 @@ NexaJS offers a comprehensive Wallet package that you can add to any of your new
 ```js
 import { Wallet } from '@nexajs/wallet'
 
-const wallet = new Wallet()
+const wallet = await Wallet.init()
 // {
 //   mnemonic: 'correct horse battery staple',
 //   path: `m/44'/29223'/0'`,
