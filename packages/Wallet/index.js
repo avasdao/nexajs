@@ -213,6 +213,7 @@ export class Wallet extends EventEmitter {
             const wallet = new Wallet(_primary, _secondary)
 
             // NOTE: We pause 1/2 second to allow the wallet to complete setup.
+            // FIXME Properly detect wallet setup completion.
             await _sleep(500)
 
             // Return instance
