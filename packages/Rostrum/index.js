@@ -38,6 +38,7 @@ const DEFAULT_CONN_ID = 0
 
 /* Initialize constants. */
 const RECONNECTION_DELAY = 3000 // default is 3 seconds
+const PING_INTERVAL = 60000 // every 1 minute
 
 /* Initialize ping handler. */
 let pingHandler
@@ -88,6 +89,125 @@ const getConnection = async function (_connid) {
     }
 }
 
+const initConnection = function (_connid) {
+    console.log(`Initializing connection [ ${_connid} ]`)
+
+    /* Handle open connection. */
+    this._connMgr.pool[_connid].onopen = () => {
+        debug(`Connection [ ${_connid} ] is OPEN!`)
+        console.info('Connected to Rostrum ->', _connid, new Date().getTime())
+
+        /* Set (connection) ready flag. */
+        // this._connMgr.isOpen = true
+        this._connMgr.status[_connid].isOpen = true
+
+        /* Handle (pending) queue. */
+        this._requestQueue.forEach(_request => {
+            /* Send request. */
+            this._connMgr.pool[_connid]
+                .send(JSON.stringify(_request) + '\n') // NOTE: We MUST include the "new line".
+        })
+    }
+
+    /* Handle message. */
+    this._connMgr.pool[_connid].onmessage = async (_msg) => {
+        // console.info('Connection [ %s ] sent ->', i, _msg?.data)
+
+        let error
+        let json
+        let id
+
+        const data = _msg?.data
+
+        try {
+            /* Decode data. */
+            json = JSON.parse(data)
+            // console.log('JSON', json)
+
+            id = data.id
+
+            // NOTE: Reject this promise.
+            if (json?.error) {
+                return this._connMgr.requests[id]?.reject({ error: json.error?.message })
+            }
+        } catch (err) {
+            return this._connMgr.requests[id]?.reject(err)
+        }
+
+        /* Validate message data. */
+        if (_msg?.data) {
+            try {
+                /* Parse JSON data. */
+                const data = JSON.parse(_msg.data)
+                // console.log('JSON (data):', data)
+
+                /* Validate message id. */
+                if (data?.id) {
+                    // console.log('JSON (result):', data.id, data.result)
+
+                    /* Set message id. */
+                    id = data.id
+
+                    /* Resolve (async) request. */
+                    this._connMgr.requests[id]?.resolve(data.result)
+                }
+
+                /* Validate message parameters. */
+                if (data?.params) {
+                    // console.log('JSON (params):', data.params)
+
+                    /* Validate message id. */
+                    if (id) {
+                        /* Resolve (async) request. */
+                        this._connMgr.requests[id]?.resolve(data.params)
+                    } else {
+                        /* Update message id. */
+                        id = data.params[0]
+
+                        /* Make callback. */
+                        this._connMgr.requests[id]?.callback(data.params)
+                    }
+                }
+            } catch (err) {
+                console.error(err)
+                this._connMgr.requests[id]?.reject(err)
+            }
+        }
+
+    }
+
+    /* Handle connection close. */
+    // NOTE: We currently NEVER allow this connect to be closed.
+    //       We will ALWAYS attempt to re-connect.
+    // TODO: Allow connection to be "manually" closed.
+    this._connMgr.pool[_connid].onclose = () => {
+        debug(`Connection [ ${_connid} ] is CLOSED.`)
+        console.log('CONNECTION CLOSED', _connid, new Date().getTime())
+
+        /* Validate connection status. */
+        if (this._connMgr.status[_connid].isOpen) {
+            /* Set (connection) ready flag. */
+            this._connMgr.status[_connid].isOpen = false
+        }
+
+        console.info(`Waiting (${RECONNECTION_DELAY} ms) to reconnect...`)
+
+        // NOTE: Add re-try delay and max attempts.
+        setTimeout(async () => {
+            /* Re-establish connection to remote server(s). */
+            this._connMgr.pool[_connid] = await getConnection.bind(this)(_connid)
+
+            /* Re-initialize connection. */
+            initConnection.bind(this)(_connid)
+        }, RECONNECTION_DELAY)
+    }
+
+    /* Handle connection error. */
+    this._connMgr.pool[_connid].onerror = (e) => {
+        console.error('ERROR! [ %s ]:', _connid, new Date().getTime(), e)
+    }
+}
+
 /**
  * Rostrum Class
  *
@@ -100,6 +220,8 @@ export class Rostrum extends EventEmitter {
         debug(JSON.stringify(_params, null, 2))
         super()
 
+        // TODO Allow customization of data providers using `_params`.
+
         /* Initialize request queue. */
         this._requestQueue = []
 
@@ -107,22 +229,27 @@ export class Rostrum extends EventEmitter {
         this._connMgr = null
     }
 
-    static init() {
+    /**
+     * Initialization
+     *
+     * Create a new Rostrum instance (passing optional parameters).
+     */
+    static init(_params) {
         return (async function () {
-            let rostrum = await new Rostrum()
+            /* Create new instance. */
+            const rostrum = new Rostrum(_params)
 
             // Do async stuff
-            await rostrum._connect(false)
+            await rostrum._connect()
 
             // Return instance
             return rostrum
         })()
     }
 
-    async _connect(_isReconnecting = false) {
-// console.log('WE ARE CONNECTING AGAIN...')
+    async _connect() {
         /* Validate (global-shared) connection manager. */
-        if (globalThis.Nexa.Rostrum._connMgr && !_isReconnecting) {
+        if (globalThis.Nexa.Rostrum._connMgr) {
             /* Use existing (global-shared) connection. */
             this._connMgr = globalThis.Nexa.Rostrum._connMgr
 
@@ -168,132 +295,12 @@ export class Rostrum extends EventEmitter {
 
         /* Initialize connection handlers. */
         for (let i = 0; i < this._connMgr.pool.length; i++) {
-            /* Handle open connection. */
-            this._connMgr.pool[i].onopen = () => {
-                debug(`Connection [ ${i} ] is OPEN!`)
-                console.info('Connected to Rostrum ->', i, new Date().getTime())
-
-                /* Set (connection) ready flag. */
-                // this._connMgr.isOpen = true
-                this._connMgr.status[i].isOpen = true
-
-                /* Handle (pending) queue. */
-                this._requestQueue.forEach(_request => {
-                    /* Send request. */
-                    this._connMgr.pool[i]
-                        .send(JSON.stringify(_request) + '\n') // NOTE: We MUST include the "new line".
-                })
-
-                /* Manage session keep-alive. */
-                pingHandler = setInterval(async () => {
-                    this.ping()
-                }, 60000) // every 1 minute
-            }
-
-            /* Handle message. */
-            this._connMgr.pool[i].onmessage = async (_msg) => {
-                // console.info('Connection [ %s ] sent ->', i, _msg?.data)
-
-                let error
-                let json
-                let id
-
-                const data = _msg?.data
-
-                try {
-                    /* Decode data. */
-                    json = JSON.parse(data)
-                    // console.log('JSON', json)
-
-                    id = data.id
-
-                    // NOTE: Reject this promise.
-                    if (json?.error) {
-                        return this._connMgr.requests[id]?.reject({ error: json.error?.message })
-                    }
-                } catch (err) {
-                    return this._connMgr.requests[id]?.reject(err)
-                }
-
-                /* Validate message data. */
-                if (_msg?.data) {
-                    try {
-                        /* Parse JSON data. */
-                        const data = JSON.parse(_msg.data)
-                        // console.log('JSON (data):', data)
-
-                        /* Validate message id. */
-                        if (data?.id) {
-                            // console.log('JSON (result):', data.id, data.result)
-
-                            /* Set message id. */
-                            id = data.id
-
-                            /* Resolve (async) request. */
-                            this._connMgr.requests[id]?.resolve(data.result)
-                        }
-
-                        /* Validate message parameters. */
-                        if (data?.params) {
-                            // console.log('JSON (params):', data.params)
-
-                            /* Validate message id. */
-                            if (id) {
-                                /* Resolve (async) request. */
-                                this._connMgr.requests[id]?.resolve(data.params)
-                            } else {
-                                /* Update message id. */
-                                id = data.params[0]
-
-                                /* Make callback. */
-                                this._connMgr.requests[id]?.callback(data.params)
-                            }
-                        }
-                    } catch (err) {
-                        console.error(err)
-                        this._connMgr.requests[id]?.reject(err)
-                    }
-                }
-
-            }
-
-            /* Handle connection close. */
-            // NOTE: We currently NEVER allow this connect to be closed.
-            //       We will ALWAYS attempt to re-connect.
-            // TODO: Allow connection to be "manually" closed.
-            this._connMgr.pool[i].onclose = () => {
-                debug(`Connection [ ${i} ] is CLOSED.`)
-                console.log('CONNECTION CLOSED', i, new Date().getTime())
-
-                /* Validate connection status. */
-                if (this._connMgr.status[i].isOpen) {
-                    /* Set (connection) ready flag. */
-                    this._connMgr.status[i].isOpen = false
-                }
-
-                /* Validate ping (interval) handler. */
-                // if (pingHandler) {
-                //     clearInterval(pingHandler)
-                //
-                //     pingHandler = null
-                // }
-
-                // TODO Preserve `_connMgr.requests` from failed connection.
-
-                /* Clear (global-shared) connection manager. */
-                // globalThis.Nexa.Rostrum._connMgr = null
-
-                /* Re-establish connection to remote server(s). */
-                // NOTE: Add re-try delay and max attempts.
-                // setTimeout(() => this._connect(true), RECONNECTION_DELAY)
-            }
-
-            /* Handle connection error. */
-            this._connMgr.pool[i].onerror = (e) => {
-                console.error('ERROR! [ %s ]:',
-                    i, new Date().getTime(), e)
-            }
+            /* Initialize connection(s). */
+            initConnection.bind(this)(i)
         }
+
+        /* Manage session keep-alive. */
+        pingHandler = setInterval(this.ping, PING_INTERVAL)
     }
 
     get status() {
