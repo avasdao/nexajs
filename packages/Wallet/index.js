@@ -212,11 +212,12 @@ export class Wallet extends EventEmitter {
             /* Create new instance. */
             const wallet = new Wallet(_primary, _secondary)
 
-            // NOTE: We pause 1/2 second to allow the wallet to complete setup.
-            // FIXME Properly detect wallet setup completion.
+            // NOTE: We pause 1/2 second (100ms mostly works too) to allow
+            //       the wallet time to complete its setup.
+            // FIXME Reduce setup by properly detecting wallet setup completion.
             await _sleep(500)
 
-            // Return instance
+            /* Return (initialized) instance. */
             return wallet
         })()
     }
