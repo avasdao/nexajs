@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/transaction",
-  "version": "23.10.7",
+  "version": "23.10.8",
   "description": "Manages transaction building and signing.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -12,7 +12,7 @@
     "@nexajs/address": "23.9.3",
     "@nexajs/crypto": "23.5.22",
     "@nexajs/hdnode": "23.9.3",
-    "@nexajs/script": "23.9.2",
+    "@nexajs/script": "23.10.8",
     "@nexajs/utils": "23.7.22",
     "debug": "4.3.4"
   }
