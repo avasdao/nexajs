@@ -99,7 +99,7 @@ export default async (
             unlockingBytecode,
         ])
     }
-    console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
+    // console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
 
     /* Add unlocking script to (signed) input package. */
     signedInput = {
