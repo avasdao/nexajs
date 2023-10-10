@@ -1,10 +1,7 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
 
-import {
-    encodeAddress,
-    listUnspent,
-} from '@nexajs/address'
+import { listUnspent } from '@nexajs/address'
 
 import { sha256 } from '@nexajs/crypto'
 
@@ -14,25 +11,10 @@ import {
     mnemonicToEntropy,
 } from '@nexajs/hdnode'
 
-import { getCoins } from '@nexajs/purse'
-
 import {
-    getTip,
     getTokenInfo,
     subscribeAddress,
 } from '@nexajs/rostrum'
-
-import { OP } from '@nexajs/script'
-
-import {
-    getTokens,
-    sendToken,
-} from '@nexajs/token'
-
-import {
-    binToHex,
-    hexToBin,
-} from '@nexajs/utils'
 
 import { Wallet } from '@nexajs/wallet'
 
@@ -43,7 +25,6 @@ import {
     instantiateSecp256k1,
 } from '@bitauth/libauth'
 
-// import _authSession from './profile/authSession.ts'
 import _broadcast from './wallet/broadcast.ts'
 import _setEntropy from './wallet/setEntropy.ts'
 
@@ -55,9 +36,6 @@ let secp256k1
     ripemd160 = await instantiateRipemd160()
     secp256k1 = await instantiateSecp256k1()
 })()
-
-/* Set ($AVAS) token id. */
-const AVAS_TOKENID = '57f46c1766dc0087b207acde1b3372e9f90b18c7e67242657344dcd2af660000'
 
 /**
  * Wallet Store
@@ -77,17 +55,61 @@ export const useWalletStore = defineStore('wallet', {
         // NOTE: This is a cryptographically-secure "random" 32-byte (256-bit) value. */
         _entropy: null,
 
+        /**
+         * Keychain
+         *
+         * Manages a collection of BIP-32 wallets.
+         *
+         * [
+         *   {
+         *     id        : '5be2e5c3-9d27-4b0f-bb3c-8b2ef6fdaafd',
+         *     type      : 'studio',
+         *     title     : `My Studio Wallet`,
+         *     entropy   : 0x0000000000000000000000000000000000000000000000000000000000000000,
+         *     createdAt : 0123456789,
+         *     updatedAt : 1234567890,
+         *   },
+         *   {
+         *     id        : 'f2457985-4b92-4025-be8d-5f11a5fc4077',
+         *     type      : 'ledger',
+         *     title     : `My Ledger Wallet`,
+         *     createdAt : 0123456789,
+         *     updatedAt : 1234567890,
+         *   },
+         * ]
+         */
+        _keychain: null,
+
         /* List of all (token-based) UTXOs. */
         _tokens: null,
 
-        /* Wallet object. */
+        /* Currently active wallet object. */
         _wallet: null,
-
-        /* Wallet import format (WIF) private key. */
-        // _wif: null,
     }),
 
+    // NOTE: We NEVER expose the "sensitive" entropy values from:
+    //       1. `_entropy`
+    //       2. `_keychain`
+    //
     getters: {
+        /* Return a short address. */
+        abbr(_state) {
+            if (!this.address) return null
+
+            return this.address.slice(5, 17) + '...' + this.address.slice(-12)
+        },
+
+        /* Return (default) address. */
+        address(_state) {
+            if (!this.wallet) return null
+
+            return this.wallet.address
+        },
+
+        assets(_state) {
+            return _state._assets
+        },
+
         /**
          * Is Ready?
          *
@@ -107,37 +129,15 @@ export const useWalletStore = defineStore('wallet', {
             return true
         },
 
-        address(_state) {
-            if (!_state._wallet) return null
-
-            return _state._wallet.address
-        },
-
-        abbr(_state) {
-            if (!_state._wallet) return null
-
-            // console.log('_state._wallet', _state._wallet)
-
-            return _state._wallet.address.slice(0, 19) + '...' + _state._wallet.address.slice(-6)
-        },
-
         mnemonic(_state) {
             if (!_state._entropy) return null
 
             return entropyToMnemonic(_state._entropy)
         },
 
-        entropy(_state) {
-            return _state._entropy
-        },
-
         wallet(_state) {
             return _state._wallet
         },
-
-        // wif(_state) {
-        //     return _state._wif
-        // },
 
         asset(_state) {
             if (_state._assetid === null) {
@@ -163,10 +163,6 @@ export const useWalletStore = defineStore('wallet', {
             return _state._assets[_state._assetid]
         },
 
-        assets(_state) {
-            return _state._assets
-        },
-
         coins(_state) {
             return _state._coins
         },
@@ -175,28 +171,19 @@ export const useWalletStore = defineStore('wallet', {
             return _state._tokens
         },
 
-        balance(_state) {
-            // return _state._balance
-        },
-
         publicKeyHash(_state) {
-            if (!_state.wallet?.publicKey) {
-                return null
-            }
+            if (!this.wallet?.publicKey) return null
 
-            const scriptPushPubKey = encodeDataPush(_state.wallet.publicKey)
+            const scriptPushPubKey = encodeDataPush(this.wallet.publicKey)
 
             return ripemd160.hash(sha256(scriptPushPubKey))
         },
 
         wif(_state) {
-            if (!_state.wallet?.privateKey) {
-                return null
-            }
+            if (!this.wallet?.privateKey) return null
 
-            return encodePrivateKeyWif({ hash: sha256 }, _state.wallet.privateKey, 'mainnet')
+            return encodePrivateKeyWif({ hash: sha256 }, this.wallet.privateKey, 'mainnet')
         },
-
     },
 
     actions: {
@@ -219,11 +206,12 @@ export const useWalletStore = defineStore('wallet', {
                 throw new Error('Missing mnemonic (seed) phrase.')
             }
 
+            /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this.mnemonic)
-            // console.log('RE-CREATED WALLET', this._wallet)
+            console.log('(Initialized) wallet', this._wallet)
 
-            /* Load coins. */
-            this.loadCoins
+            /* Load assets. */
+            this.loadAssets()
         },
 
         createWallet(_entropy) {

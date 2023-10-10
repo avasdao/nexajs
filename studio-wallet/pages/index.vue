@@ -3,9 +3,10 @@
 import numeral from 'numeral'
 
 /* Define properties. */
-const props = defineProps({
-    isFullScreen: Boolean,
-})
+// const props = defineProps({
+//     isFullScreen: Boolean,
+// })
+const isFullScreen = ref(false)
 
 /* Initialize stores. */
 import { useProfileStore } from '@/stores/profile'
@@ -112,8 +113,9 @@ const tokensBalanceUsd = computed(() => {
 })
 
 const importWallet = () => {
-    const response = Wallet.setMnemonic(mnemonic.value)
-    console.log('WALLET', response)
+    /* Set/save mnemonic. */
+    // NOTE: Will save `entropy` to the local storage.
+    Wallet.setMnemonic(mnemonic.value)
 }
 
 
