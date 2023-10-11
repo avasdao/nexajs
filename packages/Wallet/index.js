@@ -233,13 +233,19 @@ export class Wallet extends EventEmitter {
         return this.address.slice(5, 17) + '...' + this.address.slice(-12)
     }
 
-    get assetid() {
-        return this._assetid
+    get accountIdx() {
+        /* Return current (receiving) address (index). */
+        return this._accountIdx
     }
 
     get address() {
         /* Return current (receiving) address. */
         return this.getAddress(this._addressIdx, false)
+    }
+
+    get addressIdx() {
+        /* Return current (receiving) address (index). */
+        return this._addressIdx
     }
 
     get asset() {
@@ -265,6 +271,10 @@ export class Wallet extends EventEmitter {
 
         /* Return null. */
         return null
+    }
+
+    get assetid() {
+        return this._assetid
     }
 
     get assets() {
@@ -455,7 +465,14 @@ export class Wallet extends EventEmitter {
     }
 
     getNewAddress(_isChange = false) {
-        return 'nexa:YetAnotherSampleAddress'
+        /* Set the next address index. */
+        const nextIdx = this.addressIdx + 1
+
+        /* Set new (address) index to path. */
+        this.setPathAddress(nextIdx)
+
+        /* Return (incremented) address. */
+        return this.address
     }
 
     getBalances(_hasFiat) {
@@ -483,12 +500,12 @@ export class Wallet extends EventEmitter {
 
     setPathAccount(_index) {
         /* Set account index. */
-        this._accountIdx = parseInt(_index)
+        this._accountIdx = parseInt(_index).toString()
     }
 
     setPathAddress(_index) {
         /* Set address index. */
-        this._addressIdx = parseInt(_index)
+        this._addressIdx = parseInt(_index).toString()
     }
 
     async send(_tokenid, _receiver, _amount) {
