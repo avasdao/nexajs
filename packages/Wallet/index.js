@@ -105,6 +105,42 @@ const WalletStatus = Object.freeze({
  *
  * A complete Wallet solution for managing a wide variety of
  * digital assets types.
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Coin Model
+ *
+ * Coins are (UTXO) objects containing:
+ *   1. Outpoint
+ *   2. Satoshis
+ *   3. WIF
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Token Model
+ *
+ * Tokens are (UTXO) objects containing:
+ *   1. Outpoint
+ *   2. Satoshis
+ *   3. Token ID
+ *   4. Token ID (Hex)
+ *   5. Tokens
+ *   6. WIF
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * UTXO Status Codes
+ *
+ * Individual UTXOs may sometimes possess "meta" qualities.
+ *
+ *   active   : Session address is ready to receive OR spend funds.
+ *   disabled : Already received and spent funds (MUST be empty).
+ *   locked   : Session address is reserved OR has received funds currently
+ *              being held in reserve for a later use.
+ *              (eg. CashShuffle, CashFusion, ANYONECANPAY, etc)
+ *
+ * NOTE: Reserved paths are used to "freeze" coins, for use with
+ *       "registered" contracts.
  */
 export class Wallet extends EventEmitter {
     constructor(_primary, _secondary) {
