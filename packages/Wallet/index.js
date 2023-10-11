@@ -54,6 +54,7 @@ import _parseDerivationPath from './src/parseDerivationPath.js'
 
 /* Export (local) modules. */
 export const getDerivationPath = _getDerivationPath
+export const parseDerivationPath = _parseDerivationPath
 
 /* Initialize Libauth crypto interfaces. */
 let ripemd160
@@ -475,7 +476,17 @@ export class Wallet extends EventEmitter {
         return this.address
     }
 
-    getBalances(_hasFiat) {
+    /**
+     * Get Balances
+     *
+     * Retrieve balances for ALL wallet assets, ie.
+     *   - coins / satoshis
+     *   - all tokens
+     *
+     * (Optionally) convert all asset values to fiat.
+     */
+    getBalances(_fiat) {
+        let fiat
         let satoshis
         let tokens
         let usd
@@ -483,18 +494,30 @@ export class Wallet extends EventEmitter {
         satoshis = 133700
 
         tokens = {
-            tokenid1: '333',
-            tokenid2: '88888888',
+            tokenid1: {
+                amount: '333',
+                fiat: {
+                    usd: 0.00,
+                }
+            },
+            tokenid2: {
+                amount: '88888888',
+                fiat: {
+                    usd: 0.00,
+                }
+            },
         }
 
-        if (_hasFiat) {
-            usd = 13.37
+        if (_fiat) {
+            fiat = {
+                usd: 13.37,
+            }
         }
 
         return {
             satoshis,
             tokens,
-            usd,
+            fiat,
         }
     }
 
@@ -509,19 +532,24 @@ export class Wallet extends EventEmitter {
     }
 
     async send(_tokenid, _receiver, _amount) {
+        /* Initialize locals. */
         let address
         let coins
         let error
+        let locking
+        let lockTime
         let nullData
         let receiver
         let receivers
         let response
         let satoshis
+        let sequence
         let suggestions
         let tokenAmount
         let tokens
         let txidem
         let txResult
+        let unlocking
         let unspentCoins
         let unspentTokens
         let wallet
@@ -536,7 +564,8 @@ export class Wallet extends EventEmitter {
         // console.log('ADDRESS', address)
 
         /* Encode Private Key WIF. */
-        wif = encodePrivateKeyWif({ hash: sha256 }, wallet.privateKey, 'mainnet')
+        wif = encodePrivateKeyWif(
+            { hash: sha256 }, wallet.privateKey, 'mainnet')
 
         /* Validate amount. */
         if (typeof _amount === 'bigint') {
@@ -621,11 +650,49 @@ export class Wallet extends EventEmitter {
             /* Send UTXO request. */
             response = await sendCoin(coins, receivers)
             // console.log('Send UTXO (response):', response)
+        } else if (
+            (_tokenid.coins || _tokenid.tokens) &&
+            _tokenid.receivers.length > 0
+        ) {
+            /* Initialize transaction (object) builder. */
+            const txBuild = {}
+
+            /* Set coins. */
+            txBuild.coins = _tokenid.coins
+
+            /* Set tokens. */
+            txBuild.tokens = _tokenid.tokens
+
+            /* Set receivers. */
+            txBuild.receivers = _tokenid.receivers
+
+            /* Set lockTime. */
+            txBuild.lockTime = _tokenid.lockTime
+
+            /* Set sequence. */
+            txBuild.sequence = _tokenid.sequence
+
+            /* Set locking. */
+            txBuild.locking = _tokenid.locking
+
+            /* Set unlocking. */
+            txBuild.unlocking = _tokenid.unlocking
+
+            // TODO Add validation for each (object) parameter.
+
+            /* Validate tokens. */
+            if (txBuild.tokens) {
+                /* Send CUSTOM token(s). */
+                response = await sendToken(txBuild)
+            } else {
+                /* Send CUSTOM coin(s). */
+                response = await sendCoin(txBuild)
+            }
         } else {
-            // TODO Add support for OBJECT parameters.
-            throw new Error('Invalid amount.')
+            throw new Error('Oops! Your transaction parameters are invalid.')
         }
 
+        /* Handle transaction result. */
         try {
             txResult = JSON.parse(response)
             // console.log('TX RESULT', txResult)
@@ -669,7 +736,7 @@ export class Wallet extends EventEmitter {
         }
     }
 
-    async update(_subscribe = false, _hasFiat = false) {
+    async update(_subscribe = false, _fiat = 'USD') {
         console.info('Wallet address:', this.address)
 
         /* Initialize locals. */
@@ -684,7 +751,7 @@ export class Wallet extends EventEmitter {
 
                 // emit to subscribers
                 this.emit('onUpdate', {
-                    balances: this.getBalances(_hasFiat),
+                    balances: this.getBalances(_fiat),
                     coins: this._coins,
                     tokens: this._tokens,
                 })
@@ -744,13 +811,15 @@ export class Wallet extends EventEmitter {
     toObject() {
         /* Return primary details. */
         return {
+            accountIdx: this.accountIdx,
+            address: this.address,
+            addressIdx: this.addressIdx,
+            change: this.change,
             entropy: this.entropy,
             mnemonic: this.mnemonic,
             path: this.path,
             privateKey: this.privateKey,
             publicKey: this.publicKey,
-            address: this.address,
-            change: this.change,
         }
     }
 
@@ -769,6 +838,7 @@ Nexa.Wallet = Wallet
 
 /* Initialize Wallet modules. */
 Nexa.getDerivationPath = getDerivationPath
+Nexa.parseDerivationPath = parseDerivationPath
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
