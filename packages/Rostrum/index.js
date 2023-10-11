@@ -300,7 +300,9 @@ export class Rostrum extends EventEmitter {
         }
 
         /* Manage session keep-alive. */
-        pingHandler = setInterval(this.ping, PING_INTERVAL)
+        // NOTE: Requires arrow func to "fix" (this) context issue??
+        //       (source: https://developer.mozilla.org/en-US/docs/Web/API/setInterval#a_possible_solution)
+        pingHandler = setInterval(() => this.ping(), PING_INTERVAL)
     }
 
     get status() {
