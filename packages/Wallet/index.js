@@ -6,7 +6,10 @@ const debug = debugFactory('nexa:wallet')
 import { EventEmitter } from 'events'
 
 /* Import (library) modules. */
-import { encodeAddress } from '@nexajs/address'
+import {
+    encodeAddress,
+    listUnspent,
+} from '@nexajs/address'
 
 import {
     randomBytes,
@@ -217,10 +220,13 @@ export class Wallet extends EventEmitter {
             /* Create new instance. */
             const wallet = new Wallet(_primary, _secondary)
 
-            // NOTE: We pause 1/2 second (100ms mostly works too) to allow
+            // NOTE: We pause 1/2 second (~100ms probably works too) to allow
             //       the wallet time to complete its setup.
             // FIXME Reduce setup by properly detecting wallet setup completion.
             await _sleep(500)
+
+            /* Request an update for asset data. */
+            await wallet.update()
 
             /* Return (initialized) instance. */
             return wallet
@@ -552,39 +558,18 @@ export class Wallet extends EventEmitter {
         let unlocking
         let unspentCoins
         let unspentTokens
-        let wallet
-        let wif
-
-        /* Initialize wallet. */
-        wallet = await Wallet.init(this.mnemonic)
-        // console.log('WALLET', wallet)
-
-        /* Request (current) address. */
-        address = wallet.address
-        // console.log('ADDRESS', address)
-
-        /* Encode Private Key WIF. */
-        wif = encodePrivateKeyWif(
-            { hash: sha256 }, wallet.privateKey, 'mainnet')
 
         /* Validate amount. */
         if (typeof _amount === 'bigint') {
             /* Set token amount. */
             tokenAmount = _amount
 
-            /* Get coins. */
-            coins = await getCoins(wif)
-                .catch(err => console.error(err))
-            // console.log('COINS', coins)
-
-            /* Get tokens. */
-            tokens = await getTokens(wif)
-                .catch(err => console.error(err))
-            // console.log('TOKENS', tokens)
+            // console.log('TOKENID', _tokenid)
+            // console.log('TOKENS', this.tokens)
 
             /* Filter tokens. */
             // NOTE: Currently limited to a "single" Id.
-            tokens = tokens.filter(_token => {
+            tokens = this.tokens.filter(_token => {
                 return _token.tokenidHex === _tokenid
             })
             // console.log('TOKENS (filtered)', tokens)
@@ -608,7 +593,7 @@ export class Wallet extends EventEmitter {
             /* Handle (automatic) TOKEN change. */
             if (unspentTokens - tokenAmount > BigInt(0)) {
                 receivers.push({
-                    address: wallet.address,
+                    address: this.address,
                     tokenid: _tokenid, // TODO Allow auto-format conversion.
                     tokens: (unspentTokens - tokenAmount),
                 })
@@ -616,12 +601,12 @@ export class Wallet extends EventEmitter {
 
             // FIXME: FOR DEV PURPOSES ONLY
             receivers.push({
-                address: wallet.address,
+                address: this.address,
             })
             // console.log('RECEIVERS', receivers)
 
             /* Send UTXO request. */
-            response = await sendToken(coins, tokens, receivers)
+            response = await sendToken(this.coins, tokens, receivers)
             // console.log('Send UTXO (response):', response)
         } else if (typeof _receiver === 'bigint') {
             /* Set receiver. */
@@ -629,10 +614,6 @@ export class Wallet extends EventEmitter {
 
             /* Set satoshis. */
             satoshis = _receiver
-
-            coins = await getCoins(wif)
-                .catch(err => console.error(err))
-            // console.log('COINS', coins)
 
             const receivers = [
                 {
@@ -643,12 +624,12 @@ export class Wallet extends EventEmitter {
 
             // FIXME: FOR DEV PURPOSES ONLY
             receivers.push({
-                address: wallet.address,
+                address: this.address,
             })
             // console.log('RECEIVERS', receivers)
 
             /* Send UTXO request. */
-            response = await sendCoin(coins, receivers)
+            response = await sendCoin(this.coins, receivers)
             // console.log('Send UTXO (response):', response)
         } else if (
             (_tokenid.coins || _tokenid.tokens) &&
@@ -736,12 +717,14 @@ export class Wallet extends EventEmitter {
         }
     }
 
+    /**
+     * Update (Coins & Tokens)
+     *
+     * Will retrieve real-time asset info and save the details locally.
+     */
     async update(_subscribe = false, _fiat = 'USD') {
-        console.info('Wallet address:', this.address)
-
         /* Initialize locals. */
         let unspent
-        let wif
 
         /* Subscribe to (receiving) addresses. */
         if (_subscribe === true) {
@@ -758,13 +741,10 @@ export class Wallet extends EventEmitter {
             })
         }
 
-        /* Encode Private Key WIF. */
-        wif = encodePrivateKeyWif({ hash: sha256 }, this.privateKey, 'mainnet')
-
         // Fetch all unspent transaction outputs for the temporary in-browser wallet.
         unspent = await listUnspent(this.address)
             .catch(err => console.error(err))
-        console.log('UNSPENT', unspent)
+        // console.log('\nUNSPENT', unspent)
 
         /* Validate unspent outputs. */
         if (unspent.length === 0) {
@@ -774,7 +754,6 @@ export class Wallet extends EventEmitter {
         /* Retrieve coins. */
         this._coins = unspent
             .filter(_u => _u.hasToken === false)
-            .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
             .map(_unspent => {
                 const outpoint = _unspent.outpoint
                 const satoshis = _unspent.satoshis
@@ -782,30 +761,34 @@ export class Wallet extends EventEmitter {
                 return {
                     outpoint,
                     satoshis,
-                    wif: this._wif,
+                    wif: this.wif,
                 }
             })
-        console.log('\n  Coins:', this.coins)
+        // console.log('\nCOINS', this.coins)
 
         /* Retrieve tokens. */
         this._tokens = unspent
             .filter(_u => _u.hasToken === true)
-            .filter(_u => this._spentCoins.includes(_u.outpoint) === false)
             .map(_unspent => {
                 const outpoint = _unspent.outpoint
                 const satoshis = _unspent.satoshis
                 const tokenid = _unspent.tokenid
+                const tokenidHex = _unspent.tokenidHex
                 const tokens = _unspent.tokens
 
                 return {
                     outpoint,
                     satoshis,
                     tokenid,
+                    tokenidHex,
                     tokens,
-                    wif: this._wif,
+                    wif: this.wif,
                 }
             })
-        console.log('\n  Tokens:', this.tokens)
+        // console.log('\nTOKENS', this.tokens)
+
+        /* Completed successfully. */
+        return true
     }
 
     toObject() {
