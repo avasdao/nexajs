@@ -573,6 +573,11 @@ export class Wallet extends EventEmitter {
         this._addressIdx = parseInt(_index).toString()
     }
 
+    /**
+     * Send (Assets)
+     *
+     * Receives parameters for transferring any form of Nexa asset(s).
+     */
     async send(_tokenid, _receiver, _amount) {
         /* Initialize locals. */
         let address
@@ -672,38 +677,38 @@ export class Wallet extends EventEmitter {
             _tokenid.receivers.length > 0
         ) {
             /* Initialize transaction (object) builder. */
-            const txBuild = {}
+            const txBuilder = {}
 
             /* Set coins. */
-            txBuild.coins = _tokenid.coins
+            txBuilder.coins = _tokenid.coins
 
             /* Set tokens. */
-            txBuild.tokens = _tokenid.tokens
+            txBuilder.tokens = _tokenid.tokens
 
             /* Set receivers. */
-            txBuild.receivers = _tokenid.receivers
+            txBuilder.receivers = _tokenid.receivers
 
             /* Set lockTime. */
-            txBuild.lockTime = _tokenid.lockTime
+            txBuilder.lockTime = _tokenid.lockTime
 
             /* Set sequence. */
-            txBuild.sequence = _tokenid.sequence
+            txBuilder.sequence = _tokenid.sequence
 
             /* Set locking. */
-            txBuild.locking = _tokenid.locking
+            txBuilder.locking = _tokenid.locking
 
             /* Set unlocking. */
-            txBuild.unlocking = _tokenid.unlocking
+            txBuilder.unlocking = _tokenid.unlocking
 
             // TODO Add validation for each (object) parameter.
 
             /* Validate tokens. */
-            if (txBuild.tokens) {
+            if (txBuilder.tokens) {
                 /* Send CUSTOM token(s). */
-                response = await sendToken(txBuild)
+                response = await sendToken(txBuilder)
             } else {
                 /* Send CUSTOM coin(s). */
-                response = await sendCoin(txBuild)
+                response = await sendCoin(txBuilder)
             }
         } else {
             throw new Error('Oops! Your transaction parameters are invalid.')
