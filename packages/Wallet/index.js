@@ -262,7 +262,9 @@ export class Wallet extends EventEmitter {
             await _sleep(500)
 
             /* Request an update for asset data. */
+            // TODO Support "user-defined" updates.
             await wallet.update()
+            // await wallet.update(true, _secondary)
 
             /* Return (initialized) instance. */
             return wallet
@@ -527,39 +529,51 @@ export class Wallet extends EventEmitter {
      *
      * (Optionally) convert all asset values to fiat.
      */
-    getBalances(_fiat) {
+    getBalances(_fiat = 'USD') {
+// console.log('GET BALANCES (fiat):', _fiat)
+
+        /* Initialize locals. */
+        let coins
         let fiat
         let satoshis
         let tokens
-        let usd
 
-        satoshis = 133700
-
-        tokens = {
-            tokenid1: {
-                amount: '333',
-                fiat: {
-                    usd: 0.00,
-                }
-            },
-            tokenid2: {
-                amount: '88888888',
-                fiat: {
-                    usd: 0.00,
-                }
-            },
+        coins = {
+            amount: Number(1337.69),
+            satoshis: BigInt(133769),
         }
 
+        /* Validate fiat value(s). */
         if (_fiat) {
-            fiat = {
-                usd: 13.37,
+            coins.fiat = {
+                'USD': 0.1337,
             }
         }
 
+
+        tokens = {
+            tokenid1Hex: {
+                amount: BigInt(333),
+                fiat: {
+                    'USD': 0.0000,
+                },
+            },
+            tokenid2Hex: {
+                amount: BigInt(88888888),
+                fiat: {
+                    'USD': 0.0000,
+                },
+            },
+            tokenid3Hex: {
+                amount: BigInt(1),
+                fiat: null,
+            },
+        }
+
+        /* Return balances. */
         return {
-            satoshis,
+            coins,
             tokens,
-            fiat,
         }
     }
 
