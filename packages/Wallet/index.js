@@ -4,6 +4,8 @@ const debug = debugFactory('nexa:wallet')
 
 /* Import modules. */
 import { EventEmitter } from 'events'
+import fetch from 'node-fetch'
+import numeral from 'numeral'
 
 /* Import (library) modules. */
 import {
@@ -87,6 +89,8 @@ const DEFAULT_COIN_TYPE = `29223'` // (0x7227) Nexa (https://spec.nexa.org)
 const DEFAULT_ACCOUNT_IDX = `0'`
 const DEFAULT_CHANGE = '0'
 const DEFAULT_ADDRESS_IDX = '0'
+
+const BALANCE_UPDATE_DELAY = 30000 // 30 seconds
 
 
 /**
@@ -183,11 +187,14 @@ export class Wallet extends EventEmitter {
         this._title = null
         this._description = null
 
-        /* Currently active asset id. */
+        /* Holds the (currently) active asset id. */
         this._assetid = null
 
-        /* Directory of (owned) asset details (metadata). */
+        /* Holds a directory of (owned) asset details (metadata). */
         this._assets = null
+
+        /* Holds real-time market data. */
+        this._balances = null
 
         /* Handle hex (strings) and bytes. */
         if (Array.isArray(_primary) && _primary?.length === 32) {
@@ -263,8 +270,11 @@ export class Wallet extends EventEmitter {
 
             /* Request an update for asset data. */
             // TODO Support "user-defined" updates.
-            await wallet.update()
-            // await wallet.update(true, _secondary)
+            await wallet.updateAssets()
+            // await wallet.updateAssets(true, _secondary)
+
+            /* Update balances. */
+            await wallet.updateBalances()
 
             /* Return (initialized) instance. */
             return wallet
@@ -324,6 +334,10 @@ export class Wallet extends EventEmitter {
 
     get assets() {
         return this._assets
+    }
+
+    get balances() {
+        return this._balances
     }
 
     get change() {
@@ -521,7 +535,25 @@ export class Wallet extends EventEmitter {
     }
 
     /**
-     * Get Balances
+     * Get Balance
+     *
+     * Requests the real-time balance of ANY asset held in the wallet.
+     *
+     * (Optionally) provide a token id (for a specific asset balance).
+     *
+     * (Optionally) provide a fiat code, eg. 'CNY'.
+     *
+     * NOTE: If no token id is required, the 1st parameter can be a fiat code.
+     */
+    getBalance(_tokenid, _fiat) {
+        // TODO Complete request queries and data responses.
+
+        // NOTE: This is the (default) balance response.
+        return this.balances?.coins.satoshis
+    }
+
+    /**
+     * Update Balances
      *
      * Retrieve balances for ALL wallet assets, ie.
      *   - coins / satoshis
@@ -529,24 +561,53 @@ export class Wallet extends EventEmitter {
      *
      * (Optionally) convert all asset values to fiat.
      */
-    getBalances(_fiat = 'USD') {
-// console.log('GET BALANCES (fiat):', _fiat)
+    async updateBalances(_fiat = 'USD') {
+// console.log('UPDATE BALANCES (fiat):', _fiat)
 
         /* Initialize locals. */
         let coins
+        let coinsTotal
         let fiat
+        let fiatUSD
+        let markets
+        let price
+        let response
         let satoshis
         let tokens
 
+        /* Initialize markets. */
+        markets = {}
+
+        /* Requet NEXA ticker. */
+        response = await fetch('https://nexa.exchange/ticker')
+            .catch(err => console.error(err))
+
+        /* Request JSON. */
+        markets['NEXA'] = await response.json()
+        console.log('MARKETS', markets)
+
+        price = markets['NEXA'].quote.USD.price
+        console.log('PRICE', price)
+
+        console.log('COINS', this.coins)
+        coinsTotal = this.coins.reduce(
+            (_total, _coins) => (_total + _coins.satoshis), 0n
+        )
         coins = {
-            amount: Number(1337.69),
-            satoshis: BigInt(133769),
+            amount: Number(coinsTotal) / 100.0,
+            satoshis: coinsTotal,
         }
 
         /* Validate fiat value(s). */
         if (_fiat) {
+            /* Set USD. */
+            fiatUSD = Number(coinsTotal) / 100 // convert to amount
+            fiatUSD = fiatUSD * price // calculate USD value
+            fiatUSD = numeral(fiatUSD).format('0,0.00[000000]') // format value
+            fiatUSD = parseFloat(fiatUSD) // conver to decimal
+
             coins.fiat = {
-                'USD': 0.1337,
+                'USD': fiatUSD,
             }
         }
 
@@ -570,11 +631,22 @@ export class Wallet extends EventEmitter {
             },
         }
 
-        /* Return balances. */
-        return {
+        /* Save balances. */
+        this._balances = {
             coins,
             tokens,
         }
+        console.log('UPDATED BALANCES', this._balances)
+
+        /* Set a timeout (delay) for the next update. */
+        // NOTE: Use an "arrow function" to resolve (this) issue.
+        setTimeout(() => {
+            /* Update balances. */
+            this.updateBalances(_fiat)
+        }, BALANCE_UPDATE_DELAY)
+
+        /* Return balances. */
+        return this._balances
     }
 
     setPathAccount(_index) {
@@ -773,11 +845,11 @@ export class Wallet extends EventEmitter {
     }
 
     /**
-     * Update (Coins & Tokens)
+     * Update Assets (Coins & Tokens)
      *
      * Will retrieve real-time asset info and save the details locally.
      */
-    async update(_subscribe = false, _fiat = 'USD') {
+    async updateAssets(_subscribe = false, _fiat = 'USD') {
         /* Initialize locals. */
         let unspent
 
@@ -785,11 +857,12 @@ export class Wallet extends EventEmitter {
         if (_subscribe === true) {
             /* Subscribe to address. */
             await subscribeAddress(this.address, async () => {
-                await this.update()
+                await this.updateAssets()
 
                 // emit to subscribers
                 this.emit('onUpdate', {
-                    balances: this.getBalances(_fiat),
+                    satoshis: this.getBalance(null),
+                    balances: this.balances,
                     coins: this._coins,
                     tokens: this._tokens,
                 })
