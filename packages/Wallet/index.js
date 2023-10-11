@@ -258,7 +258,7 @@ export class Wallet extends EventEmitter {
         }
 
         /* Validate asset details (in directory). */
-        if (this.assets?[this.assetid]) {
+        if (this.assets && this.assets[this.assetid]) {
             /* Return asset details. */
             return this.assets[this.assetid]
         }
