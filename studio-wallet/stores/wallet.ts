@@ -20,7 +20,6 @@ import { Wallet } from '@nexajs/wallet'
 
 /* Libauth helpers. */
 import {
-    encodeDataPush,
     instantiateRipemd160,
     instantiateSecp256k1,
 } from '@bitauth/libauth'
@@ -42,17 +41,14 @@ let secp256k1
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
-        /* Currently active asset id. */
-        _assetid: null,
-
-        /* Directory of (owned) asset details (metadata). */
-        _assets: null,
-
-        /* List of all (value-based) UTXOs. */
-        _coins: null,
-
-        /* Initialize entropy (used for HD wallet). */
-        // NOTE: This is a cryptographically-secure "random" 32-byte (256-bit) value. */
+        /**
+         * Entropy
+         *
+         * Initialize entropy (used for HD wallet).
+         *
+         * NOTE: This is a cryptographically-secure "random"
+         * 32-byte (256-bit) value.
+         */
         _entropy: null,
 
         /**
@@ -80,10 +76,11 @@ export const useWalletStore = defineStore('wallet', {
          */
         _keychain: null,
 
-        /* List of all (token-based) UTXOs. */
-        _tokens: null,
-
-        /* Currently active wallet object. */
+        /**
+         * Wallet
+         *
+         * Currently active wallet object.
+         */
         _wallet: null,
     }),
 
@@ -92,6 +89,14 @@ export const useWalletStore = defineStore('wallet', {
     //       2. `_keychain`
     //
     getters: {
+        /* Return NexaJS wallet instance. */
+        wallet(_state) {
+            return _state._wallet
+        },
+
+
+
+
         /* Return a short address. */
         abbr(_state) {
             if (!this.address) return null
@@ -135,10 +140,6 @@ export const useWalletStore = defineStore('wallet', {
             return entropyToMnemonic(_state._entropy)
         },
 
-        wallet(_state) {
-            return _state._wallet
-        },
-
         asset(_state) {
             if (_state._assetid === null) {
                 /* Return Nexa (static) details. */
@@ -169,14 +170,6 @@ export const useWalletStore = defineStore('wallet', {
 
         tokens(_state) {
             return _state._tokens
-        },
-
-        publicKeyHash(_state) {
-            if (!this.wallet?.publicKey) return null
-
-            const scriptPushPubKey = encodeDataPush(this.wallet.publicKey)
-
-            return ripemd160.hash(sha256(scriptPushPubKey))
         },
 
         wif(_state) {

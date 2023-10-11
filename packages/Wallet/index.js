@@ -143,7 +143,11 @@ export class Wallet extends EventEmitter {
         this._title = null
         this._description = null
 
-        // this._wallet = {} // DEPRECATED
+        /* Currently active asset id. */
+        this._assetid = null
+
+        /* Directory of (owned) asset details (metadata). */
+        this._assets = null
 
         /* Handle hex (strings) and bytes. */
         if (Array.isArray(_primary) && _primary?.length === 32) {
@@ -222,12 +226,15 @@ export class Wallet extends EventEmitter {
         })()
     }
 
-    get status() {
-        return WalletStatus.READY
+    /* Return a short address. */
+    get abbr() {
+        if (!this.address) return null
+
+        return this.address.slice(5, 17) + '...' + this.address.slice(-12)
     }
 
-    get isReady() {
-        return true
+    get assetid() {
+        return this._assetid
     }
 
     get address() {
@@ -235,17 +242,87 @@ export class Wallet extends EventEmitter {
         return this.getAddress(this._addressIdx, false)
     }
 
+    get asset() {
+        if (this.assetid === null) {
+            /* Return Nexa (static) details. */
+            return {
+                group: '0',
+                name: `Nexa`,
+                ticker: 'NEXA',
+                iconUrl: 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden', // nexa.svg
+                token_id_hex: '0x',
+                decimal_places: 2,
+                document_hash: null,
+                document_url: null,
+            }
+        }
+
+        /* Validate asset details (in directory). */
+        if (this.assets?[this.assetid]) {
+            /* Return asset details. */
+            return this.assets[this.assetid]
+        }
+
+        /* Return null. */
+        return null
+    }
+
+    get assets() {
+        return this._assets
+    }
+
     get change() {
         /* Return current (change) address. */
         return this.getAddress(this._addressIdx, true)
+    }
+
+    get coins() {
+        return this._coins
     }
 
     get entropy() {
         return this._entropy
     }
 
+    /**
+     * Is Ready?
+     *
+     * Flag to indicate when the wallet is ready for use.
+     */
+    get isReady() {
+        /* Validate entropy. */
+        if (!this._entropy) {
+            return WalletStatus.LOADING
+        }
+
+        /* Validate entropy. */
+        if (typeof this._entropy !== 'string') {
+            return WalletStatus.LOADING
+        }
+
+        /* Validate entropy. */
+        if (this._entropy.length !== 32 && this._entropy.length !== 64) {
+            return WalletStatus.LOADING
+        }
+
+        /* Wallet is ready. */
+        return WalletStatus.READY
+    }
+
+    get isLoading() {
+        return this.isReady === WalletStatus.LOADING
+    }
+
     get mnemonic() {
-        return this._mnemonic
+        if (this._mnemonic) {
+            return this._mnemonic
+        }
+
+        if (this._entropy) {
+            return entropyToMnemonic(this._entropy)
+        }
+
+        return null
     }
 
     get path() {
@@ -266,14 +343,16 @@ export class Wallet extends EventEmitter {
         /* Set seed. */
         const seed = hexToBin(mnemonicToSeed(this.mnemonic))
 
+        // TODO Where can we retrieve the xPriv and xPub??
+
         /* Initialize HD node. */
-        const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
+        const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 }}, seed)
 
         /* Derive a child from the Master node */
         const child = deriveHdPath(
             crypto,
             node,
-            this.path
+            this.path,
         )
 
         /* Return (child) private key. */
@@ -290,6 +369,27 @@ export class Wallet extends EventEmitter {
         return secp256k1.derivePublicKeyCompressed(this.privateKey)
     }
 
+    get status() {
+        return {
+            isReady: this.isReady,
+        }
+    }
+
+    get tokens() {
+        return this._tokens
+    }
+
+    get wif() {
+        if (!this.privateKey) return null
+
+        return encodePrivateKeyWif({ hash: sha256 }, this.privateKey, 'mainnet')
+    }
+
+    /**
+     * Get Address
+     *
+     * Retrieve any address contained in the BIP-32 wallet.
+     */
     getAddress(_addressIdx = '0', _isChange) {
         /* Validate mnemonic. */
         if (!this.mnemonic) {
