@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-wallet",
-  "version": "23.10.9",
+  "version": "23.10.12",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -13,7 +13,7 @@
     "@pinia/nuxt": "0.4.7",
     "@trezor/connect-web": "9.1.4",
     "moment": "2.29.4",
-    "nexajs": "23.10.9",
+    "nexajs": "23.10.11",
     "numeral": "2.0.6",
     "nuxt": "3.2.2",
     "pinia": "2.0.32",
@@ -26,6 +26,7 @@
     "@nuxtjs/tailwindcss": "6.4.1",
     "@types/node": "18.14.2",
     "@types/pouchdb": "6.4.0",
-    "@types/uuid": "9.0.1"
+    "@types/uuid": "9.0.1",
+    "tslib": "2.6.2"
   }
 }

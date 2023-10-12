@@ -63,10 +63,13 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
 const isShowingMenu = ref(false)
 const isShowingProfileMenu = ref(false)
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+onMounted(() => {
+    /* Initailize system. */
+    System.init()
+
+    /* Initialize wallet. */
+    Wallet.init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
