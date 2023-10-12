@@ -314,7 +314,7 @@
     debug "4.3.4"
     events "3.3.0"
 
-"@nexajs/rostrum@23.10.10", "@nexajs/rostrum@^23.10.10":
+"@nexajs/rostrum@23.10.10":
   version "23.10.10"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.10.10.tgz#cd3e8aec2e59a3b156ec223a1169c3b58f35dc6c"
   integrity sha512-OjY0pBFFVwDb+wicg9X62TaDNhbp8WYnuu3I8cZVX+YFvd2IN5J2qJuZQue1Y9pWqPiB3SidU64t67KlYvkpWA==
