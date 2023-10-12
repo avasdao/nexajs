@@ -27,11 +27,6 @@ import {
 } from '@nexajs/hdnode'
 
 import {
-    binToHex,
-    hexToBin,
-} from '@nexajs/utils'
-
-import {
     getCoins,
     sendCoin,
 } from '@nexajs/purse'
@@ -42,9 +37,18 @@ import {
 } from '@nexajs/script'
 
 import {
+    getTokenInfo,
+} from '@nexajs/rostrum'
+
+import {
     getTokens,
     sendToken,
 } from '@nexajs/token'
+
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
 
 /* Libauth helpers. */
 import {
@@ -90,6 +94,7 @@ const DEFAULT_ACCOUNT_IDX = `0'`
 const DEFAULT_CHANGE = '0'
 const DEFAULT_ADDRESS_IDX = '0'
 
+/* Set (general) constants. */
 const BALANCE_UPDATE_DELAY = 30000 // 30 seconds
 
 
@@ -193,8 +198,11 @@ export class Wallet extends EventEmitter {
         /* Holds a directory of (owned) asset details (metadata). */
         this._assets = null
 
-        /* Holds real-time market data. */
-        this._balances = null
+        /* Holds real-time (balance) data. */
+        // this._balances = null
+
+        /* Holds real-time (market) data. */
+        this._markets = null
 
         /* Handle hex (strings) and bytes. */
         if (Array.isArray(_primary) && _primary?.length === 32) {
@@ -304,22 +312,13 @@ export class Wallet extends EventEmitter {
     }
 
     get asset() {
-        if (this.assetid === null) {
-            /* Return Nexa (static) details. */
-            return {
-                group: '0',
-                name: `Nexa`,
-                ticker: 'NEXA',
-                iconUrl: 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden', // nexa.svg
-                token_id_hex: '0x',
-                decimal_places: 2,
-                document_hash: null,
-                document_url: null,
-            }
+        /* Validate assets. */
+        if (!this.assets || this.assetid === null) {
+            return null
         }
 
-        /* Validate asset details (in directory). */
-        if (this.assets && this.assets[this.assetid]) {
+        /* Validate asset details. */
+        if (this.assets[this.assetid]) {
             /* Return asset details. */
             return this.assets[this.assetid]
         }
@@ -336,9 +335,9 @@ export class Wallet extends EventEmitter {
         return this._assets
     }
 
-    get balances() {
-        return this._balances
-    }
+    // get balances() {
+    //     return this._balances
+    // }
 
     get change() {
         /* Return current (change) address. */
@@ -380,6 +379,10 @@ export class Wallet extends EventEmitter {
 
     get isLoading() {
         return this.isReady === WalletStatus.LOADING
+    }
+
+    get markets() {
+        return this._markets
     }
 
     get mnemonic() {
@@ -575,24 +578,33 @@ export class Wallet extends EventEmitter {
         let satoshis
         let tokens
 
-        /* Initialize markets. */
-        markets = {}
+        /* Validate markets. */
+        if (!this.markets) {
+            /* Initialize markets. */
+            this._markets = {}
+        }
+
+        console.log('ASSETS', this.assets)
 
         /* Requet NEXA ticker. */
         response = await fetch('https://nexa.exchange/ticker')
             .catch(err => console.error(err))
 
         /* Request JSON. */
-        markets['NEXA'] = await response.json()
-        console.log('MARKETS', markets)
+        this._markets['NEXA'] = await response.json()
+        // console.log('MARKETS', this._markets)
 
-        price = markets['NEXA'].quote.USD.price
-        console.log('PRICE', price)
+        /* Set (ticker) price. */
+        price = Number(this._markets['NEXA'].quote.USD.price)
+        // console.log('PRICE', price)
 
-        console.log('COINS', this.coins)
+        /* Calculate total coins. */
+        // console.log('COINS', this.coins)
         coinsTotal = this.coins.reduce(
             (_total, _coins) => (_total + _coins.satoshis), 0n
         )
+
+        /* Build coins bundle. */
         coins = {
             amount: Number(coinsTotal) / 100.0,
             satoshis: coinsTotal,
@@ -606,29 +618,44 @@ export class Wallet extends EventEmitter {
             fiatUSD = numeral(fiatUSD).format('0,0.00[000000]') // format value
             fiatUSD = parseFloat(fiatUSD) // conver to decimal
 
+            /* Set fiat value. */
             coins.fiat = {
                 'USD': fiatUSD,
             }
         }
 
+        /* Calculate total tokens. */
+        // console.log('TOKENS', this.tokens)
+        // tokensTotal = this.tokens.reduce(
+        //     (_total, _tokens) => (_total + _tokens.satoshis), 0n
+        // )
 
-        tokens = {
-            tokenid1Hex: {
-                amount: BigInt(333),
-                fiat: {
+        /* Initialize tokens bundle. */
+        tokens = {}
+
+        this.tokens.forEach(_token => {
+            if (!tokens[_token.tokenidHex]) {
+                /* Initialize token. */
+                tokens[_token.tokenidHex] = {
+                    amount: BigInt(0),
+                    satoshis: BigInt(0),
+                }
+            }
+
+            /* Add tokens to total. */
+            tokens[_token.tokenidHex].amount += _token.tokens
+
+            /* Add satoshis to total. */
+            tokens[_token.tokenidHex].satoshis += _token.satoshis
+        })
+
+        if (_fiat) {
+            /* Handle each token (fiat) conversion. */
+            Object.keys(tokens).forEach(_tokenid => {
+                tokens[_tokenid].fiat = {
                     'USD': 0.0000,
-                },
-            },
-            tokenid2Hex: {
-                amount: BigInt(88888888),
-                fiat: {
-                    'USD': 0.0000,
-                },
-            },
-            tokenid3Hex: {
-                amount: BigInt(1),
-                fiat: null,
-            },
+                }
+            })
         }
 
         /* Save balances. */
@@ -636,7 +663,8 @@ export class Wallet extends EventEmitter {
             coins,
             tokens,
         }
-        console.log('UPDATED BALANCES', this._balances)
+        // console.log('UPDATED BALANCES (coins):', this._balances.coins)
+        console.log('UPDATED BALANCES (tokens):', this._balances.tokens)
 
         /* Set a timeout (delay) for the next update. */
         // NOTE: Use an "arrow function" to resolve (this) issue.
@@ -851,7 +879,15 @@ export class Wallet extends EventEmitter {
      */
     async updateAssets(_subscribe = false, _fiat = 'USD') {
         /* Initialize locals. */
+        let info
+        let response
         let unspent
+        let url
+
+        /* Validate assets. */
+        if (!this.assets) {
+            this._assets = {}
+        }
 
         /* Subscribe to (receiving) addresses. */
         if (_subscribe === true) {
@@ -894,6 +930,26 @@ export class Wallet extends EventEmitter {
             })
         // console.log('\nCOINS', this.coins)
 
+        if (this.coins && !this.assets['0']) {
+            /* Initialize (native) NEXA asset. */
+            this._assets['0'] = {
+                group: '0',
+                name: `Nexa`,
+                ticker: 'NEXA',
+                summary: 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden', // nexa.svg
+                token_id_hex: '0x',
+                decimal_places: 2,
+                document_hash: null,
+                document_url: null,
+                markets: {
+                    'USD': {
+                        price: 0.0000,
+                        marketCap: 0.00
+                    },
+                }
+            }
+        }
+
         /* Retrieve tokens. */
         this._tokens = unspent
             .filter(_u => _u.hasToken === true)
@@ -914,6 +970,81 @@ export class Wallet extends EventEmitter {
                 }
             })
         // console.log('\nTOKENS', this.tokens)
+
+        if (this.tokens) {
+            /* Handle tokens. */
+            // this.tokens.forEach(async _token => {
+            for (let i = 0; i < this.tokens.length; i++) {
+                const _token = this.tokens[i]
+                // console.log('TOKEN', _token)
+
+                /* Validate asset (exists in handler). */
+                if (!this._assets[_token.tokenidHex]) {
+
+                    /* Request token info. */
+                    info = await getTokenInfo(_token.tokenidHex)
+                    // console.log('TOKEN INFO', info)
+
+                    /* Initialize (native) NEXA asset. */
+                    this._assets[_token.tokenidHex] = {
+                        group: info.group,
+                        name: info.name,
+                        ticker: info.ticker,
+                        token_id_hex: info.token_id_hex,
+                        decimal_places: info.decimal_places,
+                        document_hash: info.document_hash,
+                        document_url: info.document_url,
+
+                        /* Request from Exchange API. */
+                        // https://nexa.exchange/v1/ticker/quote/<token-id>
+                        markets: {
+                            'USD': {
+                                price: 0.0000,
+                                marketCap: 0.00
+                            },
+                        }
+                    }
+
+                    if (info.document_url) {
+                        /* Set URL. */
+                        url = info.document_url
+
+                        /* Request token description document (TDD). */
+                        response = await fetch(url)
+                            .catch(err => console.error(err))
+                        // console.log('RESPONSE', response)
+
+                        /* Request JSON. */
+                        info = await response.json()
+                        // console.log('INFO', info)
+
+                        /* Validate (TDD) info. */
+                        if (!info || !info.length === 2) {
+                            continue
+                        }
+
+                        /* Set icon URL (from TDD). */
+                        // TODO: Validate FULL URL.
+                        if (info[0].icon.includes('http')) {
+                            this._assets[_token.tokenidHex].iconUrl = info[0].icon
+                        } else {
+                            url = url.slice(0, url.lastIndexOf('/')) + info[0].icon
+
+                            // TODO Validate URL using library.
+
+                            this._assets[_token.tokenidHex].iconUrl = url
+                        }
+
+                        /* Set summary (from TDD). */
+                        this._assets[_token.tokenidHex].summary = info[0].summary
+
+                        /* Set description (from TDD). */
+                        this._assets[_token.tokenidHex].description = info[0].description
+                    }
+
+                } // validate asset
+            } // handle tokens
+        }
 
         /* Completed successfully. */
         return true
