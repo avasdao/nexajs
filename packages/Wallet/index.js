@@ -576,6 +576,10 @@ export class Wallet extends EventEmitter {
         let price
         let response
         let satoshis
+        let ticker
+        // let token
+        let tokenid
+        let tokenList
         let tokens
 
         /* Validate markets. */
@@ -584,7 +588,7 @@ export class Wallet extends EventEmitter {
             this._markets = {}
         }
 
-        console.log('ASSETS', this.assets)
+        // console.log('ASSETS', this.assets)
 
         /* Requet NEXA ticker. */
         response = await fetch('https://nexa.exchange/ticker')
@@ -650,12 +654,28 @@ export class Wallet extends EventEmitter {
         })
 
         if (_fiat) {
+            tokenList = []
             /* Handle each token (fiat) conversion. */
             Object.keys(tokens).forEach(_tokenid => {
-                tokens[_tokenid].fiat = {
-                    'USD': 0.0000,
-                }
+                tokenList.push(_tokenid)
             })
+            // console.log('TOKEN LIST', tokenList)
+
+            for (let i = 0; i < tokenList.length; i++) {
+                tokenid = tokenList[i]
+
+                tokens[tokenid].fiat = {}
+
+                if (!tokens[tokenid].fiat['USD']) {
+                    response = await fetch(`https://nexa.exchange/v1/ticker/quote/${tokenid}`)
+                        .catch(err => console.error(err))
+
+                    ticker = await response.json()
+                    // console.log('TICKER', ticker)
+
+                    tokens[tokenid].fiat['USD'] = ticker
+                }
+            }
         }
 
         /* Save balances. */
@@ -664,7 +684,8 @@ export class Wallet extends EventEmitter {
             tokens,
         }
         // console.log('UPDATED BALANCES (coins):', this._balances.coins)
-        console.log('UPDATED BALANCES (tokens):', this._balances.tokens)
+        // console.log('UPDATED BALANCES (tokens):', this._balances.tokens)
+        // console.log('UPDATED BALANCES (fiat):', Object.keys(this._balances.tokens).map(_tokenid => this._balances.tokens[_tokenid].fiat))
 
         /* Set a timeout (delay) for the next update. */
         // NOTE: Use an "arrow function" to resolve (this) issue.
@@ -881,6 +902,7 @@ export class Wallet extends EventEmitter {
         /* Initialize locals. */
         let info
         let response
+        let token
         let unspent
         let url
 
@@ -971,80 +993,78 @@ export class Wallet extends EventEmitter {
             })
         // console.log('\nTOKENS', this.tokens)
 
-        if (this.tokens) {
-            /* Handle tokens. */
-            // this.tokens.forEach(async _token => {
-            for (let i = 0; i < this.tokens.length; i++) {
-                const _token = this.tokens[i]
-                // console.log('TOKEN', _token)
+        /* Handle tokens. */
+        for (let i = 0; i < this.tokens.length; i++) {
+            /* Set token. */
+            token = this.tokens[i]
+            // console.log('TOKEN', token)
 
-                /* Validate asset (exists in handler). */
-                if (!this._assets[_token.tokenidHex]) {
+            /* Validate asset (exists in handler). */
+            if (!this._assets[token.tokenidHex]) {
 
-                    /* Request token info. */
-                    info = await getTokenInfo(_token.tokenidHex)
-                    // console.log('TOKEN INFO', info)
+                /* Request token info. */
+                info = await getTokenInfo(token.tokenidHex)
+                // console.log('TOKEN INFO', info)
 
-                    /* Initialize (native) NEXA asset. */
-                    this._assets[_token.tokenidHex] = {
-                        group: info.group,
-                        name: info.name,
-                        ticker: info.ticker,
-                        token_id_hex: info.token_id_hex,
-                        decimal_places: info.decimal_places,
-                        document_hash: info.document_hash,
-                        document_url: info.document_url,
+                /* Initialize (native) NEXA asset. */
+                this._assets[token.tokenidHex] = {
+                    group: info.group,
+                    name: info.name,
+                    ticker: info.ticker,
+                    token_id_hex: info.token_id_hex,
+                    decimal_places: info.decimal_places,
+                    document_hash: info.document_hash,
+                    document_url: info.document_url,
 
-                        /* Request from Exchange API. */
-                        // https://nexa.exchange/v1/ticker/quote/<token-id>
-                        markets: {
-                            'USD': {
-                                price: 0.0000,
-                                marketCap: 0.00
-                            },
-                        }
+                    /* Request from Exchange API. */
+                    // https://nexa.exchange/v1/ticker/quote/<token-id>
+                    markets: {
+                        'USD': {
+                            price: 0.0000,
+                            marketCap: 0.00
+                        },
+                    }
+                }
+
+                if (info.document_url) {
+                    /* Set URL. */
+                    url = info.document_url
+
+                    /* Request token description document (TDD). */
+                    response = await fetch(url)
+                        .catch(err => console.error(err))
+                    // console.log('RESPONSE', response)
+
+                    /* Request JSON. */
+                    info = await response.json()
+                    // console.log('INFO', info)
+
+                    /* Validate (TDD) info. */
+                    if (!info || !info.length === 2) {
+                        continue
                     }
 
-                    if (info.document_url) {
-                        /* Set URL. */
-                        url = info.document_url
+                    /* Set icon URL (from TDD). */
+                    // TODO: Validate FULL URL.
+                    if (info[0].icon.includes('http')) {
+                        this._assets[token.tokenidHex].iconUrl = info[0].icon
+                    } else {
+                        url = url.slice(0, url.lastIndexOf('/')) + info[0].icon
 
-                        /* Request token description document (TDD). */
-                        response = await fetch(url)
-                            .catch(err => console.error(err))
-                        // console.log('RESPONSE', response)
+                        // TODO Validate URL using library.
 
-                        /* Request JSON. */
-                        info = await response.json()
-                        // console.log('INFO', info)
-
-                        /* Validate (TDD) info. */
-                        if (!info || !info.length === 2) {
-                            continue
-                        }
-
-                        /* Set icon URL (from TDD). */
-                        // TODO: Validate FULL URL.
-                        if (info[0].icon.includes('http')) {
-                            this._assets[_token.tokenidHex].iconUrl = info[0].icon
-                        } else {
-                            url = url.slice(0, url.lastIndexOf('/')) + info[0].icon
-
-                            // TODO Validate URL using library.
-
-                            this._assets[_token.tokenidHex].iconUrl = url
-                        }
-
-                        /* Set summary (from TDD). */
-                        this._assets[_token.tokenidHex].summary = info[0].summary
-
-                        /* Set description (from TDD). */
-                        this._assets[_token.tokenidHex].description = info[0].description
+                        this._assets[token.tokenidHex].iconUrl = url
                     }
 
-                } // validate asset
-            } // handle tokens
-        }
+                    /* Set summary (from TDD). */
+                    this._assets[token.tokenidHex].summary = info[0].summary
+
+                    /* Set description (from TDD). */
+                    this._assets[token.tokenidHex].description = info[0].description
+                }
+
+            } // validate asset
+        } // handle tokens
 
         /* Completed successfully. */
         return true
