@@ -729,6 +729,15 @@ export class Wallet extends EventEmitter {
     }
 
     /**
+     * Select Asset
+     *
+     * Sets the active asset displayed on the UI.
+     */
+    selectAsset(_assetid) {
+        this._assetid = _assetid
+    }
+
+    /**
      * Send (Assets)
      *
      * Receives parameters for transferring any form of Nexa asset(s).
