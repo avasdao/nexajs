@@ -717,10 +717,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.10.12":
-  version "23.10.12"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.12.tgz#4418dad8d5e12aa97c27ea70a709fed94043d34c"
-  integrity sha512-qroCZYG8LSvXmKzIP2vLq3QrIgtFXG0CBggKLQ9nT3+BSPAFRzm/7UtOXrreZ+DWImhzGmqfp2OK10oFR7HJiA==
+"@nexajs/wallet@23.10.13":
+  version "23.10.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.13.tgz#1320b13b911bcf78f395a372c44e9f3ba6fe9334"
+  integrity sha512-ZS1GfZvblnfqYMj/BcjQBR77g/Gl4Ia65BvnGip05fEbvBw8Kt8rTFe2lydKfVXpLQQjA5bKkvastzPTQXkZdA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.10.10"

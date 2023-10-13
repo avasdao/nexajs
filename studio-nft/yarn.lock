@@ -830,6 +830,30 @@
   dependencies:
     is-promise "^4.0.0"
 
+"@nexajs/address@23.10.10":
+  version "23.10.10"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.10.10.tgz#6c6e0359082fbee73a4d656ad2e4f1e178c5f7b4"
+  integrity sha512-JQ3/cCMxLotnU18EPWDl+NAaPHapcOqbwIyuPVuUQuKSc/l6Moaqfgk+1xosYsQUZxA03AUiIHvSX53LY/QFig==
+  dependencies:
+    "@nexajs/rostrum" "23.10.10"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
+"@nexajs/address@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.10.8.tgz#6850764002dde47b1a82f5aaf26aef6cae0a9410"
+  integrity sha512-at30dJwNjNA3RFswciY49RgOKfgfIF3n8/3bEdGkI9yRYAIS0chnNv+rrevsDFKcVHTk2TkFTzDKhFbsT2mBaw==
+  dependencies:
+    "@nexajs/rostrum" "23.10.8"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/address@23.9.3":
   version "23.9.3"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.9.3.tgz#d2937c3d706c8042dcf7738ecfd3165bb3938359"
@@ -885,11 +909,12 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/markets@23.8.11":
-  version "23.8.11"
-  resolved "https://registry.yarnpkg.com/@nexajs/markets/-/markets-23.8.11.tgz#7e0b935cdaeb08d118c49eedf4d9a484e94f07fc"
-  integrity sha512-AnJ9wkAIEnYVDk8BrsoW9zV1gjGdEGEf1H3yRo5eVU5gAiGMfS5FYBW/xe4auS/ifwegTMhpWx85GAsOVLVF6A==
+"@nexajs/market@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/market/-/market-23.10.8.tgz#2400a07b1f774e7b97bea51bd1b2403b68682bbb"
+  integrity sha512-G4wGxfgXAToy4dIvKlwoigs/SLrsDyAh/S1n0eb+J2NnfXnEC/DQvUGABsJSYgvuTrRdXVjomSpXZ6elGMHJxA==
   dependencies:
+    "@nexajs/transaction" "23.10.8"
     debug "4.3.4"
     events "3.3.0"
     moment "2.29.4"
@@ -915,15 +940,15 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/purse@23.9.4":
-  version "23.9.4"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.9.4.tgz#5a40f309c531d40d9542bbba1c4c4f021618066e"
-  integrity sha512-zicFzkCgZwEN/g3+2qrYU2edkOXDDMaH/BNvsX1RFEyrQk6CKv8TT1rPEPk7JnYlWaKTGClU5njDkdktdw03Kg==
+"@nexajs/purse@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.10.8.tgz#e5e4189a350c7fca487051ac9b383095962c0bc0"
+  integrity sha512-nvqz9qeUfrYE8kU97ar682LnKt/xAZBsl3ajSq05NcNWBb6ynH2lhA1tndtAnuDGK2/VbQC2l9sRsQed5UhHag==
   dependencies:
-    "@nexajs/address" "23.9.3"
+    "@nexajs/address" "23.10.8"
     "@nexajs/hdnode" "23.9.3"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/transaction" "23.9.2"
+    "@nexajs/transaction" "23.10.8"
     debug "4.3.4"
     events "3.3.0"
 
@@ -935,6 +960,28 @@
     debug "4.3.4"
     events "3.3.0"
     node-fetch "3.3.1"
+
+"@nexajs/rostrum@23.10.10":
+  version "23.10.10"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.10.10.tgz#cd3e8aec2e59a3b156ec223a1169c3b58f35dc6c"
+  integrity sha512-OjY0pBFFVwDb+wicg9X62TaDNhbp8WYnuu3I8cZVX+YFvd2IN5J2qJuZQue1Y9pWqPiB3SidU64t67KlYvkpWA==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
+"@nexajs/rostrum@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.10.8.tgz#5e618e5191fd94632059bbd33e2d6bd55fe76aa6"
+  integrity sha512-UlD7eKDc7yfRRB3grDjlcTMsVKV4qTmM3dkiB4xiRXMkb5FPHtmm/e7LMH2FT/Oph8VlM0i0lFLa8dkUj7VbGw==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
 
 "@nexajs/rostrum@23.8.30":
   version "23.8.30"
@@ -956,6 +1003,15 @@
     events "3.3.0"
     superagent "8.0.6"
 
+"@nexajs/script@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.10.8.tgz#34dd9b4814664b5b3dd237634dde16f172ade572"
+  integrity sha512-+Ex62D89f50TbN7XSjcwPZlygWmsnpYlPFKu+QtD8WUyIodygqps2pGQ2ds0snaEjE85J6+WFSOjOmfHcLEAQw==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/utils" "23.7.22"
+    debug "4.3.4"
+
 "@nexajs/script@23.9.2":
   version "23.9.2"
   resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.9.2.tgz#c28ae36a0265f4237d4aa7674350f9c3d28ae0c0"
@@ -965,30 +1021,30 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/token@23.9.4":
-  version "23.9.4"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.9.4.tgz#dd747510f52b4f95780ba682321b71cd821967b1"
-  integrity sha512-AiPv3VSCqbpsJAwQQQfYrJ8O39dft/rYRnHsHzLRCM5UEbdOo7d22q/v1cOK3AjQoEZdsPrXpOmvnyrqofTRKA==
+"@nexajs/token@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.10.8.tgz#16a4db2596a83b342d38748905aee61f345759d3"
+  integrity sha512-WXx8oPlwLct/TrKzfwkmEhkiwgXz9q07cfxf1tvODLE+w1/JjFoq0LxLjxLzQau5YCaTQh7DdCehJIsnr7UOhQ==
   dependencies:
-    "@nexajs/address" "23.9.3"
+    "@nexajs/address" "23.10.8"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.9.3"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/script" "23.9.2"
-    "@nexajs/transaction" "23.9.2"
+    "@nexajs/script" "23.10.8"
+    "@nexajs/transaction" "23.10.8"
     debug "4.3.4"
     events "3.3.0"
 
-"@nexajs/transaction@23.9.2":
-  version "23.9.2"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.9.2.tgz#292aa2e043b3d87374bcd7831e4709007adcdb07"
-  integrity sha512-maTqosXx9yq4LSfUzoBfERU7HED0eeR2pVBneiJz5SHJVxASwnjQjRvAMnJ507/NZybFtnPWaUK+w+GPq0mdXg==
+"@nexajs/transaction@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.10.8.tgz#b553d29c29654f2a585834f804d5d1aa3f8d78c3"
+  integrity sha512-STNoWktHrlcdDPNukIBkyNZiy8lxLPN5Vbca7hvMTVvVeOrSI8rcpP8LRdta18ZWFZZEYoQLNCJ0sb44nAkSDQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.9.3"
+    "@nexajs/address" "23.10.8"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.9.3"
-    "@nexajs/script" "23.9.2"
+    "@nexajs/script" "23.10.8"
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
@@ -1006,20 +1062,23 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.9.5":
-  version "23.9.5"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.9.5.tgz#6e3f0900705392ce73a8c2c29f7e5285335ddd6c"
-  integrity sha512-EkU2xKDkibeQXZDTvGFhe0rru603OL/DfEQndBbg5SuoGM2O5ssI6OtC3uwS2pS3O/89sf/5HGp1S/hkCZjCMQ==
+"@nexajs/wallet@23.10.13":
+  version "23.10.13"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.13.tgz#1320b13b911bcf78f395a372c44e9f3ba6fe9334"
+  integrity sha512-ZS1GfZvblnfqYMj/BcjQBR77g/Gl4Ia65BvnGip05fEbvBw8Kt8rTFe2lydKfVXpLQQjA5bKkvastzPTQXkZdA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.9.3"
+    "@nexajs/address" "23.10.10"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.9.3"
-    "@nexajs/purse" "23.9.4"
-    "@nexajs/script" "23.9.2"
-    "@nexajs/token" "23.9.4"
+    "@nexajs/purse" "23.10.8"
+    "@nexajs/rostrum" "23.10.10"
+    "@nexajs/script" "23.10.8"
+    "@nexajs/token" "23.10.8"
+    cross-fetch "4.0.0"
     debug "4.3.4"
     events "3.3.0"
+    numeral "2.0.6"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2334,6 +2393,13 @@ create-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
+cross-fetch@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-4.0.0.tgz#f037aef1580bb3a1a35164ea2a848ba81b445983"
+  integrity sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==
+  dependencies:
+    node-fetch "^2.6.12"
+
 cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -3131,6 +3197,15 @@ formdata-polyfill@^4.0.10:
   dependencies:
     fetch-blob "^3.1.2"
 
+formidable@3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/formidable/-/formidable-3.5.1.tgz#9360a23a656f261207868b1484624c4c8d06ee1a"
+  integrity sha512-WJWKelbRHN41m5dumb0/k8TeAx7Id/y3a+Z7QfhxP/htI9Js5zYaEDtG8uMgG0vM0lOlqnmjE99/kfpOYi/0Og==
+  dependencies:
+    dezalgo "^1.0.4"
+    hexoid "^1.0.0"
+    once "^1.4.0"
+
 formidable@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-2.1.2.tgz#fa973a2bec150e4ce7cac15589d7a25fc30ebd89"
@@ -3140,15 +3215,6 @@ formidable@^2.1.1:
     hexoid "^1.0.0"
     once "^1.4.0"
     qs "^6.11.0"
-
-formidable@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/formidable/-/formidable-3.5.1.tgz#9360a23a656f261207868b1484624c4c8d06ee1a"
-  integrity sha512-WJWKelbRHN41m5dumb0/k8TeAx7Id/y3a+Z7QfhxP/htI9Js5zYaEDtG8uMgG0vM0lOlqnmjE99/kfpOYi/0Og==
-  dependencies:
-    dezalgo "^1.0.4"
-    hexoid "^1.0.0"
-    once "^1.4.0"
 
 fraction.js@^4.2.0:
   version "4.2.1"
@@ -3482,7 +3548,7 @@ html-tags@^3.3.1:
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.3.1.tgz#a04026a18c882e4bba8a01a3d39cfe465d40b5ce"
   integrity sha512-ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==
 
-html2canvas@^1.4.1:
+html2canvas@1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/html2canvas/-/html2canvas-1.4.1.tgz#7cef1888311b5011d507794a066041b14669a543"
   integrity sha512-fPU6BHNpsyIhr8yyMpTLLxAbkaK8ArIBcmZIRiBLiDhjeqvXolaEmDGmELFuX9I4xDcaKKcJl+TKZLqruBbmWA==
@@ -4405,29 +4471,29 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-nexajs@23.9.5:
-  version "23.9.5"
-  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-23.9.5.tgz#2ff09b0f1ab54eed05adbcd2676dfa34db86f605"
-  integrity sha512-NCnl+Oc38+mgCtesQoR6jBtQxJGzDccaLDLbagzAhIdVHJOaDb25ttioD+OE8lLKH6uNAnpVORXx93iqbikSlw==
+nexajs@23.10.13:
+  version "23.10.13"
+  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-23.10.13.tgz#6acfa381603067bea36e9baf1e0dc2a77dc364b1"
+  integrity sha512-b+BfpPFCFNxfCPmQTmMsUsksuRoytkFVnWlxVeIy3X+OrD7+5MUsip9t2YXgjPzcRhJsqPl8H9HDGx9yF5n7yw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.9.3"
+    "@nexajs/address" "23.10.10"
     "@nexajs/app" "23.9.4"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.9.3"
     "@nexajs/id" "23.5.15"
-    "@nexajs/markets" "23.8.11"
+    "@nexajs/market" "23.10.8"
     "@nexajs/message" "23.9.2"
     "@nexajs/provider" "23.6.21"
-    "@nexajs/purse" "23.9.4"
+    "@nexajs/purse" "23.10.8"
     "@nexajs/request" "23.5.15"
-    "@nexajs/rostrum" "23.8.30"
+    "@nexajs/rostrum" "23.10.10"
     "@nexajs/rpc" "23.5.15"
-    "@nexajs/script" "23.9.2"
-    "@nexajs/token" "23.9.4"
-    "@nexajs/transaction" "23.9.2"
+    "@nexajs/script" "23.10.8"
+    "@nexajs/token" "23.10.8"
+    "@nexajs/transaction" "23.10.8"
     "@nexajs/utils" "23.7.22"
-    "@nexajs/wallet" "23.9.5"
+    "@nexajs/wallet" "23.10.13"
     debug "4.3.4"
     events "3.3.0"
 
@@ -4525,6 +4591,13 @@ node-fetch@3.3.1:
     data-uri-to-buffer "^4.0.0"
     fetch-blob "^3.1.4"
     formdata-polyfill "^4.0.10"
+
+node-fetch@^2.6.12:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
+  integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
+  dependencies:
+    whatwg-url "^5.0.0"
 
 node-fetch@^2.6.7:
   version "2.6.13"
@@ -5225,7 +5298,7 @@ postcss@^8.1.10, postcss@^8.2.15, postcss@^8.4.18, postcss@^8.4.19, postcss@^8.4
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-pouchdb@^8.0.1:
+pouchdb@8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/pouchdb/-/pouchdb-8.0.1.tgz#78aef57b0d58abe5e4a4581a3332c0c220e20dbd"
   integrity sha512-xp5S83JOQn2NAL0ZQ5CU+DI26V9/YrYuVtkXnbGEIDrYiFfj5A8gAcfbxefXb/9O+Qn4n5RaT/19+8UBSZ42sw==

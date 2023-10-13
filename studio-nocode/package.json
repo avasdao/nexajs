@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-nocode",
-  "version": "23.9.23",
+  "version": "23.10.13",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@pinia/nuxt": "0.4.7",
     "moment": "2.29.4",
-    "nexajs": "23.9.5",
+    "nexajs": "23.10.13",
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
     "pinia": "2.0.32",

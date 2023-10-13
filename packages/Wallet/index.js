@@ -631,7 +631,7 @@ export class Wallet extends EventEmitter {
         /* Calculate total coins. */
         // console.log('COINS', this.coins)
         coinsTotal = this.coins.reduce(
-            (_total, _coins) => (_total + _coins.satoshis), 0n
+            (_total, _coins) => (_total + _coins.satoshis), BigInt(0)
         )
 
         /* Build coins bundle. */
@@ -653,12 +653,6 @@ export class Wallet extends EventEmitter {
                 'USD': fiatUSD,
             }
         }
-
-        /* Calculate total tokens. */
-        // console.log('TOKENS', this.tokens)
-        // tokensTotal = this.tokens.reduce(
-        //     (_total, _tokens) => (_total + _tokens.satoshis), 0n
-        // )
 
         /* Initialize tokens bundle. */
         tokens = {}
