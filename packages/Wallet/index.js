@@ -4,7 +4,7 @@ const debug = debugFactory('nexa:wallet')
 
 /* Import modules. */
 import { EventEmitter } from 'events'
-import fetch from 'node-fetch'
+import fetch from 'cross-fetch'
 import numeral from 'numeral'
 
 /* Import (library) modules. */
@@ -38,6 +38,7 @@ import {
 
 import {
     getTokenInfo,
+    subscribeAddress,
 } from '@nexajs/rostrum'
 
 import {
@@ -267,6 +268,31 @@ export class Wallet extends EventEmitter {
             return new Promise(resolve => setTimeout(resolve, _ms))
         }
 
+        /* Initialize locals. */
+        let fiat
+
+        /* Validate fiat conversions. */
+        // NOTE: Any Boolean parameters will (default) as a `fiat` flag.
+        if (_primary?.fiat) {
+            fiat = _primary.fiat
+        } else if (_primary === null) {
+            fiat = null
+        } else if (_primary === false) {
+            fiat = null
+
+            /* Overwrite to null. */
+            _primary = null
+        } else if (_secondary === null) {
+            fiat = null
+        } else if (_secondary === false) {
+            fiat = null
+
+            /* Overwrite to null. */
+            _secondary = null
+        } else {
+            fiat = 'USD'
+        }
+
         return (async function () {
             /* Create new instance. */
             const wallet = new Wallet(_primary, _secondary)
@@ -278,11 +304,11 @@ export class Wallet extends EventEmitter {
 
             /* Request an update for asset data. */
             // TODO Support "user-defined" updates.
-            await wallet.updateAssets()
+            await wallet.updateAssets(true, fiat)
             // await wallet.updateAssets(true, _secondary)
 
             /* Update balances. */
-            await wallet.updateBalances()
+            await wallet.updateBalances(fiat)
 
             /* Return (initialized) instance. */
             return wallet
@@ -915,7 +941,7 @@ export class Wallet extends EventEmitter {
         if (_subscribe === true) {
             /* Subscribe to address. */
             await subscribeAddress(this.address, async () => {
-                await this.updateAssets()
+                await this.updateAssets(false, _fiat)
 
                 // emit to subscribers
                 this.emit('onUpdate', {
