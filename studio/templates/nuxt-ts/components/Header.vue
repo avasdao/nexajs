@@ -40,26 +40,32 @@ const isShowingMenu = ref(false)
             </div>
 
             <div class="hidden lg:flex lg:gap-x-12">
-                <NuxtLink to="https://nexajs.org/studio" target="_blank" class="text-xl font-semibold leading-6 text-gray-900">
+                <NuxtLink to="https://nexajs.org/studio" target="_blank" class="text-xl font-semibold leading-6 text-gray-600">
                     Docs
                 </NuxtLink>
 
-                <NuxtLink to="https://avas.cash/bootstrap" target="_blank" class="text-xl font-semibold leading-6 text-gray-900">
+                <NuxtLink to="https://avas.cash/bootstrap" target="_blank" class="text-xl font-semibold leading-6 text-gray-600">
                     Bootstrap
                 </NuxtLink>
 
-                <NuxtLink to="/token" class="text-xl font-semibold leading-6 text-gray-900">
+                <NuxtLink to="/token" class="text-xl font-semibold leading-6 text-gray-600">
                     $STUDIO
                 </NuxtLink>
 
-                <NuxtLink to="/help" class="text-xl font-semibold leading-6 text-gray-900">
+                <NuxtLink to="/help" class="text-xl font-semibold leading-6 text-gray-600">
                     Help
                 </NuxtLink>
             </div>
 
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <NuxtLink to="/buy" class="text-xl font-semibold leading-6 text-gray-900">
-                    Buy $STUDIO Time
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end flex items-center gap-1">
+                <NuxtLink to="/buy" class="text-xl font-semibold text-gray-600 hover:underline">
+                    Buy $STUDIO
+                </NuxtLink>
+
+                <span class="text-4xl text-sky-500 font-light">/</span>
+
+                <NuxtLink to="/pro" class="text-xl font-semibold text-gray-600 hover:underline">
+                    Go PRO
                 </NuxtLink>
             </div>
         </nav>
@@ -86,25 +92,25 @@ const isShowingMenu = ref(false)
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                            <NuxtLink to="https://nexajs.org/studio" target="_blank" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <NuxtLink to="https://nexajs.org/studio" target="_blank" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-600 hover:bg-gray-50">
                                 Docs
                             </NuxtLink>
 
-                            <NuxtLink to="https://avas.cash/bootstrap" target="_blank" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <NuxtLink to="https://avas.cash/bootstrap" target="_blank" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-600 hover:bg-gray-50">
                                 Bootstrap
                             </NuxtLink>
 
-                            <NuxtLink to="/token" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <NuxtLink to="/token" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-600 hover:bg-gray-50">
                                 $STUDIO
                             </NuxtLink>
 
-                            <NuxtLink to="/help" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <NuxtLink to="/help" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-600 hover:bg-gray-50">
                                 Help
                             </NuxtLink>
                         </div>
 
                         <div class="py-6">
-                            <NuxtLink to="/buy" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                            <NuxtLink to="/buy" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-600 hover:bg-gray-50">
                                 Buy $STUDIO Time
                             </NuxtLink>
                         </div>
