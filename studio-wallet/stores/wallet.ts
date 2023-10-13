@@ -63,10 +63,6 @@ export const useWalletStore = defineStore('wallet', {
         _wallet: null,
     }),
 
-    // NOTE: We NEVER expose the "sensitive" entropy values from:
-    //       1. `_entropy`
-    //       2. `_keychain`
-    //
     getters: {
         /* Return NexaJS wallet instance. */
         wallet(_state) {
@@ -76,6 +72,23 @@ export const useWalletStore = defineStore('wallet', {
         /* Return wallet status. */
         isReady(_state) {
             return _state.wallet?.isReady
+        },
+
+        /* Return wallet status. */
+        address(_state) {
+            return _state.wallet?.address
+        },
+
+        /* Return wallet status. */
+        assets(_state) {
+            return _state.wallet?.assets
+        },
+
+        /* Return wallet status. */
+        balances(_state) {
+            // FIXME: Update library to expose data OR
+            //        refactor to `markets`.
+            return _state.wallet?._balances
         },
     },
 
@@ -94,14 +107,10 @@ export const useWalletStore = defineStore('wallet', {
             if (this._entropy === null) {
                 throw new Error('Missing wallet entropy.')
             }
-            console.log('ENTROPY', this._entropy);
 
             /* Request a wallet instance (by mnemonic). */
-            this._wallet = await Wallet.init(this._entropy)
+            this._wallet = await Wallet.init(this._entropy, true)
             console.log('(Initialized) wallet', this._wallet)
-
-            /* Load assets. */
-            // this.loadAssets()
         },
 
         createWallet(_entropy) {

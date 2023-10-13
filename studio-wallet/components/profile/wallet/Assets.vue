@@ -1,4 +1,5 @@
 <script setup>
+/* Import modules. */
 import numeral from 'numeral'
 
 /* Initialize stores. */
@@ -7,17 +8,9 @@ import { useSystemStore } from '@/stores/system'
 const Wallet = useWalletStore()
 const System = useSystemStore()
 
-const tokens = ref([])
-
-const loadAssets = async () => {
-    tokens.value = await Wallet.groupTokens()
-        .catch(err => console.error(err))
-    // console.log('MY TOKENS (grouped):', tokens.value)
-}
-
-watch(() => Wallet.tokens, (_tokens) => {
-    // console.log('TOKENS CHANGED (assets):', _tokens)
-    loadAssets()
+watch(() => Wallet.assets, (_assets) => {
+    console.log('WALLET CHANGED (assets):', _assets)
+    // loadAssets()
 })
 
 const coinAmount = computed(() => {
@@ -70,43 +63,45 @@ const displayTokenName = (_tokenid) => {
 }
 
 const displayDecimalAmount = (_token) => {
-    let decimalValue
-    let bigIntValue
-
-    decimalValue = _token.tokens * BigInt(1e4)
-
-    if (_token.decimals > 0) {
-        bigIntValue = decimalValue / BigInt(10**_token.decimals)
-    } else {
-        bigIntValue = decimalValue
-    }
-
-    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0.[00000000]')
+    console.log('_token', _token);
+    // let decimalValue
+    // let bigIntValue
+    //
+    // decimalValue = _token.tokens * BigInt(1e4)
+    //
+    // if (_token.decimals > 0) {
+    //     bigIntValue = decimalValue / BigInt(10**_token.decimals)
+    // } else {
+    //     bigIntValue = decimalValue
+    // }
+    //
+    // return numeral(parseFloat(bigIntValue) / 1e4).format('0,0.[00000000]')
 }
 
 const displayDecimalAmountUsd = (_token) => {
-    let decimalValue
-    let bigIntValue
-    let price
-    let amount
-
-    decimalValue = _token.tokens * BigInt(1e4)
-
-    if (_token.decimals > 0) {
-        bigIntValue = decimalValue / BigInt(10**_token.decimals)
-    } else {
-        bigIntValue = decimalValue
-    }
-
-    price = _token.ticker?.price || 0.00
-
-    amount = (parseFloat(bigIntValue) / 1e4) * price
-
-    if (amount >= 10.0) {
-        return numeral(amount).format('$0,0.00')
-    } else {
-        return numeral(amount).format('$0,0.00[00]')
-    }
+    console.log('_token', _token);
+    // let decimalValue
+    // let bigIntValue
+    // let price
+    // let amount
+    //
+    // decimalValue = _token.tokens * BigInt(1e4)
+    //
+    // if (_token.decimals > 0) {
+    //     bigIntValue = decimalValue / BigInt(10**_token.decimals)
+    // } else {
+    //     bigIntValue = decimalValue
+    // }
+    //
+    // price = _token.ticker?.price || 0.00
+    //
+    // amount = (parseFloat(bigIntValue) / 1e4) * price
+    //
+    // if (amount >= 10.0) {
+    //     return numeral(amount).format('$0,0.00')
+    // } else {
+    //     return numeral(amount).format('$0,0.00[00]')
+    // }
 }
 
 const displayIcon = (_token) => {
@@ -121,7 +116,9 @@ const displayIcon = (_token) => {
 const init = () => {
     // console.log('ASSETS (coins):', Wallet.coins)
     // console.log('ASSETS (tokens):', Wallet.tokens)
-    loadAssets()
+    // loadAssets()
+    console.log('ASSETS', Wallet.assets)
+    console.log('BALANCES', Wallet.balances)
 }
 
 onMounted(() => {
@@ -142,7 +139,7 @@ onMounted(() => {
                     Assets
 
                     <span class="bg-indigo-100 text-indigo-600 ml-1 sm:ml-3 rounded-full py-0.5 px-2.5 text-xs font-medium">
-                        {{tokens ? Object.keys(tokens).length + 1 : 1}}
+                        {{Wallet.assets ? Object.keys(Wallet.assets).length + 1 : 1}}
                     </span>
                 </a>
 
@@ -198,7 +195,7 @@ onMounted(() => {
         </div>
 
         <div
-            v-for="(token, tokenid) in tokens" :key="tokenid"
+            v-for="(token, tokenid) in Wallet.assets" :key="tokenid"
             @click="Wallet.selectAsset(tokenid)"
             class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
         >
