@@ -200,6 +200,7 @@ export class Wallet extends EventEmitter {
         this._assets = null
 
         /* Holds real-time (balance) data. */
+        // FIXME REMOVE THIS -- USE `ASSETS` AND `MARKETS`
         // this._balances = null
 
         /* Holds real-time (market) data. */
@@ -360,10 +361,6 @@ export class Wallet extends EventEmitter {
     get assets() {
         return this._assets
     }
-
-    // get balances() {
-    //     return this._balances
-    // }
 
     get change() {
         /* Return current (change) address. */
@@ -578,7 +575,12 @@ export class Wallet extends EventEmitter {
         // TODO Complete request queries and data responses.
 
         // NOTE: This is the (default) balance response.
-        return this.balances?.coins.satoshis
+        return this.assets[_tokenid]?.coins.satoshis
+    }
+
+    /* Set the (active) asset displayed on the UI. */
+    setAsset(_assetid) {
+        this._assetid = _assetid
     }
 
     setPathAccount(_index) {
@@ -589,15 +591,6 @@ export class Wallet extends EventEmitter {
     setPathAddress(_index) {
         /* Set address index. */
         this._addressIdx = parseInt(_index).toString()
-    }
-
-    /**
-     * Select Asset
-     *
-     * Sets the active asset displayed on the UI.
-     */
-    selectAsset(_assetid) {
-        this._assetid = _assetid
     }
 
     /**
@@ -1086,7 +1079,6 @@ export class Wallet extends EventEmitter {
         }
         // console.log('UPDATED BALANCES (coins):', this._balances.coins)
         // console.log('UPDATED BALANCES (tokens):', this._balances.tokens)
-        // console.log('UPDATED BALANCES (fiat):', Object.keys(this._balances.tokens).map(_tokenid => this._balances.tokens[_tokenid].fiat))
 
         /* Set a timeout (delay) for the next update. */
         // NOTE: Use an "arrow function" to resolve (this) issue.
