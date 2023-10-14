@@ -10,7 +10,9 @@ useHead({
 })
 
 /* Initialize stores. */
+import { useWalletStore } from '@/stores/wallet'
 import { useSystemStore } from '@/stores/system'
+const Wallet = useWalletStore()
 const System = useSystemStore()
 
 const ENDPOINT = 'https://nexa.garden/v1/asset'
@@ -27,6 +29,11 @@ const init = async () => {
     })
     .catch(err => console.error(err))
     console.log('STATUS', status)
+}
+
+const generate = async () => {
+    console.log('request AI creation')
+
 }
 
 // const handleChange = async (e) => {
@@ -102,10 +109,10 @@ onMounted(() => {
         </button>
 
         <button
-            @click="build"
+            @click="generate"
             class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
         >
-            Preview My Card
+            Generate Image
         </button>
     </div>
 

@@ -2,118 +2,224 @@
 import { defineStore } from 'pinia'
 
 import {
+    encodeAddress,
+    listUnspent,
+} from '@nexajs/address'
+
+import { sha256 } from '@nexajs/crypto'
+
+import {
     encodePrivateKeyWif,
-    entropyToMnemonic,
     mnemonicToEntropy,
 } from '@nexajs/hdnode'
 
+import { getCoins } from '@nexajs/purse'
+
 import {
-    getAddressMempool,
+    getOutpoint,
+    getTip,
+    getTokenInfo,
+    getTransaction,
     subscribeAddress,
 } from '@nexajs/rostrum'
 
-import { listUnspent } from '@nexajs/address'
-import { sha256 } from '@nexajs/crypto'
+import {
+    encodeDataPush,
+    encodeNullData,
+    OP,
+} from '@nexajs/script'
+
+import {
+    getTokens,
+    sendToken,
+} from '@nexajs/token'
+
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
+
 import { Wallet } from '@nexajs/wallet'
 
-import _createWallet from './wallet/create.ts'
-// import _transfer from './wallet/transfer.ts'
+/* Libauth helpers. */
+import {
+    instantiateRipemd160,
+    instantiateSecp256k1,
+} from '@bitauth/libauth'
 
+import _broadcast from './wallet/broadcast.ts'
+import _setEntropy from './wallet/setEntropy.ts'
 
-const getCoinBalance = async (_address) => {
-    let balance
-    let unspent
+let ripemd160
+let secp256k1
 
-    unspent = await listUnspent(_address)
-        .catch(err => console.error(err))
-    console.log('UNSPENT', unspent)
+;(async () => {
+    /* Instantiate Libauth crypto interfaces. */
+    ripemd160 = await instantiateRipemd160()
+    secp256k1 = await instantiateSecp256k1()
+})()
 
-    balance = unspent.reduce(
-        (totalBalance, unspent) => unspent.hasToken ? 0 : (totalBalance + unspent.satoshis), 0
-    )
+/* Set ($STUDIO) token id. */
+const STUDIO_TOKENID = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000'
 
-    return balance
-}
+const TX_GAS_AMOUNT = 1000 // 10.00 NEXA
 
+/* Build (contract) script. */
+const STAKELINE_V1_SCRIPT = new Uint8Array([
+    OP.FROMALTSTACK,
+        OP.DROP,
+    OP.FROMALTSTACK,
+        OP.CHECKSEQUENCEVERIFY,
+        OP.DROP,
+    OP.FROMALTSTACK,
+        OP.CHECKSIGVERIFY,
+])
 
 /**
  * Wallet Store
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
-        /* Initialize entropy (used for HD wallet). */
-        // NOTE: This is a cryptographically-secure "random" 32-byte (256-bit) value. */
+        /**
+         * Entropy
+         * (DEPRECATED -- MUST REMAIN SUPPORTED INDEFINITELY)
+         *
+         * Initialize entropy (used for HD wallet).
+         *
+         * NOTE: This is a cryptographically-secure "random"
+         * 32-byte (256-bit) value.
+         */
         _entropy: null,
 
+        /**
+         * Keychain
+         *
+         * Manages a collection of BIP-32 wallets.
+         *
+         * [
+         *   {
+         *     id        : '5be2e5c3-9d27-4b0f-bb3c-8b2ef6fdaafd',
+         *     type      : 'studio',
+         *     title     : `My Studio Wallet`,
+         *     entropy   : 0x0000000000000000000000000000000000000000000000000000000000000000,
+         *     createdAt : 0123456789,
+         *     updatedAt : 1234567890,
+         *   },
+         *   {
+         *     id        : 'f2457985-4b92-4025-be8d-5f11a5fc4077',
+         *     type      : 'ledger',
+         *     title     : `My Ledger Wallet`,
+         *     createdAt : 0123456789,
+         *     updatedAt : 1234567890,
+         *   },
+         * ]
+         */
+        _keychain: null,
+
+        /**
+         * Wallet
+         *
+         * Currently active wallet object.
+         */
         _wallet: null,
-
-        _wif: null,
-
-        _coins: null,
-
-        _tokens: null,
     }),
 
     getters: {
+        /* Return NexaJS wallet instance. */
+        wallet(_state) {
+            return _state._wallet
+        },
+
+        /* Return wallet status. */
         isReady(_state) {
-            /* Validate entropy. */
-            if (
-                !this._entropy ||
-                typeof this._entropy !== 'string' ||
-                (this._entropy.length !== 32 && this._entropy.length !== 64)
-            ) {
-                return false
+            return _state.wallet?.isReady
+        },
+
+        /* Return wallet status. */
+        address(_state) {
+            return _state.wallet?.address
+        },
+
+        /* Return wallet status. */
+        assets(_state) {
+            return _state.wallet?.assets
+        },
+
+        /* Return wallet status. */
+        balances(_state) {
+            // FIXME: Update library to expose data OR
+            //        refactor to `markets`.
+            return _state.wallet?._balances
+        },
+
+        /**
+         * Stakeline
+         *
+         * Generates a stakeline contract.
+         */
+        stakeline(_state) {
+            /* Validate private key. */
+            if (!_state._wallet?.privateKey) {
+                return null
             }
 
-            /* Wallet is ready. */
-            return true
-        },
+            /* Initialize locals. */
+            let constraintData
+            let constraintHash
+            let nexaAddress
+            let publicKey
+            let scriptHash
+            let scriptPubKey
+            let wif
 
-        address(_state) {
-            if (!_state._wallet) return null
+            /* Encode Private Key WIF. */
+            wif = encodePrivateKeyWif({ hash: sha256 }, _state._wallet.privateKey, 'mainnet')
 
-            return _state._wallet.address
-        },
+            /* Hash (contract) script. */
+            scriptHash = ripemd160.hash(sha256(STAKELINE_V1_SCRIPT))
+            console.log('SCRIPT HASH:', scriptHash)
 
-        abbr(_state) {
-            if (!_state._wallet) return null
+            /* Derive the corresponding public key. */
+            publicKey = secp256k1.derivePublicKeyCompressed(_state._wallet.privateKey)
 
-            console.log('_state._wallet', _state._wallet)
+            /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
+            constraintData = encodeDataPush(publicKey)
 
-            return _state._wallet.address.slice(0, 19) + '...' + _state._wallet.address.slice(-6)
-        },
+            constraintHash = ripemd160.hash(sha256(constraintData))
+            // console.log('CONSTRAINT HASH:', constraintHash)
 
-        mnemonic(_state) {
-            if (!_state._entropy) return null
+            /* Build script public key. */
+            scriptPubKey = new Uint8Array([
+                OP.ZERO, // script template
+                ...encodeDataPush(scriptHash), // script hash
+                ...encodeDataPush(constraintHash),  // arguments hash
+                ...encodeDataPush(hexToBin('010040')), // relative-time block (512 seconds ~8.5mins)
+                // ...encodeDataPush(hexToBin('a90040')), // relative-time block (86,528 seconds ~1day)
+                // ...encodeDataPush(hexToBin('c71340')), // relative-time block (2,592,256 seconds ~30days)
+                ...encodeNullData('STUDIO').slice(1), // // NOTE: Remove `OP_RETURN` prefix.
+            ])
 
-            return entropyToMnemonic(_state._entropy)
-        },
-        entropy(_state) {
-            return _state._entropy || null
-        },
+            /* Encode the public key hash into a P2PKH nexa address. */
+            nexaAddress = encodeAddress(
+                'nexa',
+                'TEMPLATE',
+                scriptPubKey,
+            )
+            console.info('\n  Nexa address:', nexaAddress)
 
-        wallet(_state) {
-            return _state._wallet || null
-        },
-
-        wif(_state) {
-            return _state._wif || null
-        },
-
-        coins(_state) {
-            return _state._coins || []
-        },
-
-        tokens(_state) {
-            return _state._tokens || []
-        },
-
-        balance(_state) {
-            // return _state._balance
+            return nexaAddress
         },
     },
 
     actions: {
+        /**
+         * Initialize
+         *
+         * Setup the wallet store.
+         *   1. Retrieve the saved entropy.
+         *   2. Initialize a Wallet instance.
+         *   3. Load assets.
+         */
         async init() {
             console.info('Initializing wallet...')
 
@@ -121,15 +227,9 @@ export const useWalletStore = defineStore('wallet', {
                 throw new Error('Missing wallet entropy.')
             }
 
-            if (!this.mnemonic) {
-                throw new Error('Missing mnemonic (seed) phrase.')
-            }
-
-            this._wallet = await Wallet.init(this.mnemonic)
-            // console.log('RE-CREATED WALLET', this._wallet)
-
-            /* Load coins. */
-            this.loadCoins
+            /* Request a wallet instance (by mnemonic). */
+            this._wallet = await Wallet.init(this._entropy, true)
+            console.log('(Initialized) wallet', this._wallet)
         },
 
         createWallet(_entropy) {
@@ -141,87 +241,247 @@ export const useWalletStore = defineStore('wallet', {
                 _entropy = null
             }
 
-            _createWallet.bind(this)(_entropy)
+            /* Set entropy. */
+            _setEntropy.bind(this)(_entropy)
 
             /* Initialize wallet. */
             this.init()
         },
 
-        /**
-         * Load Coins
-         *
-         * Retrieves all spendable UTXOs.
-         */
-        async loadCoins(_isReloading = false) {
-            console.info('Wallet address:', this.address)
-            // console.info('Wallet address (1):', this.getAddress(1))
-            // console.info('Wallet address (2):', this.getAddress(2))
-            // console.info('Wallet address (3):', this.getAddress(3))
-
-            /* Initialize locals. */
-            // let satoshis
-            let unspent
-
-            /* Validate coin re-loading. */
-            // FIXME: What happens if we re-subscribe??
-            if (_isReloading === false) {
-                /* Start monitoring address. */
-                await subscribeAddress(
-                    this.address,
-                    () => this.loadCoins.bind(this)(true),
-                )
+        async transfer(_receiver, _satoshis) {
+            /* Validate transaction type. */
+            if (this.asset.group === '0') {
+                /* Send coins. */
+                return await this.wallet.send(_receiver, _satoshis)
+            } else {
+                /* Send tokens. */
+                return await this.wallet.send(this.asset.token_id_hex, _receiver, _satoshis)
             }
-
-            /* Encode Private Key WIF. */
-            this._wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
-
-            // Fetch all unspent transaction outputs for the temporary in-browser wallet.
-            unspent = await listUnspent(this.address)
-                .catch(err => console.error(err))
-            console.log('UNSPENT', unspent)
-
-            /* Validate unspent outputs. */
-            if (unspent.length === 0) {
-                return console.error('There are NO unspent outputs available.')
-            }
-
-            /* Retrieve coins. */
-            this._coins = unspent
-                .filter(_unspent => _unspent.hasToken === false)
-                .map(_unspent => {
-                    const outpoint = _unspent.outpoint
-                    const satoshis = _unspent.satoshis
-
-                    return {
-                        outpoint,
-                        satoshis,
-                        wif: this._wif,
-                    }
-                })
-            console.log('\n  Coins:', this.coins)
-
-            /* Retrieve tokens. */
-            this._tokens = unspent
-                .filter(_unspent => _unspent.hasToken === true)
-                .map(_unspent => {
-                    const outpoint = _unspent.outpoint
-                    const satoshis = _unspent.satoshis
-                    const tokenid = _unspent.tokenid
-                    const tokens = _unspent.tokens
-
-                    return {
-                        outpoint,
-                        satoshis,
-                        tokenid,
-                        tokens,
-                        wif: this._wif,
-                    }
-                })
-            console.log('\n  Tokens:', this.tokens)
         },
 
-        async transfer(_receiver, _satoshis) {
-            return await this.wallet.send(_receiver, _satoshis)
+        /**
+         * Activate Stakeline
+         *
+         * Creates a transaction and broadcasts on-chain.
+         */
+        async activateStakeline(_amount) {
+            let headersTip
+            let nexaAddress
+            let publicKey
+            let publicKeyHash
+            let receivers
+            let response
+            let scriptCoins
+            let scriptData
+            let scriptPubKey
+            let scriptTokens
+            let txResult
+            let wif
+
+            console.info('\n  Nexa address:', this.address)
+
+            /* Encode Private Key WIF. */
+            wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
+
+            /* Reques header's tip. */
+            headersTip = await getTip()
+            console.log('HEADERS TIP', headersTip)
+
+            scriptCoins = await getCoins(wif, scriptPubKey)
+                .catch(err => console.error(err))
+            console.log('\n  Script Coins:', scriptCoins)
+
+            scriptTokens = await getTokens(wif, scriptPubKey)
+                .catch(err => console.error(err))
+            console.log('\n  Script Tokens:', scriptTokens)
+
+            scriptTokens = scriptTokens.filter(_token => {
+                return _token.tokenidHex === STUDIO_TOKENID
+            })
+
+            receivers = [
+                {
+                    address: this.stakeline,
+                    tokenid: STUDIO_TOKENID,
+                    tokens: _amount,
+                },
+                {
+                    address: this.stakeline,
+                    satoshis: BigInt(TX_GAS_AMOUNT),
+                },
+            ]
+
+            // FIXME: FOR DEV PURPOSES ONLY
+            receivers.push({
+                address: this.address,
+            })
+            console.log('\n  Receivers:', receivers)
+
+            // lockTime = headersTip.height
+            // return console.log('LOCK TIME', lockTime)
+
+            /* Send UTXO request. */
+            response = await sendToken(scriptCoins, scriptTokens, receivers)
+            console.log('Send UTXO (response):', response)
+
+            try {
+                txResult = JSON.parse(response)
+                console.log('TX RESULT', txResult)
+
+                if (txResult.error) {
+                    console.error(txResult.message)
+                }
+
+                return txResult
+            } catch (err) {
+                console.error(err)
+            }
+        },
+
+        /**
+         * Recover
+         *
+         * Recover your assets AFTER the staking expires.
+         */
+        async recover(_redeemToken) {
+            console.log('REDEEM TOKEN', _redeemToken)
+
+            let coinOutpoint
+            let constraintData
+            let constraintHash
+            let contractAddress
+            let headersTip
+            let lockTime
+            let outpointDetails
+            let outpointTx
+            let publicKey
+            let receivers
+            let redeemCoin
+            let redeemToken
+            let response
+            let scriptCoins
+            let scriptHash
+            let scriptPubKey
+            let scriptTokens
+            let txResult
+            let wif
+
+            /* Encode Private Key WIF. */
+            wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
+
+            scriptHash = ripemd160.hash(sha256(STAKELINE_V1_SCRIPT))
+            console.log('SCRIPT HASH', binToHex(scriptHash))
+
+            /* Derive the corresponding public key. */
+            publicKey = secp256k1.derivePublicKeyCompressed(this._wallet.privateKey)
+            console.log('PUBLIC KEY', binToHex(publicKey))
+
+            /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
+            constraintData = encodeDataPush(publicKey)
+            console.log('PUBLIC KEY (push):', binToHex(constraintData))
+
+            constraintHash = ripemd160.hash(sha256(constraintData))
+            console.log('CONTRAINT HASH', binToHex(constraintHash))
+
+            console.log('STUDIO (slice):', binToHex(encodeNullData('STUDIO')));
+
+
+            /* Reques header's tip. */
+            headersTip = await getTip()
+
+            /* Build script public key. */
+            scriptPubKey = new Uint8Array([
+                OP.ZERO, // script template
+                ...encodeDataPush(scriptHash), // script hash
+                ...encodeDataPush(constraintHash),  // arguments hash
+                ...encodeDataPush(hexToBin('010040')), // relative-time block (512 seconds ~8.5mins)
+                // ...encodeDataPush(hexToBin('a90040')), // relative-time block (86,528 seconds ~1day)
+                // ...encodeDataPush(hexToBin('c71340')), // relative-time block (2,592,256 seconds ~30days)
+                ...encodeNullData('STUDIO').slice(1), // // NOTE: Remove `OP_RETURN` prefix.
+            ])
+
+            /* Encode the public key hash into a P2PKH nexa address. */
+            contractAddress = encodeAddress(
+                'nexa',
+                'TEMPLATE',
+                scriptPubKey,
+            )
+            console.info('CONTRACT ADDRESS', contractAddress)
+
+            outpointDetails = await getOutpoint(_redeemToken.outpoint)
+                .catch(err => console.error(err))
+
+            outpointTx = await getTransaction(outpointDetails.tx_hash)
+                .catch(err => console.error(err))
+
+            coinOutpoint = outpointTx.vout.find(_output => {
+                return _output.value_satoshi === TX_GAS_AMOUNT
+            })
+
+            scriptCoins = await getCoins(wif, scriptPubKey)
+                .catch(err => console.error(err))
+            console.log('\n  Script Coins:', scriptCoins)
+
+            scriptTokens = await getTokens(wif, scriptPubKey)
+                .catch(err => console.error(err))
+            console.log('\n  Script Tokens:', scriptTokens)
+
+            redeemToken = scriptTokens.find(_token => {
+                return _token.outpoint === _redeemToken.outpoint
+            })
+
+            redeemCoin = scriptCoins.find(_coin => {
+                return _coin.outpoint === coinOutpoint.outpoint_hash
+            })
+
+            receivers = [
+                {
+                    address: this.address,
+                    tokenid: STUDIO_TOKENID,
+                    tokens: redeemToken.tokens,
+                },
+            ]
+
+            // FIXME: FOR DEV PURPOSES ONLY
+            receivers.push({
+                address: this.address,
+            })
+            console.log('\n  Receivers:', receivers)
+
+            lockTime = headersTip.height
+            // return console.log('LOCK TIME', lockTime)
+
+            /* Send UTXO request. */
+            response = await sendToken({
+                coins: [redeemCoin],
+                tokens: [redeemToken],
+                receivers,
+                lockTime,
+                sequence: 0x400001, // set (timestamp) flag + 1 (512-second) cycle
+                // sequence: 0x4000a9, // set (timestamp) flag + 169 (512-second) cycles
+                // sequence: 0x4013c7, // set (timestamp) flag + 5,063 (512-second) cycles
+                locking: STAKELINE_V1_SCRIPT,
+            })
+            console.log('Send UTXO (response):', response)
+
+            try {
+                txResult = JSON.parse(response)
+                console.log('TX RESULT', txResult)
+
+                if (txResult.error) {
+                    console.error(txResult.message)
+                }
+
+                // expect(txResult.result).to.have.length(64)
+                return txResult
+            } catch (err) {
+                console.error(err)
+            }
+        },
+
+        broadcast(_receivers) {
+            /* Broadcast to receivers. */
+            return _broadcast.bind(this)(_receivers)
         },
 
         setEntropy(_entropy) {
@@ -255,20 +515,12 @@ export const useWalletStore = defineStore('wallet', {
             return this.wallet
         },
 
-        getAddress(_accountIdx) {
-            return this.wallet.getAddress(_accountIdx)
-        },
-
         destroy() {
             /* Reset wallet. */
             this._entropy = null
             this._wallet = null
-            this._wif = null
-            this._coins = null
-            this._tokens = null
 
             console.info('Wallet destroyed successfully!')
         },
-
     },
 })

@@ -7,7 +7,9 @@ useHead({
 })
 
 /* Initialize stores. */
+import { useWalletStore } from '@/stores/wallet'
 import { useSystemStore } from '@/stores/system'
+const Wallet = useWalletStore()
 const System = useSystemStore()
 
 const PRO_BASE_RATE = 50
@@ -45,11 +47,51 @@ const displayProRate = computed(() => {
 })
 
 const activate = async () => {
+    /* Confirm request. */
     if (confirm(`Are you sure you want to Activate this Stakeline?`)) {
-        console.log('MAKE IT HAPPEN!')
-        alert(`Oops! We're still working on that!\n\nCome back soon...`)
+
+        // TODO Calculate amount
+        const amount = BigInt(1)
+
+        /* Activate stakeline. */
+        const result = await Wallet.activateStakeline(amount)
+            .catch(err => {
+                console.error(err.message)
+                alert(err.message)
+            })
+        console.log('RESULT', result)
+
+        /* Validate result. */
+        if (result) {
+            alert(JSON.stringify(result))
+        }
+
     }
 }
+
+const recover = async () => {
+    /* Confirm request. */
+    if (confirm(`Are you sure you want to Recover this Stakeline?`)) {
+
+        // FOR DEV PURPOSES ONLY
+        const outpoint = 'cdcf900ffb40d4bb77aa8c1d2c81b33eb4da2bab943035eea91a03142258550d'
+
+        /* Activate stakeline. */
+        const result = await Wallet.recover({ outpoint })
+            .catch(err => {
+                console.error(err.message)
+                alert(err.message)
+            })
+        console.log('RESULT', result)
+
+        /* Validate result. */
+        if (result) {
+            alert(JSON.stringify(result))
+        }
+
+    }
+}
+
 
 // onMounted(() => {
 //     console.log('Mounted!')
@@ -235,6 +277,10 @@ const activate = async () => {
             </div>
         </section>
     </main>
+
+    <button @click="recover" class="text-xl text-gray-800 font-bold">
+        Recover Stakeline
+    </button>
 
     <Footer />
 </template>

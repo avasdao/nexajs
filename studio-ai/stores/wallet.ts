@@ -1,119 +1,105 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
 
-import {
-    encodePrivateKeyWif,
-    entropyToMnemonic,
-    mnemonicToEntropy,
-} from '@nexajs/hdnode'
+import { mnemonicToEntropy } from '@nexajs/hdnode'
 
-import {
-    getAddressMempool,
-    subscribeAddress,
-} from '@nexajs/rostrum'
-
-import { listUnspent } from '@nexajs/address'
-import { sha256 } from '@nexajs/crypto'
 import { Wallet } from '@nexajs/wallet'
 
-import _createWallet from './wallet/create.ts'
-// import _transfer from './wallet/transfer.ts'
+import _broadcast from './wallet/broadcast.ts'
+import _setEntropy from './wallet/setEntropy.ts'
 
-
-const getCoinBalance = async (_address) => {
-    let balance
-    let unspent
-
-    unspent = await listUnspent(_address)
-        .catch(err => console.error(err))
-    console.log('UNSPENT', unspent)
-
-    balance = unspent.reduce(
-        (totalBalance, unspent) => unspent.hasToken ? 0 : (totalBalance + unspent.satoshis), 0
-    )
-
-    return balance
-}
-
+/* Set ($STUDIO) token id. */
+const STUDIO_TOKENID = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000'
 
 /**
  * Wallet Store
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
-        /* Initialize entropy (used for HD wallet). */
-        // NOTE: This is a cryptographically-secure "random" 32-byte (256-bit) value. */
+        /**
+         * Entropy
+         * (DEPRECATED -- MUST REMAIN SUPPORTED INDEFINITELY)
+         *
+         * Initialize entropy (used for HD wallet).
+         *
+         * NOTE: This is a cryptographically-secure "random"
+         * 32-byte (256-bit) value.
+         */
         _entropy: null,
 
+        /**
+         * Keychain
+         *
+         * Manages a collection of BIP-32 wallets.
+         *
+         * [
+         *   {
+         *     id        : '5be2e5c3-9d27-4b0f-bb3c-8b2ef6fdaafd',
+         *     type      : 'studio',
+         *     title     : `My Studio Wallet`,
+         *     entropy   : 0x0000000000000000000000000000000000000000000000000000000000000000,
+         *     createdAt : 0123456789,
+         *     updatedAt : 1234567890,
+         *   },
+         *   {
+         *     id        : 'f2457985-4b92-4025-be8d-5f11a5fc4077',
+         *     type      : 'ledger',
+         *     title     : `My Ledger Wallet`,
+         *     createdAt : 0123456789,
+         *     updatedAt : 1234567890,
+         *   },
+         * ]
+         */
+        _keychain: null,
+
+        /**
+         * Wallet
+         *
+         * Currently active wallet object.
+         */
         _wallet: null,
-
-        _wif: null,
-
-        _coins: null,
-
-        _tokens: null,
     }),
 
     getters: {
-        isReady(_state) {
-            /* Validate entropy. */
-            if (
-                !this._entropy ||
-                typeof this._entropy !== 'string' ||
-                (this._entropy.length !== 32 && this._entropy.length !== 64)
-            ) {
-                return false
-            }
-
-            /* Wallet is ready. */
-            return true
-        },
-
-        address(_state) {
-            if (!_state._wallet) return null
-
-            return _state._wallet.address
-        },
-
-        abbr(_state) {
-            if (!_state._wallet) return null
-
-            console.log('_state._wallet', _state._wallet)
-
-            return _state._wallet.address.slice(0, 19) + '...' + _state._wallet.address.slice(-6)
-        },
-
-        mnemonic(_state) {
-            if (!_state._entropy) return null
-
-            return entropyToMnemonic(_state._entropy)
-        },
-        entropy(_state) {
-            return _state._entropy
-        },
-
+        /* Return NexaJS wallet instance. */
         wallet(_state) {
             return _state._wallet
         },
 
-        wif(_state) {
-            return _state._wif
+        /* Return wallet status. */
+        isReady(_state) {
+            return _state.wallet?.isReady
         },
 
-        coins(_state) {
-            return _state._coins
+        /* Return wallet status. */
+        address(_state) {
+            return _state.wallet?.address
         },
 
-        tokens(_state) {
-            return _state._tokens
+        /* Return wallet status. */
+        assets(_state) {
+            return _state.wallet?.assets
         },
 
-        balance(_state) {
-            // return _state._balance
+        /* Return wallet status. */
+        balances(_state) {
+            // FIXME: Update library to expose data OR
+            //        refactor to `markets`.
+            return _state.wallet?._balances
         },
+
+
     },
 
     actions: {
+        /**
+         * Initialize
+         *
+         * Setup the wallet store.
+         *   1. Retrieve the saved entropy.
+         *   2. Initialize a Wallet instance.
+         *   3. Load assets.
+         */
         async init() {
             console.info('Initializing wallet...')
 
@@ -121,15 +107,9 @@ export const useWalletStore = defineStore('wallet', {
                 throw new Error('Missing wallet entropy.')
             }
 
-            if (!this.mnemonic) {
-                throw new Error('Missing mnemonic (seed) phrase.')
-            }
-
-            this._wallet = await Wallet.init(this.mnemonic)
-            // console.log('RE-CREATED WALLET', this._wallet)
-
-            /* Load coins. */
-            this.loadCoins
+            /* Request a wallet instance (by mnemonic). */
+            this._wallet = await Wallet.init(this._entropy, true)
+            console.log('(Initialized) wallet', this._wallet)
         },
 
         createWallet(_entropy) {
@@ -141,87 +121,27 @@ export const useWalletStore = defineStore('wallet', {
                 _entropy = null
             }
 
-            _createWallet.bind(this)(_entropy)
+            /* Set entropy. */
+            _setEntropy.bind(this)(_entropy)
 
             /* Initialize wallet. */
             this.init()
         },
 
-        /**
-         * Load Coins
-         *
-         * Retrieves all spendable UTXOs.
-         */
-        async loadCoins(_isReloading = false) {
-            console.info('Wallet address:', this.address)
-            // console.info('Wallet address (1):', this.getAddress(1))
-            // console.info('Wallet address (2):', this.getAddress(2))
-            // console.info('Wallet address (3):', this.getAddress(3))
-
-            /* Initialize locals. */
-            // let satoshis
-            let unspent
-
-            /* Validate coin re-loading. */
-            // FIXME: What happens if we re-subscribe??
-            if (_isReloading === false) {
-                /* Start monitoring address. */
-                await subscribeAddress(
-                    this.address,
-                    () => this.loadCoins.bind(this)(true),
-                )
+        async transfer(_receiver, _satoshis) {
+            /* Validate transaction type. */
+            if (this.asset.group === '0') {
+                /* Send coins. */
+                return await this.wallet.send(_receiver, _satoshis)
+            } else {
+                /* Send tokens. */
+                return await this.wallet.send(this.asset.token_id_hex, _receiver, _satoshis)
             }
-
-            /* Encode Private Key WIF. */
-            this._wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
-
-            // Fetch all unspent transaction outputs for the temporary in-browser wallet.
-            unspent = await listUnspent(this.address)
-                .catch(err => console.error(err))
-            console.log('UNSPENT', unspent)
-
-            /* Validate unspent outputs. */
-            if (unspent.length === 0) {
-                return console.error('There are NO unspent outputs available.')
-            }
-
-            /* Retrieve coins. */
-            this._coins = unspent
-                .filter(_unspent => _unspent.hasToken === false)
-                .map(_unspent => {
-                    const outpoint = _unspent.outpoint
-                    const satoshis = _unspent.satoshis
-
-                    return {
-                        outpoint,
-                        satoshis,
-                        wif: this._wif,
-                    }
-                })
-            console.log('\n  Coins:', this.coins)
-
-            /* Retrieve tokens. */
-            this._tokens = unspent
-                .filter(_unspent => _unspent.hasToken === true)
-                .map(_unspent => {
-                    const outpoint = _unspent.outpoint
-                    const satoshis = _unspent.satoshis
-                    const tokenid = _unspent.tokenid
-                    const tokens = _unspent.tokens
-
-                    return {
-                        outpoint,
-                        satoshis,
-                        tokenid,
-                        tokens,
-                        wif: this._wif,
-                    }
-                })
-            console.log('\n  Tokens:', this.tokens)
         },
 
-        async transfer(_receiver, _satoshis) {
-            return await this.wallet.send(_receiver, _satoshis)
+        broadcast(_receivers) {
+            /* Broadcast to receivers. */
+            return _broadcast.bind(this)(_receivers)
         },
 
         setEntropy(_entropy) {
@@ -255,20 +175,12 @@ export const useWalletStore = defineStore('wallet', {
             return this.wallet
         },
 
-        getAddress(_accountIdx) {
-            return this.wallet.getAddress(_accountIdx)
-        },
-
         destroy() {
             /* Reset wallet. */
             this._entropy = null
             this._wallet = null
-            this._wif = null
-            this._coins = null
-            this._tokens = null
 
             console.info('Wallet destroyed successfully!')
         },
-
     },
 })

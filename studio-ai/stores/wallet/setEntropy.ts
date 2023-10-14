@@ -1,8 +1,13 @@
 /* Import modules. */
-import { binToHex } from '@nexajs/utils'
-import { hexToBin } from '@nexajs/utils'
-import { randomBytes } from '@nexajs/crypto'
-import { sha256 } from '@nexajs/crypto'
+import {
+    randomBytes,
+    sha256,
+} from '@nexajs/crypto'
+
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
 
 /* Set constants. */
 const ENTROPY_BYTES_LENGTH = 32
