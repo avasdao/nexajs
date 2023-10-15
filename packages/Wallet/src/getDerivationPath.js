@@ -11,7 +11,7 @@ const NEXA_COIN_TYPE = '29223' // 0x7227 is hex value
  * The `address_index` allows for an unlimited number of addresses to be
  * generated for each Wallet.
  */
-export default () => (_addressIdx = 0, _isChange = false, _accountIdx = 0) => {
+export default function (_addressIdx = 0, _isChange = false, _accountIdx = 0) {
     /* Set change flag/value. */
     const changeIdx = _isChange ? 1 : 0
 

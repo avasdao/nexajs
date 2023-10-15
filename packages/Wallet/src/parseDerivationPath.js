@@ -8,7 +8,7 @@
  *   4. is change? (0 or 1)
  *   5. address index
  */
-export default (_path) => {
+export default function (_path) {
     /* Parse the path. */
     const parsed = _path.split('/')
 
