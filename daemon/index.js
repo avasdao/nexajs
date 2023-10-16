@@ -8,7 +8,11 @@ import signMessage from './src/signMessage.js'
 
 console.log('Starting NexaJS Daemon...')
 
-const IS_LIVE_BROADCAST = true
+const IS_LIVE_BROADCAST = false
+const ACTIVE_ACCOUNT_IDX = 2
+// 0 - nexa:nqtsq5g5ezqpr27c78uyf08260xq4xh35faa4yk64aycgega
+// 1 - nexa:nqtsq5g55ykpcwwvr0x54358lx7skesefgj9anf07drdv52v
+// 2 - nexa:nqtsq5g56gvyyaf57seml8zdxu8ur7x5wsevh49mj5f7q6s0
 
 ;(async () => {
     let wallet
@@ -16,10 +20,13 @@ const IS_LIVE_BROADCAST = true
     // return createGroup()
     // return signMessage()
 
-    wallet = await Wallet.init(process.env.MNEMONIC)
+    wallet = await Wallet.init({
+        path: `m/44'/29223'/${ACTIVE_ACCOUNT_IDX}'/0/0`,
+        mnemonic: process.env.MNEMONIC,
+    }, false)
 
     setTimeout(() => {
-        console.log('\nWALLET ADDRESS', wallet.address, '\n')
+        return console.log('\nWALLET ADDRESS', wallet.address, '\n')
 
         mintGroup(
         // mintSubgroup(

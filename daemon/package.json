@@ -1,13 +1,13 @@
 {
   "name": "daemon",
-  "version": "23.9.9",
+  "version": "23.10.16",
   "main": "index.js",
   "type": "module",
   "license": "MIT",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
     "moment": "2.29.4",
-    "nexajs": "23.9.5",
+    "nexajs": "23.10.14",
     "numeral": "2.0.6",
     "uuid": "9.0.0"
   }
