@@ -91,6 +91,11 @@ export const useWalletStore = defineStore('wallet', {
 
         /* Return wallet status. */
         isLoading(_state) {
+            // TEMP -- FIX WALLET STATUS
+            if (this.wallet === 'NEW') {
+                return false
+            }
+
             if (typeof _state.wallet?.isReady === 'undefined') {
                 return true
             }
@@ -102,8 +107,8 @@ export const useWalletStore = defineStore('wallet', {
         /* Return wallet status. */
         isReady(_state) {
             // TEMP -- FIX WALLET STATUS
-            if (!this.wallet === null) {
-                return true
+            if (this.wallet === 'NEW') {
+                return false
             }
 
             if (this.isLoading) {
@@ -144,8 +149,9 @@ export const useWalletStore = defineStore('wallet', {
             console.info('Initializing wallet...')
 
             if (this._entropy === null) {
-                this._wallet = {} // FIXME TEMP NEW WALLET FLAG
-                throw new Error('Missing wallet entropy.')
+                this._wallet = 'NEW' // FIXME TEMP NEW WALLET FLAG
+                // throw new Error('Missing wallet entropy.')
+                return console.error('Missing wallet entropy.')
             }
 
             /* Request a wallet instance (by mnemonic). */
