@@ -152,6 +152,8 @@ const setTab = (_tab) => {
 }
 
 const init = async () => {
+    console.log('STATUS', Wallet.wallet.WalletStatus)
+
     /* Set (default) tab. */
     setTab('assets')
 
