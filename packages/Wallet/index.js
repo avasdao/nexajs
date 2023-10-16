@@ -179,10 +179,6 @@ export class Wallet extends EventEmitter {
         /* Holds a directory of (owned) asset details (metadata). */
         this._assets = null
 
-        /* Holds real-time (balance) data. */
-        // FIXME REMOVE THIS -- USE `ASSETS` AND `MARKETS`
-        // this._balances = null
-
         /* Holds real-time (market) data. */
         this._markets = null
 
