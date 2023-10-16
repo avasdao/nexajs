@@ -101,6 +101,11 @@ export const useWalletStore = defineStore('wallet', {
 
         /* Return wallet status. */
         isReady(_state) {
+            // TEMP -- FIX WALLET STATUS
+            if (!this._wallet === null) {
+                return true
+            }
+
             if (this.isLoading) {
                 console.log('this.isLoading')
                 return false
