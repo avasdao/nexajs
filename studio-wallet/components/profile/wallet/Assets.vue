@@ -63,11 +63,15 @@ const displayTokenName = (_tokenid) => {
 }
 
 const displayDecimalAmount = (_token) => {
-    console.log('_token', _token);
+    // console.log('_token', _token)
     let decimalValue
     let bigIntValue
 
-    decimalValue = _token.satoshis * BigInt(1e4)
+    if (_token.group === '0') {
+        decimalValue = _token.satoshis * BigInt(1e4)
+    } else {
+        decimalValue = _token.amount * BigInt(1e4)
+    }
 
     if (_token.decimal_places > 0) {
         bigIntValue = decimalValue / BigInt(10**_token.decimal_places)
@@ -79,33 +83,27 @@ const displayDecimalAmount = (_token) => {
 }
 
 const displayDecimalAmountUsd = (_token) => {
-    console.log('_token', _token);
-    // let decimalValue
-    // let bigIntValue
-    // let price
-    // let amount
-    //
-    // decimalValue = _token.tokens * BigInt(1e4)
-    //
-    // if (_token.decimals > 0) {
-    //     bigIntValue = decimalValue / BigInt(10**_token.decimals)
-    // } else {
-    //     bigIntValue = decimalValue
-    // }
-    //
-    // price = _token.ticker?.price || 0.00
-    //
-    // amount = (parseFloat(bigIntValue) / 1e4) * price
-    //
-    // if (amount >= 10.0) {
-    //     return numeral(amount).format('$0,0.00')
-    // } else {
-    //     return numeral(amount).format('$0,0.00[00]')
-    // }
+    // console.log('_token', _token)
+    let amount
+
+    /* Set amount. */
+    amount = _token.fiat?.USD || 0.00
+
+    /* Handle amount. */
+    if (amount >= 10.0) {
+        return numeral(amount).format('$0,0.00')
+    } else {
+        return numeral(amount).format('$0,0.00[00]')
+    }
 }
 
 const displayIcon = (_token) => {
     if (!_token.iconUrl || _token.iconUrl === '') {
+        /* Validate native asset. */
+        if (_token.group === '0') {
+            return 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden'
+        }
+
         return null
     }
 
@@ -139,7 +137,7 @@ onMounted(() => {
                     Assets
 
                     <span class="bg-indigo-100 text-indigo-600 ml-1 sm:ml-3 rounded-full py-0.5 px-2.5 text-xs font-medium">
-                        {{Wallet.assets ? Object.keys(Wallet.assets).length + 1 : 1}}
+                        {{Wallet.assets ? Object.keys(Wallet.assets).length : 0}}
                     </span>
                 </a>
 
@@ -153,45 +151,6 @@ onMounted(() => {
                     </span>
                 </a>
             </nav>
-        </div>
-
-        <!-- <h2 class="text-2xl font-medium">
-            Assets
-        </h2> -->
-
-        <div
-            @click="Wallet.setAsset(null)"
-            class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
-        >
-            <div class="flex flex-row items-start">
-                <img src="~/assets/nexa.svg" class="-mt-1 mr-1 h-12 w-auto opacity-80" />
-
-                <div class="flex flex-col">
-                    <h3 class="text-base text-amber-800 font-medium uppercase truncate">
-                        Nexa
-                    </h3>
-
-                    <h3 class="sm:hidden text-lg font-medium text-amber-600">
-                        {{coinAmount}}
-                    </h3>
-                    <h3 class="hidden sm:flex text-xl font-medium text-amber-600">
-                        {{coinAmount}}
-                    </h3>
-                </div>
-            </div>
-
-            <h3 class="flex flex-col items-end font-medium text-amber-700">
-                <sup class="text-xs">
-                    USD
-                </sup>
-
-                <span class="-mt-3 sm:hidden text-2xl">
-                    {{coinAmountUsd}}
-                </span>
-                <span class="-mt-3 hidden sm:flex text-3xl">
-                    {{coinAmountUsd}}
-                </span>
-            </h3>
         </div>
 
         <div
