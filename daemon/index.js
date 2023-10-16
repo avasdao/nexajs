@@ -9,7 +9,7 @@ import signMessage from './src/signMessage.js'
 console.log('Starting NexaJS Daemon...')
 
 const IS_LIVE_BROADCAST = false
-const ACTIVE_ACCOUNT_IDX = 2
+const ACTIVE_ACCOUNT_IDX = 1
 // 0 - nexa:nqtsq5g5ezqpr27c78uyf08260xq4xh35faa4yk64aycgega
 // 1 - nexa:nqtsq5g55ykpcwwvr0x54358lx7skesefgj9anf07drdv52v
 // 2 - nexa:nqtsq5g56gvyyaf57seml8zdxu8ur7x5wsevh49mj5f7q6s0
@@ -26,15 +26,15 @@ const ACTIVE_ACCOUNT_IDX = 2
     }, false)
 
     setTimeout(() => {
-        return console.log('\nWALLET ADDRESS', wallet.address, '\n')
+        console.log('\nWALLET ADDRESS', wallet.address, '\n')
 
         mintGroup(
         // mintSubgroup(
             wallet,
-            // 'nexa:nqtsq5g5ezqpr27c78uyf08260xq4xh35faa4yk64aycgega', // Studio Daemon
             // 'nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug', // Shomari (Robin Hood)
-            'nexa:nqtsq5g52285kqgw8c9gukavzj6n6cxav5cq48y86x3gwt0c', // Causes Cash
-            65000000,
+            // 'nexa:nqtsq5g52285kqgw8c9gukavzj6n6cxav5cq48y86x3gwt0c', // Causes Cash
+            'nexa:nqtsq5g5uk23suh2m3xhezq38pqxkhuzx79c0paju9tc3wk2',
+            200,
             IS_LIVE_BROADCAST,
         )
     }, 100)
