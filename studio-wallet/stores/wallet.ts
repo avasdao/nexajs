@@ -91,39 +91,20 @@ export const useWalletStore = defineStore('wallet', {
 
         /* Return wallet status. */
         isLoading(_state) {
-            // TEMP -- FIX WALLET STATUS
-            if (this.wallet === 'NEW') {
-                return false
-            }
-
-            if (typeof _state.wallet?.isReady === 'undefined') {
+            if (!this.wallet) {
                 return true
             }
-            // console.log('_state.wallet?.isReady', _state.wallet?.isReady)
 
-            return _state.wallet.isReady === WalletStatus.LOADING
+            return this.wallet.isLoading
         },
 
         /* Return wallet status. */
         isReady(_state) {
-            // TEMP -- FIX WALLET STATUS
-            if (this.wallet === 'NEW') {
-                return false
+            if (this.wallet) {
+                return true
             }
 
-            if (this.isLoading) {
-                return false
-            }
-
-            if (this.wallet?.isReady !== WalletStatus.READY) {
-                return false
-            }
-
-            if (_state._entropy === null) {
-                return false
-            }
-
-            return true
+            return this.wallet.isReady
         },
 
         /* Return NexaJS wallet instance. */
@@ -157,6 +138,9 @@ export const useWalletStore = defineStore('wallet', {
             /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this._entropy, true)
             console.log('(Initialized) wallet', this._wallet)
+            console.log('STATUS', this.wallet.status)
+            console.log('isLoading', this.wallet.isLoading)
+            console.log('isReady', this.wallet.isReady)
         },
 
         createWallet(_entropy) {
