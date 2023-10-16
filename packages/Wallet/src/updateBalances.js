@@ -119,7 +119,7 @@ export default async function (_fiat = 'USD') {
     }
 
     /* Validate fiat value(s). */
-    if (_fiat) {
+    if (this._assets['0'] && _fiat) {
         /* Set USD. */
         fiatUSD = Number(coinsTotal) / 100 // convert to amount
         fiatUSD = fiatUSD * price // calculate USD value

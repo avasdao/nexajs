@@ -50,10 +50,11 @@ import _updateBalances from './src/updateBalances.js'
  * Enumeration of all possible wallet (status) conditions.
  */
 const _WalletStatus = Object.freeze({
-	FAILED  : Symbol('failed'),
-	LOADING : Symbol('loading'),
-	READY   : Symbol('ready'),
-	UNKNOWN : Symbol('unknown'),
+	FAILED   : Symbol('failed'),
+	LOADING  : Symbol('loading'),
+	READY    : Symbol('ready'),
+	UNKNOWN  : Symbol('unknown'),
+	UPDATING : Symbol('updating'),
 })
 
 /* Export (local) modules. */
@@ -141,6 +142,7 @@ export class Wallet extends EventEmitter {
         super()
 
         /* Initialize internals. */
+        this._status = WalletStatus.UNKNOWN
         this._entropy = null
         this._mnemonic = null
         this._network = null
@@ -274,6 +276,9 @@ export class Wallet extends EventEmitter {
             /* Create new instance. */
             const wallet = new Wallet(_primary, _secondary)
 
+            /* Set (status) flag. */
+            wallet._status = WalletStatus.LOADING
+
             // NOTE: We pause 1/2 second (~100ms probably works too) to allow
             //       the wallet time to complete its setup.
             // FIXME Reduce setup by properly detecting wallet setup completion.
@@ -286,6 +291,9 @@ export class Wallet extends EventEmitter {
 
             /* Update balances. */
             await wallet.updateBalances(fiat)
+
+            /* Set (status) flag. */
+            wallet._status = WalletStatus.READY
 
             /* Return (initialized) instance. */
             return wallet
@@ -357,27 +365,11 @@ export class Wallet extends EventEmitter {
      * Flag to indicate when the wallet is ready for use.
      */
     get isReady() {
-        /* Validate entropy. */
-        if (!this._entropy) {
-            return WalletStatus.LOADING
-        }
-
-        /* Validate entropy. */
-        if (typeof this._entropy !== 'string') {
-            return WalletStatus.LOADING
-        }
-
-        /* Validate entropy. */
-        if (this._entropy.length !== 32 && this._entropy.length !== 64) {
-            return WalletStatus.LOADING
-        }
-
-        /* Wallet is ready. */
-        return WalletStatus.READY
+        return this.status === WalletStatus.READY
     }
 
     get isLoading() {
-        return this.isReady === WalletStatus.LOADING
+        return this.status === WalletStatus.LOADING
     }
 
     get markets() {
@@ -441,9 +433,7 @@ export class Wallet extends EventEmitter {
     }
 
     get status() {
-        return {
-            isReady: this.isReady,
-        }
+        return this._status
     }
 
     get tokens() {
