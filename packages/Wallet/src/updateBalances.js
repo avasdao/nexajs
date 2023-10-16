@@ -7,6 +7,11 @@ const BALANCE_UPDATE_DELAY = 30000 // 30 seconds
 const FIAT_CALC_PRECISION = 9
 
 
+/**
+ * Satoshis To Fiat
+ *
+ * Will convert satoshis OR (token) amount into a formatted fiat value.
+ */
 const satsToFiat = (_satoshis, _rate, _decimals = 0, _precision = FIAT_CALC_PRECISION) => {
     let fiatUSD
     let rateBI
@@ -68,7 +73,7 @@ export default async function (_fiat = 'USD') {
 // console.log('UPDATE BALANCES (fiat):', _fiat)
 
     /* Initialize locals. */
-    // let coins
+    let assetTotal
     let coinsTotal
     let fiat
     let fiatUSD
@@ -78,10 +83,8 @@ export default async function (_fiat = 'USD') {
     let response
     let satoshis
     let ticker
-    // let token
     let tokenid
     let tokenList
-    // let tokens
 
     /* Validate markets. */
     if (!this.markets) {
@@ -183,7 +186,8 @@ export default async function (_fiat = 'USD') {
                 rate = this._markets[tokenid].price
                 // console.log('PRICE', price);
 
-                const assetTotal = this._assets[tokenid].amount
+                /* Set asset total. */
+                assetTotal = this._assets[tokenid].amount
 
                 /* Set market (to asset). */
                 this._assets[tokenid].fiat['USD'] = satsToFiat(

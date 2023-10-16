@@ -79,7 +79,7 @@ const displayDecimalAmount = (_token) => {
         bigIntValue = decimalValue
     }
 
-    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0.[00000000]')
+    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]000000')
 }
 
 const displayDecimalAmountUsd = (_token) => {
@@ -93,7 +93,7 @@ const displayDecimalAmountUsd = (_token) => {
     if (amount >= 10.0) {
         return numeral(amount).format('$0,0.00')
     } else {
-        return numeral(amount).format('$0,0.00[00]')
+        return numeral(amount).format('$0,0.00[0000]')
     }
 }
 
@@ -111,7 +111,7 @@ const init = () => {
     // console.log('ASSETS (tokens):', Wallet.tokens)
     // loadAssets()
     console.log('ASSETS', Wallet.assets)
-    console.log('BALANCES', Wallet.balances)
+    // console.log('BALANCES', Wallet.balances)
 }
 
 onMounted(() => {

@@ -28,37 +28,35 @@ const isShowingHistory = ref(false)
 const isShowingSwap = ref(false)
 
 const displayBalance = computed(() => {
-    if (!Wallet.coins) {
+    /* Validate asset. */
+    if (!Wallet.asset) {
         return '0.00'
     }
 
-    const satoshis = Wallet.coins.reduce(
-        (totalSatoshis, coin) => (totalSatoshis + coin.satoshis), BigInt(0)
-    )
+    /* Initialize locals. */
+    let balance
 
-    /* Calculate (NEX) total. */
-    const nex = (parseInt(satoshis) / 100.0)
+    /* Set balance. */
+    balance = Wallet.asset?.amount || 0.00
 
-    /* Return formatted value. */
-    return numeral(nex).format('0,0.00')
+    /* Return (formatted) balance. */
+    return numeral(balance).format('0,0[.]000000')
 })
 
 const displayBalanceUsd = computed(() => {
-    if (!Wallet.coins) {
+    /* Validate asset. */
+    if (!Wallet.asset) {
         return '0.00'
     }
 
-    const satoshis = Wallet.coins.reduce(
-        (totalSatoshis, coin) => (totalSatoshis + coin.satoshis), BigInt(0)
-    )
+    /* Initialize locals. */
+    let balanceUsd
 
-    /* Calculate (NEX) total. */
-    const mex = (parseInt(satoshis) / 10**8)
-
-    const mexUsd = mex * System.usd
+    /* Set balance. */
+    balanceUsd = Wallet.asset?.fiat?.USD || 0.00
 
     /* Return formatted value. */
-    return numeral(mexUsd).format('$0,0.00')
+    return numeral(balanceUsd).format('$0,0.00[0000]')
 })
 
 const pendingBalance = computed(() => {
@@ -156,21 +154,21 @@ const init = async () => {
     setTab('assets')
 
     /* Validate tokens. */
-    if (Wallet.tokens) {
-        // /* Initialize tokens. */
-        tokens.value = {}
+    // if (Wallet.tokens) {
+    //     // /* Initialize tokens. */
+    //     tokens.value = {}
 
-        // /* Handle tokens. */
-        Wallet.tokens.forEach(_token => {
-            if (!tokens.value[_token.tokenid]) {
-                tokens.value[_token.tokenid] = BigInt(0)
-            }
+    //     // /* Handle tokens. */
+    //     Wallet.tokens.forEach(_token => {
+    //         if (!tokens.value[_token.tokenid]) {
+    //             tokens.value[_token.tokenid] = BigInt(0)
+    //         }
 
-            /* Add tokens to total. */
-            tokens.value[_token.tokenid] += _token.tokens
-        })
-        // console.log('WALLET TOKENS', Wallet.tokens)
-    }
+    //         /* Add tokens to total. */
+    //         tokens.value[_token.tokenid] += _token.tokens
+    //     })
+    //     // console.log('WALLET TOKENS', Wallet.tokens)
+    // }
 }
 
 onMounted(() => {

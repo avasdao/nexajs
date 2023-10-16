@@ -74,19 +74,20 @@ export const useWalletStore = defineStore('wallet', {
 
         /* Return NexaJS wallet instance. */
         asset(_state) {
-            return _state._wallet.asset
+            if (!this.assets) {
+                return null
+            }
+
+            return this.wallet.assets[this.wallet.assetid]
         },
 
         /* Return wallet status. */
         assets(_state) {
-            return _state.wallet?.assets
-        },
+            if (!this.wallet) {
+                return null
+            }
 
-        /* Return wallet status. */
-        balances(_state) {
-            // FIXME: Update library to expose data OR
-            //        refactor to `markets`.
-            return _state.wallet?._balances
+            return this.wallet.assets
         },
 
         /* Return wallet status. */
@@ -138,9 +139,9 @@ export const useWalletStore = defineStore('wallet', {
             /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this._entropy, true)
             console.log('(Initialized) wallet', this._wallet)
-            console.log('STATUS', this.wallet.status)
-            console.log('isLoading', this.wallet.isLoading)
-            console.log('isReady', this.wallet.isReady)
+
+            /* Set (default) asset. */
+            this._wallet.setAsset('0')
         },
 
         createWallet(_entropy) {
