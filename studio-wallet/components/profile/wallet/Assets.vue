@@ -99,11 +99,6 @@ const displayDecimalAmountUsd = (_token) => {
 
 const displayIcon = (_token) => {
     if (!_token.iconUrl || _token.iconUrl === '') {
-        /* Validate native asset. */
-        if (_token.group === '0') {
-            return 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden'
-        }
-
         return null
     }
 

@@ -23,25 +23,46 @@ export default async function (_subscribe = false, _fiat = 'USD') {
     let unspent
     let url
 
+    /* Subscribe to (receiving) addresses. */
+    if (_subscribe === true) {
+        /* Subscribe to address. */
+        await subscribeAddress(this.address, async () => {
+            /* Update (latest) assets. */
+            await this.updateAssets(false, _fiat)
+
+            /* Emit assets to subscribers. */
+            this.emit('onUpdate', this.assets)
+        })
+    }
+
     /* Validate assets. */
     if (!this.assets) {
         this._assets = {}
     }
 
-    /* Subscribe to (receiving) addresses. */
-    if (_subscribe === true) {
-        /* Subscribe to address. */
-        await subscribeAddress(this.address, async () => {
-            await this.updateAssets(false, _fiat)
+    /* Validate (native) NEXA asset. */
+    if (!this.assets['0']) {
+        /* Add (native) NEXA asset. */
+        this._assets['0'] = {
+            group: '0',
+            name: `Nexa`,
+            ticker: 'NEXA',
+            token_id_hex: '0x',
+            decimal_places: 2,
+            document_hash: null,
+            document_url: null,
 
-            // emit to subscribers
-            this.emit('onUpdate', {
-                satoshis: this.getBalance(null),
-                balances: this.balances,
-                coins: this._coins,
-                tokens: this._tokens,
-            })
-        })
+            markets: {
+                'USD': {
+                    price: 0.0000,
+                    marketCap: 0.00
+                },
+            },
+
+            iconUrl: 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden', // nexa.svg
+            summary: `A digital economy with capacity for all.`,
+            description: `Nexa is the most scalable Layer-1 blockchain ever built. It will handle over 10 billion transactions per day while offering EVM-like smart-contracts & native token services, all while staying decentralized.`,
+        }
     }
 
     // Fetch all unspent transaction outputs for the temporary in-browser wallet.
@@ -68,26 +89,6 @@ export default async function (_subscribe = false, _fiat = 'USD') {
             }
         })
     // console.log('\nCOINS', this.coins)
-
-    if (this.coins && !this.assets['0']) {
-        /* Initialize (native) NEXA asset. */
-        this._assets['0'] = {
-            group: '0',
-            name: `Nexa`,
-            ticker: 'NEXA',
-            summary: 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden', // nexa.svg
-            token_id_hex: '0x',
-            decimal_places: 2,
-            document_hash: null,
-            document_url: null,
-            markets: {
-                'USD': {
-                    price: 0.0000,
-                    marketCap: 0.00
-                },
-            }
-        }
-    }
 
     /* Retrieve tokens. */
     this._tokens = unspent
@@ -140,7 +141,7 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                         price: 0.0000,
                         marketCap: 0.00
                     },
-                }
+                },
             }
 
             if (info.document_url) {

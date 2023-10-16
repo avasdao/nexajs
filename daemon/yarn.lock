@@ -463,10 +463,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.10.15":
-  version "23.10.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.15.tgz#ffe9de267274aaecf0c20c69e7e0b079cb7ea57d"
-  integrity sha512-f417iQY5aL/4mLYu3fFev3oJLMcrUlUsZrtLyfmHNwlH75xkxh2YAa5NWW7T5AJAUCqX+P7kexQ0Hl0nkWPdqw==
+"@nexajs/wallet@23.10.16":
+  version "23.10.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.16.tgz#a31f9c3a4697bdfdc21ced1a213f7d0ad1607b55"
+  integrity sha512-dtR3OPahpcfPQY/N38BGvq7eH63noqd28kCapLWxMBVnKnjqGY6PCqNIBUYKqHB9psy9cKvBzIhdAEs+tIWRWQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.10.10"
@@ -766,10 +766,10 @@ ms@2.1.2:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-nexajs@23.10.15:
-  version "23.10.15"
-  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-23.10.15.tgz#2864569650b752d72f7388267257df63ad5e6502"
-  integrity sha512-t29ONvwsmLWsgSqcNSsJzjcfBnijyv2tSI3aGJikQkf+pVRfDZfbiajEyMIm0uVWKeeAo+16PKoF+y1NDyK3Mw==
+nexajs@23.10.16:
+  version "23.10.16"
+  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-23.10.16.tgz#3093cb0e680fe8621560c50e19dbbe75da8a28bd"
+  integrity sha512-ETIGy3XVt5l6zDnsflkrQ7yYjOfjeVW2Op4u+0i56xAhOMXG054tH6FDYgObcHz9URKjTKgOBZZZh929Pp6big==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.10.10"
@@ -788,7 +788,7 @@ nexajs@23.10.15:
     "@nexajs/token" "23.10.8"
     "@nexajs/transaction" "23.10.8"
     "@nexajs/utils" "23.7.22"
-    "@nexajs/wallet" "23.10.15"
+    "@nexajs/wallet" "23.10.16"
     debug "4.3.4"
     events "3.3.0"
 

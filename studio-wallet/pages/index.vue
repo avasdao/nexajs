@@ -223,7 +223,7 @@ onMounted(() => {
                     My Portfolio Summary
                 </h3>
 
-                <img :src="Wallet.asset?.iconUrl || 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden'" class="-mt-3 -mr-2 p-2 h-10 w-auto opacity-40 group-hover:opacity-100 group-hover:h-11 duration-300 ease-in-out" />
+                <img :src="Wallet.asset?.iconUrl" class="-mt-3 -mr-2 p-2 h-10 w-auto opacity-40 group-hover:opacity-100 group-hover:h-11 duration-300 ease-in-out" />
             </div>
 
             <div class="flex flex-col items-end">
