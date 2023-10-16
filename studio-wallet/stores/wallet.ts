@@ -100,7 +100,7 @@ export const useWalletStore = defineStore('wallet', {
 
         /* Return wallet status. */
         isReady(_state) {
-            if (this.wallet) {
+            if (this.wallet?._entropy) {
                 return true
             }
 
