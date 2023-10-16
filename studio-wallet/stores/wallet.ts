@@ -102,22 +102,19 @@ export const useWalletStore = defineStore('wallet', {
         /* Return wallet status. */
         isReady(_state) {
             // TEMP -- FIX WALLET STATUS
-            if (!this._wallet === null) {
+            if (!this.wallet === null) {
                 return true
             }
 
             if (this.isLoading) {
-                console.log('this.isLoading')
                 return false
             }
 
-            if (_state.wallet?.isReady !== WalletStatus.READY) {
-                console.log('_state.wallet', _state.wallet, WalletStatus)
+            if (this.wallet?.isReady !== WalletStatus.READY) {
                 return false
             }
 
             if (_state._entropy === null) {
-                console.log('_state._entropy')
                 return false
             }
 
@@ -147,6 +144,7 @@ export const useWalletStore = defineStore('wallet', {
             console.info('Initializing wallet...')
 
             if (this._entropy === null) {
+                this._wallet = {} // FIXME TEMP NEW WALLET FLAG
                 throw new Error('Missing wallet entropy.')
             }
 
