@@ -64,18 +64,18 @@ const displayTokenName = (_tokenid) => {
 
 const displayDecimalAmount = (_token) => {
     console.log('_token', _token);
-    // let decimalValue
-    // let bigIntValue
-    //
-    // decimalValue = _token.tokens * BigInt(1e4)
-    //
-    // if (_token.decimals > 0) {
-    //     bigIntValue = decimalValue / BigInt(10**_token.decimals)
-    // } else {
-    //     bigIntValue = decimalValue
-    // }
-    //
-    // return numeral(parseFloat(bigIntValue) / 1e4).format('0,0.[00000000]')
+    let decimalValue
+    let bigIntValue
+
+    decimalValue = _token.satoshis * BigInt(1e4)
+
+    if (_token.decimal_places > 0) {
+        bigIntValue = decimalValue / BigInt(10**_token.decimal_places)
+    } else {
+        bigIntValue = decimalValue
+    }
+
+    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0.[00000000]')
 }
 
 const displayDecimalAmountUsd = (_token) => {

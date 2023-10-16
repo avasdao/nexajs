@@ -3,7 +3,10 @@ import { defineStore } from 'pinia'
 
 import { mnemonicToEntropy } from '@nexajs/hdnode'
 
-import { Wallet } from '@nexajs/wallet'
+import {
+    Wallet,
+    WalletStatus,
+} from '@nexajs/wallet'
 
 /* Libauth helpers. */
 import {
@@ -70,8 +73,33 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         /* Return wallet status. */
+        isLoading(_state) {
+            if (typeof _state.wallet?.isReady === 'undefined') {
+                return true
+            }
+            // console.log('_state.wallet?.isReady', _state.wallet?.isReady)
+
+            return _state.wallet.isReady === WalletStatus.LOADING
+        },
+
+        /* Return wallet status. */
         isReady(_state) {
-            return _state.wallet?.isReady
+            if (this.isLoading) {
+                console.log('this.isLoading')
+                return false
+            }
+
+            if (_state.wallet?.isReady !== WalletStatus.READY) {
+                console.log('_state.wallet', _state.wallet, WalletStatus)
+                return false
+            }
+
+            if (_state._entropy === null) {
+                console.log('_state._entropy')
+                return false
+            }
+
+            return true
         },
 
         /* Return wallet status. */
@@ -89,6 +117,10 @@ export const useWalletStore = defineStore('wallet', {
             // FIXME: Update library to expose data OR
             //        refactor to `markets`.
             return _state.wallet?._balances
+        },
+
+        WalletStatus() {
+            return WalletStatus
         },
     },
 

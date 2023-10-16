@@ -152,7 +152,7 @@ const setTab = (_tab) => {
 }
 
 const init = async () => {
-    console.log('STATUS', Wallet.wallet.WalletStatus)
+    console.log('STATUS', Wallet.WalletStatus)
 
     /* Set (default) tab. */
     setTab('assets')
@@ -185,7 +185,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <main v-if="!Wallet.isReady" class="flex flex-col gap-5">
+    <section v-if="Wallet.isLoading">
+        <p class="p-5 text-2xl font-medium">
+            Loading wallet. Please wait...
+        </p>
+    </section>
+
+    <main v-else-if="!Wallet.isReady" class="flex flex-col gap-5">
         <p class="px-3 py-2 bg-yellow-100 text-base font-medium border-2 border-yellow-200 rounded-lg shadow-md">
             Welcome to your Studio wallet.
             Click the button below to create a new wallet and begin trading.
