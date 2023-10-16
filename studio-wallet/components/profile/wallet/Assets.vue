@@ -155,7 +155,7 @@ onMounted(() => {
 
         <div
             v-for="(token, tokenid) in Wallet.assets" :key="tokenid"
-            @click="Wallet.setAsset(tokenid)"
+            @click="Wallet.wallet.setAsset(tokenid)"
             class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
         >
             <div class="flex flex-row items-start">

@@ -67,9 +67,26 @@ export const useWalletStore = defineStore('wallet', {
     }),
 
     getters: {
+        /* Return wallet status. */
+        address(_state) {
+            return _state.wallet?.address
+        },
+
         /* Return NexaJS wallet instance. */
-        wallet(_state) {
-            return _state._wallet
+        asset(_state) {
+            return _state._wallet.asset
+        },
+
+        /* Return wallet status. */
+        assets(_state) {
+            return _state.wallet?.assets
+        },
+
+        /* Return wallet status. */
+        balances(_state) {
+            // FIXME: Update library to expose data OR
+            //        refactor to `markets`.
+            return _state.wallet?._balances
         },
 
         /* Return wallet status. */
@@ -102,21 +119,9 @@ export const useWalletStore = defineStore('wallet', {
             return true
         },
 
-        /* Return wallet status. */
-        address(_state) {
-            return _state.wallet?.address
-        },
-
-        /* Return wallet status. */
-        assets(_state) {
-            return _state.wallet?.assets
-        },
-
-        /* Return wallet status. */
-        balances(_state) {
-            // FIXME: Update library to expose data OR
-            //        refactor to `markets`.
-            return _state.wallet?._balances
+        /* Return NexaJS wallet instance. */
+        wallet(_state) {
+            return _state._wallet
         },
 
         WalletStatus() {
