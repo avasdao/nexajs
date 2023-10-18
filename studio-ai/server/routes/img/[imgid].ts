@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     // console.log('URL', url)
 
     /* Validate URL. */
-    if (url.length === 45) {
+    if (url.length === 41 || url.length === 45) {
         /* Parse image id. */
         imgid = url?.slice(5)
     } else {
@@ -22,11 +22,17 @@ export default defineEventHandler(async (event) => {
 
     /* Set proxy URL. */
     proxyUrl = process.env.AI_HOST + imgid
+    // console.log('PROXY URL', proxyUrl)
 
     /* Request binary data. */
     binData = await $fetch(proxyUrl)
         .catch(err => console.error(err))
-    console.log('BIN DATA LEN', binData, typeof binData)
+    // console.log('BIN DATA LEN', binData, typeof binData)
+
+    /* Validate binary data. */
+    if (binData?.id) {
+        return binData
+    }
 
     /* Convert to typed array. */
     img = new Uint8Array(await binData.arrayBuffer())
