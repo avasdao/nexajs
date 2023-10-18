@@ -1,0 +1,40 @@
+export default defineEventHandler(async (event) => {
+    // console.log('EVENT (req):', event.node.req)
+
+    /* Initialize locals. */
+    let binData
+    let img
+    let imgid
+    let proxyUrl
+    let url
+
+    /* Set (path) URL. */
+    url = event.node.req?.url
+    // console.log('URL', url)
+
+    /* Validate URL. */
+    if (url.length === 45) {
+        /* Parse image id. */
+        imgid = url?.slice(5)
+    } else {
+        return 'error'
+    }
+
+    /* Set proxy URL. */
+    proxyUrl = process.env.AI_HOST + imgid
+
+    /* Request binary data. */
+    binData = await $fetch(proxyUrl)
+        .catch(err => console.error(err))
+    console.log('BIN DATA LEN', binData, typeof binData)
+
+    /* Convert to typed array. */
+    img = new Uint8Array(await binData.arrayBuffer())
+
+    if (!img) {
+        return 'error'
+    }
+
+    /* Return image. */
+    event.node.res.end(img)
+})

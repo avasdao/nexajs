@@ -33,8 +33,8 @@ const ACTIVE_ACCOUNT_IDX = 1
             wallet,
             // 'nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug', // Shomari (Robin Hood)
             // 'nexa:nqtsq5g52285kqgw8c9gukavzj6n6cxav5cq48y86x3gwt0c', // Causes Cash
-            'nexa:nqtsq5g5uk23suh2m3xhezq38pqxkhuzx79c0paju9tc3wk2',
-            200,
+            'nexa:nqtsq5g5zmfck8fxlhkpxe28yu4a747l2e65kuptph2ajp8x',
+            100000,
             IS_LIVE_BROADCAST,
         )
     }, 100)

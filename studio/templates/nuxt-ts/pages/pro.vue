@@ -15,6 +15,7 @@ const System = useSystemStore()
 const PRO_BASE_RATE = 50
 
 const stakeline = ref('0')
+const isShowingRecovery = ref(true)
 
 const displayMonths = computed(() => {
     if (stakeline.value === '0') {
@@ -74,7 +75,7 @@ const recover = async () => {
     if (confirm(`Are you sure you want to Recover this Stakeline?`)) {
 
         // FOR DEV PURPOSES ONLY
-        const outpoint = 'cdcf900ffb40d4bb77aa8c1d2c81b33eb4da2bab943035eea91a03142258550d'
+        const outpoint = 'fca0ce43c76800c363f9272c1fef87798120241d4e7c725070cde859a93cba4b'
 
         /* Activate stakeline. */
         const result = await Wallet.recover({ outpoint })
@@ -262,7 +263,7 @@ const recover = async () => {
 
                                 <button
                                     @click="activate"
-                                    class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-5 text-center text-2xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    class="mt-10 block w-full rounded-lg bg-indigo-600 px-3 py-5 text-center text-2xl font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
                                     Activate Stakeline
                                 </button>
@@ -271,16 +272,18 @@ const recover = async () => {
                                     Invoices and receipts available for easy company reimbursement
                                 </p>
                             </div>
+
+                            <button v-if="isShowingRecovery" @click="recover" class="mt-5 mx-auto px-5 py-2 w-fit text-xl text-gray-800 font-bold bg-red-500 border-2 border-red-600 rounded-lg shadow hover:bg-red-400">
+                                <span class="text-red-100">
+                                    Recover Stakeline
+                                </span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <button @click="recover" class="text-xl text-gray-800 font-bold">
-        Recover Stakeline
-    </button>
 
     <Footer />
 </template>
