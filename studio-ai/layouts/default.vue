@@ -63,9 +63,12 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
 const isShowingMenu = ref(false)
 const isShowingProfileMenu = ref(false)
 
-onMounted(() => {
+onMounted(async () => {
     /* Initailize system. */
     System.init()
+
+    /* Initialize profile. */
+    await Profile.init()
 
     /* Initialize wallet. */
     Wallet.init()

@@ -4,32 +4,31 @@ import PouchDB from 'pouchdb'
 /* Initialize databases. */
 const sessionsDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@127.0.0.1:5984/sessions`)
 
-export default defineEventHandler(async (event) => {
+/**
+ * Get Session
+ *
+ * Connects to a storage device that is managing the sessions for the
+ * application to retrieve the user's session.
+ */
+const getSession = async (_store, _sessionid) => {
     /* Initialize locals. */
-    let session
-    let sessionid
     let error
-    let query
+    let session
 
-    /* Set (request) query. */
-    query = getQuery(event)
-    // console.log('QUERY', query)
+    // TODO Detect data store (type).
 
-    /* Set session id. */
-    sessionid = query?.sid
-    // console.log('SESSION ID', sessionid)
+    // TODO Validate data store (connection).
 
     /* Validate session id. */
-    if (!sessionid) {
+    if (!_sessionid) {
         return {
             error: 'Not found',
-            query,
         }
     }
 
-    /* Save (database) session. */
-    session = await sessionsDb
-        .get(sessionid)
+    /* Retrieve session details (from data store). */
+    session = await _store
+        .get(_sessionid)
         .catch(err => {
             console.error(err)
             error = err
@@ -40,7 +39,6 @@ export default defineEventHandler(async (event) => {
     if (!session) {
         return {
             error: 'Not found',
-            query,
         }
     }
 
@@ -55,8 +53,24 @@ export default defineEventHandler(async (event) => {
     delete session._id
     delete session._rev
     // delete session.auth
-    delete session.session
+    // delete session.session
 
     /* Return session. */
     return session
+}
+
+export default defineEventHandler(async (event) => {
+    /* Initialize locals. */
+    let query
+    let sessionid
+
+    /* Set (request) query. */
+    query = getQuery(event)
+
+    /* Set session id. */
+    sessionid = query?.sid
+
+    /* Request session details. */
+    return await getSession(sessionsDb, sessionid)
+        .catch(err => console.error(err))
 })

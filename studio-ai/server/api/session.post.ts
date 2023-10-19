@@ -12,7 +12,7 @@ const sessionsDb = new PouchDB(`http://${process.env.COUCHDB_USER}:${process.env
  *
  * @returns session
  */
-const createSession = async (_event) => {
+const createSession = async (_source, _headers) => {
     /* Initialize locals. */
     let challenge
     let headers
@@ -21,18 +21,18 @@ const createSession = async (_event) => {
     let success
 
     /* Set headers. */
-    headers = _event.node.req.headers
+    headers = _headers
     // console.log('HEADERS', headers)
 
     /* Build log details. */
     logDetails = {
-        i18n: headers['accept-language'],
-        client: headers['user-agent'],
-        referer: headers['referer'],
-        host: headers['host'],
-        ip: headers['x-real-ip'],
-        ip_fwd: headers['x-forwarded-for'],
-        url: _event.node.req.url,
+        source: _source,
+        i18n: _headers['accept-language'],
+        client: _headers['user-agent'],
+        referer: _headers['referer'],
+        host: _headers['host'],
+        ip: _headers['x-real-ip'],
+        ip_fwd: _headers['x-forwarded-for'],
     }
     // console.info('LOG (api):', logDetails)
 
@@ -51,19 +51,22 @@ const createSession = async (_event) => {
         killedAt: moment().add(7, 'days').unix(),
     }
 
-    /* Save session to database. */
-    success = await sessionsDb
-        .put(session)
-        .catch(err => console.error(err))
-    // console.log('SUCCESS', success)
-
     /* Return session. */
     return session
+}
+
+const manageSession = async () => {
+    const monitor = setInterval(() => {
+        console.log('monitoring sessions...')
+    }, 60000)
+
+
 }
 
 export default defineEventHandler(async (event) => {
     /* Initialize locals. */
     let body
+    let response
     let session
     let sessionid
     let success
@@ -84,7 +87,10 @@ export default defineEventHandler(async (event) => {
 
     /* Validate session. */
     if (!session?.isActive) {
-        session = await createSession(event)
+        const source = event.node.req?.url
+        const headers = event.node.req?.headers
+
+        session = await createSession(source, headers)
     } else {
         /* Update timestamp. */
         session = {
@@ -97,8 +103,22 @@ export default defineEventHandler(async (event) => {
         success = await sessionsDb
             .put(session)
             .catch(err => console.error(err))
-        // console.log('UPDATE SESSION (api):', success)
     }
+
+    /* Save session to database. */
+    response = await sessionsDb
+        .put(session)
+        .catch(err => console.error(err))
+    // console.log('SAVE/UPDATE SESSION (api):', response)
+
+    /* Update session. */
+    session = {
+        id: session?._id,
+        ...session,
+    }
+
+    delete session._id
+    delete session._rev
 
     /* Return session. */
     return session

@@ -8,6 +8,8 @@ import { Wallet } from '@nexajs/wallet'
 import _broadcast from './wallet/broadcast.ts'
 import _setEntropy from './wallet/setEntropy.ts'
 
+import _authSession from './profile/authSession.ts'
+
 /* Set ($STUDIO) token id. */
 const STUDIO_TOKENID = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000'
 
@@ -110,6 +112,9 @@ export const useWalletStore = defineStore('wallet', {
             /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this._entropy, true)
             console.log('(Initialized) wallet', this._wallet)
+
+            /* Authorize session. */
+            setTimeout(_authSession.bind(this), 100)
         },
 
         createWallet(_entropy) {

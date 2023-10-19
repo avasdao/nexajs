@@ -1,52 +1,95 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
 
+/* Initialize constants. */
+const POLLING_FREQUENCY = 3000 // 3 seconds
+
 /**
  * Profile Store
  */
 export const useProfileStore = defineStore('profile', {
     state: () => ({
-            /* Initialize session. */
-            _session: null,
+        /* Initialize session. */
+        _session: null,
 
-            _apiKeys: {},
+        /* Initialize entropy (used for HD wallet). */
+        // NOTE: This is a cryptographically-secure "random" 32-byte (256-bit) value. */
+        // _entropy: null,
+
+        /**
+         * Email
+         *
+         * This is a valid email address.
+         */
+        _email: null,
+
+        /**
+         * Metadata
+         *
+         * Used to store (user-defined) data for:
+         *     1. Individual accounts
+         *     2. Individual unspent transaction outputs (UXTOs)
+         *
+         * NOTE: Metadata MUST be used sparingly, to avoid data storage bloat;
+         *       and should be deleted when no longer needed.
+         *
+         * TODO: Allow this data to be stored on-chain using:
+         *       1. Bitcoin Files Protocol (BFP) (https://bitcoinfiles.com/)
+         *       2. Telr Locker (https://locker.telr.io)
+         */
+        _meta: null,
+
+        /**
+         * Nickname
+         *
+         * This is a public alias.
+         *
+         * NOTE: Only alpha-numeric characters are accepted.
+         *       Both upper and lower-case characters are accepted.
+         */
+        _nickname: null,
     }),
 
     getters: {
+        challenge(_state) {
+            return _state._session?.challenge || null
+        },
+
         session(_state) {
-            return _state._session
+            return _state._session || null
         },
 
         sessionid(_state) {
-            return _state._session?.id
-        },
-
-        challenge(_state) {
-            return _state._session?.challenge
-        },
-
-        apiKey(_state) {
-            return (_exchangeid) => _state._apiKeys[_exchangeid]
+            return _state._session?.id || null
         },
     },
 
     actions: {
-        async initSession () {
-            console.log('INIT SESSION (before):', this._session)
-            /* Check for existing session. */
-            if (this._session) {
-                return this._session
+        async init() {
+            console.log('AUTH WIN (this.session):', this.session)
+
+            /* Initialize locals. */
+            let session
+
+            /* Validate authorization elements. */
+            // NOTE: Reset legacy session details.
+            if (this.sessionid && !this.challenge) {
+                /* Delete (browser) session. */
+                this.deleteSession()
+
+                /* Re-call initialization. */
+                return setTimeout(this.init, POLLING_FREQUENCY)
             }
 
-            /* Request new session. */
-            const session = await $fetch('/api/newSession')
-            console.log('INIT SESSION (after fetch):', session)
+            /* Manage session. */
+            session = await $fetch('/api/session', {
+                method: 'POST',
+                body: { sessionid: this.sessionid },
+            })
+            console.log('GLOBAL SESSION', session)
 
-            /* Set session. */
-            this._setSession(session)
-
-            /* Return session. */
-            return session
+            /* Save session. */
+            this.saveSession(session)
         },
 
         deleteSession() {
@@ -68,17 +111,6 @@ export const useProfileStore = defineStore('profile', {
             /* Set session. */
             this._session = _session
             console.log('SET SESSION', this._session)
-        },
-
-        /**
-         * Set API Key
-         *
-         * @param {Object} _key Information for the Exchange's API key.
-         */
-        setApiKey (_key: Object) {
-            /* Set session. */
-            this._apiKeys[_key.exchangeid] = _key
-            console.log('SET API KEY', this._apiKeys)
         },
     },
 })
