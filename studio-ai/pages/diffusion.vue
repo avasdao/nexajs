@@ -21,18 +21,33 @@ const imagePreviewUrl = ref(null)
 const imageData = ref(null)
 
 const init = async () => {
-    const status = await $fetch('/api/s3', {
-        method: 'POST',
-        body: {
-            hi: 'there!',
-        }
-    })
-    .catch(err => console.error(err))
+    // const status = await $fetch('/api/s3', {
+    //     method: 'POST',
+    //     body: {
+    //         hi: 'there!',
+    //     }
+    // })
+    // .catch(err => console.error(err))
+    // console.log('STATUS', status)
+
+    const status = await $fetch('https://nexa.studio/ai/img/97a39234-a089-4409-a8ec-4e156bb68d1a')
+        .catch(err => console.error(err))
     console.log('STATUS', status)
 }
 
 const generate = async () => {
     console.log('request AI creation')
+
+    let response
+
+    response = await $fetch('/api/diffusion', {
+        method: 'POST',
+        body: {
+            action: 'CREATE',
+            prompt: 'Giant ice cream cone melting and creating a river through a city, with boats floating down it, dramatic, intense, chaotic, high detail, fast-paced, wide angled, aerial view, colorful, fun, stylized graphics'
+        },
+    })
+    console.log('AUTH SESSIONS (response):', response)
 
 }
 
@@ -79,57 +94,49 @@ onMounted(() => {
     </section>
 
     <section class="my-5 flex flex-row gap-4">
-        <div class="flex-1 h-72">
+        <div class="w-2/5 flex flex-col gap-5">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
                 Text Prompt
             </h2>
 
             <textarea
-                placeholder="enter your prompt here (photo-realistic)"
-                class="p-3 w-full h-full bg-amber-100 border border-amber-300 rounded-xl shadow placeholder:text-amber-500"
+                placeholder="enter your prompt here"
+                class="p-3 w-full h-48 bg-amber-100 border border-amber-300 rounded-xl shadow placeholder:text-amber-500"
             />
+
+            <button
+                @click="generate"
+                class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
+            >
+                Generate Image
+            </button>
+
+            <button
+                type="button"
+                class="rounded-md bg-amber-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+            >
+                Reset
+            </button>
         </div>
 
-        <div class="mt-5 w-32 h-96">
-            <Themes />
-        </div>
-
-        <div class="w-[500px]">
+        <div class="w-3/5">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
                 Generative Preview
             </h2>
 
-            <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" />
+            <!-- <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" /> -->
+            <img
+                src="https://nexa.studio/ai/img/97a39234-a089-4409-a8ec-4e156bb68d1a.jpg"
+                class="w-full h-auto bg-gray-50 border border-gray-300 rounded-xl shadow"
+            />
         </div>
     </section>
 
-    <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
-        <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
-            Reset
-        </button>
-
-        <button
-            @click="generate"
-            class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
-        >
-            Generate Image
-        </button>
-    </div>
-
     <div class="my-10 border-t border-gray-300" />
 
-    <Metadata />
+    <div>
+        <h2>History</h2>
 
-    <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
-        <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
-            Reset
-        </button>
 
-        <button
-            @click="build"
-            class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
-        >
-            Preview My Token
-        </button>
     </div>
 </template>
