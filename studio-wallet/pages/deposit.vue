@@ -8,5 +8,5 @@ useHead({
 </script>
 
 <template>
-    <ProfileWalletDeposit isFullScreen="true" />
+    <Deposit :isFullScreen="true" />
 </template>

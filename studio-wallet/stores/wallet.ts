@@ -67,6 +67,11 @@ export const useWalletStore = defineStore('wallet', {
     }),
 
     getters: {
+        /* Return (abbreviated) wallet status. */
+        abbr(_state) {
+            return _state.wallet?.abbr
+        },
+
         /* Return wallet status. */
         address(_state) {
             return _state.wallet?.address

@@ -19,6 +19,8 @@ const ENDPOINT = 'https://nexa.garden/v1/asset'
 
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
+const prompt = ref(null)
+const creationid = ref(null)
 
 const init = async () => {
     // const status = await $fetch('/api/s3', {
@@ -30,25 +32,27 @@ const init = async () => {
     // .catch(err => console.error(err))
     // console.log('STATUS', status)
 
-    const status = await $fetch('https://nexa.studio/ai/img/97a39234-a089-4409-a8ec-4e156bb68d1a')
+    creationid.value = 'e1f887d7-b980-4bad-bbaa-50170769ed83'
+
+    const status = await $fetch(`https://nexa.studio/ai/img/${creationid.value}`)
         .catch(err => console.error(err))
     console.log('STATUS', status)
 }
 
 const generate = async () => {
-    console.log('request AI creation')
-
+    /* Initialize locals. */
     let response
 
-    response = await $fetch('/api/diffusion', {
-        method: 'POST',
-        body: {
-            action: 'CREATE',
-            prompt: 'Giant ice cream cone melting and creating a river through a city, with boats floating down it, dramatic, intense, chaotic, high detail, fast-paced, wide angled, aerial view, colorful, fun, stylized graphics'
-        },
-    })
-    console.log('AUTH SESSIONS (response):', response)
-
+    if (confirm(`Are you sure you want to generate [ ${prompt.value} ]`)) {
+        response = await $fetch('/api/diffusion', {
+            method: 'POST',
+            body: {
+                action: 'CREATE',
+                prompt: prompt.value,
+            },
+        })
+        console.log('AUTH SESSIONS (response):', response)
+    }
 }
 
 // const handleChange = async (e) => {
@@ -102,6 +106,7 @@ onMounted(() => {
             <textarea
                 placeholder="enter your prompt here"
                 class="p-3 w-full h-48 bg-amber-100 border border-amber-300 rounded-xl shadow placeholder:text-amber-500"
+                v-model="prompt"
             />
 
             <button
@@ -126,7 +131,7 @@ onMounted(() => {
 
             <!-- <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" /> -->
             <img
-                src="https://nexa.studio/ai/img/97a39234-a089-4409-a8ec-4e156bb68d1a.jpg"
+                :src="'https://nexa.studio/ai/img/' + creationid + '.jpg'"
                 class="w-full h-auto bg-gray-50 border border-gray-300 rounded-xl shadow"
             />
         </div>

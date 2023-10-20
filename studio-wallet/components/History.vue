@@ -6,7 +6,7 @@ import {
     getTransaction,
 } from '@nexajs/rostrum'
 
-import getSender from './_getSender.js'
+import getSender from './history/getSender.js'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
