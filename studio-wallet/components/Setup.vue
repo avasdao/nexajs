@@ -7,6 +7,18 @@ const props = defineProps({
     },
 })
 
+/* Initialize stores. */
+import { useWalletStore } from '@/stores/wallet'
+const Wallet = useWalletStore()
+
+const mnemonic = ref(null)
+
+const importWallet = () => {
+    /* Set/save mnemonic. */
+    // NOTE: Will save `entropy` to the local storage.
+    Wallet.setMnemonic(mnemonic.value)
+}
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.

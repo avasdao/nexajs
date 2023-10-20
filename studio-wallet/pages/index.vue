@@ -2,11 +2,8 @@
 /* Import modules. */
 import numeral from 'numeral'
 
-/* Define properties. */
-// const props = defineProps({
-//     isFullScreen: Boolean,
-// })
-const isFullScreen = ref(false)
+// FOR DEV PURPOSES ONLY
+const isFullScreen = true
 
 /* Initialize stores. */
 import { useProfileStore } from '@/stores/profile'
@@ -18,7 +15,6 @@ const System = useSystemStore()
 
 const STUDIO = 'nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8'
 
-const mnemonic = ref(null)
 const tokens = ref(null)
 
 const isShowingAssets = ref(false)
@@ -104,12 +100,6 @@ const tokensBalanceUsd = computed(() => {
     /* Return (fiat) value. */
     return '~' + numeral(totalUsd).format('$0,0.00')
 })
-
-const importWallet = () => {
-    /* Set/save mnemonic. */
-    // NOTE: Will save `entropy` to the local storage.
-    Wallet.setMnemonic(mnemonic.value)
-}
 
 
 /**
