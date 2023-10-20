@@ -79,7 +79,7 @@ const displayDecimalAmount = (_token) => {
         bigIntValue = decimalValue
     }
 
-    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]000000')
+    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]00[0000]')
 }
 
 const displayDecimalAmountUsd = (_token) => {

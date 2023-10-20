@@ -154,7 +154,9 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                 // console.log('RESPONSE', response)
 
                 /* Request JSON. */
-                info = await response.json()
+                info = await response
+                    .json()
+                    .catch(err => console.error(err))
                 // console.log('INFO', info)
 
                 /* Validate (TDD) info. */

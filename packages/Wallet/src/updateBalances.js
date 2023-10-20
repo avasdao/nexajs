@@ -99,7 +99,9 @@ export default async function (_fiat = 'USD') {
         .catch(err => console.error(err))
 
     /* Request JSON. */
-    this._markets['NEXA'] = await response.json()
+    this._markets['NEXA'] = await response
+        .json()
+        .catch(err => console.error(err))
     // console.log('MARKETS', this._markets)
 
     /* Set (ticker) price. */
@@ -179,7 +181,9 @@ export default async function (_fiat = 'USD') {
                     .catch(err => console.error(err))
 
                 /* Set markets. */
-                this._markets[tokenid] = await response.json()
+                this._markets[tokenid] = await response
+                    .json()
+                    .catch(err => console.error(err))
                 // console.log('TICKER', ticker)
 
                 /* Set rate (ie. price). */

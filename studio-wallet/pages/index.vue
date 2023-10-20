@@ -36,7 +36,7 @@ const displayBalance = computed(() => {
     balance = Wallet.asset?.amount || 0.00
 
     /* Return (formatted) balance. */
-    return numeral(balance).format('0,0[.]000000')
+    return numeral(balance).format('0,0[.]00[0000]')
 })
 
 const displayBalanceUsd = computed(() => {

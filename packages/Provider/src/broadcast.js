@@ -42,7 +42,9 @@ const broadcastBch = async (_rawTx) => {
     })
 
     /* Request (response) body. */
-    const body = await response.json()
+    const body = await response
+        .json()
+        .catch(err => console.error(err))
     console.log('Broadcast (response):', body)
 
     /* Return (response) body. */

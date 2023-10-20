@@ -21,7 +21,9 @@ export default async () => {
     }
 
     /* Set ticker. */
-    ticker = await response.json()
+    ticker = await response
+        .json()
+        .catch(err => console.error(err))
 
     /* Return ticker. */
     return ticker

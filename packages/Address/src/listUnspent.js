@@ -58,7 +58,9 @@ const listBCHUnspent = async (_address) => {
         // error = err
     })
 
-    body = await response.json()
+    body = await response
+        .json()
+        .catch(err => console.error(err))
     // console.log('getUnspentOutputs (body):', body)
 
     utxos = body.utxos
