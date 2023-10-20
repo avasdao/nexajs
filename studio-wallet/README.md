@@ -1,4 +1,8 @@
-# NexaJS Vue + TypeScript Boilerplate
+# Nexa Studio Wallet
+
+### https://nexa.studio/wallet
+
+![NexaJS Banner](/web/public/banner.jpg)
 
 Look at the [NexaJS documentation](https://docs.nexajs.org) to learn more.
 
