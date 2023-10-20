@@ -273,12 +273,12 @@ onMounted(() => {
             </div>
         </div>
 
-        <section class="col-span-3">
-            <h2>
-                Are you ready to start your next BIG idea?
+        <section class="col-span-3 flex flex-col gap-3">
+            <h2 class="text-2xl font-light">
+                Are you ready to start your next <span class="text-3xl font-medium italic">BIG</span> idea?
             </h2>
 
-            <NuxtLink to="https://github.com/avasdao/nexajs/tree/master/studio-wallet" target="_blank" class="text-blue-500 font-bold hover:underline">
+            <NuxtLink to="https://github.com/avasdao/nexajs/tree/master/studio-wallet" target="_blank" class="text-xl text-blue-500 font-bold hover:underline">
                 Fork Our Wallet Repo and GO!
             </NuxtLink>
         </section>

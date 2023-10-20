@@ -8,5 +8,5 @@ useHead({
 </script>
 
 <template>
-    <ProfileWalletHistory isFullScreen="true" />
+    <History :isFullScreen="true" />
 </template>

@@ -157,76 +157,84 @@ const send = async () => {
 </script>
 
 <template>
-    <main>
-        <section class="mt-5 flex flex-row gap-1">
-            <input
-                class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
-                type="text"
-                v-model="receiver"
-                placeholder="Enter a Crypto address"
+    <main class="grid grid-cols-1 lg:grid-cols-7 gap-8">
+        <div class="col-span-4">
+            <section class="mt-5 flex flex-row gap-1">
+                <input
+                    class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
+                    type="text"
+                    v-model="receiver"
+                    placeholder="Enter a Crypto address"
+                />
+
+                <div @click="openScanner">
+                    <svg class="cursor-pointer w-12 h-12 hover:text-red-500 hover:cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z"></path>
+                    </svg>
+                </div>
+            </section>
+
+            <div class="px-3">
+                <span class="sm:hidden text-xs italic">
+                    Send to: BTC, ETH, BSC, TRX, MATIC and more..
+                </span>
+                <span class="hidden text-xs italic">
+                    Send to: Bitcoin, Ethereum, Binance, Tron, Polygon and more..
+                </span>
+            </div>
+
+            <video
+                class="my-5"
+                :class="isShowingVideoPreview"
+                id="video-display"
+                autoplay
+                playsinline
             />
 
-            <div @click="openScanner">
-                <svg class="cursor-pointer w-12 h-12 hover:text-red-500 hover:cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z"></path>
-                </svg>
-            </div>
-        </section>
+            <section class="my-5 flex flex-col">
+                <input
+                    class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
+                    type="number"
+                    v-model="amount"
+                    :placeholder="`Enter a (${Wallet.asset?.ticker}) amount`"
+                />
 
-        <div class="px-3">
-            <span class="sm:hidden text-xs italic">
-                Send to: BTC, ETH, BSC, TRX, MATIC and more..
-            </span>
-            <span class="hidden text-xs italic">
-                Send to: Bitcoin, Ethereum, Binance, Tron, Polygon and more..
-            </span>
+                <!-- <h4 v-if="satoshis > 0" class="mt-1 ml-3 text-sm text-gray-500 font-medium">
+                    = {{numeral(satoshis / 100).format('0,0')}} {{Wallet.asset?.ticker}}
+                </h4> -->
+            </section>
+
+            <div
+                @click="send"
+                class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
+            >
+                Send {{Wallet.asset?.ticker}}
+            </div>
+
+            <section v-if="txidem" class="my-10">
+                <div>
+                    <h3 class="text-sm text-gray-500 font-medium">Transaction sent successfully!</h3>
+
+                    <NuxtLink :to="'https://explorer.nexa.org/tx/' + txidem" target="_blank" class="text-blue-500 font-medium hover:underline">
+                        Click here to OPEN transaction details
+                    </NuxtLink>
+                </div>
+            </section>
+
+            <section v-if="error" class="my-10">
+                <div>
+                    <h2>Transaction failed!</h2>
+
+                    <pre>{{JSON.stringify(error, null, 2)}}</pre>
+                </div>
+            </section>
         </div>
 
-        <video
-            class="my-5"
-            :class="isShowingVideoPreview"
-            id="video-display"
-            autoplay
-            playsinline
-        />
-
-        <section class="my-5 flex flex-col">
-            <input
-                class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
-                type="number"
-                v-model="amount"
-                :placeholder="`Enter a (${Wallet.asset?.ticker}) amount`"
-            />
-
-            <!-- <h4 v-if="satoshis > 0" class="mt-1 ml-3 text-sm text-gray-500 font-medium">
-                = {{numeral(satoshis / 100).format('0,0')}} {{Wallet.asset?.ticker}}
-            </h4> -->
-        </section>
-
-        <div
-            @click="send"
-            class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
-        >
-            Send {{Wallet.asset?.ticker}}
-        </div>
-
-        <section v-if="txidem" class="my-10">
-            <div>
-                <h3 class="text-sm text-gray-500 font-medium">Transaction sent successfully!</h3>
-
-                <NuxtLink :to="'https://explorer.nexa.org/tx/' + txidem" target="_blank" class="text-blue-500 font-medium hover:underline">
-                    Click here to OPEN transaction details
-                </NuxtLink>
-            </div>
-        </section>
-
-        <section v-if="error" class="my-10">
-            <div>
-                <h2>Transaction failed!</h2>
-
-                <pre>{{JSON.stringify(error, null, 2)}}</pre>
-            </div>
+        <section class="col-span-3">
+            <h1 class="text-2xl font-medium">
+                Send Assets
+            </h1>
         </section>
     </main>
 </template>
