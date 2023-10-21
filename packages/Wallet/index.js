@@ -287,10 +287,12 @@ export class Wallet extends EventEmitter {
             /* Request an update for asset data. */
             // TODO Support "user-defined" updates.
             await wallet.updateAssets(true, fiat)
+                .catch(err => console.error(err))
             // await wallet.updateAssets(true, _secondary)
 
             /* Update balances. */
             await wallet.updateBalances(fiat)
+                .catch(err => console.error(err))
 
             /* Set (status) flag. */
             wallet._status = WalletStatus.READY

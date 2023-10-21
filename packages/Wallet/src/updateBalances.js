@@ -98,15 +98,30 @@ export default async function (_fiat = 'USD') {
     response = await fetch('https://nexa.exchange/ticker')
         .catch(err => console.error(err))
 
+    /* Validate response. */
+    if (!response || typeof response === 'undefined') {
+        throw new Error(`There is NO market data available at this time.`)
+    }
+
     /* Request JSON. */
     this._markets['NEXA'] = await response
         .json()
         .catch(err => console.error(err))
     // console.log('MARKETS', this._markets)
 
+    /* Validate NEXA market. */
+    if (!this._markets['NEXA']) {
+        throw new Error(`There is NO $NEXA data available at this time.`)
+    }
+
     /* Set (ticker) price. */
     price = Number(this._markets['NEXA'].quote.USD.price)
     // console.log('PRICE', price)
+
+    /* Validate price. */
+    if (!price) {
+        throw new Error(`There is NO price data available at this time.`)
+    }
 
     /* Calculate total coins. */
     // console.log('COINS', this.coins)
@@ -176,9 +191,13 @@ export default async function (_fiat = 'USD') {
 
             /* Validate fiat currency. */
             if (!this._assets[tokenid].fiat['USD']) {
-                /* Request (ticker) quote. */
-                response = await fetch(`https://nexa.exchange/v1/ticker/quote/${tokenid}`)
-                    .catch(err => console.error(err))
+                try {
+                    /* Request (ticker) quote. */
+                    response = await fetch(`https://nexa.exchange/v1/ticker/quote/${tokenid}`)
+                        .catch(err => console.error(err))
+                } catch (err) {
+                    console.error(err)
+                }
 
                 /* Validate response. */
                 if (!response || typeof response === 'undefined') {

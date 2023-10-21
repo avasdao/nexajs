@@ -263,7 +263,7 @@ onMounted(() => {
             </div>
         </div>
 
-        <section class="col-span-3 flex flex-col gap-3">
+        <section class="px-5 py-2 col-span-3 flex flex-col gap-3">
             <h2 class="text-2xl font-light">
                 Are you ready to start your next <span class="text-3xl font-medium italic">BIG</span> idea?
             </h2>

@@ -32,8 +32,9 @@ export default async function (_subscribe = false, _fiat = 'USD') {
             /* Update (latest) assets. */
             await this.updateAssets(false, _fiat)
 
-            /* Emit assets to subscribers. */
-            this.emit('onUpdate', this.assets)
+            /* Emit (asset) changes to subscribers. */
+            this.emit('changes', this.assets)
+            console.log('ASSET CHANGES', this.assets)
         })
     }
 
