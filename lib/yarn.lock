@@ -717,10 +717,10 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.10.18":
-  version "23.10.18"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.18.tgz#bdb8e61dccd665b2069f4c25ce17e41bf05204a8"
-  integrity sha512-k87niMUMPcKUa2L5Ru1JAv5MCLx8OImXYFkxhv17l69PNMhKf1/GyMZNIlt3xTOaE1SWDdHZfH7t9g4cYq0yCA==
+"@nexajs/wallet@23.10.22":
+  version "23.10.22"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.10.22.tgz#1e576f8c70ab72f796ff8235e0d626edaeb2e271"
+  integrity sha512-toxdeATI9cPkEvGJe0V4bUqljTqAa9Epd6x3b7dP2hdywYJdbWSe0wnQhKwmCFXpYRRrK2JoM66wFo8fAjcOtQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.10.10"
@@ -1544,9 +1544,9 @@ duplexer2@^0.1.2, duplexer2@^0.1.4, duplexer2@~0.1.0, duplexer2@~0.1.2:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.4.535:
-  version "1.4.562"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.562.tgz#7502b8cafbb7cc59701b17e744fa6ef5f7fe2b96"
-  integrity sha512-kMGVZLP65O2/oH7zzaoIA5hcr4/xPYO6Sa83FrIpWcd7YPPtSlxqwxTd8lJIwKxaiXM6FGsYK4ukyJ40XkW7jg==
+  version "1.4.563"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.563.tgz#dabb424202754c1fed2d2938ff564b23d3bbf0d3"
+  integrity sha512-dg5gj5qOgfZNkPNeyKBZQAQitIQ/xwfIDmEQJHCbXaD9ebTZxwJXUsDYcBlAvZGZLi+/354l35J1wkmP6CqYaw==
 
 elliptic@6.5.4, elliptic@^6.5.3:
   version "6.5.4"

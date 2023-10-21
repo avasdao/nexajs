@@ -17,8 +17,10 @@ import {
  */
 export default async function (_subscribe = false, _fiat = 'USD') {
     /* Initialize locals. */
+    let details
     let info
     let response
+    let signature
     let token
     let unspent
     let url
@@ -148,28 +150,51 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                 /* Set URL. */
                 url = info.document_url
 
-                /* Request token description document (TDD). */
-                response = await fetch(url)
-                    .catch(err => console.error(err))
-                // console.log('RESPONSE', response)
+                try {
+                    /* Request token description document (TDD). */
+                    response = await fetch(url)
+                        .catch(err => console.error(err))
+                    // console.log('RESPONSE', response)
 
-                /* Request JSON. */
-                info = await response
-                    .json()
-                    .catch(err => console.error(err))
-                // console.log('INFO', info)
+                    if (response) {
+                        /* Request JSON. */
+                        details = await response
+                            .json()
+                            .catch(err => console.error(err))
+                        // console.log('INFO', info)
+                    }
+                } catch (err) {
+                    console.error(err)
+                }
 
                 /* Validate (TDD) info. */
-                if (!info || !info.length === 2) {
+                if (
+                    !details ||
+                    typeof details === 'undefined' ||
+                    !details.length === 2
+                ) {
                     continue
                 }
 
+                /* Set signature.*/
+                signature = details[1]
+
+                /* (Re-)set details. */
+                details = details[0]
+
+                /* Validate details. */
+                if (!details) {
+                    continue
+                }
+
+                // TODO Validate details using signature.
+
                 /* Set icon URL (from TDD). */
                 // TODO: Validate FULL URL.
-                if (info[0].icon.includes('http')) {
-                    this._assets[token.tokenidHex].iconUrl = info[0].icon
+                if (details?.icon.includes('http')) {
+                    this._assets[token.tokenidHex].iconUrl = details?.icon
                 } else {
-                    url = url.slice(0, url.lastIndexOf('/')) + info[0].icon
+                    url = url.slice(0, url.lastIndexOf('/')) + details?.icon
 
                     // TODO Validate URL using library.
 
@@ -177,10 +202,10 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                 }
 
                 /* Set summary (from TDD). */
-                this._assets[token.tokenidHex].summary = info[0].summary
+                this._assets[token.tokenidHex].summary = details?.summary
 
                 /* Set description (from TDD). */
-                this._assets[token.tokenidHex].description = info[0].description
+                this._assets[token.tokenidHex].description = details?.description
             }
 
         } // validate asset

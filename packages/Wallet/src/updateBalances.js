@@ -180,18 +180,41 @@ export default async function (_fiat = 'USD') {
                 response = await fetch(`https://nexa.exchange/v1/ticker/quote/${tokenid}`)
                     .catch(err => console.error(err))
 
+                /* Validate response. */
+                if (!response || typeof response === 'undefined') {
+                    continue
+                }
+
                 /* Set markets. */
                 this._markets[tokenid] = await response
                     .json()
                     .catch(err => console.error(err))
                 // console.log('TICKER', ticker)
 
+                /* Validate (token) markets. */
+                if (
+                    !this._markets[tokenid] ||
+                    typeof this._markets[tokenid] === 'undefined'
+                ) {
+                    continue
+                }
+
                 /* Set rate (ie. price). */
                 rate = this._markets[tokenid].price
                 // console.log('PRICE', price);
 
+                /* Validate rate. */
+                if (!rate || typeof rate === 'undefined') {
+                    continue
+                }
+
                 /* Set asset total. */
                 assetTotal = this._assets[tokenid].amount
+
+                /* Validate asset total. */
+                if (!assetTotal || typeof assetTotal === 'undefined') {
+                    continue
+                }
 
                 /* Set market (to asset). */
                 this._assets[tokenid].fiat['USD'] = satsToFiat(
