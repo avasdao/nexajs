@@ -28,9 +28,14 @@ export default defineEventHandler(async (event) => {
 
     /* Validate (binary) image URL. */
     if (imgid.length === 40) {
-        img = await readFileSync(process.env.BIN_DIR + imgid)
-            .catch(err => console.error(err))
-        console.log('IMG', img)
+        try {
+            img = await readFileSync(process.env.BIN_DIR + imgid)
+                .catch(err => console.error(err))
+
+            console.log('IMG', img)
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     if (img) {
