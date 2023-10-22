@@ -19,7 +19,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="col-span-2 h-full flex flex-col">
+    <div class="col-span-1 sm:col-span-2 h-32 sm:h-full flex flex-col">
         <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
             My Library
         </h2>

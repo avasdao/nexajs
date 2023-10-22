@@ -108,8 +108,14 @@ const generate = async () => {
     let requestid
     let response
     let tokens
+    let totalStudio
     let txidem
     let vendingData
+
+    /* Validate prompt. */
+    if (!prompt.value || prompt.value === '') {
+        return alert(`Oops! You forgot to enter a Prompt!`)
+    }
 
     /* Confirm creation request. */
     if (confirm(`Are you sure you want to generate [ ${prompt.value} ]`)) {
@@ -128,6 +134,13 @@ const generate = async () => {
         })
         // console.log('TOKENS (filtered):', tokens)
 
+        totalStudio = tokens.reduce(
+            (totalTokens, token) => (totalTokens + token.tokens), BigInt(0)
+        )
+
+        if (totalStudio < BigInt(STUDIO_AI_VENDING_FEE)) {
+            return alert(`Oops! You only have [ ${numeral(totalStudio).format('0,0')} ] $STUDIO.\nThat's NOT enough to generate a new creation.`)
+        }
 
         /* Generate (vending) request id. */
         requestid = uuidv4()
@@ -177,7 +190,7 @@ const generate = async () => {
 
         /* Validate transaction idem. */
         if (!txidem) {
-            return alert(error?.message)
+            return alert(error?.message || response.error?.message)
         }
 
         /* Set action. */
@@ -217,6 +230,10 @@ const generate = async () => {
     }
 }
 
+const random = async () => {
+    prompt.value = 'magic 8-ball'
+}
+
 onMounted(() => {
     init()
 })
@@ -228,8 +245,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="block grid grid-cols-5 gap-6">
-        <div class="col-span-3">
+    <section class="block grid grid-cols-1 sm:grid-cols-5 gap-6">
+        <div class="col-span-1 sm:col-span-3">
             <h1 class="text-4xl lg:text-5xl font-medium">
                 Stable Diffusion
             </h1>
@@ -243,36 +260,69 @@ onMounted(() => {
         <MyLibrary />
     </section>
 
-    <section class="my-5 flex flex-row gap-4">
-        <div class="w-2/5 flex flex-col gap-5">
-            <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Text Prompt
-            </h2>
+    <section class="my-5 flex flex-col sm:flex-row gap-4">
+        <div class="w-full order-2 sm:order-none sm:w-2/5 flex flex-col gap-5">
+            <div>
+                <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
+                    Text Prompt
+                </h2>
 
-            <textarea
-                placeholder="enter your prompt here"
-                class="p-3 w-full h-48 bg-amber-100 border border-amber-300 rounded-xl shadow placeholder:text-amber-500"
-                v-model="prompt"
-            />
+                <textarea
+                    placeholder="enter your prompt here"
+                    class="p-3 w-full h-48 bg-amber-100 border border-amber-300 rounded-xl shadow placeholder:text-amber-500"
+                    v-model="prompt"
+                />
+
+                <div class="flex flex-row justify-around text-sm sm:text-xs lg:text-sm text-blue-500 font-medium tracking-widest">
+                    <NuxtLink to="https://lexica.art/" target="_blank" class="hover:underline">
+                        Lexica.Art
+                    </NuxtLink>
+
+                    <NuxtLink to="https://prompthero.com/" target="_blank" class="hover:underline">
+                        PromptHero
+                    </NuxtLink>
+
+                    <NuxtLink to="https://stablediffusionweb.com/prompts" target="_blank" class="hover:underline">
+                        SD Web
+                    </NuxtLink>
+                </div>
+            </div>
 
             <button
                 @click="generate"
-                class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
+                class="h-20 flex flex-col items-center justify-center rounded-md bg-lime-600 px-3 py-2 text-3xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
             >
-                Generate Image
+                <span>
+                    Generate <span class="hidden lg:inline">Image</span>
+                </span>
+
+                <span class="text-base tracking-widest">
+                    10,000 $STUDIO
+                </span>
             </button>
 
-            <button
-                type="button"
-                class="rounded-md bg-amber-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
-            >
-                Reset
-            </button>
+            <div class="flex flex-col lg:flex-row gap-4">
+                <button
+                    @click="random"
+                    type="button"
+                    class="w-full h-20 rounded-md bg-rose-600 px-3 py-2 text-3xl font-semibold text-white shadow-sm hover:bg-rose-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+                >
+                    Random
+                </button>
+
+                <button
+                    @click="prompt=''"
+                    type="button"
+                    class="w-full h-20 rounded-md bg-amber-600 px-3 py-2 text-3xl font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
+                >
+                    Reset
+                </button>
+            </div>
         </div>
 
-        <div class="w-3/5">
+        <div class="w-full order-1 sm:order-none sm:w-3/5">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Generative Preview
+                AI Creation Preview
             </h2>
 
             <NuxtLink :to="displayPreview" target="_blank">
