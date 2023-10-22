@@ -10,8 +10,10 @@ useHead({
 })
 
 /* Initialize stores. */
+import { useProfileStore } from '@/stores/profile'
 import { useWalletStore } from '@/stores/wallet'
 import { useSystemStore } from '@/stores/system'
+const Profile = useProfileStore()
 const Wallet = useWalletStore()
 const System = useSystemStore()
 
@@ -20,29 +22,75 @@ const ENDPOINT = 'https://nexa.garden/v1/asset'
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
 const prompt = ref(null)
+
 const creationid = ref(null)
+const isPolling = ref(false)
+
+const displayPreview = computed(() => {
+    if (!creationid.value) {
+        return 'https://i.ibb.co/TP1RYCV/image.png'
+    }
+
+    if (isPolling.value === true) {
+        return 'https://bafkreih2lkyr3gnfl3ceidtwvxt622lumb7xq3koivel2wpeu7dvaixxiu.nexa.garden/'
+    }
+
+    return 'https://nexa.studio/ai/img/' + creationid.value + '.jpg'
+})
 
 const init = async () => {
-    // const status = await $fetch('/api/s3', {
-    //     method: 'POST',
-    //     body: {
-    //         hi: 'there!',
-    //     }
-    // })
-    // .catch(err => console.error(err))
-    // console.log('STATUS', status)
+    /* Initialize locals. */
+    let creations
 
-    creationid.value = 'e1f887d7-b980-4bad-bbaa-50170769ed83'
+    console.log('CREATIONS', Profile.creations)
+}
 
-    const status = await $fetch(`https://nexa.studio/ai/img/${creationid.value}`)
-        .catch(err => console.error(err))
-    console.log('STATUS', status)
+const startPolling = async () => {
+    console.log('Polling for ', creationid.value, '...')
+
+    /* Initialize locals. */
+    let error
+    let response
+
+    /* Set (polling) flag. */
+    isPolling.value = true
+
+    /* Request AI image status. */
+    response = await $fetch(`https://nexa.studio/ai/img/${creationid.value}`)
+        .catch(err => {
+            console.error(err)
+            error = err
+        })
+
+    /* Validate response. */
+    if (!response && error.message.code !== 500) {
+        /* Set (polling) flag. */
+        isPolling.value = false
+
+        throw new Error(`Oops! AI server is unavailable!`)
+    }
+
+    /* Validate completion. */
+    if (response?.isCompleted === true) {
+        /* Set (polling) flag. */
+        isPolling.value = false
+
+        return console.log(`https://nexa.studio/ai/img/${creationid.value}.jpg`)
+    } else if (response?.isCompleted === false) {
+        return setTimeout(startPolling, 3000)
+    }
+
+    /* Set (polling) flag. */
+    isPolling.value = false
+
+    throw new Error(`Oops! AI data is invalid!`)
 }
 
 const generate = async () => {
     /* Initialize locals. */
     let response
 
+    /* Confirm creation request. */
     if (confirm(`Are you sure you want to generate [ ${prompt.value} ]`)) {
         response = await $fetch('/api/diffusion', {
             method: 'POST',
@@ -51,26 +99,22 @@ const generate = async () => {
                 prompt: prompt.value,
             },
         })
-        console.log('AUTH SESSIONS (response):', response)
+        // console.log('GENERATE (response):', response)
+
+        if (response?.response?.id) {
+            /* Set creation id. */
+            creationid.value = response.response.id
+
+            console.info(`Creation [ ${creationid.value} ] is in the queue...`)
+
+            /* Start polling. */
+            startPolling()
+        } else {
+            /* Alert user of error. */
+            alert(JSON.stringify(response, null, 2))
+        }
     }
 }
-
-// const handleChange = async (e) => {
-//     const input = e.target
-//     console.log('INPUT', input)
-
-//     if (!input.files) {
-//         return console.error(`Oops! Missing file(s).`)
-//     }
-
-//     const reader = new FileReader()
-//     reader.onload = (e) => {
-//         /* Set preview URL. */
-//         imagePreviewUrl.value = e.target.result
-//     }
-//     imageData.value = input.files[0]
-//     reader.readAsDataURL(input.files[0])
-// }
 
 onMounted(() => {
     init()
@@ -90,7 +134,8 @@ onMounted(() => {
             </h1>
 
             <p class="mt-2 lg:mt-5 text-sm lg:text-base">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+                Stable Diffusion is a deep learning, text-to-image model released in 2022 based on diffusion techniques.
+                It is primarily used to generate detailed images conditioned on text descriptions, though it can also be applied to other tasks such as inpainting, outpainting, and generating image-to-image translations guided by a text prompt.
             </p>
         </div>
 
@@ -129,11 +174,12 @@ onMounted(() => {
                 Generative Preview
             </h2>
 
-            <!-- <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" /> -->
-            <img
-                :src="'https://nexa.studio/ai/img/' + creationid + '.jpg'"
-                class="w-full h-auto bg-gray-50 border border-gray-300 rounded-xl shadow"
-            />
+            <NuxtLink :to="displayPreview" target="_blank">
+                <img
+                    :src="displayPreview"
+                    class="w-full h-auto bg-gray-50 border border-gray-300 rounded-xl shadow"
+                />
+            </NuxtLink>
         </div>
     </section>
 
@@ -142,6 +188,6 @@ onMounted(() => {
     <div>
         <h2>History</h2>
 
-
+        <div></div>
     </div>
 </template>

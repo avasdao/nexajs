@@ -48,25 +48,35 @@ export const useProfileStore = defineStore('profile', {
          *       Both upper and lower-case characters are accepted.
          */
         _nickname: null,
+
+        _creations: null,
     }),
 
     getters: {
         challenge(_state) {
-            return _state._session?.challenge || null
+            return _state._session?.challenge
         },
 
         session(_state) {
-            return _state._session || null
+            return _state._session
         },
 
         sessionid(_state) {
-            return _state._session?.id || null
+            if (!_state._session) {
+                return null
+            }
+
+            return _state._session.id
         },
+
+        creations(_state) {
+            return _state._creations
+        }
     },
 
     actions: {
         async init() {
-            console.log('AUTH WIN (this.session):', this.session)
+            // console.log('AUTH WIN (this.session):', this.session)
 
             /* Initialize locals. */
             let session
@@ -90,6 +100,11 @@ export const useProfileStore = defineStore('profile', {
 
             /* Save session. */
             this.saveSession(session)
+
+            /* Validate creations. */
+            if (!this.creations) {
+                this._creations = []
+            }
         },
 
         deleteSession() {
