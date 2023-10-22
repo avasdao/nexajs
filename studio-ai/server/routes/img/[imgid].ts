@@ -41,8 +41,6 @@ export default defineEventHandler(async (event) => {
     if (img) {
         /* Return image. */
         return event.node.res.end(img)
-    } else {
-        console.error('WE NEED TO CACHE THIS IMAGE')
     }
 
     /* Set proxy URL. */
@@ -68,6 +66,8 @@ export default defineEventHandler(async (event) => {
 
     /* Return image. */
     event.node.res.end(img)
+
+    console.error('WE STILL NEED TO CACHE THIS IMAGE...')
 
     try {
         /* Write image to (local) cache. */
