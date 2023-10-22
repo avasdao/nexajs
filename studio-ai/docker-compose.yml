@@ -16,5 +16,6 @@ services:
         max-size: '10m'
     environment:
       - AI_HOST=${AI_HOST}
+      - BIN_DIR=${BIN_DIR}
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
