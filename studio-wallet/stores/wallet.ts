@@ -22,6 +22,9 @@ import _setEntropy from './wallet/setEntropy.ts'
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
+        _assets: null,
+        _forceUpdate: null,
+
         /**
          * Entropy
          * (DEPRECATED -- MUST REMAIN SUPPORTED INDEFINITELY)
@@ -69,48 +72,60 @@ export const useWalletStore = defineStore('wallet', {
     getters: {
         /* Return (abbreviated) wallet status. */
         abbr(_state) {
-            return _state.wallet?.abbr
+            if (!_state._wallet) {
+                return null
+            }
+
+            return _state._wallet.abbr
         },
 
         /* Return wallet status. */
         address(_state) {
-            return _state.wallet?.address
+            if (!_state._wallet) {
+                return null
+            }
+
+            return _state._wallet.address
         },
 
         /* Return NexaJS wallet instance. */
         asset(_state) {
-            if (!this.assets) {
+            if (!this.assets || !this.wallet) {
                 return null
             }
 
-            return this.wallet.assets[this.wallet.assetid]
+            return this.assets[this.wallet.assetid]
         },
 
         /* Return wallet status. */
         assets(_state) {
-            if (!this.wallet) {
+            if (_state._assets) {
+                return _state._assets
+            }
+
+            if (!_state._wallet) {
                 return null
             }
 
-            return this.wallet.assets
+            return _state._wallet.assets
         },
 
         /* Return wallet status. */
         isLoading(_state) {
-            if (!this.wallet) {
+            if (!_state._wallet) {
                 return true
             }
 
-            return this.wallet.isLoading
+            return _state._wallet.isLoading
         },
 
         /* Return wallet status. */
         isReady(_state) {
-            if (this.wallet?._entropy) {
+            if (_state._wallet && _state._wallet._entropy) {
                 return true
             }
 
-            return this.wallet.isReady
+            return _state._wallet.isReady
         },
 
         /* Return NexaJS wallet instance. */
@@ -145,8 +160,27 @@ export const useWalletStore = defineStore('wallet', {
             this._wallet = await Wallet.init(this._entropy, true)
             console.log('(Initialized) wallet', this._wallet)
 
+            this._assets = { ...this.wallet.assets } // cloned assets
+
             /* Set (default) asset. */
-            this._wallet.setAsset('0')
+            this.wallet.setAsset('0')
+
+            this._forceUpdate = 0
+
+            this.wallet.on('changes', async (_assets) => {
+                console.info('Wallet Assets (onChanges):', _assets)
+
+                this._assets = { ..._assets } // cloned assets
+
+                await nextTick
+
+                this._forceUpdate++
+            })
+
+            // setInterval(() => {
+            //     // console.log('INTERVAL (wallet):', this._wallet._assets)
+            //     self._assets = this._wallet._assets
+            // }, 100)
         },
 
         createWallet(_entropy) {

@@ -34,7 +34,7 @@ export default async function (_subscribe = false, _fiat = 'USD') {
 
             /* Emit (asset) changes to subscribers. */
             this.emit('changes', this.assets)
-            console.log('ASSET CHANGES', this.assets)
+            // console.log('ASSET CHANGES', this.assets)
         })
     }
 

@@ -25,47 +25,34 @@ const isShowingSwap = ref(false)
 
 const displayBalance = computed(() => {
     /* Validate asset. */
-    if (!Wallet.asset) {
+    if (!Wallet.asset || !Wallet.asset.amount) {
         return '0.00'
     }
 
     /* Initialize locals. */
-    let balance
+    // let balance
 
     /* Set balance. */
-    balance = Wallet.asset?.amount || 0.00
+    // balance = Wallet.asset.amount || 0.00
 
     /* Return (formatted) balance. */
-    return numeral(balance).format('0,0[.]00[0000]')
+    return numeral(Wallet.asset.amount).format('0,0[.]00[0000]')
 })
 
 const displayBalanceUsd = computed(() => {
     /* Validate asset. */
-    if (!Wallet.asset) {
+    if (!Wallet.asset || !Wallet.asset.fiat || !Wallet.asset.fiat.USD) {
         return '0.00'
     }
 
     /* Initialize locals. */
-    let balanceUsd
+    // let balanceUsd
 
     /* Set balance. */
-    balanceUsd = Wallet.asset?.fiat?.USD || 0.00
+    // balanceUsd = Wallet.asset.fiat.USD || 0.00
 
     /* Return formatted value. */
-    return numeral(balanceUsd).format('$0,0.00[0000]')
-})
-
-const pendingBalance = computed(() => {
-    return '0.00 NEXA'
-    // if (!Wallet.satoshis) {
-    //     return '0.00 NEXA'
-    // }
-
-    // /* Calculate (NEX) total. */
-    // const nex = (Wallet.satoshis / 100.0)
-
-    // /* Return formatted value. */
-    // return numeral(nex).format('0,0.00') + ' NEXA'
+    return numeral(Wallet.asset.fiat.USD).format('$0,0.00[0000]')
 })
 
 const tokensBalanceUsd = computed(() => {
@@ -137,6 +124,10 @@ const setTab = (_tab) => {
 const init = async () => {
     /* Set (default) tab. */
     setTab('assets')
+
+    // setTimeout(() => {
+    //     Wallet._assets['0'].amount = '1337'
+    // }, 20000)
 }
 
 onMounted(() => {
@@ -164,7 +155,7 @@ onMounted(() => {
                     <img :src="Wallet.asset?.iconUrl" class="-mt-3 -mr-2 p-2 h-10 w-auto opacity-40 group-hover:opacity-100 group-hover:h-11 duration-300 ease-in-out" />
                 </div>
 
-                <div class="flex flex-col items-end">
+                <div class="flex flex-col items-end" :key="'portfolio' + Wallet._forceUpdate">
                     <h3 class="text-xs tracking-widest text-sky-700 font-medium uppercase">
                         Spendable ${{Wallet.asset?.ticker}}
                     </h3>

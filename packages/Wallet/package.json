@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/wallet",
-  "version": "23.10.22",
+  "version": "23.10.24",
   "description": "Manage a collection of assets spread across multiple blockchains.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

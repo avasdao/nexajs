@@ -13,7 +13,7 @@
     "@pinia/nuxt": "0.4.7",
     "@trezor/connect-web": "9.1.4",
     "moment": "2.29.4",
-    "nexajs": "23.10.22",
+    "nexajs": "23.10.23",
     "numeral": "2.0.6",
     "nuxt": "3.2.2",
     "pinia": "2.0.32",
