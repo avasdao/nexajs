@@ -5,10 +5,9 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { getCoins } from '@nexajs/purse'
 
-import {
-    encodeNullData,
-    OP,
-} from '@nexajs/script'
+import { getTokens } from '@nexajs/token'
+
+import { encodeNullData } from '@nexajs/script'
 
 useHead({
     title: `Stable Diffusion Studio for Creators`,
@@ -25,9 +24,11 @@ const Profile = useProfileStore()
 const Wallet = useWalletStore()
 const System = useSystemStore()
 
-const ENDPOINT = 'https://nexa.garden/v1/asset'
 const STUDIO_AI_VENDING = 'nexa:nqtsq5g56gvyyaf57seml8zdxu8ur7x5wsevh49mj5f7q6s0'
-const STUDIO_AI_VENDING_FEE = 1e6
+const STUDIO_AI_VENDING_FEE = 10000 // 10K $STUDIO
+
+// nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8
+const STUDIO_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
 
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
@@ -106,6 +107,7 @@ const generate = async () => {
     let nullData
     let requestid
     let response
+    let tokens
     let txidem
     let vendingData
 
@@ -115,6 +117,17 @@ const generate = async () => {
 
         coins = await getCoins(Wallet.wallet.wif)
         console.log('COINS', coins)
+
+        tokens = await getTokens(Wallet.wallet.wif)
+        console.log('TOKENS', tokens)
+
+        /* Filter tokens. */
+        // NOTE: Currently limited to a "single" Id.
+        tokens = tokens.filter(_token => {
+            return _token.tokenidHex === STUDIO_ID_HEX
+        })
+        // console.log('TOKENS (filtered):', tokens)
+
 
         /* Generate (vending) request id. */
         requestid = uuidv4()
@@ -134,18 +147,20 @@ const generate = async () => {
             },
             {
                 address: STUDIO_AI_VENDING,
-                satoshis: BigInt(STUDIO_AI_VENDING_FEE),
+                tokenid: STUDIO_ID_HEX,
+                tokens: BigInt(STUDIO_AI_VENDING_FEE),
             },
             {
                 address: Wallet.address, // change address
             },
         ]
-        // console.log('RECEIVERS', receivers)
+        // return console.log('RECEIVERS', receivers)
 
         /* Send vending fee. */
         response = await Wallet
             .transfer({
                 coins,
+                tokens,
                 receivers,
             })
             .catch(err => {

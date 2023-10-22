@@ -50,7 +50,7 @@ import {
 // nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8
 const STUDIO_ID_HEX = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000' // STUDIO
 
-export default async (_wallet, _receiver, _amount, isLive = false) => {
+export default async (_wallet, isLive = false) => {
     let coins
     let nullData
     let receivers
@@ -80,7 +80,7 @@ export default async (_wallet, _receiver, _amount, isLive = false) => {
     // console.log('\n  Tokens (filtered):', tokens)
 
     userData = [
-        'MINT',
+        'MELT',
         'STUDIO',
     ]
 
@@ -91,11 +91,6 @@ export default async (_wallet, _receiver, _amount, isLive = false) => {
     receivers = [
         {
             data: nullData,
-        },
-        {
-            address: _receiver,
-            tokenid: STUDIO_ID_HEX, // TODO Allow auto-format conversion.
-            tokens: BigInt(_amount),
         },
     ]
 

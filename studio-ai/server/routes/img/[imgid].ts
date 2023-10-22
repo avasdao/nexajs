@@ -5,8 +5,6 @@ import {
 } from 'node:fs'
 
 export default defineEventHandler(async (event) => {
-    // console.log('EVENT (req):', event.node.req)
-
     /* Initialize locals. */
     let binData
     let img
@@ -16,7 +14,6 @@ export default defineEventHandler(async (event) => {
 
     /* Set (path) URL. */
     url = event.node.req?.url
-    // console.log('URL', url)
 
     /* Validate URL. */
     if (url.length === 41 || url.length === 45) {
@@ -45,12 +42,10 @@ export default defineEventHandler(async (event) => {
 
     /* Set proxy URL. */
     proxyUrl = process.env.AI_HOST + imgid
-    // console.log('PROXY URL', proxyUrl)
 
     /* Request binary data. */
     binData = await $fetch(proxyUrl)
         .catch(err => console.error(err))
-    // console.log('BIN DATA LEN', binData, typeof binData)
 
     /* Validate binary data. */
     if (binData?.id) {
@@ -66,8 +61,6 @@ export default defineEventHandler(async (event) => {
 
     /* Return image. */
     event.node.res.end(img)
-
-    // console.error('WE STILL NEED TO CACHE THIS IMAGE...')
 
     try {
         /* Write image to (local) cache. */

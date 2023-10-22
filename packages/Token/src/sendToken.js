@@ -256,6 +256,8 @@ export default async (_coins, _tokens, _receivers) => {
     // console.log('UNSPENT TOKENS', unspentTokens)
     // console.log('TOKEN AMOUNT', tokenAmount)
 
+    /* Validate (change amount) of asset. */
+    // NOTE: Auth flag (large negative) value will force NO CHANGE.
     if (unspentTokens - tokenAmount > BigInt(0)) {
         /* Find the change receiver. */
         receiver = getChangeReceiver(receivers)
