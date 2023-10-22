@@ -104,12 +104,13 @@ export default defineEventHandler(async (event) => {
             .put(session)
             .catch(err => console.error(err))
     }
+    console.log('SESSION (api):', session)
 
     /* Save session to database. */
     response = await sessionsDb
         .put(session)
         .catch(err => console.error(err))
-    // console.log('SAVE/UPDATE SESSION (api):', response)
+    console.log('SAVE/UPDATE SESSION (api):', response)
 
     /* Update session. */
     session = {

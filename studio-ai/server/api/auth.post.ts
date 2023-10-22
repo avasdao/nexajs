@@ -63,7 +63,7 @@ const getProfile = async (
         challenge,
         createdAt: moment().unix(),
     }
-    // console.log('LOGS PKG', logPkg)
+    console.log('LOGS PKG', logPkg)
 
     publicKey = hexToBin(publicKey)
     signature = hexToBin(signature)
