@@ -37,6 +37,14 @@ const imageData = ref(null)
 //     reader.readAsDataURL(input.files[0])
 // }
 
+onBeforeMount(() => {
+    console.log('Before Mount! -- REDIRECT!!!')
+
+    const router = useRouter()
+
+    router.replace('/diffusion')
+})
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.
@@ -56,70 +64,12 @@ const imageData = ref(null)
             </h1>
 
             <p class="mt-2 lg:mt-5 text-sm lg:text-base">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+                Loading SDXL Demo, please wait...
             </p>
         </div>
 
         <MyLibrary />
     </section>
 
-    <section class="my-5 flex flex-row gap-4">
-        <div class="flex-1 h-96">
-            <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Asset Designer
-            </h2>
-
-            <div class="h-full bg-rose-100 border border-rose-300 rounded-xl shadow">
-                <!-- preview windows -->
-            </div>
-        </div>
-
-        <div class="mt-5 w-32 h-96">
-            <Thumbnails />
-        </div>
-
-        <div class="w-[500px]">
-            <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Cover Preview
-            </h2>
-
-            <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" />
-        </div>
-    </section>
-
-    <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
-        <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
-            Reset
-        </button>
-
-        <button
-            @click="build"
-            class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
-        >
-            Preview My Card
-        </button>
-    </div>
-
-    <div class="my-10 border-t border-gray-300" />
-
-    <div class="space-y-12">
-        <Metadata />
-
-        <Collection />
-
-        <Royalties />
-    </div>
-
-    <div class="mt-5 pr-6 flex items-center justify-end gap-x-6">
-        <button type="button" class="text-xl font-semibold leading-6 text-gray-900">
-            Reset
-        </button>
-
-        <button
-            @click="build"
-            class="rounded-md bg-lime-600 px-3 py-2 text-xl font-semibold text-white shadow-sm hover:bg-lime-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-600"
-        >
-            Preview My Token
-        </button>
-    </div>
+    <!-- TODO -->
 </template>
