@@ -20,5 +20,6 @@ services:
       - BIN_DIR=/bindir/
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+      - PORT=5000
     volumes:
         - ${BIN_DIR}:/bindir/
