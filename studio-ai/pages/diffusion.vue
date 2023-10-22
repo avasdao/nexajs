@@ -231,7 +231,7 @@ const generate = async () => {
 }
 
 const random = async () => {
-    prompt.value = `Over-excited, casually-dressed professor standing behind a contemporary office desk with raised fists, lightning strikes the ground behind him causing an explosion, ultra-detailed, photo-realistic, portrait`
+    prompt.value = `Blockchain Trilemma is SOLVED! Over-excited, casually-dressed professor standing behind a contemporary office desk with raised fists, lightning strikes the ground behind him causing an explosion, ultra-detailed, photo-realistic, portrait`
 }
 
 onMounted(() => {
@@ -343,7 +343,8 @@ onMounted(() => {
 
         <div class="flex flex-col px-10 py-5 text-xl tracking-widest font-medium italic">
             <span>coming soon...</span>
-            <span>thanks for your patience and support!</span>
+            <span>your FULL image history is being saved!</span>
+            <span>thanks for your patience and support..</span>
         </div>
     </div>
 </template>
