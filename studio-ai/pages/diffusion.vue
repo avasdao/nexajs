@@ -336,9 +336,14 @@ onMounted(() => {
 
     <div class="my-10 border-t border-gray-300" />
 
-    <div>
-        <h2>History</h2>
+    <div class="-mt-5">
+        <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
+            Your AI Image History
+        </h2>
 
-        <div></div>
+        <div class="flex flex-col px-10 py-5 text-xl tracking-widest font-medium italic">
+            <span>coming soon...</span>
+            <span>thanks for your patience and support!</span>
+        </div>
     </div>
 </template>
