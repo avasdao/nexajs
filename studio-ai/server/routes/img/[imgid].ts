@@ -69,10 +69,14 @@ export default defineEventHandler(async (event) => {
     /* Return image. */
     event.node.res.end(img)
 
-    /* Write image to (local) cache. */
-    writeFile(process.env.BIN_DIR + imgid, img, (err) => {
-        if (err) throw err
+    try {
+        /* Write image to (local) cache. */
+        writeFile(process.env.BIN_DIR + imgid, img, (err) => {
+            if (err) throw err
 
-        console.log(imgid, 'has been written to cache.')
-    })
+            console.log(imgid, 'has been written to cache.')
+        })
+    } catch (err) {
+        console.error(err)
+    }
 })
