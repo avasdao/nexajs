@@ -71,7 +71,8 @@ export default defineEventHandler(async (event) => {
 
     try {
         /* Write image to (local) cache. */
-        writeFile(process.env.BIN_DIR + imgid, img, (err) => {
+        // NOTE: We use `binData` instead of `img`.
+        writeFile(process.env.BIN_DIR + imgid, binData, (err) => {
             if (err) throw err
 
             console.log(imgid, 'has been written to cache.')
