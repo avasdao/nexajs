@@ -23,7 +23,8 @@ import _setEntropy from './wallet/setEntropy.ts'
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
         _assets: null,
-        _forceUpdate: null,
+
+        _forceUI: null,
 
         /**
          * Entropy
@@ -165,7 +166,7 @@ export const useWalletStore = defineStore('wallet', {
             /* Set (default) asset. */
             this.wallet.setAsset('0')
 
-            this._forceUpdate = 0
+            this._forceUI = 0
 
             this.wallet.on('changes', async (_assets) => {
                 console.info('Wallet Assets (onChanges):', _assets)
@@ -174,13 +175,12 @@ export const useWalletStore = defineStore('wallet', {
 
                 await nextTick
 
-                this._forceUpdate++
+                // this._forceUI++
+                setTimeout(() => {
+                    this._forceUI++
+                }, 1000)
             })
 
-            // setInterval(() => {
-            //     // console.log('INTERVAL (wallet):', this._wallet._assets)
-            //     self._assets = this._wallet._assets
-            // }, 100)
         },
 
         createWallet(_entropy) {

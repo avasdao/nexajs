@@ -8,12 +8,8 @@ import { useSystemStore } from '@/stores/system'
 const Wallet = useWalletStore()
 const System = useSystemStore()
 
-watch(() => Wallet.assets, (_assets) => {
-    console.log('ASSETS (assets):', _assets)
-})
-
 watch(() => Wallet._assets, (_assets) => {
-    console.log('ASSETS (_assets):', _assets)
+    console.log('ASSETS (local assets):', _assets)
 })
 
 const coinAmount = computed(() => {
@@ -110,16 +106,7 @@ const displayIcon = (_token) => {
 
 
 const init = () => {
-    // console.log('ASSETS (coins):', Wallet.coins)
-    // console.log('ASSETS (tokens):', Wallet.tokens)
-    // loadAssets()
     // console.log('ASSETS', Wallet.assets)
-    // console.log('BALANCES', Wallet.balances)
-
-    // test.value.val = 0
-    // setInterval(() => {
-    //     assets.value = Wallet._assets
-    // }, 100)
 }
 
 onMounted(() => {
@@ -157,14 +144,14 @@ onMounted(() => {
         </div>
 
         <div
-            v-for="(token, tokenid) in Wallet._assets" :key="tokenid"
+            v-for="(token, tokenid) in Wallet.assets" :key="tokenid"
             @click="Wallet.wallet.setAsset(tokenid)"
             class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
         >
             <div class="flex flex-row items-start">
                 <img :src="displayIcon(token)" class="-mt-0.5 mr-1 h-12 w-auto p-2 opacity-80" />
 
-                <div class="flex flex-col" :key="tokenid + Wallet._forceUpdate">
+                <div class="flex flex-col">
                     <h3 class="text-base text-amber-800 font-medium uppercase truncate">
                         {{displayTokenName(tokenid)}}
                     </h3>
@@ -175,17 +162,10 @@ onMounted(() => {
                     <span class="hidden sm:flex text-xl font-medium text-amber-600">
                         {{displayDecimalAmount(token)}}
                     </span>
-
-                    <!-- <span class="text-xs" v-if="Wallet._assets && Wallet._assets['0']">
-                        {{ Wallet._assets['0'].amount }}
-                    </span>
-                    <span class="text-xs" v-if="Wallet._assets && Wallet._assets['0']">
-                        {{ token.amount }}
-                    </span> -->
                 </div>
             </div>
 
-            <!-- <h3 class="flex flex-col items-end font-medium text-amber-700">
+            <h3 class="flex flex-col items-end font-medium text-amber-700">
                 <sup class="text-xs">
                     USD
                 </sup>
@@ -196,7 +176,7 @@ onMounted(() => {
                 <span class="-mt-3 hidden sm:flex text-3xl">
                     {{displayDecimalAmountUsd(token)}}
                 </span>
-            </h3> -->
+            </h3>
         </div>
 
     </main>
