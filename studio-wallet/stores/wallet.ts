@@ -1,5 +1,6 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
+import moment from 'moment'
 
 import { mnemonicToEntropy } from '@nexajs/hdnode'
 
@@ -171,14 +172,22 @@ export const useWalletStore = defineStore('wallet', {
             this.wallet.on('changes', async (_assets) => {
                 console.info('Wallet Assets (onChanges):', _assets)
 
-                this._assets = { ..._assets } // cloned assets
+                await nextTick
+
+                const self = this
+
+                setTimeout(() => {
+                    self._assets = { ..._assets }
+                    console.info('self._assets:', self._assets)
+                }, 100)
+                // this._assets = {
+                //     data: _assets,
+                //     updatedAt: moment().unix(),
+                // }
 
                 await nextTick
 
-                // this._forceUI++
-                setTimeout(() => {
-                    this._forceUI++
-                }, 1000)
+                this._forceUI++
             })
 
         },
