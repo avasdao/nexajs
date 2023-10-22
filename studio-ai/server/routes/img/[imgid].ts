@@ -67,7 +67,7 @@ export default defineEventHandler(async (event) => {
     /* Return image. */
     event.node.res.end(img)
 
-    console.error('WE STILL NEED TO CACHE THIS IMAGE...')
+    // console.error('WE STILL NEED TO CACHE THIS IMAGE...')
 
     try {
         /* Write image to (local) cache. */

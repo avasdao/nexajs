@@ -1,6 +1,14 @@
 <script setup lang="ts">
 /* Import modules. */
 import numeral from 'numeral'
+import { v4 as uuidv4 } from 'uuid'
+
+import { getCoins } from '@nexajs/purse'
+
+import {
+    encodeNullData,
+    OP,
+} from '@nexajs/script'
 
 useHead({
     title: `Stable Diffusion Studio for Creators`,
@@ -18,6 +26,8 @@ const Wallet = useWalletStore()
 const System = useSystemStore()
 
 const ENDPOINT = 'https://nexa.garden/v1/asset'
+const STUDIO_AI_VENDING = 'nexa:nqtsq5g56gvyyaf57seml8zdxu8ur7x5wsevh49mj5f7q6s0'
+const STUDIO_AI_VENDING_FEE = 1e6
 
 const imagePreviewUrl = ref(null)
 const imageData = ref(null)
@@ -88,20 +98,95 @@ const startPolling = async () => {
 
 const generate = async () => {
     /* Initialize locals. */
+    let action
+    let body
+    let coins
+    let error
+    let method
+    let nullData
+    let requestid
     let response
+    let txidem
+    let vendingData
 
     /* Confirm creation request. */
     if (confirm(`Are you sure you want to generate [ ${prompt.value} ]`)) {
-        response = await $fetch('/api/diffusion', {
-            method: 'POST',
-            body: {
-                sessionid: Profile.sessionid,
-                action: 'CREATE',
-                prompt: prompt.value,
+        console.log('ADDRESS', Wallet.address)
+
+        coins = await getCoins(Wallet.wallet.wif)
+        console.log('COINS', coins)
+
+        /* Generate (vending) request id. */
+        requestid = uuidv4()
+
+        vendingData = [
+            'CREATE',
+            'DIFFUSION',
+            requestid,
+        ]
+
+        /* Initialize hex data. */
+        nullData = encodeNullData(vendingData)
+
+        const receivers = [
+            {
+                data: nullData, // vending data
             },
+            {
+                address: STUDIO_AI_VENDING,
+                satoshis: BigInt(STUDIO_AI_VENDING_FEE),
+            },
+            {
+                address: Wallet.address, // change address
+            },
+        ]
+        // console.log('RECEIVERS', receivers)
+
+        /* Send vending fee. */
+        response = await Wallet
+            .transfer({
+                coins,
+                receivers,
+            })
+            .catch(err => {
+                console.error(err)
+                error = err
+            })
+        console.log('TRANSFER (response):', response)
+
+        /* Validate response. */
+        if (response) {
+            /* Set transaction idem. */
+            txidem = response.txidem
+        }
+
+        /* Validate transaction idem. */
+        if (!txidem) {
+            return alert(error?.message)
+        }
+
+        /* Set action. */
+        action = 'CREATE'
+
+        /* Set method. */
+        method = 'POST'
+
+        /* Set body. */
+        body = {
+            sessionid: Profile.sessionid,
+            txidem,
+            action,
+            prompt: prompt.value,
+        }
+
+        /* Make creation request. */
+        response = await $fetch('/api/diffusion', {
+            method,
+            body,
         })
         // console.log('GENERATE (response):', response)
 
+        /* Validate (creation) ID. */
         if (response?.id) {
             /* Set creation id. */
             creationid.value = response.id

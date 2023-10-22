@@ -78,19 +78,22 @@ export const useWalletStore = defineStore('wallet', {
             return _state.wallet?.address
         },
 
+        asset(_state) {
+            if (!this.assets || !this.wallet) {
+                return null
+            }
+
+            return this.assets[this.wallet.assetid]
+        },
+
         /* Return wallet status. */
         assets(_state) {
-            return _state.wallet?.assets
+            if (!_state.wallet) {
+                return []
+            }
+
+            return _state.wallet.assets
         },
-
-        /* Return wallet status. */
-        balances(_state) {
-            // FIXME: Update library to expose data OR
-            //        refactor to `markets`.
-            return _state.wallet?._balances
-        },
-
-
     },
 
     actions: {
@@ -112,6 +115,9 @@ export const useWalletStore = defineStore('wallet', {
             /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this._entropy, true)
             console.log('(Initialized) wallet', this._wallet)
+
+            /* Set (default) asset. */
+            this.wallet.setAsset('0')
 
             /* Authorize session. */
             setTimeout(_authSession.bind(this), 100)

@@ -90,7 +90,6 @@ export const useWalletStore = defineStore('wallet', {
             return _state._wallet.address
         },
 
-        /* Return NexaJS wallet instance. */
         asset(_state) {
             if (!this.assets || !this.wallet) {
                 return null
@@ -99,7 +98,6 @@ export const useWalletStore = defineStore('wallet', {
             return this.assets[this.wallet.assetid]
         },
 
-        /* Return wallet status. */
         assets(_state) {
             if (_state._assets) {
                 return _state._assets
