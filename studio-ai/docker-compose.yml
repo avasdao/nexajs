@@ -16,8 +16,8 @@ services:
         max-size: '10m'
     environment:
       - AI_HOST=${AI_HOST}
-      - BIN_DIR=/bin
+      - BIN_DIR=/bindir
       - COUCHDB_USER=${COUCHDB_USER}
       - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
     volumes:
-        - ${BIN_DIR}:/bin
+        - ${BIN_DIR}:/bindir
