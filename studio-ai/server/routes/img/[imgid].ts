@@ -1,3 +1,9 @@
+/* Import modules. */
+import {
+    readFileSync,
+    writeFile,
+} from 'node:fs'
+
 export default defineEventHandler(async (event) => {
     // console.log('EVENT (req):', event.node.req)
 
@@ -18,6 +24,16 @@ export default defineEventHandler(async (event) => {
         imgid = url?.slice(5)
     } else {
         return 'error'
+    }
+
+    img = await readFileSync(process.env.BIN_DIR + imgid)
+        .catch(err => console.error(err))
+
+    if (img) {
+        /* Return image. */
+        return event.node.res.end(img)
+    } else {
+        console.error('WE NEED TO CACHE THIS IMAGE')
     }
 
     /* Set proxy URL. */
@@ -43,4 +59,11 @@ export default defineEventHandler(async (event) => {
 
     /* Return image. */
     event.node.res.end(img)
+
+    /* Write image to (local) cache. */
+    writeFile(process.env.BIN_DIR + imgid, img, (err) => {
+        if (err) throw err
+
+        console.log(imgid, 'has been written to cache.')
+    })
 })

@@ -44,8 +44,8 @@ const getProfile = async (
     let unitSeparator
 
     sessionid = _sessionid
-    publicKey = hexToBin(_publicKey)
-    signature = hexToBin(_signature)
+    publicKey = _publicKey
+    signature = _signature
     timestamp = _timestamp
 
     // Instantiate the Secp256k1 interface.
@@ -64,6 +64,9 @@ const getProfile = async (
         createdAt: moment().unix(),
     }
     // console.log('LOGS PKG', logPkg)
+
+    publicKey = hexToBin(publicKey)
+    signature = hexToBin(signature)
 
     response = await logsDb
         .put(logPkg)

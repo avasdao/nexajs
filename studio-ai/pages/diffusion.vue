@@ -95,15 +95,16 @@ const generate = async () => {
         response = await $fetch('/api/diffusion', {
             method: 'POST',
             body: {
+                sessionid: Profile.sessionid,
                 action: 'CREATE',
                 prompt: prompt.value,
             },
         })
         // console.log('GENERATE (response):', response)
 
-        if (response?.response?.id) {
+        if (response?.id) {
             /* Set creation id. */
-            creationid.value = response.response.id
+            creationid.value = response.id
 
             console.info(`Creation [ ${creationid.value} ] is in the queue...`)
 
