@@ -231,7 +231,7 @@ const generate = async () => {
 }
 
 const random = async () => {
-    prompt.value = 'magic 8-ball'
+    prompt.value = `Over-excited, casually-dressed professor standing behind a contemporary office desk with raised fists, lightning strikes the ground behind him causing an explosion, ultra-detailed, photo-realistic, portrait`
 }
 
 onMounted(() => {
