@@ -5,13 +5,17 @@ const debug = debugFactory('nexa:address')
 /* Import (local) modules. */
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
 import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
+
 import getSeedType from './src/getSeedType.js'
+
+import _getSender from './src/getSender.js'
 import _listUnspent from './src/listUnspent.js'
 import _watchAddress from './src/watchAddress.js'
 
 /* Export (local) modules. */
 export const decodeAddress = _decodeAddress
 export const encodeAddress = _encodeAddress
+export const getSender = _getSender
 export const listUnspent = _listUnspent
 export const watchAddress = _watchAddress
 
@@ -63,6 +67,10 @@ export class Address {
         return decodeAddress(_addr)
     }
 
+    static getSender(_input) {
+        return getSender(_input)
+    }
+
     encode(_prefix, _type, _hash) {
         return encodeAddress(_prefix, _type, _hash)
     }
@@ -103,6 +111,7 @@ Nexa.Address = Address
 /* Initialize Address modules. */
 Nexa.decodeAddress = decodeAddress
 Nexa.encodeAddress = encodeAddress
+Nexa.getSender = getSender
 Nexa.listUnspent = listUnspent
 Nexa.watchAddress = watchAddress
 
