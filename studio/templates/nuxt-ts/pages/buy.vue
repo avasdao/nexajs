@@ -79,7 +79,7 @@ onMounted(() => {
                 </div>
 
                 <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg bg-gray-100 border-2 border-rose-300 shadow">
-                    <img src="https://tailwindui.com/img/ecommerce-images/incentives-07-hero.jpg" alt="" class="object-cover object-center" />
+                    <img src="https://images.unsplash.com/photo-1527264935190-1401c51b5bbc" alt="" class="object-cover object-center" />
                 </div>
             </div>
 
