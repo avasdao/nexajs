@@ -68,7 +68,7 @@ onMounted(() => {
                     </h2>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        At the beginning at least, but then we realized we could make a lot more money if we kinda stopped caring about that.
+                        If you're looking to by a Market Maker and provide Liquidity, then take advantage of our Wholesale Discounts.
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
