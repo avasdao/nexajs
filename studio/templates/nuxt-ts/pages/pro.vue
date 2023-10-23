@@ -70,15 +70,15 @@ const activate = async () => {
     }
 }
 
-const recover = async () => {
+const closeout = async () => {
     /* Confirm request. */
-    if (confirm(`Are you sure you want to Recover this Stakeline?`)) {
+    if (confirm(`Are you sure you want to CLOSEOUT this Stakeline?`)) {
 
         // FOR DEV PURPOSES ONLY
         const outpoint = 'fca0ce43c76800c363f9272c1fef87798120241d4e7c725070cde859a93cba4b'
 
         /* Activate stakeline. */
-        const result = await Wallet.recover({ outpoint })
+        const result = await Wallet.closeout({ outpoint })
             .catch(err => {
                 console.error(err.message)
                 alert(err.message)
@@ -124,7 +124,7 @@ const recover = async () => {
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        At the end of your subscription, simply <span class="font-bold">depart the stakeline</span> <em>(ie. redeem your assets)</em> — you can always <span class="font-bold">re-stake your assets</span> for NEW rewards at ANY time.
+                        At the end of your subscription, simply <span class="font-bold">closeout the stakeline</span> <em>(ie. redeem your assets)</em> — you can always <span class="font-bold">re-stake your assets</span> for NEW rewards at ANY time.
                     </p>
                 </div>
 
@@ -277,9 +277,9 @@ const recover = async () => {
                                 </p>
                             </div>
 
-                            <button v-if="isShowingRecovery" @click="recover" class="mt-5 mx-auto px-5 py-2 w-fit text-xl text-gray-800 font-bold bg-red-500 border-2 border-red-600 rounded-lg shadow hover:bg-red-400">
+                            <button v-if="isShowingRecovery" @click="closeout" class="mt-5 mx-auto px-5 py-2 w-fit text-xl text-gray-800 font-bold bg-red-500 border-2 border-red-600 rounded-lg shadow hover:bg-red-400">
                                 <span class="text-red-100">
-                                    Recover Stakeline
+                                    Closeout Stakeline
                                 </span>
                             </button>
                         </div>

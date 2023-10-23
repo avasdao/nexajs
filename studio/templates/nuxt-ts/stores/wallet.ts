@@ -339,11 +339,11 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         /**
-         * Recover
+         * Closeout
          *
-         * Recover your assets AFTER the staking expires.
+         * Redeem your assets AFTER the stakeline expires.
          */
-        async recover(_redeemToken) {
+        async closeout(_redeemToken) {
             console.log('REDEEM TOKEN', _redeemToken)
 
             let coinOutpoint
