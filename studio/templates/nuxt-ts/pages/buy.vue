@@ -61,8 +61,8 @@ onMounted(() => {
 <template>
     <main class="mx-auto max-w-7xl py-12 sm:px-2 sm:py-16 lg:px-4">
         <section class="mx-auto max-w-2xl px-4 lg:max-w-none">
-            <div class="grid grid-cols-1 items-center gap-x-16 gap-y-20 lg:grid-cols-2">
-                <div>
+            <div class="grid grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-2">
+                <div class="flex flex-col gap-5">
                     <h2 class="text-5xl font-bold tracking-tight text-gray-900">
                         Purchase <span class="text-6xl text-rose-400 font-light italic">$STUDIO</span> Time in bulk and save <span class="text-6xl text-rose-400 font-light italic">BIG!</span>
                     </h2>
