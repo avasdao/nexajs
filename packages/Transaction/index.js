@@ -23,7 +23,13 @@ const SCRIPT_TEMPLATE_1 = new Uint8Array([
 ])
 
 const MAXINT = 0xffffffff
+
 const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
+
+// TODO Add support for ALL signature types.
+//      (source: https://spec.nexa.org/nexa/sighashtype.md)
+const SIGHASH_ALL = 0x0
+
 
 /**
  * Transaction Class
@@ -145,21 +151,46 @@ export class Transaction {
         return this._unlocking
     }
 
-    addInput(_outpoint, _satoshis, _unlocking = null) {
-        // TODO Validate input.
+    addInput(
+        _outpoint,
+        _satoshis,
+        _hashtype = SIGHASH_ALL,
+        _unlocking = null,
+    ) {
+        /* Initialize locals. */
+        let hashtype
+        let outpoint
+        let satoshis
+        let unlocking
+
+        /* Set outpoint. */
+        outpoint = _outpoint
+
+        /* Set satoshis. */
+        satoshis = _satoshis
+
+        /* Set hashtype. */
+        hashtype = _hashtype
+
+        /* Set unlocking. */
+        unlocking = _unlocking
+
+        // TODO Validate EACH param.
 
         /* Validate unlocking script. */
-        if (_unlocking !== null && typeof _unlocking !== 'undefined') {
+        if (unlocking === null || typeof unlocking === false) {
             this._inputs.push({
-                outpoint: _outpoint,
-                satoshis: _satoshis,
-                unlocking: _unlocking,
+                outpoint,
+                satoshis,
+                hashtype,
+                // NOTE: `unlocking` is omitted and "undefined"
             })
         } else {
             this._inputs.push({
-                outpoint: _outpoint,
-                satoshis: _satoshis,
-                // NOTE: unlocking is "undefined"
+                outpoint,
+                satoshis,
+                hashtype,
+                unlocking,
             })
         }
     }
