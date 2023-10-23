@@ -116,16 +116,16 @@ const recover = async () => {
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
                         Are you ready to propel your career to the NEXT level?
-                        Activate your 1st stakeline to begin receiving INSTANT rewards.
+                        <span class="font-bold">Activate your 1st stakeline</span> for INSTANT access to ALL PRO features, plus begin receiving DAILY rewards.
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        Receive daily airdrops of $STUDIO tokens during your PRO status.
+                        Receive daily airdrops of <span class="font-bold">25K $STUDIO Time</span> during the entire duration of your PRO subscription.
                     </p>
                 </div>
 
                 <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg bg-gray-100 border-2 border-rose-300 shadow">
-                    <img src="https://images.unsplash.com/photo-1591370874773-6702e8f12fd8?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="object-cover object-center" />
+                    <img src="https://images.unsplash.com/photo-1615526675651-91bdbee68170?auto=format&fit=crop&q=80&w=1886&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="object-cover object-center" />
                 </div>
             </div>
         </section>
