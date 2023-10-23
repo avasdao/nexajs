@@ -68,12 +68,13 @@ onMounted(() => {
                     </h2>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        If you're looking to by a Market Maker and provide Liquidity, then take advantage of our Wholesale Discounts.
+                        Are you ready to be a Market Maker and provide Liquidity to the Retail community?
+                        Take advantage of our Wholesale Discounts!
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        Our new strategy is to write a bunch of things that look really good in the headlines, then
-                        clarify in the small print but hope people don't actually read it.
+                        The base quantity of $STUDIO Time is pegged to $NEXA 1-to-1.
+                        This is a <span class="font-bold">FIXED</span> ratio that will be set for the lifetime of this asset.
                     </p>
                 </div>
 
