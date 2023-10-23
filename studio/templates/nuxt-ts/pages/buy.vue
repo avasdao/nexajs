@@ -73,8 +73,12 @@ onMounted(() => {
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        The base quantity of $STUDIO Time is pegged to $NEXA 1-to-1.
-                        This is a <span class="font-bold">FIXED</span> ratio that will be set for the lifetime of this asset.
+                        The Base quantity of $STUDIO Time is pegged with $NEXA at a 1-to-1 ratio.
+                        This is a <span class="font-bold">FIXED</span> ratio, permanently set for the <span class="font-bold">LIFETIME</span> of this asset.
+                    </p>
+
+                    <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
+                        Larger quantities of $STUDIO Time are available at <span class="font-bold">up to 20% discount</span> from the Base price.
                     </p>
                 </div>
 
