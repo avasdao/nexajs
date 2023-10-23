@@ -73,12 +73,12 @@ onMounted(() => {
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        The <span class="font-bold">minting price</span> of $STUDIO Time is pegged with $NEXA at a <span class="font-bold">1-to-1</span> ratio.
+                        The <span class="font-bold">base minting price (BMP)</span> of $STUDIO Time is pegged with $NEXA at a <span class="font-bold">1-to-1</span> ratio.
                         This is a <span class="font-bold">FIXED</span> ratio, permanently set for the <span class="font-bold">LIFETIME</span> of this asset.
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        Larger quantities of $STUDIO Time are available at <span class="font-bold">up to 20% discount</span> from the minting price.
+                        Larger quantities of $STUDIO Time are available at <span class="font-bold">up to 20% discount</span> from the BMP.
                     </p>
                 </div>
 
