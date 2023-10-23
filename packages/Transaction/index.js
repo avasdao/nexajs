@@ -86,10 +86,10 @@ export class Transaction {
 
         /* Validate unlocking (script). */
         if (_params?.unlocking === null) {
-            // NOTE: disables "automatic" transaction signing.
+            // NOTE: `null` disables "automatic" transaction signing.
             this._unlocking = null
         } else {
-            // NOTE: expect `undefined` for "standard" pubkey+sig procedure.
+            // NOTE: Expect `undefined` for "standard" pubkey+sig procedure.
             this._unlocking = _params.unlocking
         }
     }
@@ -155,7 +155,7 @@ export class Transaction {
         _outpoint,
         _satoshis,
         _hashtype = SIGHASH_ALL,
-        _unlocking = null,
+        _unlocking, // NOTE: No (default) allows for "undefined".
     ) {
         /* Initialize locals. */
         let hashtype
@@ -173,26 +173,18 @@ export class Transaction {
         hashtype = _hashtype
 
         /* Set unlocking. */
+        // NOTE: `null` disables "automatic" input signing.
+        // NOTE: expect `undefined` for "standard" pubkey+sig procedure.
         unlocking = _unlocking
 
         // TODO Validate EACH param.
 
-        /* Validate unlocking script. */
-        if (unlocking === null || typeof unlocking === false) {
-            this._inputs.push({
-                outpoint,
-                satoshis,
-                hashtype,
-                // NOTE: `unlocking` is omitted and "undefined"
-            })
-        } else {
-            this._inputs.push({
-                outpoint,
-                satoshis,
-                hashtype,
-                unlocking,
-            })
-        }
+        this._inputs.push({
+            outpoint,
+            satoshis,
+            hashtype,
+            unlocking,
+        })
     }
 
     addOutput(
@@ -201,18 +193,18 @@ export class Transaction {
         _tokenid = null,
         _tokens = null
     ) {
-        if (_satoshis !== null) {
+        if (_satoshis === null || typeof _satoshis === 'undefined') {
+            // TODO Validate output.
+            this._outputs.push({
+                data: _receiver
+            })
+        } else {
             // TODO Validate output.
             this._outputs.push({
                 address: _receiver,
                 satoshis: _satoshis,
                 tokenid: _tokenid,
                 tokens: _tokens,
-            })
-        } else {
-            // TODO Validate output.
-            this._outputs.push({
-                data: _receiver
             })
         }
     }
