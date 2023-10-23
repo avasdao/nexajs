@@ -35,13 +35,21 @@ export default ({
     transactionOutputs,
     transactionAmounts,
     transactionSequenceNumbers,
-    version,  // NOT USED WITH P2PKT
+    version,
 }) => new Uint8Array([
-    numberToBinUintLE(0), // NOTE: Doesn't work w/ flattenBinArray
+    version,
 
-    ...hashPrevouts({ sha256, signingSerializationType, transactionOutpoints }),
+    ...hashPrevouts({
+        sha256,
+        signingSerializationType,
+        transactionOutpoints
+    }),
 
-    ...hashAmounts({ sha256, signingSerializationType, transactionAmounts }),
+    ...hashAmounts({
+        sha256,
+        signingSerializationType,
+        transactionAmounts
+    }),
 
     ...hashSequence({
         sha256,
@@ -61,6 +69,5 @@ export default ({
 
     ...numberToBinUint32LE(locktime),
 
-    // signingSerializationType,
-    numberToBinUintLE(0),
+    signingSerializationType,
 ])

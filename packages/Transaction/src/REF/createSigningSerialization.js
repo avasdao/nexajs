@@ -59,7 +59,7 @@ export default async (
         transactionOutputs: state.transactionOutputs,
         transactionAmounts: state.transactionAmounts,
         transactionSequenceNumbers: state.transactionSequenceNumbers,
-        // version: 0,
+        version: new Uint8Array([ 0x0 ]),
     })
 
     return signingSerialization
