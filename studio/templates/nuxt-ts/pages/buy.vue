@@ -154,7 +154,7 @@ onMounted(() => {
             </div>
         </section>
 
-        <section class="bg-white py-24 sm:py-32">
+        <!-- <section class="bg-white py-24 sm:py-32">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl sm:text-center">
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Simple no-tricks pricing</h2>
@@ -215,7 +215,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <section class="max-w-5xl mx-auto h-32 mt-20 px-3 py-1 bg-sky-50 border-2 border-sky-200 rounded-xl shadow">
             <span class="text-2xl font-medium text-sky-700">
