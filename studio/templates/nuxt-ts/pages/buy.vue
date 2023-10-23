@@ -68,8 +68,8 @@ onMounted(() => {
                     </h2>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        Are you ready to be a Market Maker and provide Liquidity to the Retail community?
-                        Take advantage of our Wholesale Discounts!
+                        Are you ready to become a <span class="font-bold">Market Maker</span> and provide <span class="font-bold">Liquidity for Profit</span> to Nexa's retail community?
+                        Be sure to take FULL advantage of the studio's <span class="font-bold">Wholesale Discounts!</span>
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
