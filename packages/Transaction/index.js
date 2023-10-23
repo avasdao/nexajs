@@ -145,12 +145,23 @@ export class Transaction {
         return this._unlocking
     }
 
-    addInput(_outpoint, _satoshis) {
+    addInput(_outpoint, _satoshis, _unlocking = null) {
         // TODO Validate input.
-        this._inputs.push({
-            outpoint: _outpoint,
-            satoshis: _satoshis,
-        })
+
+        /* Validate unlocking script. */
+        if (_unlocking !== null && typeof _unlocking !== 'undefined') {
+            this._inputs.push({
+                outpoint: _outpoint,
+                satoshis: _satoshis,
+                unlocking: _unlocking,
+            })
+        } else {
+            this._inputs.push({
+                outpoint: _outpoint,
+                satoshis: _satoshis,
+                // NOTE: unlocking is "undefined"
+            })
+        }
     }
 
     addOutput(

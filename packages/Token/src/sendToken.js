@@ -190,6 +190,7 @@ export default async (_coins, _tokens, _receivers) => {
         transaction.addInput(
             _token.outpoint,
             _token.satoshis,
+            _token.unlocking,
         )
     })
 
@@ -199,6 +200,7 @@ export default async (_coins, _tokens, _receivers) => {
         transaction.addInput(
             _coin.outpoint,
             _coin.satoshis,
+            _coin.unlocking,
         )
     })
 
