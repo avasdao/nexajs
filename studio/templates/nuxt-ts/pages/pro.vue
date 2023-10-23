@@ -120,7 +120,11 @@ const recover = async () => {
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        Receive daily airdrops of <span class="font-bold">25K $STUDIO Time</span> during the entire duration of your PRO subscription.
+                        Receive daily airdrops of <span class="font-bold">25K $STUDIO Time</span>, plus ALL bonus rewards, during the entire duration of your PRO subscription.
+                    </p>
+
+                    <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
+                        At the end of your subscription, simply <span class="font-bold">depart the stakeline</span> <em>(ie. redeem your assets)</em>; so that you may <span class="font-bold">re-stake your assets</span> and continue receiving rewards.
                     </p>
                 </div>
 
