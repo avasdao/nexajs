@@ -32,6 +32,7 @@ export default async (
     /* Initialize locals. */
     let secp256k1
     let sighash
+    let signatureBin
     let signingSerialization
     let transactionSignature
 
@@ -51,9 +52,20 @@ export default async (
     secp256k1 = await instantiateSecp256k1()
 
     /* Generate a signature over the "sighash" using the passed private key. */
-    transactionSignature = secp256k1
+    signatureBin = secp256k1
         .signMessageHashSchnorr(privateKeyBin, sighash)
-    // console.log('\n  Signature (binary):', binToHex(transactionSignature), '\n')
+
+    /* Validate hash type. */
+    if (hashtype === 0) {
+        // NOTE: DO NOT append a zero (0) hash type.
+        transactionSignature = new Uint8Array(signatureBin)
+    } else {
+        // NOTE: Append the hashtype to the signature to turn it into a valid transaction signature.
+        transactionSignature = new Uint8Array([
+            ...signatureBin,
+            hashtype,
+        ])
+    }
 
     /* Return transaction signature. */
     return transactionSignature
