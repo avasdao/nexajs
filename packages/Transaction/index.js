@@ -218,6 +218,8 @@ export class Transaction {
             unspents.push({
                 outpoint: _input.outpoint,
                 satoshis: _input.satoshis,
+                hashtype: _input.hashtype,
+                unlocking: _input.unlocking,
                 sequence: this.sequence, // TODO Allow unique sequence per input.
             })
         })

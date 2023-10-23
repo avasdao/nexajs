@@ -3,7 +3,7 @@ import {
     bigIntToBinUint64LE,
     // createTransactionContextCommon,
     // generateSigningSerializationBCH,
-    instantiateSha256,
+    // instantiateSha256,
 } from '@bitauth/libauth'
 
 import createTransactionContextCommon from './createTransactionContextCommon.js'
@@ -53,7 +53,7 @@ export default async (
         // outpointTransactionHash: state.outpointTransactionHash,
         outputValue: state.outputValue,
         sequenceNumber: state.sequenceNumber,
-        sha256: await instantiateSha256(),
+        // sha256: await instantiateSha256(),
         signingSerializationType: new Uint8Array([ hashtype ]),
         transactionOutpoints: state.transactionOutpoints,
         transactionOutputs: state.transactionOutputs,

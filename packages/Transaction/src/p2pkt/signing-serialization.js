@@ -1,3 +1,5 @@
+import { sha256 } from '@nexajs/crypto'
+
 import {
     bigIntToBitcoinVarInt,
     flattenBinArray,
@@ -11,7 +13,7 @@ export const SigningSerializationFlag = {
     /**
      * A.K.A. `SIGHASH_ALL`
      */
-    allOutputs: 0x01,
+    allOutputs: 0x0,  // NOTE: BCH is 0x01
 
     /**
      * A.K.A `SIGHASH_NONE`
@@ -77,10 +79,9 @@ const emptyHash = () =>
  * @param transactionOutpoints - see `generateSigningSerializationNexa`
  */
 export const hashPrevouts = ({
-    sha256,
-    signingSerializationType,
-    transactionOutpoints
-}) => sha256.hash(sha256.hash(transactionOutpoints))
+    signingSerializationType, // TODO
+    transactionOutpoints,
+}) => sha256(sha256(transactionOutpoints))
 
 /**
  * Return the proper `hashAmounts` value for a given a signing serialization
@@ -89,10 +90,9 @@ export const hashPrevouts = ({
  * @param amount - see `generateSigningSerializationNexa`
  */
 export const hashAmounts = ({
-    sha256,
     signingSerializationType,
     transactionAmounts
-}) => sha256.hash(sha256.hash(transactionAmounts))
+}) => sha256(sha256(transactionAmounts))
 
 /**
  * Return the proper `hashSequence` value for a given a signing serialization
@@ -102,10 +102,9 @@ export const hashAmounts = ({
  * `generateSigningSerializationNexa`
  */
 export const hashSequence = ({
-    sha256,
     signingSerializationType,
     transactionSequenceNumbers
-}) => sha256.hash(sha256.hash(transactionSequenceNumbers))
+}) => sha256(sha256(transactionSequenceNumbers))
 
 /**
  * Return the proper `hashOutputs` value for a given a signing serialization
@@ -116,10 +115,9 @@ export const hashSequence = ({
  */
 export const hashOutputs = ({
     correspondingOutput,
-    sha256,
     signingSerializationType,
     transactionOutputs
-}) => sha256.hash(sha256.hash(transactionOutputs))
+}) => sha256(sha256(transactionOutputs))
 
 /**
  * Serialize the signature-protected properties of a transaction following the

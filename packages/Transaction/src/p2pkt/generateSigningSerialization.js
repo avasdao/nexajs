@@ -1,7 +1,5 @@
 import {
     bigIntToBitcoinVarInt,
-    flattenBinArray,
-    numberToBinUintLE,
     numberToBinUint32LE,
 } from '@bitauth/libauth'
 
@@ -29,7 +27,7 @@ export default ({
     outpointTransactionHash,  // NOT USED WITH P2PKT
     outputValue,  // NOT USED WITH P2PKT
     sequenceNumber,  // NOT USED WITH P2PKT
-    sha256,
+    // sha256,
     signingSerializationType,
     transactionOutpoints,
     transactionOutputs,
@@ -40,19 +38,16 @@ export default ({
     version,
 
     ...hashPrevouts({
-        sha256,
         signingSerializationType,
         transactionOutpoints
     }),
 
     ...hashAmounts({
-        sha256,
         signingSerializationType,
         transactionAmounts
     }),
 
     ...hashSequence({
-        sha256,
         signingSerializationType,
         transactionSequenceNumbers,
     }),
@@ -62,7 +57,6 @@ export default ({
 
     ...hashOutputs({
         correspondingOutput,
-        sha256,
         signingSerializationType,
         transactionOutputs,
     }),
