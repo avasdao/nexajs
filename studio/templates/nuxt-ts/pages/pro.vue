@@ -109,23 +109,23 @@ const recover = async () => {
     <main class="mx-auto max-w-7xl py-12 sm:px-2 sm:py-16 lg:px-4">
         <section class="mx-auto max-w-2xl px-4 lg:max-w-none">
             <div class="grid grid-cols-1 items-center gap-x-16 gap-y-10 lg:grid-cols-2">
-                <div>
+                <div class="flex flex-col gap-5">
                     <h2 class="text-5xl font-bold tracking-tight text-gray-900">
                         Go <span class="text-6xl text-rose-400 font-light italic">PRO</span> for a One-of-a-Kind Builder Experience — it's <span class="text-6xl text-rose-400 font-light italic">FREE!</span>
                     </h2>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        At the beginning at least, but then we realized we could make a lot more money if we kinda stopped caring about that.
+                        Are you ready to propel your career to the NEXT level?
+                        Activate your 1st stakeline to begin receiving INSTANT rewards.
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        Our new strategy is to write a bunch of things that look really good in the headlines, then
-                        clarify in the small print but hope people don't actually read it.
+                        Receive daily airdrops of $STUDIO tokens during your PRO status.
                     </p>
                 </div>
 
                 <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg bg-gray-100 border-2 border-rose-300 shadow">
-                    <img src="https://tailwindui.com/img/ecommerce-images/incentives-07-hero.jpg" alt="" class="object-cover object-center" />
+                    <img src="https://images.unsplash.com/photo-1591370874773-6702e8f12fd8?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="object-cover object-center" />
                 </div>
             </div>
         </section>
