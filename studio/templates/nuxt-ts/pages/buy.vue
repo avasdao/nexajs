@@ -79,7 +79,7 @@ onMounted(() => {
                 </div>
 
                 <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg bg-gray-100 border-2 border-rose-300 shadow">
-                    <img src="https://images.unsplash.com/photo-1527264935190-1401c51b5bbc" alt="" class="object-cover object-center" />
+                    <img src="https://images.unsplash.com/photo-1579225663317-c0251b4369bc?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="object-cover object-center" />
                 </div>
             </div>
 
