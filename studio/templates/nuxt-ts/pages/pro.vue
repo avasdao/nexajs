@@ -124,7 +124,7 @@ const recover = async () => {
                     </p>
 
                     <p class="mt-4 text-xl leading-8 tracking-wide text-gray-500">
-                        At the end of your subscription, simply <span class="font-bold">depart the stakeline</span> <em>(ie. redeem your assets)</em>; so that you may <span class="font-bold">re-stake your assets</span> and continue receiving rewards.
+                        At the end of your subscription, simply <span class="font-bold">depart the stakeline</span> <em>(ie. redeem your assets)</em> — you can always <span class="font-bold">re-stake your assets</span> for NEW rewards at ANY time.
                     </p>
                 </div>
 
