@@ -273,7 +273,7 @@ const closeout = async () => {
                                 </button>
 
                                 <p class="mt-6 text-base leading-5 text-gray-600">
-                                    Invoices and receipts available for easy company reimbursement
+                                    Early termination may result in loss of some or all of your remaining assets.
                                 </p>
                             </div>
 
