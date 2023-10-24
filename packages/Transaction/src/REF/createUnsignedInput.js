@@ -11,14 +11,21 @@ import { hexToBin } from '@nexajs/utils'
  * @returns {any} The created input.
  */
 export default (unspentOutput) => {
-    const input = {
-        outpointTransactionHash: unspentOutput.outpoint ? hexToBin(unspentOutput.outpoint) : hexToBin(unspentOutput.tx_hash),
+    return {
+        outpointTransactionHash: unspentOutput.outpoint
+            ? hexToBin(unspentOutput.outpoint)
+            : hexToBin(unspentOutput.tx_hash),
+
         unlockingBytecode: new Uint8Array(), // NOTE: This is where the signature and public key will be placed.
+
         satoshis: unspentOutput.satoshis,
-        amount: unspentOutput.satoshis,
+
+        // amount: unspentOutput.satoshis,
+
+        hashType: unspentOutput.hashType,
+
+        unlockingScript: unspentOutput.unlocking,
+
         sequenceNumber: unspentOutput.sequence,
     }
-
-    /* Return input. */
-    return input
 }

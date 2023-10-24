@@ -36,7 +36,7 @@ export default async (
     // Generate a transaction signature for this input.
     const signatureBin1 = await signTransactionInput(
         transaction,
-        input.amount,
+        input.satoshis,
         inputIndex,
         SIGHASH_ALL,
         privateKeys[0],
@@ -46,7 +46,7 @@ export default async (
     // Generate a transaction signature for this input.
     const signatureBin2 = await signTransactionInput(
         transaction,
-        input.amount,
+        input.satoshis,
         inputIndex,
         SIGHASH_ALL,
         privateKeys[1],

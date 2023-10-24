@@ -10,8 +10,6 @@ import {
     binToHex,
 } from '@nexajs/utils'
 
-import { flattenBinArray } from '@bitauth/libauth'
-
 import signTransactionInput from '../REF/signTransactionInput.js'
 
 /* Initialize default script bytecode. */
@@ -57,7 +55,7 @@ export default async (
     // Generate a transaction signature for this input.
     signature = await signTransactionInput(
         transaction,
-        input.amount,
+        input.satoshis,
         inputIndex,
         lockingScript,
         SIGHASH_ALL,
@@ -65,37 +63,51 @@ export default async (
     )
     // console.log('signature', signature)
 
+    /* Add data push to script public key. */
     scriptPubKey = encodeDataPush(publicKey)
+
+console.log('\n***unlockingScript', unlockingScript);
+console.log('\n***input', input);
 
     /* Validate unlocking script. */
     // NOTE: We exclude all "well-known" script templates.
-    if (typeof unlockingScript === 'undefined') {
+    if (
+        typeof unlockingScript === 'undefined' ||
+        typeof input.unlockingScript === 'undefined'
+    ) {
         /* Build "standard" script for unlocking P2PKT transactions. */
-        unlockingBytecode = flattenBinArray(
+        // NOTE: This is the MOST common (aka default) unlocking script.
+        unlockingBytecode = new Uint8Array(
             [
-                encodeDataPush(scriptPubKey),
-                encodeDataPush(signature),
+                ...encodeDataPush(scriptPubKey),
+                ...encodeDataPush(signature),
             ]
         )
     } else {
         /* Validate unlocking script. */
-        if (unlockingScript === null || unlockingScript === false) {
-            /* Build an "empty" unlocking script. */
-            unlockingBytecode = new Uint8Array(0)
+        if (
+            unlockingScript === null || input.unlockingScript === null ||
+            unlockingScript === false || input.unlockingScript === false
+        ) {
+            /* Keep the "empty" unlocking script (previously initialized). */
+            // unlockingBytecode = new Uint8Array(0)
+            unlockingBytecode = input.unlockingBytecode
         } else {
             /* Set unlocking byte code. */
-            unlockingBytecode = unlockingScript
+            // NOTE: Used when handling 3rd-party input(s), signed by their owner(s).
+            unlockingBytecode = unlockingScript || input.unlockingScript
         }
     }
 
     /* Validate locking script. */
-    if (lockingScript !== null &&
+    if (
+        lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
-        binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1)
+        binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1) // NOTE: Compare as strings (easier).
         // TODO add support for ALL script templates...
     ) {
-        unlockingBytecode = flattenBinArray([
-            encodeDataPush(lockingScript), // NOTE: add "locking" prefix ??
+        unlockingBytecode = new Uint8Array([
+            ...encodeDataPush(lockingScript), // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
             unlockingBytecode,
         ])
     }

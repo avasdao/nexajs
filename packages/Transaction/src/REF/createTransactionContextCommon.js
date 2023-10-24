@@ -64,7 +64,7 @@ const encodeOutputsForSigning = (outputs) =>
  */
 const encodeAmountsForSigning = (inputs) =>
     flattenBinArray(
-        inputs.map((i) => bigIntToBinUint64LE(BigInt(i.amount)))
+        inputs.map((i) => bigIntToBinUint64LE(BigInt(i.satoshis)))
     )
 
 /**

@@ -154,11 +154,11 @@ export class Transaction {
     addInput(
         _outpoint,
         _satoshis,
-        _hashtype = SIGHASH_ALL,
+        _hashType = SIGHASH_ALL,
         _unlocking, // NOTE: No (default) allows for "undefined".
     ) {
         /* Initialize locals. */
-        let hashtype
+        let hashType
         let outpoint
         let satoshis
         let unlocking
@@ -169,8 +169,8 @@ export class Transaction {
         /* Set satoshis. */
         satoshis = _satoshis
 
-        /* Set hashtype. */
-        hashtype = _hashtype
+        /* Set hash type. */
+        hashType = _hashType
 
         /* Set unlocking. */
         // NOTE: `null` disables "automatic" input signing.
@@ -182,7 +182,7 @@ export class Transaction {
         this._inputs.push({
             outpoint,
             satoshis,
-            hashtype,
+            hashType,
             unlocking,
         })
     }
@@ -218,7 +218,7 @@ export class Transaction {
             unspents.push({
                 outpoint: _input.outpoint,
                 satoshis: _input.satoshis,
-                hashtype: _input.hashtype,
+                hashType: _input.hashType,
                 unlocking: _input.unlocking,
                 sequence: this.sequence, // TODO Allow unique sequence per input.
             })
