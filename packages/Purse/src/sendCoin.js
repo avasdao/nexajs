@@ -16,6 +16,10 @@ const TYPE1_OUTPUT_LENGTH = 33
 const MAXINT = 0xffffffff
 const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
 
+// TODO Add support for ALL signature types.
+//      (source: https://spec.nexa.org/nexa/sighashtype.md)
+const SIGHASH_ALL = 0x0
+
 /**
  * Send Coin
  *
@@ -40,6 +44,7 @@ export default async (_coins, _receivers) => {
     let feeRate
     let feeTotal
     let feeTotalWithChange
+    let hashType
     let locking
     let lockTime
     let receiver
@@ -139,6 +144,13 @@ export default async (_coins, _receivers) => {
         unlocking = _coins.unlocking
     }
 
+    /* Validate hash type. */
+    if (_coins.hashType) {
+        hashType = _coins.hashType
+    } else {
+        hashType = SIGHASH_ALL
+    }
+
     /* Create new transaction. */
     transaction = new Transaction({
         feeRate,
@@ -146,35 +158,40 @@ export default async (_coins, _receivers) => {
         sequence,
         locking,
         unlocking,
+        hashType,
     })
 
     /* Handle coins. */
     coins.forEach(_coin => {
         /* Add input. */
-        transaction.addInput(
-            _coin.outpoint,
-            _coin.satoshis,
-            _coin.unlocking,
-        )
+        transaction.addInput({
+            outpoint: _coin.outpoint,
+            satoshis: _coin.satoshis,
+            locking: _coin.locking,
+            unlocking: _coin.unlocking,
+            hashType: _coin.hashType,
+        })
     })
 
     /* Handle receivers. */
     receivers.forEach(_receiver => {
+console.log('***THIS IS A RECEIVER', _receiver);
         /* Handle (value) outputs. */
         if (_receiver.address && _receiver.satoshis) {
             /* Add (value) output. */
-            transaction.addOutput(
-                _receiver.address,
-                _receiver.satoshis,
-            )
+            transaction.addOutput({
+                address: _receiver.address,
+                satoshis: _receiver.satoshis,
+            })
+console.log('***TX OUTPUTS', transaction.outputs);
         }
 
         /* Handle (data) outputs. */
         if (_receiver.data) {
             /* Add (data) output. */
-            transaction.addOutput(
-                _receiver.data
-            )
+            transaction.addOutput({
+                address: _receiver.data
+            })
         }
     })
 
@@ -227,10 +244,10 @@ export default async (_coins, _receivers) => {
                 // console.log('FOUND CHANGE RECEIVER', receiver)
 
                 /* Add (value) output. */
-                transaction.addOutput(
-                    receiver.address,
-                    change,
-                )
+                transaction.addOutput({
+                    address: receiver.address,
+                    satoshis: change,
+                })
             } else {
                 // TODO Fallback to the first input/signer address
                 throw new Error('ERROR! Find a change receiver!')

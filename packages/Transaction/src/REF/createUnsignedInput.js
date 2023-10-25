@@ -16,15 +16,15 @@ export default (unspentOutput) => {
             ? hexToBin(unspentOutput.outpoint)
             : hexToBin(unspentOutput.tx_hash),
 
-        unlockingBytecode: new Uint8Array(), // NOTE: This is where the signature and public key will be placed.
+        lockingBytecode: unspentOutput.locking,
+
+        unlockingBytecode: unspentOutput.unlocking || new Uint8Array(), // NOTE: This is where the signature and public key will be placed.
 
         satoshis: unspentOutput.satoshis,
 
         // amount: unspentOutput.satoshis,
 
         hashType: unspentOutput.hashType,
-
-        unlockingScript: unspentOutput.unlocking,
 
         sequenceNumber: unspentOutput.sequence,
     }

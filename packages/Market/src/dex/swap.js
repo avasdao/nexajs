@@ -176,21 +176,25 @@ export default async (_coins, _tokens, _receivers) => {
     /* Handle tokens. */
     tokens.forEach(_token => {
         /* Add input. */
-        transaction.addInput(
-            _token.outpoint,
-            _token.satoshis,
-            _token.unlocking,
-        )
+        transaction.addInput({
+            outpoint: _token.outpoint,
+            satoshis: _token.satoshis,
+            locking: _token.locking,
+            unlocking: _token.unlocking,
+            hashType: _token.hashType,
+        })
     })
 
     /* Handle coins. */
     coins.forEach(_coin => {
         /* Add input. */
-        transaction.addInput(
-            _coin.outpoint,
-            _coin.satoshis,
-            _coin.unlocking,
-        )
+        transaction.addInput({
+            outpoint: _coin.outpoint,
+            satoshis: _coin.satoshis,
+            locking: _coin.locking,
+            unlocking: _coin.unlocking,
+            hashType: _coin.hashType,
+        })
     })
 
     /* Handle receivers. */
@@ -198,30 +202,30 @@ export default async (_coins, _tokens, _receivers) => {
         /* Handle (token) outputs. */
         if (_receiver.tokenid) {
             /* Add (token) output. */
-            transaction.addOutput(
-                _receiver.address,
-                DUST_LIMIT,
-                _receiver.tokenid,
-                _receiver.tokens,
-            )
+            transaction.addOutput({
+                address: _receiver.address,
+                satoshis: DUST_LIMIT,
+                tokenid: _receiver.tokenid,
+                tokens: _receiver.tokens,
+            })
 
             if (!tokenid) {
                 tokenid = _receiver.tokenid
             }
         } else if (_receiver.address && _receiver.satoshis) {
             /* Add (value) output. */
-            transaction.addOutput(
-                _receiver.address,
-                _receiver.satoshis,
-            )
+            transaction.addOutput({
+                address: _receiver.address,
+                satoshis: _receiver.satoshis,
+            })
         }
 
         /* Handle (data) outputs. */
         if (_receiver.data) {
             /* Add (data) output. */
-            transaction.addOutput(
-                _receiver.data
-            )
+            transaction.addOutput({
+                address: _receiver.data
+            })
         }
     })
 
@@ -260,12 +264,12 @@ export default async (_coins, _tokens, _receivers) => {
             satoshis += DUST_LIMIT
 
             /* Add (token) output. */
-            transaction.addOutput(
-                receiver.address,
-                DUST_LIMIT,
+            transaction.addOutput({
+                address: receiver.address,
+                satoshis: DUST_LIMIT,
                 tokenid,
-                (unspentTokens - tokenAmount),
-            )
+                tokens: (unspentTokens - tokenAmount),
+            })
         } else {
             // TODO Fallback to the first input/signer address
             throw new Error('ERROR! Find a change receiver!')
@@ -330,10 +334,10 @@ export default async (_coins, _tokens, _receivers) => {
                 // console.log('FOUND CHANGE RECEIVER', receiver)
 
                 /* Add (value) output. */
-                transaction.addOutput(
-                    receiver.address,
-                    change,
-                )
+                transaction.addOutput({
+                    address: receiver.address,
+                    satoshis: change,
+                })
             } else {
                 // TODO Fallback to the first input/signer address
                 throw new Error('ERROR! Find a change receiver!')

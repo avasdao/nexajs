@@ -14,7 +14,7 @@ import unlockInputMulti from './unlockInputMulti.js'
  *
  * @function
  *
- * @param privateKeyWifs  {string}                     Private Key in WIF format.
+ * @param privateKeyWifs {string}                     Private Key in WIF format.
  * @param unspentOutputs {AddressListUnspentResponse} Prefix (in hex) to precede data.
  * @param outputs        {Array<Output>}              Array of outputs to include in transaction.
  *
@@ -57,7 +57,6 @@ export default async (
                 wifs[i].push({
                     privateKey,
                     publicKey,
-                    // address,
                 })
             }
         } else {
@@ -71,7 +70,6 @@ export default async (
             wifs.push({
                 privateKey,
                 publicKey,
-                // address,
             })
         }
     }
