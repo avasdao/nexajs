@@ -47,24 +47,11 @@ export default async (
     const SIGHASH_ALL = 0x0
 
     /* Initialize locals. */
+    let lockingBytecode
     let scriptPubKey
     let signature
     let signedInput
     let unlockingBytecode
-
-    // Generate a transaction signature for this input.
-    signature = await signTransactionInput(
-        transaction,
-        input.satoshis,
-        inputIndex,
-        lockingScript,
-        SIGHASH_ALL,
-        privateKey,
-    )
-    // console.log('signature', signature)
-
-    /* Add data push to script public key. */
-    scriptPubKey = encodeDataPush(publicKey)
 
 console.log('\n***unlockingScript', unlockingScript);
 console.log('\n***input', input);
@@ -72,9 +59,24 @@ console.log('\n***input', input);
     /* Validate unlocking script. */
     // NOTE: We exclude all "well-known" script templates.
     if (
-        typeof unlockingScript === 'undefined' ||
-        typeof input.unlockingScript === 'undefined'
+        typeof unlockingScript === 'undefined' &&
+        typeof input.unlockingBytecode === 'undefined'
     ) {
+        /* Add data push to script public key. */
+        scriptPubKey = encodeDataPush(publicKey)
+
+        // Generate a transaction signature for this input.
+        // TODO We DO NOT always require a signature.
+        signature = await signTransactionInput(
+            transaction,
+            input.satoshis,
+            inputIndex,
+            lockingScript,
+            SIGHASH_ALL,
+            privateKey,
+        )
+        // console.log('signature', signature)
+
         /* Build "standard" script for unlocking P2PKT transactions. */
         // NOTE: This is the MOST common (aka default) unlocking script.
         unlockingBytecode = new Uint8Array(
@@ -86,8 +88,8 @@ console.log('\n***input', input);
     } else {
         /* Validate unlocking script. */
         if (
-            unlockingScript === null || input.unlockingScript === null ||
-            unlockingScript === false || input.unlockingScript === false
+            unlockingScript === null || input.unlockingBytecode === null ||
+            unlockingScript === false || input.unlockingBytecode === false
         ) {
             /* Keep the "empty" unlocking script (previously initialized). */
             // unlockingBytecode = new Uint8Array(0)
@@ -95,12 +97,18 @@ console.log('\n***input', input);
         } else {
             /* Set unlocking byte code. */
             // NOTE: Used when handling 3rd-party input(s), signed by their owner(s).
-            unlockingBytecode = unlockingScript || input.unlockingScript
+            unlockingBytecode = unlockingScript || input.unlockingBytecode
         }
     }
 
     /* Validate locking script. */
-    if (
+    if (typeof input.lockingBytecode !== 'undefined') {
+console.log('***input.lockingBytecode', input.lockingBytecode);
+        unlockingBytecode = new Uint8Array([
+            ...encodeDataPush(input.lockingBytecode), // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
+            unlockingBytecode,
+        ])
+    } else if (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
         binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1) // NOTE: Compare as strings (easier).

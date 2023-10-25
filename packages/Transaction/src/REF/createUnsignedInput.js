@@ -11,14 +11,32 @@ import { hexToBin } from '@nexajs/utils'
  * @returns {any} The created input.
  */
 export default (unspentOutput) => {
+    /* Initialize locals. */
+    let lockingBytecode
+    let unlockingBytecode
+
+    /* Set locking bytecode. */
+    lockingBytecode = unspentOutput.locking
+
+    /* Set unlocking bytecode. */
+    unlockingBytecode = unspentOutput.unlocking
+
+    /* Validate unlocking bytecode. */
+    // if (typeof unspentOutput.unlocking === 'undefined') {
+    //     // NOTE: This is where the signature and public key will be placed.
+    //     unlockingBytecode = new Uint8Array()
+    // } else {
+    //     unlockingBytecode = unspentOutput.unlocking
+    // }
+
     return {
         outpointTransactionHash: unspentOutput.outpoint
             ? hexToBin(unspentOutput.outpoint)
             : hexToBin(unspentOutput.tx_hash),
 
-        lockingBytecode: unspentOutput.locking,
+        lockingBytecode,
 
-        unlockingBytecode: unspentOutput.unlocking || new Uint8Array(), // NOTE: This is where the signature and public key will be placed.
+        unlockingBytecode,
 
         satoshis: unspentOutput.satoshis,
 
