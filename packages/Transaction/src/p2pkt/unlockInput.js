@@ -7,6 +7,7 @@ import {
 } from '@nexajs/script'
 
 import {
+    // bigIntToCompactUint,
     binToHex,
 } from '@nexajs/utils'
 
@@ -53,9 +54,6 @@ export default async (
     let signedInput
     let unlockingBytecode
 
-console.log('\n***unlockingScript', unlockingScript);
-console.log('\n***input', input);
-
     /* Validate unlocking script. */
     // NOTE: We exclude all "well-known" script templates.
     if (
@@ -93,40 +91,53 @@ console.log('\n***input', input);
         ) {
             /* Keep the "empty" unlocking script (previously initialized). */
             // unlockingBytecode = new Uint8Array(0)
-            unlockingBytecode = input.unlockingBytecode
+            // unlockingBytecode = input.unlockingBytecode
+
+            // FIXME: For now, handle this condition LATER in the script.
         } else {
             /* Set unlocking byte code. */
             // NOTE: Used when handling 3rd-party input(s), signed by their owner(s).
-            unlockingBytecode = unlockingScript || input.unlockingBytecode
+            unlockingBytecode = encodeDataPush(
+                unlockingScript || input.unlockingBytecode
+            )
         }
     }
 
     /* Validate locking script. */
     if (typeof input.lockingBytecode !== 'undefined') {
-console.log('***input.lockingBytecode', input.lockingBytecode);
-        unlockingBytecode = new Uint8Array([
-            ...encodeDataPush(input.lockingBytecode), // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
-            unlockingBytecode,
-        ])
+        // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
+        lockingBytecode = encodeDataPush(input.lockingBytecode)
     } else if (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
         binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1) // NOTE: Compare as strings (easier).
         // TODO add support for ALL script templates...
     ) {
-        unlockingBytecode = new Uint8Array([
-            ...encodeDataPush(lockingScript), // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
-            unlockingBytecode,
-        ])
+        lockingBytecode = encodeDataPush(lockingScript)
     }
-    // console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
+
+    /* Validate locking bytecode. */
+    if (lockingBytecode) {
+        if (!unlockingBytecode || typeof unlockingBytecode === 'undefined') {
+            unlockingBytecode = new Uint8Array([
+                ...lockingBytecode,
+            ])
+        } else {
+            // NOTE: Push the "locking" script as a prefix to the
+            //       "unlocking" script.
+            unlockingBytecode = new Uint8Array([
+                ...lockingBytecode,
+                ...unlockingBytecode, // FIXME Have support for (0)??
+            ])
+        }
+    }
+    console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
 
     /* Add unlocking script to (signed) input package. */
     signedInput = {
         ...input,
         unlockingBytecode,
     }
-    // console.log('signedInput', signedInput)
 
     // Return the signed input (package).
     return signedInput
