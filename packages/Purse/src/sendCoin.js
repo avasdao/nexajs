@@ -175,7 +175,6 @@ export default async (_coins, _receivers) => {
 
     /* Handle receivers. */
     receivers.forEach(_receiver => {
-console.log('***THIS IS A RECEIVER', _receiver);
         /* Handle (value) outputs. */
         if (_receiver.address && _receiver.satoshis) {
             /* Add (value) output. */
@@ -183,7 +182,6 @@ console.log('***THIS IS A RECEIVER', _receiver);
                 address: _receiver.address,
                 satoshis: _receiver.satoshis,
             })
-console.log('***TX OUTPUTS', transaction.outputs);
         }
 
         /* Handle (data) outputs. */

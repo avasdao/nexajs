@@ -97,23 +97,21 @@ export default async (
         } else {
             /* Set unlocking byte code. */
             // NOTE: Used when handling 3rd-party input(s), signed by their owner(s).
-            unlockingBytecode = encodeDataPush(
-                unlockingScript || input.unlockingBytecode
-            )
+            unlockingBytecode = unlockingScript || input.unlockingBytecode
         }
     }
 
     /* Validate locking script. */
     if (typeof input.lockingBytecode !== 'undefined') {
         // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
-        lockingBytecode = encodeDataPush(input.lockingBytecode)
+        lockingBytecode = input.lockingBytecode
     } else if (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
         binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1) // NOTE: Compare as strings (easier).
         // TODO add support for ALL script templates...
     ) {
-        lockingBytecode = encodeDataPush(lockingScript)
+        lockingBytecode = lockingScript
     }
 
     /* Validate locking bytecode. */
@@ -131,7 +129,7 @@ export default async (
             ])
         }
     }
-    console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
+    // console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
 
     /* Add unlocking script to (signed) input package. */
     signedInput = {
