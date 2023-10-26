@@ -3,7 +3,10 @@ import debugFactory from 'debug'
 const debug = debugFactory('nexa:transaction')
 
 /* Import modules. */
-import { OP } from '@nexajs/script'
+import {
+    encodeDataPush,
+    OP,
+} from '@nexajs/script'
 
 /* Libauth helpers. */
 import {
@@ -81,7 +84,7 @@ export class Transaction {
         if (_params?.locking) {
             this._locking = _params.locking
         } else {
-            this._locking = SCRIPT_TEMPLATE_1
+            this._locking = encodeDataPush(SCRIPT_TEMPLATE_1)
         }
 
         /* Validate unlocking (script). */

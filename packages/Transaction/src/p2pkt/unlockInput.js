@@ -108,7 +108,7 @@ export default async (
     } else if (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
-        binToHex(lockingScript) !== binToHex(SCRIPT_TEMPLATE_1) // NOTE: Compare as strings (easier).
+        binToHex(lockingScript) !== ('02' + binToHex(SCRIPT_TEMPLATE_1)) // NOTE: Compare as strings (easier).
         // TODO add support for ALL script templates...
     ) {
         lockingBytecode = lockingScript
@@ -117,9 +117,7 @@ export default async (
     /* Validate locking bytecode. */
     if (lockingBytecode) {
         if (!unlockingBytecode || typeof unlockingBytecode === 'undefined') {
-            unlockingBytecode = new Uint8Array([
-                ...lockingBytecode,
-            ])
+            unlockingBytecode = lockingBytecode
         } else {
             // NOTE: Push the "locking" script as a prefix to the
             //       "unlocking" script.

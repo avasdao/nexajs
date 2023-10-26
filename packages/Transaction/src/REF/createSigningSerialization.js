@@ -44,6 +44,10 @@ export default async (
     // Create a "transaction state", used to extract a lot of the relevant information with Libauth.
     const state = createTransactionContextCommon(ctxCommon)
 
+    /* Remove `PUSH` from bytecode (for serialization). */
+    // FIXME: Add support for 2-byte (push) length.
+    coveredBytecodeBin = coveredBytecodeBin.slice(1)
+
     // Generate the signing serialization using mostly information from the generated "transaction state".
     const signingSerialization = generateSigningSerialization({
         correspondingOutput: state.correspondingOutput,
