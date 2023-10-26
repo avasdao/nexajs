@@ -88,12 +88,12 @@ export class Transaction {
         }
 
         /* Validate unlocking (script). */
-        if (_params?.unlocking === null) {
+        if (_params?.unlocking === null || _params?.unlocking === false) {
             // NOTE: `null` disables "automatic" transaction signing.
             this._unlocking = null
         } else {
             // NOTE: Expect `undefined` for "standard" pubkey+sig procedure.
-            this._unlocking = _params.unlocking
+            this._unlocking = _params?.unlocking
         }
 
         /* Validate hash type. */

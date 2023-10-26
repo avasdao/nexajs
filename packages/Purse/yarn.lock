@@ -243,18 +243,6 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.10.8":
-  version "23.10.8"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.10.8.tgz#6850764002dde47b1a82f5aaf26aef6cae0a9410"
-  integrity sha512-at30dJwNjNA3RFswciY49RgOKfgfIF3n8/3bEdGkI9yRYAIS0chnNv+rrevsDFKcVHTk2TkFTzDKhFbsT2mBaw==
-  dependencies:
-    "@nexajs/rostrum" "23.10.8"
-    big-integer "1.6.51"
-    debug "4.3.4"
-    graphql "16.6.0"
-    graphql-ws "5.12.0"
-    ws "8.13.0"
-
 "@nexajs/address@23.9.3":
   version "23.9.3"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.9.3.tgz#d2937c3d706c8042dcf7738ecfd3165bb3938359"
@@ -313,17 +301,6 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/rostrum@23.10.8":
-  version "23.10.8"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.10.8.tgz#5e618e5191fd94632059bbd33e2d6bd55fe76aa6"
-  integrity sha512-UlD7eKDc7yfRRB3grDjlcTMsVKV4qTmM3dkiB4xiRXMkb5FPHtmm/e7LMH2FT/Oph8VlM0i0lFLa8dkUj7VbGw==
-  dependencies:
-    debug "4.3.4"
-    events "3.3.0"
-    isomorphic-ws "5.0.0"
-    uuid "9.0.0"
-    ws "8.12.1"
-
 "@nexajs/rostrum@23.8.30":
   version "23.8.30"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.8.30.tgz#21fb8436b74ff8cb90cfcb8650f94a177bc11662"
@@ -353,13 +330,13 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/transaction@23.10.8":
-  version "23.10.8"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.10.8.tgz#b553d29c29654f2a585834f804d5d1aa3f8d78c3"
-  integrity sha512-STNoWktHrlcdDPNukIBkyNZiy8lxLPN5Vbca7hvMTVvVeOrSI8rcpP8LRdta18ZWFZZEYoQLNCJ0sb44nAkSDQ==
+"@nexajs/transaction@23.10.25":
+  version "23.10.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.10.25.tgz#cecf96c366845ae363c559545a0c6e984585a288"
+  integrity sha512-ATqr7OG+W2A1AcMv+gjVsfz4CX6YEkTZwnDWGcl8FZnAj2U4GTvEIa5FBr0v6AoiFYRbl+lU4y/g8SzEMqcsLg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.10.8"
+    "@nexajs/address" "23.10.10"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.9.3"
     "@nexajs/script" "23.10.8"

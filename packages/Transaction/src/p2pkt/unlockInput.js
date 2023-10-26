@@ -85,10 +85,7 @@ export default async (
         )
     } else {
         /* Validate unlocking script. */
-        if (
-            unlockingScript === null || input.unlockingBytecode === null ||
-            unlockingScript === false || input.unlockingBytecode === false
-        ) {
+        if (unlockingScript === null || input.unlockingBytecode === null) {
             /* Keep the "empty" unlocking script (previously initialized). */
             // unlockingBytecode = new Uint8Array(0)
             // unlockingBytecode = input.unlockingBytecode
