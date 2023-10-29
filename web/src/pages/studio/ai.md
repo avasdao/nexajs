@@ -1,9 +1,9 @@
 ---
-title: NFT/SFT Studio
-description: Build NFTs and SFTs.
+title: AI Studio
+description: Generate images using prompts.
 ---
 
-Build NFTs and SFTs.
+Generate images using prompts.
 
 
 ## Introduction

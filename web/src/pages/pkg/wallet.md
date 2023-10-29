@@ -3,51 +3,57 @@ title: Wallet
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-Manage your Nexa coins and token assets.
+A full-service, multi-currency web wallet for your applications.
 
----
 
 ## Introduction
 
-There are a few key concepts and principles that you will need to know in order to successfully integrate this package. Read the Quick Start then follow the Examples below and you should be up and running in no time.
+Many applications offer a better User Experience (UX) when the wallet is directly embedded into the application.
 
-### Quick Start
+![NPM Create Nexa](/screenshots/studio-wallet.png)
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+{% callout title="You should know!" %}
+We also make this as simple as a [drop-in Wallet package](https://github.com/avasdao/nexajs/tree/master/packages/Wallet) for your existing applications.
+{% /callout %}
+
+### Wallet Package
+
+NexaJS offers a comprehensive Wallet package that you can add to any of your new/existing applications. For you convenience, default data providers are pre-installed.
 
 ```js
-/** @type {import('@tailwindlabs/lorem').ipsum} */
-export default {
-  lorem: 'ipsum',
-  dolor: ['sit', 'amet', 'consectetur'],
-  adipiscing: {
-    elit: true,
-  },
-}
+import { Wallet } from '@nexajs/wallet'
+
+const wallet = await Wallet.init()
+// {
+//   mnemonic: 'correct horse battery staple',
+//   path: `m/44'/29223'/0'`,
+//   index: 0,
+//   ...
+//   updatedAt: 1234567890,
+// }
+
+const address = wallet.address
+console.log(address)
+// nexa:nqtsq5g59vw9p29wupxtnrff0u8ny2tn3j8n63j5akmsk58z
+
+const balance = wallet.balance
+console.log(balance)
+// {
+//   confirmed: 1337,
+//   unconfirmed: 0,
+// }
 ```
-
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-### Natus aspernatur iste
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
 
 ---
 
-## Quos porro ut molestiae
+## Customize Your Wallet
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+Customize your wallet options to best meet your needs:
 
-### Voluptatem quas possimus
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-### Id vitae minima
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+- Coin selection
+- Token selection
+- Change address
+- Fee rate
+- (Smart) contract script
+- Lock time
+- Sequence number
