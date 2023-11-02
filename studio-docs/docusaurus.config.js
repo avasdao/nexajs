@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Nexa Studio Docs',
-  tagline: 'Get ready to build your BIG idea!',
+  tagline: 'Step-by-step guide to Building your next BIG idea!',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
