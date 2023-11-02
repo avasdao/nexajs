@@ -3,8 +3,8 @@ version: '3.7'
 services:
   app:
     build: .
-    image: nexajs-dapp
-    container_name: nexajs-dapp
+    image: studio
+    container_name: studio
     restart: always
     network_mode: 'host'
     # ports:

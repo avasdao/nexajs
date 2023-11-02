@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Introduction
 description: Let's get you up and running in under 5 minutes!
 ---
 

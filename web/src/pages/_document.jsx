@@ -39,15 +39,15 @@ const themeScript = `
 `
 
 export default function Document() {
-  return (
-    <Html className="antialiased [font-feature-settings:'ss01']" lang="en">
-      <Head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </Head>
-      <body className="bg-white dark:bg-slate-900">
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+    return (
+        <Html className="antialiased [font-feature-settings:'ss01']" lang="en">
+            <Head>
+                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+            </Head>
+            <body className="bg-white dark:bg-slate-900">
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
+    )
 }

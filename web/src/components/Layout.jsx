@@ -13,10 +13,12 @@ import { ThemeSelector } from '@/components/ThemeSelector'
 
 const navigation = [
     {
-        title: 'Introduction',
+        title: 'Getting Started',
         links: [
-            { title: 'Getting started', href: '/getting-started' },
+            { title: 'Introduction', href: '/intro' },
             { title: 'Installation', href: '/installation' },
+            { title: 'Integration', href: '/integration' },
+            { title: 'Step-by-step guide', href: '/guide' },
             { title: 'Nexa Builder Studio', href: '/studio' },
         ],
     },
