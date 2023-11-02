@@ -4,7 +4,7 @@ pageTitle: NEXA.js Library + Software Development Kit (SDK)
 description: Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
 ---
 
-NEXA.js Library + Software Development Kit (SDK) offers a [Premium Builder Experience (BX)](/bx) for creating decentralized applications (dApps) running on Nexa's [L1 (100K+ TPS) blockchain](https://nexa.org/) and ever-expanding [L2 (EVM) ecosystem](https://nexa.sh/meta). {% .lead %}
+NEXA.js Library + Software Development Kit (SDK) offers a [Premium Builder Experience (BX)](/bx) for creating decentralized applications (dApps) powered-by Nexa's [L1 (100K+ TPS) blockchain](https://nexa.org/) and deployed across its ever-expanding [L2 (EVM) ecosystem](https://nexa.sh/meta). {% .lead %}
 
 
 {% quick-links %}
