@@ -120,7 +120,8 @@ export const useWalletStore = defineStore('wallet', {
             this.wallet.setAsset('0')
 
             /* Authorize session. */
-            setTimeout(_authSession.bind(this), 100)
+            // setTimeout(_authSession.bind(this), 100)
+            _authSession.bind(this)()
         },
 
         createWallet(_entropy) {
