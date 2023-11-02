@@ -59,15 +59,15 @@ We highly recommend that you use a Git repository to maintain your project's sou
 Nexa Studio offers native support for a selection of classic Web2 publishing options:
 
 1. GitHub Pages
-2. DigitalOcean
-3. Vultr
+2. [DigitalOcean](https://www.digitalocean.com/)
+3. [Vultr](https://www.vultr.com/)
 4. AWS
 5. Azure
 6. Google Cloud
 
 Nexa Studio also offers native support for a more modern selection of Web3 publishing options:
 
-1. IPFS
+1. IPFS (via [NEXA.garden](https://nexa.garden))
 2. [Fleek](https://fleek.co/)
 3. [Nexaverse](https://nexaverse.org)
 
