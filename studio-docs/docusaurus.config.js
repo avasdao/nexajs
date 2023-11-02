@@ -36,7 +36,7 @@ const config = {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/avasdao/nexajs/studio',
+            'https://github.com/avasdao/nexajs/tree/master/studio',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -61,10 +61,10 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'User Guide',
           },
           {
-            href: 'https://github.com/avasdao/nexajs/studio',
+            href: 'https://github.com/avasdao/nexajs/tree/master/studio',
             label: 'GitHub',
             position: 'right',
           },
@@ -104,7 +104,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/avasdao/nexajs/studio',
+                href: 'https://github.com/avasdao/nexajs/tree/master/studio',
               },
             ],
           },

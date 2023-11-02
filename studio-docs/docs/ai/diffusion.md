@@ -2,13 +2,24 @@
 sidebar_position: 1
 ---
 
-# Create a Page
+# Stable Diffusion
 
-Add **Markdown or React** files to `src/pages` to create a **standalone page**:
+Generate images using "prompts" and styled from the following categories:
 
-- `src/pages/index.js` → `localhost:3000/`
-- `src/pages/foo.md` → `localhost:3000/foo`
-- `src/pages/foo/bar.js` → `localhost:3000/foo/bar`
+1. 3-D Model
+0. Analog Film
+0. Anime
+0. Cinematic
+0. Comic Book
+0. Digital Art
+0. Fantasy Art
+0. Isometric
+0. Line Art
+0. Low-poly
+0. Neon Punk
+0. Origami
+0. Photographic
+0. Pixel Art
 
 ## Create your first React Page
 
