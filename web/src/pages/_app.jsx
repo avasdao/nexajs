@@ -65,7 +65,7 @@ export default function App({ Component, pageProps }) {
 
     let pageTitle =
         pageProps.markdoc?.frontmatter.pageTitle ||
-        `${pageProps.markdoc?.frontmatter.title} - NexaJS Docs`
+        `${pageProps.markdoc?.frontmatter.title} - NEXA.js Docs`
 
     let description = pageProps.markdoc?.frontmatter.description
 

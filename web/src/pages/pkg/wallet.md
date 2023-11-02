@@ -18,7 +18,7 @@ We also make this as simple as a [drop-in Wallet package](https://github.com/ava
 
 ### Wallet Package
 
-NexaJS offers a comprehensive Wallet package that you can add to any of your new/existing applications. For you convenience, default data providers are pre-installed.
+NEXA.js offers a comprehensive Wallet package that you can add to any of your new/existing applications. For you convenience, default data providers are pre-installed.
 
 ```js
 import { Wallet } from '@nexajs/wallet'

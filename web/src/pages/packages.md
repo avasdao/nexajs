@@ -1,9 +1,9 @@
 ---
 title: Packages
-description: A comprehensive collection of (33) specialized packages make up the NexaJS Library + SDK.
+description: A comprehensive collection of (33) specialized packages make up the NEXA.js Library + SDK.
 ---
 
-The full NexaJS Library + SDK is comprised of a collection of __(33)__ specialized packages. Each package is tasked with performing a set of tasks extremely well.
+The full NEXA.js Library + SDK is comprised of a collection of __(33)__ specialized packages. Each package is tasked with performing a set of tasks extremely well.
 
 There are currently over __100+__ unit tests, integration tests and end-to-end tests to ensure a stable and consistent execution of library methods.
 
@@ -30,7 +30,7 @@ const details = getTransaction('...')
 
 ---
 
-There are currently 33 packages that make up the full NexaJS suite.
+There are currently 33 packages that make up the full NEXA.js suite.
 
 ### Address
 

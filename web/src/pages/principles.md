@@ -3,17 +3,17 @@ title: Design Principles
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-NexaJS is the product of __1000s of hours__ and over __3+ years__ of iterative development across __4 blockchains__ _(namely BTC, ETH, BCH & NEXA)._ A great deal of thought and consideration goes into every line of code contained in this library.
+NEXA.js is the product of __1000s of hours__ and over __3+ years__ of iterative development across __4 blockchains__ _(namely BTC, ETH, BCH & NEXA)._ A great deal of thought and consideration goes into every line of code contained in this library.
 
 ---
 
 ## ECMAScript Modules (ESM)
 
-NexaJS uses modern ESM to ensure compatiblitiy with ALL modern tooling available to JS developers.
+NEXA.js uses modern ESM to ensure compatiblitiy with ALL modern tooling available to JS developers.
 
 ### CommonJS Compatibility
 
-There are currently NO plans to add CJS support to NexaJS.
+There are currently NO plans to add CJS support to NEXA.js.
 
 ---
 

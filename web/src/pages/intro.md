@@ -11,7 +11,7 @@ It takes less than __FIVE MINUTES__ to start running your 1st Nexa application.
 
 Ready to add Crypto to your current application?
 
-It's easy to drop-in the NexaJS core library to your existing application, then add the individual features you need one at a time.
+It's easy to drop-in the NEXA.js core library to your existing application, then add the individual features you need one at a time.
 
 ### Setup using a <script> tag in HTML
 
@@ -43,7 +43,7 @@ Visit our [modules](/modules) section to learn more about importing packages.
 
 ### Setup using a package manager
 
-NexaJS is fully-supported by your favorite package manager. Choose from one of the options below to begin installation of NexaJS into your existing Webapp.
+NEXA.js is fully-supported by your favorite package manager. Choose from one of the options below to begin installation of NEXA.js into your existing Webapp.
 
 ```shell
 npm install --save nexajs

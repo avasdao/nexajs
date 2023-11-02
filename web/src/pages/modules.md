@@ -1,12 +1,12 @@
 ---
 title: Modules
-description: All about how to use modules in NexaJS.
+description: All about how to use modules in NEXA.js.
 ---
 
 Importing and using modules are the lifeblood of this library.
 
 ```js
-/* Import (NexaJS library) modules. */
+/* Import (NEXA.js library) modules. */
 import { getAddressBalance } from '@nexajs/rostrum'
 
 /* Request address balance. */

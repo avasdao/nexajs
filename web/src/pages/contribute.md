@@ -3,7 +3,7 @@ title: How-to Contribute
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-NexaJS is a community project that requires the collective efforts of every Nexican _(man, woman & child)_ to see that our community flourishes in our future Crypto-first society.
+NEXA.js is a community project that requires the collective efforts of every Nexican _(man, woman & child)_ to see that our community flourishes in our future Crypto-first society.
 
 ---
 

@@ -3,7 +3,7 @@ title: Web Browser
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-NexaJS has been optimized to work efficiently in all modern Web browsers (incl. Chrome, Firefox and Edge). You can either link to one of our CDN packages -OR- build from one of our Node Package Manager (NPM) packages using your preferred bundler.
+NEXA.js has been optimized to work efficiently in all modern Web browsers (incl. Chrome, Firefox and Edge). You can either link to one of our CDN packages -OR- build from one of our Node Package Manager (NPM) packages using your preferred bundler.
 
 ---
 

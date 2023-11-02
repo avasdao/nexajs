@@ -1,28 +1,28 @@
 ---
-title: What is NexaJS?
-pageTitle: NexaJS Library + Software Development Kit (SDK)
+title: What is NEXA.js?
+pageTitle: NEXA.js Library + Software Development Kit (SDK)
 description: Start creating your next BIG idea on the 3rd generation Bitcoin network that's delivering over 100K TPS.
 ---
 
-The NexaJS Library + Software Development Kit (SDK) offers a [Premium Builder Experience (BX)](/bx) for creating decentralized applications (dApps) running on the [Nexa L1 blockchain](https://nexa.org/) and its expansive [Web3 L2 ecosystem](https://nexa.sh/meta). {% .lead %}
+NEXA.js Library + Software Development Kit (SDK) offers a [Premium Builder Experience (BX)](/bx) for creating decentralized applications (dApps) running on the [Nexa L1 blockchain](https://nexa.org/) and its expansive [Web3 L2 ecosystem](https://nexa.sh/meta). {% .lead %}
 
 
 {% quick-links %}
 
 {% quick-link title="Installation" icon="installation" href="/installation" description="Step-by-step guides to setting up your workspace and installing the library." /%}
 
-{% quick-link title="Hello world!" icon="plugins" href="/" description="Let's get you up and running with your first Nexa project in under 5 minutes." /%}
+{% quick-link title="Integration" icon="plugins" href="/integration" description="Let's get you up and running with your first Nexa project in under 5 minutes." /%}
 
-{% quick-link title="EVM Migration Guide" icon="presets" href="/" description="Learn how to scale your existing EVM project(s) over Nexa 'wise' contracts." /%}
+{% quick-link title="Step-by-Step Guide" icon="presets" href="/guide" description="Learn how to scale your existing EVM project(s) over Nexa 'wise' contracts." /%}
 
-{% quick-link title="Monetization" icon="theming" href="/" description="Learn how devs & creators are building NEXA revenue streams for profit!" /%}
+{% quick-link title="Builder Studio" icon="theming" href="/studio" description="Learn how devs & creators are building NEXA revenue streams for profit!" /%}
 
 {% /quick-links %}
 
 
-## Why NexaJS?
+## Why NEXA.js?
 
-NexaJS is a fully-compliant, pure JavaScript library and software development kit (SDK) offering the following KEY benefits for ALL levels of Nexa application builders:
+NEXA.js is a fully-compliant, pure JavaScript library and software development kit (SDK) offering the following KEY benefits for ALL levels of Nexa application builders:
 
 1. Robust API with sane defaults, making development a breeze
 2. Isomorphic architecture fully supports: Browser, Server and Mobile
@@ -83,7 +83,7 @@ The Nexa community is thriving with ready, willing and able hands to help you wh
 
 ### Submit an issue
 
-If you find a technical issue that you feel requires the attention of the NexaJS core contributors, then feel free to open an issue.
+If you find a technical issue that you feel requires the attention of the NEXA.js core contributors, then feel free to open an issue.
 
 ### Join the community
 
