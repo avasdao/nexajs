@@ -37,12 +37,12 @@ const navigation = [
             { title: 'NexID Server', href: '/nexid#id-server' },
         ],
     },
-    {
-        title: 'Server-side / Deno',
-        links: [
-            { title: 'Introduction', href: '/deno' },
-        ],
-    },
+    // {
+    //     title: 'Server-side / Deno',
+    //     links: [
+    //         { title: 'Introduction', href: '/deno' },
+    //     ],
+    // },
     {
         title: 'Library Packages',
         links: [
