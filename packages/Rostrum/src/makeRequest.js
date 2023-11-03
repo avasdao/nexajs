@@ -45,12 +45,12 @@ export default function (_request, _id, _callback) {
         } else {
             /* Add new request. */
             this._requestQueue.push(request)
-            console.log('ADDED REQUEST TO QUEUE', request)
+            // console.log('ADDED REQUEST TO QUEUE', request)
         }
     } else {
         /* Add new request. */
         this._requestQueue.push(request)
-        console.log('ADDED REQUEST TO QUEUE', request)
+        // console.log('ADDED REQUEST TO QUEUE', request)
     }
 
     const self = this

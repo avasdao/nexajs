@@ -90,11 +90,12 @@ const getConnection = async function (_connid) {
 }
 
 const initConnection = function (_connid) {
-    console.log(`Initializing connection [ ${_connid} ]`)
+    // console.log(`Initializing connection [ ${_connid} ]`)
 
     /* Handle open connection. */
     this._connMgr.pool[_connid].onopen = () => {
         debug(`Connection [ ${_connid} ] is OPEN!`)
+        // TODO Show (IP Address) instead of Conn ID.
         console.info('Connected to Rostrum ->', _connid, new Date().getTime())
 
         /* Set (connection) ready flag. */
