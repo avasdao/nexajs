@@ -61,29 +61,39 @@ Default boilerplate templates come with everything under the sun:
     1. Public API endpoints
     2. Private API endpoints
 
+{% callout title="You should know!" %}
+Nexa Studio allows you to choose from a full suite of features, including: charts & graphs, EVM-chain support, database plugins and more...
+{% /callout %}
+
 ---
 
-## NFT Studio
+## Pre-built Studios
+
+You can fork-n-build from scratch OR choose to work from within ANY of the following _(community-supported)_ pre-built studios:
+
+1. [AI Studio](https://nexa.studio/ai)
+2. [NFT/SFT Studio](https://nexa.studio/nft)
+3. [Code Studio](https://nexa.studio/code)
+4. [No-Code Studio](https://nexa.studio/nocode)
+5. [Studio Wallet](https://nexa.studio/wallet)
+
+### AI Studio
+
+Generate media using the state-of-the-art in generative models.
+
+### NFT Studio
 
 Create custom NFTs & SFTs using this total solution for Creators.
 
 Build an entire collection, using our Traits Manager.
 
----
+### Code & No-Code Studios
 
-## Time Capsule
+These areas are perfect to experiment with ALL the "bleeding-edge" innovations that Nexa Builder Studio offers its growing community.
 
-Manage your "time-locked" assets with this convenient tool.
+### Studio Wallet
 
-Supporting most contracts:
-- Ava's Stakehouses
-- Otoplo HODL Vaults
-
----
-
-## Studio Playground
-
-This area is perfect to experiment with ALL the "cool" toys that Nexa Builder Studio offers its growing community.
+A complete wallet solution with advanced Script support.
 
 ---
 

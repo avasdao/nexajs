@@ -60,35 +60,3 @@ pnpm install nexajs
 {% callout title="You should know!" %}
 If you are NOT using a Package Manager like [Webpack](https://webpack.js.org/) or [Rollup](https://rollupjs.org/), then it is highly advised that you import individual packages, eg. [`@nexajs/rostrum`](https://github.com/avasdao/nexajs/tree/master/packages/Rostrum) to reduce your application's total package size.
 {% /callout %}
-
----
-
-## Create a NEW Nexa dApp
-
-Setup takes just a few minutes to configure your features. The build and deployment process takes less than 60 seconds.
-
-```shell
-npm create nexa
-```
-
-```shell
-yarn create nexa
-```
-
-```shell
-pnpm create nexa
-```
-
-![NPM Create Nexa](/screenshots/npm-create-nexa.png)
-
-The default setup takes just 2 minutes to build and deploy with the following features:
-
-- Multi-coin crypto wallet
-- User/visitor page analytics
-- User authentication
-- Administration portal
-- Full Web3 integration
-
-{% callout title="You should know!" %}
-Nexa Studio allows you to choose from a full suite of features, including: charts & graphs, EVM-chain support, database plugins and more...
-{% /callout %}
