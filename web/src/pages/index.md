@@ -24,10 +24,17 @@ NEXA.js Library + Software Development Kit (SDK) offers a [Premium Builder Exper
 
 NEXA.js is a fully-compliant, pure JavaScript library and software development kit (SDK) offering the following KEY benefits for ALL levels of Nexa application builders:
 
-1. Robust API with sane defaults, making development a breeze
-2. Isomorphic architecture fully supports: Browser, Server and Mobile
+1. [NEXA.studio](https://nexa.studio) offers a robust API w/ sane defaults, making rapid application development a breeze.
+
+2. Our [test-driven](https://en.wikipedia.org/wiki/Test-driven_development), [isomorphic](https://en.wikipedia.org/wiki/Isomorphism) architecture fully supports the three (3) most utilized dApp platforms, ie:
+    - Web browser _(Chrome, Edge, Brave, Safari, etc...)_
+    - Server _(Node.js and Deno)_
+    - Native mobile _(React Native and more...)_
+
 3. Extensive documentation with LIVE code examples & snippets
+
 4. Uses WebAssembly to maximum speed, e.g. performing Schnorr signatures
+
 5. Compliant to ALL implemented Nexa Improvement Protocols (NIPs)
 
 

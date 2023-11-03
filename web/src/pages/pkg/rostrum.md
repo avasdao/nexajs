@@ -20,3 +20,21 @@ When run on the user's own machine, there is no need for the wallet to communica
 {% callout title="Did you know?" %}
 Rostrum supports BCHUnlimited, Nexa and BCHN and has a large test set to ensure these full nodes always work with the software.
 {% /callout %}
+
+## Get Address Balance
+
+```js
+import { getAddressBalance } from '@nexajs/rostrum'
+
+;(async () => {
+  const myAddress = 'nexa:nqtsq5g5ynxl8rwp5pzh47muagnn795pckdgtjrtatyzv2p5'
+
+  const result = await getAddressBalance(myAddress)
+  console.log(result)
+})()
+
+// {
+//   confirmed: 133700,
+//   unconfirmed: 0
+// }
+```
