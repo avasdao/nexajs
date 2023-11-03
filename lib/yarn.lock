@@ -623,6 +623,18 @@
     debug "4.3.4"
     events "3.3.0"
 
+"@nexajs/purse@23.11.2":
+  version "23.11.2"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.11.2.tgz#e1a2405a171a4022cebe2051880c0a22b48a8fda"
+  integrity sha512-4KFjASW+ss09ag2UbLg+tPVlGlATqC3dC8zC0c82M8hiXgrTI7Wct+ZQt1Vw62P5S/QkJv6XlugJi3zeIOLDuQ==
+  dependencies:
+    "@nexajs/address" "23.11.2"
+    "@nexajs/hdnode" "23.9.3"
+    "@nexajs/provider" "23.6.21"
+    "@nexajs/transaction" "23.10.25"
+    debug "4.3.4"
+    events "3.3.0"
+
 "@nexajs/request@23.5.15":
   version "23.5.15"
   resolved "https://registry.yarnpkg.com/@nexajs/request/-/request-23.5.15.tgz#17bd463def47e4abf3a80a2577b10e4e5de4cd35"
@@ -709,6 +721,20 @@
   integrity sha512-RjQdjJAb9NEHeUq/oGe9zuyx4/MddkAGFaEp6QW1ETyp5HQJ3lR4TOd3LYEqiq49nZN56xZXMWqSRYC2vnN2XA==
   dependencies:
     "@nexajs/address" "23.10.10"
+    "@nexajs/crypto" "23.5.22"
+    "@nexajs/hdnode" "23.9.3"
+    "@nexajs/provider" "23.6.21"
+    "@nexajs/script" "23.10.8"
+    "@nexajs/transaction" "23.10.25"
+    debug "4.3.4"
+    events "3.3.0"
+
+"@nexajs/token@23.11.2":
+  version "23.11.2"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.11.2.tgz#88854b7f743d082d87096eb1cff137784ae25451"
+  integrity sha512-i41d8jtrLCthASfm96KXBc75kivk6LMqXGVWY/CtqsssfvZWkFzazsEY3FPJPU3UC6+yeVMlH6gpYP8N3ZPhdw==
+  dependencies:
+    "@nexajs/address" "23.11.2"
     "@nexajs/crypto" "23.5.22"
     "@nexajs/hdnode" "23.9.3"
     "@nexajs/provider" "23.6.21"
