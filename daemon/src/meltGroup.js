@@ -79,6 +79,10 @@ export default async (_wallet, isLive = false) => {
     })
     // console.log('\n  Tokens (filtered):', tokens)
 
+    if (tokens.length === 1) {
+        throw new Error('Oops! There are NO $STUDIO tokens to melt..')
+    }
+
     userData = [
         'MELT',
         'STUDIO',
