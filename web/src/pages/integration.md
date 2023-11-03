@@ -3,48 +3,56 @@ title: Integration
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
+NEXA.js can be integrated with plain JavaScript or with different module loaders.
+
 
 
 ## Introduction
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+We provide several examples below showing how to load NEXA.js in different systems.
 
 {% callout title="You should know!" %}
-Just a sample [Callout](/) to demonstrate how to emphasize important info.
+If you're using a front-end framework (e.g., React, Angular, or Vue), please see available integrations.
 {% /callout %}
 
-### Et pariatur ab quas
+### Script Tag
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+NEXA.js offers a drop-in option that plays nicely with your current JS framework.
 
-```js
-/** @type {import('@tailwindlabs/lorem').ipsum} */
-export default {
-  lorem: 'ipsum',
-  dolor: ['sit', 'amet', 'consectetur'],
-  adipiscing: {
-    elit: true,
-  },
-}
+```html
+<script src="path/to/nexajs/dist/nexajs.umd.js"></script>
+
+<script>
+  const wallet = new Nexa.Wallet(ctx, {...})
+</script>
 ```
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+### Bundlers (Webpack, Rollup, etc.)
 
-### Natus aspernatur iste
+NEXA.js is 100% modular and tree-shakeable. However, it is recommended to import ONLY the methods you are going to use, to keep (re-)build times as short as possible.
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+```js
+import Nexa from 'nexajs'
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+const wallet = new Nexa.Wallet(ctx, {...})
+```
 
----
+### CommonJS
 
-## Quos porro ut molestiae
+Because Chart.js is an ESM library, in CommonJS modules you should use a dynamic `import`:
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+```js
+const Nexa = await import('nexajs')
 
-### Voluptatem quas possimus
+const wallet = new Nexa.Wallet(ctx, {...})
+```
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+### RequireJS
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+__Important:__ RequireJS can load only [AMD modules](https://requirejs.org/docs/whyamd.html), so be sure to require one of the UMD builds instead (i.e. `dist/nexajs.umd.js`).
+
+```js
+require(['path/to/nexajs/dist/nexajs.umd.js'], function(Nexa) {
+  const wallet = new Nexa.Wallet(ctx, {...})
+})
+```
