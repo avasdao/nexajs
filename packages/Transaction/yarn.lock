@@ -231,12 +231,16 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.10.10":
-  version "23.10.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.10.10.tgz#6c6e0359082fbee73a4d656ad2e4f1e178c5f7b4"
-  integrity sha512-JQ3/cCMxLotnU18EPWDl+NAaPHapcOqbwIyuPVuUQuKSc/l6Moaqfgk+1xosYsQUZxA03AUiIHvSX53LY/QFig==
+"@nexajs/address@23.11.2":
+  version "23.11.2"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.11.2.tgz#6ea074a1a88facb65c8d38ee5bad9e42df43be31"
+  integrity sha512-2HS/S1AGhZDNVfIeo2rO1ZwZiZxgmIRHwsuBsaofYtPYwMt1LeFgmEkgI9dLpjCp0jAsJ7j3vx8UTALjof6qAA==
   dependencies:
-    "@nexajs/rostrum" "23.10.10"
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/crypto" "23.5.22"
+    "@nexajs/rostrum" "23.11.2"
+    "@nexajs/script" "23.10.8"
+    "@nexajs/utils" "23.7.22"
     big-integer "1.6.51"
     debug "4.3.4"
     graphql "16.6.0"
@@ -280,10 +284,10 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/rostrum@23.10.10":
-  version "23.10.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.10.10.tgz#cd3e8aec2e59a3b156ec223a1169c3b58f35dc6c"
-  integrity sha512-OjY0pBFFVwDb+wicg9X62TaDNhbp8WYnuu3I8cZVX+YFvd2IN5J2qJuZQue1Y9pWqPiB3SidU64t67KlYvkpWA==
+"@nexajs/rostrum@23.11.2":
+  version "23.11.2"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.11.2.tgz#1db86d70c4dde9a880099677c0d7dfbe4251dede"
+  integrity sha512-rwMlzSnbuytOI3rmDvxVxtVqBGwHoL3BdXMNQxoDtY1QMnQElCyhCFfPdL+u1QpmjWyNoUt9pK9icJ15OldL0A==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
