@@ -1,10 +1,9 @@
 ---
-title: Integration
-description: Quidem magni aut exercitationem maxime rerum eos.
+title: Integrations
+description: NEXA.js can be integrated with plain JavaScript or with different module loaders.
 ---
 
 NEXA.js can be integrated with plain JavaScript or with different module loaders.
-
 
 
 ## Introduction

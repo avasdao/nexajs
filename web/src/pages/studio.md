@@ -1,15 +1,14 @@
 ---
 title: Nexa Builder Studio
-description: A comprehensive suite of FREE tools & services providing Nexa Builders with everything they need to plan, build, test, deliver and manage ANY project.
+description: A comprehensive suite of FREE tools & services providing Nexican builders with everything they need to plan, build, test, deliver and manage ANY project or BIG idea.
 ---
 
-A comprehensive suite of FREE tools & services providing Nexa Builders with everything they need to: __Plan. Build. Test. Deliver. Manage__ ANY project.
+A comprehensive suite of FREE tools & services providing Nexican builders with everything they need to __Plan. Build. Test. Deliver and Manage__ ANY project or BIG idea.
 
----
 
 ## Quick Start
 
-Execute one of the following commands, then follow the step-by-step guide to quickly bootstrap each of your Nexa projects.
+Execute one of the following commands, then follow the step-by-step guide to quickly bootstrap each of your Nexa projects and/or BIG ideas.
 
 ```bash
 npm create nexa

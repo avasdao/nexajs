@@ -9,13 +9,13 @@ NEXA.js Library + Software Development Kit (SDK) offers a [Premium Builder Exper
 
 {% quick-links %}
 
-{% quick-link title="Installation" icon="installation" href="/installation" description="Step-by-step guides to setting up your workspace and installing the library." /%}
+{% quick-link title="Installation" icon="installation" href="/installation" description="Simply drop the Core library into your existing application, then add-on adt'l features as you need them." /%}
 
-{% quick-link title="Integration" icon="plugins" href="/integration" description="Let's get you up and running with your first Nexa project in under 5 minutes." /%}
+{% quick-link title="Builder Studio" icon="theming" href="/studio" description="Discover how the TOP Nexican Builders are generating sustainable revenue streams for PROFIT!" /%}
 
-{% quick-link title="Step-by-Step Guide" icon="presets" href="/guide" description="Learn how to scale your existing EVM project(s) over Nexa 'wise' contracts." /%}
+{% quick-link title="Walkthrough Guide" icon="presets" href="/guide" description="Follow along with a step-by-step, interactive tour of NEXA.js from A to Z in under an hour." /%}
 
-{% quick-link title="Builder Studio" icon="theming" href="/studio" description="Learn how devs & creators are building NEXA revenue streams for profit!" /%}
+{% quick-link title="Integrations" icon="plugins" href="/integrations" description="NEXA.js can be integrated with plain JavaScript or by using one of several popular module loaders." /%}
 
 {% /quick-links %}
 
@@ -24,18 +24,18 @@ NEXA.js Library + Software Development Kit (SDK) offers a [Premium Builder Exper
 
 NEXA.js is a fully-compliant, pure JavaScript library and software development kit (SDK) offering the following KEY benefits for ALL levels of Nexa application builders:
 
-1. [NEXA.studio](https://nexa.studio) offers a robust API w/ sane defaults, making rapid application development a breeze.
+1. [NEXA.studio](https://nexa.studio) offers an extremely robust API with __"thoughtful" defaults__ to make the rapid application development of your next BIG idea effortless; and an overall __enjoyable Builder Experience (BX)__.
 
-2. Our [test-driven](https://en.wikipedia.org/wiki/Test-driven_development), [isomorphic](https://en.wikipedia.org/wiki/Isomorphism) architecture fully supports the three (3) most utilized dApp platforms, ie:
-    - Web browser _(Chrome, Edge, Brave, Safari, etc...)_
-    - Server _(Node.js and Deno)_
-    - Native mobile _(React Native and more...)_
+2. A modern [test-driven](https://en.wikipedia.org/wiki/Test-driven_development), [isomorphic](https://en.wikipedia.org/wiki/Isomorphism) architecture that fully supports the three (3) most popular dApp platforms, ie:
+    - __Web browser__ _(Chrome, Edge, Brave, Safari, etc...)_
+    - __Server__ _(Node.js and Deno)_
+    - __Native mobile__ _(React Native and more...)_
 
-3. Extensive documentation with LIVE code examples & snippets
+3. An extensive library of update-to-date documentation, accompanied by hundreds of __LIVE code__ examples and interactive snippets.
 
-4. Uses WebAssembly to maximum speed, e.g. performing Schnorr signatures
+4. Use of __WebAssembly__ to maximum speed, e.g. performing Schnorr signatures.
 
-5. Compliant to ALL implemented Nexa Improvement Protocols (NIPs)
+5. A commitment to maintain __100% compliance__ with ALL "officially" implemented Nexa Improvement Proposals (NIPs).
 
 
 ## Decentralized Application (dApp) Development

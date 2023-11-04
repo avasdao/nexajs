@@ -17,6 +17,10 @@ This guide is meant for __Beginner _(as well as 1st-time)_ Builders__ and will t
     - applying FREE media resources
 4. Deploying your project to the public.
 
+{% callout title="You should know!" %}
+[NEXA Builder Studio](/studio) offers the MOST user-friendly solution to building decentralized applications (dApps).
+{% /callout %}
+
 ---
 
 ## Setup Up Your Environment
