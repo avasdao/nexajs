@@ -18,7 +18,7 @@ const navigation = [
             { title: 'Introduction', href: '/intro' },
             { title: 'Installation', href: '/installation' },
             { title: 'Integration', href: '/integration' },
-            { title: 'Step-by-step guide', href: '/guide' },
+            { title: 'Walkthrough Guide', href: '/guide' },
             { title: 'Nexa Builder Studio', href: '/studio' },
         ],
     },

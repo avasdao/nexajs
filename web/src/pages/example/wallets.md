@@ -36,10 +36,11 @@ console.log(wallet)
 // }
 ```
 
-### [Personalized for individual and/or project use](/example/wallet/personal)
+### [1. Personalized for individual and/or project use](/example/wallet/personal)
 
-Easily set your desired wallet parameters to create a personalized experience.
+_Easily set your desired wallet parameters to create a personalized experience._
 
+---
 
 ## For Intermediate
 
@@ -60,6 +61,8 @@ console.log(wallet)
 //   ...
 // }
 ```
+
+---
 
 ## For Advanced
 

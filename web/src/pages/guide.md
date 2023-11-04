@@ -1,50 +1,54 @@
 ---
-title: Step-by-Step Guide
-description: Quidem magni aut exercitationem maxime rerum eos.
+title: Walkthrough Guide
+description: Take a step-by-step guided tour of NEXA.js from A to Z in under an hour.
 ---
 
-Quasi sapiente voluptates aut minima non doloribus similique quisquam. In quo expedita ipsum nostrum corrupti incidunt. Et aut eligendi ea perferendis.
+Take a step-by-step guided tour of __NEXA.js from A to Z__ in under an hour.
+
+___Begin your journey towards becoming a Master Nexican Builder...___
 
 
 ## Introduction
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
-
-{% callout title="You should know!" %}
-Just a sample [Callout](/) to demonstrate how to emphasize important info.
-{% /callout %}
-
-### Et pariatur ab quas
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-```js
-/** @type {import('@tailwindlabs/lorem').ipsum} */
-export default {
-  lorem: 'ipsum',
-  dolor: ['sit', 'amet', 'consectetur'],
-  adipiscing: {
-    elit: true,
-  },
-}
-```
-
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-### Natus aspernatur iste
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+This guide will take you through the process of:
+1. Setting up a "Nexa Builder" environment.
+2. Creating a new project.
+3. Customizing your project:
+    - integrating w/ _(real-time)_ external data sources
+    - installing 3rd-party add-ons
+    - applying FREE media resources
+4. Deploying your project to the public.
 
 ---
 
-## Quos porro ut molestiae
+## Setup Up Your Environment
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+It's important to use the __"right set of tools"__ when expecting to perform a task successfully. Application development is no different. So we begin with establishing a proper __Builder's environment__ from which to work.
 
-### Voluptatem quas possimus
+__Prerequisites__
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+- Windows, Mac or Linux system installed
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+__Goals__
+
+1. Install latest release of [Node.js](https://nodejs.org/) using [Node Version Manager (NVM)](https://github.com/nvm-sh/nvm).
+0. Install latest release of [NEXA.js](https://www.npmjs.com/package/nexajs) Lib+SDK using [Node Package Manager (NPM)](https://www.npmjs.com/).
+0. Install and/or configure an IDE _(or text editor)_.
+
+---
+
+## Create A New Project
+
+_TBD_
+
+---
+
+## Customize Your Project
+
+_TBD_
+
+---
+
+## Deploy Your Project
+
+_TBD_
