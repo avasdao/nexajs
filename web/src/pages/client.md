@@ -9,11 +9,7 @@ NEXA.js has been optimized to work efficiently in all modern Web browsers (incl.
 
 ## Link to CDN
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
-
-### Et pariatur ab quas
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+Upgrading an existing application is as simple as adding a `<script>` tag (from your preferred CDn) into your HTML document.
 
 ### Web2 (CDN) Installation
 
@@ -40,13 +36,9 @@ Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut par
 <script src="proto://9addf9bc724b2e14094950598918dde63b091253e6106b7d9716nexaverse888"></script>
 ```
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
-
-### Natus aspernatur iste
-
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
-
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+{% callout title="You should know!" %}
+We recommend you include the `<script>` tag as the last element in the `<head>` of your HTML document.
+{% /callout %}
 
 ---
 

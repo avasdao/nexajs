@@ -23,7 +23,7 @@ NEXA.js offers a drop-in option that plays nicely with your current JS framework
 <script src="path/to/nexajs/dist/nexajs.umd.js"></script>
 
 <script>
-  const wallet = new Nexa.Wallet(ctx, {...})
+const wallet = new Nexa.Wallet(ctx, {...})
 </script>
 ```
 
@@ -53,6 +53,6 @@ __Important:__ RequireJS can load only [AMD modules](https://requirejs.org/docs/
 
 ```js
 require(['path/to/nexajs/dist/nexajs.umd.js'], function(Nexa) {
-  const wallet = new Nexa.Wallet(ctx, {...})
+    const wallet = new Nexa.Wallet(ctx, {...})
 })
 ```

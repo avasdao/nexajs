@@ -1,9 +1,9 @@
 ---
-title: OP Codes
+title: OP(eration) Codes
 description: Learn about the collection of OP codes that run Nexa.
 ---
 
-Nexa Script OP codes are available on the `Nexa.Script` object.
+Nexa Script OP codes are available on the `Nexa.Script.OP` object.
 
 ## Introduction
 
