@@ -56,7 +56,7 @@ const navigation = [
         title: 'Examples & Use-cases',
         links: [
             { title: 'Introduction', href: '/examples' },
-            { title: 'Wallets', href: '/use/wallets' },
+            { title: 'Wallets', href: '/example/wallets' },
         ],
     },
     {
