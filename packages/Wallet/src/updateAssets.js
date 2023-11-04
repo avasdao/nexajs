@@ -31,10 +31,6 @@ export default async function (_subscribe = false, _fiat = 'USD') {
         await subscribeAddress(this.address, async () => {
             /* Update (latest) assets. */
             await this.updateAssets(false, _fiat)
-
-            /* Emit (asset) changes to subscribers. */
-            this.emit('changes', this.assets)
-            // console.log('ASSET CHANGES', this.assets)
         })
     }
 
@@ -211,6 +207,10 @@ export default async function (_subscribe = false, _fiat = 'USD') {
 
         } // validate asset
     } // handle tokens
+
+    /* Emit (asset) changes to subscribers. */
+    this.emit('assets', this.assets)
+    // console.log('ASSETS UPDATE', this.assets)
 
     /* Completed successfully. */
     return true

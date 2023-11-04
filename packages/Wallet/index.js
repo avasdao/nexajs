@@ -234,6 +234,18 @@ export class Wallet extends EventEmitter {
             // NOTE: This is a 12-word seed phrase.
             this._mnemonic = entropyToMnemonic(binToHex(this._entropy))
         }
+
+        /* Validate network. */
+        if (_primary?.network) {
+            this._network = _primary.network
+        }
+
+        /* Validate testnet (flag). */
+        if (_primary?.isTestnet) {
+            this._isTestnet = _primary.isTestnet
+        }
+
+        // TODO Handle ALL parameters.
     }
 
     /**
@@ -249,6 +261,8 @@ export class Wallet extends EventEmitter {
 
         /* Initialize locals. */
         let fiat
+        let maxTries = 0
+        let response
 
         /* Validate fiat conversions. */
         // NOTE: Any Boolean parameters will (default) as a `fiat` flag.
@@ -282,20 +296,37 @@ export class Wallet extends EventEmitter {
             // NOTE: We pause 1/2 second (~100ms probably works too) to allow
             //       the wallet time to complete its setup.
             // FIXME Reduce setup by properly detecting wallet setup completion.
-            await _sleep(500)
+            // await _sleep(500)
 
             /* Request an update for asset data. */
             // TODO Support "user-defined" updates.
-            await wallet.updateAssets(true, fiat)
+            wallet.updateAssets(true, fiat)
                 .catch(err => console.error(err))
             // await wallet.updateAssets(true, _secondary)
 
-            /* Update balances. */
-            await wallet.updateBalances(fiat)
-                .catch(err => console.error(err))
+            /* Wait for assets to update. */
+            wallet.on('assets', (_assets) => {
+                // console.log('RECV MSG (assets update):', _assets)
 
-            /* Set (status) flag. */
-            wallet._status = WalletStatus.READY
+                /* Update balances. */
+                // NOTE: Depends on `updateAssets`.
+                wallet.updateBalances(fiat)
+                    .catch(err => console.error(err))
+            })
+
+            /* Re-try for up to 30 seconds. */
+            while (wallet.address === null && maxTries < 300) {
+                maxTries++
+                await _sleep(100)
+            }
+
+            if (wallet.address !== null) {
+                /* Set (status) flag. */
+                wallet._status = WalletStatus.READY
+            } else {
+                /* Set (status) flag. */
+                wallet._status = WalletStatus.FAILED
+            }
 
             /* Return (initialized) instance. */
             return wallet

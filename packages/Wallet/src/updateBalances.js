@@ -245,6 +245,10 @@ export default async function (_fiat = 'USD') {
         }
     }
 
+    /* Emit (asset) changes to subscribers. */
+    this.emit('balances', this.assets)
+    // console.log('BALANCES UPDATE', this.assets)
+
     /* Set a timeout (delay) for the next update. */
     // NOTE: Use an "arrow function" to resolve (this) issue.
     setTimeout(() => {
