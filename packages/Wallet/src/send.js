@@ -2,6 +2,7 @@
 import { sendCoin } from '@nexajs/purse'
 import { sendToken } from '@nexajs/token'
 
+import { WalletStatus } from '../index.js'
 
 /**
  * Send (Assets)
@@ -9,12 +10,17 @@ import { sendToken } from '@nexajs/token'
  * Receives parameters for transferring any form of Nexa asset(s).
  */
 export default async function (_tokenid, _receiver, _amount) {
+    const _sleep = (_ms) => {
+        return new Promise(resolve => setTimeout(resolve, _ms))
+    }
+
     /* Initialize locals. */
     let address
     let coins
     let error
     let locking
     let lockTime
+    let maxTries = 0
     let nullData
     let receiver
     let receivers
@@ -29,6 +35,17 @@ export default async function (_tokenid, _receiver, _amount) {
     let unlocking
     let unspentCoins
     let unspentTokens
+
+    /* Re-try for up to 10 seconds. */
+    while (this.status !== WalletStatus.ONLINE && maxTries < 100) {
+        maxTries++
+        await _sleep(100)
+    }
+
+    /* Validate wallet (online) status. */
+    if (this.status !== WalletStatus.ONLINE) {
+        throw new Error('Oops! Your wallet MUST be online to broadcast.')
+    }
 
     /* Validate amount. */
     if (typeof _amount === 'bigint') {

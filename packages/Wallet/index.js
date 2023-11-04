@@ -52,6 +52,7 @@ import _updateBalances from './src/updateBalances.js'
 const _WalletStatus = Object.freeze({
 	FAILED   : Symbol('failed'),
 	LOADING  : Symbol('loading'),
+	ONLINE   : Symbol('online'),
 	READY    : Symbol('ready'),
 	UNKNOWN  : Symbol('unknown'),
 	UPDATING : Symbol('updating'),
@@ -314,16 +315,25 @@ export class Wallet extends EventEmitter {
                     .catch(err => console.error(err))
             })
 
-            /* Re-try for up to 30 seconds. */
-            while (wallet.address === null && maxTries < 300) {
+            /* Wait for balances to update. */
+            wallet.on('balances', (_assets) => {
+                // console.log('RECV MSG (balances update):', _assets)
+
+                /* Set wallet status. */
+                wallet._status = WalletStatus.ONLINE
+            })
+
+            /* Re-try for up to 10 seconds. */
+            while (wallet.address === null && maxTries < 100) {
                 maxTries++
                 await _sleep(100)
             }
 
+            /* Validate (wallet) address. */
             if (wallet.address !== null) {
                 /* Set (status) flag. */
                 wallet._status = WalletStatus.READY
-            } else {
+            } else if (wallet.status === WalletStatus.LOADING) {
                 /* Set (status) flag. */
                 wallet._status = WalletStatus.FAILED
             }
