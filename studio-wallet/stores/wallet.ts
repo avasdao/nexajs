@@ -162,12 +162,12 @@ export const useWalletStore = defineStore('wallet', {
 
             // this._assets = { ...this.wallet.assets } // cloned assets
 
+            /* Set (default) asset. */
+            this.wallet.setAsset('0')
+
             /* Handle balance updates. */
             this.wallet.on('balances', async (_assets) => {
                 // console.log('Wallet Assets (onChanges):', _assets)
-
-                /* Set (default) asset. */
-                this.wallet.setAsset('0')
 
                 /* Close asset locally. */
 // FIXME Read ASSETS directly from library (getter).
