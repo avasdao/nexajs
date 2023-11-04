@@ -1,18 +1,16 @@
 ---
 title: Walkthrough Guide
-description: Take a step-by-step guided tour of NEXA.js from A to Z in under an hour.
+description: Take a step-by-step, interactive tour of NEXA.js from A to Z in under an hour.
 ---
 
-Take a step-by-step guided tour of __NEXA.js from A to Z__ in under an hour.
-
-___Begin your journey towards becoming a Master Nexican Builder...___
+Let's begin your journey towards becoming a __Master Nexican Builder...__ You should be able to follow along with this step-by-step, interactive tour of __NEXA.js from A to Z__ in under an hour.
 
 
 ## Introduction
 
-This guide will take you through the process of:
-1. Setting up a "Nexa Builder" environment.
-2. Creating a new project.
+This guide is meant for __Beginner _(as well as 1st-time)_ Builders__ and will take you step-by-step through the complete process of:
+1. Setting up a "proper" Nexican Builder environment.
+2. Creating a new _(or extending an existing)_ project.
 3. Customizing your project:
     - integrating w/ _(real-time)_ external data sources
     - installing 3rd-party add-ons

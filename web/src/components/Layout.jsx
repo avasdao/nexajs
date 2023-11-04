@@ -30,19 +30,19 @@ const navigation = [
         ],
     },
     {
-        title: 'Server-side / Node.js',
+        title: 'Server-side (Node.js)',
         links: [
             { title: 'Introduction', href: '/server' },
             { title: 'CashLib', href: '/cashlib' },
             { title: 'NexID Server', href: '/nexid#id-server' },
         ],
     },
-    // {
-    //     title: 'Server-side / Deno',
-    //     links: [
-    //         { title: 'Introduction', href: '/deno' },
-    //     ],
-    // },
+    {
+        title: 'Server-side (Deno)',
+        links: [
+            { title: 'Introduction', href: '/deno' },
+        ],
+    },
     {
         title: 'Library Packages',
         links: [
@@ -56,6 +56,7 @@ const navigation = [
         title: 'Examples & Use-cases',
         links: [
             { title: 'Introduction', href: '/examples' },
+            { title: 'Scripts', href: '/example/scripts' },
             { title: 'Wallets', href: '/example/wallets' },
         ],
     },
