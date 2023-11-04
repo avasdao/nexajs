@@ -53,6 +53,13 @@ const navigation = [
         ],
     },
     {
+        title: 'Examples & Use-cases',
+        links: [
+            { title: 'Introduction', href: '/examples' },
+            { title: 'Wallets', href: '/use/wallets' },
+        ],
+    },
+    {
         title: 'References',
         links: [
             { title: 'Builder Experience (BX)', href: '/bx' },

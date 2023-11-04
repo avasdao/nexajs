@@ -1,6 +1,6 @@
 ---
 title: Wallet
-description: Quidem magni aut exercitationem maxime rerum eos.
+description: A full-service, multi-currency web wallet for your applications.
 ---
 
 A full-service, multi-currency web wallet for your applications.
