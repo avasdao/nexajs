@@ -29,14 +29,41 @@ const displayBalance = computed(() => {
         return '0.00'
     }
 
+    let decimalValue
+    let bigIntValue
+
+    if (Wallet.asset.group === '0') {
+        decimalValue = Wallet.asset.satoshis * BigInt(1e4)
+    } else {
+        decimalValue = Wallet.asset.amount * BigInt(1e4)
+    }
+
+    if (Wallet.asset.decimal_places > 0) {
+        bigIntValue = decimalValue / BigInt(10**Wallet.asset.decimal_places)
+    } else {
+        bigIntValue = decimalValue
+    }
+
+    return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]00[0000]')
+
     /* Initialize locals. */
-    let balance
+    // let amount
+    // let balance
 
-    /* Set balance. */
-    balance = Wallet.asset.amount || 0.00
+//     if (Wallet.asset?.decimal_places > 0 && Wallet.asset?.group !== '0') {
+//         /* Adjust for decimals. */
+// // FIXME: Preserve decimal precision/accuracy.
+//         amount = Wallet.asset.amount / BigInt(10**Wallet.asset.decimal_places)
 
-    /* Return (formatted) balance. */
-    return numeral(balance).format('0,0[.]00[0000]')
+//         /* Set balance. */
+//         balance = amount || 0.00
+//     } else {
+//         /* Set balance. */
+//         balance = Wallet.asset.amount || 0.00
+//     }
+
+//     /* Return (formatted) balance. */
+//     return numeral(balance).format('0,0[.]00[0000]') + '*'
 })
 
 const displayBalanceUsd = computed(() => {

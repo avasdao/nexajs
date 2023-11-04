@@ -25,7 +25,7 @@ export const useWalletStore = defineStore('wallet', {
     state: () => ({
         _assets: null,
 
-        _forceUI: null,
+        // _forceUI: null,
 
         /**
          * Entropy
@@ -158,36 +158,21 @@ export const useWalletStore = defineStore('wallet', {
 
             /* Request a wallet instance (by mnemonic). */
             this._wallet = await Wallet.init(this._entropy, true)
-            console.log('(Initialized) wallet', this._wallet)
+            console.info('(Initialized) wallet', this.wallet)
 
-            this._assets = { ...this.wallet.assets } // cloned assets
+            // this._assets = { ...this.wallet.assets } // cloned assets
 
-            /* Set (default) asset. */
-            this.wallet.setAsset('0')
+            /* Handle balance updates. */
+            this.wallet.on('balances', async (_assets) => {
+                // console.log('Wallet Assets (onChanges):', _assets)
 
-            this._forceUI = 0
+                /* Set (default) asset. */
+                this.wallet.setAsset('0')
 
-            this.wallet.on('changes', async (_assets) => {
-                console.info('Wallet Assets (onChanges):', _assets)
-
-                await nextTick
-
-                const self = this
-
-                setTimeout(() => {
-                    self._assets = { ..._assets }
-                    console.info('self._assets:', self._assets)
-                }, 100)
-                // this._assets = {
-                //     data: _assets,
-                //     updatedAt: moment().unix(),
-                // }
-
-                await nextTick
-
-                this._forceUI++
+                /* Close asset locally. */
+// FIXME Read ASSETS directly from library (getter).
+                this._assets = { ..._assets }
             })
-
         },
 
         createWallet(_entropy) {

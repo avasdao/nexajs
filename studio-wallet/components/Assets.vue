@@ -9,7 +9,7 @@ const Wallet = useWalletStore()
 const System = useSystemStore()
 
 watch(() => Wallet._assets, (_assets) => {
-    console.log('ASSETS (local assets):', _assets)
+    console.log('(LOCAL) ASSETS', _assets)
 })
 
 const coinAmount = computed(() => {
