@@ -7,37 +7,39 @@ NEXA.js has been optimized to run efficiently as the engine for your back-end No
 
 ---
 
-## Native Interface
+## V8 JavaScript Engine
 
-You have the option for a "direct" connection to the Nexa ([CashLib](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp)) library.
+V8 is the name of the JavaScript engine that powers Google Chrome. It's the thing that takes our JavaScript and executes it while browsing with Chrome.
 
-
-## Chrome8 Engine
-
-You have the option for a "direct" connection to the Nexa ([CashLib](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp)) library.
+{% callout title="You should know!" %}
+Learn how to setup and run your own [Nexa daemon](https://nexa.org/node). Easily run a local node at home/work or deploy one _(or more)_ node(s) to remote/cloud server(s).
+{% /callout %}
 
 ### Basic Application Server
 
-It is trivially simple to host an Nexa-powered application on ANY Node.js server; and in under <20 lines of code.
+It's quick & easy to setup and host a (Nexa) Web3-enabled application on ANY Node.js server; and in just 13 lines of code.
 
 ```js
-const http = require('http');
-const hostname = '127.0.0.1';
-const port = 3000;
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
+import { getTip } from '@nexajs/rostrum'
+import http from 'http'
+const hostname = '127.0.0.1'
+const port = 3000
+const server = http.createServer(async (req, res) => {
+    const blockTip = await getTip()
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'text/plain')
+    res.end(`Current NEXA block height is: ${blockTip.height}`)
 })
 server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`)
 })
 ```
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+__The following libraries were built specifically for back-end services:__
 
-### Natus aspernatur iste
+1. [RPC](/pkg/rpc)
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
 
-Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad eaque quas quia distinctio. Molestiae aperiam qui quis deleniti soluta quia qui. Dolores nostrum blanditiis libero optio id. Mollitia ad et asperiores quas saepe alias.
+## Native C/C++ Bindings
+
+You have the option for a "direct" connection to the Nexa ([CashLib](https://gitlab.com/nexa/nexa/-/blob/dev/src/cashlib/cashlib.cpp)) library.
