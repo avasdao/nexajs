@@ -261,19 +261,29 @@ onMounted(() => {
 
             <div class="my-5">
                 <Assets
-                    v-if="isShowingAssets" :isFullScreen="isFullScreen" />
+                    v-if="isShowingAssets"
+                    :isFullScreen="isFullScreen"
+                />
 
                 <Send
-                    v-if="isShowingSend" :isFullScreen="isFullScreen" />
+                    v-if="isShowingSend"
+                    :isFullScreen="isFullScreen"
+                />
 
                 <Deposit
-                    v-if="isShowingDeposit" :isFullScreen="isFullScreen" />
+                    v-if="isShowingDeposit"
+                    :isFullScreen="isFullScreen"
+                />
 
                 <History
-                    v-if="isShowingHistory" :isFullScreen="isFullScreen" />
+                    v-if="isShowingHistory"
+                    :isFullScreen="isFullScreen"
+                />
 
                 <Swap
-                    v-if="isShowingSwap" :isFullScreen="isFullScreen" />
+                    v-if="isShowingSwap"
+                    :isFullScreen="isFullScreen"
+                />
             </div>
         </div>
 

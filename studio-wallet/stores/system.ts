@@ -29,6 +29,13 @@ export const useSystemStore = defineStore('system', {
         },
 
         /**
+         * (Temporary) Entropy
+         *
+         * Used for 3rd-party wallet transactions.
+         */
+        _entropy: null,
+
+        /**
          * Flags
          *
          * 1. Dark mode
@@ -65,6 +72,14 @@ export const useSystemStore = defineStore('system', {
     }),
 
     getters: {
+        entropy() {
+            if (!this._entropy) {
+                return null
+            }
+
+            return this._entropy
+        },
+
         nex() {
             if (!this._tickers?.NEXA) {
                 return null
