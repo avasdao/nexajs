@@ -13,10 +13,23 @@ const Wallet = useWalletStore()
 
 const mnemonic = ref(null)
 
+const createWallet = () => {
+    // NOTE: This confirmation is NOT REQUIRED for single-application
+    //       wallet integration(s), and can be SAFELY removed.
+    if (confirm('Before you continue, please close ALL other Studio browser windows. Failure to do so may result in LOSS OF ASSETS!\n\nWould you like to continue creating a new wallet?')) {
+        /* Create a new wallet. */
+        Wallet.createWallet()
+    }
+}
+
 const importWallet = () => {
-    /* Set/save mnemonic. */
-    // NOTE: Will save `entropy` to the local storage.
-    Wallet.setMnemonic(mnemonic.value)
+    // NOTE: This confirmation is NOT REQUIRED for single-application
+    //       wallet integration(s), and can be SAFELY removed.
+    if (confirm('Before you continue, please close ALL other Studio browser windows. Failure to do so may result in LOSS OF ASSETS!\n\nWould you like to continue importing an existing wallet?')) {
+        /* Set/save mnemonic. */
+        // NOTE: Will save `entropy` to the local storage.
+        Wallet.setMnemonic(mnemonic.value)
+    }
 }
 
 // onMounted(() => {
@@ -37,7 +50,7 @@ const importWallet = () => {
             Click the button below to create a new wallet and begin trading.
         </p>
 
-        <div @click="Wallet.createWallet" class="cursor-pointer px-3 py-2 text-2xl text-blue-100 font-medium bg-blue-500 border-2 border-blue-700 rounded-lg shadow hover:bg-blue-400">
+        <div @click="createWallet" class="cursor-pointer px-3 py-2 text-2xl text-blue-100 font-medium bg-blue-500 border-2 border-blue-700 rounded-lg shadow hover:bg-blue-400">
             Create New Wallet
         </div>
 
