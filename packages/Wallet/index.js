@@ -294,10 +294,10 @@ export class Wallet extends EventEmitter {
             /* Set (status) flag. */
             wallet._status = WalletStatus.LOADING
 
-            // NOTE: We pause 1/2 second (~100ms probably works too) to allow
+            // NOTE: We pause 1/10 second (~100ms) to allow
             //       the wallet time to complete its setup.
             // FIXME Reduce setup by properly detecting wallet setup completion.
-            // await _sleep(500)
+            await _sleep(100)
 
             /* Request an update for asset data. */
             // TODO Support "user-defined" updates.

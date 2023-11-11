@@ -37,6 +37,8 @@ let secp256k1
 let crypto
 
 /* Instantiate Libauth crypto interfaces. */
+// NOTE: This requires a few cycles to load
+//       and MUST be handled accordingly.
 ;(async () => {
     ripemd160 = await instantiateRipemd160()
     secp256k1 = await instantiateSecp256k1()
