@@ -71,7 +71,7 @@ export default async function (_subscribe = false, _fiat = 'USD') {
 
     /* Validate unspent outputs. */
     if (unspent.length === 0) {
-        return console.error('There are NO unspent outputs available.')
+        console.info('There are NO unspent outputs available.')
     }
 
     /* Retrieve coins. */
