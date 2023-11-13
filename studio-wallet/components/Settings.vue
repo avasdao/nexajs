@@ -147,7 +147,7 @@ currency.value = 'USD'
 
                 <div class="mt-2 text-sm text-amber-700">
                     <div v-if="isShowingMnemonic">
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="columns-2 gap-3">
                             <h3 v-for="(word, index) of wordList" :key="word" class="text-xl font-medium">
                                 {{(index + 1).toString().padStart(2, '0')}}: {{word}}
                             </h3>
