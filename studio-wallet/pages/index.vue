@@ -7,11 +7,11 @@ const isFullScreen = true
 
 /* Initialize stores. */
 import { useProfileStore } from '@/stores/profile'
-import { useWalletStore } from '@/stores/wallet'
 import { useSystemStore } from '@/stores/system'
+import { useWalletStore } from '@/stores/wallet'
 const Profile = useProfileStore()
-const Wallet = useWalletStore()
 const System = useSystemStore()
+const Wallet = useWalletStore()
 
 const STUDIO = 'nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8'
 
@@ -163,11 +163,11 @@ onMounted(() => {
 </script>
 
 <template>
-    <Loading v-show="Wallet.isLoading" />
+    <Loading v-if="Wallet.isLoading" />
 
-    <Setup v-show="!Wallet.isLoading && !Wallet.isReady" />
+    <Setup v-else-if="!Wallet.isReady" />
 
-    <main v-show="!Wallet.isLoading && Wallet.isReady" class="grid grid-cols-1 lg:grid-cols-7 gap-8">
+    <main v-else class="grid grid-cols-1 lg:grid-cols-7 gap-8">
         <div class="col-span-4">
             <section @click="setTab('assets')" class="cursor-pointer group px-5 py-3 bg-gradient-to-b from-sky-100 to-sky-50 border-t border-x border-sky-400 rounded-t-lg rounded-x-lg shadow-md hover:bg-sky-100">
                 <div class="flex flex-row w-full justify-between items-center mb-1" :class="[ isShowingAssets ? 'visible' : 'hidden' ]">
