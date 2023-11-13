@@ -152,7 +152,30 @@ const displayDecimalAmountUsd = (_token) => {
 }
 
 const displayIcon = (_token) => {
+    /* Initialize locals. */
+    let parentid
+    let tokenid
+
+    /* Set parent id. */
+    parentid = _token.token_id_hex.slice(0, 64)
+
+    /* Set token id. */
+    tokenid = _token.token_id_hex
+
+    /* Handle icon URL. */
     if (!_token.iconUrl || _token.iconUrl === '') {
+        /* Validate Studio Time + Collection. */
+        if (parentid === '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000') {
+            return `https://nexa.garden/token/${tokenid}/public` // Nexa Garden
+        }
+
+        /* Validate NiftyArt. */
+        if (parentid === 'cacf3d958161a925c28a970d3c40deec1a3fe06796fe1b4a7b68f377cdb90000') {
+            return `https://niftyart.cash/nftyc/${tokenid}/cardf.jpeg` // NiftyArt
+            // return `https://niftyart.cash/nftyc/${tokenid}/public.jpeg` // NiftyArt
+        }
+
+        /* Return null. */
         return null
     }
 
@@ -160,6 +183,28 @@ const displayIcon = (_token) => {
     return _token.iconUrl
 }
 
+const loadCollection = async () => {
+    /* Initialize locals. */
+    let collectible
+    let info
+    let tokenid
+
+    Object.keys(Wallet.assets).forEach(async _assetid => {
+        console.log('ASSET ID', _assetid)
+
+        if (_assetid.length === 128) {
+            collectible = Wallet.assets[_assetid]
+            console.log('COLLECTIBLE', collectible)
+
+            tokenid = collectible.token_id_hex
+
+            info = await $fetch(`https://nexa.garden/_token/${tokenid}`)
+                .catch(err => console.error(err))
+            console.log('COLLETIBLE INFO', info)
+        }
+    })
+
+}
 
 const init = () => {
     // console.log('ASSETS', Wallet.assets)
@@ -167,6 +212,8 @@ const init = () => {
     /* Set active tab. */
     // TODO Save last tab.
     activeTab.value = 'assets'
+
+    // loadCollection()
 }
 
 onMounted(() => {
@@ -189,7 +236,7 @@ onMounted(() => {
                     </span>
 
                     <span class="bg-indigo-100 text-indigo-600 ml-1 sm:ml-3 rounded-full py-0.5 px-2.5 text-xs font-medium">
-                        {{Wallet.assets ? Object.keys(Wallet.assets).length : 0}}
+                        {{assets?.length}}
                     </span>
                 </button>
 
@@ -201,7 +248,7 @@ onMounted(() => {
 
                     <!-- Current: "bg-indigo-100 text-indigo-600", Default: "bg-gray-100 text-gray-900" -->
                     <span class="bg-gray-100 text-gray-900 ml-1 sm:ml-3 rounded-full py-0.5 px-2.5 text-xs font-medium">
-                        0
+                        {{collection?.length}}
                     </span>
                 </button>
             </nav>
