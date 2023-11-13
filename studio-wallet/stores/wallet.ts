@@ -121,7 +121,11 @@ export const useWalletStore = defineStore('wallet', {
 
         /* Return wallet status. */
         isReady(_state) {
-            if (_state._wallet && _state._wallet._entropy) {
+            if (!_state._wallet) {
+                return false
+            }
+
+            if (_state._wallet._entropy) {
                 return true
             }
 
@@ -175,12 +179,20 @@ export const useWalletStore = defineStore('wallet', {
             })
         },
 
+        /**
+         * Create Wallet
+         *
+         * Create a fresh wallet.
+         *
+         * @param _entropy A 32-byte (hex-encoded) random value.
+         */
         createWallet(_entropy) {
             /* Validate entropy. */
             // NOTE: Expect HEX value to be 32 or 64 characters.
-            if (_entropy.length !== 32 && _entropy.length !== 64) {
+            if (_entropy?.length !== 32 && _entropy?.length !== 64) {
                 console.error(_entropy, 'is NOT valid entropy.')
 
+                /* Clear (invalid) entropy. */
                 _entropy = null
             }
 
