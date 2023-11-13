@@ -10,10 +10,6 @@ const System = useSystemStore()
 
 const activeTab = ref(null)
 
-watch(() => Wallet._assets, (_assets) => {
-    console.log('(LOCAL) ASSETS', _assets)
-})
-
 const assets = computed(() => {
     if (!Wallet.assets) {
         return []
@@ -26,7 +22,9 @@ const assets = computed(() => {
     Object.keys(Wallet.assets).map(_assetid => {
         if (_assetid === '0' || _assetid.length === 64) {
             const asset = { ...Wallet.assets[_assetid] }
+
             asset.id = _assetid
+
             filtered.push(asset)
         }
     })
@@ -47,7 +45,9 @@ const collection = computed(() => {
     Object.keys(Wallet.assets).map(_assetid => {
         if (_assetid.length === 128) {
             const asset = { ...Wallet.assets[_assetid] }
+
             asset.id = _assetid
+
             filtered.push(asset)
         }
     })
@@ -61,6 +61,7 @@ const coinAmount = computed(() => {
         return '0.00'
     }
 
+    /* Initialize locals. */
     let total
 
     total = Wallet.coins.reduce(
@@ -75,6 +76,7 @@ const coinAmountUsd = computed(() => {
         return '0.00'
     }
 
+    /* Initialize locals. */
     let satoshis
     let mex
     let mexUsd
@@ -86,8 +88,10 @@ const coinAmountUsd = computed(() => {
     /* Calculate (NEX) total. */
     mex = (parseInt(satoshis) / 1e8)
 
+    /* Calculate (MEX) total. */
     mexUsd = mex * System.usd
 
+    /* Handle UI (value) formatting. */
     if (mexUsd >= 10.0) {
         /* Return formatted value. */
         return numeral(mexUsd).format('$0,0.00')
@@ -107,21 +111,26 @@ const displayTokenName = (_tokenid) => {
 
 const displayDecimalAmount = (_token) => {
     // console.log('_token', _token)
+
+    /* Initialize locals. */
     let decimalValue
     let bigIntValue
 
+    /* Handle UI (value) formatting. */
     if (_token.group === '0') {
         decimalValue = _token.satoshis * BigInt(1e4)
     } else {
         decimalValue = _token.amount * BigInt(1e4)
     }
 
+    /* Handle UI (value) formatting. */
     if (_token.decimal_places > 0) {
         bigIntValue = decimalValue / BigInt(10**_token.decimal_places)
     } else {
         bigIntValue = decimalValue
     }
 
+    /* Return formatted value. */
     return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]00[0000]')
 }
 
@@ -134,8 +143,10 @@ const displayDecimalAmountUsd = (_token) => {
 
     /* Handle amount. */
     if (amount >= 10.0) {
+        /* Return formatted value. */
         return numeral(amount).format('$0,0.00')
     } else {
+        /* Return formatted value. */
         return numeral(amount).format('$0,0.00[0000]')
     }
 }
@@ -145,6 +156,7 @@ const displayIcon = (_token) => {
         return null
     }
 
+    /* Return icon URL. */
     return _token.iconUrl
 }
 
@@ -152,6 +164,8 @@ const displayIcon = (_token) => {
 const init = () => {
     // console.log('ASSETS', Wallet.assets)
 
+    /* Set active tab. */
+    // TODO Save last tab.
     activeTab.value = 'assets'
 }
 
