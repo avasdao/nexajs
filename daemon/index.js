@@ -33,12 +33,12 @@ const ACTIVE_ACCOUNT_IDX = 2
     }
 
     if (ACTIVE_ACCOUNT_IDX === 1) {
-        // mintGroup(
-        //     wallet,
-        //     'nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug', // Shomari (Robin Hood)
-        //     100000000,
-        //     IS_LIVE_BROADCAST,
-        // )
+        mintGroup(
+            wallet,
+            'nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug', // Shomari (Robin Hood)
+            1000000,
+            IS_LIVE_BROADCAST,
+        )
 
         // mintSubgroup(
         //     wallet,
@@ -49,7 +49,9 @@ const ACTIVE_ACCOUNT_IDX = 2
     }
 
     if (ACTIVE_ACCOUNT_IDX === 2) {
-        meltGroup(wallet, IS_LIVE_BROADCAST)
+        setTimeout(() => {
+            meltGroup(wallet, IS_LIVE_BROADCAST)
+        }, 3000)
     }
 
     if (ACTIVE_ACCOUNT_IDX === 3) {
