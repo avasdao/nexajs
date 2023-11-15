@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/crypto",
-  "version": "23.5.22",
+  "version": "23.11.15",
   "description": "Suite of useful cryptographic functions for decentralized applications.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -9,8 +9,8 @@
   "type": "module",
   "dependencies": {
     "@ethersproject/random": "5.7.0",
-    "@nexajs/utils": "23.5.15",
-    "crypto-js": "4.1.1",
+    "@nexajs/utils": "23.7.22",
+    "crypto-js": "4.2.0",
     "debug": "4.3.4",
     "events": "3.3.0",
     "scrypt-js": "3.0.1",
