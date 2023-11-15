@@ -49,7 +49,7 @@ const init = async () => {
         /* Request transaction details. */
         details = await getTransaction(_txid)
             .catch(err => console.error(err))
-        console.log('DETAILS', details)
+        // console.log('DETAILS', details)
 
         /* Add transaction details. */
         txs.value.push(details)
