@@ -14,32 +14,45 @@ import { useWalletStore } from '@/stores/wallet'
 const System = useSystemStore()
 const Wallet = useWalletStore()
 
+const MAX_RESULTS_PER_PAGE = 20
+
 const history = ref(null)
 const txs = ref(null)
 
 const init = async () => {
+    /* Initialize locals. */
     let history
     let txids
 
-    console.log('ADDRESS', Wallet.address)
+    // console.log('ADDRESS', Wallet.address)
 
+    /* Request address history. */
     history = await getAddressHistory(Wallet.address)
         .catch(err => console.error(err))
-    console.log('HISTORY', history)
+    // console.log('HISTORY', history)
 
-    txids = history.map(_tx => _tx.tx_hash)
+    /* Handle history. */
+    txids = history
+        .reverse()
+        .slice(0, MAX_RESULTS_PER_PAGE)
+        .map(_tx => _tx.tx_hash)
 
-    txs.value = {}
+    /* Initialize array. */
+    txs.value = []
 
     txids.forEach(async _txid => {
-        let details
-        console.log('TXID', _txid)
+        // console.log('TXID', _txid)
 
+        /* Initialize locals. */
+        let details
+
+        /* Request transaction details. */
         details = await getTransaction(_txid)
             .catch(err => console.error(err))
         console.log('DETAILS', details)
 
-        txs.value[_txid] = details
+        /* Add transaction details. */
+        txs.value.push(details)
     })
 }
 
@@ -105,7 +118,13 @@ onMounted(() => {
             Recent Transactions
         </h2>
 
-        <div v-for="tx of txs" :key="tx.txidem" class="px-2 p-1 bg-amber-100 border border-amber-300 rounded-md shadow">
+        <NuxtLink
+            :to="'https://nexa.sh/tx/' + tx.txidem"
+            target="_blank"
+            v-for="tx of txs"
+            :key="tx.txidem"
+            class="px-2 p-1 bg-amber-50 border border-amber-300 rounded-md shadow hover:bg-amber-100"
+        >
             <h3 class="text-xs font-medium truncate">
                 TXID {{tx.txidem}}
             </h3>
@@ -123,7 +142,7 @@ onMounted(() => {
                 size: {{tx.size}}
             </h3>
 
-            <section class="my-3 px-2 py-1 flex flex-col gap-3 bg-amber-200 border border-amber-400 rounded">
+            <section class="my-3 px-2 py-1 flex flex-col gap-3 bg-gray-200 border border-gray-400 rounded">
                 <h2 class="text-xs text-amber-600 uppercase">
                     Inputs
                 </h2>
@@ -134,10 +153,14 @@ onMounted(() => {
                         <span class="font-medium">{{input.outpoint}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <NuxtLink
+                        :to="'https://explorer.nexa.org/address/' + input.address"
+                        target="_blank"
+                        class="text-xs text-amber-600 truncate hover:text-amber-500"
+                    >
                         Address:
                         <span class="font-medium">{{input.address}}</span>
-                    </h3>
+                    </NuxtLink>
 
                     <h3 class="text-xs text-amber-800 truncate">
                         Satoshis:
@@ -148,53 +171,53 @@ onMounted(() => {
                 <!-- <pre v-for="input of displayInputs(tx.vin)" :key="input.outpoint" class="text-xs">{{input}}</pre> -->
             </section>
 
-            <section class="my-3 px-2 py-1 flex flex-col gap-3 bg-amber-200 border border-amber-400 rounded">
-                <h2 class="text-xs text-amber-600 uppercase">
+            <section class="my-3 px-2 py-1 flex flex-col gap-3 bg-gray-700 border border-gray-900 rounded">
+                <h2 class="text-xs text-gray-50 uppercase">
                     Outputs
                 </h2>
 
                 <div v-for="output of displayOutputs(tx.vout)" :key="output.outpoint" class="flex flex-col text-xs divide-amber-700">
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Outpoint:
                         <span class="font-medium">{{output.outpoint}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Address:
                         <span class="font-medium">{{output.address}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Satoshis:
                         <span class="font-medium">{{output.satoshis}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Script (hash):
                         <span class="font-medium">{{output.script.hash}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Script (args):
                         <span class="font-medium">{{output.script.args}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Group:
                         <span class="font-medium">{{output.group}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Authority:
                         <span class="font-medium">{{output.groupAuthority}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Quantity:
                         <span class="font-medium">{{output.groupQuantity}}</span>
                     </h3>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 class="text-xs text-gray-50 truncate">
                         Hex:
                         <span class="font-medium">{{output.hex}}</span>
                     </h3>
@@ -202,7 +225,7 @@ onMounted(() => {
                 </div>
                 <!-- <pre v-for="output of displayOutputs(tx.vout)" :key="output.outpoint" class="text-xs">{{output}}</pre> -->
             </section>
-        </div>
+        </NuxtLink>
 
     </main>
 </template>

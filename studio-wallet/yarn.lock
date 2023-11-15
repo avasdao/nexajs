@@ -1247,6 +1247,19 @@
     debug "4.3.4"
     events "3.3.0"
 
+"@nexajs/crypto@23.11.15":
+  version "23.11.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.11.15.tgz#df981ea9a6445de2e518142856a312beebdba0fa"
+  integrity sha512-8h+1UUX+4QetEbmD1D8GEaaHyOKdW+xtJxvVwxpaZSPtws3Of7+FtO0XTrGWKMsEP+BGK1HfjzsTZD19NEJcMw==
+  dependencies:
+    "@ethersproject/random" "5.7.0"
+    "@nexajs/utils" "23.7.22"
+    crypto-js "4.2.0"
+    debug "4.3.4"
+    events "3.3.0"
+    scrypt-js "3.0.1"
+    secure-ls "1.2.6"
+
 "@nexajs/crypto@23.5.22":
   version "23.5.22"
   resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.22.tgz#1ca8e76cc18e159d18ef59f08368135dfcafee88"
@@ -3395,6 +3408,11 @@ crypto-js@4.1.1:
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
   integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
 
+crypto-js@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
+
 crypto-js@^3.1.6:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
@@ -5323,15 +5341,15 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-nexajs@23.11.11:
-  version "23.11.11"
-  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-23.11.11.tgz#a39d06688325ebf605b9da16f7cf7e441c5f178c"
-  integrity sha512-eSUJbVhtdQMdb7Z/hnLILVsjsPZwZWxMOFRGrozwepDfhJYt9mE6Ko3hN+TL7bt2qJlsigtoXfCItMbAtfIpVw==
+nexajs@23.11.13:
+  version "23.11.13"
+  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-23.11.13.tgz#ead0d3448904a4c11ded9d60739ff79cf3b61db0"
+  integrity sha512-DBARUKVD8IJtI++jPq9c68jxiKvDMvxjtb5qaiKlszXusfowag9FN0FowtUobI8idNdH9V3aJQMOazWY4v7k+Q==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.11.2"
     "@nexajs/app" "23.9.4"
-    "@nexajs/crypto" "23.5.22"
+    "@nexajs/crypto" "23.11.15"
     "@nexajs/hdnode" "23.9.3"
     "@nexajs/id" "23.5.15"
     "@nexajs/market" "23.10.8"
