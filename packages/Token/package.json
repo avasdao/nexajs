@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@nexajs/address": "23.11.2",
-    "@nexajs/crypto": "23.5.22",
+    "@nexajs/crypto": "23.11.15",
     "@nexajs/hdnode": "23.9.3",
     "@nexajs/provider": "23.6.21",
     "@nexajs/script": "23.10.8",
