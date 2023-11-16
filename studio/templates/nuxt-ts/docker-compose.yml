@@ -1,11 +1,33 @@
 version: '3.7'
 
 services:
-  app:
+  couchdb:
+    image: couchdb:3.3.2
+    container_name: couchdb
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:5984:5984'
+      - '127.0.0.1:4369:4369'
+      - '127.0.0.1:9100:9100'
+    # env_file: .env
+    environment:
+      - COUCHDB_USER=${COUCHDB_USER}
+      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+    volumes:
+        - ./dbdata:/opt/couchdb/data
+    logging: # apply better controls to Docker overlay folder
+      driver: 'json-file'
+      options:
+        max-file: '5'
+        max-size: '10m'
+
+  nexapp:
+    depends_on:
+      - couchdb
     build: .
-    image: studio
-    container_name: studio
-    restart: always
+    image: nexapp
+    container_name: nexapp
+    restart: unless-stopped
     network_mode: 'host'
     # ports:
     #   - '127.0.0.1:3000:3000'
@@ -15,24 +37,42 @@ services:
       options:
         max-file: '5'
         max-size: '10m'
+    # env_file: .env
     environment:
       - PROJECT_ID=${PROJECT_ID} # change to match your own environment
       - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
       - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
-  couchdb:
-    image: couchdb
-    restart: always
+
+  webserver:
+    depends_on:
+      - nexapp
+    image: nginx:1.15.12-alpine
+    container_name: webserver
+    restart: unless-stopped
     ports:
-      - '127.0.0.1:5984:5984'
-      - '127.0.0.1:4369:4369'
-      - '127.0.0.1:9100:9100'
-    environment:
-      - COUCHDB_USER=${COUCHDB_USER}
-      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+      - '80:80'
+      # - '443:443'
     volumes:
-        - ./data:/opt/couchdb/data
-    logging: # apply better controls to Docker overlay folder
-      driver: 'json-file'
-      options:
-        max-file: '5'
-        max-size: '10m'
+      - wordpress:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+    networks:
+      - app-network
+
+  certbot:
+    depends_on:
+      - webserver
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - wordpress:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email satoshi@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
+
+volumes:
+  certbot-etc:
+  nexapp:
+
+networks:
+  app-network:
+    driver: bridge
