@@ -43,36 +43,36 @@ services:
       - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
       - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
 
-  webserver:
-    depends_on:
-      - nexapp
-    image: nginx:1.15.12-alpine
-    container_name: webserver
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      # - '443:443'
-    volumes:
-      - wordpress:/var/www/html
-      - ./nginx-conf:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
-    networks:
-      - app-network
+  # webserver:
+  #   depends_on:
+  #     - nexapp
+  #   image: nginx:1.15.12-alpine
+  #   container_name: webserver
+  #   restart: unless-stopped
+  #   ports:
+  #     - '80:80'
+  #     # - '443:443'
+  #   volumes:
+  #     - nexapp:/var/www/html
+  #     - ./nginx-conf:/etc/nginx/conf.d
+  #     - certbot-etc:/etc/letsencrypt
+  #   networks:
+  #     - nexapps-network
 
-  certbot:
-    depends_on:
-      - webserver
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - wordpress:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email satoshi@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
+  # certbot:
+  #   depends_on:
+  #     - webserver
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   volumes:
+  #     - certbot-etc:/etc/letsencrypt
+  #     - nexapp:/var/www/html
+  #   command: certonly --webroot --webroot-path=/var/www/html --email satoshi@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
 
 volumes:
   certbot-etc:
   nexapp:
 
 networks:
-  app-network:
+  nexapps-network:
     driver: bridge
