@@ -210,8 +210,8 @@ useHead({
 
                     <p class="mt-6 text-lg leading-8 text-gray-600">
                         What makes Ava's DAO one of the most admired brands in Crypto?
-                        It is not just our outstanding portfolio of products and services.
-                        It is also how we do our work and the integrity of our actions.
+                        It's not just our outstanding portfolio of products and services.
+                        It's also how we do our work and the integrity of our actions.
                         Ingrained in our culture, integrity inspires our work and strengthens our reputation as an Organization that does extraordinary things and always does what is right.
                         Integrity is the essential ingredient to our success.
                     </p>
@@ -219,18 +219,36 @@ useHead({
 
                 <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <div>
-                        <dt class="font-semibold text-gray-900">Be world-class</dt>
-                        <dd class="mt-1 text-gray-600">Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.</dd>
+                        <dt class="text-2xl font-semibold text-gray-700">
+                            Be world-class
+                        </dt>
+
+                        <dd class="mt-1 text-gray-600">
+                            Nexicans aspire for nothing less than the highest standards of excellence;
+                            and so we expect everyone to play a part in holding others accountable for their actions, as they reflect on the greater community.
+                        </dd>
                     </div>
 
                     <div>
-                        <dt class="font-semibold text-gray-900">Share everything you know</dt>
-                        <dd class="mt-1 text-gray-600">Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.</dd>
+                        <dt class="text-2xl font-semibold text-gray-700">
+                            Sharing is caring
+                        </dt>
+
+                        <dd class="mt-1 text-gray-600">
+                            We believe in a Free and Open Source Software (FOSS) world of innovation;
+                            which enables us to remain 100% transparent from the start to finish during ALL of our community activities.
+                        </dd>
                     </div>
 
                     <div>
-                        <dt class="font-semibold text-gray-900">Always learning</dt>
-                        <dd class="mt-1 text-gray-600">Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.</dd>
+                        <dt class="text-2xl font-semibold text-gray-700">
+                            The wonder of knowledge
+                        </dt>
+
+                        <dd class="mt-1 text-gray-600">
+                            On our journey, we have only begun to embrace this nascent Crypto-society;
+                            we are the pioneers given the duty to educate the generations that'll adopt what we accomplish here today.
+                        </dd>
                     </div>
                 </dl>
             </div>
@@ -248,18 +266,37 @@ useHead({
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <dl class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base leading-7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <div>
-                        <dt class="font-semibold text-gray-900">Be supportive</dt>
-                        <dd class="mt-1 text-gray-600">Magnam provident veritatis odit. Vitae eligendi repellat non. Eum fugit impedit veritatis ducimus. Non qui aspernatur laudantium modi. Praesentium rerum error deserunt harum.</dd>
+                        <dt class="text-2xl font-semibold text-gray-700">
+                            Be respectful
+                        </dt>
+
+                        <dd class="mt-1 text-gray-600">
+                            Discretion is expected when it comes to expressions of your own "opinions".
+                            We aim to cultivate a healthy community, free of toxicity.
+                            We ask for A BIT O' compassion along with OPEN communications.
+                        </dd>
                     </div>
 
                     <div>
-                        <dt class="font-semibold text-gray-900">Take responsibility</dt>
-                        <dd class="mt-1 text-gray-600">Sit minus expedita quam in ullam molestiae dignissimos in harum. Tenetur dolorem iure. Non nesciunt dolorem veniam necessitatibus laboriosam voluptas perspiciatis error.</dd>
+                        <dt class="text-2xl font-semibold text-gray-700">
+                            Take responsibility
+                        </dt>
+
+                        <dd class="mt-1 text-gray-600">
+                            Be accountable for your actions!
+                            This is expected of everyone and is actively encouraged through intentional design decisions to incentive a consistent practice.
+                        </dd>
                     </div>
 
                     <div>
-                        <dt class="font-semibold text-gray-900">Enjoy downtime</dt>
-                        <dd class="mt-1 text-gray-600">Ipsa in earum deserunt aut. Quos minus aut animi et soluta. Ipsum dicta ut quia eius. Possimus reprehenderit iste aspernatur ut est velit consequatur distinctio.</dd>
+                        <dt class="text-2xl font-semibold text-gray-700">
+                            Touch some grass
+                        </dt>
+
+                        <dd class="mt-1 text-gray-600">
+                            We believe in balancing all aspects of one's life to maximize their potential at success.
+                            Mental health, although often overlooked, can be as (if not more) important to strengthen throughout your career.
+                        </dd>
                     </div>
                 </dl>
             </div>
