@@ -113,7 +113,10 @@ useHead({
             <!-- Content section -->
             <div class="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
                 <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our mission</h2>
+                    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        Our mission
+                    </h2>
+
                     <div class="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
                         <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
                             <p class="text-xl leading-8 text-gray-600">
@@ -123,12 +126,10 @@ useHead({
                             <div class="mt-10 max-w-xl text-base leading-7 text-gray-700">
                                 <p>
                                     The Nexa community offers ample examples to help you get started quickly using the industry's best practices.
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                 </p>
 
                                 <p class="mt-10">
                                     Nexa offers excellent documentation that offers modern and up-to-date guides and tutorials for anything and everything you need.
-                                    Beatae ut illum suscipit excepturi reprehenderit omnis, eius laudantium dolorum possimus animi cupiditate libero? Non illum, veritatis nemo quis hic ut? Officiis?
                                 </p>
                             </div>
                         </div>
@@ -137,17 +138,17 @@ useHead({
                             <dl class="w-64 space-y-8 xl:w-80">
                                 <div class="flex flex-col-reverse gap-y-4">
                                     <dt class="text-base leading-7 text-gray-600">Transactions every 24 hours</dt>
-                                    <dd class="text-5xl font-semibold tracking-tight text-gray-900">44 million</dd>
+                                    <dd class="text-5xl font-semibold tracking-tight text-gray-900">1,250+</dd>
                                 </div>
 
                                 <div class="flex flex-col-reverse gap-y-4">
-                                    <dt class="text-base leading-7 text-gray-600">Assets under holding</dt>
-                                    <dd class="text-5xl font-semibold tracking-tight text-gray-900">$119 trillion</dd>
+                                    <dt class="text-base leading-7 text-gray-600">Assets under management</dt>
+                                    <dd class="text-5xl font-semibold tracking-tight text-gray-900">$119,000+</dd>
                                 </div>
 
                                 <div class="flex flex-col-reverse gap-y-4">
-                                    <dt class="text-base leading-7 text-gray-600">New users annually</dt>
-                                    <dd class="text-5xl font-semibold tracking-tight text-gray-900">46,000</dd>
+                                    <dt class="text-base leading-7 text-gray-600">New users monthly</dt>
+                                    <dd class="text-5xl font-semibold tracking-tight text-gray-900">200+</dd>
                                 </div>
                             </dl>
                         </div>
@@ -170,24 +171,17 @@ useHead({
                 <div class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
 
                     <StudioCard
+                        title="AI Studio"
+                        link="/ai"
+                        background="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                        caption="Create hi-res, fully-custom generative images for your next project"
+                    />
+
+                    <StudioCard
                         title="NFT/SFT Studio"
                         link="/nft"
                         background="https://images.unsplash.com/photo-1564585447193-cd9a0cf42a36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80"
                         caption="Design, Create and Share custom NFTs with the people you love"
-                    />
-
-                    <StudioCard
-                        title="Component Studio"
-                        link="/"
-                        background="https://images.unsplash.com/photo-1633469924738-52101af51d87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-                        caption="Pro-quality components to include in your Vue and React projects"
-                    />
-
-                    <StudioCard
-                        title="Icon/Logo Studio"
-                        link="/"
-                        background="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                        caption="Design custom icons and logos for your next project"
                     />
 
                     <StudioCard
@@ -215,7 +209,11 @@ useHead({
                     </h2>
 
                     <p class="mt-6 text-lg leading-8 text-gray-600">
-                        Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.
+                        What makes Ava's DAO one of the most admired brands in Crypto?
+                        It is not just our outstanding portfolio of products and services.
+                        It is also how we do our work and the integrity of our actions.
+                        Ingrained in our culture, integrity inspires our work and strengthens our reputation as an Organization that does extraordinary things and always does what is right.
+                        Integrity is the essential ingredient to our success.
                     </p>
                 </div>
 

@@ -20,7 +20,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <article class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+    <NuxtLink :to="link" class="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
         <img
             :src="background"
             alt=""
@@ -42,5 +42,5 @@ const props = defineProps({
                 {{caption}}
             </span>
         </h3>
-    </article>
+    </NuxtLink>
 </template>
