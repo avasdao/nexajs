@@ -70,10 +70,15 @@ export const subscribeAddress = _subscribeAddress
  *
  * Returns a new connection to a remote Rostrum server.
  */
-const getConnection = async function (_connid) {
+const getConnection = async function (_connid, _isTestnet = false) {
     /* Import WebSocket. */
     // NOTE: Ignored by esmify.
     const WebSocket = (await import('isomorphic-ws')).default
+
+    /* Validate Testnet flag. */
+    if (_isTestnet) {
+        return new WebSocket('wss://rostrum.test-nexa.sh:30004')
+    }
 
     /* Handle connection selection. */
     switch(_connid) {

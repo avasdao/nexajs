@@ -5,7 +5,7 @@ services:
     build: .
     image: nexajs
     container_name: nexajs
-    restart: always
+    restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'
     command: 'npm run start'

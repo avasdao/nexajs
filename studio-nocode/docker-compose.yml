@@ -5,7 +5,7 @@ services:
     build: .
     image: studio-nocode
     container_name: studio-nocode
-    restart: always
+    restart: unless-stopped
     ports:
       - '127.0.0.1:5600:3000'   # use with proxy server (eg. Nginx)
       # - '0.0.0.0:80:3000'     # use without proxy server

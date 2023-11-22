@@ -5,7 +5,7 @@ services:
     build: .
     image: docs
     container_name: docs
-    restart: always
+    restart: unless-stopped
     ports:
       - '127.0.0.1:4000:80'
     logging: # apply better controls to Docker overlay folder
