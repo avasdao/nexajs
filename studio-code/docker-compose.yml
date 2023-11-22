@@ -1,20 +1,44 @@
 version: '3.7'
 
 services:
-  app:
+  theia:
     build: .
     image: theia
     container_name: theia
     restart: unless-stopped
-    ports:
-      - '127.0.0.1:5200:3000'   # use with proxy server (eg. Nginx)
-      # - '0.0.0.0:80:3000'     # use without proxy server
+    network_mode: 'host'
+    # ports:
+    #   - '127.0.0.1:3000:3000'
+    #   - '0.0.0.0:80:3000'     # use without proxy server
     logging: # apply better controls to Docker overlay folder
       driver: 'json-file'
       options:
         max-file: '5'
         max-size: '10m'
-    environment:
-      - PROJECT_ID=${PROJECT_ID} # change to match your own environment
-      - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
-      - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
+    # env_file: .env
+    # environment:
+    #   - PROJECT_ID=${PROJECT_ID} # change to match your own environment
+    #   - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
+    #   - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
+
+  webserver:
+    depends_on:
+      - theia
+    image: nginx:1.15.12-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - '5200:3000'
+      # - '443:443'
+    volumes:
+      - theia:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+    networks:
+      - theia-network
+
+volumes:
+  theia:
+
+networks:
+  theia-network:
+    driver: bridge
