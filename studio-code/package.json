@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@theia/monorepo",
-  "version": "0.0.0",
+  "name": "nexa-studio-code",
+  "version": "23.11.22",
   "engines": {
     "yarn": ">=1.7.0 <2",
     "node": ">=16"
