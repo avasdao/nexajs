@@ -7,7 +7,7 @@
     "target": "{{app}}",
     "frontend": {
       "config": {
-        "applicationName": "Theia {{app}} Example",
+        "applicationName": "Nexa Studio IDE",
         "preferences": {
           "files.enableTrash": false
         }

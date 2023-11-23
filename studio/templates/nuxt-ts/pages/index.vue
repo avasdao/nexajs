@@ -195,7 +195,7 @@ useHead({
                         title="A/V Media Studio"
                         link="/"
                         background="https://images.unsplash.com/photo-1520444451380-ebe0f7b9cfd5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
-                        caption="Create sounds and video clips for yor projects"
+                        caption="Create sounds and video clips for your projects"
                     />
 
                 </div>
