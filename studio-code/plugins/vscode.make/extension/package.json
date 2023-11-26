@@ -1,0 +1,58 @@
+{
+  "name": "make",
+  "displayName": "Make Language Basics (built-in)",
+  "description": "Provides syntax highlighting and bracket matching in Make files.",
+  "version": "1.79.0",
+  "publisher": "vscode",
+  "license": "SEE LICENSE IN LICENSE-vscode.txt",
+  "engines": {
+    "vscode": "*"
+  },
+  "scripts": {},
+  "contributes": {
+    "languages": [
+      {
+        "id": "makefile",
+        "aliases": [
+          "Makefile",
+          "makefile"
+        ],
+        "extensions": [
+          ".mak",
+          ".mk"
+        ],
+        "filenames": [
+          "Makefile",
+          "makefile",
+          "GNUmakefile",
+          "OCamlMakefile"
+        ],
+        "firstLine": "^#!\\s*/usr/bin/make",
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "makefile",
+        "scopeName": "source.makefile",
+        "path": "./syntaxes/make.tmLanguage.json",
+        "tokenTypes": {
+          "string.interpolated": "other"
+        }
+      }
+    ],
+    "configurationDefaults": {
+      "[makefile]": {
+        "editor.insertSpaces": false
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-theia/vscode-builtin-extensions"
+  },
+  "keywords": [
+    "Built-in"
+  ],
+  "preview": false
+}

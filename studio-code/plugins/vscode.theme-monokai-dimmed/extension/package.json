@@ -1,0 +1,30 @@
+{
+  "name": "theme-monokai-dimmed",
+  "displayName": "Monokai Dimmed Theme (built-in)",
+  "description": "Monokai dimmed theme for Visual Studio Code",
+  "version": "1.79.0",
+  "publisher": "vscode",
+  "license": "SEE LICENSE IN LICENSE-vscode.txt",
+  "engines": {
+    "vscode": "*"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "id": "Monokai Dimmed",
+        "label": "%themeLabel%",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dimmed-monokai-color-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-theia/vscode-builtin-extensions"
+  },
+  "keywords": [
+    "Built-in"
+  ],
+  "preview": false,
+  "scripts": {}
+}

@@ -1,0 +1,72 @@
+{
+  "name": "gulp",
+  "publisher": "vscode",
+  "description": "Extension to add Gulp capabilities to VSCode.",
+  "displayName": "Gulp support for VSCode (built-in)",
+  "version": "1.79.0",
+  "icon": "images/gulp.png",
+  "license": "SEE LICENSE IN LICENSE-vscode.txt",
+  "engines": {
+    "vscode": "*"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/main",
+  "activationEvents": [
+    "onTaskType:gulp"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "contributes": {
+    "configuration": {
+      "id": "gulp",
+      "type": "object",
+      "title": "Gulp",
+      "properties": {
+        "gulp.autoDetect": {
+          "scope": "application",
+          "type": "string",
+          "enum": [
+            "off",
+            "on"
+          ],
+          "default": "off",
+          "description": "%config.gulp.autoDetect%"
+        }
+      }
+    },
+    "taskDefinitions": [
+      {
+        "type": "gulp",
+        "required": [
+          "task"
+        ],
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "%gulp.taskDefinition.type.description%"
+          },
+          "file": {
+            "type": "string",
+            "description": "%gulp.taskDefinition.file.description%"
+          }
+        },
+        "when": "shellExecutionSupported"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-theia/vscode-builtin-extensions"
+  },
+  "keywords": [
+    "Built-in"
+  ],
+  "preview": false,
+  "scripts": {}
+}

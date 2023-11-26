@@ -1,0 +1,81 @@
+{
+  "name": "php-language-features",
+  "displayName": "PHP Language Features (built-in)",
+  "description": "Provides rich language support for PHP files.",
+  "version": "1.79.0",
+  "publisher": "vscode",
+  "license": "SEE LICENSE IN LICENSE-vscode.txt",
+  "icon": "icons/logo.png",
+  "engines": {
+    "vscode": "0.10.0"
+  },
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "main": "./dist/phpMain",
+  "categories": [
+    "Programming Languages"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "%workspaceTrust%",
+      "restrictedConfigurations": [
+        "php.validate.executablePath"
+      ]
+    }
+  },
+  "contributes": {
+    "configuration": {
+      "title": "%configuration.title%",
+      "type": "object",
+      "order": 20,
+      "properties": {
+        "php.suggest.basic": {
+          "type": "boolean",
+          "default": true,
+          "description": "%configuration.suggest.basic%"
+        },
+        "php.validate.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "%configuration.validate.enable%"
+        },
+        "php.validate.executablePath": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "description": "%configuration.validate.executablePath%",
+          "scope": "machine-overridable"
+        },
+        "php.validate.run": {
+          "type": "string",
+          "enum": [
+            "onSave",
+            "onType"
+          ],
+          "default": "onSave",
+          "description": "%configuration.validate.run%"
+        }
+      }
+    },
+    "jsonValidation": [
+      {
+        "fileMatch": "composer.json",
+        "url": "https://getcomposer.org/schema.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-theia/vscode-builtin-extensions"
+  },
+  "keywords": [
+    "Built-in"
+  ],
+  "preview": false,
+  "scripts": {}
+}

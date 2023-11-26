@@ -1,0 +1,57 @@
+{
+  "name": "handlebars",
+  "displayName": "Handlebars Language Basics (built-in)",
+  "description": "Provides syntax highlighting and bracket matching in Handlebars files.",
+  "version": "1.79.0",
+  "publisher": "vscode",
+  "license": "SEE LICENSE IN LICENSE-vscode.txt",
+  "engines": {
+    "vscode": "0.10.0"
+  },
+  "scripts": {},
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "handlebars",
+        "extensions": [
+          ".handlebars",
+          ".hbs",
+          ".hjs"
+        ],
+        "aliases": [
+          "Handlebars",
+          "handlebars"
+        ],
+        "mimetypes": [
+          "text/x-handlebars-template"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "handlebars",
+        "scopeName": "text.html.handlebars",
+        "path": "./syntaxes/Handlebars.tmLanguage.json"
+      }
+    ],
+    "htmlLanguageParticipants": [
+      {
+        "languageId": "handlebars",
+        "autoInsert": true
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eclipse-theia/vscode-builtin-extensions"
+  },
+  "keywords": [
+    "Built-in"
+  ],
+  "preview": false
+}
