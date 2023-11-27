@@ -25,7 +25,9 @@ export default defineNuxtConfig({
             name: 'Nexa Builder Studio',
             short_name: 'Nexa Studio',
             description: `Start your next JavaScript project using Nexa Builder Studio boilerplate templates.`,
-            // lang: 'en',
+            lang: 'en',
+            theme_color: '#518c96',
+            background_color: '#518c96',
             // useWebmanifestExtension: false,
         },
         meta: {
