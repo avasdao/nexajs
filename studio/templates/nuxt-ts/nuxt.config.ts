@@ -19,6 +19,27 @@ export default defineNuxtConfig({
         },
     },
 
+    /* Progressive Web Application Settings */
+    pwa: {
+        manifest: {
+            name: 'Nexa Builder Studio',
+            short_name: 'Nexa Studio',
+            description: `Start your next JavaScript project using Nexa Builder Studio boilerplate templates.`,
+            // lang: 'en',
+            // useWebmanifestExtension: false,
+        },
+        meta: {
+            name: 'Nexa Builder Studio',
+            description: `Start your next JavaScript project using Nexa Builder Studio boilerplate templates.`,
+            author: `Nexa contributors`,
+        },
+        // icon: false, // disables the icon module
+        workbox: {
+            // workboxURL: 'TBD',
+            // enabled: true, // FOR DEV PURPOSES ONLY
+        },
+    },
+
     /* Application Modules */
     modules: [
         /* Tailwind CSS */
@@ -29,6 +50,9 @@ export default defineNuxtConfig({
 
         /* Internationalization for Nuxt */
         '@nuxtjs/i18n',
+
+        /* Progressive Web Application */
+        '@kevinmarrec/nuxt-pwa',
     ],
 
     /* Route Rules */

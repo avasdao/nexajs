@@ -20,6 +20,7 @@ export default defineNuxtConfig({
         baseURL: '/wallet',
     },
 
+    /* Progressive Web Application Settings */
     pwa: {
         manifest: {
             name: 'Studio Wallet for Creators',
@@ -32,7 +33,7 @@ export default defineNuxtConfig({
             name: 'Studio Wallet for Creators',
             description: `A highly-configurable, non-custodial Nexa wallet; designed from the ground-up to specifically address the MOST important needs of Builders and Creators.`,
             author: `Nexa contributors`,
-            nativeUI: true,
+            // nativeUI: true,
         },
         // icon: false, // disables the icon module
         workbox: {
@@ -53,7 +54,6 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
 
         /* Progressive Web Application */
-        // '@nuxtjs/pwa',
         '@kevinmarrec/nuxt-pwa',
     ],
 
