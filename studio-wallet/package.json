@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-wallet",
-  "version": "23.11.6",
+  "version": "23.11.26",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -22,8 +22,8 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
+    "@kevinmarrec/nuxt-pwa": "0.17.0",
     "@nuxtjs/i18n": "8.0.0-rc.3",
-    "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/tailwindcss": "6.4.1",
     "@types/node": "18.14.2",
     "@types/pouchdb": "6.4.0",

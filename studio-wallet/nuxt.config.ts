@@ -8,7 +8,7 @@ export default defineNuxtConfig({
             viewport: 'width=device-width, initial-scale=1',
             title: 'Studio Wallet for Creators',
             meta: [
-                { name: 'description', content: 'Create non-fungible and semi-fungible tokens.' },
+                { name: 'description', content: `A highly-configurable, non-custodial Nexa wallet; designed from the ground-up to specifically address the MOST important needs of Builders and Creators.` },
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -18,6 +18,27 @@ export default defineNuxtConfig({
             ],
         },
         baseURL: '/wallet',
+    },
+
+    pwa: {
+        manifest: {
+            name: 'Studio Wallet for Creators',
+            short_name: 'Studio Wallet',
+            description: `A highly-configurable, non-custodial Nexa wallet; designed from the ground-up to specifically address the MOST important needs of Builders and Creators.`,
+            // lang: 'en',
+            // useWebmanifestExtension: false,
+        },
+        meta: {
+            name: 'Studio Wallet for Creators',
+            description: `A highly-configurable, non-custodial Nexa wallet; designed from the ground-up to specifically address the MOST important needs of Builders and Creators.`,
+            author: `Nexa contributors`,
+            nativeUI: true,
+        },
+        // icon: false, // disables the icon module
+        workbox: {
+            // workboxURL: 'TBD',
+            // enabled: true, // FOR DEV PURPOSES ONLY
+        },
     },
 
     /* Application Modules */
@@ -30,6 +51,10 @@ export default defineNuxtConfig({
 
         /* Internationalization for Nuxt */
         '@nuxtjs/i18n',
+
+        /* Progressive Web Application */
+        // '@nuxtjs/pwa',
+        '@kevinmarrec/nuxt-pwa',
     ],
 
     /* Route Rules */
