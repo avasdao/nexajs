@@ -54,7 +54,7 @@ export default defineNuxtConfig({
         '@nuxtjs/i18n',
 
         /* Progressive Web Application */
-        '@kevinmarrec/nuxt-pwa',
+        // '@kevinmarrec/nuxt-pwa',
     ],
 
     /* Route Rules */
