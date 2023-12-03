@@ -2,6 +2,9 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:rostrum')
 
+/* Setup environment. */
+import 'dotenv/config'
+
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -39,9 +42,14 @@ const DEFAULT_CONN_ID = 0
 /* Initialize constants. */
 const RECONNECTION_DELAY = 3000 // default is 3 seconds
 const PING_INTERVAL = 60000 // every 1 minute
+const ROSTRUM_DEFAULT_MAINNET = 'wss://rostrum.nexa.sh:20004'
+const ROSTRUM_OFFICIAL_MAINNET = 'wss://electrum.nexa.org:20004'
+const ROSTRUM_FALLBACK_MAINNET = 'wss://rostrum.apecs.dev:20004'
+const ROSTRUM_DEFAULT_TESTNET = 'wss://rostrum.test-nexa.sh:30004'
 
-/* Initialize ping handler. */
+/* Initialize globals. */
 let pingHandler
+let rostrumProvider
 
 /* Export Rostrum methods. */
 export const getAddressBalance = _getAddressBalance
@@ -70,27 +78,34 @@ export const subscribeAddress = _subscribeAddress
  *
  * Returns a new connection to a remote Rostrum server.
  */
-const getConnection = async function (_connid, _isTestnet = false) {
+const getConnection = async function (_connid, _isTestnet = true) {
     /* Import WebSocket. */
     // NOTE: Ignored by esmify.
     const WebSocket = (await import('isomorphic-ws')).default
 
-    /* Validate Testnet flag. */
-    if (_isTestnet) {
-        return new WebSocket('wss://rostrum.test-nexa.sh:30004')
+    /* Handle environment variables. */
+    if (process.env.ROSTRUM) {
+        /* Return (user-defined) Rostrum provider. */
+        return new WebSocket(process.env.ROSTRUM)
+    } else if (process.env.TESTNET || _isTestnet) {
+        /* Return default (Testnet) provider. */
+        return new WebSocket(ROSTRUM_DEFAULT_TESTNET)
     }
+
+// return new WebSocket('ws://0.0.0.0:30003')
+// return new WebSocket('ws://0.0.0.0:30404')
 
     /* Handle connection selection. */
     switch(_connid) {
     case 0:
-        return new WebSocket('wss://rostrum.nexa.sh:20004')
+        return new WebSocket(ROSTRUM_DEFAULT_MAINNET)
     case 1:
-        return new WebSocket('wss://electrum.nexa.org:20004')
+        return new WebSocket(ROSTRUM_OFFICIAL_MAINNET)
     case 2:
-        return new WebSocket('wss://rostrum.apecs.dev:20004')
+        return new WebSocket(ROSTRUM_FALLBACK_MAINNET)
     // TODO Add 2 more production-ready Rostrum servers (for a min of 5)
     default:
-        return new WebSocket('wss://rostrum.nexa.sh:20004')
+        return new WebSocket(ROSTRUM_DEFAULT_MAINNET)
     }
 }
 
