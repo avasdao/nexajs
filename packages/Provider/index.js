@@ -2,6 +2,9 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:provider')
 
+/* Setup environment. */
+import 'dotenv/config'
+
 /* Import modules. */
 import { EventEmitter } from 'events'
 

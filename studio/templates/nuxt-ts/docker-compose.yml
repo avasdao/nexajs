@@ -57,7 +57,7 @@ services:
   #     - ./nginx-conf:/etc/nginx/conf.d
   #     - certbot-etc:/etc/letsencrypt
   #   networks:
-  #     - nexapps-network
+  #     - nexapp-network
 
   # certbot:
   #   depends_on:
@@ -74,5 +74,5 @@ volumes:
   nexapp:
 
 networks:
-  nexapps-network:
+  nexapp-network:
     driver: bridge
