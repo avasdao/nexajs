@@ -66,8 +66,9 @@ const navigation = [
             { title: 'Builder Experience (BX)', href: '/bx' },
             { title: 'Design principles', href: '/principles' },
             { title: 'Modular framework', href: '/modules' },
-            { title: 'Nexa Identity Protocol', href: '/nexid' },
+            { title: 'Environment variables', href: '/env' },
             { title: 'OP codes', href: '/opcodes' },
+            { title: 'Nexa Identity Protocol', href: '/nexid' },
         ],
     },
     {
