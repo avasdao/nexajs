@@ -20,7 +20,7 @@ import {
 export default (_outpoint, _dataScript) => {
     /* Initialize locals. */
     let bitmask
-    let counter
+    let counters
     let dataScript
     let groupData
     let groupidBin
@@ -29,28 +29,73 @@ export default (_outpoint, _dataScript) => {
     let outpoint
 
     /* Initialize counter. */
-    counter = 0
+    counters = new Array(8)
+    counters[0] = 0
+    counters[1] = 0
+    counters[2] = 0
+    counters[3] = 0
+    counters[4] = 0
+    counters[5] = 0
+    counters[6] = 0
 
     /* Set outpoint .*/
     outpoint = hexToBin(_outpoint)
 
+    /* Format data script. */
+    dataScript = new Uint8Array([
+        bigIntToBitcoinVarInt(BigInt(_dataScript.length)),
+        ..._dataScript,
+    ])
+
     do {
-        if (counter % 1000 === 0) {
+        // NOTE: Show progress...
+        if (counters[0]++ % 1000 === 0) {
             console.info('  hashing...') // show progress indicator
         }
 
-        nonceHex = bigIntToBinUint64LE(BigInt(counter++))
+        nonceHex = bigIntToBinUint64LE(BigInt(counters[0]))
         // console.log('NONCE-1', binToHex(nonceHex));
 
         nonceHex = binToHex(nonceHex).slice(0, 14) + 'fc'
         // console.log('NONCE-2', nonceHex);
 
-        nonceBin = hexToBin(nonceHex)
+        /* Handle counters. */
+        if (counters[0] && counters[0] % 255 === 0) {
+            counters[1]++
 
-        dataScript = new Uint8Array([
-            bigIntToBitcoinVarInt(BigInt(_dataScript.length)),
-            ..._dataScript,
+            if (counters[1] && counters[1] % 255 === 0) {
+                counters[2]++
+
+                if (counters[2] && counters[2] % 255 === 0) {
+                    counters[3]++
+
+                    if (counters[3] && counters[3] % 255 === 0) {
+                        counters[4]++
+
+                        if (counters[4] && counters[4] % 255 === 0) {
+                            counters[5]++
+
+                            if (counters[5] && counters[5] % 255 === 0) {
+                                counters[6]++
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // nonceBin = hexToBin(nonceHex)
+        nonceBin = new Uint8Array([
+            counters[0],
+            counters[1],
+            counters[2],
+            counters[3],
+            counters[4],
+            counters[5],
+            counters[6],
+            0xfc, // 252 (Authorization flag)
         ])
+        // console.log('NONCE-3', nonceBin);
 
         groupData = new Uint8Array([
             ...outpoint.reverse(), // NOTE: Where is this located in the spec??
@@ -59,7 +104,7 @@ export default (_outpoint, _dataScript) => {
         ])
 
         groupidBin = sha256(sha256(groupData))
-    } while (binToHex(groupidBin).slice(-4) !== '0000')
+} while (groupidBin[30] !== 0 || groupidBin[31] !== 0)
 
     return {
         groupidBin,

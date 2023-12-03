@@ -7,18 +7,13 @@ import {
 } from '@nexajs/script'
 
 import {
-    binToHex,
     hexToBin,
-
     numberToBinUint32LE,
 } from '@nexajs/utils'
 
-import {
-    // numberToBinUintLE,
-} from '@bitauth/libauth'
-
 // NOTE: Type identifier for token descriptions.
 const TYPEID_TOKEN = 88888888
+// const TYPEID_NFT = 88888889
 
 /**
  * (Build) Group Data Script
@@ -29,7 +24,7 @@ export default (_params) => {
     let dataScript
 
     dataScript = new Uint8Array([
-        ...encodeDataPush(numberToBinUint32LE(TYPEID_TOKEN)), // NOTE: Find out why this is reversed to `0x38564c05`??
+        ...encodeDataPush(numberToBinUint32LE(TYPEID_TOKEN)),
         ...encodeNullData(_params.ticker).slice(1),
         ...encodeNullData(_params.name).slice(1),
     ])
