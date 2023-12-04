@@ -2,6 +2,9 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:wallet')
 
+/* Setup environment. */
+import 'dotenv/config'
+
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -148,7 +151,6 @@ export class Wallet extends EventEmitter {
         this._mnemonic = null
         this._network = null
         this._provider = null
-        this._isTestnet = null
         this._hrp = null // prefix eg. bitcoincash: or nexa:
 
         /* Initialize derivation path defaults. */
@@ -239,11 +241,6 @@ export class Wallet extends EventEmitter {
         /* Validate network. */
         if (_primary?.network) {
             this._network = _primary.network
-        }
-
-        /* Validate testnet (flag). */
-        if (_primary?.isTestnet) {
-            this._isTestnet = _primary.isTestnet
         }
 
         // TODO Handle ALL parameters.

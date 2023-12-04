@@ -11,14 +11,26 @@ import { encodeDataPush } from '@bitauth/libauth'
 export default async (_wif, _scriptPubKey = null) => {
     /* Initialize locals. */
     let coins
+    let prefix
     let unspent
     let wif
 
+    /* Handle prefix. */
+    if (process.env.TESTNET) {
+        prefix = 'nexatest'
+    } else if(process.env.REGTEST) {
+        prefix = 'nexareg'
+    } else {
+        prefix = 'nexa'
+    }
+    console.log('PREFIX', prefix)
+
+    /* Parse WIF. */
     let {
         privateKey,
         publicKey,
         address,
-    } = await parseWif(_wif)
+    } = await parseWif(_wif, prefix)
 
     /* Validate WIF details. */
     if (privateKey && publicKey && address) {
@@ -29,15 +41,16 @@ export default async (_wif, _scriptPubKey = null) => {
     /* Handle "script" addresses. */
     if (_scriptPubKey) {
         address = encodeAddress(
-            'nexa',
+            prefix,
             'TEMPLATE',
             _scriptPubKey,
         )
     }
 
     /* Fetch all unspent transaction outputs. */
+    console.log('ADDRESS', address)
     unspent = await listUnspent(address)
-    // console.log('UNSPENT', unspent)
+    console.log('UNSPENT', unspent)
 
     /* Validate unspent. */
     if (unspent.length === 0) {

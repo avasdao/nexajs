@@ -12,7 +12,7 @@
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "23.12.3",
+    "@nexajs/address": "23.12.4",
     "@nexajs/app": "23.9.4",
     "@nexajs/crypto": "23.11.15",
     "@nexajs/hdnode": "23.12.3",
