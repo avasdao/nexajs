@@ -513,6 +513,23 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.3.tgz#ac4353995360a1b12f2cea901d0f09fc5355e7f2"
+  integrity sha512-C+UXMU+PNkBhG2oB0hCGgb8btcJIAhw9mlLOEHpVEqohmi5YNp17TRWKA6YMGmcgEpEl9mhzPZzVr9D8SSHYVQ==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/crypto" "23.11.15"
+    "@nexajs/rostrum" "23.12.1"
+    "@nexajs/script" "23.12.3"
+    "@nexajs/utils" "23.7.22"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    dotenv "16.3.1"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/address@23.9.3":
   version "23.9.3"
   resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.9.3.tgz#d2937c3d706c8042dcf7738ecfd3165bb3938359"

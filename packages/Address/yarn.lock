@@ -52,14 +52,15 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@23.10.8":
-  version "23.10.8"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.10.8.tgz#34dd9b4814664b5b3dd237634dde16f172ade572"
-  integrity sha512-+Ex62D89f50TbN7XSjcwPZlygWmsnpYlPFKu+QtD8WUyIodygqps2pGQ2ds0snaEjE85J6+WFSOjOmfHcLEAQw==
+"@nexajs/script@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.12.3.tgz#b69bf9e1871d9a8f2f06062a4ee6254b807c64be"
+  integrity sha512-u7gcbqJOFEmkG7iGKOgp0i0pV2sN/LHUOWFFKXMiiP4hEyJn1Wp7sgbdpE/KkhiuNG63Fm+XrfQhjh8K8F/mDg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
+    dotenv "16.3.1"
 
 "@nexajs/utils@23.7.22":
   version "23.7.22"
