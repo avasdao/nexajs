@@ -78,7 +78,7 @@ export const subscribeAddress = _subscribeAddress
  *
  * Returns a new connection to a remote Rostrum server.
  */
-const getConnection = async function (_connid, _isTestnet = true) {
+const getConnection = async function (_connid) {
     /* Import WebSocket. */
     // NOTE: Ignored by esmify.
     const WebSocket = (await import('isomorphic-ws')).default
@@ -87,7 +87,7 @@ const getConnection = async function (_connid, _isTestnet = true) {
     if (process.env.ROSTRUM) {
         /* Return (user-defined) Rostrum provider. */
         return new WebSocket(process.env.ROSTRUM)
-    } else if (process.env.TESTNET || _isTestnet) {
+    } else if (process.env.TESTNET) {
         /* Return default (Testnet) provider. */
         return new WebSocket(ROSTRUM_DEFAULT_TESTNET)
     }
