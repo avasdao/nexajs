@@ -2,6 +2,9 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:script')
 
+/* Setup environment. */
+import 'dotenv/config'
+
 /* Import (local) modules. */
 import _decodeNullData from './src/decodeNullData.js'
 import _encodeDataPush from './src/encodeDataPush.js'
