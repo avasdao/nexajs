@@ -231,41 +231,43 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.11.2":
-  version "23.11.2"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.11.2.tgz#6ea074a1a88facb65c8d38ee5bad9e42df43be31"
-  integrity sha512-2HS/S1AGhZDNVfIeo2rO1ZwZiZxgmIRHwsuBsaofYtPYwMt1LeFgmEkgI9dLpjCp0jAsJ7j3vx8UTALjof6qAA==
+"@nexajs/address@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.3.tgz#ac4353995360a1b12f2cea901d0f09fc5355e7f2"
+  integrity sha512-C+UXMU+PNkBhG2oB0hCGgb8btcJIAhw9mlLOEHpVEqohmi5YNp17TRWKA6YMGmcgEpEl9mhzPZzVr9D8SSHYVQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/crypto" "23.5.22"
-    "@nexajs/rostrum" "23.11.2"
-    "@nexajs/script" "23.10.8"
+    "@nexajs/crypto" "23.11.15"
+    "@nexajs/rostrum" "23.12.1"
+    "@nexajs/script" "23.12.3"
     "@nexajs/utils" "23.7.22"
     big-integer "1.6.51"
     debug "4.3.4"
+    dotenv "16.3.1"
     graphql "16.6.0"
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/crypto@23.5.22":
-  version "23.5.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.5.22.tgz#1ca8e76cc18e159d18ef59f08368135dfcafee88"
-  integrity sha512-2rKBRYsWKbtD7trTa25sOAN0TuAuz7RGU7eLMDLBtgLoIbIrQ6Q8amA4BlPyLNpjc4Og/KWbncSqRrXIvpm5Lw==
+"@nexajs/crypto@23.11.15":
+  version "23.11.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.11.15.tgz#df981ea9a6445de2e518142856a312beebdba0fa"
+  integrity sha512-8h+1UUX+4QetEbmD1D8GEaaHyOKdW+xtJxvVwxpaZSPtws3Of7+FtO0XTrGWKMsEP+BGK1HfjzsTZD19NEJcMw==
   dependencies:
     "@ethersproject/random" "5.7.0"
-    "@nexajs/utils" "23.5.15"
-    crypto-js "4.1.1"
+    "@nexajs/utils" "23.7.22"
+    crypto-js "4.2.0"
     debug "4.3.4"
     events "3.3.0"
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/rostrum@23.11.2":
-  version "23.11.2"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.11.2.tgz#1db86d70c4dde9a880099677c0d7dfbe4251dede"
-  integrity sha512-rwMlzSnbuytOI3rmDvxVxtVqBGwHoL3BdXMNQxoDtY1QMnQElCyhCFfPdL+u1QpmjWyNoUt9pK9icJ15OldL0A==
+"@nexajs/rostrum@23.12.1":
+  version "23.12.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.1.tgz#8760f0ede7e3e05b57cee8f7fecceea5aea2f143"
+  integrity sha512-AXJP91JK+0MEFPGEDOLyY8lKsicmObrqupcIcfm1bzAExDEu6yRVBhRGlGOynnyNRROZPpKXICsUbZCWnawZUA==
   dependencies:
     debug "4.3.4"
+    dotenv "16.3.1"
     events "3.3.0"
     isomorphic-ws "5.0.0"
     uuid "9.0.0"
@@ -280,12 +282,15 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/utils@23.5.15":
-  version "23.5.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.5.15.tgz#d4773ecf37b6bc10b35f4c4aa6be12ee721c7763"
-  integrity sha512-rDw49tjDJ6mqYQEEHeLtfMPZq8QFOzdFarYXz1Pa94k37kUKdxxSoZWdDnGKfFD7ec4Zm7BvcTp4AxAuvlMUrw==
+"@nexajs/script@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.12.3.tgz#b69bf9e1871d9a8f2f06062a4ee6254b807c64be"
+  integrity sha512-u7gcbqJOFEmkG7iGKOgp0i0pV2sN/LHUOWFFKXMiiP4hEyJn1Wp7sgbdpE/KkhiuNG63Fm+XrfQhjh8K8F/mDg==
   dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/utils" "23.7.22"
     debug "4.3.4"
+    dotenv "16.3.1"
 
 "@nexajs/utils@23.7.22":
   version "23.7.22"
@@ -314,10 +319,10 @@ brorand@^1.1.0:
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==
 
-crypto-js@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
-  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
+crypto-js@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 crypto-js@^3.1.6:
   version "3.3.0"
@@ -330,6 +335,11 @@ debug@4.3.4:
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
+
+dotenv@16.3.1:
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
 
 elliptic@6.5.4:
   version "6.5.4"

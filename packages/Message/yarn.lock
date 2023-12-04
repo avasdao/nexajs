@@ -231,14 +231,19 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@23.9.3":
-  version "23.9.3"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.9.3.tgz#d2937c3d706c8042dcf7738ecfd3165bb3938359"
-  integrity sha512-5bistKEhhN1YqU20YgR8SYGF1HJPAYrEC2OT4+eWRcJ+PCOqZgiArLWrpDxaMgZc3PY3A1t53hcrM9M5PXqrcg==
+"@nexajs/address@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.3.tgz#ac4353995360a1b12f2cea901d0f09fc5355e7f2"
+  integrity sha512-C+UXMU+PNkBhG2oB0hCGgb8btcJIAhw9mlLOEHpVEqohmi5YNp17TRWKA6YMGmcgEpEl9mhzPZzVr9D8SSHYVQ==
   dependencies:
-    "@nexajs/rostrum" "23.8.30"
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/crypto" "23.11.15"
+    "@nexajs/rostrum" "23.12.1"
+    "@nexajs/script" "23.12.3"
+    "@nexajs/utils" "23.7.22"
     big-integer "1.6.51"
     debug "4.3.4"
+    dotenv "16.3.1"
     graphql "16.6.0"
     graphql-ws "5.12.0"
     ws "8.13.0"
@@ -256,37 +261,49 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@^23.9.3":
-  version "23.9.3"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.9.3.tgz#125967148155a738bd4b96639fb664911c810ece"
-  integrity sha512-MRQ7TUFbU6P4/AAXlrUyI6FltzMcU7aTsQzdw/eyl1P8QDmQaDM0461yUgpjOGkBM8o9kzi2RtKg5+Kjlg1NRw==
+"@nexajs/hdnode@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-23.12.3.tgz#634934d4c6d392fed0ccd90552c54713f6a3a700"
+  integrity sha512-gOzyM9Xo9LWt5JE1bEof5euYshvVVGSLOL8Xobc9JM0dg85azFInazLD0Fv/T518jTn/BrXEuYsjbf0tjBFY9A==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "23.9.3"
-    "@nexajs/script" "23.9.2"
+    "@nexajs/address" "23.12.3"
+    "@nexajs/script" "23.10.8"
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
+    dotenv "16.3.1"
 
-"@nexajs/rostrum@23.8.30":
-  version "23.8.30"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.8.30.tgz#21fb8436b74ff8cb90cfcb8650f94a177bc11662"
-  integrity sha512-WOOWAZ36BxJlxjtJgYRqDztNKCjjURFCTlP72TXbV1fW+AYxb4qy/nheS2JX0OgncvyMYsosyWMMiwKDjZGLLw==
+"@nexajs/rostrum@23.12.1":
+  version "23.12.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.1.tgz#8760f0ede7e3e05b57cee8f7fecceea5aea2f143"
+  integrity sha512-AXJP91JK+0MEFPGEDOLyY8lKsicmObrqupcIcfm1bzAExDEu6yRVBhRGlGOynnyNRROZPpKXICsUbZCWnawZUA==
   dependencies:
     debug "4.3.4"
+    dotenv "16.3.1"
     events "3.3.0"
     isomorphic-ws "5.0.0"
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@23.9.2":
-  version "23.9.2"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.9.2.tgz#c28ae36a0265f4237d4aa7674350f9c3d28ae0c0"
-  integrity sha512-B/4xoiQi5Hl40ymWChNXWj+rMupQWYz6CV6YVrQydUg5PJJpSe7S2GJC5xZ5qQbYZ7/Octs08d/ngpQ+BfbPbA==
+"@nexajs/script@23.10.8":
+  version "23.10.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.10.8.tgz#34dd9b4814664b5b3dd237634dde16f172ade572"
+  integrity sha512-+Ex62D89f50TbN7XSjcwPZlygWmsnpYlPFKu+QtD8WUyIodygqps2pGQ2ds0snaEjE85J6+WFSOjOmfHcLEAQw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
+
+"@nexajs/script@23.12.3":
+  version "23.12.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.12.3.tgz#b69bf9e1871d9a8f2f06062a4ee6254b807c64be"
+  integrity sha512-u7gcbqJOFEmkG7iGKOgp0i0pV2sN/LHUOWFFKXMiiP4hEyJn1Wp7sgbdpE/KkhiuNG63Fm+XrfQhjh8K8F/mDg==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/utils" "23.7.22"
+    debug "4.3.4"
+    dotenv "16.3.1"
 
 "@nexajs/utils@23.7.22", "@nexajs/utils@^23.7.22":
   version "23.7.22"
@@ -331,6 +348,11 @@ debug@4.3.4:
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
+
+dotenv@16.3.1:
+  version "16.3.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.3.1.tgz#369034de7d7e5b120972693352a3bf112172cc3e"
+  integrity sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==
 
 elliptic@6.5.4:
   version "6.5.4"
