@@ -8,6 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@nexajs/provider": "23.12.1",
     "@nexajs/transaction": "23.11.14",
     "debug": "4.3.4",
     "events": "3.3.0",
