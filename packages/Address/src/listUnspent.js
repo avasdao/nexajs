@@ -22,10 +22,10 @@ export default async (_address) => {
     let utxos
 
     /* Handle address formats. */
-    if (_address.includes('bitcoincash:')) {
-        utxos = await listBCHUnspent(_address)
-    } else if (_address.includes('nexa:')) {
+    if (_address.includes('nexa')) {
         utxos = await listNexaUnspent(_address)
+    } else if (_address.includes('bitcoincash')) { // TODO: Confirm "test" and "reg" formats.
+        utxos = await listBCHUnspent(_address)
     } else {
         throw new Error('Oops! That address format is NOT currently supported by NexaJS.')
     }
