@@ -23,7 +23,7 @@ export default async (_wif, _scriptPubKey = null) => {
     } else {
         prefix = 'nexa'
     }
-    console.log('PREFIX', prefix)
+    // console.log('PREFIX', prefix)
 
     /* Parse WIF. */
     let {
@@ -48,9 +48,7 @@ export default async (_wif, _scriptPubKey = null) => {
     }
 
     /* Fetch all unspent transaction outputs. */
-    console.log('ADDRESS', address)
     unspent = await listUnspent(address)
-    console.log('UNSPENT', unspent)
 
     /* Validate unspent. */
     if (unspent.length === 0) {
