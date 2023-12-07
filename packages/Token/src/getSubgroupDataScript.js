@@ -12,7 +12,7 @@ import {
 } from '@nexajs/utils'
 
 // NOTE: Type identifier for token descriptions.
-const TYPEID_TOKEN = 88888888
+const TYPEID_NFT = 88888889
 
 /**
  * (Build) Group Data Script
