@@ -36,16 +36,38 @@ export function encodeAddress (prefix, type, hash) {
     validate(typeof type === 'string', 'Invalid type: ' + type + '.')
     validate(hash instanceof Uint8Array, 'Invalid hash: ' + hash + '.')
 
-    const prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1))
+    /* Initialize locals. */
+    let checksumData
+    let payload
+    let payloadData
+    let prefixData
+    let versionByte
 
-    const versionByte = getTypeBits(type) + getHashSizeBits(hash)
+    /* Build prefix data. */
+    prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1))
 
-    const payloadData = toUint5Array(concat(new Uint8Array([versionByte, hash.length]), hash))
+    /* Calculate version byte. */
+    versionByte = getTypeBits(type) + getHashSizeBits(hash)
 
-    const checksumData = concat(concat(prefixData, payloadData), new Uint8Array(8))
+    /* Handle payload data. */
+    switch(type) {
+    case 'GROUP':
+        payloadData = toUint5Array(concat(new Uint8Array([versionByte]), hash))
+        break
+    case 'TEMPLATE':
+        payloadData = toUint5Array(concat(new Uint8Array([versionByte, hash.length]), hash))
+        break
+    default:
+        payloadData = toUint5Array(concat(new Uint8Array([versionByte]), hash))
+    }
 
-    const payload = concat(payloadData, checksumToUint5Array(polymod(checksumData)))
+    /* Calculate checkum data. */
+    checksumData = concat(concat(prefixData, payloadData), new Uint8Array(8))
 
+    /* Build payload. */
+    payload = concat(payloadData, checksumToUint5Array(polymod(checksumData)))
+
+    /* Return encoded address. */
     return prefix + ':' + base32.encode(payload)
 }
 
@@ -60,24 +82,50 @@ export function encodeAddress (prefix, type, hash) {
 export function decodeAddress (address) {
     validate(typeof address === 'string' && hasSingleCase(address), 'Invalid address: ' + address + '.')
 
-    const pieces = address.toLowerCase().split(':')
+    /* Initialize locals. */
+    let hash
+    let payload
+    let payloadData
+    let pieces
+    let prefix
+    let type
+    let versionByte
+
+    /* Split (address) pieces. */
+    pieces = address.toLowerCase().split(':')
 
     validate(pieces.length === 2, 'Missing prefix: ' + address + '.')
 
-    const prefix = pieces[0]
+    /* Set prefix. */
+    prefix = pieces[0]
 
-    const payload = base32.decode(pieces[1])
+    /* Decode payload. */
+    payload = base32.decode(pieces[1])
 
     validate(validChecksum(prefix, payload), 'Invalid checksum: ' + address + '.')
 
-    const payloadData = fromUint5Array(payload.subarray(0, -8))
+    /* Calculate payload data. */
+    payloadData = fromUint5Array(payload.subarray(0, -8))
 
-    const versionByte = payloadData[0]
+    /* Set version byte. */
+    versionByte = payloadData[0]
 
-    const hash = payloadData.subarray(2)
+    /* Calculate type. */
+    type = getType(versionByte)
 
-    const type = getType(versionByte)
+    /* Handle hash. */
+    switch(type) {
+    case 'GROUP':
+        hash = payloadData.subarray(1)
+        break
+    case 'TEMPLATE':
+        hash = payloadData.subarray(2)
+        break
+    default:
+        hash = payloadData.subarray(1)
+    }
 
+    /* Return address details. */
     return {
         prefix,
         type,
