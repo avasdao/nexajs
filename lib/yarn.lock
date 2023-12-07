@@ -518,10 +518,10 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@23.12.4":
-  version "23.12.4"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.4.tgz#95e942865d6785d48a46e14613dc3f100fecc849"
-  integrity sha512-TcF+tIJth++40PEZGEjak643g3k18KuCpNEnG+iMHJIPpZMLUMh4x2tgoyhpcQpW1d3fcgpckm6YgeI/fVV/2g==
+"@nexajs/address@23.12.5":
+  version "23.12.5"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.5.tgz#2fe5b0e2ebe77513a2d170edd19997ae13745e59"
+  integrity sha512-Rt1jvPoXBpRreAspnWzp5jTNKL3NyHv4bgyZxlSy5cSQksDLOIZZ7Y6VCt++s3F3pKyK+7ihN94sXhxHeqYzLg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/crypto" "23.11.15"
