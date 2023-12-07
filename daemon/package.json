@@ -7,7 +7,7 @@
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
     "moment": "2.29.4",
-    "nexajs": "23.11.11",
+    "nexajs": "23.12.5",
     "numeral": "2.0.6",
     "uuid": "9.0.0"
   }
