@@ -32,7 +32,7 @@ export default (_params) => {
         dataScript = new Uint8Array([
             ...dataScript,
             ...encodeNullData(_params.uri).slice(1),
-            ...encodeDataPush(hexToBin(_params.hash)),
+            ...encodeDataPush(hexToBin(_params.hash).reverse()),
         ])
     }
 

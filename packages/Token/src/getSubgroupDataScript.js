@@ -23,24 +23,16 @@ export default (_params) => {
     let dataScript
 
     dataScript = new Uint8Array([
-        ...encodeDataPush(numberToBinUint32LE(TYPEID_TOKEN)),
-        ...encodeNullData(_params.ticker).slice(1),
+        ...encodeDataPush(numberToBinUint32LE(TYPEID_NFT)),
         ...encodeNullData(_params.name).slice(1),
     ])
 
-    if (_params.uri && _params.hash) {
+    if (_params.uri && _params.infoHash && _params.fileHash) {
         dataScript = new Uint8Array([
             ...dataScript,
+            ...encodeDataPush(hexToBin(_params.infoHash).reverse()),
             ...encodeNullData(_params.uri).slice(1),
-            ...encodeDataPush(hexToBin(_params.hash)),
-        ])
-    }
-
-    if (_params.decimals) {
-        dataScript = new Uint8Array([
-            ...dataScript,
-            OP['_' + _params.decimals],
-            // FIXME Add support for 17+
+            ...encodeDataPush(hexToBin(_params.fileHash).reverse()),
         ])
     }
 

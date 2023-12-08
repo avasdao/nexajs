@@ -41,6 +41,10 @@ export default (_outpoint, _dataScript) => {
     /* Set outpoint .*/
     outpoint = hexToBin(_outpoint)
 
+    /* Reverse outpoint. */
+    // NOTE: Where is this located in the spec??
+    outpoint = outpoint.reverse()
+
     /* Format data script. */
     dataScript = new Uint8Array([
         bigIntToBitcoinVarInt(BigInt(_dataScript.length)),
@@ -49,15 +53,12 @@ export default (_outpoint, _dataScript) => {
 
     do {
         // NOTE: Show progress...
-        if (counters[0]++ % 1000 === 0) {
+        if (counters[0]++ % 10000 === 0) {
             console.info('  hashing...') // show progress indicator
         }
 
-        nonceHex = bigIntToBinUint64LE(BigInt(counters[0]))
+        // nonceHex = bigIntToBinUint64LE(BigInt(counters[0]))
         // console.log('NONCE-1', binToHex(nonceHex));
-
-        nonceHex = binToHex(nonceHex).slice(0, 14) + 'fc'
-        // console.log('NONCE-2', nonceHex);
 
         /* Handle counters. */
         if (counters[0] && counters[0] % 255 === 0) {
@@ -95,10 +96,9 @@ export default (_outpoint, _dataScript) => {
             counters[6],
             0xfc, // 252 (Authorization flag)
         ])
-        // console.log('NONCE-3', nonceBin);
 
         groupData = new Uint8Array([
-            ...outpoint.reverse(), // NOTE: Where is this located in the spec??
+            ...outpoint,
             ...dataScript,
             ...nonceBin,
         ])
