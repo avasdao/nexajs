@@ -14,7 +14,7 @@ const ACTIVE_ACCOUNT_IDX = 2
 // 0 - nexa:nqtsq5g5ezqpr27c78uyf08260xq4xh35faa4yk64aycgega (master)
 // 1 - nexa:nqtsq5g55ykpcwwvr0x54358lx7skesefgj9anf07drdv52v (minting)
 // 2 - nexa:nqtsq5g56gvyyaf57seml8zdxu8ur7x5wsevh49mj5f7q6s0 (melting)
-// 3 - nexa:nqtsq5g5knff2pzlmfge7c2443j050sfx6kw87tn4l5vgukw (signing)
+// 3 - nexa:nqtsq5g5knff2pzlmfge7c2443j050sfx6kw87tn4l5vgukw (persona)
 
 ;(async () => {
     /* Initialize locals. */
