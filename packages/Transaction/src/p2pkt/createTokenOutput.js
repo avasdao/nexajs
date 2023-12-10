@@ -60,8 +60,6 @@ export default async (_address, _satoshis, _tokenidHex, _tokens) => {
     tokenOutput = {
         lockingBytecode,
         amount: bigIntToBinUint64LE(_satoshis),
-        // tokenidBin: hexToBin(_tokenidHex),
-        // tokens: bigIntToBinUint64LE(_tokens),
     }
 
     // TODO: We want to do a check here to ensure the satoshi amount is above the dust limit.

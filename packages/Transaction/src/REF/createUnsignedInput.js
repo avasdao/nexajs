@@ -21,14 +21,6 @@ export default (unspentOutput) => {
     /* Set unlocking bytecode. */
     unlockingBytecode = unspentOutput.unlocking
 
-    /* Validate unlocking bytecode. */
-    // if (typeof unspentOutput.unlocking === 'undefined') {
-    //     // NOTE: This is where the signature and public key will be placed.
-    //     unlockingBytecode = new Uint8Array()
-    // } else {
-    //     unlockingBytecode = unspentOutput.unlocking
-    // }
-
     return {
         outpointTransactionHash: unspentOutput.outpoint
             ? hexToBin(unspentOutput.outpoint)
@@ -39,8 +31,6 @@ export default (unspentOutput) => {
         unlockingBytecode,
 
         satoshis: unspentOutput.satoshis,
-
-        // amount: unspentOutput.satoshis,
 
         hashType: unspentOutput.hashType,
 
