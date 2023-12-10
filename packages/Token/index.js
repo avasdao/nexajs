@@ -8,6 +8,12 @@ import 'dotenv/config'
 /* Import modules. */
 import { EventEmitter } from 'events'
 
+/* Import flags. */
+import _getFlags from './src/getFlags.js'
+
+/* Export flags. */
+export const flags = _getFlags
+
 /* Import (local) modules. */
 import _getDustLimit from './src/getDustLimit.js'
 import _getGroupDataScript from './src/getGroupDataScript.js'
@@ -50,6 +56,11 @@ export class Token extends EventEmitter {
     static test() {
         return 'Token (Static) is working!'
     }
+
+    /* Token Flags */
+    static get flags() {
+        return flags
+    }
 }
 
 
@@ -58,6 +69,9 @@ const Nexa = {}
 
 /* Initialize Token class. */
 Nexa.Token = Token
+
+/* Initialize Token flags. */
+Nexa.flags = flags
 
 /* Initialize Token modules. */
 Nexa.getGroupDataScript = getGroupDataScript
