@@ -11,13 +11,14 @@ import { EventEmitter } from 'events'
 /* Import (local) modules. */
 import _getCoins from './src/getCoins.js'
 import _getDustLimit from './src/getDustLimit.js'
-import _sendCoin from './src/sendCoin.js'
+import _sendCoins from './src/sendCoins.js'
 
 /* Export (local) modules. */
 export const getCoins = _getCoins
 export const getDustLimit = _getDustLimit
-export const send = _sendCoin // alias
-export const sendCoin = _sendCoin
+export const send = _sendCoins      // alias
+export const sendCoin = _sendCoins  // alias
+export const sendCoins = _sendCoins
 
 
 /**
@@ -81,8 +82,9 @@ Nexa.Purse = Purse
 /* Initialize Purse modules. */
 Nexa.getCoins = getCoins
 Nexa.getDustLimit = getDustLimit
-Nexa.send = send // alias
-Nexa.sendCoin = sendCoin
+Nexa.send = send            // alias
+Nexa.sendCoin = sendCoins   // alias
+Nexa.sendCoins = sendCoins
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

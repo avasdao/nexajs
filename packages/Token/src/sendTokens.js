@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:purse:sendToken')
+const debug = debugFactory('nexa:token:sendTokens')
 
 /* Import (library) modules. */
 import { broadcast } from '@nexajs/provider'

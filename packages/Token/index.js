@@ -15,7 +15,7 @@ import _getGroupId from './src/getGroupId.js'
 import _getSubgroupDataScript from './src/getSubgroupDataScript.js'
 import _getTokens from './src/getTokens.js'
 import _getTopTokens from './src/getTopTokens.js'
-import _sendToken from './src/sendToken.js'
+import _sendTokens from './src/sendTokens.js'
 
 /* Export (local) modules. */
 export const getDustLimit = _getDustLimit
@@ -24,7 +24,8 @@ export const getGroupId = _getGroupId
 export const getSubgroupDataScript = _getSubgroupDataScript
 export const getTokens = _getTokens
 export const getTopTokens = _getTopTokens
-export const sendToken = _sendToken
+export const sendToken = _sendTokens // alias
+export const sendTokens = _sendTokens
 
 
 /**
@@ -64,7 +65,8 @@ Nexa.getGroupId = getGroupId
 Nexa.getSubgroupDataScript = getSubgroupDataScript
 Nexa.getTokens = getTokens
 Nexa.getTopTokens = getTopTokens
-Nexa.sendToken = sendToken
+Nexa.sendToken = sendTokens // alias
+Nexa.sendTokens = sendTokens
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

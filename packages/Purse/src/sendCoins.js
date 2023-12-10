@@ -1,6 +1,6 @@
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
-const debug = debugFactory('nexa:purse:sendCoin')
+const debug = debugFactory('nexa:purse:sendCoins')
 
 /* Import (library) modules. */
 import { broadcast } from '@nexajs/provider'
