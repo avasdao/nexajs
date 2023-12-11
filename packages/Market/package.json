@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@nexajs/provider": "23.12.1",
-    "@nexajs/transaction": "23.12.3",
+    "@nexajs/transaction": "23.12.9",
     "debug": "4.3.4",
     "dotenv": "16.3.1",
     "events": "3.3.0",
