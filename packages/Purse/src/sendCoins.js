@@ -21,7 +21,7 @@ const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
 const SIGHASH_ALL = 0x0
 
 /**
- * Send Coin
+ * Send Coins
  *
  * Simple coin sending to one or more recipients.
  *

@@ -21,7 +21,7 @@ const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
 const SIGHASH_ALL = 0x0
 
 /**
- * Send Token
+ * Send Tokens
  *
  * Simple token sending to one or more recipients.
  *
@@ -196,6 +196,11 @@ export default async (_coins, _tokens, _receivers) => {
         unlocking,
         hashType,
     })
+
+// FIXME
+// FIXME: FILTER ALL AUTHORITY TRANSACTION OUTPUTS
+// FIXME: CHECK FLAGS.AUTHTXO BIT (1<<63)
+// FIXME
 
     /* Handle tokens. */
     tokens.forEach(_token => {
