@@ -1,6 +1,6 @@
 {
-  "name": "nexajs-studio-nft",
-  "version": "23.10.13",
+  "name": "nexajs-studio-asset",
+  "version": "23.12.11",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",

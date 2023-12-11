@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Token Apps (tApps) — NFT/SFT Studio`,
+    title: `Token Apps (tApps) — Asset Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],

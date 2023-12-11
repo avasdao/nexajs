@@ -6,7 +6,7 @@ import { sha256 } from '@nexajs/crypto'
 import { binToHex } from '@nexajs/utils'
 
 useHead({
-    title: `NFT/SFT Studio for Creators`,
+    title: `Asset Studio for Creators`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -42,14 +42,14 @@ const README = `
   \\____|__  /\\___  /     |____|    /_______  /|__| |____/\\____ | |__|\\____/
           \\/     \\/                        \\/                 \\/
 
-                                                    https://nexa.studio/nft
+                                                    https://nexa.studio/asset
 
-                                     Thank you for choosing Nexa NFT Studio
+                                     Thank you for choosing Nexa Asset Studio
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 
-  [ NFT details go here... ]
+  [ Token details go here... ]
 
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -342,7 +342,7 @@ const mint = async () => {
     console.log('HASH256', binToHex(hash256))
 
     /* Download ZIP archive. */
-    System.downloadBlob(zipped, `Nexa_NFT_Studio-${binToHex(hash256)}.zip`, 'application/octet-stream')
+    System.downloadBlob(zipped, `Nexa_Token_Studio-${binToHex(hash256)}.zip`, 'application/octet-stream')
 }
 
 const build = async () => {

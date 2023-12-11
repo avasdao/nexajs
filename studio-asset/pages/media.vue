@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `AI Generator — NFT/SFT Studio`,
+    title: `Multimedia — Asset Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -24,15 +24,15 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            AI Generator
+            Multimedia
         </h1>
 
         <p>
-            Find the perfect backdrop for your NFT masterpiece.
+            Find the perfect media for your NFT masterpiece.
         </p>
 
         <ol class="pl-10 list-decimal">
-            <li>https://backgrounds.com</li>
+            <li>https://media.com</li>
         </ol>
     </main>
 </template>
