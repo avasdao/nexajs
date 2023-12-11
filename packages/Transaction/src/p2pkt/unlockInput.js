@@ -85,6 +85,7 @@ export default async (
         )
     } else {
         /* Validate unlocking script. */
+        // FIXME: Is this correct? should be use `&&`?
         if (unlockingScript === null || input.unlockingBytecode === null) {
             /* Keep the "empty" unlocking script (previously initialized). */
             // unlockingBytecode = new Uint8Array(0)
@@ -114,7 +115,7 @@ export default async (
     /* Validate locking bytecode. */
     if (lockingBytecode) {
         if (!unlockingBytecode || typeof unlockingBytecode === 'undefined') {
-            unlockingBytecode = lockingBytecode
+            unlockingBytecode = encodeDataPush(lockingBytecode)
         } else {
             // NOTE: Push the "locking" script as a prefix to the
             //       "unlocking" script.
