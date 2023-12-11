@@ -18,7 +18,7 @@ export default async (_wif, _scriptPubKey = null) => {
     /* Handle prefix. */
     if (process.env.TESTNET) {
         prefix = 'nexatest'
-    } else if(process.env.REGTEST) {
+    } else if (process.env.REGTEST) {
         prefix = 'nexareg'
     } else {
         prefix = 'nexa'
