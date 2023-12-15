@@ -3,7 +3,7 @@
 // YOU MUST UNCOMMENT ALL OF THE LINES BELOW, ONLY ONCE.
 // (SOME LINES *SHOULD* REMAIN COMMENTED AFTEWARDS)
 
-// export default defineEventHandler((event) => {
+export default defineEventHandler((event) => {
 //     /* Set response headers. */
 //     setResponseHeaders(event, {
 //         /* Set allowed methods. */
@@ -33,4 +33,4 @@
 //         /* Return OK. */
 //         return 'OK'
 //     }
-// })
+})
