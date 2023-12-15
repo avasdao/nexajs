@@ -14,7 +14,6 @@
     "@nexajs/hdnode": "23.12.3",
     "@nexajs/script": "23.12.3",
     "@nexajs/utils": "23.7.22",
-    "debug": "4.3.4",
-    "dotenv": "16.3.1"
+    "debug": "4.3.4"
   }
 }

@@ -2,9 +2,6 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:purse')
 
-/* Setup environment. */
-import 'dotenv/config'
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 

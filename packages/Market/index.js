@@ -2,9 +2,6 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:market')
 
-/* Setup environment. */
-import 'dotenv/config'
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 import { v4 as uuidv4 } from 'uuid'

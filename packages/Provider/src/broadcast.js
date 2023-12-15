@@ -11,10 +11,10 @@ const ROSTRUM_DEFAULT_TESTNET = 'wss://rostrum.test-nexa.sh:30004'
 let rostrumProvider
 
 /* Handle environment variables. */
-if (process.env.ROSTRUM) {
+if (process?.env?.ROSTRUM) {
     /* Set (user-defined) Rostrum provider. */
     rostrumProvider = process.env.ROSTRUM
-} else if (process.env.TESTNET) {
+} else if (process?.env?.TESTNET) {
     /* Set default (Testnet) provider. */
     rostrumProvider = ROSTRUM_DEFAULT_TESTNET
 } else {

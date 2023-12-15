@@ -2,9 +2,6 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:address')
 
-/* Setup environment. */
-import 'dotenv/config'
-
 /* Import (local) modules. */
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
 import { encodeAddress as _encodeAddress } from './src/cashaddr.js'

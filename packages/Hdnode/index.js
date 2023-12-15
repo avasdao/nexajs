@@ -2,9 +2,6 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:hdnode')
 
-/* Setup environment. */
-import 'dotenv/config'
-
 /* Import (local) modules. */
 import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
 import _decodePrivateKeyWif from './src/decodePrivateKeyWif.js'

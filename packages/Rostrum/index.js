@@ -2,9 +2,6 @@
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:rostrum')
 
-/* Setup environment. */
-import 'dotenv/config'
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -84,10 +81,10 @@ const getConnection = async function (_connid) {
     const WebSocket = (await import('isomorphic-ws')).default
 
     /* Handle environment variables. */
-    if (process.env.ROSTRUM) {
+    if (process?.env?.ROSTRUM) {
         /* Return (user-defined) Rostrum provider. */
         return new WebSocket(process.env.ROSTRUM)
-    } else if (process.env.TESTNET) {
+    } else if (process?.env?.TESTNET) {
         /* Return default (Testnet) provider. */
         return new WebSocket(ROSTRUM_DEFAULT_TESTNET)
     }
