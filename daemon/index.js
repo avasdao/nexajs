@@ -9,6 +9,8 @@ import signMessage from './src/signMessage.js'
 
 console.log('Starting NexaJS Daemon...')
 
+const sleep = ms => new Promise(r => setTimeout(r, ms))
+
 const IS_LIVE_BROADCAST = false
 const ACTIVE_ACCOUNT_IDX = 2
 // 0 - nexa:nqtsq5g5ezqpr27c78uyf08260xq4xh35faa4yk64aycgega (master)
@@ -27,6 +29,9 @@ const ACTIVE_ACCOUNT_IDX = 2
     }, false)
 
     console.log('\nWALLET ADDRESS', wallet.address, '\n')
+
+    /* Wait for race condition. */
+    await sleep(1000)
 
     if (ACTIVE_ACCOUNT_IDX === 0) {
         // createGroup()
