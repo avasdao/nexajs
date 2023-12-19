@@ -36,6 +36,7 @@
     "browser-resolve": "2.0.0",
     "browserify": "17.0.0",
     "chai": "4.3.6",
+    "dotenv": "16.3.1",
     "esmify": "2.1.1",
     "mocha": "10.0.0",
     "uglifyjs": "2.4.11"
