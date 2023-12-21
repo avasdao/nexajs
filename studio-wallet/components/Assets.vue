@@ -33,7 +33,7 @@ const assets = computed(() => {
     return filtered
 })
 
-const collection = computed(() => {
+const collections = computed(() => {
     if (!Wallet.assets) {
         return []
     }
@@ -241,14 +241,14 @@ onMounted(() => {
                 </button>
 
                 <!-- Current: "", Default: "" -->
-                <button @click="activeTab = 'collection'" class="w-1/2 text-gray-500 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" :class="[ activeTab === 'collection' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700']">
+                <button @click="activeTab = 'collections'" class="w-1/2 text-gray-500 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" :class="[ activeTab === 'collections' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700']">
                     <span class="text-lg">
-                        Collection
+                        Collections
                     </span>
 
                     <!-- Current: "bg-indigo-100 text-indigo-600", Default: "bg-gray-100 text-gray-900" -->
                     <span class="bg-gray-100 text-gray-900 ml-1 sm:ml-3 rounded-full py-0.5 px-2.5 text-xs font-medium">
-                        {{collection?.length}}
+                        {{collections?.length}}
                     </span>
                 </button>
             </nav>
@@ -294,7 +294,7 @@ onMounted(() => {
 
         <div v-else class="flex flex-col gap-5">
             <div
-                v-for="token in collection" :key="token.id"
+                v-for="token in collections" :key="token.id"
                 @click="Wallet.wallet.setAsset(token.id)"
                 class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
             >
