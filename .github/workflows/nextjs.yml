@@ -2,7 +2,7 @@
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
 #
-name: Deploy NEXA.js to Pages
+name: Build & Deploy NEXA.js to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
