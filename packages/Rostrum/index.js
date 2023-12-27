@@ -81,10 +81,10 @@ const getConnection = async function (_connid) {
     const WebSocket = (await import('isomorphic-ws')).default
 
     /* Handle environment variables. */
-    if (process?.env?.ROSTRUM) {
+    if (typeof process !== 'undefined' && process?.env?.ROSTRUM) {
         /* Return (user-defined) Rostrum provider. */
         return new WebSocket(process.env.ROSTRUM)
-    } else if (process?.env?.TESTNET) {
+    } else if (typeof process !== 'undefined' && process?.env?.TESTNET) {
         /* Return default (Testnet) provider. */
         return new WebSocket(ROSTRUM_DEFAULT_TESTNET)
     }

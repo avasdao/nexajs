@@ -272,10 +272,10 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/provider@23.12.13":
-  version "23.12.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-23.12.13.tgz#4641ffe98798d51c0dbdc29726218dbc2db031bb"
-  integrity sha512-w7mKZVSlnUqW7GkQOKY9QaB1MBE/0QQAh7ucqvMdnPR426nElrPll8+VDU4HOPPByKAsqsXQtr6nSOklGhDG4Q==
+"@nexajs/provider@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-23.12.25.tgz#1eb489dbfb93d5a734c95220fc80b6d20687b9cf"
+  integrity sha512-ibBEvXmrP8gMVCOm8YtSLL+YNnMCfBBWR0aORbGKdbvZVJXfJHk8aPtqM/HRvmVL5MKxqdOpsbnaQIh0sEet4g==
   dependencies:
     debug "4.3.4"
     events "3.3.0"

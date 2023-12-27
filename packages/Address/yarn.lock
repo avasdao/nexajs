@@ -40,10 +40,10 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/rostrum@23.12.13":
-  version "23.12.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.13.tgz#0c1e849256e5de3cad2122c9d02a0d6aed1c85d9"
-  integrity sha512-lkzt8AdFfA4LrwWp8qJ6uWdwnheVXjyfJuL59mO11eBxS2yQz5cFN9t96WS8Qs+uSIamfE9fPnf54xlOGlj7oA==
+"@nexajs/rostrum@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.25.tgz#d3a05588c678404a5f2c64b909258d4f2ec17ae8"
+  integrity sha512-FLbt9kUGauqJhWFdcuJ8AhG6eT4q0ZVvNxldNCW3kpb9tHp2X03Ygo8j68HRB4Y2tiL0p1jnv3FXxCnkou8p+Q==
   dependencies:
     debug "4.3.4"
     events "3.3.0"

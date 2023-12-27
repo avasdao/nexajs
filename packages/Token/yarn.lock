@@ -247,6 +247,22 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.25.tgz#8b83852034f3b2a51524a3c781d3dbde755800db"
+  integrity sha512-eD/aK+f15/PCt06F2Y3jz5/LChwr4eLw5PDgwQT1ygcnXrYOZiQqlZKxhczqDwhpGTZQLvl+hhdOa8waURcmyw==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/crypto" "23.11.15"
+    "@nexajs/rostrum" "23.12.25"
+    "@nexajs/script" "23.12.13"
+    "@nexajs/utils" "23.7.22"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/crypto@23.11.15":
   version "23.11.15"
   resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.11.15.tgz#df981ea9a6445de2e518142856a312beebdba0fa"
@@ -272,10 +288,10 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/provider@23.12.13":
-  version "23.12.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-23.12.13.tgz#4641ffe98798d51c0dbdc29726218dbc2db031bb"
-  integrity sha512-w7mKZVSlnUqW7GkQOKY9QaB1MBE/0QQAh7ucqvMdnPR426nElrPll8+VDU4HOPPByKAsqsXQtr6nSOklGhDG4Q==
+"@nexajs/provider@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-23.12.25.tgz#1eb489dbfb93d5a734c95220fc80b6d20687b9cf"
+  integrity sha512-ibBEvXmrP8gMVCOm8YtSLL+YNnMCfBBWR0aORbGKdbvZVJXfJHk8aPtqM/HRvmVL5MKxqdOpsbnaQIh0sEet4g==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
@@ -286,6 +302,17 @@
   version "23.12.13"
   resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.13.tgz#0c1e849256e5de3cad2122c9d02a0d6aed1c85d9"
   integrity sha512-lkzt8AdFfA4LrwWp8qJ6uWdwnheVXjyfJuL59mO11eBxS2yQz5cFN9t96WS8Qs+uSIamfE9fPnf54xlOGlj7oA==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
+"@nexajs/rostrum@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.25.tgz#d3a05588c678404a5f2c64b909258d4f2ec17ae8"
+  integrity sha512-FLbt9kUGauqJhWFdcuJ8AhG6eT4q0ZVvNxldNCW3kpb9tHp2X03Ygo8j68HRB4Y2tiL0p1jnv3FXxCnkou8p+Q==
   dependencies:
     debug "4.3.4"
     events "3.3.0"
