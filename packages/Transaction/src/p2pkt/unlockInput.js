@@ -107,6 +107,7 @@ export default async (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
         binToHex(lockingScript) !== ('02' + binToHex(SCRIPT_TEMPLATE_1)) // NOTE: Compare as strings (easier).
+        // binToHex(lockingScript) !== (binToHex(SCRIPT_TEMPLATE_1)) // FIXME: Should we have the (length) prefix??
         // TODO add support for ALL script templates...
     ) {
         lockingBytecode = lockingScript
@@ -119,10 +120,17 @@ export default async (
         } else {
             // NOTE: Push the "locking" script as a prefix to the
             //       "unlocking" script.
-            unlockingBytecode = new Uint8Array([
-                ...lockingBytecode,
-                ...unlockingBytecode, // FIXME Have support for (0)??
-            ])
+            if (unlockingBytecode.length === 1 && unlockingBytecode[0] <= 16) {
+                unlockingBytecode = new Uint8Array([
+                    ...encodeDataPush(lockingBytecode),
+                    unlockingBytecode, // NOTE: Supports `OP_0` thru `OP_16`.
+                ])
+            } else {
+                unlockingBytecode = new Uint8Array([
+                    ...encodeDataPush(lockingBytecode),
+                    ...encodeDataPush(unlockingBytecode),
+                ])
+            }
         }
     }
     // console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
