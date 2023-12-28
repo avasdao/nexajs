@@ -329,13 +329,13 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/transaction@23.12.13":
-  version "23.12.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.12.13.tgz#6dabe145f6fbac64765df85caa39990babe04ad1"
-  integrity sha512-gXlkQHckIdLBKOSeW0NuWZNOL43Rl3W2CazMsJY1nhJdgDv0vnrBTHo/clQKJBboF47/LZGvEMwB2ITwIzz7LA==
+"@nexajs/transaction@23.12.26":
+  version "23.12.26"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.12.26.tgz#eaf060d82e8cb53f8fdab657614ce7bb02c2a24c"
+  integrity sha512-g9XpwDXc6YrQD2Pqz3QN7AZJ957FQegAgzyOeTX78NyRdDlv0GDgbdK0K2so2PeDRJQw2m0k/oKuV+A3Ob80og==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.12.13"
+    "@nexajs/address" "23.12.25"
     "@nexajs/crypto" "23.11.15"
     "@nexajs/hdnode" "23.12.13"
     "@nexajs/script" "23.12.13"

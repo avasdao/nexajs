@@ -247,6 +247,22 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
+"@nexajs/address@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-23.12.25.tgz#8b83852034f3b2a51524a3c781d3dbde755800db"
+  integrity sha512-eD/aK+f15/PCt06F2Y3jz5/LChwr4eLw5PDgwQT1ygcnXrYOZiQqlZKxhczqDwhpGTZQLvl+hhdOa8waURcmyw==
+  dependencies:
+    "@bitauth/libauth" "1.19.1"
+    "@nexajs/crypto" "23.11.15"
+    "@nexajs/rostrum" "23.12.25"
+    "@nexajs/script" "23.12.13"
+    "@nexajs/utils" "23.7.22"
+    big-integer "1.6.51"
+    debug "4.3.4"
+    graphql "16.6.0"
+    graphql-ws "5.12.0"
+    ws "8.13.0"
+
 "@nexajs/crypto@23.11.15":
   version "23.11.15"
   resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-23.11.15.tgz#df981ea9a6445de2e518142856a312beebdba0fa"
@@ -293,6 +309,17 @@
     uuid "9.0.0"
     ws "8.12.1"
 
+"@nexajs/rostrum@23.12.25":
+  version "23.12.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-23.12.25.tgz#d3a05588c678404a5f2c64b909258d4f2ec17ae8"
+  integrity sha512-FLbt9kUGauqJhWFdcuJ8AhG6eT4q0ZVvNxldNCW3kpb9tHp2X03Ygo8j68HRB4Y2tiL0p1jnv3FXxCnkou8p+Q==
+  dependencies:
+    debug "4.3.4"
+    events "3.3.0"
+    isomorphic-ws "5.0.0"
+    uuid "9.0.0"
+    ws "8.12.1"
+
 "@nexajs/script@23.12.13":
   version "23.12.13"
   resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.12.13.tgz#d773922652fb67dd258af84bab28660c5fd6fb4d"
@@ -302,13 +329,13 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/transaction@23.12.13":
-  version "23.12.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.12.13.tgz#6dabe145f6fbac64765df85caa39990babe04ad1"
-  integrity sha512-gXlkQHckIdLBKOSeW0NuWZNOL43Rl3W2CazMsJY1nhJdgDv0vnrBTHo/clQKJBboF47/LZGvEMwB2ITwIzz7LA==
+"@nexajs/transaction@23.12.26":
+  version "23.12.26"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.12.26.tgz#eaf060d82e8cb53f8fdab657614ce7bb02c2a24c"
+  integrity sha512-g9XpwDXc6YrQD2Pqz3QN7AZJ957FQegAgzyOeTX78NyRdDlv0GDgbdK0K2so2PeDRJQw2m0k/oKuV+A3Ob80og==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.12.13"
+    "@nexajs/address" "23.12.25"
     "@nexajs/crypto" "23.11.15"
     "@nexajs/hdnode" "23.12.13"
     "@nexajs/script" "23.12.13"
