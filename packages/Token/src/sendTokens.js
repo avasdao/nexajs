@@ -129,8 +129,11 @@ export default async (_coins, _tokens, _receivers) => {
         }
 
         if (_receiver.tokens > BigInt(0)) {
-            /* Add satoshis to total. */
-            satoshis += DUST_LIMIT
+            /* Validate custom satoshis. */
+            if (typeof _receiver.satoshis === 'undefined') {
+                /* Add (dust) satoshis to total. */
+                satoshis += DUST_LIMIT
+            }
 
             /* Add tokens to total. */
             tokenAmount += _receiver.tokens
@@ -230,10 +233,18 @@ export default async (_coins, _tokens, _receivers) => {
     receivers.forEach(_receiver => {
         /* Handle (token) outputs. */
         if (_receiver.tokenid) {
+            /* Initialize token satoshis (to dust value). */
+            let tokenSats = DUST_LIMIT
+
+            /* Validate custom satoshis. */
+            if (typeof _receiver.satoshis !== 'undefined') {
+                tokenSats = _receiver.satoshis
+            }
+
             /* Add (token) output. */
             transaction.addOutput({
                 address: _receiver.address,
-                satoshis: DUST_LIMIT,
+                satoshis: tokenSats,
                 tokenid: _receiver.tokenid,
                 tokens: _receiver.tokens,
             })
