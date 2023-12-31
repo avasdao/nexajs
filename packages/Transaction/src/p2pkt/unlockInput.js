@@ -6,10 +6,7 @@ import {
     OP,
 } from '@nexajs/script'
 
-import {
-    // bigIntToCompactUint,
-    binToHex,
-} from '@nexajs/utils'
+import { binToHex } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'
 
@@ -106,8 +103,7 @@ export default async (
     } else if (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
-        binToHex(lockingScript) !== ('02' + binToHex(SCRIPT_TEMPLATE_1)) // NOTE: Compare as strings (easier).
-        // binToHex(lockingScript) !== (binToHex(SCRIPT_TEMPLATE_1)) // FIXME: Should we have the (length) prefix??
+        binToHex(lockingScript) !== (binToHex(SCRIPT_TEMPLATE_1)) // NOTE: Compare as strings (easier).
         // TODO add support for ALL script templates...
     ) {
         lockingBytecode = lockingScript
@@ -116,21 +112,37 @@ export default async (
     /* Validate locking bytecode. */
     if (lockingBytecode) {
         if (!unlockingBytecode || typeof unlockingBytecode === 'undefined') {
+            /* Set unlocking bytecode from locking bytecode. */
             unlockingBytecode = encodeDataPush(lockingBytecode)
         } else {
-            // NOTE: Push the "locking" script as a prefix to the
-            //       "unlocking" script.
-            if (unlockingBytecode.length === 1 && unlockingBytecode[0] <= 16) {
+            /* Validate signature (replacement) request. */
+            if (
+                unlockingBytecode.length > 64 &&
+                binToHex(unlockingBytecode.slice(0, 64)) === binToHex([...new Uint8Array(64)])
+            ) {
+                // Generate a transaction signature for this input.
+                // TODO We DO NOT always require a signature.
+                signature = await signTransactionInput(
+                    transaction,
+                    input.satoshis,
+                    inputIndex,
+                    lockingBytecode,
+                    SIGHASH_ALL,
+                    privateKey,
+                )
+
+                /* Add new signature to unlocking bytecode. */
                 unlockingBytecode = new Uint8Array([
-                    ...encodeDataPush(lockingBytecode),
-                    unlockingBytecode, // NOTE: Supports `OP_0` thru `OP_16`.
-                ])
-            } else {
-                unlockingBytecode = new Uint8Array([
-                    ...encodeDataPush(lockingBytecode),
-                    ...encodeDataPush(unlockingBytecode),
+                    ...encodeDataPush(signature),
+                    ...unlockingBytecode.slice(64), // NOTE: Removes placeholder.
                 ])
             }
+
+            /* Create a FINAL unlocking bytecode. */
+            unlockingBytecode = new Uint8Array([
+                ...encodeDataPush(lockingBytecode),
+                ...unlockingBytecode,
+            ])
         }
     }
     // console.log('unlockingBytecode (FINAL)', binToHex(unlockingBytecode))
