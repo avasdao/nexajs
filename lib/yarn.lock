@@ -24,19 +24,19 @@
   integrity sha512-uU27kfDRlhfKl+w1U6vp16IuvSLtjAxdArVXPa9BvLkrr7CYIsxH5adpHObeAGY/41+syctUWOZ140a2Rvkgjw==
 
 "@babel/core@^7.2.2":
-  version "7.23.6"
-  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.23.6.tgz#8be77cd77c55baadcc1eae1c33df90ab6d2151d4"
-  integrity sha512-FxpRyGjrMJXh7X3wGLGhNDCRiwpWEF74sKjTLDJSG5Kyvow3QZaG0Adbqzi9ZrVjTWpsX+2cxWXD71NMg93kdw==
+  version "7.23.7"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.23.7.tgz#4d8016e06a14b5f92530a13ed0561730b5c6483f"
+  integrity sha512-+UpDgowcmqe36d4NwqvKsyPMlOLNGMsfMmQ5WGCu+siCe3t3dfe9njrzGfdN4qq+bcNUt0+Vw6haRxBOycs4dw==
   dependencies:
     "@ampproject/remapping" "^2.2.0"
     "@babel/code-frame" "^7.23.5"
     "@babel/generator" "^7.23.6"
     "@babel/helper-compilation-targets" "^7.23.6"
     "@babel/helper-module-transforms" "^7.23.3"
-    "@babel/helpers" "^7.23.6"
+    "@babel/helpers" "^7.23.7"
     "@babel/parser" "^7.23.6"
     "@babel/template" "^7.22.15"
-    "@babel/traverse" "^7.23.6"
+    "@babel/traverse" "^7.23.7"
     "@babel/types" "^7.23.6"
     convert-source-map "^2.0.0"
     debug "^4.1.0"
@@ -137,13 +137,13 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-option/-/helper-validator-option-7.23.5.tgz#907a3fbd4523426285365d1206c423c4c5520307"
   integrity sha512-85ttAOMLsr53VgXkTbkx8oA6YTfT4q7/HzXSLEYmjcSTJPMPQtvq1BD79Byep5xMUYbGRzEpDsjUf3dyp54IKw==
 
-"@babel/helpers@^7.23.6":
-  version "7.23.6"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.23.6.tgz#d03af2ee5fb34691eec0cda90f5ecbb4d4da145a"
-  integrity sha512-wCfsbN4nBidDRhpDhvcKlzHWCTlgJYUUdSJfzXb2NuBssDSIjc3xcb+znA7l+zYsFljAcGM0aFkN40cR3lXiGA==
+"@babel/helpers@^7.23.7":
+  version "7.23.7"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.23.7.tgz#eb543c36f81da2873e47b76ee032343ac83bba60"
+  integrity sha512-6AMnjCoC8wjqBzDHkuqpa7jAKwvMo4dC+lr/TFBz+ucfulO1XMpDnwWPGBNwClOKZ8h6xn5N81W/R5OrcKtCbQ==
   dependencies:
     "@babel/template" "^7.22.15"
-    "@babel/traverse" "^7.23.6"
+    "@babel/traverse" "^7.23.7"
     "@babel/types" "^7.23.6"
 
 "@babel/highlight@^7.23.4":
@@ -199,10 +199,10 @@
     "@babel/parser" "^7.22.15"
     "@babel/types" "^7.22.15"
 
-"@babel/traverse@^7.23.6":
-  version "7.23.6"
-  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.23.6.tgz#b53526a2367a0dd6edc423637f3d2d0f2521abc5"
-  integrity sha512-czastdK1e8YByZqezMPFiZ8ahwVMh/ESl9vPgvgdB9AmFMGP5jfpFax74AQgl5zj4XHzqeYAg2l8PuUeRS1MgQ==
+"@babel/traverse@^7.23.7":
+  version "7.23.7"
+  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.23.7.tgz#9a7bf285c928cb99b5ead19c3b1ce5b310c9c305"
+  integrity sha512-tY3mM8rH9jM0YHFGyfC0/xf+SB5eKUu7HPj7/k3fpi9dAlsMc5YbQvDi0Sh2QTPXqMhyaAtzAr807TIyfQrmyg==
   dependencies:
     "@babel/code-frame" "^7.23.5"
     "@babel/generator" "^7.23.6"
@@ -605,15 +605,15 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/purse@23.12.25":
-  version "23.12.25"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.12.25.tgz#50060cb78dd10905ffc4d21244d68700e9ac7036"
-  integrity sha512-vvJw9RMzG52vFdN2OEzkRh95+jMeBP4I+R+vwENumtFrBRGGzegozmosaqW0WHHuO3WjJ8IJoSzmOFUv7qy0CQ==
+"@nexajs/purse@23.12.29":
+  version "23.12.29"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-23.12.29.tgz#26671045aca0724f16562dd77147b912c2466a49"
+  integrity sha512-okFYYXGCuFOct5h/f7xyX0+xFNhh5EnLwTpgGDVFZZiTrQX8CEEmRNXCtFhY7wif5z+5ohArbgtzfr7n8IDrDg==
   dependencies:
     "@nexajs/address" "23.12.25"
     "@nexajs/hdnode" "23.12.13"
     "@nexajs/provider" "23.12.25"
-    "@nexajs/transaction" "23.12.13"
+    "@nexajs/transaction" "23.12.29"
     debug "4.3.4"
     events "3.3.0"
 
@@ -666,17 +666,17 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/token@23.12.26":
-  version "23.12.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.12.26.tgz#130a0882131923932aa81dd92ec2e59a1c902db5"
-  integrity sha512-tOPN/+Mx3HbkUuY2vfDN4DSA77vNtHJJeHB54cNM0vJnoBoQAZWa0XXK4bOl/d1BFK4hu2Vyr0iLpsKHNerBQQ==
+"@nexajs/token@23.12.29":
+  version "23.12.29"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-23.12.29.tgz#3f84b390c7f441e0a8e9452e2306662e6f698c32"
+  integrity sha512-fYXQrM4BA7RSPA4P7zDj4QQPj/ziu8RVoFY7ScUc3N+HIKfq0zxWCkMn3INzayq9Hk37icwZeOnWOPzvH1WXLw==
   dependencies:
     "@nexajs/address" "23.12.25"
     "@nexajs/crypto" "23.11.15"
     "@nexajs/hdnode" "23.12.13"
     "@nexajs/provider" "23.12.25"
     "@nexajs/script" "23.12.13"
-    "@nexajs/transaction" "23.12.26"
+    "@nexajs/transaction" "23.12.29"
     debug "4.3.4"
     events "3.3.0"
 
@@ -687,19 +687,6 @@
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.12.13"
-    "@nexajs/crypto" "23.11.15"
-    "@nexajs/hdnode" "23.12.13"
-    "@nexajs/script" "23.12.13"
-    "@nexajs/utils" "23.7.22"
-    debug "4.3.4"
-
-"@nexajs/transaction@23.12.26":
-  version "23.12.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-23.12.26.tgz#eaf060d82e8cb53f8fdab657614ce7bb02c2a24c"
-  integrity sha512-g9XpwDXc6YrQD2Pqz3QN7AZJ957FQegAgzyOeTX78NyRdDlv0GDgbdK0K2so2PeDRJQw2m0k/oKuV+A3Ob80og==
-  dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "23.12.25"
     "@nexajs/crypto" "23.11.15"
     "@nexajs/hdnode" "23.12.13"
     "@nexajs/script" "23.12.13"
@@ -726,19 +713,19 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/wallet@23.12.26":
-  version "23.12.26"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.12.26.tgz#eaaaaf67ab639b3fc7c7ddbd6fdf9be00dbe8d1e"
-  integrity sha512-+VXEGQjTC5mlGZWA7WcMTVFNlooxFxmH6AZPyHQNkpAHw4dk4UJSphod4/0lkIXnsZTVFOgYT5vlgH17sEGg0g==
+"@nexajs/wallet@23.12.29":
+  version "23.12.29"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-23.12.29.tgz#49f44ec4e18739c162f18d45abd3f1a11be516aa"
+  integrity sha512-Y1nqOCb0n+5dWySGqmHHdt2UpZLQ27sRBAnJfPnDMrN6l4u+f6PFkiKJ8qlFYM+lmlpPIxgfyYB3AphvJm62cw==
   dependencies:
     "@bitauth/libauth" "1.19.1"
     "@nexajs/address" "23.12.25"
     "@nexajs/crypto" "23.11.15"
     "@nexajs/hdnode" "23.12.13"
-    "@nexajs/purse" "23.12.25"
+    "@nexajs/purse" "23.12.29"
     "@nexajs/rostrum" "23.12.25"
     "@nexajs/script" "23.12.13"
-    "@nexajs/token" "23.12.26"
+    "@nexajs/token" "23.12.29"
     cross-fetch "4.0.0"
     debug "4.3.4"
     events "3.3.0"
