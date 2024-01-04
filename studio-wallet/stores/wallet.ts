@@ -3,19 +3,11 @@ import { defineStore } from 'pinia'
 import moment from 'moment'
 
 import { mnemonicToEntropy } from '@nexajs/hdnode'
-
 import {
     Wallet,
     WalletStatus,
 } from '@nexajs/wallet'
 
-/* Libauth helpers. */
-import {
-    instantiateRipemd160,
-    instantiateSecp256k1,
-} from '@bitauth/libauth'
-
-import _broadcast from './wallet/broadcast.ts'
 import _setEntropy from './wallet/setEntropy.ts'
 
 /**
@@ -212,11 +204,6 @@ export const useWalletStore = defineStore('wallet', {
                 /* Send tokens. */
                 return await this.wallet.send(this.asset.token_id_hex, _receiver, _satoshis)
             }
-        },
-
-        broadcast(_receivers) {
-            /* Broadcast to receivers. */
-            return _broadcast.bind(this)(_receivers)
         },
 
         setEntropy(_entropy) {

@@ -13,8 +13,6 @@ const Profile = useProfileStore()
 const System = useSystemStore()
 const Wallet = useWalletStore()
 
-const STUDIO = 'nexa:tztnyazksgqpkphrx2m2fgxapllufqmuwp6k07xtlc8k4xcjpqqqq99lxywr8'
-
 const tokens = ref(null)
 
 const isShowingAssets = ref(false)
