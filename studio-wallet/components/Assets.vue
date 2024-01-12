@@ -260,7 +260,7 @@ onMounted(() => {
                 @click="Wallet.wallet.setAsset(token.id)"
                 class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
             >
-                <div class="flex flex-row items-start">
+                <div class="w-1/2 flex flex-row items-start">
                     <img :src="displayIcon(token)" class="-mt-0.5 mr-1 h-12 w-auto p-2 opacity-80" />
 
                     <div class="flex flex-col">
@@ -277,7 +277,7 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <h3 class="flex flex-col items-end font-medium text-amber-700">
+                <h3 class="w-1/2 flex flex-col items-end font-medium text-amber-700">
                     <sup class="text-xs">
                         USD
                     </sup>
@@ -298,7 +298,7 @@ onMounted(() => {
                 @click="Wallet.wallet.setAsset(token.id)"
                 class="flex flex-row justify-between items-end pl-1 pr-3 pt-2 pb-1 sm:py-3 bg-gradient-to-b from-amber-100 to-amber-50 border border-amber-300 rounded-lg shadow hover:bg-amber-200 cursor-pointer"
             >
-                <div class="flex flex-row items-start">
+                <div class="w-1/2 flex flex-row items-start">
                     <img :src="displayIcon(token)" class="-mt-0.5 mr-1 h-12 w-auto p-2 opacity-80" />
 
                     <div class="flex flex-col">
@@ -315,7 +315,7 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <h3 class="flex flex-col items-end font-medium text-amber-700">
+                <h3 class="w-1/2 flex flex-col items-end font-medium text-amber-700">
                     <sup class="text-xs">
                         USD
                     </sup>
