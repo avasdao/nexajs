@@ -12,7 +12,7 @@ console.log('Starting NexaJS Daemon...')
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
 const IS_LIVE_BROADCAST = false
-const ACTIVE_ACCOUNT_IDX = 2
+const ACTIVE_ACCOUNT_IDX = 1
 // 0 - nexa:nqtsq5g5ezqpr27c78uyf08260xq4xh35faa4yk64aycgega (master)
 // 1 - nexa:nqtsq5g55ykpcwwvr0x54358lx7skesefgj9anf07drdv52v (minting)
 // 2 - nexa:nqtsq5g56gvyyaf57seml8zdxu8ur7x5wsevh49mj5f7q6s0 (melting)
@@ -31,7 +31,7 @@ const ACTIVE_ACCOUNT_IDX = 2
     console.log('\nWALLET ADDRESS', wallet.address, '\n')
 
     /* Wait for race condition. */
-    await sleep(1000)
+    await sleep(1_000)
 
     if (ACTIVE_ACCOUNT_IDX === 0) {
         // createGroup()
@@ -41,14 +41,14 @@ const ACTIVE_ACCOUNT_IDX = 2
         mintGroup(
             wallet,
             'nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug', // Shomari (Robin Hood)
-            1000000,
+            500_000_000,
             IS_LIVE_BROADCAST,
         )
 
         // mintSubgroup(
         //     wallet,
         //     'nexa:nqtsq5g5k2gjcnxxrudce0juwl4atmh2yeqkghcs46snrqug', // Shomari (Robin Hood)
-        //     100000000,
+        //     100_000_000,
         //     IS_LIVE_BROADCAST,
         // )
     }
@@ -56,7 +56,7 @@ const ACTIVE_ACCOUNT_IDX = 2
     if (ACTIVE_ACCOUNT_IDX === 2) {
         setTimeout(() => {
             meltGroup(wallet, IS_LIVE_BROADCAST)
-        }, 3000)
+        }, 3_000)
     }
 
     if (ACTIVE_ACCOUNT_IDX === 3) {

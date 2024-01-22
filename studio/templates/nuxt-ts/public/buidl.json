@@ -1,0 +1,13 @@
+[{
+  "ticker": "BUIDL",
+  "name": "Nexican Builder",
+  "summary": "A key participant in the movement to take back power from the small minority that wish to control humanity.",
+  "description": "Every Builder has rights and access to Ava's DAO resources congruent to their assigned rights.",
+  "legal": "Each Builder is responsible for their own actions when using Studio property.",
+  "creator": "Ava's DAO",
+  "contact": { "address": "3455 Peachtree Rd NE, Suite #500, Atlanta, GA 30326", "email": "support@avasdao.org", "twitter.com": "@AvasDAO" },
+  "icon": "/buidl.svg",
+  "category": "NFT"
+},
+"<base64-signature-here>"
+]
