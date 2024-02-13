@@ -8,6 +8,23 @@ The library offers three (3) comprehensive test suites:
 Library maintainers aim to preserve a minimum of >99.3% test coverage at all times. The following offers details about the rationale behind the various test suites.
 
 
+## Unit Tests
+
+Perform off-line library activities.
+
+
+## Integration Tests
+
+Perform on-line (non-mutating) activities via Rostrum and/or NexaShell.
+
+
+## End-to-end (E2E) Tests
+
+Perform on-line (mutating) activities via Rostrum and/or NexaShell.
+
+> PLEASE NOTE: There is usually a 5-second pause between E2E tests to allow from on-chain reconciliation. This will cause E2E tests to take much longer to perform than other test suites.
+
+
 ## Nx/Lerna (Cloud) Automated Test Suite
 
 ```sh
