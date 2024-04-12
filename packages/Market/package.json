@@ -4,7 +4,7 @@
   "description": "Access and trade with Nexa's exchange partners all from one place.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
-  "author": "NexaJS developers",
+  "author": "NEXA.js developers",
   "license": "MIT",
   "type": "module",
   "dependencies": {

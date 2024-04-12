@@ -4,7 +4,7 @@
   "description": "Manages ALL data connections and requests.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
-  "author": "NexaJS developers",
+  "author": "NEXA.js developers",
   "license": "MIT",
   "type": "module",
   "dependencies": {

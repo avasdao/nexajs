@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "repository": "https://github.com/avasdao/nexajs",
-  "author": "NexaJS developers",
+  "author": "NEXA.js developers",
   "license": "MIT",
   "dependencies": {
     "debug": "4.3.4",

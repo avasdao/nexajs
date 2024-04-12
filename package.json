@@ -3,7 +3,7 @@
   "version": "23.1.10",
   "license": "MIT",
   "description": "JavaScript API Library & SDK for interacting with the Nexa blockchain.",
-  "author": "NexaJS developers",
+  "author": "NEXA.js developers",
   "main": "lib/index.js",
   "directories": {
     "doc": "docs",

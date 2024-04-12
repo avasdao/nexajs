@@ -4,7 +4,7 @@
   "description": "Provides a convenient gateway for a web browser/client to access ALL methods supported by remote Rostrum servers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
-  "author": "NexaJS developers",
+  "author": "NEXA.js developers",
   "license": "MIT",
   "type": "module",
   "dependencies": {

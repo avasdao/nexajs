@@ -1,4 +1,4 @@
-# NexaJS Wallet
+# NEXA.js Wallet
 
 Create a Nexa Wallet to manage your assets.
 
@@ -10,7 +10,7 @@ import { Wallet } from '@nexajs/wallet'
 
 const wallet = await Wallet.init()
 // {
-//   mnemonic: 'correct horse battery staple',
+//   mnemonic: '<randomly generated 12-word seed phrase>',
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...
@@ -64,7 +64,7 @@ import { Wallet } from '@nexajs/wallet'
 
 const wallet = await Wallet.init(0xdeadbeef)
 // {
-//   mnemonic: 'correct horse battery staple',
+//   mnemonic: null,
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...
@@ -89,9 +89,9 @@ console.log(balance)
 ```js
 import { Wallet } from '@nexajs/wallet'
 
-const wallet = await Wallet.init('satoshi@bitcoin.org', 'setecastronomy')
+const wallet = await Wallet.init('satoshi@bitcoin.org', 'Setec Astronomy')
 // {
-//   mnemonic: 'correct horse battery staple',
+//   mnemonic: null,
 //   path: `m/44'/29223'/0'`,
 //   index: 0,
 //   ...

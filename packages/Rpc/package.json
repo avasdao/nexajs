@@ -4,7 +4,7 @@
   "description": "Provides a programmable interface to a (local or remote) Nexa full node using JSON-RPC.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
-  "author": "NexaJS developers",
+  "author": "NEXA.js developers",
   "license": "MIT",
   "type": "module",
   "dependencies": {
