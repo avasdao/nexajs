@@ -1,6 +1,10 @@
 # NEXA.js Wallet
 
-Create a Nexa Wallet to manage your assets.
+Quickly and easily create a Nexa-compatible wallet to manage your "native" assets.
+
+This is a FULLY-managed wallet offering the following features:
+- send & receive NEX
+- send & receive ALL "native" tokens
 
 
 ## Auto-generated Wallet
