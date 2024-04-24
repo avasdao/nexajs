@@ -6,11 +6,13 @@ const debug = debugFactory('nexa:purse')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
+import _buildCoins from './src/buildCoins.js'
 import _getCoins from './src/getCoins.js'
 import _getDustLimit from './src/getDustLimit.js'
 import _sendCoins from './src/sendCoins.js'
 
 /* Export (local) modules. */
+export const buildCoins = _buildCoins
 export const getCoins = _getCoins
 export const getDustLimit = _getDustLimit
 export const send = _sendCoins      // alias
@@ -77,6 +79,7 @@ const Nexa = {}
 Nexa.Purse = Purse
 
 /* Initialize Purse modules. */
+Nexa.buildCoins = buildCoins
 Nexa.getCoins = getCoins
 Nexa.getDustLimit = getDustLimit
 Nexa.send = send            // alias

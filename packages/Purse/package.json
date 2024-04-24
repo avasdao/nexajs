@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/purse",
-  "version": "23.12.29",
+  "version": "24.4.20",
   "description": "Manages individual unspent transaction outputs (UTXOs).",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
