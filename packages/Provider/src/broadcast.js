@@ -4,11 +4,26 @@ const debug = debugFactory('nexa:provider:broadcast')
 
 /* Initialize constants. */
 const INSOMNIA_DEFAULT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
+const NEXASH_DEFAULT_MAINNET = 'https://nexa.sh/graphql'
+const NEXASH_DEFAULT_TESTNET = 'https://test-nexa.sh/graphql'
 const ROSTRUM_DEFAULT_MAINNET = 'wss://rostrum.nexa.sh:20004'
 const ROSTRUM_DEFAULT_TESTNET = 'wss://rostrum.test-nexa.sh:30004'
 
 /* Initialize globals. */
+let nexashProvider
 let rostrumProvider
+
+/* Handle environment variables. */
+if (typeof process !== 'undefined' && process?.env?.NEXASH) {
+    /* Set (user-defined) Rostrum provider. */
+    nexashProvider = process.env.NEXASH
+} else if (typeof process !== 'undefined' && process?.env?.TESTNET) {
+    /* Set default (Testnet) provider. */
+    nexashProvider = NEXASH_DEFAULT_TESTNET
+} else {
+    /* Set default (Mainnet) provider. */
+    nexashProvider = NEXASH_DEFAULT_MAINNET
+}
 
 /* Handle environment variables. */
 if (typeof process !== 'undefined' && process?.env?.ROSTRUM) {
@@ -77,6 +92,9 @@ const broadcastNexa = async (_rawTx) => {
     let request
     let resolve
     let reject
+
+    // TODO Add (a secondary) broadcast request directly to NexaShell's GraphQL
+    // USE `fetch()` -> NEXASH_DEFAULT_MAINNET
 
     /* Import WebSocket. */
     // NOTE: Ignored by esmify.
