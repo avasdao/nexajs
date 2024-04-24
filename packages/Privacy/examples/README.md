@@ -1,4 +1,4 @@
-# NexaJS Privacy Examples
+# NEXA.js Privacy Examples
 
 A complete guide to ALL the Privacy commands available from the protocol.
 

@@ -1,4 +1,4 @@
-# NexaJS Token
+# NEXA.js Token
 
 Manage group token assets.
 

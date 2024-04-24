@@ -1,4 +1,4 @@
-# NexaJS Message Examples
+# NEXA.js Message Examples
 
 A complete guide to ALL the Message commands available from the protocol.
 

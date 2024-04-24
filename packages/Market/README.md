@@ -1,4 +1,4 @@
-# NexaJS Market
+# NEXA.js Market
 
 ### Access to ALL of Nexa's exchange partners in one place.
 

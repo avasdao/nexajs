@@ -1,4 +1,4 @@
-# NexaJS Lightning Network (LN) Examples
+# NEXA.js Lightning Network (LN) Examples
 
 A complete guide to ALL the Lightning Network (LN) commands available from the protocol.
 

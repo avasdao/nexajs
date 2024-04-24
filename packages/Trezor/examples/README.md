@@ -1,4 +1,4 @@
-# NexaJS Trezor Examples
+# NEXA.js Trezor Examples
 
 A complete guide to ALL the Trezor commands available from the protocol.
 

@@ -1,4 +1,4 @@
-# NexaJS Request Examples
+# NEXA.js Request Examples
 
 A complete guide to ALL the Request commands available from the protocol.
 

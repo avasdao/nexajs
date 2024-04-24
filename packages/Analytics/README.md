@@ -1,1 +1,1 @@
-# NexaJS Analytics
+# NEXA.js Analytics

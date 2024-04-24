@@ -1,4 +1,4 @@
-# NexaJS Bridge Examples
+# NEXA.js Bridge Examples
 
 A complete guide to ALL the Bridge commands available from the protocol.
 

@@ -1,4 +1,4 @@
-# NexaJS Provider Examples
+# NEXA.js Provider Examples
 
 A complete guide to ALL the Provider commands available from the protocol.
 

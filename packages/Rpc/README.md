@@ -1,4 +1,4 @@
-# NexaJS RPC
+# NEXA.js RPC
 
 Allows full control of local Nexa node using JSON-RPC.
 

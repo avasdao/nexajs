@@ -1,4 +1,4 @@
-# NexaJS Account Examples
+# NEXA.js Account Examples
 
 A complete guide to ALL the Account commands available from the protocol.
 

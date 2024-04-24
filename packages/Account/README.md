@@ -1,1 +1,1 @@
-# NexaJS Account
+# NEXA.js Account

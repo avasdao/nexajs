@@ -1,4 +1,4 @@
-# NexaJS Wallet Examples
+# NEXA.js Wallet Examples
 
 A complete guide to ALL the Wallet commands available from the protocol.
 

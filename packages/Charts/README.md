@@ -1,1 +1,1 @@
-# NexaJS Charts
+# NEXA.js Charts

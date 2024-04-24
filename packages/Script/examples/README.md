@@ -1,4 +1,4 @@
-# NexaJS Script Examples
+# NEXA.js Script Examples
 
 A complete guide to ALL the Script commands available from the protocol.
 

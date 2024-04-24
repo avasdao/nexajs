@@ -1,4 +1,4 @@
-# NexaJS HD Node Examples
+# NEXA.js HD Node Examples
 
 A complete guide to ALL the HD Node commands available from the protocol.
 

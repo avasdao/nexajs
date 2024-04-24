@@ -1,4 +1,4 @@
-# NexaJS Analytics Examples
+# NEXA.js Analytics Examples
 
 A complete guide to ALL the Analytics commands available from the protocol.
 

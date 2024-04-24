@@ -1,4 +1,4 @@
-# NexaJS RPC Examples
+# NEXA.js RPC Examples
 
 A complete guide to ALL the JSON-RPC commands available via the node.
 

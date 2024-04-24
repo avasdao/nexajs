@@ -1,4 +1,4 @@
-# NexaJS Zero-knowledge Proof Examples
+# NEXA.js Zero-knowledge Proof Examples
 
 A complete guide to ALL the Zero-knowledge Proof commands available from the protocol.
 

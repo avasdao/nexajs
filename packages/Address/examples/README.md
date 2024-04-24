@@ -1,4 +1,4 @@
-# NexaJS Address Examples
+# NEXA.js Address Examples
 
 A complete guide to ALL the Address commands available from the protocol.
 

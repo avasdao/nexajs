@@ -1,1 +1,1 @@
-# NexaJS Zero-knowledge Proof
+# NEXA.js Zero-knowledge Proof

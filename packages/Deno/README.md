@@ -1,1 +1,1 @@
-# NexaJS Deno
+# NEXA.js Deno

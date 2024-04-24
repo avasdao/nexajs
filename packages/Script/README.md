@@ -1,1 +1,1 @@
-# NexaJS Script
+# NEXA.js Script

@@ -1,4 +1,4 @@
-# NexaJS Market Examples
+# NEXA.js Market Examples
 
 A complete guide to ALL the Market commands available from the protocol.
 

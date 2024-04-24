@@ -1,4 +1,4 @@
-# NexaJS Utilities Examples
+# NEXA.js Utilities Examples
 
 A complete guide to ALL the Utilities commands available from the protocol.
 

@@ -1,4 +1,4 @@
-# NexaJS Rostrum Examples
+# NEXA.js Rostrum Examples
 
 A complete guide to ALL the Rostrum commands available from the protocol.
 

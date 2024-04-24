@@ -1,1 +1,1 @@
-# NexaJS Nuxt
+# NEXA.js Nuxt

@@ -1,4 +1,4 @@
-# NexaJS Utilities
+# NEXA.js Utilities
 
 A dependency-free suite of useful utilities for application building.
 

@@ -1,1 +1,1 @@
-# NexaJS HD Node
+# NEXA.js HD Node

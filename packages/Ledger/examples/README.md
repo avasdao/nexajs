@@ -1,4 +1,4 @@
-# NexaJS Ledger Examples
+# NEXA.js Ledger Examples
 
 A complete guide to ALL the Ledger commands available from the protocol.
 

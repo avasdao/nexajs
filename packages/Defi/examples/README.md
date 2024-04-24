@@ -1,4 +1,4 @@
-# NexaJS Decentralized Finance (DeFi) Examples
+# NEXA.js Decentralized Finance (DeFi) Examples
 
 A complete guide to ALL the Decentralized Finance (DeFi) commands available from the protocol.
 

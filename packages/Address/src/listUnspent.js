@@ -27,7 +27,7 @@ export default async (_address) => {
     } else if (_address.includes('bitcoincash')) { // TODO: Confirm "test" and "reg" formats.
         utxos = await listBCHUnspent(_address)
     } else {
-        throw new Error('Oops! That address format is NOT currently supported by NexaJS.')
+        throw new Error('Oops! That address format is NOT currently supported by NEXA.js.')
     }
 
     /* Return UTXOs. */

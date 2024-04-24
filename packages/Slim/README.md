@@ -1,1 +1,1 @@
-# NexaJS Slim
+# NEXA.js Slim

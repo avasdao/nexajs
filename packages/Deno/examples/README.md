@@ -1,4 +1,4 @@
-# NexaJS Deno Examples
+# NEXA.js Deno Examples
 
 A complete guide to ALL the Deno commands available from the protocol.
 

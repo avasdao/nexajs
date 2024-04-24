@@ -1,6 +1,6 @@
-# NexaJS Packages
+# NEXA.js Packages
 
-The following suite of 33 packages compose the entire NexaJS Library and Software Development Kit (SDK).
+The following suite of 33 packages compose the entire NEXA.js Library and Software Development Kit (SDK).
 
 
 ## Account
@@ -141,7 +141,7 @@ Build and compile the "wise" contract scripts of Nexa.
 
 ## Slim
 
-A minimal (lightweight) version of the full NexaJS library containing ONLY the minimum libraries required for effective operational use in environments that have strict (data/security) constraints.
+A minimal (lightweight) version of the full NEXA.js library containing ONLY the minimum libraries required for effective operational use in environments that have strict (data/security) constraints.
 
 
 ## [Token](/packages/Token)
@@ -169,7 +169,7 @@ _TBD_
 
 ## [Utilities](/packages/Utils)
 
-A suite of "pure" utilities to support the other NexaJS libraries.
+A suite of "pure" utilities to support the other NEXA.js libraries.
 
 
 ## [Wallet](/packages/Wallet)

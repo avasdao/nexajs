@@ -1,1 +1,1 @@
-# NexaJS Next
+# NEXA.js Next

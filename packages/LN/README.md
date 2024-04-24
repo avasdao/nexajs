@@ -1,1 +1,1 @@
-# NexaJS Lightning Network (LN)
+# NEXA.js Lightning Network (LN)

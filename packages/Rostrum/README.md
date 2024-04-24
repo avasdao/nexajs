@@ -2,7 +2,7 @@
 
 Provides convenient browser access to ALL methods supported by remote Rostrum servers.
 
-| Rostrum Protocol Methods | NexaJS Library Methods | Parameters |
+| Rostrum Protocol Methods | NEXA.js Library Methods | Parameters |
 |---|---|---|
 | [blockchain.address.decode](https://bitcoinunlimited.gitlab.io/rostrum/protocol/methods/#blockchainaddressdecode) | [decodeRemoteAddress](/packages/Rostrum/index.js) | ( string ) |
 | [blockchain.address.get_balance](https://bitcoinunlimited.gitlab.io/rostrum/protocol/methods/#blockchainaddressget_balance) | [getAddressBalance](/packages/Rostrum/index.js) | ( string ) |

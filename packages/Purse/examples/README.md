@@ -1,4 +1,4 @@
-# NexaJS Purse Examples
+# NEXA.js Purse Examples
 
 A complete guide to ALL the Purse commands available from the protocol.
 

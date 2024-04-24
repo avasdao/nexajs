@@ -1,4 +1,4 @@
-# NexaJS Address
+# NEXA.js Address
 
 A comprehensive suite of Address querying, monitoring and formatting utilities.
 
@@ -24,7 +24,7 @@ A comprehensive suite of Address querying, monitoring and formatting utilities.
 
 ## Data Schema
 
-Here is the full data schema for a NexaJS Address.
+Here is the full data schema for a NEXA.js Address.
 
 ```graphql
 {

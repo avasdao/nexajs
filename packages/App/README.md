@@ -1,1 +1,1 @@
-# NexaJS Application
+# NEXA.js Application

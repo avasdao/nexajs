@@ -1,4 +1,4 @@
-# NexaJS Nuxt Examples
+# NEXA.js Nuxt Examples
 
 A complete guide to ALL the Nuxt commands available from the protocol.
 

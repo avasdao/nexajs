@@ -1,1 +1,1 @@
-# NexaJS Decentralized Finance (DeFi)
+# NEXA.js Decentralized Finance (DeFi)

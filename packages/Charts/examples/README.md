@@ -1,4 +1,4 @@
-# NexaJS Charts Examples
+# NEXA.js Charts Examples
 
 A complete guide to ALL the Charts commands available from the protocol.
 

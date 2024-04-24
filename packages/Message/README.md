@@ -1,4 +1,4 @@
-# NexaJS Message
+# NEXA.js Message
 
 ### Supported Protocols
 

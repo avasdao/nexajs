@@ -1,4 +1,4 @@
-# NexaJS Next Examples
+# NEXA.js Next Examples
 
 A complete guide to ALL the Next commands available from the protocol.
 

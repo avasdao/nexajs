@@ -1,4 +1,4 @@
-# NexaJS Express JS Middleware
+# NEXA.js Express JS Middleware
 
 ## Session
 

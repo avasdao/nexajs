@@ -1,4 +1,4 @@
-# NexaJS ID Examples
+# NEXA.js ID Examples
 
 A complete guide to ALL the ID commands available from the protocol.
 

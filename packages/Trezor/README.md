@@ -1,1 +1,1 @@
-# NexaJS Trezor
+# NEXA.js Trezor

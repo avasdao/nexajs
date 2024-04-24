@@ -1,1 +1,1 @@
-# NexaJS Nostr
+# NEXA.js Nostr

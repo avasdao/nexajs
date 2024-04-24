@@ -1,4 +1,4 @@
-# NexaJS Nostr Examples
+# NEXA.js Nostr Examples
 
 A complete guide to ALL the Nostr commands available from the protocol.
 

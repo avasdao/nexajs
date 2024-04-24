@@ -1,4 +1,4 @@
-# NexaJS Transaction
+# NEXA.js Transaction
 
 Create and manage Transactions.
 

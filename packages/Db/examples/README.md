@@ -1,4 +1,4 @@
-# NexaJS Database Examples
+# NEXA.js Database Examples
 
 A complete guide to ALL the Database commands available from the protocol.
 

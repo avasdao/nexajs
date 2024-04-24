@@ -1,1 +1,1 @@
-# NexaJS Privacy
+# NEXA.js Privacy

@@ -1,1 +1,1 @@
-# NexaJS Database
+# NEXA.js Database

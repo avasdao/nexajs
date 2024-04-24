@@ -1,4 +1,4 @@
-# NexaJS Meta (0x Network) Examples
+# NEXA.js Meta (0x Network) Examples
 
 A complete guide to ALL the Meta (0x Network) commands available from the protocol.
 

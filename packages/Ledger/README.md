@@ -1,1 +1,1 @@
-# NexaJS Ledger
+# NEXA.js Ledger

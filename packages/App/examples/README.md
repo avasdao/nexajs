@@ -1,4 +1,4 @@
-# NexaJS dApp Examples
+# NEXA.js dApp Examples
 
 A complete guide to ALL the dApp commands available from the protocol.
 

@@ -1,1 +1,1 @@
-# NexaJS Meta
+# NEXA.js Meta

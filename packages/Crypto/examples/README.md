@@ -1,4 +1,4 @@
-# NexaJS Crypto Examples
+# NEXA.js Crypto Examples
 
 A complete guide to ALL the Crypto commands available from the protocol.
 

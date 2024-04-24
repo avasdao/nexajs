@@ -1,1 +1,1 @@
-# NexaJS Crypto
+# NEXA.js Crypto

@@ -1,4 +1,4 @@
-# NexaJS Express JS Middleware Examples
+# NEXA.js Express JS Middleware Examples
 
 A complete guide to ALL the Express JS Middleware commands available from the protocol.
 

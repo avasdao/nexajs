@@ -1,4 +1,4 @@
-# NexaJS Transaction Examples
+# NEXA.js Transaction Examples
 
 A complete guide to ALL the Transaction commands available from the protocol.
 
