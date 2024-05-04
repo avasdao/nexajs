@@ -10,7 +10,7 @@ A full-service, multi-currency web wallet for your applications.
 
 Many applications offer a better User Experience (UX) when the wallet is directly embedded into the application.
 
-![NPM Create Nexa](/screenshots/studio-wallet.png)
+![NPM Create Nexa](screenshots/studio-wallet.png)
 
 {% callout title="You should know!" %}
 We also make this as simple as a [drop-in Wallet package](https://github.com/avasdao/nexajs/tree/master/packages/Wallet) for your existing applications.

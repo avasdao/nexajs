@@ -79,7 +79,7 @@ yarn create nexa
 pnpm create nexa
 ```
 
-![NPM Create Nexa](/screenshots/npm-create-nexa.png)
+![NPM Create Nexa](screenshots/npm-create-nexa.png)
 
 The default setup takes just 2 minutes to build and deploy with the following features:
 

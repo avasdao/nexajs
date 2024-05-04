@@ -27,7 +27,7 @@ pnpm create nexa
 
 Follow the step-by-step instructions of the interactive New Project wizard to get started quickly and easily on your Nexa projects.
 
-![NPM Create Nexa](/screenshots/npm-create-nexa.png)
+![NPM Create Nexa](screenshots/npm-create-nexa.png)
 
 > Nexa Builder Studio offers full bootstrapping capabilities for the most popular Crypto networks, including: Ethereum, Binance, Avalanche, Tron and Polygon.
 
@@ -37,7 +37,7 @@ Follow the step-by-step instructions of the interactive New Project wizard to ge
 
 This is the starting point for Project journey. The first time you load your Studio page, you'll be presented with an interactive welcome guide.
 
-![NPM Create Nexa](/screenshots/nbs-welcome.png)
+![NPM Create Nexa](screenshots/nbs-welcome.png)
 
 ### Customize the Boilerplate Template
 

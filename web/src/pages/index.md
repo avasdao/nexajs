@@ -42,7 +42,7 @@ NEXA.js is a fully-compliant, pure JavaScript library and software development k
 
 Nexa Studio is an advanced toolkit for building robust, decentralized applications powered by the Nexa blockchain.
 
-![NPM Create Nexa](/screenshots/npm-create-nexa.png)
+![NPM Create Nexa](screenshots/npm-create-nexa.png)
 
 The default setup takes just 2 minutes to build and deploy with the following features:
 
