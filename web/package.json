@@ -1,12 +1,11 @@
 {
   "name": "nexajs-web",
-  "version": "23.3.3",
+  "version": "24.5.28",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "start-flux": "next start -p 80",
     "lint": "next lint"
   },
   "browserslist": "defaults, not ie <= 11",
