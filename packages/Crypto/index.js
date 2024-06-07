@@ -6,8 +6,8 @@ const debug = debugFactory('nexa:crypto')
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// import _decrypt from './src/decrypt.js'
-// import _encrypt from './src/encrypt.js'
+import _decrypt from './src/decrypt.js'
+import _encrypt from './src/encrypt.js'
 // import _passwordToSafu from './src/passwordToSafu.js'
 import _getHmac from './src/getHmac.js'
 import _ripemd160 from './src/ripemd160.js'
@@ -15,8 +15,8 @@ import _sha256 from './src/sha256.js'
 import _sha512 from './src/sha512.js'
 
 /* Export (local) modules. */
-// export const decrypt = _decrypt
-// export const encrypt = _encrypt
+export const decrypt = _decrypt
+export const encrypt = _encrypt
 // export const passwordToSafu = _passwordToSafu
 export const getHmac = _getHmac
 export const ripemd160 = _ripemd160
@@ -59,8 +59,8 @@ const Nexa = {}
 Nexa.Crypto = Crypto
 
 /* Initialize Crypto modules. */
-// Nexa.decrypt = decrypt
-// Nexa.encrypt = encrypt
+Nexa.decrypt = decrypt
+Nexa.encrypt = encrypt
 // Nexa.passwordToSafu = passwordToSafu
 Nexa.getHmac = getHmac
 Nexa.randomBytes = randomBytes

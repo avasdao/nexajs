@@ -1,17 +1,31 @@
 /* Import modules. */
-import AES = from 'crypto-js/aes'
+import CryptoJS from 'crypto-js'
+import AES from 'crypto-js/aes.js'
 
 /* Setup (non-ESM) debugger. */
 import debugFactory from 'debug'
 const debug = debugFactory('nexa:crypto:encrypt')
 
+CryptoJS.pad.NoPadding = { pad: function(){}, unpad: function(){} }
+
 /**
  * AES Encrypt
  */
-const _aesEncrypt = (_plainBody, _key) => {
+const _aesEncrypt = (_plainBody, _key, _iv) => {
     /* Encrypt plain body. */
     const encryptedBody = AES.encrypt(_plainBody, _key)
-    debug(`Plain body (formatted): [ ${plainBody} ]`)
+
+    // // const text = "My Secret text\0\0"
+    // const text = "My Secret text\0\0"
+    // const key  = CryptoJS.enc.Hex.parse("253d3fb468a0e24677c28a624be0f939")
+    // const iv   = CryptoJS.enc.Hex.parse("00000000000000000000000000000000")
+    //
+    // const encrypted = CryptoJS.AES.encrypt(text, key, { iv })
+    // // var encrypted = CryptoJS.AES.encrypt(text, key);
+    //
+    // console.log(encrypted.toString());
+
+    debug(`Plain body (formatted): [ ${_plainBody} ]`)
     debug(`Encrypted body: [ ${encryptedBody} ]`)
 
     /* Return encrypted body. */
@@ -49,17 +63,17 @@ export default (_params, _key) => {
     }
 
     /* Validate (String) body. */
-    if (typeof _plainBody === 'string' || _plainBody instanceof String) {
+    if (typeof plainBody === 'string' || plainBody instanceof String) {
         bodyType = 'string'
 
-        plainBody = _plainBody
+        // plainBody = plainBody
     }
 
     /* Validate body type. */
     if (!bodyType) {
         try {
             /* Parse plain body. */
-            plainBody = JSON.stringify(JSON.parse(_plainBody))
+            plainBody = JSON.stringify(JSON.parse(plainBody))
 
             /* Set body type. */
             bodyType = 'json'
@@ -67,7 +81,8 @@ export default (_params, _key) => {
     }
 
     /* Set (password) key. */
-    key = _params?.key || _params?.password
+    // key = _params?.key || _params?.password
+    key = _key
 
     /* Validate (password) key. */
     if (!key) {
