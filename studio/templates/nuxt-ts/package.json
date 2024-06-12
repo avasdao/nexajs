@@ -11,13 +11,14 @@
   },
   "dependencies": {
     "@pinia/nuxt": "0.4.7",
-    "nexajs": "23.12.5",
-    "nuxt": "3.0.0",
+    "nexajs": "23.12.29",
+    "nuxt": "3.7.4",
     "pinia": "2.0.32"
   },
   "devDependencies": {
     "@kevinmarrec/nuxt-pwa": "0.17.0",
     "@nuxtjs/i18n": "8.0.0-rc.2",
-    "@nuxtjs/tailwindcss": "6.4.1"
+    "@nuxtjs/tailwindcss": "6.4.1",
+    "postcss-custom-properties": "13.3.10"
   }
 }
