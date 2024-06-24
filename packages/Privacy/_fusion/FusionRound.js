@@ -1,7 +1,6 @@
 /* Import core modules. */
 const _ = require('lodash')
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('cashshuffle:round')
 const EventEmitter = require('events').EventEmitter
 
 /* Import local modules. */
@@ -66,7 +65,7 @@ class FusionRound extends EventEmitter {
 
         /* Validate shuffled hook. */
         if (!_.isFunction(this.hooks.shuffled)) {
-            debug(`A valid shuffle address generation hook was not provided!`)
+            console.log(`A valid shuffle address generation hook was not provided!`)
             throw new Error('BAD_SHUFFLE_FN')
         }
 
@@ -77,7 +76,7 @@ class FusionRound extends EventEmitter {
         // NOTE: Make sure either a change generation function or change
         //       keypair object was provided. Use the keypair, if we got both.
         if (!_.isFunction(this.hooks.change)) {
-            debug(`A valid change generation hook was not provided!`)
+            console.log(`A valid change generation hook was not provided!`)
             throw new Error('BAD_CHANGE_FN')
         }
 
@@ -136,7 +135,7 @@ class FusionRound extends EventEmitter {
             try {
                 await this.actOnMessage(someServerMessage)
             } catch (nope) {
-                debug('Failed to act right in response to server message:', nope)
+                console.log('Failed to act right in response to server message:', nope)
                 this.writeDebugFile()
             }
         })
@@ -149,11 +148,11 @@ class FusionRound extends EventEmitter {
 
         /* Handle disconnection. */
         this.comms.on('disconnected', (commsDisconnectMessage) => {
-            debug('Our connection to the CashShuffle server is REKT!')
+            console.log('Our connection to the CashShuffle server is REKT!')
 
             /* Validate round completion. */
             if (this.roundComplete) {
-                debug('The shuffle Round has completed')
+                console.log('The shuffle Round has completed')
             } else {
                 /* Set success flag. */
                 this.success = false
@@ -176,7 +175,7 @@ class FusionRound extends EventEmitter {
 
         /* Handle connection. */
         // this.comms.on('connected', (socket) => {
-        //     debug('socket', socket)
+        //     console.log('socket', socket)
         this.comms.on('connected', () => {
 
             /* Set round phase. */
@@ -198,13 +197,13 @@ class FusionRound extends EventEmitter {
                         this.ephemeralKeypair.publicKey
                     )
             } catch (nope) {
-                debug('Couldnt send registration message:', nope.message)
+                console.log('Couldnt send registration message:', nope.message)
             }
         })
 
         this.ready()
             .catch((nope) => {
-                debug('ERROR:', nope)
+                console.log('ERROR:', nope)
             })
             .then(() => {
                 //
@@ -217,7 +216,7 @@ class FusionRound extends EventEmitter {
      * Handle Communications Error
      */
     handleCommsError (someError) {
-        debug('Something has gone wrong with our communication channel:', someError.message)
+        console.log('Something has gone wrong with our communication channel:', someError.message)
 
         /* Update round error. */
         this.roundError = {
@@ -241,7 +240,7 @@ class FusionRound extends EventEmitter {
         try {
             await this.comms.connect()
         } catch (nope) {
-            debug('Failure!', nope)
+            console.log('Failure!', nope)
             throw nope
         }
     }
@@ -254,7 +253,7 @@ class FusionRound extends EventEmitter {
      */
     async actOnMessage (jsonMessage) {
         // console.log('\nACTING ON MESSAGE', jsonMessage) // eslint-disable-line no-console
-        debug('Acting on message:', jsonMessage.pruned.message)
+        console.log('Acting on message:', jsonMessage.pruned.message)
 
         /* Set message type. */
         const messageType =
@@ -271,7 +270,7 @@ class FusionRound extends EventEmitter {
         /* Initialize new phase name. */
         let newPhaseName
 
-        // debug('Attempting to act on', messageType, 'message\n\n');
+        // console.log('Attempting to act on', messageType, 'message\n\n');
 
         /* Handle message type. */
         switch (messageType) {
@@ -320,10 +319,10 @@ class FusionRound extends EventEmitter {
                 try {
                     this.broadcastTransactionInput()
                 } catch (nope) {
-                    debug('Error broadcasting broadcastTransactionInput:', nope)
+                    console.log('Error broadcasting broadcastTransactionInput:', nope)
                 }
             } else {
-                debug('Problem with server phase message')
+                console.log('Problem with server phase message')
 
                 if (_.get(jsonMessage, 'packets[0].packet.fromKey.key')) {
                     this.assignBlame({
@@ -337,7 +336,7 @@ class FusionRound extends EventEmitter {
             try {
                 await this.addPlayerToRound(message)
             } catch (nope) {
-                debug('Error broadcasting broadcastTransactionInput:', nope)
+                console.log('Error broadcasting broadcastTransactionInput:', nope)
             }
 
             // If we've received the message from all players (including us)
@@ -347,7 +346,7 @@ class FusionRound extends EventEmitter {
                 try {
                     await this.announceChangeAddress()
                 } catch (nope) {
-                    debug('Error broadcasting changeAddress:', nope)
+                    console.log('Error broadcasting changeAddress:', nope)
                     this.endShuffleRound()
                 }
             }
@@ -360,7 +359,7 @@ class FusionRound extends EventEmitter {
                 await this.announceChangeAddress()
             }
 
-            debug('Incoming change address',
+            console.log('Incoming change address',
                 'Encryption pubkey', message['message']['key']['key'],
                 'Legacy address', message['message']['address']['address'])
 
@@ -384,7 +383,7 @@ class FusionRound extends EventEmitter {
                 try {
                     await this.forwardEncryptedShuffleTxOutputs(undefined, undefined)
                 } catch (nope) {
-                    debug('Error broadcasting changeAddress:', nope)
+                    console.log('Error broadcasting changeAddress:', nope)
                     this.endShuffleRound()
                 }
             }
@@ -408,7 +407,7 @@ class FusionRound extends EventEmitter {
             break
         }
         case 'finalTransactionOutputs':
-            debug('got final transaction outputs!')
+            console.log('got final transaction outputs!')
             newPhaseName = _.isString(
                 message['phase']) ? message['phase'].toLowerCase() : undefined
 
@@ -421,7 +420,7 @@ class FusionRound extends EventEmitter {
             try {
                 await this.processEquivCheckMessage(message)
             } catch (nope) {
-                debug('Error processing incoming equivCheck:', nope)
+                console.log('Error processing incoming equivCheck:', nope)
             }
             break
         case 'blame':
@@ -431,7 +430,7 @@ class FusionRound extends EventEmitter {
             try {
                 await this.verifyAndSubmit(message)
             } catch (nope) {
-                debug('Error processing incoming output and signature:', nope)
+                console.log('Error processing incoming output and signature:', nope)
             }
             break
         // case '':
@@ -440,14 +439,14 @@ class FusionRound extends EventEmitter {
             break
         }
 
-        // debug('Finished acting on', messageType, 'message\n\n');
+        // console.log('Finished acting on', messageType, 'message\n\n');
     }
 
     /**
      * Process Websockets Error
      */
     processWsError (someError) {
-        debug('Oh goodness, something is amiss!', someError)
+        console.log('Oh goodness, something is amiss!', someError)
     }
 
     /**

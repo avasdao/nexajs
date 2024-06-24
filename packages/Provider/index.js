@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:provider')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ export const broadcast = _broadcast
 export class Provider extends EventEmitter {
     constructor(_params) {
         /* Initialize Provider class. */
-        debug('Initializing Provider...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Provider...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

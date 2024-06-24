@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:script')
-
 /* Import (local) modules. */
 import _decodeNullData from './src/decodeNullData.js'
 import _encodeDataPush from './src/encodeDataPush.js'
@@ -25,8 +21,8 @@ export const OP = _OP
 export class Script {
     constructor(_params) {
         /* Initialize Script class. */
-        debug('Initializing Script...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Script...')
+        console.log(JSON.stringify(_params, null, 2))
 
         this._data = null
 

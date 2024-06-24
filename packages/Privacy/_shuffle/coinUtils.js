@@ -1,7 +1,6 @@
 /* Import core modules. */
 const _ = require('lodash')
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('shuffle:utils')
 
 /* Import local modules. */
 const getCoinDetails = require('./_utils/getCoinDetails')
@@ -12,7 +11,7 @@ const prepareShuffleInsAndOuts = require('./_utils/prepareShuffleInsAndOuts')
  * Check Sufficient Funds
  */
 const checkSufficientFunds = function (inputs, amount) {
-    debug('Funds verification (amount):', amount)
+    console.log('Funds verification (amount):', amount)
     // Currently this is done in the `getCoinDetails` function
     // and it's called just before we add the player to the round.
     // It's also done as we're building the shuffle transaction.
@@ -26,7 +25,7 @@ const checkSufficientFunds = function (inputs, amount) {
 const verifyTransactionSignature = function (
     shuffleTxInstance, inputSigData, publicKeyHexOfSigner
 ) {
-    // debug('Verify transaction signature',
+    // console.log('Verify transaction signature',
     //     'shuffleTxInstance', shuffleTxInstance,
     //     'inputSigData', inputSigData,
     //     'publicKeyHexOfSigner', publicKeyHexOfSigner
@@ -52,7 +51,7 @@ const verifyTransactionSignature = function (
                 return undefined
             }
         }, undefined)
-    // debug('Input to sign:', inputToSign)
+    // console.log('Input to sign:', inputToSign)
 
     /* Validate input to sign. */
     if (!inputToSign) {
@@ -65,7 +64,7 @@ const verifyTransactionSignature = function (
     /* Set signature instance. */
     const signatureInstance = bch.crypto.Signature
         .fromTxFormat(Buffer.from(inputSigData.signature, 'hex'))
-    // debug('Signature instance:', signatureInstance)
+    // console.log('Signature instance:', signatureInstance)
 
     /* Set signature object. */
     const signatureObject = {
@@ -74,7 +73,7 @@ const verifyTransactionSignature = function (
         inputIndex: inputToSign.inputIndex,
         sigtype: signatureInstance.nhashtype
     }
-    // debug('Signature object:', signatureObject)
+    // console.log('Signature object:', signatureObject)
 
     /* Initialize verification results. */
     let verificationResults = false
@@ -86,7 +85,7 @@ const verifyTransactionSignature = function (
         console.error(nope) // eslint-disable-line no-console
         verificationResults = false
     }
-    // debug('Verification results:', verificationResults)
+    // console.log('Verification results:', verificationResults)
 
     /* Validate verification results. */
     if (verificationResults) {
@@ -113,7 +112,7 @@ const verifyTransactionSignature = function (
  * signature applied.
  */
 const getShuffleTxAndSignature = function (options) {
-    // debug('Get Shuffle Tx and Signature (options):', options)
+    // console.log('Get Shuffle Tx and Signature (options):', options)
 
     /* Set inputs. */
     const inputs = options.inputs
@@ -140,7 +139,7 @@ const getShuffleTxAndSignature = function (options) {
             scriptPubKey: bch.Script.fromAddress(playerPubKey.toAddress()),
             satoshis: oneInput.satoshis
         })
-        debug('Transaction input:', txInput)
+        console.log('Transaction input:', txInput)
 
         /* Set shuffle transaction. */
         shuffleTransaction.from(txInput)
@@ -164,14 +163,14 @@ const getShuffleTxAndSignature = function (options) {
 
         /* Validate our input. */
         if (oneInput.player.isMe) {
-            // debug('My (oneInput):', oneInput)
+            // console.log('My (oneInput):', oneInput)
             myInput = oneInput
         }
     }
 
     /* Loop through ALL outputs. */
     for (let oneOutput of outputs) {
-        // debug('Shuffle transaction (oneOutput)',
+        // console.log('Shuffle transaction (oneOutput)',
         //     oneOutput,
         //     'legacyAddress', oneOutput.legacyAddress,
         //     'cashAddress', oneOutput.cashAddress,
@@ -185,7 +184,7 @@ const getShuffleTxAndSignature = function (options) {
 
     /* Set pre-signed transaction. */
     const preSignedTx = shuffleTransaction.toObject()
-    debug('Get shuffle transaction and signature (preSignedTx):', preSignedTx)
+    console.log('Get shuffle transaction and signature (preSignedTx):', preSignedTx)
 
     /* Sign transaction. */
     shuffleTransaction.sign(
@@ -194,7 +193,7 @@ const getShuffleTxAndSignature = function (options) {
     /* Set signature instance. */
     const sigInstance = shuffleTransaction
         .getSignatures(myInput.player.coin.wif)[0]
-    // debug('Signature instance:', sigInstance)
+    // console.log('Signature instance:', sigInstance)
 
     /* Return transaction / signature package. */
     return {
@@ -213,7 +212,7 @@ const getShuffleTxAndSignature = function (options) {
  *       transaction building methods currently being evaluated.
  */
 const buildShuffleTransaction = async function (options) {
-    // debug('Build shuffle transaction (options):', options)
+    // console.log('Build shuffle transaction (options):', options)
     /* Initialize ins and outs. */
     let insAndOuts
 
@@ -226,14 +225,14 @@ const buildShuffleTransaction = async function (options) {
         console.error('cannot prepare inputs and outputs for shuffle Transaction') // eslint-disable-line no-console
         throw nope
     }
-    debug('Build shuffle transaction (insAndOuts):', insAndOuts)
+    console.log('Build shuffle transaction (insAndOuts):', insAndOuts)
 
     /* Set shuffle transaction data. */
     const shuffleTxData = await this.getShuffleTxAndSignature({
         inputs: insAndOuts.inputs,
         outputs: insAndOuts.outputs
     })
-    debug('Build shuffle transaction (shuffleTxData):', shuffleTxData)
+    console.log('Build shuffle transaction (shuffleTxData):', shuffleTxData)
 
     /* Return the results. */
     return {

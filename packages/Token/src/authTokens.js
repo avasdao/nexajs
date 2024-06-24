@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:token:authTokens')
-
 /* Import (library) modules. */
 import { broadcast } from '@nexajs/provider'
 
@@ -40,7 +36,7 @@ import DUST_LIMIT from './getDustLimit.js'
  * (NOTE: Partial authority can be retained by assigning new capabilities.)
  */
 export default async (_coins, _authTxo, _capabilities, _renounce = false) => {
-    debug('Sending tokens', _coins, _authTxo, _capabilities, _renounce)
+    console.log('Sending tokens', _coins, _authTxo, _capabilities, _renounce)
     // console.log('Sending tokens', _coins, _tokens, _capabilities, _renounce)
 
     /* Initialize locals. */

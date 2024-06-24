@@ -1,5 +1,4 @@
 /* Import core modules. */
-const debug = require('debug')('shuffle:utils:getcoindata')
 const Nito = require('nitojs')
 
 /**
@@ -11,7 +10,7 @@ const Nito = require('nitojs')
 const getCoinDetails = async function (_txid, _vout) {
     /* Set transaction id. */
     const txid = _txid
-    debug('Retrieving coin data for txid:', txid)
+    console.log('Retrieving coin data for txid:', txid)
 
     /* Validate transaction id. */
     if (!txid) {
@@ -20,7 +19,7 @@ const getCoinDetails = async function (_txid, _vout) {
 
     /* Validate output index. */
     const vout = Number(_vout)
-    debug('Output index is:', vout)
+    console.log('Output index is:', vout)
 
     /* Set verbose flag. */
     const verbose = true
@@ -33,14 +32,14 @@ const getCoinDetails = async function (_txid, _vout) {
             console.error('Something went wrong fetching transaction data.', err.message)
             throw new Error(err)
         })
-    debug('Retrieved transaction data:', txData)
+    console.log('Retrieved transaction data:', txData)
 
     /* Set outputs. */
     const outputs = txData.outputs
 
     /* Set coin in question. */
     const coinInQuestion = outputs[vout]
-    debug('Coin in question:', coinInQuestion)
+    console.log('Coin in question:', coinInQuestion)
 
     /* Validate coin in question. */
     if (!coinInQuestion) {
@@ -68,7 +67,7 @@ const getCoinDetails = async function (_txid, _vout) {
             console.error('Something went wrong fetching UTXO data:', err.message)
             throw new Error(err)
         })
-    debug('Retrieved UTXO data:', utxoData)
+    console.log('Retrieved UTXO data:', utxoData)
 
     /* Set UTXOs. */
     const utxos = utxoData.utxos
@@ -77,7 +76,7 @@ const getCoinDetails = async function (_txid, _vout) {
     const outputInQuestion = utxos.find(utxo => {
         return (utxo.txid === txid && Number(utxo.vout) === vout)
     })
-    debug('Output in question:', outputInQuestion)
+    console.log('Output in question:', outputInQuestion)
 
     /* Set coin data. */
     const coinData = {
@@ -99,7 +98,7 @@ const getCoinDetails = async function (_txid, _vout) {
             // confirmations: 1, // FIXME: Any side-effects? Do we need to retrieve this value??
         })
     }
-    debug('Coin data:', coinData)
+    console.log('Coin data:', coinData)
 
     /* Return coin data. */
     return coinData

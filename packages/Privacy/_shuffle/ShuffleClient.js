@@ -1,6 +1,5 @@
 /* Import core modules. */
 const _ = require('lodash')
-const debug = require('debug')('shuffle:client')
 const EventEmitter = require('events').EventEmitter
 const superagent = require('superagent')
 const URL = require('url')
@@ -23,7 +22,7 @@ class ShuffleClient extends EventEmitter {
     constructor (clientOptions) {
         super()
 
-        debug('Shuffle Client (options):', clientOptions)
+        console.log('Shuffle Client (options):', clientOptions)
 
         /* Add client options to instance. */
         for (let oneOption in clientOptions) {
@@ -45,7 +44,7 @@ class ShuffleClient extends EventEmitter {
         while (this.coins.length) {
             coinsToPopulate.push(this.coins.pop())
         }
-        debug('Shuffle Client (coinsToPopulate):', coinsToPopulate)
+        console.log('Shuffle Client (coinsToPopulate):', coinsToPopulate)
 
         /* Initialize hooks. */
         this.hooks = this.hooks || {}
@@ -134,7 +133,7 @@ class ShuffleClient extends EventEmitter {
             this
                 .updateServerStats()
                 .then(async () => {
-                    debug('Updated server statistics.')
+                    console.log('Updated server statistics.')
 
                     /* Validate (auto) shuffle status. */
                     if (!this.disableAutoShuffle || this.isShuffling) {
@@ -158,7 +157,7 @@ class ShuffleClient extends EventEmitter {
 
                     /* Clear (interval) timer. */
                     clearInterval(this.tingId)
-                    debug(`No server. Waiting ${Math.floor(this.serverBackoffMs / 1000)} seconds before reconnecting`)
+                    console.log(`No server. Waiting ${Math.floor(this.serverBackoffMs / 1000)} seconds before reconnecting`)
 
                     /* Delay execution. */
                     await delay(this.serverBackoffMs)
@@ -195,7 +194,7 @@ class ShuffleClient extends EventEmitter {
      * UTXOs are at or below the dust threshold.
      */
     skipCoin (someCoin) {
-        debug('Skip coin (somCoin):', someCoin)
+        console.log('Skip coin (somCoin):', someCoin)
         /* Remove the coin from the pool of available coins. */
         const coinToSkip = _.remove(this.coins, someCoin)[0]
 
@@ -215,7 +214,7 @@ class ShuffleClient extends EventEmitter {
      * listeners so we know when a round has ended and needs cleanup.
      */
     async startNewRound (someCoin, poolAmount, serverUri) {
-        debug('Start new round:',
+        console.log('Start new round:',
             someCoin,
             poolAmount,
             serverUri
@@ -265,7 +264,7 @@ class ShuffleClient extends EventEmitter {
             this.emit('debug', someShuffleRoundMessage)
         })
 
-        debug(
+        console.log(
             'Attempting to mix a',
             newShuffleRound.coin.satoshis,
             'satoshi coin on',
@@ -295,7 +294,7 @@ class ShuffleClient extends EventEmitter {
         // array and emit an event on the client so anyone watching
         // can take the appropriate action.
         if (!_.get(shuffleRoundObject, 'roundError.shortCode')) {
-            // debug(`Adding ${shuffleRoundObject.shuffled}`);
+            // console.log(`Adding ${shuffleRoundObject.shuffled}`);
 
             /* Put the newly shuffled coin in the "shuffled" array. */
             this.shuffled.push(shuffleRoundObject.shuffled)
@@ -329,7 +328,7 @@ class ShuffleClient extends EventEmitter {
             // TODO: Add logic for segregating coins that fail to shuffle
             //       because they are deemed unshufflable by our peers or by
             //       this library.
-            debug(`Round failed with code ${shuffleRoundObject.roundError.shortCode}`)
+            console.log(`Round failed with code ${shuffleRoundObject.roundError.shortCode}`)
 
             /* Push this coin back onto our stack of coins to be shuffled. */
             this.coins.push(shuffleRoundObject.coin)
@@ -415,18 +414,18 @@ class ShuffleClient extends EventEmitter {
 
                         /* Set server URI. */
                         serverUri = `${serverStatsUriParsed.protocol}//${serverStatsUriParsed.hostname}:${serverStatsUriParsed.port}`
-                        // debug('Parsed Server URI:', serverUri)
+                        // console.log('Parsed Server URI:', serverUri)
                     }
 
                     try {
-                        debug('Starting new round in:', serverUri)
+                        console.log('Starting new round in:', serverUri)
                         await this.startNewRound(coinToShuffle, poolToUse, serverUri)
                     } catch (nope) {
                         console.error('Cannot shuffle coin:', nope) // eslint-disable-line no-console
                         continue
                     }
                 } else {
-                    // debug('No coins to shuffle',
+                    // console.log('No coins to shuffle',
                     //     this.coins.length,
                     //     this.rounds.length,
                     //     this.maxShuffleRounds
@@ -469,7 +468,7 @@ class ShuffleClient extends EventEmitter {
         /* Loop through ALL coins. */
         for (let oneCoin of oneOrMoreCoins) {
             if (!oneCoin.satoshis || oneCoin.satoshis < 10000 + this.shuffleFee) {
-                debug(`Skipping coin ${JSON.stringify(oneCoin)} because it's just dust`)
+                console.log(`Skipping coin ${JSON.stringify(oneCoin)} because it's just dust`)
                 this.skipped.push(
                     Object.assign(oneCoin, { shuffled: false, error: 'size' })
                 )

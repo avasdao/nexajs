@@ -1,7 +1,6 @@
 /* Import core modules. */
 const _ = require('lodash')
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('shuffle:server-messages')
 const path = require('path')
 const protobuf = require('protobufjs')
 
@@ -131,7 +130,7 @@ const handleMessageBuffer = (messageBuffer) => {
 
     /* Validate message payload. */
     if (messagePayload.length !== messageLength) {
-        debug(
+        console.log(
             'Incorrect payload size:', messagePayload.length,
             '!==', messageLength
         )
@@ -780,7 +779,7 @@ function checkPacketSignature (oneSignedPacket) {
     /* Set message. */
     const message = Buffer.from(packet.finish()).toString('base64')
 
-    // debug('checkPacketSignature',
+    // console.log('checkPacketSignature',
     //     oneSignedPacket,
     //     verificationKey,
     //     signature,
@@ -912,7 +911,7 @@ function blameMessage (
             .sign(bch.PrivateKey(myVerificationPrivateKey))
     })
 
-    debug('Compiled blame message:', blameMessage)
+    console.log('Compiled blame message:', blameMessage)
 
     /* Return packed message. */
     return packMessage(blameMessage)

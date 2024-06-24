@@ -1,4 +1,3 @@
-const debug = require('debug')('nexajs:privacy:shufflemanager')
 const EventEmitter = require('events').EventEmitter
 
 /* Initialize shuffle client. */
@@ -40,13 +39,13 @@ class ShuffleManager extends EventEmitter {
 
         /* Handle phase change messages. */
         this.shuffleManager.on('phase', (_phase) => {
-            debug('Shuffle manager (phase):', _phase)
+            console.log('Shuffle manager (phase):', _phase)
             this.emit('phase', _phase)
         })
 
         /* Handle notices. */
         this.shuffleManager.on('notice', (_notice) => {
-            debug('Shuffle manager (notice):', _notice)
+            console.log('Shuffle manager (notice):', _notice)
             /* Emit notice. */
             this.emit('notice', _notice)
         })

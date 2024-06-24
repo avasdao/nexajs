@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:rpc')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 import superagent from 'superagent'
@@ -119,8 +115,8 @@ export const callNode = async (_method, _params, _options) => {
 export class Rpc extends EventEmitter {
     constructor(_params) {
         /* Initialize RPC class. */
-        debug('Initializing RPC...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing RPC...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

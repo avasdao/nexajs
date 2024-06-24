@@ -1,6 +1,5 @@
 /* Import core modules. */
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('shuffle:utils:getkeypairwif')
 const Nito = require('nitojs')
 
 /**
@@ -18,11 +17,11 @@ const getKeypairFromWif = function (_wif) {
 
     /* Set cash address. */
     coin.cashAddress = coin.publicKey.toAddress().toString()
-    debug('Get keypair from WIF (cashAddress):', coin.cashAddress)
+    console.log('Get keypair from WIF (cashAddress):', coin.cashAddress)
 
     /* Set legacy address. */
     coin.legacyAddress = Nito.Address.toLegacyAddress(coin.cashAddress)
-    debug('Get keypair from WIF (legacyAddress):', coin.legacyAddress)
+    console.log('Get keypair from WIF (legacyAddress):', coin.legacyAddress)
 
     /* Return coin. */
     return coin

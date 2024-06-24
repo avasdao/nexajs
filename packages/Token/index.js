@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:token')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -39,9 +35,9 @@ export const sendTokens = _sendTokens
 export class Token extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Token class. */
-        debug('Initializing Token...')
-        debug(JSON.stringify(_primary, null, 2))
-        debug(JSON.stringify(_secondary, null, 2))
+        console.info('Initializing Token...')
+        console.log(JSON.stringify(_primary, null, 2))
+        console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

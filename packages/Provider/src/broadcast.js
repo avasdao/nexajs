@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:provider:broadcast')
-
 /* Initialize constants. */
 const INSOMNIA_DEFAULT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
 const NEXASH_DEFAULT_MAINNET = 'https://nexa.sh/graphql'

@@ -1,4 +1,3 @@
-const debug = require('debug')('nexajs:privacy:score')
 const EventEmitter = require('events').EventEmitter
 
 /**
@@ -10,7 +9,7 @@ class Score extends EventEmitter {
     constructor() {
         super()
 
-        debug('Privacy Score initialized.')
+        console.log('Privacy Score initialized.')
     }
 
 }

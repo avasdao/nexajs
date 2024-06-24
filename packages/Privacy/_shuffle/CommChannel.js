@@ -1,6 +1,5 @@
 /* Import core modules. */
 const _ = require('lodash')
-const debug = require('debug')('shuffle:comm')
 const EventEmitter = require('events').EventEmitter
 const moment = require('moment')
 const WebSocket = require('ws')
@@ -79,7 +78,7 @@ class CommChannel extends EventEmitter {
         this._wsClient.addEventListener('message', async (someMessageBuffer) => {
             /* Set message. */
             const message = await this.msg.decodeAndClassify(someMessageBuffer)
-            // debug('Handling websocket (message):', message)
+            // console.log('Handling websocket (message):', message)
 
             /* Initialize message sub-class. */
             let messageSubClass
@@ -126,9 +125,9 @@ class CommChannel extends EventEmitter {
                 const sender = _.find(this.round.players, {
                     verificationKey: message.packets[0].packet.fromKey.key
                 })
-                debug('Websocket message (this.round.players / sender):',
+                console.log('Websocket message (this.round.players / sender):',
                     this.round.players, sender)
-                // debug('Checking signature for',
+                // console.log('Checking signature for',
                 //     message.pruned.messageType.toUpperCase(),
                 //     'message from',
                 //     (sender ? sender.session + ' ( ' + sender.verificationKey + ' ) ' : 'player with sessionid ' + message.pruned.message.session)
@@ -173,7 +172,7 @@ class CommChannel extends EventEmitter {
         this._wsClient.addEventListener('open', () => {
         // this._wsClient.onopen = () => {
             this._wsConnected = true
-            // debug('We are now connected to the cashshuffle server:', this.serverUri)
+            // console.log('We are now connected to the cashshuffle server:', this.serverUri)
 
             this.emit('connected', this._wsClient)
         })
@@ -184,7 +183,7 @@ class CommChannel extends EventEmitter {
             if (!this.round.roundComplete) {
                 // FIXME: Should we attempt to automatically reconnect
                 //        and restart the process??
-                debug('Socket connection closed:', details)
+                console.log('Socket connection closed:', details)
                 this.emit('disconnected', details)
             }
         })
@@ -207,7 +206,7 @@ class CommChannel extends EventEmitter {
         /* Set message parameters. */
         // const messageParams = [].slice.call(arguments, 1, ) // FIXME: Why this trailing space??
         const messageParams = [].slice.call(arguments, 1) // FIXME: Why this trailing space??
-        // debug('Now sending message:', arguments,
+        // console.log('Now sending message:', arguments,
         //     'type:', messageType,
         //     'params:', messageParams)
 

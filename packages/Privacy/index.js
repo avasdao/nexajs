@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:privacy')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Privacy extends EventEmitter {
     constructor(_params) {
         /* Initialize Privacy class. */
-        debug('Initializing Privacy...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Privacy...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

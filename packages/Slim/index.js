@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:slim')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,9 +16,9 @@ import { EventEmitter } from 'events'
 export class Slim extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Slim class. */
-        debug('Initializing Slim...')
-        debug(JSON.stringify(_primary, null, 2))
-        debug(JSON.stringify(_secondary, null, 2))
+        console.info('Initializing Slim...')
+        console.log(JSON.stringify(_primary, null, 2))
+        console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

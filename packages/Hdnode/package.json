@@ -12,7 +12,6 @@
     "@ethersproject/hdnode": "5.7.0",
     "@nexajs/address": "24.6.20",
     "@nexajs/script": "23.12.13",
-    "@nexajs/utils": "24.6.21",
-    "debug": "4.3.4"
+    "@nexajs/utils": "24.6.21"
   }
 }

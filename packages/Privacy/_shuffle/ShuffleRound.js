@@ -1,7 +1,6 @@
 /* Import core modules. */
 const _ = require('lodash')
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('shuffle:round')
 const EventEmitter = require('events').EventEmitter
 const Nito = require('nitojs')
 
@@ -176,7 +175,7 @@ class ShuffleRound extends EventEmitter {
         this.comms.on('disconnected', (commsDisconnectMessage) => {
             /* Validate round completion. */
             if (this.roundComplete) {
-                debug('The shuffle Round has completed!')
+                console.log('The shuffle Round has completed!')
             } else {
                 /* eslint-disable-next-line no-console */
                 console.error('Our connection to the CashShuffle server is REKT!')
@@ -202,7 +201,7 @@ class ShuffleRound extends EventEmitter {
 
         /* Handle connection. */
         // this.comms.on('connected', (socket) => {
-        //     debug('socket', socket)
+        //     console.log('socket', socket)
         this.comms.on('connected', () => {
 
             /* Set round phase. */
@@ -285,7 +284,7 @@ class ShuffleRound extends EventEmitter {
             /* eslint-disable-next-line no-console */
             console.log('Act on message (jsonMessage):', jsonMessage.pruned.message)
         } else {
-            debug('Act on message (jsonMessage):', jsonMessage.pruned.message)
+            console.log('Act on message (jsonMessage):', jsonMessage.pruned.message)
         }
         this.emit('notice', jsonMessage.pruned.message)
 
@@ -304,7 +303,7 @@ class ShuffleRound extends EventEmitter {
         /* Initialize new phase name. */
         let newPhaseName
 
-        // debug('Attempting to act on', messageType, 'message\n\n');
+        // console.log('Attempting to act on', messageType, 'message\n\n');
 
         /* Handle message type. */
         switch (messageType) {
@@ -394,7 +393,7 @@ class ShuffleRound extends EventEmitter {
                 await this.announceChangeAddress()
             }
 
-            debug('Act on message (incomingChangeAddress):',
+            console.log('Act on message (incomingChangeAddress):',
                 'Encryption pubkey', message['message']['key']['key'],
                 'Legacy address', message['message']['address']['address']
             )
@@ -483,7 +482,7 @@ class ShuffleRound extends EventEmitter {
             break
         }
 
-        // debug('Finished acting on', messageType, 'message\n\n');
+        // console.log('Finished acting on', messageType, 'message\n\n');
     }
 
     /**
@@ -520,7 +519,7 @@ class ShuffleRound extends EventEmitter {
             return
         }
 
-        // debug('Revealing our verificationKey and coin to our peers!');
+        // console.log('Revealing our verificationKey and coin to our peers!');
 
         /* Initialize inputs. */
         const inputsObject = {}
@@ -594,7 +593,7 @@ class ShuffleRound extends EventEmitter {
         /* Add player. */
         this.players.push(playerToAdd)
 
-        // debug('Added player', playerToAdd);
+        // console.log('Added player', playerToAdd);
 
         /* Initialize coin details. */
         // NOTE: We've already added the player to our pool but we
@@ -616,7 +615,7 @@ class ShuffleRound extends EventEmitter {
         // NOTE: Check that the coin is there and big enough
         //       before adding the player.
         if (!coinDetails.satoshis || this.shuffleFee + this.poolAmount > coinDetails.satoshis) {
-            debug('Insufficient funds for player (coinDetails):', coinDetails)
+            console.log('Insufficient funds for player (coinDetails):', coinDetails)
 
             /* Assign blame. */
             this.assignBlame({
@@ -644,7 +643,7 @@ class ShuffleRound extends EventEmitter {
             Object.assign(grabPlayer.coin, coinDetails)
         }
 
-        // debug(`Player ${grabPlayer.playerNumber} updated`);
+        // console.log(`Player ${grabPlayer.playerNumber} updated`);
     }
 
     /**
@@ -761,7 +760,7 @@ class ShuffleRound extends EventEmitter {
                     orderedPlayers.map(obj => obj['encryptionPubKey'])
                 )
             ).length !== this.players.length) {
-            debug('Waiting for the remaining encryption keys:', orderedPlayers)
+            console.log('Waiting for the remaining encryption keys:', orderedPlayers)
             return
         }
 
@@ -772,7 +771,7 @@ class ShuffleRound extends EventEmitter {
         if (me.playerNumber !== firstPlayer.playerNumber) {
             // Make sure the player who sent us this message is who it should be
             if (sender.playerNumber !== previousPlayer.playerNumber) {
-                debug(`Player ${sender.playerNumber} is not player ${previousPlayer.playerNumber} despite saying so`)
+                console.log(`Player ${sender.playerNumber} is not player ${previousPlayer.playerNumber} despite saying so`)
 
                 this.assignBlame({
                     reason: 'LIAR',
@@ -791,7 +790,7 @@ class ShuffleRound extends EventEmitter {
                             _.get(onePacket, 'packet.message.str'),
                             this.encryptionKeypair.privateKeyHex
                         )
-                    debug('Forward encrypted shuffle tx outputs:',
+                    console.log('Forward encrypted shuffle tx outputs:',
                         'onePacket', onePacket,
                         'privateKeyHex', this.encryptionKeypair.privateKeyHex,
                         decryptionResults
@@ -813,7 +812,7 @@ class ShuffleRound extends EventEmitter {
                 strings: [],
                 errors: []
             })
-            debug('Forward encrypted shuffle tx outputs (decryptedStrings):', decryptedStrings)
+            console.log('Forward encrypted shuffle tx outputs (decryptedStrings):', decryptedStrings)
 
             /* Validate decrypted string. */
             // NOTE: Blame our sender if the ciphertext cannot be decrypted.
@@ -900,7 +899,7 @@ class ShuffleRound extends EventEmitter {
 
         /* Validate if we are the last player. */
         if (me.playerNumber === lastPlayer.playerNumber) {
-            debug(`Broadcasting final shuffled output addresses ${stringsForNextPlayer}!`)
+            console.log(`Broadcasting final shuffled output addresses ${stringsForNextPlayer}!`)
 
             /* Send message. */
             this.comms.sendMessage(
@@ -913,7 +912,7 @@ class ShuffleRound extends EventEmitter {
                 this.ephemeralKeypair.privateKey
             )
         } else {
-            debug('Sending encrypted outputs:',
+            console.log('Sending encrypted outputs:',
                 stringsForNextPlayer,
                 'to player',
                 nextPlayer.playerNumber,
@@ -955,14 +954,14 @@ class ShuffleRound extends EventEmitter {
         const me = _.find(this.players, { isMe: true })
 
         const finalOutputAddresses = signedPackets.map(obj => obj['packet']['message']['str'])
-        debug(
+        console.log(
             'Check final outputs and do equiv check (finalOutputAddresses):',
             finalOutputAddresses
         )
 
         /* Make sure our address was included. If not, blame! */
         if (finalOutputAddresses.indexOf(this.shuffled.legacyAddress) < 0) {
-            debug(`Our address isn't in the final outputs!`)
+            console.log(`Our address isn't in the final outputs!`)
 
             this.assignBlame({
                 reason: 'MISSINGOUTPUT',
@@ -977,7 +976,7 @@ class ShuffleRound extends EventEmitter {
         // important later because it effects the transaction output order
         // which has implications for it's signature.
         for (let n = this.players.length; n >= 0; n--) {
-            debug('this.players[ n ]:', n, this.players[ n ])
+            console.log('this.players[ n ]:', n, this.players[ n ])
             if (typeof this.players[ n ] !== 'undefined') {
                 Object.assign(this.players[ n ], { finalOutputAddresses })
             }
@@ -1042,7 +1041,7 @@ class ShuffleRound extends EventEmitter {
             }
         )
 
-        debug(
+        console.log(
             'Got a processEquivCheck message from', sender.verificationKey,
             'with hash', sender.equivCheck
         )
@@ -1052,7 +1051,7 @@ class ShuffleRound extends EventEmitter {
         if (allHashes.length === this.players.length) {
             // Are all the hashes the same and do they equal ours?
             if (_.uniq(allHashes).length === 1 && _.uniq(allHashes)[0] === this.equivHash) {
-                debug('Everyone passes the EQUIVOCATION_CHECK!')
+                console.log('Everyone passes the EQUIVOCATION_CHECK!')
 
                 this.phase = 'VERIFICATION_AND_SUBMISSION'
                 this.emit('phase', 'VERIFICATION_AND_SUBMISSION')
@@ -1065,7 +1064,7 @@ class ShuffleRound extends EventEmitter {
                     }
                 }
             } else {
-                debug('Someone failed the equivCheck!')
+                console.log('Someone failed the equivCheck!')
 
                 // for (let onePlayer of round.players) {
                 for (let onePlayer of this.players) {
@@ -1079,7 +1078,7 @@ class ShuffleRound extends EventEmitter {
                 }
             }
         } else {
-            // debug('Waiting for more equivCheck messages');
+            // console.log('Waiting for more equivCheck messages');
         }
     }
 
@@ -1109,7 +1108,7 @@ class ShuffleRound extends EventEmitter {
      *     7. Set the done flag and cleanup the round.
      */
     async verifyAndSubmit (prunedMessage) {
-        debug('Verify and submit (prunedMessage):', prunedMessage)
+        console.log('Verify and submit (prunedMessage):', prunedMessage)
 
         /* Initialize ordered players. */
         const orderedPlayers = _.orderBy(this.players, ['playerNumber'], ['asc'])
@@ -1216,7 +1215,7 @@ class ShuffleRound extends EventEmitter {
                     'message.signatures[0].signature.signature'
                 ), 'base64').toString('utf-8')
         }
-        debug('Verify and submit (newSigData):', newSigData)
+        console.log('Verify and submit (newSigData):', newSigData)
 
         // Assert(len(sig) >= 8 and len(sig) <= 72)
         // Assert(sig[0] == 0x30)
@@ -1230,7 +1229,7 @@ class ShuffleRound extends EventEmitter {
         const signer = _.find(this.players, (onePlayer) => {
             return onePlayer.coin.txid === newSigData.prevTxId && Number(onePlayer.coin.vout) === newSigData.vout
         })
-        debug('Verify and submit (signer):', signer)
+        console.log('Verify and submit (signer):', signer)
 
         /* Validate signer. */
         if (!signer) {
@@ -1242,7 +1241,7 @@ class ShuffleRound extends EventEmitter {
             return
         }
 
-        debug(`Got a shuffle transaction signature for coin ${utxo}`)
+        console.log(`Got a shuffle transaction signature for coin ${utxo}`)
 
         // Verify that the signature we've been given is valid for the shuffle
         // transaction input they've stated.  If so, we will add that signature
@@ -1277,14 +1276,14 @@ class ShuffleRound extends EventEmitter {
 
         /* Validate signature (for UTXO). */
         if (sigVerifyResults && sigVerifyResults.success) {
-            debug(`Shuffle transaction signature for ${utxo} checks out!`)
+            console.log(`Shuffle transaction signature for ${utxo} checks out!`)
 
             // If it was us that sent the message, we don't need to apply
             // the signature.  Our signature was applied during the creation
             // of the shuffle transaction.  We only need to apply the other
             // player's signatures.
             if (!signer.isMe) {
-                // debug(`Applying signature to input${sigVerifyResults.inputIndex}!`);
+                // console.log(`Applying signature to input${sigVerifyResults.inputIndex}!`);
 
                 try {
                     this.shuffleTx.tx.inputs[sigVerifyResults.inputIndex]
@@ -1296,7 +1295,7 @@ class ShuffleRound extends EventEmitter {
                 }
             }
         } else {
-            debug(`Bad signature for coin ${utxo}`)
+            console.log(`Bad signature for coin ${utxo}`)
 
             this.assignBlame({
                 reason: 'INVALIDSIGNATURE',
@@ -1315,13 +1314,13 @@ class ShuffleRound extends EventEmitter {
         }
 
         if (txIsFullySigned && this.shuffleTx.signatures.length === this.numberOfPlayers) {
-            debug(`Broadcasting CashShuffle tx ${this.shuffleTx.tx.hash} to the network!`)
+            console.log(`Broadcasting CashShuffle tx ${this.shuffleTx.tx.hash} to the network!`)
 
             let submissionResults
 
-            // debug('Broadcasting raw tx:',
+            // console.log('Broadcasting raw tx:',
             //     this.shuffleTx.tx.toBuffer('hex').toString('hex'))
-            debug('Broadcasting raw tx:',
+            console.log('Broadcasting raw tx:',
                 this.shuffleTx.tx.toBuffer('hex').toString('hex'))
 
             try {
@@ -1362,7 +1361,7 @@ class ShuffleRound extends EventEmitter {
 
             this.endShuffleRound()
         } else {
-            debug('Waiting on more signatures...')
+            console.log('Waiting on more signatures...')
         }
     }
 
@@ -1370,11 +1369,11 @@ class ShuffleRound extends EventEmitter {
      * End Shuffle Round
      */
     endShuffleRound(writeDebugFileAnyway) {
-        debug(`Shuffle has ended with success [ ${ this.success } ]`)
+        console.log(`Shuffle has ended with success [ ${ this.success } ]`)
         this.roundComplete = true
 
         if (!this.success || writeDebugFileAnyway) {
-            debug('Writing debug file..')
+            console.log('Writing debug file..')
             this.writeDebugFile()
         }
 
@@ -1396,7 +1395,7 @@ class ShuffleRound extends EventEmitter {
         // Close this round's connection to the server
         this.comms._wsClient.close()
 
-        debug(`Shuffle has stopped.`)
+        console.log(`Shuffle has stopped.`)
     }
 
     /**
@@ -1414,10 +1413,10 @@ class ShuffleRound extends EventEmitter {
 
         /* Validate accused. */
         if (accused.isMe) {
-            debug(`I'M THE ONE BEING BLAMED. HOW RUDE!!`)
+            console.log(`I'M THE ONE BEING BLAMED. HOW RUDE!!`)
             console.log(`I'M THE ONE BEING BLAMED. HOW RUDE!!`)
         } else {
-            debug('Player', accused.verificationKey, 'is to blame!')
+            console.log('Player', accused.verificationKey, 'is to blame!')
             console.log('Player', accused.verificationKey, 'is to blame!')
         }
 
@@ -1456,7 +1455,7 @@ class ShuffleRound extends EventEmitter {
     }
     */
     assignBlame (details, keepAlive) {
-        debug(`Issuing a formal blame message against ${details.accused} for ${details.reason}`)
+        console.log(`Issuing a formal blame message against ${details.accused} for ${details.reason}`)
 
         /* Send message. */
         this.comms.sendMessage(

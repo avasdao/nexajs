@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:trezor')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Trezor extends EventEmitter {
     constructor(_params) {
         /* Initialize Trezor class. */
-        debug('Initializing Trezor...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Trezor...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

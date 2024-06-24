@@ -1,7 +1,6 @@
 /* Import core modules. */
 const _ = require('lodash')
 // const bch = require('bitcore-lib-cash')
-const debug = require('debug')('fusion:server-messages')
 const path = require('path')
 const protobuf = require('protobufjs')
 
@@ -68,7 +67,7 @@ for (let oneClassName of pbEnums) {
 //
 //         /* Validate message payload. */
 //         if (messagePayload.length !== messageLength) {
-//             debug('Incorrect payload size:', messagePayload.length, '!==', messageLength)
+//             console.log('Incorrect payload size:', messagePayload.length, '!==', messageLength)
 //             throw new Error('message_payload')
 //         } else {
 //             /* Return message buffers. */
@@ -120,7 +119,7 @@ for (let oneClassName of pbEnums) {
 //
 //         /* Validate message payload. */
 //         if (messagePayload.length !== messageLength) {
-//             debug('Incorrect payload size:', messagePayload.length, '!==', messageLength)
+//             console.log('Incorrect payload size:', messagePayload.length, '!==', messageLength)
 //             throw new Error('message_payload')
 //         } else {
 //             /* Set decoded packets. */
@@ -742,7 +741,7 @@ function packMessage (oneOrMorePackets) {
 //     /* Set message. */
 //     const message = packet.finish().toString('base64')
 //
-//     debug('checkPacketSignature',
+//     console.log('checkPacketSignature',
 //         verificationKey,
 //         signature,
 //         packet,
@@ -758,7 +757,7 @@ function packMessage (oneOrMorePackets) {
 //         /* Set result. */
 //         result = new BetterMessage(message, 'base64').verify(address, signature)
 //     } catch (someError) {
-//         debug('Error checking signature:', someError)
+//         console.log('Error checking signature:', someError)
 //     }
 //
 //     /* Return result. */
@@ -865,7 +864,7 @@ Possible Ban Reasons:
 //             .sign(bch.PrivateKey(myVerificationPrivateKey))
 //     })
 //
-//     debug('Compiled blame message:', blameMessage)
+//     console.log('Compiled blame message:', blameMessage)
 //
 //     /* Return packed message. */
 //     return packMessage(blameMessage)

@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:transaction')
-
 /* Import modules. */
 import { OP } from '@nexajs/script'
 
@@ -39,8 +35,8 @@ const SIGHASH_ALL = 0x0
 export class Transaction {
     constructor(_params) {
         /* Initialize Transaction class. */
-        debug('Initializing Transaction...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Transaction...')
+        console.log(JSON.stringify(_params, null, 2))
 
         /* Initialize flags. */
         this._isSigned = false

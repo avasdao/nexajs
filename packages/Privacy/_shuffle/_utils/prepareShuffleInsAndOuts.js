@@ -1,7 +1,6 @@
 /* Import core modules. */
 const _ = require('lodash')
 const bch = require('bitcore-lib-cash')
-const debug = require('debug')('shuffle:utils:prepareinsouts')
 const Nito = require('nitojs')
 
 /* Set dust threshold. */
@@ -46,16 +45,16 @@ const prepareShuffleInsAndOuts = async function (options) {
             legacyAddress,
             cashAddress,
         })
-        // debug('One player:', onePlayer)
+        // console.log('One player:', onePlayer)
 
         /* Return player. */
         return onePlayer
     })
-    debug('Preparing to shuffle ins and outs (players):', players)
+    console.log('Preparing to shuffle ins and outs (players):', players)
 
     /* Set address to fetch. */
     const addressesToFetch = players.map(obj => obj.coin.legacyAddress)
-    // debug('Address to fetch:', addressesToFetch)
+    // console.log('Address to fetch:', addressesToFetch)
 
     /* Set compatibility flag. */
     // NOTE: Provides BITBOX data format.
@@ -69,7 +68,7 @@ const prepareShuffleInsAndOuts = async function (options) {
             console.error('Something went wrong fetching UTXO data:', err)
             throw new Error(err)
         })
-    // debug('UXTO data:', utxoData)
+    // console.log('UXTO data:', utxoData)
 
     /* Initialize ALL inputs. */
     const allInputs = []
@@ -84,7 +83,7 @@ const prepareShuffleInsAndOuts = async function (options) {
         const addressInQuestion = utxoData.find(data => {
             return data.legacyAddress === onePlayer.coin.legacyAddress
         })
-        // debug('Address in question:', addressInQuestion, onePlayer.coin.legacyAddress)
+        // console.log('Address in question:', addressInQuestion, onePlayer.coin.legacyAddress)
 
         /* Validate address in question. */
         if (!addressInQuestion) {
@@ -99,9 +98,9 @@ const prepareShuffleInsAndOuts = async function (options) {
                 }
             })
 
-            // debug('Player (coin):', onePlayer.coin)
-            // debug('Player (change):', onePlayer.change)
-            // debug('Player (finalOutputAddresses):', onePlayer.finalOutputAddresses)
+            // console.log('Player (coin):', onePlayer.coin)
+            // console.log('Player (change):', onePlayer.change)
+            // console.log('Player (finalOutputAddresses):', onePlayer.finalOutputAddresses)
 
             throw errorToThrow
         }
