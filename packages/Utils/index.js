@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:utils')
-
 /* Import (local) modules. */
 import _bigIntToBinUint16LE from './src/bigIntToBinUint16LE.js'
 import _bigIntToBinUint32LE from './src/bigIntToBinUint32LE.js'
