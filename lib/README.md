@@ -238,6 +238,19 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 * _NOTE: Not all packages are published to the NPM registry._
 
 
+## NPM Repository Deployment
+
+```
+cd nexajs/lib/package/<package-name>
+rm -rf node_modules/ yarn.lock
+yarn
+```
+
+update `package.json` version
+
+`npm publish`
+
+
 ## Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 

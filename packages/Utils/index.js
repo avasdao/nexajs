@@ -11,6 +11,8 @@ import _binToHex from './src/binToHex.js'
 import _hexToBin from './src/hexToBin.js'
 import _numberToBinUint16LE from './src/numberToBinUint16LE.js'
 import _numberToBinUint32LE from './src/numberToBinUint32LE.js'
+import _reverseHex from './src/reverseHex.js'
+import _sleep from './src/sleep.js'
 
 /* Export (local) modules. */
 export const bigIntToBinUint16LE = _bigIntToBinUint16LE
@@ -21,16 +23,8 @@ export const binToHex = _binToHex
 export const hexToBin = _hexToBin
 export const numberToBinUint16LE = _numberToBinUint16LE
 export const numberToBinUint32LE = _numberToBinUint32LE
-
-
-/**
- * Reverse Bytes
- *
- * Reverse the bytes of a HEX string.
- */
-export const reverseHex = (_bytes) => {
-    return _bytes.match(/[a-fA-F0-9]{2}/g).reverse().join('')
-}
+export const reverseHex = _reverseHex
+export const sleep = _sleep
 
 
 /**
@@ -43,6 +37,10 @@ export class Utils {
 
     static reverseHex(_bytes) {
         return reverseHex(_bytes)
+    }
+
+    static sleep(_milliseconds) {
+        return sleep(_milliseconds)
     }
 }
 
@@ -63,6 +61,7 @@ Nexa.hexToBin = hexToBin
 Nexa.numberToBinUint16LE = numberToBinUint16LE
 Nexa.numberToBinUint32LE = numberToBinUint32LE
 Nexa.reverseHex = reverseHex
+Nexa.sleep = sleep
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
