@@ -51,7 +51,7 @@ export function Hero() {
 
                         <div className="relative">
                             <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                                Nexa Is Building Next
+                                Monetize Your Wildest Dreams With Nexa
                             </p>
 
                             <p className="mt-3 text-2xl tracking-tight text-slate-400">
