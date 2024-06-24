@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:address:getSeedType')
-
 /**
  * Get Seed Type
  *

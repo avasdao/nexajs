@@ -1,10 +1,6 @@
 /* Import modules. */
 import SecureLS from 'secure-ls'
 
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto:saveToSafu')
-
 /**
  * Save To Safu
  *

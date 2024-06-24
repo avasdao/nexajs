@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -36,8 +32,8 @@ export const randomBytes = _randomBytes
 export class Crypto extends EventEmitter {
     constructor(_params) {
         /* Initialize Crypto class. */
-        debug('Initializing Crypto...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Crypto...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

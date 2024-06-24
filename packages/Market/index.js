@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:market')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 import { v4 as uuidv4 } from 'uuid'
@@ -27,9 +23,9 @@ export const getTicker = _getTicker
 export class Market extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Market class. */
-        debug('Initializing Market...')
-        debug(JSON.stringify(_primary, null, 2))
-        debug(JSON.stringify(_secondary, null, 2))
+        console.info('Initializing Market...')
+        console.log(JSON.stringify(_primary, null, 2))
+        console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:wallet')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -137,9 +133,9 @@ const DEFAULT_ADDRESS_IDX = '0'
 export class Wallet extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Wallet class. */
-        debug('Initializing Wallet...')
-        debug(JSON.stringify(_primary, null, 2))
-        debug(JSON.stringify(_secondary, null, 2))
+        console.info('Initializing Wallet...')
+        console.log(JSON.stringify(_primary, null, 2))
+        console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         /* Initialize internals. */

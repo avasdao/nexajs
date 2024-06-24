@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:bridge')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Bridge extends EventEmitter {
     constructor(_params) {
         /* Initialize Bridge class. */
-        debug('Initializing Bridge...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Bridge...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:address:watchAddress')
-
 import { createClient } from 'graphql-ws'
 import WebSocket from 'ws'
 

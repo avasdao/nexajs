@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:message')
-
 /* Import (local) modules. */
 import _sign from './src/sign.js'
 import _verify from './src/verify.js'

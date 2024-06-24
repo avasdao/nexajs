@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:charts')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 import { v4 as uuidv4 } from 'uuid'
@@ -19,8 +15,8 @@ export const welcome = () => {
 export class Charts extends EventEmitter {
     constructor(_params) {
         /* Initialize Charts class. */
-        debug('Initializing Charts...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Charts...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

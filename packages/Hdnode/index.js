@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:hdnode')
-
 /* Import (local) modules. */
 import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
 import _decodePrivateKeyWif from './src/decodePrivateKeyWif.js'

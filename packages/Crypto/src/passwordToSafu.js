@@ -2,10 +2,6 @@ import scrypt from 'scrypt-js'
 
 import unicodeStringToTypedArray from './unicodeStringToTypedArray.js'
 
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto:getVaultKey')
-
 /**
  * Password To Safu
  *
@@ -32,12 +28,12 @@ export default async (_params, _status) => {
 
     /* Set password. */
     const password = unicodeStringToTypedArray(_params.password)
-    debug(`Password: [ ${password} ]`)
+    console.log(`Password: [ ${password} ]`)
 
     /* Set salt. */
     // NOTE: Common salt values: 1. email address, 2. phone number
     const salt = unicodeStringToTypedArray(_params.salt)
-    debug(`Salt: [ ${salt} ]`)
+    console.log(`Salt: [ ${salt} ]`)
 
     /* Set CPU (memory) cost. */
     // NOTE: increasing this increases the overall difficulty.
@@ -66,7 +62,7 @@ export default async (_params, _status) => {
         vaultKey = await scrypt
             .scrypt(password, salt, N, r, p, dkLen, _status)
             .catch(reject)
-        debug(`Vault key: [ ${vaultKey} ]`)
+        console.log(`Vault key: [ ${vaultKey} ]`)
 
         resolve(vaultKey)
     } catch (err) => reject

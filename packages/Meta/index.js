@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:meta')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { ethers } from 'ethers'
 export class Meta extends EventEmitter {
     constructor(_params) {
         /* Initialize Meta class. */
-        debug('Initializing Meta...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Meta...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

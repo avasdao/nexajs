@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:id')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -23,8 +19,8 @@ export const login = () => {
 export class Id extends EventEmitter {
     constructor(_params) {
         /* Initialize ID class. */
-        debug('Initializing ID...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing ID...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

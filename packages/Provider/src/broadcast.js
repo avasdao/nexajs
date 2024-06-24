@@ -97,7 +97,7 @@ const broadcastNexa = async (_rawTx) => {
     // USE `fetch()` -> NEXASH_DEFAULT_MAINNET
 
     /* Import WebSocket. */
-    // NOTE: Ignored by esmify.
+    // NOTE: MUST BE EXCLUDED WHEN BUILDING FOR BROWSER VIA USING ROLLUP.
     const WebSocket = (await import('isomorphic-ws')).default
 
     /* Initialize socket connection. */

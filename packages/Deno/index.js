@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:deno')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Deno extends EventEmitter {
     constructor(_params) {
         /* Initialize Deno class. */
-        debug('Initializing Deno...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Deno...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

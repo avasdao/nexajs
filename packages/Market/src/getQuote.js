@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:market:getquote')
-
 /* Set endpoint. */
 const ENDPOINT = 'https://nexa.exchange/v1'
 
@@ -20,11 +16,11 @@ export default async (_baseCurrency = 'NEXA', _quoteCurrency = 'USD') => {
 
     /* Set target. */
     const target = ENDPOINT + _baseCurrency
-    debug('getQuote (target):', target)
+    console.log('getQuote (target):', target)
 
     /* Call (remote) API. */
     const data = await superagent.get(target)
-    debug('getQuote (response):', target)
+    console.log('getQuote (response):', target)
 
     /* Validate (response) data. */
     if (data && data.body) {

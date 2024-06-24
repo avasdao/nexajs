@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:next')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Next extends EventEmitter {
     constructor(_params) {
         /* Initialize Next class. */
-        debug('Initializing Next...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Next...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:defi')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Defi extends EventEmitter {
     constructor(_params) {
         /* Initialize DeFi class. */
-        debug('Initializing DeFi...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing DeFi...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

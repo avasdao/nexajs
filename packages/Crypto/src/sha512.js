@@ -3,10 +3,6 @@ import CryptoJS from 'crypto-js'
 import { binToHex } from '@nexajs/utils'
 import { hexToBin } from '@nexajs/utils'
 
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto:sha512')
-
 /**
  * SHA-512
  *
@@ -15,7 +11,7 @@ const debug = debugFactory('nexa:crypto:sha512')
  * Allows specification of the response format.
  */
 export default (_body, _format) => {
-    debug(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
+    console.log(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
 
     /* Initialize locals. */
     let body
@@ -33,7 +29,7 @@ export default (_body, _format) => {
 
     /* Hash body. */
     hash = CryptoJS.SHA512(body).toString()
-    debug(`Hashed: [ ${hash} ]`)
+    console.log(`Hashed: [ ${hash} ]`)
 
     /* Handle format conversion. */
     if (format === 'binary') {

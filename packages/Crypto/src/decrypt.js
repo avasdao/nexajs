@@ -2,17 +2,13 @@
 import CryptoJS from 'crypto-js'
 import AES from 'crypto-js/aes.js'
 
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto:decrypt')
-
 /**
  * Decrypt
  *
  * Performs AES decryption on the encrypted body provided to the function.
  */
 export default (_params, _key) => {
-    debug(`Decrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
+    console.log(`Decrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
 
     let bodyType
     let key
@@ -51,8 +47,8 @@ export default (_params, _key) => {
 
     /* Encrypt plain body. */
     plainBody = AES.decrypt(encryptedBody, key)
-    debug(`Plain body (formatted): [ ${plainBody} ]`)
-    debug(`Encrypted body: [ ${encryptedBody} ]`)
+    console.log(`Plain body (formatted): [ ${plainBody} ]`)
+    console.log(`Encrypted body: [ ${encryptedBody} ]`)
 
     /* Return encrypted body. */
     return plainBody.toString(CryptoJS.enc.Utf8)

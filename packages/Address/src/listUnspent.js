@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:address:listUnspent')
-
 /* Import modules. */
 import { getAddressUnspent } from '@nexajs/rostrum'
 import { getAddressTokenUnspent } from '@nexajs/rostrum'

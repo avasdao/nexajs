@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:express')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Express extends EventEmitter {
     constructor(_params) {
         /* Initialize Express class. */
-        debug('Initializing Express...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Express...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:ledger')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Ledger extends EventEmitter {
     constructor(_params) {
         /* Initialize Ledger class. */
-        debug('Initializing Ledger...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Ledger...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

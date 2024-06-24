@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:address:getSender')
-
 /* Import modules. */
 import { sha256 } from '@nexajs/crypto'
 

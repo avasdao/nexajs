@@ -2,10 +2,6 @@
 import CryptoJS from 'crypto-js'
 import AES from 'crypto-js/aes.js'
 
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:crypto:encrypt')
-
 CryptoJS.pad.NoPadding = { pad: function(){}, unpad: function(){} }
 
 /**
@@ -25,8 +21,8 @@ const _aesEncrypt = (_plainBody, _key, _iv) => {
     //
     // console.log(encrypted.toString());
 
-    debug(`Plain body (formatted): [ ${_plainBody} ]`)
-    debug(`Encrypted body: [ ${encryptedBody} ]`)
+    console.log(`Plain body (formatted): [ ${_plainBody} ]`)
+    console.log(`Encrypted body: [ ${encryptedBody} ]`)
 
     /* Return encrypted body. */
     return encryptedBody
@@ -42,7 +38,7 @@ const _aesEncrypt = (_plainBody, _key, _iv) => {
  *   - key | password (required)
  */
 export default (_params, _key) => {
-    debug(`Encrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
+    console.log(`Encrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
 
     let bodyType
     let key

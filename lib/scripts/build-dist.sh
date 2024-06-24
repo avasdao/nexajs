@@ -18,14 +18,26 @@ echo
 todays_date=$(date +'%Y.%m.%d') # ISO format is: YYYYMMDD
 
 echo "  Building [ Address ] package..."
-echo "/* NEXA.js <Address> v${todays_date} */" > ../cdn/js/address.js
-browserify ../packages/Address/index.js -p esmify >> ../cdn/js/address.js
+npx rollup -c cfg/rollup-address.js
+printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/address */" "$(cat ../cdn/js/address.js)" > ../cdn/js/address.js
+printf '%s\n%s\n' "/* NEXA.js <Address> v${todays_date} */" "$(cat ../cdn/js/address.js)" > ../cdn/js/address.js
 echo "    - address.js"
 echo "/* NEXA.js <Address> v${todays_date} */" > ../cdn/js/address.min.js
-browserify ../packages/Address/index.js -p esmify | npx uglify-js -c >> ../cdn/js/address.min.js
+cat ../cdn/js/address.js | npx uglify-js -c > ../cdn/js/address.min.js
+printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/address */" "$(cat ../cdn/js/address.min.js)" > ../cdn/js/address.min.js
+printf '%s\n%s\n' "/* NEXA.js <Address> v${todays_date} */" "$(cat ../cdn/js/address.min.js)" > ../cdn/js/address.min.js
 echo "    - address.min.js"
 echo "  done."
 echo
+# echo "  Building [ Address ] package..."
+# echo "/* NEXA.js <Address> v${todays_date} */" > ../cdn/js/address.js
+# browserify ../packages/Address/index.js -p esmify >> ../cdn/js/address.js
+# echo "    - address.js"
+# echo "/* NEXA.js <Address> v${todays_date} */" > ../cdn/js/address.min.js
+# browserify ../packages/Address/index.js -p esmify | npx uglify-js -c >> ../cdn/js/address.min.js
+# echo "    - address.min.js"
+# echo "  done."
+# echo
 
 echo "  Building [ HD Node ] package..."
 echo "/* NEXA.js <HD Node> v${todays_date} */" > ../cdn/js/hdnode.js

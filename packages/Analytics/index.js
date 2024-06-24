@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:analytics')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Analytics extends EventEmitter {
     constructor(_params) {
         /* Initialize Analytics class. */
-        debug('Initializing Analytics...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Analytics...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

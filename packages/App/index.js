@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:app')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ export const copyToClipboard = _copyToClipboard
 export class App extends EventEmitter {
     constructor(_params) {
         /* Initialize App class. */
-        debug('Initializing App...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing App...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

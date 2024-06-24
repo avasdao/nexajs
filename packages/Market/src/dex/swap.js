@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:purse:sendToken')
-
 /* Import (library) modules. */
 import { broadcast } from '@nexajs/provider'
 
@@ -30,7 +26,7 @@ const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
  *   - outpoint
  */
 export default async (_coins, _tokens, _receivers) => {
-    debug('Sending tokens', _coins, _tokens, _receivers)
+    console.log('Sending tokens', _coins, _tokens, _receivers)
     // console.log('Sending tokens', _coins, _tokens, _receivers)
 
     /* Initialize locals. */
@@ -130,8 +126,8 @@ export default async (_coins, _tokens, _receivers) => {
             tokenAmount += _receiver.tokens
         }
     })
-    debug('Transaction satoshis (excl. fee):', satoshis)
-    debug('Transaction token amount:', tokenAmount)
+    console.log('Transaction satoshis (excl. fee):', satoshis)
+    console.log('Transaction token amount:', tokenAmount)
     // console.log('SATOSHIS', satoshis)
 
     /* Validate dust amount. */

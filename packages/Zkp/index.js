@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:zkp')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Zkp extends EventEmitter {
     constructor(_params) {
         /* Initialize ZK class. */
-        debug('Initializing Zero-knowledge proof...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Zero-knowledge proof...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

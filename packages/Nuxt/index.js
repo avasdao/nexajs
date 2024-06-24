@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:nuxt')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -20,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Nuxt extends EventEmitter {
     constructor(_params) {
         /* Initialize Nuxt class. */
-        debug('Initializing Nuxt...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Nuxt...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

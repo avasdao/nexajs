@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:address')
-
 /* Import (local) modules. */
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
 import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
@@ -28,8 +24,8 @@ export const watchAddress = _watchAddress
 export class Address {
     constructor(_params, _notif) {
         /* Initialize Address class. */
-        debug('Initializing Address...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Address...')
+        console.log(JSON.stringify(_params, null, 2))
 
         /* Handle notifications. */
         if (_params?.notif) {

@@ -1,6 +1,5 @@
 /* Import core modules. */
 // const _ = require('lodash')
-const debug = require('debug')('fusion:comm')
 const EventEmitter = require('events').EventEmitter
 const moment = require('moment')
 const WebSocket = require('ws')
@@ -60,7 +59,7 @@ class CommChannel extends EventEmitter {
      * Establish websockets connection with shuffle server.
      */
     async connect () {
-        debug('Server Connection', this.serverUri)
+        console.log('Server Connection', this.serverUri)
 
         // TODO: This and all communication functionality will be moved to
         //       a separate class. The `Round` should only touch messages
@@ -71,13 +70,13 @@ class CommChannel extends EventEmitter {
 
         /* Handle incoming message from CashShuffle server. */
         this._wsClient.on('message', (_buffer) => {
-            debug('Websocket (buffer)', _buffer)
+            console.log('Websocket (buffer)', _buffer)
         })
 
         /* Handle a NEW Websockets connection with the CashShuffle server. */
         this._wsClient.on('open', () => {
             this._wsConnected = true
-            debug('We are now connected to the CashFusion server', this.serverUri)
+            console.log('We are now connected to the CashFusion server', this.serverUri)
 
             this.emit('connected', this._wsClient)
         })
@@ -87,14 +86,14 @@ class CommChannel extends EventEmitter {
             if (!this.round.roundComplete) {
                 // FIXME: Should we attempt to automatically reconnect
                 //        and restart the process??
-                debug('Socket connection closed:', details)
+                console.log('Socket connection closed:', details)
                 this.emit('disconnected', details)
             }
         })
 
         /* Handle Websockets errors. */
         this._wsClient.on('error', (someError) => {
-            debug('THERE WAS A SOCKET ERROR!', someError)
+            console.log('THERE WAS A SOCKET ERROR!', someError)
             this.emit('connectionError', someError)
         })
     }
@@ -103,14 +102,14 @@ class CommChannel extends EventEmitter {
      * Send Message
      */
     sendMessage () {
-        debug('Now sending message:', arguments)
+        console.log('Now sending message:', arguments)
 
         /* Set message type. */
         // const messageType = arguments[0]
 
         /* Set message parameters. */
         // const messageParams = [].slice.call(arguments, 1) // FIXME: Why this trailing space??
-        // debug('Now sending message:', arguments,
+        // console.log('Now sending message:', arguments,
         //     'type:', messageType,
         //     'params:', messageParams)
 
@@ -122,7 +121,7 @@ class CommChannel extends EventEmitter {
         //     try {
         //         packedMessage = this.msg[messageType].apply(this, messageParams)
         //     } catch (nope) {
-        //         debug('Couldnt create', messageType, 'message using params',
+        //         console.log('Couldnt create', messageType, 'message using params',
         //             messageParams, '\n', nope)
         //         // TODO: Throw exception?
         //     }
