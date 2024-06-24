@@ -12,7 +12,7 @@
     "@nexajs/crypto": "23.11.15",
     "@nexajs/rostrum": "23.12.25",
     "@nexajs/script": "23.12.13",
-    "@nexajs/utils": "23.7.22",
+    "@nexajs/utils": "24.6.20",
     "big-integer": "1.6.51",
     "debug": "4.3.4",
     "graphql": "16.6.0",

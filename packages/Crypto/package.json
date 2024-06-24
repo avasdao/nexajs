@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@ethersproject/random": "5.7.0",
-    "@nexajs/utils": "23.7.22",
+    "@nexajs/utils": "24.6.20",
     "crypto-js": "4.2.0",
     "debug": "4.3.4",
     "events": "3.3.0",
