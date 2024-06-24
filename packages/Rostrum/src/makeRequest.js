@@ -1,10 +1,6 @@
 /* Import modules. */
 import { v4 as uuidv4 } from 'uuid'
 
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:rostrum:makeRequest')
-
 /**
  * Make Request
  */

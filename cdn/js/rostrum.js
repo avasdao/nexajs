@@ -1562,7 +1562,7 @@ var Rostrum = (function (exports) {
    */
   const getConnection = async function (_connid) {
       /* Import WebSocket. */
-      // NOTE: Ignored by esmify.
+      // NOTE: MUST BE EXCLUDED WHEN BUILDING FOR BROWSER VIA USING ROLLUP.
       // const WebSocket = (await import('isomorphic-ws')).default
 
       /* Handle environment variables. */

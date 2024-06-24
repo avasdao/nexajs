@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:rostrum')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -77,7 +73,7 @@ export const subscribeAddress = _subscribeAddress
  */
 const getConnection = async function (_connid) {
     /* Import WebSocket. */
-    // NOTE: Ignored by esmify.
+    // NOTE: MUST BE EXCLUDED WHEN BUILDING FOR BROWSER VIA USING ROLLUP.
     const WebSocket = (await import('isomorphic-ws')).default
 
     /* Handle environment variables. */
@@ -111,7 +107,6 @@ const initConnection = function (_connid) {
 
     /* Handle open connection. */
     this._connMgr.pool[_connid].onopen = () => {
-        debug(`Connection [ ${_connid} ] is OPEN!`)
         // TODO Show (IP Address) instead of Conn ID.
         console.info('Connected to Rostrum ->', _connid, new Date().getTime())
 
@@ -199,7 +194,6 @@ const initConnection = function (_connid) {
     //       We will ALWAYS attempt to re-connect.
     // TODO: Allow connection to be "manually" closed.
     this._connMgr.pool[_connid].onclose = () => {
-        debug(`Connection [ ${_connid} ] is CLOSED.`)
         console.log('CONNECTION CLOSED', _connid, new Date().getTime())
 
         /* Validate connection status. */
@@ -234,8 +228,8 @@ const initConnection = function (_connid) {
 export class Rostrum extends EventEmitter {
     constructor(_params) {
         /* Initialize Rostrum class. */
-        debug('Initializing Rostrum...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Rostrum...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TODO Allow customization of data providers using `_params`.

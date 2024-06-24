@@ -58,8 +58,6 @@ echo "  done."
 echo
 
 echo "  Building [ Rostrum ] package..."
-# browserify ../packages/Rostrum/index.js -p esmify >> ../cdn/js/rostrum.js
-# echo "/* NEXA.js <Rostrum> v${todays_date} */" > ../cdn/js/rostrum.js
 npx rollup -c cfg/rollup-rostrum.js
 printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/rostrum */" "$(cat ../cdn/js/rostrum.js)" > ../cdn/js/rostrum.js
 printf '%s\n%s\n' "/* NEXA.js <Rostrum> v${todays_date} */" "$(cat ../cdn/js/rostrum.js)" > ../cdn/js/rostrum.js
@@ -68,7 +66,6 @@ echo "/* NEXA.js <Rostrum> v${todays_date} */" > ../cdn/js/rostrum.min.js
 cat ../cdn/js/rostrum.js | npx uglify-js -c > ../cdn/js/rostrum.min.js
 printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/rostrum */" "$(cat ../cdn/js/rostrum.min.js)" > ../cdn/js/rostrum.min.js
 printf '%s\n%s\n' "/* NEXA.js <Rostrum> v${todays_date} */" "$(cat ../cdn/js/rostrum.min.js)" > ../cdn/js/rostrum.min.js
-# browserify ../packages/Rostrum/index.js -p esmify | npx uglify-js -c >> ../cdn/js/rostrum.min.js
 echo "    - rostrum.min.js"
 echo "  done."
 echo

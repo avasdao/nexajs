@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "24.6.20",
+  "version": "24.6.21",
   "license": "MIT",
   "description": "A comprehensive JavaScript Library + SDK for building Nexa applications on Node.js (back-end) and web browsers (front-end).",
   "author": "Ava's DAO",
@@ -33,12 +33,14 @@
     "events": "3.3.0"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "15.2.3",
     "browser-resolve": "2.0.0",
     "browserify": "17.0.0",
     "chai": "4.3.6",
     "dotenv": "16.3.1",
     "esmify": "2.1.1",
     "mocha": "10.0.0",
+    "rollup-plugin-polyfill-node": "0.13.0",
     "uglifyjs": "2.4.11"
   },
   "engines": {
