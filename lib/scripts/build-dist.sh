@@ -58,11 +58,17 @@ echo "  done."
 echo
 
 echo "  Building [ Rostrum ] package..."
-echo "/* NEXA.js <Rostrum> v${todays_date} */" > ../cdn/js/rostrum.js
-browserify ../packages/Rostrum/index.js -p esmify >> ../cdn/js/rostrum.js
+# browserify ../packages/Rostrum/index.js -p esmify >> ../cdn/js/rostrum.js
+# echo "/* NEXA.js <Rostrum> v${todays_date} */" > ../cdn/js/rostrum.js
+npx rollup -c cfg/rollup-rostrum.js
+printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/rostrum */" "$(cat ../cdn/js/rostrum.js)" > ../cdn/js/rostrum.js
+printf '%s\n%s\n' "/* NEXA.js <Rostrum> v${todays_date} */" "$(cat ../cdn/js/rostrum.js)" > ../cdn/js/rostrum.js
 echo "    - rostrum.js"
 echo "/* NEXA.js <Rostrum> v${todays_date} */" > ../cdn/js/rostrum.min.js
-browserify ../packages/Rostrum/index.js -p esmify | npx uglify-js -c >> ../cdn/js/rostrum.min.js
+cat ../cdn/js/rostrum.js | npx uglify-js -c > ../cdn/js/rostrum.min.js
+printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/rostrum */" "$(cat ../cdn/js/rostrum.min.js)" > ../cdn/js/rostrum.min.js
+printf '%s\n%s\n' "/* NEXA.js <Rostrum> v${todays_date} */" "$(cat ../cdn/js/rostrum.min.js)" > ../cdn/js/rostrum.min.js
+# browserify ../packages/Rostrum/index.js -p esmify | npx uglify-js -c >> ../cdn/js/rostrum.min.js
 echo "    - rostrum.min.js"
 echo "  done."
 echo
@@ -94,6 +100,16 @@ echo "    - utils.js"
 echo "/* NEXA.js <Utilities> v${todays_date} */" > ../cdn/js/utils.min.js
 browserify ../packages/Utils/index.js -p esmify | npx uglify-js -c >> ../cdn/js/utils.min.js
 echo "    - utils.min.js"
+echo "  done."
+echo
+
+echo "  Building [ Wallet ] package..."
+echo "/* NEXA.js <Wallet> v${todays_date} */" > ../cdn/js/wallet.js
+browserify ../packages/Wallet/index.js -p esmify >> ../cdn/js/wallet.js
+echo "    - wallet.js"
+echo "/* NEXA.js <Wallet> v${todays_date} */" > ../cdn/js/wallet.min.js
+browserify ../packages/Wallet/index.js -p esmify | npx uglify-js -c >> ../cdn/js/wallet.min.js
+echo "    - wallet.min.js"
 echo "  done."
 echo
 
