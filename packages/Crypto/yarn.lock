@@ -22,10 +22,10 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/utils@23.7.22":
-  version "23.7.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.7.22.tgz#528a2d0fbb0c9db200f0b2ca877560d26944d33f"
-  integrity sha512-8gX+YgXJOwxr+F5u91WqOZ9vV/xydSOUbZuHiOGjDirBG1MAsSb33MBhuW21ZuZrYtC3md589UhHBtai3QjAdw==
+"@nexajs/utils@24.6.20":
+  version "24.6.20"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.20.tgz#dbe97fd4d2e677ae3d52be4754d9a96d34294ef9"
+  integrity sha512-nwWeRdQQUnOwHLGSDCOWt/HxXUwGmuL+5V6iEwhP3vG6XtyKgSh8COFLpjwsqyR1iULEmYBdCoMDsPmS7TBQyg==
   dependencies:
     debug "4.3.4"
 
