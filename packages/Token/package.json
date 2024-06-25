@@ -10,7 +10,7 @@
   "dependencies": {
     "@nexajs/address": "24.6.21",
     "@nexajs/crypto": "24.6.20",
-    "@nexajs/hdnode": "23.12.13",
+    "@nexajs/hdnode": "24.6.21",
     "@nexajs/provider": "23.12.25",
     "@nexajs/script": "23.12.13",
     "@nexajs/transaction": "23.12.29",
