@@ -15,3 +15,7 @@ COPY ./js /usr/share/nginx/html/js
 
 # Copy all SNIPPET source files
 COPY ./snippets /usr/share/nginx/html/snippets
+
+# Copy all ARCHIVED source files
+COPY ./23* /usr/share/nginx/html
+COPY ./24* /usr/share/nginx/html
