@@ -18,7 +18,7 @@ echo
 todays_date=$(date +'%Y.%m.%d') # ISO format is: YYYYMMDD
 
 echo "  Building [ Address ] package..."
-npx rollup -c cfg/rollup-address.js
+npx rollup -c scripts/rollup-for-web/address.js
 printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/address */" "$(cat ../cdn/js/address.js)" > ../cdn/js/address.js
 printf '%s\n%s\n' "/* NEXA.js <Address> v${todays_date} */" "$(cat ../cdn/js/address.js)" > ../cdn/js/address.js
 echo "    - address.js"
@@ -61,7 +61,7 @@ echo "  done."
 echo
 
 echo "  Building [ Rostrum ] package..."
-npx rollup -c cfg/rollup-rostrum.js
+npx rollup -c scripts/rollup-for-web/rostrum.js
 printf '%s\n%s\n' "/* Learn more at → https://nexajs.org/pkg/rostrum */" "$(cat ../cdn/js/rostrum.js)" > ../cdn/js/rostrum.js
 printf '%s\n%s\n' "/* NEXA.js <Rostrum> v${todays_date} */" "$(cat ../cdn/js/rostrum.js)" > ../cdn/js/rostrum.js
 echo "    - rostrum.js"
