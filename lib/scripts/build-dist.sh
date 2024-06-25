@@ -29,15 +29,6 @@ printf '%s\n%s\n' "/* NEXA.js <Address> v${todays_date} */" "$(cat ../cdn/js/add
 echo "    - address.min.js"
 echo "  done."
 echo
-# echo "  Building [ Address ] package..."
-# echo "/* NEXA.js <Address> v${todays_date} */" > ../cdn/js/address.js
-# browserify ../packages/Address/index.js -p esmify >> ../cdn/js/address.js
-# echo "    - address.js"
-# echo "/* NEXA.js <Address> v${todays_date} */" > ../cdn/js/address.min.js
-# browserify ../packages/Address/index.js -p esmify | npx uglify-js -c >> ../cdn/js/address.min.js
-# echo "    - address.min.js"
-# echo "  done."
-# echo
 
 echo "  Building [ HD Node ] package..."
 echo "/* NEXA.js <HD Node> v${todays_date} */" > ../cdn/js/hdnode.js
