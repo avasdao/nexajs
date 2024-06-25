@@ -153,7 +153,7 @@ export default async (isLive = false) => {
     console.log('TOKENS (filtered):', tokens)
 
     userData = [
-        'NexaJS\tUnitTest',
+        'NEXA.js\tUnitTest',
         uuidv4(),
     ]
 

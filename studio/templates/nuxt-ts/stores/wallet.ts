@@ -125,7 +125,7 @@ export const useWalletStore = defineStore('wallet', {
     }),
 
     getters: {
-        /* Return NexaJS wallet instance. */
+        /* Return NEXA.js wallet instance. */
         wallet(_state) {
             return _state._wallet
         },

@@ -1,3 +1,3 @@
-# NexaJS Express Server
+# NEXA.js Express Server
 
 A simple server.

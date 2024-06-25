@@ -1,4 +1,4 @@
-# NexaJS Application Creator
+# NEXA.js Application Creator
 
 Create a new Nexa application from a selection of customizable templates.
 

@@ -1,3 +1,3 @@
-# NexaJS Oak Server
+# NEXA.js Oak Server
 
 A simple server.

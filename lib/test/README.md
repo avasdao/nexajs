@@ -1,4 +1,4 @@
-# NexaJS Test Suites
+# NEXA.js Test Suites
 
 The library offers three (3) comprehensive test suites:
 1. Unit testing

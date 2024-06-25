@@ -1,4 +1,4 @@
-# NexaJS Examples
+# NEXA.js Examples
 
 https://docs.nexajs.org/examples
 

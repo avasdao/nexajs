@@ -1,6 +1,6 @@
-# NexaJS Vue + TypeScript Boilerplate
+# NEXA.js Vue + TypeScript Boilerplate
 
-Look at the [NexaJS documentation](https://docs.nexajs.org) to learn more.
+Look at the [NEXA.js documentation](https://docs.nexajs.org) to learn more.
 
 ## Setup
 

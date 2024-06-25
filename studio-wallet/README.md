@@ -2,9 +2,9 @@
 
 ### https://nexa.studio/wallet
 
-![NexaJS Banner](/web/public/banner.jpg)
+![NEXA.js Banner](/web/public/banner.jpg)
 
-Look at the [NexaJS documentation](https://docs.nexajs.org) to learn more.
+Look at the [NEXA.js documentation](https://docs.nexajs.org) to learn more.
 
 ## Setup
 

@@ -1,4 +1,4 @@
-# NexaJS dApp Servers
+# NEXA.js dApp Servers
 
 We offer Builders two options to get started with self-hosting your own Nexa dApp server.
 
