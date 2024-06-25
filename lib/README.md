@@ -1,8 +1,8 @@
-# NexaJS
+# NEXA.js
 
 ### https://nexajs.org
 
-![NexaJS Banner](/web/public/banner.jpg)
+![NEXA.js Banner](/web/public/banner.jpg)
 
 A pure JavaScript Library and Software Development Kit (SDK) for building _decentralized_ applications (dApps) powered by the [__Nexa__](https://nexa.org/) blockchain.
 
@@ -84,7 +84,7 @@ __WARNING__: We presently don't provide any tooling to verify that the release o
 
 ## Introduction
 
-The NexaJS Library + SDK aims to be a modern & comprehensive toolkit for creating decentralized applications (dApps) on the Nexa Blockchain and its expansive Web3 ecosystem.
+The NEXA.js Library + SDK aims to be a modern & comprehensive toolkit for creating decentralized applications (dApps) on the Nexa Blockchain and its expansive Web3 ecosystem.
 
 ### Prerequisites
 
@@ -206,7 +206,7 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 
 ## Packages List
 
-> The following suite of 26 packages compose the entire NexaJS Library and Software Development Kit (SDK).
+> The following suite of 26 packages compose the entire NEXA.js Library and Software Development Kit (SDK).
 
 - [ ] [Account](/packages)
 - [x] [__Address__](/packages/Address)
