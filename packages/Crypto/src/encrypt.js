@@ -21,8 +21,8 @@ const _aesEncrypt = (_plainBody, _key, _iv) => {
     //
     // console.log(encrypted.toString());
 
-    console.log(`Plain body (formatted): [ ${_plainBody} ]`)
-    console.log(`Encrypted body: [ ${encryptedBody} ]`)
+    // console.log(`Plain body (formatted): [ ${_plainBody} ]`)
+    // console.log(`Encrypted body: [ ${encryptedBody} ]`)
 
     /* Return encrypted body. */
     return encryptedBody
@@ -38,7 +38,7 @@ const _aesEncrypt = (_plainBody, _key, _iv) => {
  *   - key | password (required)
  */
 export default (_params, _key) => {
-    console.log(`Encrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
+    // console.log(`Encrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
 
     let bodyType
     let key

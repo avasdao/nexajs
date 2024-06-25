@@ -28,12 +28,12 @@ export default async (_params, _status) => {
 
     /* Set password. */
     const password = unicodeStringToTypedArray(_params.password)
-    console.log(`Password: [ ${password} ]`)
+    // console.log(`Password: [ ${password} ]`)
 
     /* Set salt. */
     // NOTE: Common salt values: 1. email address, 2. phone number
     const salt = unicodeStringToTypedArray(_params.salt)
-    console.log(`Salt: [ ${salt} ]`)
+    // console.log(`Salt: [ ${salt} ]`)
 
     /* Set CPU (memory) cost. */
     // NOTE: increasing this increases the overall difficulty.
@@ -62,7 +62,7 @@ export default async (_params, _status) => {
         vaultKey = await scrypt
             .scrypt(password, salt, N, r, p, dkLen, _status)
             .catch(reject)
-        console.log(`Vault key: [ ${vaultKey} ]`)
+        // console.log(`Vault key: [ ${vaultKey} ]`)
 
         resolve(vaultKey)
     } catch (err) => reject

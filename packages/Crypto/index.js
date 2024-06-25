@@ -32,8 +32,8 @@ export const randomBytes = _randomBytes
 export class Crypto extends EventEmitter {
     constructor(_params) {
         /* Initialize Crypto class. */
-        console.info('Initializing Crypto...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Crypto...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

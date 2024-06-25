@@ -22,12 +22,10 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/utils@24.6.20":
-  version "24.6.20"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.20.tgz#dbe97fd4d2e677ae3d52be4754d9a96d34294ef9"
-  integrity sha512-nwWeRdQQUnOwHLGSDCOWt/HxXUwGmuL+5V6iEwhP3vG6XtyKgSh8COFLpjwsqyR1iULEmYBdCoMDsPmS7TBQyg==
-  dependencies:
-    debug "4.3.4"
+"@nexajs/utils@24.6.21":
+  version "24.6.21"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.21.tgz#6134fee2c8db80220bf1af77e74c90e2565adf62"
+  integrity sha512-l41hK8n5DrLZxmtaDSf0L5fX/FsdQAEj7n8sQptOV0uFyGDJYkAyvZ40SEdh8Oovc92/6jl1cg220cv4QfG2Uw==
 
 crypto-js@4.2.0:
   version "4.2.0"
@@ -39,13 +37,6 @@ crypto-js@^3.1.6:
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
   integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
 
-debug@4.3.4:
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
-  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
-  dependencies:
-    ms "2.1.2"
-
 events@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
@@ -55,11 +46,6 @@ lz-string@^1.4.4:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.5.0.tgz#c1ab50f77887b712621201ba9fd4e3a6ed099941"
   integrity sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==
-
-ms@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
-  integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
 scrypt-js@3.0.1:
   version "3.0.1"

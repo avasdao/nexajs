@@ -21,7 +21,7 @@ export default (_data) => {
             return value
         })
     } catch (err) {
-        console.log('JSON PARSE ERROR!');
-        console.log('ERROR', err)
+        console.error('JSON PARSE ERROR!');
+        console.error('ERROR', err)
     }
 }

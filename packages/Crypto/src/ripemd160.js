@@ -11,7 +11,7 @@ import { hexToBin } from '@nexajs/utils'
  * Allows specification of the response format.
  */
 export default (_body, _format) => {
-    console.log(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
+    // console.log(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
 
     /* Initialize locals. */
     let body
@@ -29,7 +29,7 @@ export default (_body, _format) => {
 
     /* Hash body. */
     hash = CryptoJS.RIPEMD160(body).toString()
-    console.log(`Hashed: [ ${hash} ]`)
+    // console.log(`Hashed: [ ${hash} ]`)
 
     /* Handle format conversion. */
     if (format === 'binary') {
