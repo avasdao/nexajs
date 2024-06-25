@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:purse')
-
 /* Import modules. */
 import { EventEmitter } from 'events'
 
@@ -28,8 +24,8 @@ export const sendCoins = _sendCoins
 export class Purse extends EventEmitter {
     constructor(_params) {
         /* Initialize Purse class. */
-        debug('Initializing Purse...')
-        debug(JSON.stringify(_params, null, 2))
+        console.info('Initializing Purse...')
+        console.log(JSON.stringify(_params, null, 2))
         super()
 
         /* Validate parameters. */

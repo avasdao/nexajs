@@ -29,11 +29,11 @@
     "@nexajs/transaction": "23.12.29",
     "@nexajs/utils": "24.6.20",
     "@nexajs/wallet": "23.12.29",
-    "debug": "4.3.4",
     "events": "3.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "26.0.1",
+    "@rollup/plugin-inject": "5.0.5",
     "@rollup/plugin-node-resolve": "15.2.3",
     "browser-resolve": "2.0.0",
     "browserify": "17.0.0",
