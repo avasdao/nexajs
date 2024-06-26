@@ -14,7 +14,7 @@ const nextConfig = {
     NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
     NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
   },
-  assetPrefix: './',
+  // assetPrefix: './',
 }
 
 module.exports = withMarkdoc()(nextConfig)
