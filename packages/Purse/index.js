@@ -78,7 +78,7 @@ Nexa.Purse = Purse
 Nexa.buildCoins = buildCoins
 Nexa.getCoins = getCoins
 Nexa.getDustLimit = getDustLimit
-Nexa.send = send            // alias
+// Nexa.send = send            // alias (DEPRECATED NOTE: Managed by Wallet)
 Nexa.sendCoin = sendCoins   // alias
 Nexa.sendCoins = sendCoins
 

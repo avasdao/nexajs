@@ -1,6 +1,6 @@
 /* Import modules. */
-import { sendCoins } from '@nexajs/purse'
-import { sendTokens } from '@nexajs/token'
+import { buildCoins } from '@nexajs/purse'
+import { buildTokens } from '@nexajs/token'
 
 import { WalletStatus } from '../index.js'
 
@@ -94,7 +94,7 @@ export default async function (_tokenid, _receiver, _amount) {
         // console.log('RECEIVERS', receivers)
 
         /* Send UTXO request. */
-        response = await sendTokens(this.coins, tokens, receivers)
+        response = await buildTokens(this.coins, tokens, receivers)
         // console.log('Send UTXO (response):', response)
     } else if (typeof _receiver === 'bigint') {
         /* Set receiver. */
@@ -117,7 +117,7 @@ export default async function (_tokenid, _receiver, _amount) {
         // console.log('RECEIVERS', receivers)
 
         /* Send UTXO request. */
-        response = await sendCoins(this.coins, receivers)
+        response = await buildCoins(this.coins, receivers)
         // console.log('Send UTXO (response):', response)
     } else if (
         (_tokenid.coins || _tokenid.tokens) &&
@@ -152,10 +152,10 @@ export default async function (_tokenid, _receiver, _amount) {
         /* Validate tokens. */
         if (txBuilder.tokens) {
             /* Send CUSTOM token(s). */
-            response = await sendTokens(txBuilder)
+            response = await buildTokens(txBuilder)
         } else {
             /* Send CUSTOM coin(s). */
-            response = await sendCoins(txBuilder)
+            response = await buildCoins(txBuilder)
         }
     } else {
         throw new Error('Oops! Your transaction parameters are invalid.')

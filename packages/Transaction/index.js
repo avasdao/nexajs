@@ -36,7 +36,7 @@ export class Transaction {
     constructor(_params) {
         /* Initialize Transaction class. */
         console.info('Initializing Transaction...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.log(JSON.stringify(_params, null, 2))
 
         /* Initialize flags. */
         this._isSigned = false

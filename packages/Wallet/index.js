@@ -33,6 +33,7 @@ import {
 } from '@bitauth/libauth'
 
 /* Import (local) modules. */
+import _build from './src/build.js'
 import _getAddress from './src/getAddress.js'
 import _getDerivationPath from './src/getDerivationPath.js'
 import _parseDerivationPath from './src/parseDerivationPath.js'
@@ -55,8 +56,10 @@ const _WalletStatus = Object.freeze({
 })
 
 /* Export (local) modules. */
+export const build = _build
 export const getDerivationPath = _getDerivationPath
 export const parseDerivationPath = _parseDerivationPath
+export const send = _send
 export const WalletStatus = _WalletStatus
 
 /* Initialize Libauth crypto interfaces. */
@@ -134,8 +137,8 @@ export class Wallet extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Wallet class. */
         console.info('Initializing Wallet...')
-        console.log(JSON.stringify(_primary, null, 2))
-        console.log(JSON.stringify(_secondary, null, 2))
+        // console.log(JSON.stringify(_primary, null, 2))
+        // console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         /* Initialize internals. */
@@ -479,6 +482,10 @@ export class Wallet extends EventEmitter {
         return encodePrivateKeyWif({ hash: sha256 }, this.privateKey, 'mainnet')
     }
 
+    async build(_tokenid, _receiver, _amount) {
+        return _build.bind(this)(_tokenid, _receiver, _amount)
+    }
+
     getAddress(_addressIdx, _isChange) {
         return _getAddress.bind(this)(_addressIdx, _isChange)
     }
@@ -568,8 +575,10 @@ const Nexa = {}
 Nexa.Wallet = Wallet
 
 /* Initialize Wallet modules. */
+Nexa.build = build
 Nexa.getDerivationPath = getDerivationPath
 Nexa.parseDerivationPath = parseDerivationPath
+Nexa.send = send
 Nexa.WalletStatus = WalletStatus
 
 /* Export Nexa to globalThis. */
