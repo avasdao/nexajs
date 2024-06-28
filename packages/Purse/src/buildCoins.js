@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:purse:buildCoins')
-
 import { Transaction } from '@nexajs/transaction'
 
 import getChangeReceiver from './getChangeReceiver.js'
@@ -31,8 +27,7 @@ const SIGHASH_ALL = 0x0
  *   - wif
  */
 export default async (_coins, _receivers) => {
-    debug('Sending coins', _coins, _receivers)
-    // console.log('Sending coins', _coins, _receivers)
+    // console.log('Building coins', _coins, _receivers)
 
     /* Initialize locals. */
     let address
@@ -99,7 +94,7 @@ export default async (_coins, _receivers) => {
             satoshis += _receiver.satoshis
         }
     })
-    debug('Transaction satoshis (incl. fee):', satoshis)
+    console.log('Transaction satoshis (incl. fee):', satoshis)
 
     /* Validate dust amount. */
     if (satoshis < DUST_LIMIT) {

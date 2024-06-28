@@ -20,7 +20,7 @@
     "@nexajs/market": "23.12.13",
     "@nexajs/message": "23.12.13",
     "@nexajs/provider": "23.12.25",
-    "@nexajs/purse": "23.12.29",
+    "@nexajs/purse": "24.6.23",
     "@nexajs/request": "23.5.15",
     "@nexajs/rostrum": "24.6.20",
     "@nexajs/rpc": "23.5.15",
