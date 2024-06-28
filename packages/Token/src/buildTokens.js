@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:token:sendTokens')
-
 /* Import (library) modules. */
 import { broadcast } from '@nexajs/provider'
 
@@ -34,8 +30,7 @@ const SIGHASH_ALL = 0x0
  *   - outpoint
  */
 export default async (_coins, _tokens, _receivers) => {
-    debug('Sending tokens', _coins, _tokens, _receivers)
-    // console.log('Sending tokens', _coins, _tokens, _receivers)
+    // console.log('Building tokens', _coins, _tokens, _receivers)
 
     /* Initialize locals. */
     let address
@@ -139,8 +134,8 @@ export default async (_coins, _tokens, _receivers) => {
             tokenAmount += _receiver.tokens
         }
     })
-    debug('Transaction satoshis (excl. fee):', satoshis)
-    debug('Transaction token amount:', tokenAmount)
+    console.log('Transaction satoshis (excl. fee):', satoshis)
+    console.log('Transaction token amount:', tokenAmount)
     // console.log('SATOSHIS', satoshis)
 
     /* Validate dust amount. */

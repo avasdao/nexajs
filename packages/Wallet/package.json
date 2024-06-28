@@ -15,7 +15,7 @@
     "@nexajs/purse": "24.6.23",
     "@nexajs/rostrum": "24.6.21",
     "@nexajs/script": "23.12.13",
-    "@nexajs/token": "23.12.29",
+    "@nexajs/token": "24.6.23",
     "cross-fetch": "4.0.0",
     "events": "3.3.0",
     "numeral": "2.0.6"

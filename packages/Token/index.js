@@ -8,6 +8,7 @@ import _getFlags from './src/getFlags.js'
 export const flags = _getFlags
 
 /* Import (local) modules. */
+import _buildTokens from './src/buildTokens.js'
 import _getDustLimit from './src/getDustLimit.js'
 import _getGroupDataScript from './src/getGroupDataScript.js'
 import _getGroupId from './src/getGroupId.js'
@@ -17,6 +18,7 @@ import _getTopTokens from './src/getTopTokens.js'
 import _sendTokens from './src/sendTokens.js'
 
 /* Export (local) modules. */
+export const buildTokens = _buildTokens
 export const getDustLimit = _getDustLimit
 export const getGroupDataScript = _getGroupDataScript
 export const getGroupId = _getGroupId
@@ -67,6 +69,7 @@ Nexa.Token = Token
 Nexa.flags = flags
 
 /* Initialize Token modules. */
+Nexa.buildTokens = buildTokens
 Nexa.getGroupDataScript = getGroupDataScript
 Nexa.getGroupId = getGroupId
 Nexa.getSubgroupDataScript = getSubgroupDataScript

@@ -1,7 +1,3 @@
-/* Setup (non-ESM) debugger. */
-import debugFactory from 'debug'
-const debug = debugFactory('nexa:purse:sendTokens')
-
 /* Import (library) modules. */
 import { broadcast } from '@nexajs/provider'
 
@@ -25,7 +21,7 @@ import buildTokens from './buildTokens.js'
  *   - wif
  */
 export default async (_coins, _tokens, _receivers) => {
-    debug('Sending tokens', _coins, _tokens, _receivers)
+    console.log('Sending tokens', _coins, _tokens, _receivers)
 
     /* Build a raw transaction. */
     const transaction = await buildTokens(_coins, _tokens, _receivers)
