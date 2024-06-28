@@ -1,9 +1,9 @@
 /* Import modules. */
 import { binToHex } from '@nexajs/utils'
-import { sha256 } from '@nexajs/crypto'
-
-/* Libauth helpers. */
-import { instantiateSecp256k1 } from '@bitauth/libauth'
+import {
+    sha256,
+    signMessageHashSchnorr,
+} from '@nexajs/crypto'
 
 import createSigningSerialization from './createSigningSerialization.js'
 
@@ -48,12 +48,9 @@ export default async (
     /* Create signing serialization hash. */
     sighash = sha256(sha256(signingSerialization))
 
-    /* Instantiate the Secp256k1 interface. */
-    secp256k1 = await instantiateSecp256k1()
-
     /* Generate a signature over the "sighash" using the passed private key. */
-    signatureBin = secp256k1
-        .signMessageHashSchnorr(privateKeyBin, sighash)
+    signatureBin = signMessageHashSchnorr(privateKeyBin, sighash)
+    // console.log('SIG', signatureBin);
 
     /* Validate hash type. */
     if (hashtype === 0) {

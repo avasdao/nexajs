@@ -316,7 +316,7 @@
   dependencies:
     escape-string-regexp "^5.0.0"
 
-"@socialgouv/matomo-next@^1.6.1":
+"@socialgouv/matomo-next@1.6.1":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.6.1.tgz#0080945dc0062fee7fe53e4c058dd40768a3c278"
   integrity sha512-O2lxMKZHVzvXGZNsKOnsSS+hzqxIX35CPRuVkuU8Z+EFORuO2R/iiBBfyY1d+XvexIsJOA2uHnxhJxsdeFIrRw==
