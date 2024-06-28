@@ -28,7 +28,7 @@
     "@nexajs/token": "24.6.23",
     "@nexajs/transaction": "24.6.23",
     "@nexajs/utils": "24.6.20",
-    "@nexajs/wallet": "23.12.29",
+    "@nexajs/wallet": "24.6.24",
     "events": "3.3.0"
   },
   "devDependencies": {
