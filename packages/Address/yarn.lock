@@ -27,23 +27,25 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/crypto@24.6.20":
-  version "24.6.20"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.6.20.tgz#1d2345431bd07b87965a445c021a243f7d7ca69b"
-  integrity sha512-GPSocwZi0DjGlovnvLR5n1C+nBWuf7RVwF8Tmu6W898unaF6jkLckVNCQrVbsvcCkRBwaf/S+BypKMMnX4VU8Q==
+"@nexajs/crypto@24.6.23":
+  version "24.6.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.6.23.tgz#81e74d8391f24623fa433f9ef914f1149f0e9b1e"
+  integrity sha512-HavW/5PzyJ7TwyJofGsxp1QkK4gXBEJPSjy2LGOZASmd1BrnNIcgiUy4BNHfWDAoSrEHOq6A1ikA8vZQqoHThQ==
   dependencies:
     "@ethersproject/random" "5.7.0"
-    "@nexajs/utils" "24.6.20"
+    "@nexajs/utils" "24.6.21"
+    bn.js "5.2.1"
     crypto-js "4.2.0"
-    debug "4.3.4"
+    elliptic "6.5.5"
     events "3.3.0"
+    lodash "4.17.21"
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/rostrum@24.6.21":
-  version "24.6.21"
-  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-24.6.21.tgz#6aba941b52a63d3c7794ec87541332656a26252c"
-  integrity sha512-hjFzPUq4gJgK2Rxj4Pja6nQLZQew6WV3uJKlZ69cf7cvvxJ/+Mw6hIr2DJOI0lC01zF5rbtijwWZ4AIUa248Vg==
+"@nexajs/rostrum@24.6.23":
+  version "24.6.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/rostrum/-/rostrum-24.6.23.tgz#df74ea13f0924e51e597d20bf9e599ca2430ea43"
+  integrity sha512-EmiXscO0xHc18HbuQz42fMBP3SmvmMuV7+bqtz3IpFXB8WcDHqCowYuynLUvrJGwWWk00v58AN/1ceu6SssYLQ==
   dependencies:
     events "3.3.0"
     isomorphic-ws "5.0.0"
@@ -66,13 +68,6 @@
   dependencies:
     debug "4.3.4"
 
-"@nexajs/utils@24.6.20":
-  version "24.6.20"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.20.tgz#dbe97fd4d2e677ae3d52be4754d9a96d34294ef9"
-  integrity sha512-nwWeRdQQUnOwHLGSDCOWt/HxXUwGmuL+5V6iEwhP3vG6XtyKgSh8COFLpjwsqyR1iULEmYBdCoMDsPmS7TBQyg==
-  dependencies:
-    debug "4.3.4"
-
 "@nexajs/utils@24.6.21":
   version "24.6.21"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.21.tgz#6134fee2c8db80220bf1af77e74c90e2565adf62"
@@ -82,6 +77,21 @@ big-integer@1.6.51:
   version "1.6.51"
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
   integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
+
+bn.js@5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.2.1.tgz#0bc527a6a0d18d0aa8d5b0538ce4a77dccfa7b70"
+  integrity sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==
+
+bn.js@^4.11.9:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.12.0.tgz#775b3f278efbb9718eec7361f483fb36fbbfea88"
+  integrity sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==
+
+brorand@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
+  integrity sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==
 
 crypto-js@4.2.0:
   version "4.2.0"
@@ -100,6 +110,19 @@ debug@4.3.4:
   dependencies:
     ms "2.1.2"
 
+elliptic@6.5.5:
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.5.tgz#c715e09f78b6923977610d4c2346d6ce22e6dded"
+  integrity sha512-7EjbcmUm17NQFu4Pmgmq2olYMj8nwMnpcddByChSUjArp8F5DQWcIcpriwO4ZToLNAJig0yiyjswfyGNje/ixw==
+  dependencies:
+    bn.js "^4.11.9"
+    brorand "^1.1.0"
+    hash.js "^1.0.0"
+    hmac-drbg "^1.0.1"
+    inherits "^2.0.4"
+    minimalistic-assert "^1.0.1"
+    minimalistic-crypto-utils "^1.0.1"
+
 events@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
@@ -115,15 +138,52 @@ graphql@16.6.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
 
+hash.js@^1.0.0, hash.js@^1.0.3:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/hash.js/-/hash.js-1.1.7.tgz#0babca538e8d4ee4a0f8988d68866537a003cf42"
+  integrity sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
+  dependencies:
+    inherits "^2.0.3"
+    minimalistic-assert "^1.0.1"
+
+hmac-drbg@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
+  integrity sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==
+  dependencies:
+    hash.js "^1.0.3"
+    minimalistic-assert "^1.0.0"
+    minimalistic-crypto-utils "^1.0.1"
+
+inherits@^2.0.3, inherits@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+  integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
+
 isomorphic-ws@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz#e5529148912ecb9b451b46ed44d53dae1ce04bbf"
   integrity sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==
 
+lodash@4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
 lz-string@^1.4.4:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.5.0.tgz#c1ab50f77887b712621201ba9fd4e3a6ed099941"
   integrity sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==
+
+minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
+  integrity sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==
+
+minimalistic-crypto-utils@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
+  integrity sha512-JIYlbt6g8i5jKfJ3xz7rF0LXmv2TkDxBLUkiBeZ7bAx4GnnNMr8xFpGnOxn6GhTEHx3SjRrZEoU+j04prX1ktg==
 
 ms@2.1.2:
   version "2.1.2"

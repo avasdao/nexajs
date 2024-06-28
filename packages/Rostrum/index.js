@@ -229,7 +229,7 @@ export class Rostrum extends EventEmitter {
     constructor(_params) {
         /* Initialize Rostrum class. */
         console.info('Initializing Rostrum...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TODO Allow customization of data providers using `_params`.
