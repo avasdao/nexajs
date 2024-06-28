@@ -9,6 +9,7 @@ import _getHmac from './src/getHmac.js'
 import _ripemd160 from './src/ripemd160.js'
 import _sha256 from './src/sha256.js'
 import _sha512 from './src/sha512.js'
+import _signMessageHashSchnorr from './src/signMessageHashSchnorr.js'
 
 /* Export (local) modules. */
 export const decrypt = _decrypt
@@ -18,6 +19,7 @@ export const getHmac = _getHmac
 export const ripemd160 = _ripemd160
 export const sha256 = _sha256
 export const sha512 = _sha512
+export const signMessageHashSchnorr = _signMessageHashSchnorr
 
 /* Provide Ether.js helpers. */
 import { randomBytes as _randomBytes } from '@ethersproject/random'
@@ -63,6 +65,7 @@ Nexa.randomBytes = randomBytes
 Nexa.ripemd160 = ripemd160
 Nexa.sha256 = sha256
 Nexa.sha512 = sha512
+Nexa.signMessageHashSchnorr = signMessageHashSchnorr
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
