@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello!</title>
+    <meta name="description" content="description"/>
+    <meta name="author" content="author" />
+    <meta name="keywords" content="keywords" />
+    <script type="module" src="./js/wallet.js"></script>
+
+    <script>
+    console.log('(global) NEXA (before): ', globalThis.Nexa)
+    // console.log('NEXA (before): ', Nexa)
+
+    window.onload = async () => {
+        console.log('window loaded!')
+        console.log('(global) NEXA (after): ', globalThis.Nexa)
+        console.log('NEXA: ', Nexa)
+        console.log('NEXA.Wallet: ', Nexa.Wallet)
+        // return
+        // console.log('Wallet: ', Wallet)
+        // console.log('NEXA.getTip: ', Nexa.getTip)
+        // console.log('getTip: ', getTip)
+
+        // const address = await Nexa.Wallet.init()
+        // console.log('Wallet (instance):', address)
+        // console.log('Wallet (instance) getTip:', await address.getTip())
+
+        // const currentTip = await Nexa.getTip()
+        // const decoded = await Nexa.Wallet.decode('nexa:nqtsq5g5f4h8hes2awka3l3chy4sfv3l3ht2g5ljzjh87szx')
+        const decoded = await Nexa.decodeWallet('nexa:nqtsq5g5f4h8hes2awka3l3chy4sfv3l3ht2g5ljzjh87szx')
+        console.log('DECODED', decoded)
+
+        const unspent = await Nexa.listUnspent('nexa:nqtsq5g5f4h8hes2awka3l3chy4sfv3l3ht2g5ljzjh87szx')
+        console.log('UNSPENT', unspent)
+
+    }
+    </script>
+</head>
+<body>
+
+Wallet Test
+
+</body>
+</html>
