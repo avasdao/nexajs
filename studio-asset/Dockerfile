@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-slim
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app

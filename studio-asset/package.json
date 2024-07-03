@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-asset",
-  "version": "23.12.11",
+  "version": "24.7.3",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -15,7 +15,7 @@
     "formidable": "3.5.1",
     "html2canvas": "1.4.1",
     "moment": "2.29.4",
-    "nexajs": "23.12.5",
+    "nexajs": "24.6.24",
     "numeral": "2.0.6",
     "nuxt": "3.0.0",
     "pinia": "2.0.32",

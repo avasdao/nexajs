@@ -1,6 +1,6 @@
 {
   "name": "nexajs-studio-wallet",
-  "version": "23.11.26",
+  "version": "24.7.3",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -13,9 +13,9 @@
     "@pinia/nuxt": "0.4.7",
     "@trezor/connect-web": "9.1.4",
     "moment": "2.29.4",
-    "nexajs": "23.12.5",
+    "nexajs": "24.6.24",
     "numeral": "2.0.6",
-    "nuxt": "3.2.2",
+    "nuxt": "3.7.4",
     "pinia": "2.0.32",
     "qr-scanner": "1.4.2",
     "qrcode": "1.5.3",
