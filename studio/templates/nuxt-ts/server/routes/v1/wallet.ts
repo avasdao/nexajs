@@ -1,9 +1,13 @@
 export default defineEventHandler((event) => {
+    /* Initialize locals. */
+    let mnemonic
+    let wallet
+
     /* Set project mnemonic. */
-    const mnemonic = process.env.PROJECT_MNEMONIC
+    mnemonic = process?.env?.PROJECT_MNEMONIC
 
     /* Build wallet. */
-    const wallet = {
+    wallet = {
         mnemonic,
     }
 

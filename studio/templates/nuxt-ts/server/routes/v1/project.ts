@@ -1,9 +1,14 @@
 export default defineEventHandler((event) => {
-    const projectid = process.env.PROJECT_ID
-    const projectName = process.env.PROJECT_NAME
+    /* Initialize locals. */
+    let project
+    let projectid
+    let projectName
+
+    projectid = process?.env?.PROJECT_ID
+    projectName = process?.env?.PROJECT_NAME
 
     /* Build project. */
-    const project = {
+    project = {
         projectid,
         projectName,
     }

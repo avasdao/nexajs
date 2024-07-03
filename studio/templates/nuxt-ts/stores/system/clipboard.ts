@@ -1,5 +1,5 @@
 // NOTE: We ONLY run this on the (web) client.
-if (process.client) {
+if (process?.client) {
     window.Clipboard = (function(window, document, navigator) {
         let textArea,
             copy
