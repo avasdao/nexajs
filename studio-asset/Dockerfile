@@ -10,6 +10,6 @@ RUN yarn install --silent
 COPY . /usr/src/app
 RUN yarn run build
 
-EXPOSE 3000
+EXPOSE 5400
 
 CMD ["node", ".output/server/index.mjs"]
