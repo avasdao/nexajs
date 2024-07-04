@@ -4,9 +4,9 @@ services:
     image: studio-asset
     container_name: studio-asset
     restart: unless-stopped
-    network_mode: 'host'
-    # ports:
-      # - '127.0.0.1:5400:3000'   # use with proxy server (eg. Nginx)
+    # network_mode: 'host'
+    ports:
+      - '127.0.0.1:5400:3000'   # use with proxy server (eg. Nginx)
       # - '0.0.0.0:80:3000'     # use without proxy server
     logging: # apply better controls to Docker overlay folder
       driver: 'json-file'
