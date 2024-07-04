@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:18 as build
+FROM node:18 AS build
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
