@@ -2,6 +2,6 @@
 /* Initialize router. */
 const Router = useRouter()
 
-/* Load (default) asset. */
-Router.replace('/asset')
+/* Load (default) homepage. */
+Router.replace('/')
 </script>
