@@ -1,6 +1,6 @@
 {
-  "name": "nexajs-studio-asset",
-  "version": "24.7.3",
+  "name": "nexajs-studio-token",
+  "version": "24.7.7",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",

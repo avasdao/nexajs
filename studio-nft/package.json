@@ -1,0 +1,29 @@
+{
+  "name": "nexajs-studio-nft",
+  "version": "24.7.7",
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "0.4.7",
+    "fflate": "0.8.0",
+    "formidable": "3.5.1",
+    "html2canvas": "1.4.1",
+    "moment": "2.29.4",
+    "nexajs": "24.6.24",
+    "numeral": "2.0.6",
+    "nuxt": "3.0.0",
+    "pinia": "2.0.32",
+    "pouchdb": "8.0.1",
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "8.0.0-rc.2",
+    "@nuxtjs/tailwindcss": "6.4.1"
+  }
+}
