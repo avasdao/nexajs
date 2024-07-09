@@ -27,10 +27,10 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/crypto@24.7.8":
-  version "24.7.8"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.8.tgz#3902a02cf2383e0503c2209536cfccd47ed0a055"
-  integrity sha512-qpoFJgFhRDI4EmIRAXUY60UwmWMISlQLtgqLC5sV+oPwvTA1zSzXA84VgB/dpJPo1Tr9NYfYq94OCit4aJf0GA==
+"@nexajs/crypto@24.7.9":
+  version "24.7.9"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.9.tgz#65ef318d204ed66649896543d03d97cd6677152c"
+  integrity sha512-KI5U9ADOWFuy5hooNhAfBuly0BS3VA8XIK9Wz4ba8xL3oKBiZoiP7bwy9/tk+1GeGCQGjk/4JG0k0QM4Hjmz2A==
   dependencies:
     "@ethersproject/random" "5.7.0"
     "@nexajs/utils" "24.6.21"
