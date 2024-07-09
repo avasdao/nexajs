@@ -1,5 +1,4 @@
 import BN from './bn.js'
-import BufferUtil from '../util/buffer.js'
 import pkg from 'elliptic'
 // console.log('ELLIPTIC', pkg)
 const { ec: EC } = pkg
@@ -22,14 +21,15 @@ const ecPointFromX = ec.curve.pointFromX.bind(ec.curve)
  * @returns {Point} An instance of Point
  * @constructor
  */
-var Point = function Point(x, y, isRed) {
+const Point = (x, y, isRed) => {
     try {
-        var point = ecPoint(x, y, isRed);
+        const point = ecPoint(x, y, isRed)
     } catch (e) {
-        throw new Error('Invalid Point');
+        throw new Error('Invalid Point')
     }
 
-    point.validate();
+    point.validate()
+
     return point
 }
 
@@ -44,15 +44,17 @@ Point.prototype = Object.getPrototypeOf(ec.curve.point())
  * @throws {Error} A validation error if exists
  * @returns {Point} An instance of Point
  */
-Point.fromX = function fromX(odd, x){
-  try {
-    var point = ecPointFromX(x, odd);
-  } catch (e) {
-    throw new Error('Invalid X');
-  }
-  point.validate();
-  return point;
-};
+Point.fromX = (odd, x) => {
+    try {
+        var point = ecPointFromX(x, odd)
+    } catch (e) {
+        throw new Error('Invalid X')
+    }
+
+    point.validate()
+
+    return point
+}
 
 /**
  *
@@ -62,8 +64,8 @@ Point.fromX = function fromX(odd, x){
  * @returns {Point} An instance of the base point.
  */
 Point.getG = function getG() {
-  return ec.curve.g;
-};
+    return ec.curve.g
+}
 
 /**
  *
@@ -73,11 +75,11 @@ Point.getG = function getG() {
  * @returns {BN} A BN instance of the number of points on the curve
  */
 Point.getN = function getN() {
-  return new BN(ec.curve.n.toArray());
-};
+    return new BN(ec.curve.n.toArray())
+}
 
 if (!Point.prototype._getX)
-  Point.prototype._getX = Point.prototype.getX;
+    Point.prototype._getX = Point.prototype.getX
 
 /**
  *
@@ -86,11 +88,11 @@ if (!Point.prototype._getX)
  * @returns {BN} A BN instance of the X coordinate
  */
 Point.prototype.getX = function getX() {
-  return new BN(this._getX().toArray());
-};
+    return new BN(this._getX().toArray())
+}
 
 if (!Point.prototype._getY)
-  Point.prototype._getY = Point.prototype.getY;
+    Point.prototype._getY = Point.prototype.getY
 
 /**
  *
@@ -99,8 +101,8 @@ if (!Point.prototype._getY)
  * @returns {BN} A BN instance of the Y coordinate
  */
 Point.prototype.getY = function getY() {
-  return new BN(this._getY().toArray());
-};
+    return new BN(this._getY().toArray())
+}
 
 /**
  *
@@ -113,57 +115,64 @@ Point.prototype.getY = function getY() {
  */
 Point.prototype.validate = function validate() {
 
-  if (this.isInfinity()){
-    throw new Error('Point cannot be equal to Infinity');
+  if (this.isInfinity()) {
+      throw new Error('Point cannot be equal to Infinity')
   }
 
-  var p2;
+  var p2
+
   try {
-    p2 = ecPointFromX(this.getX(), this.getY().isOdd());
+      p2 = ecPointFromX(this.getX(), this.getY().isOdd())
   } catch (e) {
-    throw new Error('Point does not lie on the curve');
+      throw new Error('Point does not lie on the curve')
   }
 
   if (p2.y.cmp(this.y) !== 0) {
-    throw new Error('Invalid y value for curve.');
+      throw new Error('Invalid y value for curve.')
   }
 
 
   //todo: needs test case
   if (!(this.mul(Point.getN()).isInfinity())) {
-    throw new Error('Point times N must be infinity');
+      throw new Error('Point times N must be infinity')
   }
 
-  return this;
+  return this
 
-};
+}
 
-Point.pointToCompressed = function pointToCompressed(point) {
-  var xbuf = point.getX().toBuffer({size: 32});
-  var ybuf = point.getY().toBuffer({size: 32});
+Point.pointToCompressed = (point) => {
+    const xbuf = point.getX().toBuffer({ size: 32 })
+    const ybuf = point.getY().toBuffer({ size: 32 })
 
-  var prefix;
-  var odd = ybuf[ybuf.length - 1] % 2;
-  if (odd) {
-    prefix = Buffer.from([0x03]);
-  } else {
-    prefix = Buffer.from([0x02]);
-  }
-  return BufferUtil.concat([prefix, xbuf]);
-};
+    let zbuf
+    let prefix
+
+    const odd = ybuf[ybuf.length - 1] % 2
+
+    if (odd) {
+        prefix = new Uint8Array([ 0x03 ])
+    } else {
+        prefix = new Uint8Array([ 0x02 ])
+    }
+
+    zbuf = new Uint8Array([ ...prefix, ...xbuf ])
+    return Buffer.from(zbuf)
+}
 
 // todo: needs test case
-Point.prototype.hasSquare = function() {
-  return !this.isInfinity() && this.isSquare(this.getY());
+Point.prototype.hasSquare = function hasSquare() {
+    return !this.isInfinity() && this.isSquare(this.getY())
 }
 
 // todo: needs test cases
-Point.prototype.isSquare = function(x) {
-  let p = new BN('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F', 'hex');
-  let x0 = new BN(x);
-  let base = x0.toRed(BN.red(p));
-  let res = base.redPow(p.sub(BN.One).div(new BN(2))).fromRed(); //refactor to BN arithmetic operations
-  return res.eq(new BN(1));
+Point.prototype.isSquare = (x) => {
+    let p = new BN('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F', 'hex')
+    let x0 = new BN(x)
+    let base = x0.toRed(BN.red(p))
+    let res = base.redPow(p.sub(BN.One).div(new BN(2))).fromRed() //refactor to BN arithmetic operations
+
+    return res.eq(new BN(1))
 }
 
 export default Point

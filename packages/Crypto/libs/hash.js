@@ -1,13 +1,11 @@
-import BufferUtil from '../util/buffer.js'
 import $ from '../util/preconditions.js'
 import { sha256 } from '../index.js'
 
 /* Initialize hash. */
 let Hash = {}
 
-Hash.sha256 = function(buf) {
-    $.checkArgument(BufferUtil.isBuffer(buf))
-    return Buffer.from(sha256(buf))
+Hash.sha256 = function(_buf) {
+    return Buffer.from(sha256(_buf))
 }
 
 Hash.sha256.blocksize = 512
@@ -15,8 +13,6 @@ Hash.sha256.blocksize = 512
 Hash.hmac = function(hashf, data, key) {
     //http://en.wikipedia.org/wiki/Hash-based_message_authentication_code
     //http://tools.ietf.org/html/rfc4868#section-2
-    $.checkArgument(BufferUtil.isBuffer(data))
-    $.checkArgument(BufferUtil.isBuffer(key))
     $.checkArgument(hashf.blocksize)
 
     var blocksize = hashf.blocksize / 8
