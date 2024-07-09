@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/address": "24.6.24",
+    "@nexajs/address": "24.7.7",
     "@nexajs/crypto": "24.7.7",
     "@nexajs/hdnode": "24.6.21",
     "@nexajs/script": "23.12.13",
