@@ -532,13 +532,13 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@24.6.24":
-  version "24.6.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.6.24.tgz#5b891ccc2209cb9058ac3a89846ce1bfb6778989"
-  integrity sha512-pc5QR7QnXQWd3zQ/EAOiqess0DwaIxX7TNZ0iZ3dNEMY1upDYEh7O8ul30rfN/7GOGuux6lQVbJ+qBbMbxGa+g==
+"@nexajs/address@24.7.7":
+  version "24.7.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.7.tgz#a41dbe4ec93274838ffeb5d50f97f50131ff6e68"
+  integrity sha512-qv/eSDbUo6AtCtW5YPFZZ03ps6xixbrxFsQXa0KOOpejBHLg/0BmqoB9pUgWJRT42V1Mk/cwkg5NXkb+rM5KTA==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/crypto" "24.6.23"
+    "@nexajs/crypto" "24.7.7"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/script" "23.12.13"
     "@nexajs/utils" "24.6.21"
@@ -581,10 +581,10 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/crypto@24.6.23":
-  version "24.6.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.6.23.tgz#81e74d8391f24623fa433f9ef914f1149f0e9b1e"
-  integrity sha512-HavW/5PzyJ7TwyJofGsxp1QkK4gXBEJPSjy2LGOZASmd1BrnNIcgiUy4BNHfWDAoSrEHOq6A1ikA8vZQqoHThQ==
+"@nexajs/crypto@24.7.7":
+  version "24.7.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.7.tgz#3ae4b9dc31ffdd61cf614a52a04893fd01b85e48"
+  integrity sha512-jGLfewECMPe7qdZ9ItetrdlQefSjvvZ+RJoutv5IzMlEB1S2YFa0KlaFcYqNfeQl4Qdxz20dYYnxFaIu1RjusA==
   dependencies:
     "@ethersproject/random" "5.7.0"
     "@nexajs/utils" "24.6.21"
@@ -674,15 +674,15 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/purse@24.6.23":
-  version "24.6.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.6.23.tgz#cec323738fe3fb570efdb5a075f1683c765ae694"
-  integrity sha512-JSYyieP5FWdkFgl3fGtWTL5ZSrCj3yftNArdocI7zDCJt3vtpBoTsl7eNMdFUE6XoNVc+WAX0KumsYCcWry4DQ==
+"@nexajs/purse@24.7.7":
+  version "24.7.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.7.7.tgz#839865c17a56586008b2847a8db2ad5fff90a401"
+  integrity sha512-nZfPqNbZ2EA+jKmCjFXxyhGgFAKf7KDQ5O05krsFdVdLJTtg5L6jIAXTgShkT9MtWiDCm9LVRd0JvKXwmFdIdA==
   dependencies:
-    "@nexajs/address" "24.6.21"
+    "@nexajs/address" "24.7.7"
     "@nexajs/hdnode" "24.6.21"
     "@nexajs/provider" "23.12.25"
-    "@nexajs/transaction" "24.6.23"
+    "@nexajs/transaction" "24.7.7"
     events "3.3.0"
 
 "@nexajs/request@23.5.15":
@@ -743,17 +743,17 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/token@24.6.23":
-  version "24.6.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.6.23.tgz#7218d348c338efb1f6ca5b755332821d8ac05c96"
-  integrity sha512-OXPOsjz3nBo/ekstRFOzbiDxkv10YnQHHMEdbWlKGnYF4+NrhCQYXwyy1hMcUAjpJrD6K1RN7ppCEqW78DBGLA==
+"@nexajs/token@24.7.7":
+  version "24.7.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.7.7.tgz#b4af7f6d6649f800f269e7a2fb26fb9d0c5546b9"
+  integrity sha512-KnDVifoNKYoOWFL3ayEMLjvXZzt50ms9FjGFMktGwintug/y7Ipk9nL1iZB7P0dPHz2XHS/X/qWjgSkj56BWdQ==
   dependencies:
-    "@nexajs/address" "24.6.21"
-    "@nexajs/crypto" "24.6.23"
+    "@nexajs/address" "24.7.7"
+    "@nexajs/crypto" "24.7.7"
     "@nexajs/hdnode" "24.6.21"
     "@nexajs/provider" "23.12.25"
     "@nexajs/script" "23.12.13"
-    "@nexajs/transaction" "24.6.23"
+    "@nexajs/transaction" "24.7.7"
     events "3.3.0"
 
 "@nexajs/transaction@23.12.13":
@@ -769,14 +769,14 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/transaction@24.6.23":
-  version "24.6.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.6.23.tgz#e0d86d25e2832a64b5f2c89151566376c361972d"
-  integrity sha512-LAPYOUodsqBNflx4MSNnnIz7RfJ0nMAMaiESXreLLF0F6K/uKrvr5v63tq6EwYJLOAu8nsqDNegrQa5g7hkn1g==
+"@nexajs/transaction@24.7.7":
+  version "24.7.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.7.7.tgz#d34566b00af6492a27eb38d1cd5978444d9c18da"
+  integrity sha512-S09OEKjh7MAAhEvR73/BHX7y00vutBGwVYGlSI80HXApAqsxzAww1jnb5P9On+YAvsThcOYMa6ClZEcsjyZ82w==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "24.6.21"
-    "@nexajs/crypto" "24.6.23"
+    "@nexajs/address" "24.7.7"
+    "@nexajs/crypto" "24.7.7"
     "@nexajs/hdnode" "24.6.21"
     "@nexajs/script" "23.12.13"
     "@nexajs/utils" "24.6.21"
@@ -800,19 +800,19 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.21.tgz#6134fee2c8db80220bf1af77e74c90e2565adf62"
   integrity sha512-l41hK8n5DrLZxmtaDSf0L5fX/FsdQAEj7n8sQptOV0uFyGDJYkAyvZ40SEdh8Oovc92/6jl1cg220cv4QfG2Uw==
 
-"@nexajs/wallet@24.6.24":
-  version "24.6.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.6.24.tgz#ab727f1df2481cfdf8c5a4dd96bfa4970f8c8bcf"
-  integrity sha512-6Q70pgEDERC6AGb/vPVBxQBSMbaJg3EJInswPob1qjaophKHt4TlSlZL83HiTggG4VPfWGAqKSJcjnLxEnme2A==
+"@nexajs/wallet@24.7.7":
+  version "24.7.7"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.7.7.tgz#c2620ae04e8329bb29d055709c262492e2a9d472"
+  integrity sha512-WOlY5045tT4krM5w75mnieywizEfJTuVCdEVsqipuNGId3Oj57glLlh7A3RZwNulwQok/eVjeyOFRaq+u9gFqg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "24.6.24"
-    "@nexajs/crypto" "24.6.23"
+    "@nexajs/address" "24.7.7"
+    "@nexajs/crypto" "24.7.7"
     "@nexajs/hdnode" "24.6.21"
-    "@nexajs/purse" "24.6.23"
+    "@nexajs/purse" "24.7.7"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/script" "23.12.13"
-    "@nexajs/token" "24.6.23"
+    "@nexajs/token" "24.7.7"
     cross-fetch "4.0.0"
     events "3.3.0"
     numeral "2.0.6"
@@ -1331,9 +1331,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001629:
-  version "1.0.30001638"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001638.tgz#598e1f0c2ac36f37ebc3f5b8887a32ca558e5d56"
-  integrity sha512-5SuJUJ7cZnhPpeLHaH0c/HPAnAHZvS6ElWyHK9GSIbVOQABLzowiI2pjmpvZ1WEbkyz46iFd4UXlOHR5SqgfMQ==
+  version "1.0.30001640"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001640.tgz#32c467d4bf1f1a0faa63fc793c2ba81169e7652f"
+  integrity sha512-lA4VMpW0PSUrFnkmVuEKBUovSWKhj7puyCg8StBChgu298N1AtuF1sKWEvfDuimSEDbhlb/KqPKC3fs1HbuQUA==
 
 chai@4.3.6:
   version "4.3.6"
@@ -1738,9 +1738,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.4.796:
-  version "1.4.814"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.814.tgz#176535a0b899c9c473464502ab77576aa8bb1cbe"
-  integrity sha512-GVulpHjFu1Y9ZvikvbArHmAhZXtm3wHlpjTMcXNGKl4IQ4jMQjlnz8yMQYYqdLHKi/jEL2+CBC2akWVCoIGUdw==
+  version "1.4.819"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.819.tgz#b1bf73d71748a44c3b719cfe7b351d75268c9044"
+  integrity sha512-8RwI6gKUokbHWcN3iRij/qpvf/wCbIVY5slODi85werwqUQwpFXM+dvUBND93Qh7SB0pW3Hlq3/wZsqQ3M9Jaw==
 
 elliptic@6.5.4:
   version "6.5.4"
@@ -1984,9 +1984,9 @@ glob@7.2.0:
     path-is-absolute "^1.0.0"
 
 glob@^10.4.1:
-  version "10.4.2"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.2.tgz#bed6b95dade5c1f80b4434daced233aee76160e5"
-  integrity sha512-GwMlUF6PkPo3Gk21UxkCohOv0PLcIXVtKyLlpEI28R/cO/4eNOdmLk3CMW1wROV/WR/EsZOWAfBbBOqYvs88/w==
+  version "10.4.4"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.4.tgz#d60943feb6f8140522117e6576a923b715718380"
+  integrity sha512-XsOKvHsu38Xe19ZQupE6N/HENeHQBA05o3hV8labZZT2zYDg1+emxWHnc/Bm9AcCMPXfD6jt+QC7zC5JSFyumw==
   dependencies:
     foreground-child "^3.1.0"
     jackspeak "^3.1.2"
@@ -2307,9 +2307,9 @@ isomorphic-ws@5.0.0:
   integrity sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==
 
 jackspeak@^3.1.2:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/jackspeak/-/jackspeak-3.4.0.tgz#a75763ff36ad778ede6a156d8ee8b124de445b4a"
-  integrity sha512-JVYhQnN59LVPFCEcVa2C3CrEKYacvjRfqIQl+h8oi91aLYQVWRYbxjPcv1bUiUy/kLmQaANrYfNMCO3kuEDHfw==
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/jackspeak/-/jackspeak-3.4.2.tgz#c3d1e00071d52dba8b0dac17cd2a12d0187d2989"
+  integrity sha512-qH3nOSj8q/8+Eg8LUPOq3C+6HWkpUioIjDsq1+D4zY91oZvpPttw8GwtF1nReRYKXl+1AORyFqtm2f5Q1SB6/Q==
   dependencies:
     "@isaacs/cliui" "^8.0.2"
   optionalDependencies:
@@ -2400,9 +2400,9 @@ loupe@^2.3.1:
     get-func-name "^2.0.1"
 
 lru-cache@^10.2.0:
-  version "10.3.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.3.0.tgz#4a4aaf10c84658ab70f79a85a9a3f1e1fb11196b"
-  integrity sha512-CQl19J/g+Hbjbv4Y3mFNNXFEL/5t/KCg8POCuUqd4rMKjGG+j1ybER83hxV58zL+dFI1PTkt3GNFSHRt+d8qEQ==
+  version "10.4.2"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.2.tgz#78c38f194b747174cff90e60afabcae40c3619f2"
+  integrity sha512-voV4dDrdVZVNz84n39LFKDaRzfwhdzJ7akpyXfTMxCgRUp07U3lcJUXRlhTKP17rgt09sUzLi5iCitpEAr+6ug==
 
 lru-cache@^5.1.1:
   version "5.1.1"
@@ -2790,9 +2790,9 @@ punycode@^1.3.2, punycode@^1.4.1:
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
 
 qs@^6.11.0, qs@^6.11.2:
-  version "6.12.1"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.12.1.tgz#39422111ca7cbdb70425541cba20c7d7b216599a"
-  integrity sha512-zWmv4RSuB9r2mYQw3zxQuHWeU+42aKi1wWig/j4ele4ygELZ7PEO6MM7rim9oAQH2A5MWfsAVf/jPvTPgCbvUQ==
+  version "6.12.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.12.3.tgz#e43ce03c8521b9c7fd7f1f13e514e5ca37727754"
+  integrity sha512-AWJm14H1vVaO/iNZ4/hO+HyaTehuy9nRqVdkTqlJt0HWvBiBIEXFmb4C0DGeYo3Xes9rrEW+TxHsaigCbN5ICQ==
   dependencies:
     side-channel "^1.0.6"
 
@@ -3227,9 +3227,9 @@ undeclared-identifiers@^1.1.2:
     xtend "^4.0.1"
 
 update-browserslist-db@^1.0.16:
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.16.tgz#f6d489ed90fb2f07d67784eb3f53d7891f736356"
-  integrity sha512-KVbTxlBYlckhF5wgfyZXTWnMn7MMZjMu9XG8bPlliUOP9ThaF4QnhP8qrjrH7DRzHfSk0oQv1wToW+iA5GajEQ==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.1.0.tgz#7ca61c0d8650766090728046e416a8cde682859e"
+  integrity sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==
   dependencies:
     escalade "^3.1.2"
     picocolors "^1.0.1"
