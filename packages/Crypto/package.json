@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/crypto",
-  "version": "24.6.23",
+  "version": "24.7.7",
   "description": "Suite of useful cryptographic functions for decentralized applications.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

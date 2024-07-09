@@ -25,6 +25,10 @@ export const signMessageHashSchnorr = _signMessageHashSchnorr
 import { randomBytes as _randomBytes } from '@ethersproject/random'
 export const randomBytes = _randomBytes
 
+/* Import Buffer class. */
+// FIXME REMOVE THIS GLOBAL INJECTION, AFTER REFACTORING FOR SCHNORR.
+// NOTE: THIS ONLY INJECTS IF `window.Buffer` IS MISSING.
+import './libs/buffer.js'
 
 /**
  * Crypto Class
