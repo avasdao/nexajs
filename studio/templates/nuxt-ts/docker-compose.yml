@@ -1,6 +1,7 @@
-# Services
+# Docker Services
 services:
   # CouchDB
+  # (https://couchdb.apache.org/)
   couchdb:
     image: couchdb:3.3.2
     container_name: couchdb
@@ -20,14 +21,14 @@ services:
       options:
         max-file: '5'
         max-size: '10m'
-
-  # Nexa Application
-  nexapp:
+  # Web Application
+  # (https://nuxt.com/)
+  webapp:
     depends_on:
       - couchdb
     build: .
-    image: nexapp
-    container_name: nexapp
+    image: my-app
+    container_name: my-app
     restart: unless-stopped
     network_mode: 'host'
     # ports:
@@ -43,8 +44,8 @@ services:
       - PROJECT_ID=${PROJECT_ID} # change to match your own environment
       - PROJECT_NAME=${PROJECT_NAME} # change to match your own environment
       - PROJECT_MNEMONIC=${PROJECT_MNEMONIC} # change to match your own environment
-
   # Nginx Webserver
+  # (https://nginx.org/en/)
   # webserver:
   #   depends_on:
   #     - nexapp
@@ -61,7 +62,8 @@ services:
   #   networks:
   #     - nexapp-network
 
-  # Certbot (SSL)
+  # Certbot
+  # (https://certbot.eff.org/)
   # certbot:
   #   depends_on:
   #     - webserver
@@ -71,12 +73,10 @@ services:
   #     - certbot-etc:/etc/letsencrypt
   #     - nexapp:/var/www/html
   #   command: certonly --webroot --webroot-path=/var/www/html --email satoshi@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
-
 # Volumes
 volumes:
   certbot-etc:
   nexapp:
-
 # Networks
 networks:
   nexapp-network:
