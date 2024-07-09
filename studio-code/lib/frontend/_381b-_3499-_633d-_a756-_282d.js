@@ -251,7 +251,7 @@
 /******/ 			}
 /******/ 		};
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunknexa_studio_code"] = self["webpackChunknexa_studio_code"] || [];
 /******/ 		var parentChunkLoadingFunction = chunkLoadingGlobal.push.bind(chunkLoadingGlobal);
 /******/ 		chunkLoadingGlobal.push = installChunk;
 /******/ 		

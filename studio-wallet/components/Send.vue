@@ -157,7 +157,8 @@ const send = async () => {
 </script>
 
 <template>
-    <main class="grid grid-cols-1 lg:grid-cols-7 gap-8">
+    <main class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:divide-x-2 divide-solid divide-sky-200">
+
         <div class="col-span-4">
             <section class="mt-5 flex flex-row gap-1">
                 <input
@@ -231,10 +232,22 @@ const send = async () => {
             </section>
         </div>
 
-        <section class="col-span-3">
-            <h1 class="text-2xl font-medium">
-                Send Assets
-            </h1>
+        <section class="pl-0 lg:pl-5 col-span-3 flex flex-col gap-6">
+            <div>
+                <h1 class="text-2xl font-medium">
+                    Manage Assets
+                </h1>
+
+                TBD...
+            </div>
+
+            <div>
+                <h1 class="text-2xl font-medium">
+                    Advanced Options
+                </h1>
+
+                TBD...
+            </div>
         </section>
     </main>
 </template>

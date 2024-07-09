@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'AI Studio for Creators',
+            title: 'AI Studio for Creators — Nexa Studio',
             meta: [
                 { name: 'description', content: 'Create non-fungible and semi-fungible tokens.' },
             ],
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
                 { src: '/js/matomo.js' },
             ],
         },
-        baseURL: '/ai',
+        // baseURL: '/ai',
     },
 
     /* Application Modules */

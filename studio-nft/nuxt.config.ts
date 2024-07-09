@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Asset Studio for Creators',
+            title: 'NFT Studio for Creators — Nexa Studio',
             meta: [
                 { name: 'description', content: 'Create non-fungible and semi-fungible tokens.' },
             ],
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
                 { src: '/js/matomo.js' },
             ],
         },
-        baseURL: '/asset',
+        // baseURL: '/asset',
     },
 
     /* Application Modules */

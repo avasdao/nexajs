@@ -185,18 +185,25 @@ useHead({
                     />
 
                     <StudioCard
+                        title="Token Studio"
+                        link="/token"
+                        background="https://images.unsplash.com/photo-1564585447193-cd9a0cf42a36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1931&q=80"
+                        caption="Design, Create and Share custom NFTs with the people you love"
+                    />
+
+                    <!-- <StudioCard
                         title="Publishing Studio"
                         link="/"
                         background="https://images.unsplash.com/photo-1553096442-8fe2118fb927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
                         caption="Prepare and submit your finished project to stores and marketplaces"
-                    />
+                    /> -->
 
-                    <StudioCard
+                    <!-- <StudioCard
                         title="A/V Media Studio"
                         link="/"
                         background="https://images.unsplash.com/photo-1520444451380-ebe0f7b9cfd5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
                         caption="Create sounds and video clips for your projects"
-                    />
+                    /> -->
 
                 </div>
             </div>

@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:18-slim
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -10,6 +10,6 @@ RUN yarn install --silent
 COPY . /usr/src/app
 RUN yarn run build
 
-EXPOSE 5000
+EXPOSE 3000
 
 CMD ["node", ".output/server/index.mjs"]
