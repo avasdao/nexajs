@@ -246,13 +246,13 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@24.7.7":
-  version "24.7.7"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.7.tgz#a41dbe4ec93274838ffeb5d50f97f50131ff6e68"
-  integrity sha512-qv/eSDbUo6AtCtW5YPFZZ03ps6xixbrxFsQXa0KOOpejBHLg/0BmqoB9pUgWJRT42V1Mk/cwkg5NXkb+rM5KTA==
+"@nexajs/address@24.7.8":
+  version "24.7.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.8.tgz#b85a00316a619643f7d49fc80593cfb453d01d82"
+  integrity sha512-SITaijhOMeYPcb/azPbfUu1l08oTX6wxyv2tsSC6+6ei/1BPmEFmOSEJKn9z4TJg4Ghc9A0fUUZ/3JPcksmfDQ==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/crypto" "24.7.7"
+    "@nexajs/crypto" "24.7.8"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/script" "23.12.13"
     "@nexajs/utils" "24.6.21"
@@ -274,10 +274,10 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/crypto@24.7.7":
-  version "24.7.7"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.7.tgz#3ae4b9dc31ffdd61cf614a52a04893fd01b85e48"
-  integrity sha512-jGLfewECMPe7qdZ9ItetrdlQefSjvvZ+RJoutv5IzMlEB1S2YFa0KlaFcYqNfeQl4Qdxz20dYYnxFaIu1RjusA==
+"@nexajs/crypto@24.7.8":
+  version "24.7.8"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.8.tgz#3902a02cf2383e0503c2209536cfccd47ed0a055"
+  integrity sha512-qpoFJgFhRDI4EmIRAXUY60UwmWMISlQLtgqLC5sV+oPwvTA1zSzXA84VgB/dpJPo1Tr9NYfYq94OCit4aJf0GA==
   dependencies:
     "@ethersproject/random" "5.7.0"
     "@nexajs/utils" "24.6.21"
