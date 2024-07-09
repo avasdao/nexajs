@@ -1,6 +1,12 @@
 <script setup>
 import numeral from 'numeral'
+import moment from 'moment'
 import QrScanner from 'qr-scanner'
+import {
+    getAddressBalance,
+    getAddressFirstUse,
+    getTransaction,
+} from '@nexajs/rostrum'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
@@ -15,6 +21,10 @@ const currency = ref(null)
 const satoshis = ref(null)
 const txidem = ref(null)
 const error = ref(null)
+
+const addressBalance = ref(null)
+const addressFirstUse = ref(null)
+const firstTx = ref(null)
 
 const video = ref(null)
 const scanner = ref(null)
@@ -144,6 +154,22 @@ const send = async () => {
     }
 }
 
+const updateAddressDetails = async () => {
+    console.log('RECEIVER', receiver.value)
+
+    addressBalance.value = await getAddressBalance(receiver.value)
+        .catch(err => console.error(err))
+    console.log('ADDRESS BALANCE', addressBalance.value)
+
+    addressFirstUse.value = await getAddressFirstUse(receiver.value)
+        .catch(err => console.error(err))
+    console.log('ADDRESS FIRST USE', addressFirstUse.value)
+
+    firstTx.value = await getTransaction(addressFirstUse.value.tx_hash)
+        .catch(err => console.error(err))
+    console.log('FIRST TX', firstTx.value)
+}
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.
@@ -165,6 +191,7 @@ const send = async () => {
                     class="w-full px-3 py-1 text-xl sm:text-2xl bg-yellow-200 border-2 border-yellow-400 rounded-md shadow"
                     type="text"
                     v-model="receiver"
+                    v-on:keyup="updateAddressDetails"
                     placeholder="Enter a Crypto address"
                 />
 
@@ -230,6 +257,46 @@ const send = async () => {
                     <pre>{{JSON.stringify(error, null, 2)}}</pre>
                 </div>
             </section>
+
+            <div class="flex flex-col gap-6">
+                <section v-if="addressBalance">
+                    <h2 class="text-xl font-medium tracking-widest">
+                        Address Balance
+                    </h2>
+
+                    <h3>
+                        Confirmed: {{addressBalance?.confirmed}}
+                    </h3>
+
+                    <h3>
+                        Unconfirmed: {{addressBalance?.unconfirmed}}
+                    </h3>
+                </section>
+
+                <!-- <section v-if="addressFirstUse">
+                    <h2 class="text-xl font-medium tracking-widest">
+                        Address First Use
+                    </h2>
+
+                    <pre>{{addressFirstUse}}</pre>
+                </section> -->
+
+                <section v-if="firstTx">
+                    <h2 class="text-xl font-medium tracking-widest">
+                        First Transaction
+                    </h2>
+
+                    <h3>
+                        Block Time: {{firstTx?.blocktime}}
+                        <span class="block text-rose-500 font-bold">
+                            {{moment.unix(firstTx?.blocktime).format('llll')}}
+                            <span class="italic text-rose-400">{{moment.unix(firstTx?.blocktime).fromNow()}}</span>
+                        </span>
+                    </h3>
+
+                    <!-- <pre>{{firstTx}}</pre> -->
+                </section>
+            </div>
         </div>
 
         <section class="pl-0 lg:pl-5 col-span-3 flex flex-col gap-6">
