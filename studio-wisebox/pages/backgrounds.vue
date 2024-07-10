@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useHead({
-    title: `Backgrounds — NFT/SFT Studio`,
+    title: `Backgrounds — Wisebox`,
     meta: [
-        { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
+        { name: 'description', content: `Wisebox makes building your next BIG idea effortless.` }
     ],
 })
 

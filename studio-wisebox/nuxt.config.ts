@@ -6,9 +6,9 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Wisebox Playground & Learning Center — Nexa Studio',
+            title: 'Wisebox: The Swiss Army Knife of Smart Contracts',
             meta: [
-                { name: 'description', content: 'Create non-fungible and semi-fungible tokens.' },
+                { name: 'description', content: 'Wisebox makes building your next BIG idea effortless.' },
             ],
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
