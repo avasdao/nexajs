@@ -1,8 +1,8 @@
 services:
   app:
     build: .
-    image: studio-nft
-    container_name: studio-nft
+    image: nft-studio
+    container_name: nft-studio
     restart: unless-stopped
     ports:
       - '127.0.0.1:3000:3000'   # use with proxy server (eg. Nginx)

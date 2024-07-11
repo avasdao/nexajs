@@ -17,7 +17,6 @@ export default defineNuxtConfig({
                 { src: '/js/matomo.js' },
             ],
         },
-        // baseURL: '/asset',
     },
 
     /* Application Modules */
