@@ -1,10 +1,3 @@
-import {
-    bigIntToBitcoinVarInt,
-    flattenBinArray,
-    numberToBinUintLE,
-    numberToBinUint32LE,
-} from '@bitauth/libauth'
-
 import { OP } from '@nexajs/script'
 
 import {

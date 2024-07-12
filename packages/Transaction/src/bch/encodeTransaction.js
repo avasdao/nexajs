@@ -1,8 +1,5 @@
-import {
-    flattenBinArray,
-    numberToBinUintLE,
-    numberToBinUint32LE,
-} from '@bitauth/libauth'
+/* Import modules. */
+import { flattenBinArray } from '@nexajs/utils'
 
 import encodeTransactionInputs from './encodeTransactionInputs.js'
 import encodeTransactionOutputs from './encodeTransactionOutputs.js'

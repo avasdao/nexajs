@@ -1,6 +1,4 @@
 /* Import modules. */
-import { bigIntToBinUint64LE } from '@bitauth/libauth'
-
 import { decodeAddress } from '@nexajs/address'
 
 /**

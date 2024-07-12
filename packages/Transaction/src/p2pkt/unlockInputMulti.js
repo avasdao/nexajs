@@ -1,8 +1,11 @@
 /* Import modules. */
-import { encodeDataPush } from '@bitauth/libauth'
-
 import { decodeAddress } from '@nexajs/address'
-import { OP } from '@nexajs/script'
+
+import {
+    encodeDataPush,
+    OP,
+} from '@nexajs/script'
+
 import { binToHex } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'

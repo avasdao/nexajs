@@ -1,11 +1,11 @@
 /* Import modules. */
-import { bigIntToBinUint64LE } from '@bitauth/libauth'
-
 import { decodeAddress } from '@nexajs/address'
 
 import { encodeDataPush } from '@nexajs/script'
 
 import { binToHex } from '@nexajs/utils'
+
+import { bigIntToBinUint64LE } from '@bitauth/libauth'
 
 /**
  * Create a transaction P2PKH output with the given value.

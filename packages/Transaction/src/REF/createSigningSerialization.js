@@ -1,10 +1,5 @@
 /* Import modules. */
-import {
-    bigIntToBinUint64LE,
-    // createTransactionContextCommon,
-    // generateSigningSerializationBCH,
-    // instantiateSha256,
-} from '@bitauth/libauth'
+import { bigIntToBinUint64LE } from '@bitauth/libauth'
 
 import createTransactionContextCommon from './createTransactionContextCommon.js'
 // import generateSigningSerialization from '../p2pkh/generateSigningSerialization.js'

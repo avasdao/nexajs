@@ -1,10 +1,7 @@
 /* Import modules. */
-import {
-    bigIntToBitcoinVarInt,
-    encodeDataPush,
-} from '@bitauth/libauth'
-
 import { decodeAddress } from '@nexajs/address'
+
+import { encodeDataPush } from '@nexajs/script'
 
 import {
     binToHex,
@@ -14,6 +11,7 @@ import {
     bigIntToBinUint64LE
 } from '@nexajs/utils'
 
+import { bigIntToBitcoinVarInt } from '@bitauth/libauth'
 
 /**
  * Create a transaction P2PKH output with the given value.

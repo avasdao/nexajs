@@ -1,9 +1,5 @@
 /* Import modules. */
-import {
-    bigIntToBinUint64LE,
-    createTransactionContextCommon,
-    instantiateSha256,
-} from '@bitauth/libauth'
+import { sha256 } from '@nexajs/crypto'
 
 import generateSigningSerialization from '../p2pkh/generateSigningSerialization.js'
 
@@ -50,7 +46,7 @@ export default async (
         outpointTransactionHash: state.outpointTransactionHash,
         outputValue: state.outputValue,
         sequenceNumber: state.sequenceNumber,
-        sha256: await instantiateSha256(),
+        sha256: sha256,
         signingSerializationType: new Uint8Array([ hashtype ]),
         transactionOutpoints: state.transactionOutpoints,
         transactionOutputs: state.transactionOutputs,

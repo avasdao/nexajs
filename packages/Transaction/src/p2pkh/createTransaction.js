@@ -1,7 +1,4 @@
 /* Import modules. */
-// import {
-//     encodeTransaction,
-// } from '@bitauth/libauth'
 import encodeTransaction from '../REF/encodeTransaction.js'
 
 import { parseWif } from '@nexajs/hdnode'

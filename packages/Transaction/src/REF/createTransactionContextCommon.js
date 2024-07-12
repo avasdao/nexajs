@@ -1,7 +1,8 @@
 import { OP } from '@nexajs/script'
 
+import { flattenBinArray } from '@nexajs/utils'
+
 import {
-    flattenBinArray,
     numberToBinUint32LE,
     bigIntToBinUint64LE,
 } from '@bitauth/libauth'

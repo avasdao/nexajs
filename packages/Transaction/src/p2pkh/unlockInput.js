@@ -1,13 +1,7 @@
-/* Import modules. */
-import {
-    encodeDataPush,
-    flattenBinArray,
-} from '@bitauth/libauth'
-
 import { decodeAddress } from '@nexajs/address'
-
 import {
     binToHex,
+    flattenBinArray,
 } from '@nexajs/utils'
 
 import signTransactionInput from '../REF/signTransactionInput.js'

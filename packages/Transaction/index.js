@@ -1,10 +1,7 @@
 /* Import modules. */
 import { OP } from '@nexajs/script'
 
-/* Libauth helpers. */
-import {
-    binToHex,
-} from '@bitauth/libauth'
+import { binToHex } from '@nexajs/utils'
 
 /* Import (local) modules. */
 import _createTransaction from './src/createTransaction.js'

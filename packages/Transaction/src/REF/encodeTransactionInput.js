@@ -1,6 +1,8 @@
+/* Import modules. */
+import { flattenBinArray } from '@nexajs/utils'
+
 import {
     bigIntToBinUint64LE,
-    flattenBinArray,
     numberToBinUintLE,
     numberToBinUint32LE,
 } from '@bitauth/libauth'

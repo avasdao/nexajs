@@ -1,5 +1,8 @@
-import { flattenBinArray } from '@bitauth/libauth'
-import { bigIntToCompactUint } from '@nexajs/utils'
+/* Import modules. */
+import {
+    bigIntToCompactUint,
+    flattenBinArray,
+} from '@nexajs/utils'
 
 import encodeTransactionInput from './encodeTransactionInput.js'
 

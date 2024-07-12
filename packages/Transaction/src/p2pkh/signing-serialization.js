@@ -1,8 +1,5 @@
-import {
-    bigIntToBitcoinVarInt,
-    flattenBinArray,
-    numberToBinUint32LE,
-} from '@bitauth/libauth'
+/* Import modules. */
+import { flattenBinArray } from '@nexajs/utils'
 
 /**
  * A.K.A. `sighash` flags
