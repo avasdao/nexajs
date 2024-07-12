@@ -58,7 +58,7 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                 },
             },
 
-            iconUrl: 'https://bafkreigyp7nduweqhoszakklsmw6tbafrnti2yr447i6ary5mrwjel7cju.nexa.garden', // nexa.svg
+            iconUrl: 'https://cdn.nexa.studio/img/nexa.svg',
             summary: `A digital economy with capacity for all.`,
             description: `Nexa is the most scalable Layer-1 blockchain ever built. It will handle over 10 billion transactions per day while offering EVM-like smart-contracts & native token services, all while staying decentralized.`,
         }
