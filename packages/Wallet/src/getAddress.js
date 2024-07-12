@@ -28,11 +28,9 @@ import {
 import {
     deriveHdPath,
     instantiateSecp256k1,
-    instantiateRipemd160,
 } from '@bitauth/libauth'
 
 /* Initialize Libauth crypto interfaces. */
-let ripemd160
 let secp256k1
 let crypto
 
@@ -40,12 +38,11 @@ let crypto
 // NOTE: This requires a few cycles to load
 //       and MUST be handled accordingly.
 ;(async () => {
-    ripemd160 = await instantiateRipemd160()
     secp256k1 = await instantiateSecp256k1()
 
     /* Initialize crypto. */
     crypto = {
-        ripemd160,
+        ripemd160: { hash: ripemd160 },
         sha256: { hash: sha256 },
         sha512: { hash: sha512 },
         secp256k1,
@@ -101,7 +98,7 @@ export default function (_addressIdx = '0', _isChange) {
     scriptPushPubKey = encodeDataPush(publicKey)
 
     /* Generate public key hash. */
-    publicKeyHash = ripemd160.hash(sha256(scriptPushPubKey))
+    publicKeyHash = ripemd160(sha256(scriptPushPubKey))
 
     /* Generate public key hash script. */
     scriptPubKey = new Uint8Array([
