@@ -246,16 +246,15 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@24.7.9":
-  version "24.7.9"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.9.tgz#f387db6f5ccabc468d54f2c521a524e9949c0ab4"
-  integrity sha512-3iPuxpDP6j+XcrwMlNtym9cc+gEpM+1xTlY5qVFQhvvC5bbGao4vwphXWLFjMM5bQ/nxUgkcApVKlCXIvxxltA==
+"@nexajs/address@24.7.11":
+  version "24.7.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.11.tgz#8f0f83a9593eb0d8837f9ba6dedaa9d571f8226a"
+  integrity sha512-Rpl+IfmJnKKlJWI3gEtks/YMtqfUu4Q+NZtAmys+n3gq7UeAAWIIHjOvSqiBdIw1fskHJbHObJO2/sOtiUbsTQ==
   dependencies:
-    "@bitauth/libauth" "1.19.1"
     "@nexajs/crypto" "24.7.9"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/script" "23.12.13"
-    "@nexajs/utils" "24.6.21"
+    "@nexajs/utils" "24.7.10"
     big-integer "1.6.51"
     graphql "16.6.0"
     graphql-ws "5.12.0"
@@ -339,17 +338,17 @@
     "@nexajs/utils" "23.7.22"
     debug "4.3.4"
 
-"@nexajs/transaction@24.7.9":
-  version "24.7.9"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.7.9.tgz#d6a1d88f29078b1cbaf58951ab02f1c0364245dc"
-  integrity sha512-u+/1PPmwjnduGgpCVjwQzYJ/+u1Gw/+n0/pOPANsbohphoxmUSGCkhgHsnAF3FljFfmEVM2jlKAU6ODr3VFJEw==
+"@nexajs/transaction@24.7.11":
+  version "24.7.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.7.11.tgz#7595fc85450b7a79474ab815b21f92a1a06154a3"
+  integrity sha512-gS3RvXuS1CpRRLIfSncwfBrHoHhPI0/9lsFf8woSR+5kiRCmdfs6RquqTHp2Rbm7PPBh0B+TFxSrZSEKEPCWyg==
   dependencies:
     "@bitauth/libauth" "1.19.1"
-    "@nexajs/address" "24.7.9"
+    "@nexajs/address" "24.7.11"
     "@nexajs/crypto" "24.7.9"
     "@nexajs/hdnode" "24.6.21"
     "@nexajs/script" "23.12.13"
-    "@nexajs/utils" "24.6.21"
+    "@nexajs/utils" "24.7.10"
 
 "@nexajs/utils@23.7.22":
   version "23.7.22"
@@ -369,6 +368,11 @@
   version "24.6.21"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.21.tgz#6134fee2c8db80220bf1af77e74c90e2565adf62"
   integrity sha512-l41hK8n5DrLZxmtaDSf0L5fX/FsdQAEj7n8sQptOV0uFyGDJYkAyvZ40SEdh8Oovc92/6jl1cg220cv4QfG2Uw==
+
+"@nexajs/utils@24.7.10":
+  version "24.7.10"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.10.tgz#f8ebb188ef1fd717acd1ba021b0e82b9fdd4f9a2"
+  integrity sha512-tiqMpfXcfoKeHH98uc9mIEadtiyqhY7y5OX5FrhrqXuJwDAJW3SmvlbYYAG4bJO3PIKcRJHNbzgOyPz+Wj09FA==
 
 big-integer@1.6.51:
   version "1.6.51"
