@@ -1,5 +1,8 @@
 /* Import modules. */
-import { sha256 } from '@nexajs/crypto'
+import {
+    ripemd160,
+    sha256,
+} from '@nexajs/crypto'
 
 import {
     encodeDataPush,
@@ -13,15 +16,6 @@ import {
 
 /* Import (local) modules. */
 import { encodeAddress } from '../index.js'
-
-/* Libauth helpers. */
-import { instantiateRipemd160 } from '@bitauth/libauth'
-
-let ripemd160
-
-;(async () => {
-    ripemd160 = await instantiateRipemd160()
-})()
 
 /**
  * Get Sender
@@ -39,7 +33,7 @@ export default (_input) => {
     const scriptPushPubKey = encodeDataPush(publicKey)
 
     /* Generate public key hash. */
-    const publicKeyHash = ripemd160.hash(sha256(scriptPushPubKey))
+    const publicKeyHash = ripemd160(sha256(scriptPushPubKey))
 
     /* Generate public key hash script. */
     const pkhScript = new Uint8Array([
