@@ -11,7 +11,7 @@
     "@bitauth/libauth": "1.19.1",
     "@nexajs/crypto": "24.7.9",
     "@nexajs/hdnode": "24.6.21",
-    "@nexajs/utils": "24.6.21",
+    "@nexajs/utils": "24.7.10",
     "events": "3.3.0"
   }
 }

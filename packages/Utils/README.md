@@ -9,6 +9,7 @@ A dependency-free suite of useful utilities for application building.
 - bigIntToBinUint64LE
 - bigIntToCompactUint
 - binToHex
+- flattenBinArray
 - hexToBin
 - numberToBinUint16LE
 - numberToBinUint32LE

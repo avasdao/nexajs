@@ -27,7 +27,7 @@
     "@nexajs/script": "23.12.13",
     "@nexajs/token": "24.7.9",
     "@nexajs/transaction": "24.7.9",
-    "@nexajs/utils": "24.6.20",
+    "@nexajs/utils": "24.7.10",
     "@nexajs/wallet": "24.7.9",
     "events": "3.3.0"
   },

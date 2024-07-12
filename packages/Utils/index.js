@@ -4,6 +4,7 @@ import _bigIntToBinUint32LE from './src/bigIntToBinUint32LE.js'
 import _bigIntToBinUint64LE from './src/bigIntToBinUint64LE.js'
 import _bigIntToCompactUint from './src/bigIntToCompactUint.js'
 import _binToHex from './src/binToHex.js'
+import _flattenBinArray from './src/flattenBinArray.js'
 import _hexToBin from './src/hexToBin.js'
 import _numberToBinUint16LE from './src/numberToBinUint16LE.js'
 import _numberToBinUint32LE from './src/numberToBinUint32LE.js'
@@ -16,6 +17,7 @@ export const bigIntToBinUint32LE = _bigIntToBinUint32LE
 export const bigIntToBinUint64LE = _bigIntToBinUint64LE
 export const bigIntToCompactUint = _bigIntToCompactUint
 export const binToHex = _binToHex
+export const flattenBinArray = _flattenBinArray
 export const hexToBin = _hexToBin
 export const numberToBinUint16LE = _numberToBinUint16LE
 export const numberToBinUint32LE = _numberToBinUint32LE
@@ -53,6 +55,7 @@ Nexa.bigIntToBinUint32LE = bigIntToBinUint32LE
 Nexa.bigIntToBinUint64LE = bigIntToBinUint64LE
 Nexa.bigIntToCompactUint = bigIntToCompactUint
 Nexa.binToHex = binToHex
+Nexa.flattenBinArray = flattenBinArray
 Nexa.hexToBin = hexToBin
 Nexa.numberToBinUint16LE = numberToBinUint16LE
 Nexa.numberToBinUint32LE = numberToBinUint32LE
