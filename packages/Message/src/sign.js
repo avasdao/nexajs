@@ -10,11 +10,6 @@ import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 let secp256k1
 
-// ;(async () => {
-//     // Instantiate the Secp256k1 interface.
-//     secp256k1 = await instantiateSecp256k1()
-// })()
-
 const hexToBase64 = (_hex) => {
     return btoa(_hex.match(/\w{2}/g).map(function(a) {
         return String.fromCharCode(parseInt(a, 16))

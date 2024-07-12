@@ -8,8 +8,6 @@ import { parseWif } from '@nexajs/hdnode'
 
 import { hexToBin } from '@nexajs/utils'
 
-import { encodeDataPush } from '@bitauth/libauth'
-
 export default async (_wif, _scriptPubKey = null) => {
     let prefix
     let tokens

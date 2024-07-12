@@ -246,12 +246,11 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/address@24.7.9":
-  version "24.7.9"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.9.tgz#f387db6f5ccabc468d54f2c521a524e9949c0ab4"
-  integrity sha512-3iPuxpDP6j+XcrwMlNtym9cc+gEpM+1xTlY5qVFQhvvC5bbGao4vwphXWLFjMM5bQ/nxUgkcApVKlCXIvxxltA==
+"@nexajs/address@24.7.10":
+  version "24.7.10"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.10.tgz#7af65adb27c272a2087aba6a690fe07411b08684"
+  integrity sha512-UIZrBkrdYXKGwAp4KYzV6T3Yxy2lqQISOTYUZMLVI8Qu9k3nD6qYmU3n6CPPzsy/5NUBqviHM6xRdKaT79yHiw==
   dependencies:
-    "@bitauth/libauth" "1.19.1"
     "@nexajs/crypto" "24.7.9"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/script" "23.12.13"
@@ -347,6 +346,11 @@
   version "24.6.21"
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.21.tgz#6134fee2c8db80220bf1af77e74c90e2565adf62"
   integrity sha512-l41hK8n5DrLZxmtaDSf0L5fX/FsdQAEj7n8sQptOV0uFyGDJYkAyvZ40SEdh8Oovc92/6jl1cg220cv4QfG2Uw==
+
+"@nexajs/utils@24.7.10":
+  version "24.7.10"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.10.tgz#f8ebb188ef1fd717acd1ba021b0e82b9fdd4f9a2"
+  integrity sha512-tiqMpfXcfoKeHH98uc9mIEadtiyqhY7y5OX5FrhrqXuJwDAJW3SmvlbYYAG4bJO3PIKcRJHNbzgOyPz+Wj09FA==
 
 big-integer@1.6.51:
   version "1.6.51"

@@ -6,8 +6,6 @@ import {
 
 import { parseWif } from '@nexajs/hdnode'
 
-import { encodeDataPush } from '@bitauth/libauth'
-
 export default async (_wif, _scriptPubKey = null) => {
     /* Initialize locals. */
     let coins
