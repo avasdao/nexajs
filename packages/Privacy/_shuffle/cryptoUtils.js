@@ -118,7 +118,7 @@ const encrypt = function (plaintextMessage, pubkey) {
     //       encrypted package. This allows ONLY the `pubkey` holder to
     //       decrypt our (ciphertext) message.
     const encrypted = Buffer.concat([
-        Buffer.from('BIE1'),
+        Buffer.from('HUSH'),
         ephemeral.publicKey.toBuffer(),
         ciphertext
     ])
@@ -161,7 +161,7 @@ const decrypt = function (encryptedMessage, somePrivateKeyHexString) {
     const mac = encrypted.slice(-32)
 
     /* Validate magic (bytes). */
-    if (magic.toString() !== 'BIE1') {
+    if (magic.toString() !== 'HUSH') {
         throw new Error('invalid ciphertext: invalid magic bytes')
     }
 

@@ -4,8 +4,36 @@ import { EventEmitter } from 'events'
 /* Import (local) modules. */
 // TBD
 
+/**
+ * Prvacy Status
+ *
+ * Enumeration of all possible privacy (status) conditions.
+ */
+const _PrivacyStatus = Object.freeze({
+	FAILED   : Symbol('failed'),
+	LOADING  : Symbol('loading'),
+	ONLINE   : Symbol('online'),
+	READY    : Symbol('ready'),
+	UNKNOWN  : Symbol('unknown'),
+	UPDATING : Symbol('updating'),
+})
+
 /* Export (local) modules. */
-// TBD
+export const sendToPeer = async (_peerid) => {
+    console.log('Sending message to', _peerid)
+
+    return {
+        id: '80701f7f-b027-43b4-83d8-3f3170b90229',
+        error: null,
+        msg: 'sent!'
+    }
+}
+export const shuffleCoin = async () => {
+    console.log('Shuffling...')
+
+    return 'shuffled!'
+}
+export const PrivacyStatus = _PrivacyStatus
 
 
 /**
@@ -17,10 +45,12 @@ export class Privacy extends EventEmitter {
     constructor(_params) {
         /* Initialize Privacy class. */
         console.info('Initializing Privacy...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
-        // TBD
+        /* Initialize internals. */
+        this._status = PrivacyStatus.UNKNOWN
+
     }
 
     test() {
@@ -39,7 +69,9 @@ const Nexa = {}
 Nexa.Privacy = Privacy
 
 /* Initialize Privacy modules. */
-// TBD
+Nexa.sendToPeer = sendToPeer
+Nexa.shuffleCoin = shuffleCoin
+Nexa.PrivacyStatus = PrivacyStatus
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

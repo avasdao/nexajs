@@ -1,10 +1,13 @@
 {
   "name": "@nexajs/privacy",
-  "version": "23.2.22",
-  "description": "TBD",
+  "version": "24.7.13",
+  "description": "Provides support for most UTXO- and EVM-based blockchain privacy protocols.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NEXA.js developers",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "events": "3.3.0"
+  }
 }
