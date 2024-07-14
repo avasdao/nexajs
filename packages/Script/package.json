@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/script",
-  "version": "24.6.21",
+  "version": "24.7.11",
   "description": "Script utilities for advanced transactions, including 'wise' contracts.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -9,6 +9,6 @@
   "type": "module",
   "dependencies": {
     "@bitauth/libauth": "1.19.1",
-    "@nexajs/utils": "24.7.10"
+    "@nexajs/utils": "24.7.11"
   }
 }

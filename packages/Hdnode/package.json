@@ -12,6 +12,6 @@
     "@nexajs/address": "24.7.11",
     "@nexajs/crypto": "24.7.9",
     "@nexajs/script": "23.12.13",
-    "@nexajs/utils": "24.7.10"
+    "@nexajs/utils": "24.7.11"
   }
 }
