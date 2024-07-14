@@ -1,3 +1,33 @@
+const alphabet =
+  '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+const undefinedValue = 255
+const uint8ArrayBase = 256
+
+const BaseConversionError = {
+  tooLong: 'An alphabet may be no longer than 254 characters.',
+  ambiguousCharacter: 'A character code may only appear once in a single alphabet.',
+  unknownCharacter: 'Encountered an unknown character for this alphabet.',
+}
+
+const alphabetMap = new Uint8Array(uint8ArrayBase).fill(undefinedValue)
+
+// eslint-disable-next-line functional/no-loop-statement, functional/no-let, no-plusplus
+for (let index = 0; index < alphabet.length; index++) {
+    const characterCode = alphabet.charCodeAt(index)
+
+    if (alphabetMap[characterCode] !== undefinedValue) {
+        // return BaseConversionError.ambiguousCharacter
+        throw new Error('fail')// BaseConversionError.ambiguousCharacter
+    }
+
+    // eslint-disable-next-line functional/no-expression-statement, functional/immutable-data
+    alphabetMap[characterCode] = index
+}
+
+const base = alphabet.length
+const paddingCharacter = alphabet.charAt(0)
+const factor = Math.log(base) / Math.log(uint8ArrayBase)
+
 export default (input) => {
     if (input.length === 0) return Uint8Array.of()
 
