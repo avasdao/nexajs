@@ -1,7 +1,9 @@
 /* Import modules. */
-import {
-    encodeBase58AddressFormat,
-} from '@bitauth/libauth'
+import { encodeBase58AddressFormat } from '@nexajs/address'
+import { sha256 } from '@nexajs/crypto'
+// import {
+//     encodeBase58AddressFormat,
+// } from '@bitauth/libauth'
 
 /**
  * Encode a private key using Wallet Import Format (WIF).
@@ -27,7 +29,6 @@ import {
  * `testnet`)
  */
 export default (
-    sha256,
     privateKey,
     type
 ) => {
@@ -40,7 +41,7 @@ export default (
     const version = 35 // `0x23` NOTE: Bitcoin Cash is `128`/`0x80`.
 
     return encodeBase58AddressFormat(
-        sha256,
+        // sha256,
         version,
         payload
     )

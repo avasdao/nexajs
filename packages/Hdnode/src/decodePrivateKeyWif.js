@@ -1,7 +1,9 @@
 /* Import modules. */
-import {
-    decodeBase58AddressFormat,
-} from '@bitauth/libauth'
+import { decodeBase58AddressFormat } from '@nexajs/address'
+import { sha256 } from '@nexajs/crypto'
+// import {
+//     decodeBase58AddressFormat,
+// } from '@bitauth/libauth'
 
 /**
  * Decode a private key using Wallet Import Format (WIF). See
@@ -12,12 +14,9 @@ import {
  * @param wifKey - the private key to decode (in Wallet Import Format)
  */
 // eslint-disable-next-line complexity
-export default (
-    sha256,
-    wifKey
-) => {
+export default (wifKey) => {
     const compressedPayloadLength = 33
-    const decoded = decodeBase58AddressFormat(sha256, wifKey)
+    const decoded = decodeBase58AddressFormat(wifKey)
 
     if (typeof decoded === 'string') return decoded
 
