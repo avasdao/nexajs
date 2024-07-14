@@ -1,10 +1,10 @@
 /* Import modules. */
-import { OP } from '../index.js'
-
 import {
     numberToBinUint16LE,
     numberToBinUint32LE,
-} from '@bitauth/libauth'
+} from '@nexajs/utils'
+
+import { OP } from '../index.js'
 
 const PushOperationConstants = {
     OP_0: 0,
