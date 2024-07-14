@@ -15,7 +15,7 @@
     "@nexajs/address": "24.7.12",
     "@nexajs/app": "23.9.4",
     "@nexajs/crypto": "24.7.11",
-    "@nexajs/hdnode": "24.6.21",
+    "@nexajs/hdnode": "24.7.12",
     "@nexajs/id": "23.5.15",
     "@nexajs/market": "23.12.13",
     "@nexajs/message": "23.12.13",
