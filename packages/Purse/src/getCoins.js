@@ -6,12 +6,14 @@ import {
 
 import { parseWif } from '@nexajs/hdnode'
 
-export default async (_wif, _scriptPubKey = null) => {
+export default async (_wifs, _scriptPubKey = null) => {
     /* Initialize locals. */
+    let allCoins
     let coins
     let prefix
     let unspent
     let wif
+    let wifs
 
     /* Handle prefix. */
     if (typeof process !== 'undefined' && process?.env?.TESTNET) {
@@ -23,56 +25,83 @@ export default async (_wif, _scriptPubKey = null) => {
     }
     // console.log('PREFIX', prefix)
 
-    /* Parse WIF. */
-    let {
-        privateKey,
-        publicKey,
-        address,
-    } = await parseWif(_wif, prefix)
+    if (Array.isArray(_wifs)) {
+        wifs = _wifs
+    } else {
+        wifs = [_wifs]
+    }
 
-    /* Validate WIF details. */
-    if (privateKey && publicKey && address) {
+    /* Initialize (all) coins. */
+    allCoins = []
+
+    /* Handle WIFs. */
+    for (let i = 0; i < wifs.length; i++) {
         /* Set WIF. */
-        wif = _wif
-    }
+        wif = wifs[i]
 
-    /* Handle "script" addresses. */
-    if (_scriptPubKey) {
-        address = encodeAddress(
-            prefix,
-            'TEMPLATE',
-            _scriptPubKey,
-        )
-    }
-
-    /* Fetch all unspent transaction outputs. */
-    unspent = await listUnspent(address)
-
-    /* Validate unspent. */
-    if (unspent.length === 0) {
-        console.error('There are NO unspent outputs available.')
-
-        /* Return empty array. */
-        return []
-    }
-
-    /* Remove tokens. */
-    unspent = unspent.filter(_unspent => {
-        return _unspent.hasToken === false
-    })
-
-    /* Build coins. */
-    coins = unspent.map(_unspent => {
-        const outpoint = _unspent.outpoint
-        const satoshis = _unspent.satoshis
-
-        return {
-            outpoint,
-            satoshis,
-            wif,
+        /* Validate WIF. */
+        if (typeof wif === 'undefined' || wif === null) {
+            /* Skip. */
+            continue
         }
-    })
 
-    /* Return coins. */
-    return coins
+        /* Parse WIF. */
+        let {
+            privateKey,
+            publicKey,
+            address,
+        } = await parseWif(wif, prefix)
+
+        /* Validate WIF details. */
+        if (!privateKey || !publicKey || !address) {
+            /* Skip. */
+            continue
+        }
+
+        /* Handle "script" addresses. */
+        if (_scriptPubKey) {
+            address = encodeAddress(
+                prefix,
+                'TEMPLATE',
+                _scriptPubKey,
+            )
+        }
+
+        /* Fetch all unspent transaction outputs. */
+        unspent = await listUnspent(address)
+
+        /* Validate unspent. */
+        if (unspent.length === 0) {
+            console.error('There are NO unspent outputs available.')
+
+            /* Skip. */
+            continue
+        }
+
+        /* Remove tokens. */
+        unspent = unspent.filter(_unspent => {
+            return _unspent.hasToken === false
+        })
+
+        /* Build coins. */
+        coins = unspent.map(_unspent => {
+            const outpoint = _unspent.outpoint
+            const satoshis = _unspent.satoshis
+
+            return {
+                outpoint,
+                satoshis,
+                wif,
+            }
+        })
+
+        /* Add new coins. */
+        allCoins = [
+            ...allCoins,
+            ...coins,
+        ]
+    }
+
+    /* Return (all) coins. */
+    return allCoins
 }

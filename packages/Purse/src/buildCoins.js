@@ -94,7 +94,7 @@ export default async (_coins, _receivers) => {
             satoshis += _receiver.satoshis
         }
     })
-    console.log('Transaction satoshis (incl. fee):', satoshis)
+    // console.log('Transaction satoshis (incl. fee):', satoshis)
 
     /* Validate dust amount. */
     if (satoshis < DUST_LIMIT) {
