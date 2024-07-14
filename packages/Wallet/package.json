@@ -12,10 +12,10 @@
     "@nexajs/address": "24.7.12",
     "@nexajs/crypto": "24.7.11",
     "@nexajs/hdnode": "24.7.12",
-    "@nexajs/purse": "24.7.11",
+    "@nexajs/purse": "24.7.12",
     "@nexajs/rostrum": "24.6.23",
     "@nexajs/script": "24.7.11",
-    "@nexajs/token": "24.7.11",
+    "@nexajs/token": "24.7.12",
     "cross-fetch": "4.0.0",
     "events": "3.3.0",
     "numeral": "2.0.6"

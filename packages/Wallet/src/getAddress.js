@@ -3,6 +3,7 @@ import { encodeAddress } from '@nexajs/address'
 
 import {
     randomBytes,
+    ripemd160,
     sha256,
     sha512,
 } from '@nexajs/crypto'
