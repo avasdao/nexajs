@@ -1,9 +1,7 @@
 /* Import modules. */
-import {
-    hmacSha512,
-    utf8ToBin,
-    validateSecp256k1PrivateKey,
-} from '@bitauth/libauth'
+import { getHmac } from '@nexajs/crypto'
+import { utf8ToBin } from '@nexajs/utils'
+import { validateSecp256k1PrivateKey} from '../index.js'
 
 const bip32HmacSha512Key = utf8ToBin('Bitcoin seed')
 const halfHmacSha512Length = 32
@@ -19,12 +17,9 @@ const halfHmacSha512Length = 32
  * for validity, and will be assumed valid if `true` or invalid if `false` (this
  * is useful for testing)
  */
-export default (
-    crypto,
-    seed
-) => {
-    // FIXME Verify that seed is "binary" Uint8Array.
-    const mac = hmacSha512(crypto.sha512, bip32HmacSha512Key, seed)
+export default (_seed) => {
+    // FIXME Verify that _seed is "binary" Uint8Array.
+    const mac = getHmac(bip32HmacSha512Key, _seed)
     const privateKey = mac.slice(0, halfHmacSha512Length)
     const chainCode = mac.slice(halfHmacSha512Length)
     const depth = 0

@@ -12,7 +12,6 @@ import {
     instantiateSha256,
 } from '@bitauth/libauth'
 
-import CashAddressType from './CashAddressType.js'
 import decodePrivateKeyWif from './decodePrivateKeyWif.js'
 
 /**

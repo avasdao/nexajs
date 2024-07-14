@@ -3,24 +3,28 @@ import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
 import _decodePrivateKeyWif from './src/decodePrivateKeyWif.js'
 import _encodePrivateKeyWif from './src/encodePrivateKeyWif.js'
 import _parseWif from './src/parseWif.js'
+import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
 
 /* Export (local) modules. */
 export const deriveHdPrivateNodeFromSeed = _deriveHdPrivateNodeFromSeed
 export const decodePrivateKeyWif = _decodePrivateKeyWif
 export const encodePrivateKeyWif = _encodePrivateKeyWif
 export const parseWif = _parseWif
+export const validateSecp256k1PrivateKey = _validateSecp256k1PrivateKey
 
 /* Ethers.js helpers. */
 import { entropyToMnemonic as _entropyToMnemonic } from '@ethersproject/hdnode'
 import { isValidMnemonic as _isValidMnemonic } from '@ethersproject/hdnode'
 import { mnemonicToEntropy as _mnemonicToEntropy } from '@ethersproject/hdnode'
 import { mnemonicToSeed as _mnemonicToSeed } from '@ethersproject/hdnode'
+// TODO Add `seedToMnemonic`??
 
 /* Export (Ethers.js) modules. */
 export const entropyToMnemonic = _entropy => _entropyToMnemonic('0x' + _entropy)
 export const isValidMnemonic = _isValidMnemonic
 export const mnemonicToEntropy = _mnemonic => _mnemonicToEntropy(_mnemonic).slice(2)
 export const mnemonicToSeed = _mnemonic => _mnemonicToSeed(_mnemonic).slice(2)
+// TODO Add `seedToMnemonic`??
 
 
 /**
@@ -51,6 +55,8 @@ Nexa.deriveHdPrivateNodeFromSeed = deriveHdPrivateNodeFromSeed
 Nexa.decodePrivateKeyWif = decodePrivateKeyWif
 Nexa.encodePrivateKeyWif = encodePrivateKeyWif
 Nexa.parseWif = parseWif
+Nexa.validateSecp256k1PrivateKey = validateSecp256k1PrivateKey
+
 Nexa.entropyToMnemonic = entropyToMnemonic // Ethers.js helpers
 Nexa.isValidMnemonic = isValidMnemonic // Ethers.js helpers
 Nexa.mnemonicToEntropy = mnemonicToEntropy // Ethers.js helpers
