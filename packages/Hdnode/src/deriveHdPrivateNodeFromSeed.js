@@ -1,7 +1,9 @@
 /* Import modules. */
-import { getHmac } from '@nexajs/crypto'
+import {
+    getHmac,
+    validateSecp256k1PrivateKey,
+} from '@nexajs/crypto'
 import { utf8ToBin } from '@nexajs/utils'
-import { validateSecp256k1PrivateKey} from '../index.js'
 
 const bip32HmacSha512Key = utf8ToBin('Bitcoin seed')
 const halfHmacSha512Length = 32
