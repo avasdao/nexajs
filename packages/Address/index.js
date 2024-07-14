@@ -1,16 +1,18 @@
 /* Import (local) modules. */
 import { decodeAddress as _decodeAddress } from './src/cashaddr.js'
+import _decodeBase58AddressFormat from './src/decodeBase58AddressFormat.js'
 import { encodeAddress as _encodeAddress } from './src/cashaddr.js'
-
+import _encodeBase58AddressFormat from './src/encodeBase58AddressFormat.js'
 import getSeedType from './src/getSeedType.js'
-
 import _getSender from './src/getSender.js'
 import _listUnspent from './src/listUnspent.js'
 import _watchAddress from './src/watchAddress.js'
 
 /* Export (local) modules. */
 export const decodeAddress = _decodeAddress
+export const decodeBase58AddressFormat = _decodeBase58AddressFormat
 export const encodeAddress = _encodeAddress
+export const encodeBase58AddressFormat = _encodeBase58AddressFormat
 export const getSender = _getSender
 export const listUnspent = _listUnspent
 export const watchAddress = _watchAddress
@@ -106,7 +108,9 @@ Nexa.Address = Address
 
 /* Initialize Address modules. */
 Nexa.decodeAddress = decodeAddress
+Nexa.decodeBase58AddressFormat = decodeBase58AddressFormat
 Nexa.encodeAddress = encodeAddress
+Nexa.encodeBase58AddressFormat = encodeBase58AddressFormat
 Nexa.getSender = getSender
 Nexa.listUnspent = listUnspent
 Nexa.watchAddress = watchAddress
