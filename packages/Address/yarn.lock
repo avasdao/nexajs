@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"@bitauth/libauth@1.19.1":
-  version "1.19.1"
-  resolved "https://registry.yarnpkg.com/@bitauth/libauth/-/libauth-1.19.1.tgz#713751bbc09815b667f8fe00a1cc5b0f3bf45dd1"
-  integrity sha512-R524tD5VwOt3QRHr7N518nqTVR/HKgfWL4LypekcGuNQN8R4PWScvuRcRzrY39A28kLztMv+TJdiKuMNbkU1ug==
-
 "@ethersproject/bytes@^5.7.0":
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@ethersproject/bytes/-/bytes-5.7.0.tgz#a00f6ea8d7e7534d6d87f47188af1148d71f155d"
@@ -27,13 +22,13 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/crypto@24.7.9":
-  version "24.7.9"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.9.tgz#65ef318d204ed66649896543d03d97cd6677152c"
-  integrity sha512-KI5U9ADOWFuy5hooNhAfBuly0BS3VA8XIK9Wz4ba8xL3oKBiZoiP7bwy9/tk+1GeGCQGjk/4JG0k0QM4Hjmz2A==
+"@nexajs/crypto@24.7.11":
+  version "24.7.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.11.tgz#dc0c01031aff3d4f9b3ce3b559449b0731316223"
+  integrity sha512-aKABYb63JenF8k8hk7ZHkwOCxvzcmdK1lBZoeMFLXYmMFDjxecnhaTjpz3m7k78Dun2YGUNEZhyayP0M/1bWng==
   dependencies:
     "@ethersproject/random" "5.7.0"
-    "@nexajs/utils" "24.6.21"
+    "@nexajs/utils" "24.7.11"
     bn.js "5.2.1"
     crypto-js "4.2.0"
     elliptic "6.5.5"
@@ -52,31 +47,17 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@23.12.13":
-  version "23.12.13"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-23.12.13.tgz#d773922652fb67dd258af84bab28660c5fd6fb4d"
-  integrity sha512-/9rWhLY6UUmRU3CURXNgKMSS7Luy4PR7vaMLOml4AtN1PZvqraQLIJ8nPcCM90+EeAI5pdrzxisSNK67QTR82g==
+"@nexajs/script@24.7.11":
+  version "24.7.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-24.7.11.tgz#226e1a7ca4e8b61f3b665cbbbb8c426283a63c40"
+  integrity sha512-BpKFLhlbkekrLL3AA66/UJqrYcbR/9fbfYRW43skXt2PUSTo5jkxzFUWctsMHdeuZAQlyjCUFYPKqe1OCME25g==
   dependencies:
-    "@bitauth/libauth" "1.19.1"
-    "@nexajs/utils" "23.7.22"
-    debug "4.3.4"
+    "@nexajs/utils" "24.7.11"
 
-"@nexajs/utils@23.7.22":
-  version "23.7.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-23.7.22.tgz#528a2d0fbb0c9db200f0b2ca877560d26944d33f"
-  integrity sha512-8gX+YgXJOwxr+F5u91WqOZ9vV/xydSOUbZuHiOGjDirBG1MAsSb33MBhuW21ZuZrYtC3md589UhHBtai3QjAdw==
-  dependencies:
-    debug "4.3.4"
-
-"@nexajs/utils@24.6.21":
-  version "24.6.21"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.6.21.tgz#6134fee2c8db80220bf1af77e74c90e2565adf62"
-  integrity sha512-l41hK8n5DrLZxmtaDSf0L5fX/FsdQAEj7n8sQptOV0uFyGDJYkAyvZ40SEdh8Oovc92/6jl1cg220cv4QfG2Uw==
-
-"@nexajs/utils@24.7.10":
-  version "24.7.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.10.tgz#f8ebb188ef1fd717acd1ba021b0e82b9fdd4f9a2"
-  integrity sha512-tiqMpfXcfoKeHH98uc9mIEadtiyqhY7y5OX5FrhrqXuJwDAJW3SmvlbYYAG4bJO3PIKcRJHNbzgOyPz+Wj09FA==
+"@nexajs/utils@24.7.11":
+  version "24.7.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.11.tgz#441d0727e7b25d624ea495b232437cc1b26dbf9b"
+  integrity sha512-gf2e/ZzrZSKr5QWNkgP3Ri1Ig2RHjy1nTtug9duxBuC2QK8//fJnAFffWeVTkRubKt0i2SMGCQkRhfEiTrGE1w==
 
 big-integer@1.6.51:
   version "1.6.51"
@@ -107,13 +88,6 @@ crypto-js@^3.1.6:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
   integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
-
-debug@4.3.4:
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
-  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
-  dependencies:
-    ms "2.1.2"
 
 elliptic@6.5.5:
   version "6.5.5"
@@ -189,11 +163,6 @@ minimalistic-crypto-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
   integrity sha512-JIYlbt6g8i5jKfJ3xz7rF0LXmv2TkDxBLUkiBeZ7bAx4GnnNMr8xFpGnOxn6GhTEHx3SjRrZEoU+j04prX1ktg==
-
-ms@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
-  integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
 scrypt-js@3.0.1:
   version "3.0.1"
