@@ -21,7 +21,7 @@ export default (input) => {
     let remainingBytes = 0
 
     // eslint-disable-next-line functional/no-loop-statement
-    while ((input[nextByte] as string | undefined) !== undefined) {
+    while ((input[nextByte]) !== undefined) {
         let carry = alphabetMap[input.charCodeAt(nextByte)]
         if (carry === undefinedValue)
             return BaseConversionError.unknownCharacter
@@ -31,7 +31,7 @@ export default (input) => {
         // eslint-disable-next-line functional/no-loop-statement
         for (
             let steps = requiredLength - 1;
-            (carry !== 0 || digit < remainingBytes) && steps !== -1
+            (carry !== 0 || digit < remainingBytes) && steps !== -1;
             // eslint-disable-next-line no-plusplus
             steps--, digit++
         ) {

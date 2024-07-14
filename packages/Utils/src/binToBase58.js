@@ -25,7 +25,7 @@ export default (input) => {
 
         // eslint-disable-next-line functional/no-loop-statement
         for (
-            let steps = requiredLength - 1
+            let steps = requiredLength - 1;
             (carry !== 0 || digit < remainingBytes) && steps !== -1;
             // eslint-disable-next-line no-plusplus
             steps--, digit++
