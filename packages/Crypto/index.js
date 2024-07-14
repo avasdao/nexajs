@@ -3,6 +3,7 @@ import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
 import _decrypt from './src/decrypt.js'
+import _derivePublicKeyCompressed from './src/derivePublicKeyCompressed.js'
 import _encrypt from './src/encrypt.js'
 // import _passwordToSafu from './src/passwordToSafu.js'
 import _getHmac from './src/getHmac.js'
@@ -14,6 +15,7 @@ import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
 
 /* Export (local) modules. */
 export const decrypt = _decrypt
+export const derivePublicKeyCompressed = _derivePublicKeyCompressed
 export const encrypt = _encrypt
 // export const passwordToSafu = _passwordToSafu
 export const getHmac = _getHmac
@@ -64,6 +66,7 @@ Nexa.Crypto = Crypto
 
 /* Initialize Crypto modules. */
 Nexa.decrypt = decrypt
+Nexa.derivePublicKeyCompressed = derivePublicKeyCompressed
 Nexa.encrypt = encrypt
 // Nexa.passwordToSafu = passwordToSafu
 Nexa.getHmac = getHmac
