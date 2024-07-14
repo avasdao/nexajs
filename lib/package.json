@@ -26,7 +26,7 @@
     "@nexajs/rpc": "23.5.15",
     "@nexajs/script": "24.7.11",
     "@nexajs/token": "24.7.11",
-    "@nexajs/transaction": "24.7.11",
+    "@nexajs/transaction": "24.7.12",
     "@nexajs/utils": "24.7.11",
     "@nexajs/wallet": "24.7.11",
     "events": "3.3.0"

@@ -13,7 +13,7 @@
     "@nexajs/hdnode": "24.7.12",
     "@nexajs/provider": "23.12.25",
     "@nexajs/script": "24.7.11",
-    "@nexajs/transaction": "24.7.11",
+    "@nexajs/transaction": "24.7.12",
     "events": "3.3.0"
   },
   "engines": {
