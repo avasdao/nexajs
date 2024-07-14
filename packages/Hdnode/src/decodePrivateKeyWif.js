@@ -1,9 +1,6 @@
 /* Import modules. */
 import { decodeBase58AddressFormat } from '@nexajs/address'
 import { sha256 } from '@nexajs/crypto'
-// import {
-//     decodeBase58AddressFormat,
-// } from '@bitauth/libauth'
 
 /**
  * Decode a private key using Wallet Import Format (WIF). See

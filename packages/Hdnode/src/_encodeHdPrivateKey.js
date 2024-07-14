@@ -2,8 +2,8 @@
 import {
     binToBase58,
     flattenBinArray,
-    numberToBinUint32BE,
-} from '@bitauth/libauth'
+    // numberToBinUint32BE,
+} from '@nexajs/utils'
 
 /**
  * Encode an HD private key (as defined by BIP32) given an HD private node.

@@ -1,5 +1,3 @@
-import { encodeBase58AddressFormat } from '@bitauth/libauth'
-
 export const WalletImportFormatError = {
     incorrectLength: 'The WIF private key payload is not the correct length.',
 }

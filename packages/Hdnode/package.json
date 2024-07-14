@@ -8,7 +8,6 @@
   "author": "NEXA.js developers",
   "license": "MIT",
   "dependencies": {
-    "@bitauth/libauth": "1.19.1",
     "@ethersproject/hdnode": "5.7.0",
     "@nexajs/address": "24.7.11",
     "@nexajs/crypto": "24.7.9",
