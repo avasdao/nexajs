@@ -1,12 +1,17 @@
-/* Import core modules. */
-const _ = require('lodash')
-const bch = require('bitcore-lib-cash')
-const EventEmitter = require('events').EventEmitter
-const Nito = require('nitojs')
+/* Import modules. */
+import { EventEmitter } from 'events'
+import _ from 'lodash'
+import { sleep } from '@nexajs/utils'
 
-/* Import local modules. */
-const cryptoUtils = require('./cryptoUtils.js')
-const coinUtils = require('./coinUtils.js')
+/* Import core modules. */
+// const _ = require('lodash')
+// const bch = require('bitcore-lib-cash')
+// const EventEmitter = require('events').EventEmitter
+// const Nito = require('nitojs')
+
+/* Import (local) modules. */
+import cryptoUtils from '../libs/cryptoUtils.js'
+import coinUtils from '../libs/coinUtils.js'
 
 /* Import CommChannel (Class). */
 const CommChannel = require('./CommChannel.js')
@@ -17,8 +22,11 @@ const CommChannel = require('./CommChannel.js')
  * The de-facto unbiased shuffle algorithm is the Fisher-Yates
  * (aka Knuth) Shuffle. (see: https://github.com/coolaj86/knuth-shuffle)
  */
-const _shuffle = function (array) {
-    var currentIndex = array.length, temporaryValue, randomIndex
+const _shuffle = (array) => {
+    /* Initialize locals. */
+    let currentIndex = array.length
+    let temporaryValue
+    let randomIndex
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -37,11 +45,6 @@ const _shuffle = function (array) {
 
 /* Initialize magic number. */
 // const magic = Buffer.from('42bcc32669467873', 'hex')
-
-/**
- * Delay (Execution)
- */
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 /**
  * Shuffle Round (Class)
@@ -1137,7 +1140,7 @@ class ShuffleRound extends EventEmitter {
                 if (timeNow > waitUntilThisTime || !this.shuffleTx.isBuilding) {
                     this.shuffleTx.isBuilding = false
                 } else {
-                    await delay(500)
+                    await sleep(500)
                 }
             }
         }

@@ -1,11 +1,22 @@
-/* Import core modules. */
-const _ = require('lodash')
-const EventEmitter = require('events').EventEmitter
-const superagent = require('superagent')
-const URL = require('url')
+/* Import modules. */
+import { EventEmitter } from 'events'
+import _ from 'lodash'
+import URL from 'url'
 
-const ShuffleRound = require('./ShuffleRound.js')
-const coinUtils = require('./coinUtils.js')
+/* Import classes. */
+import ShuffleRound from './ShuffleRound.js'
+
+/* Import (local) modules. */
+import coinUtils from '../libs/coinUtils.js'
+
+/* Import core modules. */
+// const _ = require('lodash')
+// const EventEmitter = require('events').EventEmitter
+const superagent = require('superagent')
+// const URL = require(s'url')
+
+// const ShuffleRound = require('./ShuffleRound.js')
+// const coinUtils = require('./coinUtils.js')
 
 /**
  * Delay (Execution)
@@ -18,7 +29,7 @@ const DELAY_IN_MS = 5000
 /**
  * Shuffle Client (Class)
  */
-class ShuffleClient extends EventEmitter {
+export class ShuffleClient extends EventEmitter {
     constructor (clientOptions) {
         super()
 

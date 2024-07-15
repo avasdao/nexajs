@@ -1,7 +1,35 @@
-const EventEmitter = require('events').EventEmitter
+/* Import modules. */
+import { EventEmitter } from 'events'
+import ShuffleClient from './ShuffleClient.js'
 
-/* Initialize shuffle client. */
-const shuffleClient = require('../../packages/shuffle/ShuffleClient.js')
+export const ShuffleType = Object.freeze({
+	DEFAULT : Symbol('default'),
+	DUST    : Symbol('dust'),
+})
+
+export const Phase = Object.freeze({
+	NONE                        : Symbol('none'),
+	ANNOUNCEMENT                : Symbol('announcement'),
+	SHUFFLE                     : Symbol('shuffle'),
+	BROADCAST                   : Symbol('broadcast'),
+	EQUIVOCATION_CHECK          : Symbol('equivocation_check'),
+	SIGNING                     : Symbol('signing'),
+	VERIFICATION_AND_SUBMISSION : Symbol('verification_and_submission'),
+	BLAME                       : Symbol('blame'),
+})
+
+export const Reason = Object.freeze({
+	INSUFFICIENTFUNDS             : Symbol('insufficientfunds'),
+	DOUBLESPEND                   : Symbol('doublespend'),
+	EQUIVOCATIONFAILURE           : Symbol('equivocationfailure'),
+	SHUFFLEFAILURE                : Symbol('shufflefailure'),
+	SHUFFLEANDEQUIVOCATIONFAILURE : Symbol('shuffleandequivocationfailure'),
+	INVALIDSIGNATURE              : Symbol('invalidsignature'),
+	MISSINGOUTPUT                 : Symbol('missingoutput'),
+	LIAR                          : Symbol('liar'),
+	INVALIDFORMAT                 : Symbol('invalidformat'),
+})
+
 
 /**
  * Shuffle Manager
@@ -13,11 +41,16 @@ const shuffleClient = require('../../packages/shuffle/ShuffleClient.js')
  *    3. Target (address) generator function.
  */
 // const shuffleManager = (_coin, _changeFunc, _targetFunc, _disableAutoShuffle=false) => {
-class ShuffleManager extends EventEmitter {
-    constructor(_coin, _changeFunc, _targetFunc, _disableAutoShuffle = false) {
+export class ShuffleManager extends EventEmitter {
+    constructor(
+        _coin,
+        _changeFunc,
+        _targetFunc,
+        _disableAutoShuffle = false
+    ) {
         super()
 
-        this.shuffleManager = new shuffleClient({
+        this.shuffleManager = new ShuffleClient({
             coins: [ _coin ],
 
             hooks: {
@@ -53,8 +86,4 @@ class ShuffleManager extends EventEmitter {
         /* Return shuffle manager. */
         return this.shuffleManager
     }
-
 }
-
-/* Export module. */
-module.exports = ShuffleManager
