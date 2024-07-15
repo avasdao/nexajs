@@ -1,15 +1,24 @@
-/* Import core modules. */
-const _ = require('lodash')
-const bch = require('bitcore-lib-cash')
+/* Import modules. */
+import _ from 'lodash'
+import { Address } from '@nexajs/crypto'
+import {
+    ECDSA,
+    sha256,
+} from '@nexajs/crypto'
+import { PrivateKey } from '@nexajs/hdnode'
 
-const $ = bch.util.preconditions
-const Address = bch.Address
+/* Import core modules. */
+// const _ = require('lodash')
+// const bch = require('bitcore-lib-cash')
+
+// const $ = bch.util.preconditions
+// const Address = bch.Address
 // const PublicKey = bch.PublicKey
-const PrivateKey = bch.PrivateKey
+// const PrivateKey = bch.PrivateKey
 const BufferWriter = bch.encoding.BufferWriter
-const ECDSA = bch.crypto.ECDSA
+// const ECDSA = bch.crypto.ECDSA
 const Signature = bch.crypto.Signature
-const sha256sha256 = bch.crypto.Hash.sha256sha256
+// const sha256sha256 = bch.crypto.Hash.sha256sha256
 const JSUtil = bch.util.js
 
 /* Set magic bytes. */
@@ -29,8 +38,10 @@ class Message {
             return new Message(message, messageEncoding)
         }
 
-        $.checkArgument(
-            _.isString(message), 'First argument should be a string')
+        /* Validate message. */
+        if (typeof message !== 'string') {
+            throw new Error('First argument should be a string')
+        }
 
         this.message = message
         this.messageEncoding = messageEncoding
@@ -68,8 +79,10 @@ class Message {
      * Will sign a message with a given bitcoin private key.
      */
     sign (privateKey) {
-        $.checkArgument(privateKey instanceof PrivateKey,
-            'First argument should be an instance of PrivateKey')
+        /* Validate private key. */
+        if (!(privateKey instanceof PrivateKey)) {
+            throw new Error('First argument should be an instance of PrivateKey')
+        }
 
         /* Initialize hash. */
         const hash = this.magicHash
