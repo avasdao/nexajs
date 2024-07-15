@@ -1,3 +1,6 @@
+/* Import modules. */
+import { utf8ToBin } from '@nexajs/utils'
+
 /* Import (local) modules. */
 import _sign from './src/sign.js'
 import _verify from './src/verify.js'
@@ -6,6 +9,7 @@ import _verify from './src/verify.js'
 export const sign = _sign
 export const verify = _verify
 
+export const MAGIC_BYTES = utf8ToBin('Bitcoin Signed Message:\n')
 
 /**
  * Message Class
