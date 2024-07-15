@@ -29,7 +29,7 @@ const DELAY_IN_MS = 5000
 /**
  * Shuffle Client (Class)
  */
-export class ShuffleClient extends EventEmitter {
+export class Client extends EventEmitter {
     constructor (clientOptions) {
         super()
 
@@ -318,7 +318,7 @@ export class ShuffleClient extends EventEmitter {
             //   this.coins.push(shuffleRoundObject.change);
             // }
 
-            /* Emit an event on the `ShuffleClient` class. */
+            /* Emit an event on the `Client` class. */
             const msg = `Coin ${shuffleRoundObject.coin.txid}:${shuffleRoundObject.coin.vout} has been successfully shuffled!`
             this.emit('notice', msg)
             this.emit('shuffle')
@@ -558,5 +558,3 @@ export class ShuffleClient extends EventEmitter {
         return serverStats
     }
 }
-
-module.exports = ShuffleClient

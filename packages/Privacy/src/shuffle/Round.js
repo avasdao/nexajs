@@ -1,7 +1,17 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
 import _ from 'lodash'
-import { sleep } from '@nexajs/utils'
+import {
+    shuffle,
+    sleep,
+} from '@nexajs/utils'
+
+/* Import Comms (Class). */
+import Comms from './Comms.js'
+
+/* Import (local) modules. */
+import cryptoUtils from '../libs/cryptoUtils.js'
+import coinUtils from '../libs/coinUtils.js'
 
 /* Import core modules. */
 // const _ = require('lodash')
@@ -9,39 +19,7 @@ import { sleep } from '@nexajs/utils'
 // const EventEmitter = require('events').EventEmitter
 // const Nito = require('nitojs')
 
-/* Import (local) modules. */
-import cryptoUtils from '../libs/cryptoUtils.js'
-import coinUtils from '../libs/coinUtils.js'
 
-/* Import CommChannel (Class). */
-const CommChannel = require('./CommChannel.js')
-
-/**
- * Shuffle
- *
- * The de-facto unbiased shuffle algorithm is the Fisher-Yates
- * (aka Knuth) Shuffle. (see: https://github.com/coolaj86/knuth-shuffle)
- */
-const _shuffle = (array) => {
-    /* Initialize locals. */
-    let currentIndex = array.length
-    let temporaryValue
-    let randomIndex
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex)
-        currentIndex -= 1
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex]
-        array[currentIndex] = array[randomIndex]
-        array[randomIndex] = temporaryValue
-    }
-
-    return array
-}
 
 /* Initialize magic number. */
 // const magic = Buffer.from('42bcc32669467873', 'hex')
@@ -49,7 +27,7 @@ const _shuffle = (array) => {
 /**
  * Shuffle Round (Class)
  */
-class ShuffleRound extends EventEmitter {
+class Round extends EventEmitter {
     constructor (clientOptions) {
         super()
 
@@ -154,7 +132,7 @@ class ShuffleRound extends EventEmitter {
         }
 
         /* Initialize communications channel. */
-        this.comms = new CommChannel({
+        this.comms = new Comms({
             serverUri: this.serverUri
         }, this)
 
@@ -198,7 +176,7 @@ class ShuffleRound extends EventEmitter {
                 })
 
                 /* End shuffle round. */
-                this.endShuffleRound()
+                this.endRound()
             }
         })
 
@@ -258,7 +236,7 @@ class ShuffleRound extends EventEmitter {
         }
 
         /* End shuffle round. */
-        this.endShuffleRound()
+        this.endRound()
     }
 
     /**
@@ -384,7 +362,7 @@ class ShuffleRound extends EventEmitter {
                     await this.announceChangeAddress()
                 } catch (nope) {
                     console.error('Error broadcasting changeAddress:', nope) // eslint-disable-line no-console
-                    this.endShuffleRound()
+                    this.endRound()
                 }
             }
             break
@@ -429,7 +407,7 @@ class ShuffleRound extends EventEmitter {
                     await this.forwardEncryptedShuffleTxOutputs(undefined, undefined)
                 } catch (nope) {
                     console.error('Error broadcasting changeAddress:', nope) // eslint-disable-line no-console
-                    this.endShuffleRound()
+                    this.endRound()
                 }
             }
             break
@@ -542,7 +520,7 @@ class ShuffleRound extends EventEmitter {
                 )
         } catch (nope) {
             console.error('Couldnt send broadcastTransactionInput message:', nope.message) // eslint-disable-line no-console
-            return this.endShuffleRound()
+            return this.endRound()
         }
     }
 
@@ -561,7 +539,7 @@ class ShuffleRound extends EventEmitter {
      *     3. Add the player to our internal state data.
      *
      * NOTE: It's also here where we record each player's verificationKey,
-     *       that the `CommChannel` class uses to verify the signature on all
+     *       that the `Comms` class uses to verify the signature on all
      *       future messages.
      */
     async addPlayerToRound (message) {
@@ -895,8 +873,8 @@ class ShuffleRound extends EventEmitter {
         const shuffleArray = function (someArray, num) {
             return (
                 num > 0 ?
-                shuffleArray(_shuffle(someArray), num - 1) :
-                _shuffle(someArray)
+                shuffleArray(shuffle(someArray), num - 1) :
+                shuffle(someArray)
             )
         }
 
@@ -1313,7 +1291,7 @@ class ShuffleRound extends EventEmitter {
             txIsFullySigned = this.shuffleTx.tx.isFullySigned()
         } catch (nope) {
             console.error('Malformed shuffle transaction', nope) // eslint-disable-line no-console
-            this.endShuffleRound()
+            this.endRound()
         }
 
         if (txIsFullySigned && this.shuffleTx.signatures.length === this.numberOfPlayers) {
@@ -1338,7 +1316,7 @@ class ShuffleRound extends EventEmitter {
             } catch (nope) {
                 console.error('Error broadcasting transaction to the network:', nope) // eslint-disable-line no-console
 
-                this.endShuffleRound()
+                this.endRound()
 
                 return
             }
@@ -1362,7 +1340,7 @@ class ShuffleRound extends EventEmitter {
 
             this.success = true
 
-            this.endShuffleRound()
+            this.endRound()
         } else {
             console.log('Waiting on more signatures...')
         }
@@ -1371,7 +1349,7 @@ class ShuffleRound extends EventEmitter {
     /**
      * End Shuffle Round
      */
-    endShuffleRound(writeDebugFileAnyway) {
+    endRound(writeDebugFileAnyway) {
         console.log(`Shuffle has ended with success [ ${ this.success } ]`)
         this.roundComplete = true
 
@@ -1471,9 +1449,9 @@ class ShuffleRound extends EventEmitter {
         )
 
         if (!keepAlive) {
-            this.endShuffleRound()
+            this.endRound()
         }
     }
 }
 
-module.exports = ShuffleRound
+module.exports = Round

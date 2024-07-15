@@ -8,9 +8,9 @@ const WebSocket = require('ws')
 const serverMessages = require('./serverMessages.js')
 
 /**
- * Communications Channel (Class)
+ * Communications (Class)
  */
-class CommChannel extends EventEmitter {
+class Comms
     constructor (connectionOptions, shuffleRoundInstance) {
         super()
 
@@ -317,6 +317,3 @@ class CommChannel extends EventEmitter {
         process.exit(0)
     }
 }
-
-/* Export module. */
-module.exports = CommChannel

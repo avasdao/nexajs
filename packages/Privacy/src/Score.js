@@ -1,18 +1,13 @@
-const EventEmitter = require('events').EventEmitter
+/* Import modules. */
 
 /**
  * Score
  *
  * Performs heuristics to determine the privacy level of UTXOs.
  */
-class Score extends EventEmitter {
+export class Score {
     constructor() {
-        super()
-
         console.log('Privacy Score initialized.')
     }
 
 }
-
-/* Export module. */
-module.exports = Score

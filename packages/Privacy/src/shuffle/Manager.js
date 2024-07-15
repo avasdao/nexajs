@@ -41,7 +41,7 @@ export const Reason = Object.freeze({
  *    3. Target (address) generator function.
  */
 // const shuffleManager = (_coin, _changeFunc, _targetFunc, _disableAutoShuffle=false) => {
-export class ShuffleManager extends EventEmitter {
+export class Manager extends EventEmitter {
     constructor(
         _coin,
         _changeFunc,

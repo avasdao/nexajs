@@ -6,6 +6,7 @@ import {
     sha256,
 } from '@nexajs/crypto'
 import { PrivateKey } from '@nexajs/hdnode'
+import { isJson } form '@nexajs/utils'
 
 /* Import core modules. */
 // const _ = require('lodash')
@@ -19,16 +20,15 @@ const BufferWriter = bch.encoding.BufferWriter
 // const ECDSA = bch.crypto.ECDSA
 const Signature = bch.crypto.Signature
 // const sha256sha256 = bch.crypto.Hash.sha256sha256
-const JSUtil = bch.util.js
+// const JSUtil = bch.util.js
 
 /* Set magic bytes. */
-const MAGIC_BYTES = Buffer.from('Bitcoin Signed Message:\n')
+// const MAGIC_BYTES = Buffer.from('Bitcoin Signed Message:\n')
 
 /**
- * (Better) Message (Class)
+ * Message (Class)
  *
  * Constructs a new message to sign and verify.
- * Now featuring typed buffers!
  */
 class Message {
     constructor (message, messageEncoding) {
@@ -54,17 +54,25 @@ class Message {
      */
     get magicHash () {
         /* Initialize first prefix. */
-        const prefix1 = BufferWriter.varintBufNum(MAGIC_BYTES.length)
+        const prefix1 = BufferWriter
+            .varintBufNum(MAGIC_BYTES.length)
 
         /* Set buffer message. */
-        const messageBuffer = Buffer.from(this.message, this.messageEncoding)
+        const messageBuffer = Buffer
+            .from(this.message, this.messageEncoding)
 
         /* Initialize second prefix. */
-        const prefix2 = BufferWriter.varintBufNum(messageBuffer.length)
+        const prefix2 = BufferWriter
+            .varintBufNum(messageBuffer.length)
 
         /* Set (complete) buffer. */
         const buf = Buffer
-            .concat([prefix1, MAGIC_BYTES, prefix2, messageBuffer])
+            .concat([
+                prefix1,
+                MAGIC_BYTES,
+                prefix2,
+                messageBuffer,
+            ])
 
         /* Set buffer hash. */
         const hash = sha256sha256(buf)
@@ -106,7 +114,9 @@ class Message {
         ecdsa.calci()
 
         /* Return signature. */
-        return ecdsa.sig.toCompact().toString('base64')
+        return ecdsa.sig
+            .toCompact()
+            .toString('base64')
     }
 
     /**
@@ -153,7 +163,8 @@ class Message {
         }
 
         /* Set verification. */
-        const verified = ECDSA.verify(this.magicHash, signature, publicKey)
+        const verified = ECDSA.verify(
+            this.magicHash, signature, publicKey)
 
         /* Validate verification. */
         if (!verified) {
@@ -201,16 +212,21 @@ class Message {
     inspect () {
         return '<Message: ' + this.toString() + '>'
     }
+
+    /**
+     * From String
+     *
+     * Instantiate a message from a message string.
+     */
+    static fromString(_str) {
+        return new Message(_str)
+    }
+
 }
 
-/**
- * From String
- *
- * Instantiate a message from a message string.
- */
-Message.prototype.fromString = function (str) {
-    return new Message(str)
-}
+// Message.prototype.fromString = function (str) {
+//     return new Message(str)
+// }
 
 /**
  * From JSON
@@ -218,17 +234,9 @@ Message.prototype.fromString = function (str) {
  * Instantiate a message from JSON.
  */
 Message.prototype.fromJSON = function fromJSON (json) {
-    if (JSUtil.isValidJSON(json)) {
+    if (isJson(json)) {
         json = JSON.parse(json)
     }
 
-    return new Message(json.message)
+    return new Message(json.message) // FIXME Where/when is this called??
 }
-
-/**
- * Magic Bytes
- */
-Message.prototype.MAGIC_BYTES = MAGIC_BYTES
-
-/* Export module. */
-module.exports = Message
