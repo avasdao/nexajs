@@ -80,7 +80,7 @@ export default function (_addressIdx = '0', _isChange) {
     seed = hexToBin(mnemonicToSeed(this.mnemonic))
 
     /* Initialize HD node. */
-    node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 } }, seed)
+    node = deriveHdPrivateNodeFromSeed(seed)
 
     /* Derive a child from the Master node */
     child = deriveHdPath(

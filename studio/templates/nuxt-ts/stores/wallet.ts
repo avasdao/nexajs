@@ -7,6 +7,7 @@ import {
 } from '@nexajs/address'
 
 import {
+    derivePublicKeyCompressed,
     ripemd160,
     sha256,
 } from '@nexajs/crypto'
@@ -44,20 +45,8 @@ import {
 
 import { Wallet } from '@nexajs/wallet'
 
-/* Libauth helpers. */
-import {
-    instantiateSecp256k1,
-} from '@bitauth/libauth'
-
 import _broadcast from './wallet/broadcast.ts'
 import _setEntropy from './wallet/setEntropy.ts'
-
-let secp256k1
-
-;(async () => {
-    /* Instantiate Libauth crypto interfaces. */
-    secp256k1 = await instantiateSecp256k1()
-})()
 
 /* Set ($STUDIO) token id. */
 const STUDIO_TOKENID = '9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000'
@@ -180,7 +169,7 @@ export const useWalletStore = defineStore('wallet', {
             console.log('SCRIPT HASH:', scriptHash)
 
             /* Derive the corresponding public key. */
-            publicKey = secp256k1.derivePublicKeyCompressed(_state._wallet.privateKey)
+            publicKey = derivePublicKeyCompressed(_state._wallet.privateKey)
 
             /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
             constraintData = encodeDataPush(publicKey)
@@ -373,7 +362,7 @@ export const useWalletStore = defineStore('wallet', {
             console.log('SCRIPT HASH', binToHex(scriptHash))
 
             /* Derive the corresponding public key. */
-            publicKey = secp256k1.derivePublicKeyCompressed(this._wallet.privateKey)
+            publicKey = derivePublicKeyCompressed(this._wallet.privateKey)
             console.log('PUBLIC KEY', binToHex(publicKey))
 
             /* Hash the public key hash according to the P2PKH/P2PKT scheme. */

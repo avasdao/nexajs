@@ -1,3 +1,5 @@
+// import deriveHdPrivateNodeChild from './deriveHdPrivateNodeChild.js'
+
 /**
  * Derive a child HD node from a parent node given a derivation path. The
  * resulting node is the same type as the parent node (private nodes return
@@ -39,7 +41,6 @@
  */
 // eslint-disable-next-line complexity
 export default (
-    crypto,
     node,
     path
 ) => {

@@ -3,6 +3,7 @@ import _base58ToBin from './src/base58ToBin.js'
 import _bigIntToBinUint16LE from './src/bigIntToBinUint16LE.js'
 import _bigIntToBinUint32LE from './src/bigIntToBinUint32LE.js'
 import _bigIntToBinUint64LE from './src/bigIntToBinUint64LE.js'
+import _bigIntToBitcoinVarInt from './src/bigIntToBitcoinVarInt.js'
 import _bigIntToCompactUint from './src/bigIntToCompactUint.js'
 import _binToBase58 from './src/binToBase58.js'
 import _binToHex from './src/binToHex.js'
@@ -20,6 +21,7 @@ export const base58ToBin = _base58ToBin
 export const bigIntToBinUint16LE = _bigIntToBinUint16LE
 export const bigIntToBinUint32LE = _bigIntToBinUint32LE
 export const bigIntToBinUint64LE = _bigIntToBinUint64LE
+export const bigIntToBitcoinVarInt = _bigIntToBitcoinVarInt
 export const bigIntToCompactUint = _bigIntToCompactUint
 export const binToBase58 = _binToBase58
 export const binToHex = _binToHex
@@ -62,6 +64,7 @@ Nexa.base58ToBin = base58ToBin
 Nexa.bigIntToBinUint16LE = bigIntToBinUint16LE
 Nexa.bigIntToBinUint32LE = bigIntToBinUint32LE
 Nexa.bigIntToBinUint64LE = bigIntToBinUint64LE
+Nexa.bigIntToBitcoinVarInt = bigIntToBitcoinVarInt
 Nexa.bigIntToCompactUint = bigIntToCompactUint
 Nexa.binToBase58 = binToBase58
 Nexa.binToHex = binToHex

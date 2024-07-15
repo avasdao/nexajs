@@ -4,11 +4,13 @@ import { EventEmitter } from 'events'
 /* Import (library) modules. */
 import {
     randomBytes,
+    ripemd160,
     sha256,
     sha512,
 } from '@nexajs/crypto'
 
 import {
+    deriveHdPath,
     deriveHdPrivateNodeFromSeed,
     encodePrivateKeyWif,
     entropyToMnemonic,
@@ -24,13 +26,6 @@ import {
     binToHex,
     hexToBin,
 } from '@nexajs/utils'
-
-/* Libauth helpers. */
-import {
-    deriveHdPath,
-    instantiateSecp256k1,
-    instantiateRipemd160,
-} from '@bitauth/libauth'
 
 /* Import (local) modules. */
 import _build from './src/build.js'
@@ -61,25 +56,6 @@ export const getDerivationPath = _getDerivationPath
 export const parseDerivationPath = _parseDerivationPath
 export const send = _send
 export const WalletStatus = _WalletStatus
-
-/* Initialize Libauth crypto interfaces. */
-let ripemd160
-let secp256k1
-let crypto
-
-/* Instantiate Libauth crypto interfaces. */
-;(async () => {
-    ripemd160 = await instantiateRipemd160()
-    secp256k1 = await instantiateSecp256k1()
-
-    /* Initialize crypto. */
-    crypto = {
-        ripemd160,
-        sha256: { hash: sha256 },
-        sha512: { hash: sha512 },
-        secp256k1,
-    }
-})()
 
 /* Set (derivation) constants. */
 // Example: m/44'/29223'/0'/0/0
@@ -445,11 +421,11 @@ export class Wallet extends EventEmitter {
         // TODO Where can we retrieve the xPriv and xPub??
 
         /* Initialize HD node. */
-        const node = deriveHdPrivateNodeFromSeed({ sha512: { hash: sha512 }}, seed)
+        const node = deriveHdPrivateNodeFromSeed(seed)
 
         /* Derive a child from the Master node */
         const child = deriveHdPath(
-            crypto,
+            // crypto,
             node,
             this.path,
         )

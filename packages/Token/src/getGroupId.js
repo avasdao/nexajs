@@ -2,15 +2,12 @@
 import { sha256 } from '@nexajs/crypto'
 
 import {
+    bigIntToBinUint64LE,
+    bigIntToBitcoinVarInt,
     binToHex,
     hexToBin,
     reverseHex,
 } from '@nexajs/utils'
-
-import {
-    bigIntToBinUint64LE,
-    bigIntToBitcoinVarInt,
-} from '@bitauth/libauth'
 
 /**
  * Create Group Id
