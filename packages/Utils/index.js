@@ -10,6 +10,8 @@ import _binToHex from './src/binToHex.js'
 import _binToUtf8 from './src/binToUtf8.js'
 import _flattenBinArray from './src/flattenBinArray.js'
 import _hexToBin from './src/hexToBin.js'
+import _isHex from './src/isHex.js'
+import _isJson from './src/isJson.js'
 import _numberToBinUint16LE from './src/numberToBinUint16LE.js'
 import _numberToBinUint32LE from './src/numberToBinUint32LE.js'
 import _numberToBinUintLE from './src/numberToBinUintLE.js'
@@ -29,6 +31,8 @@ export const binToHex = _binToHex
 export const binToUtf8 = _binToUtf8
 export const flattenBinArray = _flattenBinArray
 export const hexToBin = _hexToBin
+export const isHex = _isHex
+export const isJson = _isJson
 export const numberToBinUint16LE = _numberToBinUint16LE
 export const numberToBinUint32LE = _numberToBinUint32LE
 export const numberToBinUintLE = _numberToBinUintLE
@@ -73,6 +77,8 @@ Nexa.binToHex = binToHex
 Nexa.binToUtf8 = binToUtf8
 Nexa.flattenBinArray = flattenBinArray
 Nexa.hexToBin = hexToBin
+Nexa.isHex = isHex
+Nexa.isJson = isJson
 Nexa.numberToBinUint16LE = numberToBinUint16LE
 Nexa.numberToBinUint32LE = numberToBinUint32LE
 Nexa.numberToBinUintLE = numberToBinUint32LE
