@@ -1,13 +1,10 @@
 /* Import modules. */
-import { flattenBinArray } from '@nexajs/utils'
-
 import {
     bigIntToBinUint64LE,
-    numberToBinUintLE,
+    bigIntToCompactUint,
+    flattenBinArray,
     numberToBinUint32LE,
-} from '@bitauth/libauth'
-
-import { bigIntToCompactUint } from '@nexajs/utils'
+} from '@nexajs/utils'
 
 export default (input) =>
     // FIXME We need to detect transaction type for cross-chain input formatting.

@@ -4,14 +4,13 @@ import { decodeAddress } from '@nexajs/address'
 import { encodeDataPush } from '@nexajs/script'
 
 import {
+    bigIntToBitcoinVarInt,
     binToHex,
     hexToBin,
     bigIntToBinUint16LE,
     bigIntToBinUint32LE,
     bigIntToBinUint64LE
 } from '@nexajs/utils'
-
-import { bigIntToBitcoinVarInt } from '@bitauth/libauth'
 
 /**
  * Create a transaction P2PKH output with the given value.
@@ -23,7 +22,12 @@ import { bigIntToBitcoinVarInt } from '@bitauth/libauth'
  *
  * @returns {Promise<Output>} The P2PKT output script.
  */
-export default async (_address, _satoshis, _tokenidHex, _tokens) => {
+export default async (
+    _address,
+    _satoshis,
+    _tokenidHex,
+    _tokens,
+) => {
     /* Validate token (hex) id. */
     if (!_tokenidHex) {
         throw new Error(`Oops! Missing token (hex) id.`)

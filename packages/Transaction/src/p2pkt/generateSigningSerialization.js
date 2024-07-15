@@ -1,7 +1,8 @@
+/* Import modules. */
 import {
     bigIntToBitcoinVarInt,
     numberToBinUint32LE,
-} from '@bitauth/libauth'
+} from '@nexajs/utils'
 
 import {
     hashPrevouts,

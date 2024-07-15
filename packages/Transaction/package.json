@@ -8,7 +8,6 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@bitauth/libauth": "1.19.1",
     "@nexajs/address": "24.7.12",
     "@nexajs/crypto": "24.7.11",
     "@nexajs/hdnode": "24.7.12",

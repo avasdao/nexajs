@@ -2,7 +2,7 @@
 import { hexToBin } from '@nexajs/utils'
 
 /**
- * Utility function to convert an electrum unspent output to a libauth compatible input.
+ * Utility function to convert an (electrum) unspent output to a compatible input.
  *
  * @function
  *

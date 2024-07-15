@@ -1,11 +1,10 @@
 import { sha256 } from '@nexajs/crypto'
 
-import { flattenBinArray } from '@nexajs/utils'
-
 import {
     bigIntToBitcoinVarInt,
+    flattenBinArray,
     numberToBinUint32LE,
-} from '@bitauth/libauth'
+} from '@nexajs/utils'
 
 /**
  * A.K.A. `sighash` flags

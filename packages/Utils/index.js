@@ -12,6 +12,7 @@ import _flattenBinArray from './src/flattenBinArray.js'
 import _hexToBin from './src/hexToBin.js'
 import _numberToBinUint16LE from './src/numberToBinUint16LE.js'
 import _numberToBinUint32LE from './src/numberToBinUint32LE.js'
+import _numberToBinUintLE from './src/numberToBinUintLE.js'
 import _reverseHex from './src/reverseHex.js'
 import _sleep from './src/sleep.js'
 import _utf8ToBin from './src/utf8ToBin.js'
@@ -30,6 +31,7 @@ export const flattenBinArray = _flattenBinArray
 export const hexToBin = _hexToBin
 export const numberToBinUint16LE = _numberToBinUint16LE
 export const numberToBinUint32LE = _numberToBinUint32LE
+export const numberToBinUintLE = _numberToBinUintLE
 export const reverseHex = _reverseHex
 export const sleep = _sleep
 export const utf8ToBin = _utf8ToBin
@@ -73,6 +75,7 @@ Nexa.flattenBinArray = flattenBinArray
 Nexa.hexToBin = hexToBin
 Nexa.numberToBinUint16LE = numberToBinUint16LE
 Nexa.numberToBinUint32LE = numberToBinUint32LE
+Nexa.numberToBinUintLE = numberToBinUint32LE
 Nexa.reverseHex = reverseHex
 Nexa.sleep = sleep
 Nexa.utf8ToBin = utf8ToBin

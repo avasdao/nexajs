@@ -1,5 +1,5 @@
 /* Import modules. */
-import { bigIntToBinUint64LE } from '@bitauth/libauth'
+import { bigIntToBinUint64LE } from '@nexajs/utils'
 
 import createTransactionContextCommon from './createTransactionContextCommon.js'
 // import generateSigningSerialization from '../p2pkh/generateSigningSerialization.js'

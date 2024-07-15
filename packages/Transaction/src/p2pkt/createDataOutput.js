@@ -2,7 +2,7 @@
 import {
     bigIntToBinUint64LE,
     bigIntToBitcoinVarInt,
-} from '@bitauth/libauth'
+} from '@nexajs/utils'
 
 /**
  * Create a transaction P2PKT output with the data value.
