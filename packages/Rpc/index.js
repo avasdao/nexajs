@@ -115,8 +115,8 @@ export const callNode = async (_method, _params, _options) => {
 export class Rpc extends EventEmitter {
     constructor(_params) {
         /* Initialize RPC class. */
-        console.info('Initializing RPC...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing RPC...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

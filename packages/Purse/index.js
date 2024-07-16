@@ -24,8 +24,8 @@ export const sendCoins = _sendCoins
 export class Purse extends EventEmitter {
     constructor(_params) {
         /* Initialize Purse class. */
-        console.info('Initializing Purse...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Purse...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         /* Validate parameters. */

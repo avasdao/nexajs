@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Db extends EventEmitter {
     constructor(_params) {
         /* Initialize Database class. */
-        console.info('Initializing Database...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Database...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

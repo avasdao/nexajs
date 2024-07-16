@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Trezor extends EventEmitter {
     constructor(_params) {
         /* Initialize Trezor class. */
-        console.info('Initializing Trezor...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Trezor...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Defi extends EventEmitter {
     constructor(_params) {
         /* Initialize DeFi class. */
-        console.info('Initializing DeFi...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing DeFi...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

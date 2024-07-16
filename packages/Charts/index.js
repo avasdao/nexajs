@@ -15,8 +15,8 @@ export const welcome = () => {
 export class Charts extends EventEmitter {
     constructor(_params) {
         /* Initialize Charts class. */
-        console.info('Initializing Charts...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Charts...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

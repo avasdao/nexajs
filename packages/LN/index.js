@@ -16,9 +16,9 @@ import { EventEmitter } from 'events'
 export class LN extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Lightning Network class. */
-        console.info('Initializing Lightning Network...')
-        console.log(JSON.stringify(_primary, null, 2))
-        console.log(JSON.stringify(_secondary, null, 2))
+        // console.info('Initializing Lightning Network...')
+        // console.log(JSON.stringify(_primary, null, 2))
+        // console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Nuxt extends EventEmitter {
     constructor(_params) {
         /* Initialize Nuxt class. */
-        console.info('Initializing Nuxt...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Nuxt...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

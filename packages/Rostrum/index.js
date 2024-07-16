@@ -228,7 +228,7 @@ const initConnection = function (_connid) {
 export class Rostrum extends EventEmitter {
     constructor(_params) {
         /* Initialize Rostrum class. */
-        console.info('Initializing Rostrum...')
+        // console.info('Initializing Rostrum...')
         // console.log(JSON.stringify(_params, null, 2))
         super()
 

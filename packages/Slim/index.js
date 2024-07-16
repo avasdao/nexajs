@@ -16,9 +16,9 @@ import { EventEmitter } from 'events'
 export class Slim extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Slim class. */
-        console.info('Initializing Slim...')
-        console.log(JSON.stringify(_primary, null, 2))
-        console.log(JSON.stringify(_secondary, null, 2))
+        // console.info('Initializing Slim...')
+        // console.log(JSON.stringify(_primary, null, 2))
+        // console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

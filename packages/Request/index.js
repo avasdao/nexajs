@@ -16,9 +16,9 @@ export const callUrl = _callUrl
 export class Request extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Request class. */
-        console.info('Initializing Request...')
-        console.log(JSON.stringify(_primary, null, 2))
-        console.log(JSON.stringify(_secondary, null, 2))
+        // console.info('Initializing Request...')
+        // console.log(JSON.stringify(_primary, null, 2))
+        // console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

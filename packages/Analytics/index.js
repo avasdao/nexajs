@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Analytics extends EventEmitter {
     constructor(_params) {
         /* Initialize Analytics class. */
-        console.info('Initializing Analytics...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Analytics...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -21,7 +21,7 @@ export const OP = _OP
 export class Script {
     constructor(_params) {
         /* Initialize Script class. */
-        console.info('Initializing Script...')
+        // console.info('Initializing Script...')
         // console.log(JSON.stringify(_params, null, 2))
 
         this._data = null

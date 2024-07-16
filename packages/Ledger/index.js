@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Ledger extends EventEmitter {
     constructor(_params) {
         /* Initialize Ledger class. */
-        console.info('Initializing Ledger...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Ledger...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

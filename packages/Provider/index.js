@@ -16,8 +16,8 @@ export const broadcast = _broadcast
 export class Provider extends EventEmitter {
     constructor(_params) {
         /* Initialize Provider class. */
-        console.info('Initializing Provider...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Provider...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -16,8 +16,8 @@ import { ethers } from 'ethers'
 export class Meta extends EventEmitter {
     constructor(_params) {
         /* Initialize Meta class. */
-        console.info('Initializing Meta...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Meta...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

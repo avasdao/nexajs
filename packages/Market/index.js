@@ -23,9 +23,9 @@ export const getTicker = _getTicker
 export class Market extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Market class. */
-        console.info('Initializing Market...')
-        console.log(JSON.stringify(_primary, null, 2))
-        console.log(JSON.stringify(_secondary, null, 2))
+        // console.info('Initializing Market...')
+        // console.log(JSON.stringify(_primary, null, 2))
+        // console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

@@ -32,7 +32,7 @@ const SIGHASH_ALL = 0x0
 export class Transaction {
     constructor(_params) {
         /* Initialize Transaction class. */
-        console.info('Initializing Transaction...')
+        // console.info('Initializing Transaction...')
         // console.log(JSON.stringify(_params, null, 2))
 
         /* Initialize flags. */

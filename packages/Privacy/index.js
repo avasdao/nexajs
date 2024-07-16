@@ -44,7 +44,7 @@ export const PrivacyStatus = _PrivacyStatus
 export class Privacy extends EventEmitter {
     constructor(_params) {
         /* Initialize Privacy class. */
-        console.info('Initializing Privacy...')
+        // console.info('Initializing Privacy...')
         // console.log(JSON.stringify(_params, null, 2))
         super()
 

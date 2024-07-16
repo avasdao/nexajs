@@ -14,6 +14,9 @@ import _signMessageHashEcdsa from './src/signMessageHashEcdsa.js'
 import _signMessageHashSchnorr from './src/signMessageHashSchnorr.js'
 import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
 
+/* Import (local) libraries. */
+import _Point from './libs/Point.js'
+
 /* Export (local) modules. */
 export const decrypt = _decrypt
 export const derivePublicKeyCompressed = _derivePublicKeyCompressed
@@ -27,6 +30,9 @@ export const signMessageHashEcdsa = _signMessageHashEcdsa
 export const signMessageHashSchnorr = _signMessageHashSchnorr
 export const validateSecp256k1PrivateKey = _validateSecp256k1PrivateKey
 
+/* Export (local) libraries. */
+export const Point = _Point
+
 /* Provide Ether.js helpers. */
 import { randomBytes as _randomBytes } from '@ethersproject/random'
 export const randomBytes = _randomBytes
@@ -34,7 +40,7 @@ export const randomBytes = _randomBytes
 /* Import Buffer class. */
 // FIXME REMOVE THIS GLOBAL INJECTION, AFTER REFACTORING FOR SCHNORR.
 // NOTE: THIS ONLY INJECTS IF `window.Buffer` IS MISSING.
-import './libs/buffer.js'
+import './libs/Buffer.js'
 
 /**
  * Crypto Class
@@ -79,6 +85,9 @@ Nexa.sha512 = sha512
 Nexa.signMessageHashEcdsa = signMessageHashEcdsa
 Nexa.signMessageHashSchnorr = signMessageHashSchnorr
 Nexa.validateSecp256k1PrivateKey = validateSecp256k1PrivateKey
+
+/* Initialize Crypto libraries. */
+Nexa.Point = Point
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.

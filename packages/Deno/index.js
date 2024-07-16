@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Deno extends EventEmitter {
     constructor(_params) {
         /* Initialize Deno class. */
-        console.info('Initializing Deno...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Deno...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

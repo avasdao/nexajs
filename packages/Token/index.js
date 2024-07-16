@@ -37,9 +37,9 @@ export const sendTokens = _sendTokens
 export class Token extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Token class. */
-        console.info('Initializing Token...')
-        console.log(JSON.stringify(_primary, null, 2))
-        console.log(JSON.stringify(_secondary, null, 2))
+        // console.info('Initializing Token...')
+        // console.log(JSON.stringify(_primary, null, 2))
+        // console.log(JSON.stringify(_secondary, null, 2))
         super()
 
         // TBD

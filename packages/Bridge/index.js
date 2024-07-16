@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Bridge extends EventEmitter {
     constructor(_params) {
         /* Initialize Bridge class. */
-        console.info('Initializing Bridge...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Bridge...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

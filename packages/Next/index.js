@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Next extends EventEmitter {
     constructor(_params) {
         /* Initialize Next class. */
-        console.info('Initializing Next...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Next...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

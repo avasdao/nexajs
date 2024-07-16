@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Zkp extends EventEmitter {
     constructor(_params) {
         /* Initialize ZK class. */
-        console.info('Initializing Zero-knowledge proof...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Zero-knowledge proof...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

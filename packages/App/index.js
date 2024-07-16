@@ -16,8 +16,8 @@ export const copyToClipboard = _copyToClipboard
 export class App extends EventEmitter {
     constructor(_params) {
         /* Initialize App class. */
-        console.info('Initializing App...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing App...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

@@ -19,8 +19,8 @@ export const login = () => {
 export class Id extends EventEmitter {
     constructor(_params) {
         /* Initialize ID class. */
-        console.info('Initializing ID...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing ID...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

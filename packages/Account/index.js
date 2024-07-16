@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Account extends EventEmitter {
     constructor(_params) {
         /* Initialize Account class. */
-        console.info('Initializing Account...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Account...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

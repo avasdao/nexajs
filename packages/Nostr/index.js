@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Nostr extends EventEmitter {
     constructor(_params) {
         /* Initialize Nostr class. */
-        console.info('Initializing Nostr...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Nostr...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD

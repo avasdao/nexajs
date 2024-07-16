@@ -26,8 +26,8 @@ export const watchAddress = _watchAddress
 export class Address {
     constructor(_params, _notif) {
         /* Initialize Address class. */
-        console.info('Initializing Address...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Address...')
+        // console.log(JSON.stringify(_params, null, 2))
 
         /* Handle notifications. */
         if (_params?.notif) {

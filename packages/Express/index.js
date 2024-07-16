@@ -16,8 +16,8 @@ import { EventEmitter } from 'events'
 export class Express extends EventEmitter {
     constructor(_params) {
         /* Initialize Express class. */
-        console.info('Initializing Express...')
-        console.log(JSON.stringify(_params, null, 2))
+        // console.info('Initializing Express...')
+        // console.log(JSON.stringify(_params, null, 2))
         super()
 
         // TBD
