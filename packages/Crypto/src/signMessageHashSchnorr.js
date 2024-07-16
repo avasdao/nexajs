@@ -1,4 +1,4 @@
-// var Signature = require('./signature')
+/* Import modules. */
 import BN from '../libs/bn.js'
 import Hash from '../libs/hash.js'
 import Point from '../libs/point.js'

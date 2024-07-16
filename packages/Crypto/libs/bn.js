@@ -1,8 +1,11 @@
+/* Import modules. */
 import BN from 'bn.js'
-import $ from '../util/preconditions.js'
 import _ from 'lodash'
 
-var reversebuf = (buf) => {
+/* Import (local) modules. */
+import $ from './preconditions.js'
+
+const reversebuf = (buf) => {
     var buf2 = Buffer.alloc(buf.length)
 
     for (var i = 0; i < buf.length; i++) {
@@ -234,5 +237,4 @@ BN.prototype.safeMul = function(bigNumToMultiply, maxSize) {
     return product;
 }
 
-// module.exports = BN
 export default BN

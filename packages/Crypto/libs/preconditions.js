@@ -1,5 +1,8 @@
-import errors from '../errors/index.js'
+/* Import modules. */
 import _ from 'lodash'
+
+/* Import (local) modules. */
+import errors from '../errors/index.js'
 
 export default {
     checkState: function(condition, message) {
