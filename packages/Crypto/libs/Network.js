@@ -1,11 +1,22 @@
 /* Import modules. */
 import _ from 'lodash'
 
-// var BufferUtil = require('./util/buffer')
-// var JSUtil = require('./util/js')
+/* Import (local) modules. */
+import $ from '../utils/preconditions.js'
+import JSUtil from './JS.js'
 
-var networks = []
-var networkMaps = {}
+const _integerAsBuffer = function (integer) {
+    $.checkArgumentType(integer, 'number', 'integer')
+    var bytes = []
+    bytes.push((integer >> 24) & 0xff)
+    bytes.push((integer >> 16) & 0xff)
+    bytes.push((integer >> 8) & 0xff)
+    bytes.push(integer & 0xff)
+    return Buffer.from(bytes)
+}
+
+const networks = []
+const networkMaps = {}
 
 /**
  * A network is merely a map containing values that correspond to version
@@ -13,7 +24,17 @@ var networkMaps = {}
  * (a.k.a. "mainnet") and "testnet".
  * @constructor
  */
-const Network = function () {}
+class Network {
+    constructor() {}
+
+    static get(arg, keys) {
+        return _get(arg, keys)
+    }
+
+    static get defaultNetwork() {
+        return _livenet
+    }
+}
 
 Network.prototype.toString = function toString() {
     return this.name
@@ -27,7 +48,7 @@ Network.prototype.toString = function toString() {
  * @param {string|Array} keys - if set, only check if the magic number associated with this name matches
  * @return Network
  */
-const get = function (arg, keys) {
+const _get = function (arg, keys) {
   if (~networks.indexOf(arg)) {
     return arg;
   }
@@ -105,7 +126,7 @@ const addNetwork = function (data) {
 
   if (data.networkMagic) {
     _.extend(network, {
-      networkMagic: BufferUtil.integerAsBuffer(data.networkMagic)
+      networkMagic: _integerAsBuffer(data.networkMagic)
     });
   }
 
@@ -144,7 +165,7 @@ const indexNetworkBy = function (network, keys) {
  */
 const removeNetwork = function (network) {
     if (typeof network !== 'object') {
-        network = get(network)
+        network = _get(network)
     }
 
     for (var i = 0; i < networks.length; i++) {
@@ -231,9 +252,9 @@ addNetwork(testNetwork)
 addNetwork(regtestNetwork)
 addNetwork(liveNetwork)
 
-var livenet = get('livenet')
-var regtest = get('regtest')
-var testnet = get('testnet')
+const _livenet = _get('livenet')
+const _regtest = _get('regtest')
+const _testnet = _get('testnet')
 
 /**
  * @function
@@ -241,7 +262,7 @@ var testnet = get('testnet')
  * @member Networks#enableRegtest
  * Will enable regtest features for testnet
  */
-const enableRegtest = function () {
+const _enableRegtest = function () {
     testnet.regtestEnabled = true
 }
 
@@ -251,25 +272,19 @@ const enableRegtest = function () {
  * @member Networks#disableRegtest
  * Will disable regtest features for testnet
  */
-const disableRegtest = function () {
+const _disableRegtest = function () {
     testnet.regtestEnabled = false
 }
 
-/**
- * @namespace Networks
- */
-// module.exports = {
-//     add: addNetwork,
-//     remove: removeNetwork,
-//     defaultNetwork: livenet,
-//     livenet: livenet,
-//     mainnet: livenet,
-//     testnet: testnet,
-//     regtest: regtest,
-//     get: get,
-//     enableRegtest: enableRegtest,
-//     disableRegtest: disableRegtest,
-// }
+export const add = addNetwork
+export const remove = removeNetwork
+export const defaultNetwork = _livenet
+export const livenet = _livenet
+export const mainnet = _livenet
+export const testnet = _testnet
+export const regtest = _regtest
+export const get = _get
+export const enableRegtest = _enableRegtest
+export const disableRegtest = _disableRegtest
 
-// module.exports.Network = Network
 export default Network

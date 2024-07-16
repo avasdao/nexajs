@@ -3,40 +3,55 @@ import _ from 'lodash'
 
 /* Import (local) modules. */
 import $ from '../utils/preconditions.js'
-import BN from './bn.js'
-import Point from './point.js'
-import Signature from './signature.js'
+import BN from './BN.js'
+import Hash from './Hash.js'
+import Point from './Point.js'
+import PublicKey from './PublicKey.js'
+import { randomBytes } from '../index.js'
+import Signature from './Signature.js'
 
-// var BN = require('./bn');
-// var Point = require('./point');
-var Signature = require('./signature');
-var PublicKey = require('../publickey');
-var Random = require('./random');
-var Hash = require('./hash');
-var BufferUtil = require('../util/buffer');
-// var _ = require('lodash');
-// var $ = require('../util/preconditions');
-
-const ECDSA = (obj) {
-    if (!(this instanceof ECDSA)) {
-        return new ECDSA(obj)
-    }
-
-    if (obj) {
-        this.set(obj)
-    }
+const _isBuffer = (arg) => {
+    return Buffer.isBuffer(arg) || arg instanceof Uint8Array
 }
 
-ECDSA.prototype.set = function (obj) {
-    this.hashbuf = obj.hashbuf || this.hashbuf
-    this.endian = obj.endian || this.endian
-    this.privkey = obj.privkey || this.privkey
-    this.pubkey = obj.pubkey || (this.privkey ? this.privkey.publicKey : this.pubkey)
-    this.sig = obj.sig || this.sig
-    this.k = obj.k || this.k
-    this.verified = obj.verified || this.verified
+const _reverse = (param) => {
+    return (Buffer.from(param)).reverse()
+}
 
-    return this
+
+/**
+ * Elliptic Curve DSA (Class)
+ *
+ * TBD...
+ */
+class ECDSA {
+    constructor(_obj) {
+        if (!(this instanceof ECDSA)) {
+            return new ECDSA(_obj)
+        }
+
+        if (_obj) {
+            this.set(_obj)
+        }
+    }
+
+    set(_obj) {
+        this.hashbuf = _obj.hashbuf || this.hashbuf
+        this.endian = _obj.endian || this.endian
+        this.privkey = _obj.privkey || this.privkey
+        this.pubkey = _obj.pubkey || (this.privkey ? this.privkey.publicKey : this.pubkey)
+        this.sig = _obj.sig || this.sig
+        this.k = _obj.k || this.k
+        this.verified = _obj.verified || this.verified
+
+        return this
+    }
+
+    signRandomK() {
+        this.randomK()
+
+        return this.sign()
+    }
 }
 
 ECDSA.prototype.privkey2pubkey = function () {
@@ -75,7 +90,7 @@ ECDSA.prototype.randomK = function () {
     var k
 
     do {
-        k = BN.fromBuffer(Random.getRandomBuffer(32))
+        k = BN.fromBuffer(Buffer.from(randomBytes(32)))
     } while (!(k.lt(N) && k.gt(BN.Zero)))
 
     this.k = k
@@ -104,7 +119,7 @@ ECDSA.prototype.deterministicK = function (badrs) {
         size: 32
     })
 
-    var hashbuf = this.endian === 'little' ? BufferUtil.reverse(this.hashbuf) : this.hashbuf
+    var hashbuf = this.endian === 'little' ? _reverse(this.hashbuf) : this.hashbuf
     k = Hash.sha256hmac(Buffer.concat([v, Buffer.from([0x00]), x, hashbuf]), k)
     v = Hash.sha256hmac(v, k)
     k = Hash.sha256hmac(Buffer.concat([v, Buffer.from([0x01]), x, hashbuf]), k)
@@ -176,7 +191,7 @@ ECDSA.prototype.toPublicKey = function () {
 
 ECDSA.prototype.sigError = function() {
     /* jshint maxstatements: 25 */
-    if (!BufferUtil.isBuffer(this.hashbuf) || this.hashbuf.length !== 32) {
+    if (!_isBuffer(this.hashbuf) || this.hashbuf.length !== 32) {
         return 'hashbuf must be a 32 byte buffer';
     }
 
@@ -240,28 +255,37 @@ ECDSA.prototype._findSignature = function(d, e) {
     }
 }
 
-ECDSA.prototype.sign = function() {
-    var hashbuf = this.hashbuf;
-    var privkey = this.privkey;
-    var d = privkey.bn;
+ECDSA.prototype.sign = function () {
+    /* Set hash buffer. */
+    // NOTE: We MUST use Buffers.
+    const hashbuf = Buffer.from(this.hashbuf)
 
+    /* Set private key. */
+    const privkey = this.privkey
+
+    //
+    const d = privkey.bn
+
+    //
     $.checkState(hashbuf && privkey && d, new Error('invalid parameters'));
-    $.checkState(BufferUtil.isBuffer(hashbuf) && hashbuf.length === 32, new Error('hashbuf must be a 32 byte buffer'));
+    $.checkState(_isBuffer(hashbuf) && hashbuf.length === 32, new Error('hashbuf must be a 32 byte buffer'));
 
-    var e = BN.fromBuffer(hashbuf, this.endian ? {
+    //
+    const e = BN.fromBuffer(hashbuf, this.endian ? {
         endian: this.endian
-    } : undefined);
+    } : undefined)
 
-    var obj = this._findSignature(d, e);
-    obj.compressed = this.pubkey.compressed;
+    //
+    const obj = this._findSignature(d, e)
 
-    this.sig = new Signature(obj);
-    return this;
-}
+    //
+    obj.compressed = this.pubkey.compressed
 
-ECDSA.prototype.signRandomK = function() {
-    this.randomK();
-    return this.sign();
+    //
+    this.sig = new Signature(obj)
+
+    //
+    return this
 }
 
 ECDSA.prototype.toString = function() {

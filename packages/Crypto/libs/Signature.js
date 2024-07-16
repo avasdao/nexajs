@@ -2,15 +2,13 @@
 import _ from 'lodash'
 
 /* Import (local) modules. */
-import BN from './bn.js'
 import $ from '../utils/preconditions.js'
+import BN from './BN.js'
+import JSUtil from './JS.js'
 
-
-// var BN = require('./bn');
-// var _ = require('lodash');
-var $ = require('../util/preconditions');
-var BufferUtil = require('../util/buffer');
-var JSUtil = require('../util/js');
+const _isBuffer = function (arg) {
+    return buffer.Buffer.isBuffer(arg) || arg instanceof Uint8Array
+}
 
 const Signature = function (r, s, isSchnorr) {
     if (!(this instanceof Signature)) {
@@ -43,7 +41,7 @@ Signature.prototype.set = function (obj) {
 }
 
 Signature.fromCompact = function (buf) {
-    $.checkArgument(BufferUtil.isBuffer(buf), 'Argument is expected to be a Buffer');
+    $.checkArgument(_isBuffer(buf), 'Argument is expected to be a Buffer');
 
     var sig = new Signature()
 
@@ -149,7 +147,7 @@ Signature.parseSchnorrEncodedSig = function (buf) {
  * In order to mimic the non-strict DER encoding of OpenSSL, set strict = false.
  */
 Signature.parseDER = function (buf, strict) {
-    $.checkArgument(BufferUtil.isBuffer(buf), new Error('DER formatted signature should be a buffer'))
+    $.checkArgument(_isBuffer(buf), new Error('DER formatted signature should be a buffer'))
 
     if (_.isUndefined(strict)) {
         strict = true

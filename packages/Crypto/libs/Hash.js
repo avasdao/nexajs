@@ -3,7 +3,7 @@ import $ from '../utils/preconditions.js'
 import { sha256 } from '../index.js'
 
 /* Initialize hash. */
-let Hash = {}
+const Hash = {}
 
 Hash.sha256 = function(_buf) {
     return Buffer.from(sha256(_buf))
@@ -40,10 +40,17 @@ Hash.hmac = function(hashf, data, key) {
         i_key_pad[i] = i_key[i] ^ key[i]
     }
 
-    return hashf(Buffer.concat([o_key_pad, hashf(Buffer.concat([i_key_pad, data]))]))
+    return hashf(
+        Buffer.concat([
+            o_key_pad, hashf(Buffer.concat([
+                i_key_pad,
+                data,
+            ]))
+        ])
+    )
 }
 
-Hash.sha256hmac = function(data, key) {
+Hash.sha256hmac = function (data, key) {
     return Hash.hmac(Hash.sha256, data, key)
 }
 

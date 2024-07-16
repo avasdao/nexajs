@@ -15,7 +15,13 @@ import _signMessageHashSchnorr from './src/signMessageHashSchnorr.js'
 import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
 
 /* Import (local) libraries. */
+import _ECDSA from './libs/ECDSA.js'
 import _Point from './libs/Point.js'
+import _PrivateKey from './libs/PrivateKey.js'
+import _PublicKey from './libs/PublicKey.js'
+
+/* Import (Network) settings. */
+import { defaultNetwork as _defaultNetwork } from './libs/Network.js'
 
 /* Export (local) modules. */
 export const decrypt = _decrypt
@@ -31,7 +37,13 @@ export const signMessageHashSchnorr = _signMessageHashSchnorr
 export const validateSecp256k1PrivateKey = _validateSecp256k1PrivateKey
 
 /* Export (local) libraries. */
+export const ECDSA = _ECDSA
 export const Point = _Point
+export const PrivateKey = _PrivateKey
+export const PublicKey = _PublicKey
+
+/* Export (Network) settings. */
+export const defaultNetwork = _defaultNetwork
 
 /* Provide Ether.js helpers. */
 import { randomBytes as _randomBytes } from '@ethersproject/random'
@@ -87,7 +99,13 @@ Nexa.signMessageHashSchnorr = signMessageHashSchnorr
 Nexa.validateSecp256k1PrivateKey = validateSecp256k1PrivateKey
 
 /* Initialize Crypto libraries. */
+Nexa.ECDSA = ECDSA
 Nexa.Point = Point
+Nexa.PrivateKey = PrivateKey
+Nexa.PublicKey = PublicKey
+
+/* Initialize Crypto settings. */
+Nexa.defaultNetwork = defaultNetwork
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
