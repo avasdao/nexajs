@@ -1,5 +1,5 @@
 /* Import (local) modules. */
-import $ from './preconditions.js'
+import $ from '../utils/preconditions.js'
 import { sha256 } from '../index.js'
 
 /* Initialize hash. */

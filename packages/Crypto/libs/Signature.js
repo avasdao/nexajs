@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 /* Import (local) modules. */
 import BN from './bn.js'
-import $ from './preconditions.js'
+import $ from '../utils/preconditions.js'
 
 
 // var BN = require('./bn');

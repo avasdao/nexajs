@@ -1,4 +1,7 @@
+/* Import modules. */
 import _ from 'lodash'
+
+/* Import (local) modules. */
 import data from './spec.js'
 
 const format = (message, args) => {

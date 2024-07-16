@@ -1,8 +1,8 @@
-/* Import modules. */
-import BN from '../libs/bn.js'
-import Hash from '../libs/hash.js'
-import Point from '../libs/point.js'
-import $ from '../util/preconditions.js'
+/* Import (local) modules. */
+import $ from '../utils/preconditions.js'
+import BN from '../libs/BN.js'
+import Hash from '../libs/Hash.js'
+import Point from '../libs/Point.js'
 
 /**
  * Nonce Function (RFC6979)

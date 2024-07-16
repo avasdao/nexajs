@@ -2,7 +2,7 @@
 import pkgEC from 'elliptic'
 
 /* Import (local) modules. */
-import BN from './bn.js'
+import BN from './BN.js'
 
 /* Initialize elliptic curve. */
 const { ec: EC } = pkgEC

@@ -6,7 +6,7 @@
 import BN from './bn.js'
 import Hash from './hash.js'
 import Point from './point.js'
-import $ from './preconditions.js'
+import $ from '../utils/preconditions.js'
 
 var Signature = require('./signature')
 var PublicKey = require('../publickey')

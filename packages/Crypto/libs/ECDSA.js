@@ -2,7 +2,7 @@
 import _ from 'lodash'
 
 /* Import (local) modules. */
-import $ from './preconditions.js'
+import $ from '../utils/preconditions.js'
 import BN from './bn.js'
 import Point from './point.js'
 import Signature from './signature.js'
