@@ -9,6 +9,7 @@ import _binToBase58 from './src/binToBase58.js'
 import _binToHex from './src/binToHex.js'
 import _binToUtf8 from './src/binToUtf8.js'
 import _flattenBinArray from './src/flattenBinArray.js'
+import _hexToBase64 from './src/hexToBase64.js'
 import _hexToBin from './src/hexToBin.js'
 import _isHex from './src/isHex.js'
 import _isJson from './src/isJson.js'
@@ -31,6 +32,7 @@ export const binToBase58 = _binToBase58
 export const binToHex = _binToHex
 export const binToUtf8 = _binToUtf8
 export const flattenBinArray = _flattenBinArray
+export const hexToBase64 = _hexToBase64
 export const hexToBin = _hexToBin
 export const isHex = _isHex
 export const isJson = _isJson
@@ -78,6 +80,7 @@ Nexa.binToBase58 = binToBase58
 Nexa.binToHex = binToHex
 Nexa.binToUtf8 = binToUtf8
 Nexa.flattenBinArray = flattenBinArray
+Nexa.hexToBase64 = hexToBase64
 Nexa.hexToBin = hexToBin
 Nexa.isHex = isHex
 Nexa.isJson = isJson
