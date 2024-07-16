@@ -9,7 +9,7 @@ import { EventEmitter } from 'events'
 export class Fusion extends EventEmitter {
     constructor(_params) {
         /* Initialize Fusion class. */
-        console.info('Initializing Fusion...')
+        // console.info('Initializing Fusion...')
         // console.log(JSON.stringify(_params, null, 2))
         super()
 

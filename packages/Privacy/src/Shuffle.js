@@ -9,7 +9,7 @@ import { EventEmitter } from 'events'
 export class Shuffle extends EventEmitter {
     constructor(_params) {
         /* Initialize Shuffle class. */
-        console.info('Initializing Shuffle...')
+        // console.info('Initializing Shuffle...')
         // console.log(JSON.stringify(_params, null, 2))
         super()
 
