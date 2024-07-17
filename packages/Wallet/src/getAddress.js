@@ -2,6 +2,7 @@
 import { encodeAddress } from '@nexajs/address'
 
 import {
+    derivePublicKeyCompressed,
     randomBytes,
     ripemd160,
     sha256,
@@ -9,6 +10,7 @@ import {
 } from '@nexajs/crypto'
 
 import {
+    deriveHdPath,
     deriveHdPrivateNodeFromSeed,
     encodePrivateKeyWif,
     entropyToMnemonic,
@@ -24,31 +26,6 @@ import {
     binToHex,
     hexToBin,
 } from '@nexajs/utils'
-
-/* Libauth helpers. */
-import {
-    deriveHdPath,
-    instantiateSecp256k1,
-} from '@bitauth/libauth'
-
-/* Initialize Libauth crypto interfaces. */
-let secp256k1
-let crypto
-
-/* Instantiate Libauth crypto interfaces. */
-// NOTE: This requires a few cycles to load
-//       and MUST be handled accordingly.
-;(async () => {
-    secp256k1 = await instantiateSecp256k1()
-
-    /* Initialize crypto. */
-    crypto = {
-        ripemd160: { hash: ripemd160 },
-        sha256: { hash: sha256 },
-        sha512: { hash: sha512 },
-        secp256k1,
-    }
-})()
 
 /**
  * Get Address
@@ -84,7 +61,6 @@ export default function (_addressIdx = '0', _isChange) {
 
     /* Derive a child from the Master node */
     child = deriveHdPath(
-        crypto,
         node,
         `m/${this._coinPurpose}/${this._coinType}/${this._accountIdx}/${changeIdx}/${_addressIdx}`
     )
@@ -93,7 +69,7 @@ export default function (_addressIdx = '0', _isChange) {
     privateKey = child.privateKey
 
     /* Derive the corresponding public key. */
-    publicKey = secp256k1.derivePublicKeyCompressed(privateKey)
+    publicKey = derivePublicKeyCompressed(privateKey)
 
     /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
     scriptPushPubKey = encodeDataPush(publicKey)

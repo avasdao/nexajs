@@ -22,9 +22,9 @@
  * derived using the "hardened" derivation algorithm
  */
 // eslint-disable-next-line complexity
-export default (
-  node,
-  index,
+const deriveHdPrivateNodeChild = (
+    node,
+    index,
 ) => {
     const maximumIndex = 0xffffffff
 
@@ -73,6 +73,8 @@ export default (
             return HdNodeDerivationError.nextChildIndexRequiresHardenedAlgorithm
         }
 
-        return deriveHdPrivateNodeChild(crypto, node, index + 1)
+        return deriveHdPrivateNodeChild(node, index + 1)
     }
 }
+
+export default deriveHdPrivateNodeChild

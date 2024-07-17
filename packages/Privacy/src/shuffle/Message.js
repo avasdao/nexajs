@@ -81,43 +81,43 @@ class Message {
         return hash
     }
 
-    /**
-     * Sign
-     *
-     * Will sign a message with a given bitcoin private key.
-     */
-    sign (privateKey) {
-        /* Validate private key. */
-        if (!(privateKey instanceof PrivateKey)) {
-            throw new Error('First argument should be an instance of PrivateKey')
-        }
-
-        /* Initialize hash. */
-        const hash = this.magicHash
-
-        /* Initialize ECDSA. */
-        const ecdsa = new ECDSA()
-
-        /* Set hash buffer. */
-        ecdsa.hashbuf = hash
-
-        /* Set private key. */
-        ecdsa.privkey = privateKey
-
-        /* Set public key. */
-        ecdsa.pubkey = privateKey.toPublicKey()
-
-        /* Sign. */
-        ecdsa.signRandomK()
-
-        /* Calculate. */
-        ecdsa.calci()
-
-        /* Return signature. */
-        return ecdsa.sig
-            .toCompact()
-            .toString('base64')
-    }
+    // /**
+    //  * Sign
+    //  *
+    //  * Will sign a message with a given bitcoin private key.
+    //  */
+    // sign (privateKey) {
+    //     /* Validate private key. */
+    //     if (!(privateKey instanceof PrivateKey)) {
+    //         throw new Error('First argument should be an instance of PrivateKey')
+    //     }
+    //
+    //     /* Initialize hash. */
+    //     const hash = this.magicHash
+    //
+    //     /* Initialize ECDSA. */
+    //     const ecdsa = new ECDSA()
+    //
+    //     /* Set hash buffer. */
+    //     ecdsa.hashbuf = hash
+    //
+    //     /* Set private key. */
+    //     ecdsa.privkey = privateKey
+    //
+    //     /* Set public key. */
+    //     ecdsa.pubkey = privateKey.toPublicKey()
+    //
+    //     /* Sign. */
+    //     ecdsa.signRandomK()
+    //
+    //     /* Calculate. */
+    //     ecdsa.calci()
+    //
+    //     /* Return signature. */
+    //     return ecdsa.sig
+    //         .toCompact()
+    //         .toString('base64')
+    // }
 
     /**
      * Verify
