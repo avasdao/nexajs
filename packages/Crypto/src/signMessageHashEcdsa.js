@@ -1,129 +1,61 @@
 /* Import modules. */
-// import {
-//     ECDSA,
-//     PrivateKey,
-// } from '@nexajs/hdnode'
 import {
     binToHex,
     hexToBin,
     utf8ToBin,
 } from '@nexajs/utils'
 
-import { sha256 } from '../index.js'
+/* Import (local) modules. */
+import {
+    ECDSA,
+    PrivateKey,
+    sha256,
+} from '../index.js'
 
-/* Initialize Elliptic. */
-import pkg from 'elliptic'
-const { ec: EC } = pkg
-const ec = new EC('secp256k1')
-const ECDSA = ec
-
-/* Initialize constants. */
-const COMPACT_FORMAT = true
-const KEY_FORMAT = 'hex'
-
-export default async (_privkey, _msgbuf) => {
-    // console.log('DERIVE (privateKey)', _privateKey)
-
+/**
+ * Sign Message
+ *
+ * Will sign a message with a given bitcoin private key.
+ */
+export default (_privkey, _msgbuf) => {
     /* Initialize locals. */
-    let magicMessage
-    let messageHash
-    // let privateKey
+    let privkey
 
-    /* Validate private key. */
-    // if (typeof _privateKey === 'string') {
-    //     privateKey = _privateKey
-    // } else {
-    //     privateKey = binToHex(_privateKey)
-    // }
+    /* Set private key. */
+    privkey = PrivateKey(binToHex(_privkey))
 
-    /* Calculate key. */
-    // const key = ec.keyFromPrivate(privateKey, KEY_FORMAT)
-    // const key = ec.keyFromPrivate(privateKey)
-    // console.log('KEY', key`)
-
-    /* Retrieve public key. */
-    // const pub = key.getPublic(COMPACT_FORMAT, KEY_FORMAT)
-    // console.log('PUB', pub)
-
-    /* Return (binary) public key. */
-    // return hexToBin(pub)
-
-    magicMessage = new Uint8Array([
+    /* Build (message) hash. */
+    const hash = new Uint8Array([
         0x18, // int(24) as per specification
         ...utf8ToBin('Bitcoin Signed Message:\n'),
         _msgbuf.length,
         ...utf8ToBin(_msgbuf),
     ])
-    // console.log('MAGIC MSG', magicMessage)
+    // console.log('MAGIC HASH', binToHex(hash))
 
-    messageHash = sha256(sha256(magicMessage))
-    // console.log('MSG HASH', binToHex(messageHash))
+    /* Calculate hash buffer. */
+    const hashbuf = Buffer.from(sha256(sha256(hash)))
 
+    /* Initialize ECDSA. */
+    const ecdsa = new ECDSA()
 
-    const key = ec.keyFromPrivate(binToHex(_privkey), 'hex')
-    // console.log('KEY', key)
+    /* Set hash buffer. */
+    ecdsa.hashbuf = hashbuf
 
-    const signature = key.sign(messageHash)
-    // console.log('SIGNATURE', signature)
-    // console.log('SIGNATURE (base64)', signature.toCompact())
+    /* Set private key. */
+    ecdsa.privkey = privkey
 
-    return signature
+    /* Set public key. */
+    ecdsa.pubkey = privkey.toPublicKey()
+
+    /* Sign. */
+    ecdsa.signRandomK()
+
+    /* Calculate. */
+    ecdsa.calci()
+
+    /* Return signature. */
+    return ecdsa.sig
+        .toCompact()
+        .toString('base64')
 }
-
-// /**
-//  * Sign Message
-//  *
-//  * Will sign a message with a given bitcoin private key.
-//  */
-// export default async (_privkey, _msgbuf) => {
-//     console.log('PRIVKEY (hex)', _privkey)
-//
-//     /* Initialize locals. */
-//     let privkey
-//
-//     if (typeof _privkey === 'string') {
-//         privkey = ec.keyFromPrivate(_privkey, KEY_FORMAT)
-//     } else {
-//         privkey = ec.keyFromPrivate(binToHex(_privkey), KEY_FORMAT)
-//     }
-//     // console.log('PRIVKEY', privkey)
-//     // console.log('GENERATE', ec.genKeyPair())
-//     console.log('GENERATE (pub)', ec.genKeyPair().getPublic())
-//     /* Validate private key. */
-//     // if (!(_privkey instanceof PrivateKey)) {
-//     //     throw new Error('First argument should be an instance of PrivateKey')
-//     // }
-//
-//     /* Initialize hash. */
-//     // const hash = this.magicHash
-//     const hash = new Uint8Array([
-//         0x18, // int(24) as per specification
-//         ...utf8ToBin('Bitcoin Signed Message:\n'),
-//         _msgbuf.length,
-//         ...utf8ToBin(_msgbuf),
-//     ])
-//     // console.log('MAGIC MSG', magicMessage)
-//
-//     /* Initialize ECDSA. */
-//     // const ecdsa = new ECDSA()
-//
-//     /* Set hash buffer. */
-//     ec.hashbuf = hash
-//
-//     /* Set private key. */
-//     ec.privkey = privkey
-//
-//     /* Set public key. */
-//     ec.pubkey = privkey.getPublic()
-//
-//     /* Sign. */
-//     ec.signRandomK()
-//
-//     /* Calculate. */
-//     ec.calci()
-//
-//     /* Return signature. */
-//     return ec.sig
-//         .toCompact()
-//         .toString('base64')
-// }

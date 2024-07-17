@@ -3,18 +3,21 @@ import { sha256 } from '@nexajs/crypto'
 
 import { parseWif } from '@nexajs/hdnode'
 
-import { binToHex } from '@nexajs/utils'
+import {
+    binToHex,
+    hexToBase64,
+} from '@nexajs/utils'
 
 /* Libauth helpers. */
 import { instantiateSecp256k1 } from '@bitauth/libauth'
 
 let secp256k1
 
-const hexToBase64 = (_hex) => {
-    return btoa(_hex.match(/\w{2}/g).map(function(a) {
-        return String.fromCharCode(parseInt(a, 16))
-    }).join(''))
-}
+// const hexToBase64 = (_hex) => {
+//     return btoa(_hex.match(/\w{2}/g).map(function(a) {
+//         return String.fromCharCode(parseInt(a, 16))
+//     }).join(''))
+// }
 
 export default async (_wif, _message) => {
     /* Initalize locals. */
@@ -51,7 +54,7 @@ export default async (_wif, _message) => {
     // Generate a signature over the "sighash" using the passed private key.
     signature = secp256k1
         .signMessageHashRecoverableCompact(privateKey, messageHash)
-    // console.log('SIGNATURE', signature)
+    // console.log('signMessageHashRecoverableCompact', signature)
 
     signatureBin = signature.signature
 
