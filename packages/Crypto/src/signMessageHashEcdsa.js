@@ -29,18 +29,19 @@ export default (_privkey, _msgbuf) => {
         0x18, // int(24) as per specification
         ...utf8ToBin('Bitcoin Signed Message:\n'),
         _msgbuf.length,
-        ...utf8ToBin(_msgbuf),
+        ...new Uint8Array(_msgbuf),
     ])
     // console.log('MAGIC HASH', binToHex(hash))
 
     /* Calculate hash buffer. */
-    const hashbuf = Buffer.from(sha256(sha256(hash)))
+    const hashbuf = sha256(sha256(hash))
 
     /* Initialize ECDSA. */
     const ecdsa = new ECDSA()
 
     /* Set hash buffer. */
-    ecdsa.hashbuf = hashbuf
+    // FIXME Convert to TypedArray.
+    ecdsa.hashbuf = Buffer.from(hashbuf)
 
     /* Set private key. */
     ecdsa.privkey = privkey

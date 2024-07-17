@@ -7,7 +7,7 @@ import BN from './BN.js'
 import JSUtil from './JS.js'
 
 const _isBuffer = function (arg) {
-    return buffer.Buffer.isBuffer(arg) || arg instanceof Uint8Array
+    return Buffer.isBuffer(arg) || arg instanceof Uint8Array
 }
 
 const Signature = function (r, s, isSchnorr) {

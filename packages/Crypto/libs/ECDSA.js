@@ -35,6 +35,10 @@ class ECDSA {
         }
     }
 
+    privkey2pubkey() {
+        this.pubkey = this.privkey.toPublicKey()
+    }
+
     set(_obj) {
         this.hashbuf = _obj.hashbuf || this.hashbuf
         this.endian = _obj.endian || this.endian
@@ -47,15 +51,103 @@ class ECDSA {
         return this
     }
 
+    sigError() {
+        if (!_isBuffer(this.hashbuf) || this.hashbuf.length !== 32) {
+            return 'hashbuf must be a 32 byte buffer';
+        }
+
+        var r = this.sig.r;
+        var s = this.sig.s;
+
+        if (!(r.gt(BN.Zero) && r.lt(Point.getN())) || !(s.gt(BN.Zero) && s.lt(Point.getN()))) {
+            return 'r and s not in range';
+        }
+
+        var e = BN.fromBuffer(this.hashbuf, this.endian ? {
+            endian: this.endian
+        } : undefined);
+        var n = Point.getN();
+        var sinv = s.invm(n);
+        var u1 = sinv.mul(e).umod(n);
+        var u2 = sinv.mul(r).umod(n);
+
+        var p = Point.getG().mulAdd(u1, this.pubkey.point, u2);
+        if (p.isInfinity()) {
+            return 'p is infinity';
+        }
+
+        if (p.getX().umod(n).cmp(r) !== 0) {
+            return 'Invalid signature';
+        } else {
+            return false;
+        }
+    }
+
+    sign() {
+        /* Set hash buffer. */
+        // NOTE: We MUST use Buffers.
+        const hashbuf = Buffer.from(this.hashbuf)
+
+        /* Set private key. */
+        const privkey = this.privkey
+
+        //
+        const d = privkey.bn
+
+        //
+        $.checkState(hashbuf && privkey && d, new Error('invalid parameters'));
+        $.checkState(_isBuffer(hashbuf) && hashbuf.length === 32, new Error('hashbuf must be a 32 byte buffer'));
+
+        //
+        const e = BN.fromBuffer(hashbuf, this.endian ? {
+            endian: this.endian
+        } : undefined)
+
+        //
+        const obj = this._findSignature(d, e)
+
+        //
+        obj.compressed = this.pubkey.compressed
+
+        //
+        this.sig = new Signature(obj)
+
+        //
+        return this
+    }
+
     signRandomK() {
         this.randomK()
 
         return this.sign()
     }
-}
 
-ECDSA.prototype.privkey2pubkey = function () {
-    this.pubkey = this.privkey.toPublicKey()
+    verify() {
+        if (!this.sigError()) {
+            this.verified = true
+        } else {
+            this.verified = false
+        }
+
+        return this
+    }
+
+    static sign(hashbuf, privkey, endian) {
+        return ECDSA().set({
+            hashbuf: hashbuf,
+            endian: endian,
+            privkey: privkey
+        }).sign().sig
+    }
+
+    static verify(hashbuf, sig, pubkey, endian) {
+        return ECDSA().set({
+            hashbuf: hashbuf,
+            endian: endian,
+            sig: sig,
+            pubkey: pubkey
+        }).verify().verified
+    }
 }
 
 ECDSA.prototype.calci = function () {
@@ -189,39 +281,6 @@ ECDSA.prototype.toPublicKey = function () {
     return pubkey
 }
 
-ECDSA.prototype.sigError = function() {
-    /* jshint maxstatements: 25 */
-    if (!_isBuffer(this.hashbuf) || this.hashbuf.length !== 32) {
-        return 'hashbuf must be a 32 byte buffer';
-    }
-
-    var r = this.sig.r;
-    var s = this.sig.s;
-
-    if (!(r.gt(BN.Zero) && r.lt(Point.getN())) || !(s.gt(BN.Zero) && s.lt(Point.getN()))) {
-        return 'r and s not in range';
-    }
-
-    var e = BN.fromBuffer(this.hashbuf, this.endian ? {
-        endian: this.endian
-    } : undefined);
-    var n = Point.getN();
-    var sinv = s.invm(n);
-    var u1 = sinv.mul(e).umod(n);
-    var u2 = sinv.mul(r).umod(n);
-
-    var p = Point.getG().mulAdd(u1, this.pubkey.point, u2);
-    if (p.isInfinity()) {
-        return 'p is infinity';
-    }
-
-    if (p.getX().umod(n).cmp(r) !== 0) {
-        return 'Invalid signature';
-    } else {
-        return false;
-    }
-}
-
 ECDSA.toLowS = function(s) {
     //enforce low s
     //see BIP 62, "low S values in signatures"
@@ -255,39 +314,6 @@ ECDSA.prototype._findSignature = function(d, e) {
     }
 }
 
-ECDSA.prototype.sign = function () {
-    /* Set hash buffer. */
-    // NOTE: We MUST use Buffers.
-    const hashbuf = Buffer.from(this.hashbuf)
-
-    /* Set private key. */
-    const privkey = this.privkey
-
-    //
-    const d = privkey.bn
-
-    //
-    $.checkState(hashbuf && privkey && d, new Error('invalid parameters'));
-    $.checkState(_isBuffer(hashbuf) && hashbuf.length === 32, new Error('hashbuf must be a 32 byte buffer'));
-
-    //
-    const e = BN.fromBuffer(hashbuf, this.endian ? {
-        endian: this.endian
-    } : undefined)
-
-    //
-    const obj = this._findSignature(d, e)
-
-    //
-    obj.compressed = this.pubkey.compressed
-
-    //
-    this.sig = new Signature(obj)
-
-    //
-    return this
-}
-
 ECDSA.prototype.toString = function() {
     var obj = {};
     if (this.hashbuf) {
@@ -306,32 +332,6 @@ ECDSA.prototype.toString = function() {
         obj.k = this.k.toString();
     }
     return JSON.stringify(obj);
-}
-
-ECDSA.prototype.verify = function() {
-    if (!this.sigError()) {
-        this.verified = true;
-    } else {
-        this.verified = false;
-    }
-    return this;
-}
-
-ECDSA.sign = function(hashbuf, privkey, endian) {
-    return ECDSA().set({
-        hashbuf: hashbuf,
-        endian: endian,
-        privkey: privkey
-    }).sign().sig;
-}
-
-ECDSA.verify = function(hashbuf, sig, pubkey, endian) {
-    return ECDSA().set({
-        hashbuf: hashbuf,
-        endian: endian,
-        sig: sig,
-        pubkey: pubkey
-    }).verify().verified;
 }
 
 export default ECDSA

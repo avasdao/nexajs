@@ -22,7 +22,7 @@ export default {
             if (type === 'Buffer') {
                 var buffer = require('buffer') // './buffer' fails on cordova & RN
 
-                if (!buffer.Buffer.isBuffer(argument)) {
+                if (!Buffer.isBuffer(argument)) {
                     throw new errors.InvalidArgumentType(argument, type, argumentName)
                 }
             } else if (typeof argument !== type) {

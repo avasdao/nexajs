@@ -13,6 +13,7 @@ import _sha512 from './src/sha512.js'
 import _signMessageHashEcdsa from './src/signMessageHashEcdsa.js'
 import _signMessageHashSchnorr from './src/signMessageHashSchnorr.js'
 import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
+import _verifyMessageHashEcdsa from './src/verifyMessageHashEcdsa.js'
 
 /* Import (local) libraries. */
 import _ECDSA from './libs/ECDSA.js'
@@ -35,6 +36,7 @@ export const sha512 = _sha512
 export const signMessageHashEcdsa = _signMessageHashEcdsa
 export const signMessageHashSchnorr = _signMessageHashSchnorr
 export const validateSecp256k1PrivateKey = _validateSecp256k1PrivateKey
+export const verifyMessageHashEcdsa = _verifyMessageHashEcdsa
 
 /* Export (local) libraries. */
 export const ECDSA = _ECDSA
@@ -97,6 +99,7 @@ Nexa.sha512 = sha512
 Nexa.signMessageHashEcdsa = signMessageHashEcdsa
 Nexa.signMessageHashSchnorr = signMessageHashSchnorr
 Nexa.validateSecp256k1PrivateKey = validateSecp256k1PrivateKey
+Nexa.verifyMessageHashEcdsa = verifyMessageHashEcdsa
 
 /* Initialize Crypto libraries. */
 Nexa.ECDSA = ECDSA
