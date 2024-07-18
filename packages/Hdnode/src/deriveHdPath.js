@@ -12,6 +12,7 @@ const HdNodeDerivationError = {
     invalidPrivateDerivationPrefix: 'HD key derivation error: private derivation paths must begin with "m".',
     invalidPublicDerivationPrefix: 'HD key derivation error: public derivation paths must begin with "M".',
 }
+
 /**
  * Derive a child HD node from a parent node given a derivation path. The
  * resulting node is the same type as the parent node (private nodes return
@@ -54,7 +55,7 @@ const HdNodeDerivationError = {
 // eslint-disable-next-line complexity
 export default (
     node,
-    path
+    path,
 ) => {
     const validDerivationPath = /^[mM](?:\/[0-9]+'?)*$/u
 

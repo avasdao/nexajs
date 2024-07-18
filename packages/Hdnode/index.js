@@ -1,16 +1,18 @@
 /* Import (local) modules. */
-import _deriveHdPath from './src/deriveHdPath.js'
+import _decodePrivateKeyWif from './src/decodePrivateKeyWif.js'
+import _deriveHdPath from './src/deriveHdPathAlt.js'
 import _deriveHdPrivateNodeChild from './src/deriveHdPrivateNodeChild.js'
 import _deriveHdPrivateNodeFromSeed from './src/deriveHdPrivateNodeFromSeed.js'
-import _decodePrivateKeyWif from './src/decodePrivateKeyWif.js'
+import _deriveHdPrivateNodeIdentifier from './src/deriveHdPrivateNodeIdentifier.js'
 import _encodePrivateKeyWif from './src/encodePrivateKeyWif.js'
 import _parseWif from './src/parseWif.js'
 
 /* Export (local) modules. */
+export const decodePrivateKeyWif = _decodePrivateKeyWif
 export const deriveHdPath = _deriveHdPath
 export const deriveHdPrivateNodeChild = _deriveHdPrivateNodeChild
 export const deriveHdPrivateNodeFromSeed = _deriveHdPrivateNodeFromSeed
-export const decodePrivateKeyWif = _decodePrivateKeyWif
+export const deriveHdPrivateNodeIdentifier = _deriveHdPrivateNodeIdentifier
 export const encodePrivateKeyWif = _encodePrivateKeyWif
 export const parseWif = _parseWif
 
@@ -53,10 +55,11 @@ const Nexa = {}
 Nexa.Hdnode = Hdnode
 
 /* Initialize HD Node modules. */
+Nexa.decodePrivateKeyWif = decodePrivateKeyWif
 Nexa.deriveHdPath = deriveHdPath
 Nexa.deriveHdPrivateNodeChild = deriveHdPrivateNodeChild
 Nexa.deriveHdPrivateNodeFromSeed = deriveHdPrivateNodeFromSeed
-Nexa.decodePrivateKeyWif = decodePrivateKeyWif
+Nexa.deriveHdPrivateNodeIdentifier = deriveHdPrivateNodeIdentifier
 Nexa.encodePrivateKeyWif = encodePrivateKeyWif
 Nexa.parseWif = parseWif
 
