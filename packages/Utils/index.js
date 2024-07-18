@@ -13,7 +13,9 @@ import _hexToBase64 from './src/hexToBase64.js'
 import _hexToBin from './src/hexToBin.js'
 import _isHex from './src/isHex.js'
 import _isJson from './src/isJson.js'
+import _numberToBinUint16BE from './src/numberToBinUint16BE.js'
 import _numberToBinUint16LE from './src/numberToBinUint16LE.js'
+import _numberToBinUint32BE from './src/numberToBinUint32BE.js'
 import _numberToBinUint32LE from './src/numberToBinUint32LE.js'
 import _numberToBinUintLE from './src/numberToBinUintLE.js'
 import _reverseHex from './src/reverseHex.js'
@@ -36,7 +38,9 @@ export const hexToBase64 = _hexToBase64
 export const hexToBin = _hexToBin
 export const isHex = _isHex
 export const isJson = _isJson
+export const numberToBinUint16BE = _numberToBinUint16BE
 export const numberToBinUint16LE = _numberToBinUint16LE
+export const numberToBinUint32BE = _numberToBinUint32BE
 export const numberToBinUint32LE = _numberToBinUint32LE
 export const numberToBinUintLE = _numberToBinUintLE
 export const reverseHex = _reverseHex
@@ -84,7 +88,9 @@ Nexa.hexToBase64 = hexToBase64
 Nexa.hexToBin = hexToBin
 Nexa.isHex = isHex
 Nexa.isJson = isJson
+Nexa.numberToBinUint16BE = numberToBinUint16BE
 Nexa.numberToBinUint16LE = numberToBinUint16LE
+Nexa.numberToBinUint32BE = numberToBinUint32BE
 Nexa.numberToBinUint32LE = numberToBinUint32LE
 Nexa.numberToBinUintLE = numberToBinUint32LE
 Nexa.reverseHex = reverseHex
