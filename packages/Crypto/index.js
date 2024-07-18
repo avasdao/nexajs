@@ -16,7 +16,11 @@ import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
 import _verifyMessageHashEcdsa from './src/verifyMessageHashEcdsa.js'
 
 /* Import (local) libraries. */
+import _Base58Check from './libs/Base58Check.js'
 import _ECDSA from './libs/ECDSA.js'
+import _Hash from './libs/Hash.js'
+import _HDPrivateKey from './libs/HDPrivateKey.js'
+import _HDPublicKey from './libs/HDPublicKey.js'
 import _Point from './libs/Point.js'
 import _PrivateKey from './libs/PrivateKey.js'
 import _PublicKey from './libs/PublicKey.js'
@@ -39,7 +43,11 @@ export const validateSecp256k1PrivateKey = _validateSecp256k1PrivateKey
 export const verifyMessageHashEcdsa = _verifyMessageHashEcdsa
 
 /* Export (local) libraries. */
+export const Base58Check = _Base58Check
 export const ECDSA = _ECDSA
+export const Hash = _Hash
+export const HDPrivateKey = _HDPrivateKey
+export const HDPublicKey = _HDPublicKey
 export const Point = _Point
 export const PrivateKey = _PrivateKey
 export const PublicKey = _PublicKey
@@ -102,7 +110,11 @@ Nexa.validateSecp256k1PrivateKey = validateSecp256k1PrivateKey
 Nexa.verifyMessageHashEcdsa = verifyMessageHashEcdsa
 
 /* Initialize Crypto libraries. */
+Nexa.Base58Check = Base58Check
 Nexa.ECDSA = ECDSA
+Nexa.Hash = Hash
+Nexa.HDPrivateKey = HDPrivateKey
+Nexa.HDPublicKey = HDPublicKey
 Nexa.Point = Point
 Nexa.PrivateKey = PrivateKey
 Nexa.PublicKey = PublicKey

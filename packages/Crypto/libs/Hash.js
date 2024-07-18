@@ -1,15 +1,50 @@
 /* Import (local) modules. */
 import $ from '../utils/preconditions.js'
-import { sha256 } from '../index.js'
+import {
+    ripemd160,
+    sha256,
+    sha512,
+} from '../index.js'
 
 /* Initialize hash. */
-const Hash = {}
+class Hash {
+    constructor() {}
+}
 
-Hash.sha256 = function(_buf) {
+Hash.sha1 = function(buf) {
+    $.checkArgument(Buffer.isBuffer(buf))
+    return crypto.createHash('sha1').update(buf).digest()
+}
+
+Hash.sha1.blocksize = 512
+
+Hash.sha256 = function (_buf) {
     return Buffer.from(sha256(_buf))
 }
 
 Hash.sha256.blocksize = 512
+
+Hash.sha256sha256 = function (buf) {
+    $.checkArgument(Buffer.isBuffer(buf))
+    return Hash.sha256(Hash.sha256(buf))
+}
+
+Hash.ripemd160 = function(buf) {
+    $.checkArgument(Buffer.isBuffer(buf))
+    return ripemd160(buf)
+}
+
+Hash.sha256ripemd160 = function(buf) {
+    $.checkArgument(Buffer.isBuffer(buf))
+    return Hash.ripemd160(Hash.sha256(buf))
+}
+
+Hash.sha512 = function(buf) {
+    $.checkArgument(Buffer.isBuffer(buf))
+    return sha512(buf)
+};
+
+Hash.sha512.blocksize = 1024
 
 Hash.hmac = function(hashf, data, key) {
     //http://en.wikipedia.org/wiki/Hash-based_message_authentication_code
@@ -50,8 +85,12 @@ Hash.hmac = function(hashf, data, key) {
     )
 }
 
-Hash.sha256hmac = function (data, key) {
-    return Hash.hmac(Hash.sha256, data, key)
+Hash.sha256hmac = function (_privkey, _msgbuf) {
+    return Hash.hmac(Hash.sha256, _msgbuf, _privkey)
+}
+
+Hash.sha512hmac = function (_privkey, _msgbuf) {
+    return Hash.hmac(Hash.sha512, _msgbuf, _privkey)
 }
 
 export default Hash
