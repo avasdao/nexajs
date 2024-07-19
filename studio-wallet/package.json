@@ -1,6 +1,6 @@
 {
   "name": "wallet-studio",
-  "version": "24.7.18",
+  "version": "24.7.19",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -13,7 +13,7 @@
     "@pinia/nuxt": "0.4.7",
     "@trezor/connect-web": "9.1.4",
     "moment": "2.29.4",
-    "nexajs": "24.7.15",
+    "nexajs": "24.7.17",
     "numeral": "2.0.6",
     "nuxt": "3.7.4",
     "pinia": "2.0.32",
