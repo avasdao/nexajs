@@ -19,15 +19,15 @@
     "@nexajs/market": "24.7.15",
     "@nexajs/message": "24.7.15",
     "@nexajs/provider": "23.12.25",
-    "@nexajs/purse": "24.7.12",
+    "@nexajs/purse": "24.7.15",
     "@nexajs/request": "23.5.15",
     "@nexajs/rostrum": "24.6.23",
     "@nexajs/rpc": "23.5.15",
     "@nexajs/script": "24.7.15",
-    "@nexajs/token": "24.7.12",
+    "@nexajs/token": "24.7.15",
     "@nexajs/transaction": "24.7.15",
     "@nexajs/utils": "24.7.15",
-    "@nexajs/wallet": "24.7.12",
+    "@nexajs/wallet": "24.7.15",
     "events": "3.3.0"
   },
   "devDependencies": {
