@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/message",
-  "version": "24.7.12",
+  "version": "24.7.15",
   "description": "A very simple, crypto-friendly messaging library.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,10 +8,9 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@bitauth/libauth": "1.19.1",
     "@nexajs/crypto": "24.7.11",
     "@nexajs/hdnode": "24.7.12",
-    "@nexajs/utils": "24.7.11",
+    "@nexajs/utils": "24.7.15",
     "events": "3.3.0"
   }
 }
