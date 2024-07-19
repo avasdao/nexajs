@@ -283,20 +283,26 @@ HDPrivateKey.prototype._deriveWithNumber = function (index, hardened, nonComplia
             throw new Error('Length of private key buffer is expected to be 32 bytes.')
         }
 
-        data = Buffer.concat([Buffer.from([0]), privateKeyBuffer, indexBuffer])
+        data = Buffer.concat(
+            [ Buffer.from([0]), privateKeyBuffer, indexBuffer ])
     } else {
-        data = Buffer.concat([this.publicKey.toBuffer(), indexBuffer])
+        data = Buffer.concat(
+            [ this.publicKey.toBuffer(), indexBuffer ])
     }
 
-    var hash = Hash.sha512hmac(data, this._buffers.chainCode)
+    var hash = Buffer.from(
+        Hash.sha512hmac(data, this._buffers.chainCode))
+
     var leftPart = BN.fromBuffer(hash.slice(0, 32), {
         size: 32
     })
     var chainCode = hash.slice(32, 64)
 
-    var privateKey = leftPart.add(this.privateKey.toBigNumber()).umod(Point.getN()).toBuffer({
-        size: 32
-    })
+    var privateKey = leftPart
+        .add(this.privateKey.toBigNumber())
+        .umod(Point.getN()).toBuffer({
+            size: 32
+        })
 
     if (!PrivateKey.isValid(privateKey)) {
         // Index at this point is already hardened, we can pass null as the hardened arg
@@ -413,12 +419,12 @@ HDPrivateKey.prototype._buildFromJSON = function (arg) {
 HDPrivateKey.prototype._buildFromObject = function (arg) {
     // TODO: Type validation
     var buffers = {
-        version: arg.network ? _integerAsBuffer(Network.get(arg.network).xprivkey) : arg.version,
-        depth: _.isNumber(arg.depth) ? _integerAsSingleByteBuffer(arg.depth) : arg.depth,
-        parentFingerPrint: _.isNumber(arg.parentFingerPrint) ? _integerAsBuffer(arg.parentFingerPrint) : arg.parentFingerPrint,
-        childIndex: _.isNumber(arg.childIndex) ? _integerAsBuffer(arg.childIndex) : arg.childIndex,
-        chainCode: _.isString(arg.chainCode) ? Buffer.from(arg.chainCode,'hex') : arg.chainCode,
-        privateKey: (_.isString(arg.privateKey) && JSUtil.isHexa(arg.privateKey)) ? Buffer.from(arg.privateKey,'hex') : arg.privateKey,
+        version: arg.network ? _integerAsBuffer(Network.get(arg.network).xprivkey) : Buffer.from(arg.version),
+        depth: _.isNumber(arg.depth) ? _integerAsSingleByteBuffer(arg.depth) : Buffer.from(arg.depth),
+        parentFingerPrint: _.isNumber(arg.parentFingerPrint) ? _integerAsBuffer(arg.parentFingerPrint) : Buffer.from(arg.parentFingerPrint),
+        childIndex: _.isNumber(arg.childIndex) ? _integerAsBuffer(arg.childIndex) : Buffer.from(arg.childIndex),
+        chainCode: _.isString(arg.chainCode) ? Buffer.from(arg.chainCode, 'hex') : Buffer.from(arg.chainCode),
+        privateKey: (_.isString(arg.privateKey) && JSUtil.isHexa(arg.privateKey)) ? Buffer.from(arg.privateKey,'hex') : Buffer.from(arg.privateKey),
         checksum: arg.checksum ? (arg.checksum.length ? arg.checksum : _integerAsBuffer(arg.checksum)) : undefined
     }
 

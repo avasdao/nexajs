@@ -85,11 +85,11 @@ Hash.hmac = function(hashf, data, key) {
     )
 }
 
-Hash.sha256hmac = function (_privkey, _msgbuf) {
+Hash.sha256hmac = function (_msgbuf, _privkey) {
     return Hash.hmac(Hash.sha256, _msgbuf, _privkey)
 }
 
-Hash.sha512hmac = function (_privkey, _msgbuf) {
+Hash.sha512hmac = function (_msgbuf, _privkey) {
     return Hash.hmac(Hash.sha512, _msgbuf, _privkey)
 }
 

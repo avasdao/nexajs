@@ -5,27 +5,34 @@ import {
 
 import { binToHex } from '@nexajs/utils'
 
-export default (_node, _path) => {
-    // console.log('NODE', _node)
+export default (_seed, _path) => {
+    /* Initialize locals. */
+    let hdnode
+    let seed
 
-    const privateKey = _node.privateKey
-    // console.log('PRIVATE KEY', privateKey)
+    seed = binToHex(_seed)
 
-    const altKey = PrivateKey(Buffer.from(privateKey))
-    // console.log('ALT KEY-1', altKey)
-    // console.log('ALT KEY-2', altKey.toString())
+    /* Initialize HD node. */
+    hdnode = HDPrivateKey.fromSeed(seed)
+    // console.log('HD NODE-1', hdnode)
 
-    _node.chainCode = Buffer.from(_node.chainCode)
-    _node.network = 'livenet'
-    _node.parentFingerPrint = Buffer.from(_node.parentFingerprint)
-    _node.privateKey = Buffer.from(_node.privateKey)
+    hdnode = hdnode.derive(_path)
+    // console.log('HD NODE-2', hdnode)
 
-    const tstKey = HDPrivateKey(_node)
-    // console.log('TST KEY-1', tstKey)
-    // console.log('TST KEY-2', tstKey.toString())
-
-    return _node
+    /* Return HD node. */
+    return hdnode
 }
+
+/*
+{
+    network: Network.get(network) || Network.defaultNetwork,
+    depth: 0,
+    parentFingerPrint: 0,
+    childIndex: 0,
+    privateKey: hash.slice(0, 32),
+    chainCode: hash.slice(32, 64),
+}
+*/
 
 /*
 {
