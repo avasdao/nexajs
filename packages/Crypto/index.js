@@ -1,3 +1,8 @@
+/* Import Buffer class (FIRST!!). */
+// FIXME REMOVE THIS GLOBAL INJECTION, AFTER REFACTORING BITCORE IMPORTS.
+// NOTE: THIS ONLY INJECTS IF `window.Buffer` IS MISSING.
+import './libs/Buffer.js'
+
 /* Import (local) modules. */
 import _decrypt from './src/decrypt.js'
 import _derivePublicKeyCompressed from './src/derivePublicKeyCompressed.js'
@@ -55,11 +60,6 @@ export const defaultNetwork = _defaultNetwork
 /* Provide Ether.js helpers. */
 import { randomBytes as _randomBytes } from '@ethersproject/random'
 export const randomBytes = _randomBytes
-
-/* Import Buffer class. */
-// FIXME REMOVE THIS GLOBAL INJECTION, AFTER REFACTORING FOR SCHNORR.
-// NOTE: THIS ONLY INJECTS IF `window.Buffer` IS MISSING.
-import './libs/Buffer.js'
 
 /**
  * Crypto Class

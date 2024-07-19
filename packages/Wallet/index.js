@@ -453,8 +453,7 @@ export class Wallet extends EventEmitter {
 
         /* Derive a child from the Master node */
         const child = deriveHdPath(
-            // crypto,
-            node,
+            seed, // FIXME Derive from parent `node`.
             this.path,
         )
 
