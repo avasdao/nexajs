@@ -30,7 +30,6 @@ export default async (
     privateKeyBin,
 ) => {
     /* Initialize locals. */
-    let secp256k1
     let sighash
     let signatureBin
     let signingSerialization

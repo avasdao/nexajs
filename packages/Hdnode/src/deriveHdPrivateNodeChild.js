@@ -75,11 +75,10 @@ const deriveHdPrivateNodeChild = (
 
     // eslint-disable-next-line functional/no-try-statement
     try {
-        // const nextPrivateKey = crypto.secp256k1.addTweakPrivateKey(
-        //     node.privateKey,
-        //     tweakValue
-        // )
-        const nextPrivateKey = node.privateKey
+        const nextPrivateKey = crypto.secp256k1.addTweakPrivateKey(
+            node.privateKey,
+            tweakValue
+        )
         const parentIdentifier = deriveHdPrivateNodeIdentifier(node)
         const parentFingerprintLength = 4
 
