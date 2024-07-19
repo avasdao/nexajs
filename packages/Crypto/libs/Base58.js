@@ -10,10 +10,10 @@ const Base58 = function (obj) {
     }
 
     if (Buffer.isBuffer(obj)) {
-        var buf = obj
+        const buf = obj
         this.fromBuffer(buf)
     } else if (typeof obj === 'string') {
-        var str = obj
+        const str = obj
         this.fromString(str)
     } else if (obj) {
         this.set(obj)
@@ -61,7 +61,8 @@ Base58.prototype.fromBuffer = function (buf) {
 }
 
 Base58.prototype.fromString = function (str) {
-    var buf = Base58.decode(str)
+    const buf = Base58.decode(str)
+
     this.buf = buf
 
     return this

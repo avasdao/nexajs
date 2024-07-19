@@ -19,13 +19,13 @@ import PrivateKey from './PrivateKey.js'
  * @example
  * ```javascript
  * // instantiate from a private key
- * var key = PublicKey(privateKey, true);
+ * const key = PublicKey(privateKey, true);
  *
  * // export to as a DER hex encoded string
- * var exported = key.toString();
+ * const exported = key.toString();
  *
  * // import the public key
- * var imported = PublicKey.fromString(exported);
+ * const imported = PublicKey.fromString(exported);
  * ```
  *
  * @param {string} data - The encoded data in various formats
@@ -49,7 +49,7 @@ const PublicKey = function (data, extra) {
 
     extra = extra || {}
 
-    var info = this._classifyArgs(data, extra)
+    const info = this._classifyArgs(data, extra)
 
     // validation??
     info.point.validate()
@@ -69,7 +69,9 @@ const PublicKey = function (data, extra) {
  * @param {Object} extra
  */
 PublicKey.prototype._classifyArgs = function (data, extra) {
-    var info = {
+    let info
+
+    info = {
         compressed: _.isUndefined(extra.compressed) || extra.compressed
     }
 
@@ -103,7 +105,6 @@ PublicKey.prototype._classifyArgs = function (data, extra) {
  * @private
  */
 PublicKey._isPrivateKey = function (param) {
-    // var PrivateKey = require('./privatekey')
     return param instanceof PrivateKey
 }
 
@@ -148,14 +149,14 @@ PublicKey._transformPrivateKey = function (privkey) {
 PublicKey._transformDER = function (buf, strict) {
     $.checkArgument(PublicKey._isBuffer(buf), 'Must be a hex buffer of DER encoded public key')
 
-    const info = {}
+    let info = {}
 
     strict = _.isUndefined(strict) ? true : strict
 
-    var x
-    var y
-    var xbuf
-    var ybuf
+    let x
+    let y
+    let xbuf
+    let ybuf
 
     if (buf[0] === 0x04 || (!strict && (buf[0] === 0x06 || buf[0] === 0x07))) {
         xbuf = buf.slice(1, 33)
@@ -212,9 +213,9 @@ PublicKey._transformX = function (odd, x) {
  * @private
  */
 PublicKey._transformObject = function (json) {
-    var x = new BN(json.x, 'hex')
-    var y = new BN(json.y, 'hex')
-    var point = new Point(x, y)
+    const x = new BN(json.x, 'hex')
+    const y = new BN(json.y, 'hex')
+    const point = new Point(x, y)
 
     return new PublicKey(point, {
         compressed: json.compressed
@@ -230,7 +231,7 @@ PublicKey._transformObject = function (json) {
 PublicKey.fromPrivateKey = function (privkey) {
     $.checkArgument(PublicKey._isPrivateKey(privkey), 'Must be an instance of PrivateKey')
 
-    var info = PublicKey._transformPrivateKey(privkey)
+    const info = PublicKey._transformPrivateKey(privkey)
 
     return new PublicKey(info.point, {
         compressed: info.compressed,
@@ -277,8 +278,8 @@ PublicKey.fromPoint = function (point, compressed) {
  * @returns {PublicKey} A new valid instance of PublicKey
  */
 PublicKey.fromString = function (str, encoding) {
-    var buf = Buffer.from(str, encoding || 'hex')
-    var info = PublicKey._transformDER(buf)
+    const buf = Buffer.from(str, encoding || 'hex')
+    const info = PublicKey._transformDER(buf)
 
     return new PublicKey(info.point, {
         compressed: info.compressed,
@@ -307,7 +308,7 @@ PublicKey.fromX = function (odd, x) {
  * @returns {null|Error} An error if exists
  */
 PublicKey.getValidationError = function (data) {
-    var error
+    let error
 
     try {
         /* jshint nonew: false */
@@ -346,25 +347,25 @@ PublicKey.prototype.toObject = PublicKey.prototype.toJSON = function () {
  * @returns {Buffer} A DER hex encoded buffer
  */
 PublicKey.prototype.toBuffer = PublicKey.prototype.toDER = function () {
-    var x = this.point.getX()
-    var y = this.point.getY()
+    const x = this.point.getX()
+    const y = this.point.getY()
 
-    var xbuf = x.toBuffer({
+    const xbuf = x.toBuffer({
         size: 32,
     })
 
-    var ybuf = y.toBuffer({
+    const ybuf = y.toBuffer({
         size: 32,
     })
 
-    var prefix
+    let prefix
 
     if (!this.compressed) {
         prefix = Buffer.from([ 0x04 ])
 
         return Buffer.concat([ prefix, xbuf, ybuf ])
     } else {
-        var odd = ybuf[ybuf.length - 1] % 2
+        const odd = ybuf[ybuf.length - 1] % 2
 
         if (odd) {
             prefix = Buffer.from([ 0x03 ])
@@ -394,7 +395,7 @@ PublicKey.prototype._getID = function () {
  */
 PublicKey.prototype.toAddress = function (network, type) {
     // FIXME
-    // var Address = require('./address') // FIXME
+    // const Address = require('./address') // FIXME
     return Address.fromPublicKey(this, network || this.network, type || Address.PayToScriptTemplate)
 }
 

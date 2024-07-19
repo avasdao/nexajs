@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 /* Import (local) modules. */
 import $ from '../utils/preconditions.js'
+import Base58Check from './Base58Check.js'
 import BN from './BN.js'
 import JSUtil from './JS.js'
 import Network from './Network.js'
@@ -10,8 +11,7 @@ import Point from './Point.js'
 import PublicKey from './PublicKey.js'
 import { randomBytes } from '../index.js'
 
-// var Address = require('./address');
-// var Base58Check = require('./encoding/base58check');
+// const Address = require('./address');
 
 /**
  * Instantiate a PrivateKey from a BN, Buffer and WIF.
@@ -19,16 +19,16 @@ import { randomBytes } from '../index.js'
  * @example
  * ```javascript
  * // generate a new random key
- * var key = PrivateKey();
+ * const key = PrivateKey();
  *
  * // get the associated address
- * var address = key.toAddress();
+ * const address = key.toAddress();
  *
  * // encode into wallet export format
- * var exported = key.toWIF();
+ * const exported = key.toWIF();
  *
  * // instantiate from the exported (and saved) private key
- * var imported = PrivateKey.fromWIF(exported);
+ * const imported = PrivateKey.fromWIF(exported);
  * ```
  *
  * @param {string} data - The encoded data in various formats
@@ -45,7 +45,7 @@ const PrivateKey = function (data, network) {
         return data
     }
 
-    var info = this._classifyArguments(data, network)
+    const info = this._classifyArguments(data, network)
 
     // validation
     if (!info.bn || info.bn.cmp(new BN(0)) === 0) {
@@ -84,7 +84,9 @@ const PrivateKey = function (data, network) {
  * @return {Object}
  */
 PrivateKey.prototype._classifyArguments = function (data, network) {
-    var info = {
+    let info
+
+    info = {
         compressed: true,
         network: network ? Network.get(network) : Network.defaultNetwork,
     }
@@ -146,7 +148,7 @@ PrivateKey._getRandomBN = function () {
  * @private
  */
 PrivateKey._transformBuffer = function (buf, network) {
-    var info = {}
+    const info = {}
 
     if (buf.length === 32) {
         return PrivateKey._transformBNBuffer(buf, network)
@@ -184,7 +186,7 @@ PrivateKey._transformBuffer = function (buf, network) {
  * @private
  */
 PrivateKey._transformBNBuffer = function (buf, network) {
-    var info = {}
+    const info = {}
 
     info.network = Network.get(network) || Network.defaultNetwork
     info.bn = BN.fromBuffer(buf)
@@ -224,8 +226,8 @@ PrivateKey.fromBuffer = function (arg, network) {
  * @private
  */
 PrivateKey._transformObject = function (json) {
-    var bn = new BN(json.bn, 'hex')
-    var network = Network.get(json.network)
+    const bn = new BN(json.bn, 'hex')
+    const network = Network.get(json.network)
 
     return {
         bn: bn,
@@ -278,7 +280,7 @@ PrivateKey.fromRandom = function (network) {
  */
 
 PrivateKey.getValidationError = function (data, network) {
-    var error
+    let error
 
     try {
         /* jshint nonew: false */
@@ -320,10 +322,10 @@ PrivateKey.prototype.toString = function () {
  * @returns {string} A WIP representation of the private key
  */
 PrivateKey.prototype.toWIF = function () {
-    var network = this.network
-    var compressed = this.compressed
+    const network = this.network
+    const compressed = this.compressed
 
-    var buf
+    let buf
 
     if (compressed) {
         buf = Buffer.concat([
@@ -392,7 +394,7 @@ PrivateKey.prototype.toPublicKey = function (){
  * @returns {Address} An address generated from the private key
  */
 PrivateKey.prototype.toAddress = function (network) {
-    var pubkey = this.toPublicKey()
+    const pubkey = this.toPublicKey()
 
     return Address.fromPublicKey(pubkey, network || this.network)
 }
@@ -414,7 +416,7 @@ PrivateKey.prototype.toObject = PrivateKey.prototype.toJSON = function () {
  * @returns {string} Private key
  */
 PrivateKey.prototype.inspect = function () {
-    var uncompressed = !this.compressed ? ', uncompressed' : ''
+    const uncompressed = !this.compressed ? ', uncompressed' : ''
 
     return '<PrivateKey: ' + this.toString() + ', network: ' + this.network + uncompressed + '>'
 }

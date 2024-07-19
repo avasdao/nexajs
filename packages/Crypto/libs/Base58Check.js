@@ -10,10 +10,10 @@ const Base58Check = function (obj) {
         return new Base58Check(obj)
 
     if (Buffer.isBuffer(obj)) {
-        var buf = obj
+        const buf = obj
         this.fromBuffer(buf)
     } else if (typeof obj === 'string') {
-        var str = obj
+        const str = obj
         this.fromString(str)
     } else if (obj) {
         this.set(obj)
@@ -46,16 +46,16 @@ Base58Check.decode = function (s) {
     if (typeof s !== 'string')
         throw new Error('Input must be a string')
 
-    var buf = Buffer.from(Base58.decode(s))
+    const buf = Buffer.from(Base58.decode(s))
 
     if (buf.length < 4)
         throw new Error("Input string too short")
 
-    var data = buf.slice(0, -4)
-    var csum = buf.slice(-4)
+    const data = buf.slice(0, -4)
+    const csum = buf.slice(-4)
 
-    var hash = sha256(sha256(data))
-    var hash4 = hash.slice(0, 4);
+    const hash = sha256(sha256(data))
+    const hash4 = hash.slice(0, 4);
 
     if (csum.toString('hex') !== hash4.toString('hex'))
         throw new Error("Checksum mismatch")
@@ -71,9 +71,9 @@ Base58Check.encode = function (buf) {
     if (!Buffer.isBuffer(buf))
         throw new Error('Input must be a buffer')
 
-    var checkedBuf = Buffer.alloc(buf.length + 4)
+    const checkedBuf = Buffer.alloc(buf.length + 4)
 
-    var hash = Buffer.from(Base58Check.checksum(buf))
+    const hash = Buffer.from(Base58Check.checksum(buf))
 
     buf.copy(checkedBuf)
 
@@ -88,7 +88,7 @@ Base58Check.prototype.fromBuffer = function (buf) {
 }
 
 Base58Check.prototype.fromString = function (str) {
-    var buf = Base58Check.decode(str)
+    const buf = Base58Check.decode(str)
 
     this.buf = buf
 

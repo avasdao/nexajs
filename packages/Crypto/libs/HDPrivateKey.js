@@ -16,12 +16,12 @@ import { randomBytes } from '../index.js'
 
 const hdErrors = Errors.HDPrivateKey
 
-var MINIMUM_ENTROPY_BITS = 128
-var BITS_TO_BYTES = 1 / 8
-var MAXIMUM_ENTROPY_BITS = 512
+const MINIMUM_ENTROPY_BITS = 128
+const BITS_TO_BYTES = 1 / 8
+const MAXIMUM_ENTROPY_BITS = 512
 
 const _integerAsBuffer = (integer) => {
-    var bytes = []
+    const bytes = []
 
     bytes.push((integer >> 24) & 0xff)
     bytes.push((integer >> 16) & 0xff)
@@ -32,9 +32,9 @@ const _integerAsBuffer = (integer) => {
 }
 
 const _emptyBuffer = function (bytes) {
-    var result = Buffer.alloc(bytes)
+    const result = Buffer.alloc(bytes)
 
-    for (var i = 0; i < bytes; i++) {
+    for (let i = 0; i < bytes; i++) {
         result.write('\0', i)
     }
 
@@ -102,7 +102,7 @@ const HDPrivateKey = function (arg) {
  */
 HDPrivateKey.isValidPath = function (arg, hardened) {
     if (_.isString(arg)) {
-        var indexes = HDPrivateKey._getDerivationIndexes(arg)
+        const indexes = HDPrivateKey._getDerivationIndexes(arg)
 
         return indexes !== null && _.every(indexes, HDPrivateKey.isValidPath)
     }
@@ -127,7 +127,7 @@ HDPrivateKey.isValidPath = function (arg, hardened) {
  * @return {Array}
  */
 HDPrivateKey._getDerivationIndexes = function (path) {
-    var steps = path.split('/')
+    const steps = path.split('/')
 
     // Special cases:
     if (_.includes(HDPrivateKey.RootElementAlias, path)) {
@@ -138,8 +138,8 @@ HDPrivateKey._getDerivationIndexes = function (path) {
         return null
     }
 
-    var indexes = steps.slice(1).map(function(step) {
-        var isHardened = step.slice(-1) === '\''
+    const indexes = steps.slice(1).map(function(step) {
+        const isHardened = step.slice(-1) === '\''
 
         if (isHardened) {
             step = step.slice(0, -1)
@@ -149,7 +149,9 @@ HDPrivateKey._getDerivationIndexes = function (path) {
             return NaN
         }
 
-        var index = +step // cast to number
+        let index
+
+        index = +step // cast to number
 
         if (isHardened) {
             index += HDPrivateKey.Hardened
@@ -178,9 +180,9 @@ HDPrivateKey._getDerivationIndexes = function (path) {
  *
  * @example
  * ```javascript
- * var parent = new HDPrivateKey('xprv...');
- * var child_0_1_2h = parent.derive(0).derive(1).derive(2, true);
- * var copy_of_child_0_1_2h = parent.derive("m/0/1/2'");
+ * const parent = new HDPrivateKey('xprv...');
+ * const child_0_1_2h = parent.derive(0).derive(1).derive(2, true);
+ * const copy_of_child_0_1_2h = parent.derive("m/0/1/2'");
  * assert(child_0_1_2h.xprivkey === copy_of_child_0_1_2h);
  * ```
  *
@@ -211,9 +213,9 @@ HDPrivateKey.prototype.derive = function (arg, hardened) {
  *
  * @example
  * ```javascript
- * var parent = new HDPrivateKey('xprv...');
- * var child_0_1_2h = parent.deriveChild(0).deriveChild(1).deriveChild(2, true);
- * var copy_of_child_0_1_2h = parent.deriveChild("m/0/1/2'");
+ * const parent = new HDPrivateKey('xprv...');
+ * const child_0_1_2h = parent.deriveChild(0).deriveChild(1).deriveChild(2, true);
+ * const copy_of_child_0_1_2h = parent.deriveChild("m/0/1/2'");
  * assert(child_0_1_2h.xprivkey === copy_of_child_0_1_2h);
  * ```
  *
@@ -267,17 +269,17 @@ HDPrivateKey.prototype._deriveWithNumber = function (index, hardened, nonComplia
         index += HDPrivateKey.Hardened
     }
 
-    var indexBuffer = _integerAsBuffer(index)
-    var data
+    const indexBuffer = _integerAsBuffer(index)
+    let data
 
     if (hardened && nonCompliant) {
         // The private key serialization in this case will not be exactly 32 bytes and can be
         // any value less, and the value is not zero-padded.
-        var nonZeroPadded = this.privateKey.bn.toBuffer()
+        const nonZeroPadded = this.privateKey.bn.toBuffer()
         data = Buffer.concat([Buffer.from([0]), nonZeroPadded, indexBuffer])
     } else if (hardened) {
         // This will use a 32 byte zero padded serialization of the private key
-        var privateKeyBuffer = this.privateKey.bn.toBuffer({ size: 32 })
+        const privateKeyBuffer = this.privateKey.bn.toBuffer({ size: 32 })
 
         if (privateKeyBuffer.length !== 32) {
             throw new Error('Length of private key buffer is expected to be 32 bytes.')
@@ -290,15 +292,15 @@ HDPrivateKey.prototype._deriveWithNumber = function (index, hardened, nonComplia
             [ this.publicKey.toBuffer(), indexBuffer ])
     }
 
-    var hash = Buffer.from(
+    const hash = Buffer.from(
         Hash.sha512hmac(data, this._buffers.chainCode))
 
-    var leftPart = BN.fromBuffer(hash.slice(0, 32), {
+    const leftPart = BN.fromBuffer(hash.slice(0, 32), {
         size: 32
     })
-    var chainCode = hash.slice(32, 64)
+    const chainCode = hash.slice(32, 64)
 
-    var privateKey = leftPart
+    const privateKey = leftPart
         .add(this.privateKey.toBigNumber())
         .umod(Point.getN()).toBuffer({
             size: 32
@@ -309,7 +311,7 @@ HDPrivateKey.prototype._deriveWithNumber = function (index, hardened, nonComplia
         return this._deriveWithNumber(index + 1, null, nonCompliant)
     }
 
-    var derived = new HDPrivateKey({
+    const derived = new HDPrivateKey({
         network: this.network,
         depth: this.depth + 1,
         parentFingerPrint: this.fingerPrint,
@@ -326,8 +328,8 @@ HDPrivateKey.prototype._deriveFromString = function (path, nonCompliant) {
         throw new hdErrors.InvalidPath(path)
     }
 
-    var indexes = HDPrivateKey._getDerivationIndexes(path)
-    var derived = indexes.reduce(function(prev, index) {
+    const indexes = HDPrivateKey._getDerivationIndexes(path)
+    const derived = indexes.reduce(function(prev, index) {
         return prev._deriveWithNumber(index, null, nonCompliant)
     }, this)
 
@@ -376,7 +378,7 @@ HDPrivateKey.getSerializedError = function (data, network) {
     }
 
     if (!_.isUndefined(network)) {
-        var error = HDPrivateKey._validateNetwork(data, network)
+        const error = HDPrivateKey._validateNetwork(data, network)
 
         if (error) {
             return error
@@ -387,13 +389,13 @@ HDPrivateKey.getSerializedError = function (data, network) {
 }
 
 HDPrivateKey._validateNetwork = function (data, networkArg) {
-    var network = Network.get(networkArg)
+    const network = Network.get(networkArg)
 
     if (!network) {
         return new Errors.InvalidNetworkArgument(networkArg)
     }
 
-    var version = data.slice(0, 4)
+    const version = data.slice(0, 4)
 
     if (_integerFromBuffer(version) !== network.xprivkey) {
         return new Errors.InvalidNetwork(version)
@@ -418,7 +420,7 @@ HDPrivateKey.prototype._buildFromJSON = function (arg) {
 
 HDPrivateKey.prototype._buildFromObject = function (arg) {
     // TODO: Type validation
-    var buffers = {
+    const buffers = {
         version: arg.network ? _integerAsBuffer(Network.get(arg.network).xprivkey) : Buffer.from(arg.version),
         depth: _.isNumber(arg.depth) ? _integerAsSingleByteBuffer(arg.depth) : Buffer.from(arg.depth),
         parentFingerPrint: _.isNumber(arg.parentFingerPrint) ? _integerAsBuffer(arg.parentFingerPrint) : Buffer.from(arg.parentFingerPrint),
@@ -432,9 +434,9 @@ HDPrivateKey.prototype._buildFromObject = function (arg) {
 }
 
 HDPrivateKey.prototype._buildFromSerialized = function (arg) {
-    var decoded = Base58Check.decode(arg)
+    const decoded = Base58Check.decode(arg)
 
-    var buffers = {
+    const buffers = {
         version: decoded.slice(HDPrivateKey.VersionStart, HDPrivateKey.VersionEnd),
         depth: decoded.slice(HDPrivateKey.DepthStart, HDPrivateKey.DepthEnd),
         parentFingerPrint: decoded.slice(HDPrivateKey.ParentFingerPrintStart,
@@ -477,7 +479,7 @@ HDPrivateKey.fromSeed = function (hexa, network) {
         throw new hdErrors.InvalidEntropyArgument.TooMuchEntropy(hexa)
     }
 
-    var hash = Hash.sha512hmac(hexa, Buffer.from('Bitcoin seed'))
+    const hash = Hash.sha512hmac(hexa, Buffer.from('Bitcoin seed'))
 
     return new HDPrivateKey({
         network: Network.get(network) || Network.defaultNetwork,
@@ -491,7 +493,7 @@ HDPrivateKey.fromSeed = function (hexa, network) {
 
 HDPrivateKey.prototype._calcHDPublicKey = function () {
     if (!this._hdPublicKey) {
-        var HDPublicKey = require('./hdpublickey')
+        const HDPublicKey = require('./hdpublickey')
         this._hdPublicKey = new HDPublicKey(this)
     }
 }
@@ -519,12 +521,12 @@ HDPrivateKey.prototype._buildFromBuffers = function (arg) {
         _buffers: arg
     })
 
-    var sequence = [
+    const sequence = [
         arg.version, arg.depth, arg.parentFingerPrint, arg.childIndex, arg.chainCode,
         _emptyBuffer(1), arg.privateKey,
     ]
 
-    var concat = Buffer.concat(sequence)
+    const concat = Buffer.concat(sequence)
 
     if (!arg.checksum || !arg.checksum.length) {
         arg.checksum = Base58Check.checksum(concat)
@@ -534,15 +536,15 @@ HDPrivateKey.prototype._buildFromBuffers = function (arg) {
         }
     }
 
-    var network = Network.get(_integerFromBuffer(arg.version))
-    var xprivkey
+    const network = Network.get(_integerFromBuffer(arg.version))
+    let xprivkey
     xprivkey = Base58Check.encode(Buffer.concat(sequence))
     arg.xprivkey = Buffer.from(xprivkey)
 
-    var privateKey = new PrivateKey(BN.fromBuffer(arg.privateKey), network)
-    var publicKey = privateKey.toPublicKey()
-    var size = HDPrivateKey.ParentFingerPrintSize
-    var fingerPrint = Hash.sha256ripemd160(publicKey.toBuffer()).slice(0, size)
+    const privateKey = new PrivateKey(BN.fromBuffer(arg.privateKey), network)
+    const publicKey = privateKey.toPublicKey()
+    const size = HDPrivateKey.ParentFingerPrintSize
+    const fingerPrint = Hash.sha256ripemd160(publicKey.toBuffer()).slice(0, size)
 
     JSUtil.defineImmutable(this, {
         xprivkey: xprivkey,
@@ -577,8 +579,8 @@ HDPrivateKey.prototype._buildFromBuffers = function (arg) {
 }
 
 HDPrivateKey._validateBufferArguments = function (arg) {
-    var checkBuffer = function (name, size) {
-        var buff = arg[name]
+    const checkBuffer = function (name, size) {
+        const buff = arg[name]
 
         if (!Buffer.isBuffer(buff)) {
             throw new Error(name + ' argument is not a buffer.')

@@ -28,7 +28,7 @@ export default {
      * @return {Object|boolean} false if the argument is not a JSON string.
      */
     isValidJSON: function isValidJSON(arg) {
-        var parsed
+        let parsed
 
         if (!_.isString(arg)) {
             return false

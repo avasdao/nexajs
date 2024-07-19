@@ -47,7 +47,7 @@ Point.prototype = Object.getPrototypeOf(ec.curve.point())
  */
 Point.fromX = function (odd, x) {
     try {
-        var point = ecPointFromX(x, odd)
+        const point = ecPointFromX(x, odd)
     } catch (e) {
         throw new Error('Invalid X')
     }
@@ -119,7 +119,7 @@ Point.prototype.validate = function () {
         throw new Error('Point cannot be equal to Infinity')
     }
 
-    var p2
+    let p2
 
     try {
         p2 = ecPointFromX(this.getX(), this.getY().isOdd())
