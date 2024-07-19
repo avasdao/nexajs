@@ -661,10 +661,10 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
   integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
 
-"@nexajs/wallet@24.7.17":
-  version "24.7.17"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.7.17.tgz#0dc9918966546083c2c29a50efe55a1efd8ab3f6"
-  integrity sha512-WTcSJSLoAjN8aUwY88B4uw3IMiUr9TcY8gsFpH++ubl4O2b3xjF5eMMdTkIJJm0zahNHrDV/cC1row/Ph21pMQ==
+"@nexajs/wallet@24.7.18":
+  version "24.7.18"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.7.18.tgz#db2fad86ddfc7b994fcc90e7eb91150b965c2e40"
+  integrity sha512-mZO6SBNK58POC2Yo2ARXgtzmSCBKp7yWO5Mv2BnruedbipoVfjuQ56/ZAQz+mS6u/IezOs8NXWuph653XcWznQ==
   dependencies:
     "@nexajs/address" "24.7.17"
     "@nexajs/crypto" "24.7.17"
@@ -1610,9 +1610,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.4.820:
-  version "1.4.830"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.830.tgz#a11899bc3343bc28f57a87fcf83060e0d28038d4"
-  integrity sha512-TrPKKH20HeN0J1LHzsYLs2qwXrp8TF4nHdu4sq61ozGbzMpWhI7iIOPYPPkxeq1azMT9PZ8enPFcftbs/Npcjg==
+  version "1.4.831"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.831.tgz#4a39a209d113f5d99c1567865e5aea54d80a9bc5"
+  integrity sha512-6cKy9msoQGWhBF30n6y5ck80BdunKdwMRugM1lr74DMMXhjDRxSwMvrD1ncPP+n1PjF+KKmZZydvEF29skNZ1Q==
 
 elliptic@6.5.4:
   version "6.5.4"
