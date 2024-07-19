@@ -226,12 +226,12 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@24.7.15":
-  version "24.7.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.15.tgz#361919f1949532536c2ce289db428dbdb3dd068f"
-  integrity sha512-oxlDqfZ72rZ23M0HNe5fYt0926xs+aF8o8aX9SFJwafKBZnQ/drhmErm4RhywTAsAD+1ApVDmpyCMVdl0cQviA==
+"@nexajs/address@24.7.16":
+  version "24.7.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.16.tgz#171547bcbcaf6bfc809ce562918f801d58a44bcc"
+  integrity sha512-uN2QCVEVS3dpWO7ms1NSMiImIXi0eZzQXzCtGUVibq7/OP/pr0Z3SeSC+OyE6qcO8txXsrjc/HcHsVQguZdlUw==
   dependencies:
-    "@nexajs/crypto" "24.7.15"
+    "@nexajs/crypto" "24.7.16"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
@@ -240,10 +240,10 @@
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/crypto@24.7.15":
-  version "24.7.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.15.tgz#9a0a764cbcd3458e186187a7c937673a765df541"
-  integrity sha512-ax8VSO6GPeIoW7sk6jNNw3kcp1PboYrfYv5DHo23KqXa0VXXX5rSB8K72+nJ62WmXfEMgcTyJPAxs/Y9YvHVeA==
+"@nexajs/crypto@24.7.16":
+  version "24.7.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.16.tgz#1f155dd90a01fc25976c0137dc6968ce44e464e6"
+  integrity sha512-grFLKAr1SlE/ZVJSQNSCnSj6ht4BO94VnZoNSYEuNu8/eR5i6pkuzarmN27b8l7xoVY0yT39AIpVyDC86ZRpJw==
   dependencies:
     "@ethersproject/random" "5.7.0"
     "@nexajs/utils" "24.7.15"
@@ -255,14 +255,14 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@24.7.15":
-  version "24.7.15"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.7.15.tgz#dcdd4f8dd4de2df6045006caaf817a8a23d7afce"
-  integrity sha512-O5EXikiKzn+GGhgD+V0Dfb8e7/lX1sCD+8UtRzaHZIj7SxhQa3RM6NLlOsUlMLHaet+rXcLZQwU1dl4vnlcZyA==
+"@nexajs/hdnode@24.7.16":
+  version "24.7.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.7.16.tgz#5d90cfeea51be3c370e08585c621b38dc7007a35"
+  integrity sha512-hJzTbUlXI1pFIO9nHGbq5a1WO1HMMB1Km9xaEUHlUY77Sw+6WVdvhf6jYS4yhxEknjPOW4RregqfeOFskJUvUw==
   dependencies:
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "24.7.15"
-    "@nexajs/crypto" "24.7.15"
+    "@nexajs/address" "24.7.16"
+    "@nexajs/crypto" "24.7.16"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
 
