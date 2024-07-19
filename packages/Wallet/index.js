@@ -3,6 +3,7 @@ import { EventEmitter } from 'events'
 
 /* Import (library) modules. */
 import {
+    Point,
     randomBytes,
     ripemd160,
     sha256,
@@ -66,6 +67,33 @@ const DEFAULT_ACCOUNT_IDX = `0'`
 const DEFAULT_CHANGE = '0'
 const DEFAULT_ADDRESS_IDX = '0'
 
+// FIXME Handle "safe" key search, based on secp256k1 spec.
+/**
+ * Get ECDSA Random Number
+ *
+ * Will return the max of range of valid private keys as governed by the secp256k1 ECDSA standard.
+ */
+const _getECDSARandom = function(){
+    /* Initialize locals. */
+    let condition
+    let bn
+
+    /* Start searching. */
+    do {
+        /* Set private key buffer. */
+        const privbuf = randomBytes(32)
+
+        /* Conver to BigNumber. */
+        bn = BN.fromBuffer(privbuf)
+
+        /* Validate condition. */
+        condition = bn.lt(Point.getN())
+    } while (!condition)
+
+    /* Return BigNumber. */
+    return Uint8Array.from(bn)
+}
+
 
 /**
  * Wallet Class
@@ -112,7 +140,7 @@ const DEFAULT_ADDRESS_IDX = '0'
 export class Wallet extends EventEmitter {
     constructor(_primary, _secondary) {
         /* Initialize Wallet class. */
-        console.info('Initializing Wallet...')
+        // console.info('Initializing Wallet...')
         // console.log(JSON.stringify(_primary, null, 2))
         // console.log(JSON.stringify(_secondary, null, 2))
         super()

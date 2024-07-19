@@ -61,12 +61,14 @@ export default function (_addressIdx = '0', _isChange) {
 
     /* Derive a child from the Master node */
     child = deriveHdPath(
-        node,
+        seed, // FIXME Derive from parent `node`.
         `m/${this._coinPurpose}/${this._coinType}/${this._accountIdx}/${changeIdx}/${_addressIdx}`
     )
 
+    const childKey = child.privateKey.toString()
+
     /* Set private key. */
-    privateKey = child.privateKey
+    privateKey = hexToBin(childKey)
 
     /* Derive the corresponding public key. */
     publicKey = derivePublicKeyCompressed(privateKey)
