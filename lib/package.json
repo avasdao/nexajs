@@ -23,7 +23,7 @@
     "@nexajs/request": "23.5.15",
     "@nexajs/rostrum": "24.6.23",
     "@nexajs/rpc": "23.5.15",
-    "@nexajs/script": "24.7.11",
+    "@nexajs/script": "24.7.15",
     "@nexajs/token": "24.7.12",
     "@nexajs/transaction": "24.7.12",
     "@nexajs/utils": "24.7.15",
