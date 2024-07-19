@@ -162,7 +162,7 @@ export const useWalletStore = defineStore('wallet', {
             let wif
 
             /* Encode Private Key WIF. */
-            wif = encodePrivateKeyWif({ hash: sha256 }, _state._wallet.privateKey, 'mainnet')
+            wif = encodePrivateKeyWif(_state._wallet.privateKey, 'mainnet')
 
             /* Hash (contract) script. */
             scriptHash = ripemd160(sha256(STAKELINE_V1_SCRIPT))
@@ -270,7 +270,7 @@ export const useWalletStore = defineStore('wallet', {
             console.info('\n  Nexa address:', this.address)
 
             /* Encode Private Key WIF. */
-            wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
+            wif = encodePrivateKeyWif(this._wallet.privateKey, 'mainnet')
 
             /* Reques header's tip. */
             headersTip = await getTip()
@@ -356,7 +356,7 @@ export const useWalletStore = defineStore('wallet', {
             let wif
 
             /* Encode Private Key WIF. */
-            wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
+            wif = encodePrivateKeyWif(this._wallet.privateKey, 'mainnet')
 
             scriptHash = ripemd160(sha256(STAKELINE_V1_SCRIPT))
             console.log('SCRIPT HASH', binToHex(scriptHash))

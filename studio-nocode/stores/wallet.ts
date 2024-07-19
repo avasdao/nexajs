@@ -173,7 +173,7 @@ export const useWalletStore = defineStore('wallet', {
             }
 
             /* Encode Private Key WIF. */
-            this._wif = encodePrivateKeyWif({ hash: sha256 }, this._wallet.privateKey, 'mainnet')
+            this._wif = encodePrivateKeyWif(this._wallet.privateKey, 'mainnet')
 
             // Fetch all unspent transaction outputs for the temporary in-browser wallet.
             unspent = await listUnspent(this.address)

@@ -61,7 +61,7 @@ export default async (_wallet, isLive = false) => {
     let wif
 
     /* Encode Private Key WIF. */
-    wif = encodePrivateKeyWif({ hash: sha256 }, _wallet.privateKey, 'mainnet')
+    wif = encodePrivateKeyWif(_wallet.privateKey, 'mainnet')
     // console.log('WIF', wif)
 
     coins = await getCoins(wif)

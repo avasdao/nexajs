@@ -1,6 +1,5 @@
 /* Import modules. */
 import { encodeBase58AddressFormat } from '@nexajs/address'
-import { sha256 } from '@nexajs/crypto'
 
 /**
  * Encode a private key using Wallet Import Format (WIF).
@@ -19,27 +18,24 @@ import { sha256 } from '@nexajs/crypto'
  * payload prior to encoding. For the uncompressed construction, the extra byte
  * is omitted.
  *
- * @param sha256 - an implementation of sha256 (a universal implementation is
- * available via `instantiateSha256`)
  * @param privateKey - a 32-byte Secp256k1 ECDSA private key
  * @param type - the intended usage of the private key (e.g. `mainnet` or
  * `testnet`)
  */
 export default (
     privateKey,
-    type
+    type,
 ) => {
     const compressedByte = 0x01
     const mainnet = type === 'mainnet' || type === 'mainnet-uncompressed'
     const compressed = type === 'mainnet' || type === 'testnet'
     const payload = compressed
-        ? Uint8Array.from([...privateKey, compressedByte])
+        ? Uint8Array.from([ ...privateKey, compressedByte ])
         : privateKey
     const version = 35 // `0x23` NOTE: Bitcoin Cash is `128`/`0x80`.
 
     return encodeBase58AddressFormat(
-        // sha256,
         version,
-        payload
+        payload,
     )
 }

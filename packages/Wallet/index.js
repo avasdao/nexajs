@@ -482,7 +482,7 @@ export class Wallet extends EventEmitter {
     get wif() {
         if (!this.privateKey) return null
 
-        return encodePrivateKeyWif({ hash: sha256 }, this.privateKey, 'mainnet')
+        return encodePrivateKeyWif(this.privateKey, 'mainnet')
     }
 
     async build(_tokenid, _receiver, _amount) {
