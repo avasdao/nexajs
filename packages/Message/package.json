@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@nexajs/crypto": "24.7.15",
-    "@nexajs/hdnode": "24.7.12",
+    "@nexajs/hdnode": "24.7.15",
     "@nexajs/utils": "24.7.15",
     "events": "3.3.0"
   }
