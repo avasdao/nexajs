@@ -226,45 +226,45 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@24.7.12":
-  version "24.7.12"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.12.tgz#df69f94990cdfdad6270031c921f9b0780f3698a"
-  integrity sha512-VflE0S7jrNXptloRgEg8Hl/xEfCiQ/pPaJ//VOcQvZfC05cObIq1aWeuYt7W8eUxixt6cUx6YyGR9jqkYnHSeg==
+"@nexajs/address@24.7.15":
+  version "24.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.7.15.tgz#361919f1949532536c2ce289db428dbdb3dd068f"
+  integrity sha512-oxlDqfZ72rZ23M0HNe5fYt0926xs+aF8o8aX9SFJwafKBZnQ/drhmErm4RhywTAsAD+1ApVDmpyCMVdl0cQviA==
   dependencies:
-    "@nexajs/crypto" "24.7.11"
+    "@nexajs/crypto" "24.7.15"
     "@nexajs/rostrum" "24.6.23"
-    "@nexajs/script" "24.7.11"
-    "@nexajs/utils" "24.7.11"
+    "@nexajs/script" "24.7.15"
+    "@nexajs/utils" "24.7.15"
     big-integer "1.6.51"
     graphql "16.6.0"
     graphql-ws "5.12.0"
     ws "8.13.0"
 
-"@nexajs/crypto@24.7.11":
-  version "24.7.11"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.11.tgz#dc0c01031aff3d4f9b3ce3b559449b0731316223"
-  integrity sha512-aKABYb63JenF8k8hk7ZHkwOCxvzcmdK1lBZoeMFLXYmMFDjxecnhaTjpz3m7k78Dun2YGUNEZhyayP0M/1bWng==
+"@nexajs/crypto@24.7.15":
+  version "24.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.15.tgz#9a0a764cbcd3458e186187a7c937673a765df541"
+  integrity sha512-ax8VSO6GPeIoW7sk6jNNw3kcp1PboYrfYv5DHo23KqXa0VXXX5rSB8K72+nJ62WmXfEMgcTyJPAxs/Y9YvHVeA==
   dependencies:
     "@ethersproject/random" "5.7.0"
-    "@nexajs/utils" "24.7.11"
+    "@nexajs/utils" "24.7.15"
     bn.js "5.2.1"
+    bs58 "6.0.0"
     crypto-js "4.2.0"
     elliptic "6.5.5"
-    events "3.3.0"
     lodash "4.17.21"
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@24.7.12":
-  version "24.7.12"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.7.12.tgz#c882014e8bf5b5bf7e9e0a826d7c1b935bdaf313"
-  integrity sha512-nwJM5DIiSZvsSE3BwpMdXP4rhCPkmH8GhiQdZQON3pzFvfGEXFnYSga0oqzil1qOOqL1wgd/XQB4Lq3/q1bp6A==
+"@nexajs/hdnode@24.7.15":
+  version "24.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.7.15.tgz#dcdd4f8dd4de2df6045006caaf817a8a23d7afce"
+  integrity sha512-O5EXikiKzn+GGhgD+V0Dfb8e7/lX1sCD+8UtRzaHZIj7SxhQa3RM6NLlOsUlMLHaet+rXcLZQwU1dl4vnlcZyA==
   dependencies:
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "24.7.12"
-    "@nexajs/crypto" "24.7.11"
-    "@nexajs/script" "24.7.11"
-    "@nexajs/utils" "24.7.11"
+    "@nexajs/address" "24.7.15"
+    "@nexajs/crypto" "24.7.15"
+    "@nexajs/script" "24.7.15"
+    "@nexajs/utils" "24.7.15"
 
 "@nexajs/rostrum@24.6.23":
   version "24.6.23"
@@ -276,17 +276,22 @@
     uuid "9.0.0"
     ws "8.12.1"
 
-"@nexajs/script@24.7.11":
-  version "24.7.11"
-  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-24.7.11.tgz#226e1a7ca4e8b61f3b665cbbbb8c426283a63c40"
-  integrity sha512-BpKFLhlbkekrLL3AA66/UJqrYcbR/9fbfYRW43skXt2PUSTo5jkxzFUWctsMHdeuZAQlyjCUFYPKqe1OCME25g==
+"@nexajs/script@24.7.15":
+  version "24.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-24.7.15.tgz#2af82c392805c8a1e9794d77d4e0b962f8b8daed"
+  integrity sha512-mhGqfT7EAQMfxTx4v6FgPKzCQvo/Thy5XMXxREXJ5I8LccVKce/OiWVllWs73BXUd8BbTVrERuhTwj1EMnNPqw==
   dependencies:
-    "@nexajs/utils" "24.7.11"
+    "@nexajs/utils" "24.7.15"
 
-"@nexajs/utils@24.7.11":
-  version "24.7.11"
-  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.11.tgz#441d0727e7b25d624ea495b232437cc1b26dbf9b"
-  integrity sha512-gf2e/ZzrZSKr5QWNkgP3Ri1Ig2RHjy1nTtug9duxBuC2QK8//fJnAFffWeVTkRubKt0i2SMGCQkRhfEiTrGE1w==
+"@nexajs/utils@24.7.15":
+  version "24.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
+  integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
+
+base-x@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/base-x/-/base-x-5.0.0.tgz#6d835ceae379130e1a4cb846a70ac4746f28ea9b"
+  integrity sha512-sMW3VGSX1QWVFA6l8U62MLKz29rRfpTlYdCqLdpLo1/Yd4zZwSbnUaDfciIAowAqvq7YFnWq9hrhdg1KYgc1lQ==
 
 big-integer@1.6.51:
   version "1.6.51"
@@ -307,6 +312,13 @@ brorand@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha512-cKV8tMCEpQs4hK/ik71d6LrPOnpkpGBR0wzxqr68g2m/LB2GxVYQroAjMJZRVM1Y4BCjCKc3vAamxSzOY2RP+w==
+
+bs58@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/bs58/-/bs58-6.0.0.tgz#a2cda0130558535dd281a2f8697df79caaf425d8"
+  integrity sha512-PD0wEnEYg6ijszw/u8s+iI3H17cTymlrwkKhDhPZq+Sokl3AU4htyBFTjAeNAlCCmg0f53g6ih3jATyCKftTfw==
+  dependencies:
+    base-x "^5.0.0"
 
 crypto-js@4.2.0:
   version "4.2.0"
