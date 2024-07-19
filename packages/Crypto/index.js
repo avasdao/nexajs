@@ -1,6 +1,3 @@
-/* Import modules. */
-import { EventEmitter } from 'events'
-
 /* Import (local) modules. */
 import _decrypt from './src/decrypt.js'
 import _derivePublicKeyCompressed from './src/derivePublicKeyCompressed.js'
@@ -69,15 +66,8 @@ import './libs/Buffer.js'
  *
  * Manages crypto functions.
  */
-export class Crypto extends EventEmitter {
-    constructor(_params) {
-        /* Initialize Crypto class. */
-        // console.info('Initializing Crypto...')
-        // console.log(JSON.stringify(_params, null, 2))
-        super()
-
-        // TBD
-    }
+export class Crypto {
+    // NOTE: We won't use a constructor, as this is a "pure" class.
 
     test() {
         return 'Crypto (Instance) is working!'

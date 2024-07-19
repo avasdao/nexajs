@@ -10,7 +10,7 @@
   "dependencies": {
     "@ethersproject/hdnode": "5.7.0",
     "@nexajs/address": "24.7.12",
-    "@nexajs/crypto": "24.7.11",
+    "@nexajs/crypto": "24.7.15",
     "@nexajs/script": "24.7.11",
     "@nexajs/utils": "24.7.15"
   }

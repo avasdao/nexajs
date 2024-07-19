@@ -14,7 +14,6 @@
     "bs58": "6.0.0",
     "crypto-js": "4.2.0",
     "elliptic": "6.5.5",
-    "events": "3.3.0",
     "lodash": "4.17.21",
     "scrypt-js": "3.0.1",
     "secure-ls": "1.2.6"
