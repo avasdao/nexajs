@@ -3,6 +3,7 @@ import { EventEmitter } from 'events'
 
 /* Import (library) modules. */
 import {
+    derivePublicKeyCompressed,
     Point,
     randomBytes,
     ripemd160,
@@ -457,8 +458,11 @@ export class Wallet extends EventEmitter {
             this.path,
         )
 
-        /* Return (child) private key. */
-        return child.privateKey
+        // NOTE: Convert from `bitcore` format to `Uint8Array`.
+        const privateKeyMod = hexToBin(child.privateKey.toString())
+
+        /* Return (child) private key (MOD). */
+        return privateKeyMod
     }
 
     get publicKey() {
@@ -468,7 +472,7 @@ export class Wallet extends EventEmitter {
         }
 
         /* Return public key. */
-        return secp256k1.derivePublicKeyCompressed(this.privateKey)
+        return derivePublicKeyCompressed(this.privateKey)
     }
 
     get status() {
