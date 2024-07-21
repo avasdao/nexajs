@@ -23,8 +23,10 @@ const ecPointFromX = ec.curve.pointFromX.bind(ec.curve)
  * @constructor
  */
 const Point = function (x, y, isRed) {
+    let point
+
     try {
-        const point = ecPoint(x, y, isRed)
+        point = ecPoint(x, y, isRed)
     } catch (e) {
         throw new Error('Invalid Point')
     }
@@ -46,8 +48,10 @@ Point.prototype = Object.getPrototypeOf(ec.curve.point())
  * @returns {Point} An instance of Point
  */
 Point.fromX = function (odd, x) {
+    let point
+
     try {
-        const point = ecPointFromX(x, odd)
+        point = ecPointFromX(x, odd)
     } catch (e) {
         throw new Error('Invalid X')
     }
@@ -154,6 +158,7 @@ Point.pointToCompressed = function (point) {
     }
 
     zbuf = new Uint8Array([ ...prefix, ...xbuf ])
+
     return Buffer.from(zbuf)
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/address",
-  "version": "24.7.17",
+  "version": "24.7.20",
   "description": "A comprehensive suite of Address querying, monitoring and formatting utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@nexajs/crypto": "24.7.17",
+    "@nexajs/crypto": "24.7.20",
     "@nexajs/rostrum": "24.6.23",
     "@nexajs/script": "24.7.15",
     "@nexajs/utils": "24.7.15",
