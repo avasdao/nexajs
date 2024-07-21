@@ -1,7 +1,9 @@
-/* Import core modules. */
-const crypto = require('crypto')
-const PrivateKey = require('bitcore-lib-cash').PrivateKey
-const PublicKey = require('bitcore-lib-cash').PublicKey
+/* Import modules. */
+import {
+    PrivateKey,
+    PublicKey,
+} from '@nexajs/crypto'
+
 
 /**
  * Generate Keypair

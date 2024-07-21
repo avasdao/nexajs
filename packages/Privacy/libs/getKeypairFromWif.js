@@ -1,6 +1,6 @@
-/* Import core modules. */
-const bch = require('bitcore-lib-cash')
-const Nito = require('nitojs')
+/* Import modules. */
+import Nexa from '@nexajs'
+
 
 /**
  * Get Keypair from WIF

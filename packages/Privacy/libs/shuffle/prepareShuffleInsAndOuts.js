@@ -1,7 +1,6 @@
-/* Import core modules. */
-const _ = require('lodash')
-const bch = require('bitcore-lib-cash')
-const Nito = require('nitojs')
+/* Import modules. */
+import _ from 'lodash'
+import Nexa from '@nexajs'
 
 /* Set dust threshold. */
 const DUST_THRESHOLD = 546

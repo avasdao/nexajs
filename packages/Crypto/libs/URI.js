@@ -3,9 +3,10 @@ import _ from 'lodash'
 import URL from 'url'
 
 /* Import (local) modules. */
-// var Address = require('./address')
-// var Networks = require('./networks')
-var Unit = require('./Unit')
+// import Address from './Address.js'
+import Network from './Network.js'
+// import Unit from './Unit.js'
+
 
 /**
  * Nexcore URI

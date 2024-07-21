@@ -20,8 +20,6 @@ export default {
 
         if (_.isString(type)) {
             if (type === 'Buffer') {
-                var buffer = require('buffer') // './buffer' fails on cordova & RN
-
                 if (!Buffer.isBuffer(argument)) {
                     throw new errors.InvalidArgumentType(argument, type, argumentName)
                 }

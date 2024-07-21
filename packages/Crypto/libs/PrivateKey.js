@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 /* Import (local) modules. */
 import $ from '../utils/preconditions.js'
+// import Address from './Address.js'
 import Base58Check from './Base58Check.js'
 import BN from './BN.js'
 import JSUtil from './JS.js'
@@ -11,7 +12,6 @@ import Point from './Point.js'
 import PublicKey from './PublicKey.js'
 import { randomBytes } from '../index.js'
 
-// const Address = require('./address');
 
 /**
  * Instantiate a PrivateKey from a BN, Buffer and WIF.

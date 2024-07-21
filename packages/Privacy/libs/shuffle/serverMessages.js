@@ -1,18 +1,11 @@
 /* Import modules. */
 import _ from 'lodash'
+import Message from '../../src/Message.js'
 import path from 'path'
-
-/* Import core modules. */
-// const _ = require('lodash')
-// const bch = require('bitcore-lib-cash')
-// const path = require('path')
-// const protobuf = require('protobufjs')
 
 /* Import local modules. */
 import handleMessageBuffer from './handleMessageBuffer.js'
 import messageToBuffers from './messageToBuffers.js'
-
-const BetterMessage = require('./BetterMessage.js')
 
 /* Initialize magic (bytes). */
 const magic = Buffer.from('42bcc32669467873', 'hex')

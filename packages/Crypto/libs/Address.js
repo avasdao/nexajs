@@ -3,20 +3,16 @@ import _ from 'lodash'
 
 /* Import (local) modules. */
 import $ from '../utils/preconditions.js'
+import Base58Check from './Base58Check.js'
 import BN from './BN.js'
+import Errors from '../errors/index.js'
 import Hash from './Hash.js'
 import JSUtil from './JS.js'
 import Network from './Network.js'
+import Point from './Point.js'
 import PublicKey from './PublicKey.js'
 
 // const Script = require('./script')
-
-// import Point from './Point.js'
-// import { randomBytes } from '../index.js'
-
-
-// var errors = require('./errors');
-// var Base58Check = require('./encoding/base58check');
 
 // var base32 = require('./util/base32');
 // var convertBits = require('./util/convertBits');

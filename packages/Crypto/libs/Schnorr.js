@@ -3,18 +3,17 @@
 // https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/2019-11-15-schnorrmultisig.md#wallet-implementation-guidelines
 
 /* Import modules. */
+import _ from 'lodash'
+
+/* Import modules. */
+import $ from '../utils/preconditions.js'
 import BN from './bn.js'
 import Hash from './hash.js'
 import Point from './point.js'
-import $ from '../utils/preconditions.js'
+import PublicKey from './PublicKey.js'
+import Signature from './Signature.js'
 
-var Signature = require('./signature')
-var PublicKey = require('../publickey')
-
-var Random = require('./random')
-var BufferUtil = require('../util/buffer')
-var _ = require('lodash')
-
+// import { randomBytes } from '../index.js'
 
 const Schnorr = function (obj) {
     if (!(this instanceof Schnorr)) {
@@ -95,7 +94,7 @@ Schnorr.prototype.sign = function () {
     var d = privkey.bn
 
     $.checkState(hashbuf && privkey && d, new Error('invalid parameters'))
-    $.checkState(BufferUtil.isBuffer(hashbuf) && hashbuf.length === 32, new Error('hashbuf must be a 32 byte buffer'))
+    $.checkState(Buffer.isBuffer(hashbuf) && hashbuf.length === 32, new Error('hashbuf must be a 32 byte buffer'))
 
     var e = BN.fromBuffer(hashbuf, this.endian ? {
         endian: this.endian
@@ -177,7 +176,7 @@ Schnorr.prototype._findSignature = function (_privkey, _hashbuf) {
 
 
 Schnorr.prototype.sigError = function () {
-    if (!BufferUtil.isBuffer(this.hashbuf) || this.hashbuf.length !== 32) {
+    if (!Buffer.isBuffer(this.hashbuf) || this.hashbuf.length !== 32) {
         return 'hashbuf must be a 32 byte buffer'
     }
 
@@ -187,7 +186,7 @@ Schnorr.prototype.sigError = function () {
         return 'signature must be a 64 byte or 65 byte array'
     }
 
-    let hashbuf = this.endian === 'little' ? BufferUtil.reverse(this.hashbuf) : this.hashbuf
+    let hashbuf = this.endian === 'little' ? Buffer.reverse(this.hashbuf) : this.hashbuf
 
     let P = this.pubkey.point
     let G = Point.getG()

@@ -8,6 +8,7 @@ import Base58Check from './Base58Check.js'
 import BN from './BN.js'
 import Errors from '../errors/index.js'
 import Hash from './Hash.js'
+import HDPublicKey from './HDPublicKey.js'
 import JSUtil from './JS.js'
 import Network from './Network.js'
 import Point from './Point.js'
@@ -493,7 +494,6 @@ HDPrivateKey.fromSeed = function (hexa, network) {
 
 HDPrivateKey.prototype._calcHDPublicKey = function () {
     if (!this._hdPublicKey) {
-        const HDPublicKey = require('./hdpublickey')
         this._hdPublicKey = new HDPublicKey(this)
     }
 }

@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 /* Import (local) modules. */
 import $ from '../utils/preconditions.js'
+// import Address from './Address.js'
 import BN from './BN.js'
 import Hash from './Hash.js'
 import JSUtil from './JS.js'
@@ -394,8 +395,6 @@ PublicKey.prototype._getID = function () {
  * @returns {Address} An address generated from the public key
  */
 PublicKey.prototype.toAddress = function (network, type) {
-    // FIXME
-    // const Address = require('./address') // FIXME
     return Address.fromPublicKey(this, network || this.network, type || Address.PayToScriptTemplate)
 }
 

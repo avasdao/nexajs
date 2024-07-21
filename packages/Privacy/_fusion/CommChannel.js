@@ -1,11 +1,12 @@
-/* Import core modules. */
-// const _ = require('lodash')
-const EventEmitter = require('events').EventEmitter
-const moment = require('moment')
-const WebSocket = require('ws')
+/* Import modules. */
+import _ from 'lodash'
+import { EventEmitter } from 'events'
+import moment from 'moment'
+import WebSocket from 'ws'
 
 /* Import local modules. */
-const serverMessages = require('./serverMessages.js')
+import serverMessages from './serverMessages.js'
+
 
 /**
  * Communications Channel (Class)

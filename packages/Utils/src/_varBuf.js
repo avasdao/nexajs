@@ -1,9 +1,7 @@
-const Utils = require('.')
-
 /**
  * Variable Buffer
  */
-const varBuf = (_buffer) => {
+export default (_buffer) => {
     /* Validate buffer. */
     if (typeof _buffer === 'string') {
         _buffer = Buffer.from(_buffer, 'hex')
@@ -18,6 +16,3 @@ const varBuf = (_buffer) => {
     /* Return the variable buffer encoded data. */
     return result
 }
-
-/* Export module. */
-module.exports = varBuf

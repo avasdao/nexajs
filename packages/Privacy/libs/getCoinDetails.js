@@ -1,5 +1,6 @@
-/* Import core modules. */
-const Nito = require('nitojs')
+/* Import modules. */
+import Nexa from '@nexajs'
+
 
 /**
  * Get Coin Details
