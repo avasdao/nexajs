@@ -1,10 +1,5 @@
 /* Import modules. */
-// import { sha256 } from '@nexajs/crypto'
-// import { encodePrivateKeyWif } from '@nexajs/hdnode'
-
 import { encodeAddress } from '@nexajs/address'
-
-// import { sha256 } from '@nexajs/crypto'
 
 import {
     getCoins,
