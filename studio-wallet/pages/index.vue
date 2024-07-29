@@ -33,10 +33,16 @@ const displayBalance = computed(() => {
     if (Wallet.asset.group === '0') {
         decimalValue = Wallet.asset.satoshis * BigInt(1e4)
     } else {
+        /* Validate amount type. */
+        if (typeof Wallet.asset.amount !== 'bigint') {
+            decimalValue = BigInt(0)
+        } else {
+            decimalValue = Wallet.asset.amount * BigInt(1e4)
+        }
         decimalValue = Wallet.asset.amount * BigInt(1e4)
     }
 
-    if (Wallet.asset.decimal_places > 0) {
+    if (Wallet.asset?.decimal_places > 0) {
         bigIntValue = decimalValue / BigInt(10**Wallet.asset.decimal_places)
     } else {
         bigIntValue = decimalValue

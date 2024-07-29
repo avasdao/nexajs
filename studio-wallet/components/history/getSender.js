@@ -40,7 +40,6 @@ export default (_input) => {
         OP.ONE,
         ...encodeDataPush(publicKeyHash)
     ])
-    // const scriptPubKey = hexToBin('17005114' + binToHex(publicKeyHash))
 
     /* Generate address. */
     address = encodeAddress(

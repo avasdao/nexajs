@@ -63,4 +63,7 @@ export default defineNuxtConfig({
         // NOTE: We need this to make <token>.json files available to web apps.
         '/**': { cors: true },
     },
+
+    /* Set compatibility date. */
+    compatibilityDate: '2024-07-04',
 })

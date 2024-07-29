@@ -15,7 +15,7 @@
     "moment": "2.29.4",
     "nexajs": "24.7.20",
     "numeral": "2.0.6",
-    "nuxt": "3.7.4",
+    "nuxt": "3.12.4",
     "pinia": "2.0.32",
     "qr-scanner": "1.4.2",
     "qrcode": "1.5.3",
@@ -28,7 +28,6 @@
     "@types/node": "18.14.2",
     "@types/pouchdb": "6.4.0",
     "@types/uuid": "9.0.1",
-    "postcss-custom-properties": "13.3.11",
     "tslib": "2.6.2"
   }
 }

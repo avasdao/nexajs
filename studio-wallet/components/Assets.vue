@@ -120,11 +120,16 @@ const displayDecimalAmount = (_token) => {
     if (_token.group === '0') {
         decimalValue = _token.satoshis * BigInt(1e4)
     } else {
-        decimalValue = _token.amount * BigInt(1e4)
+        /* Validate amount type. */
+        if (typeof _token.amount !== 'bigint') {
+            decimalValue = BigInt(0)
+        } else {
+            decimalValue = _token.amount * BigInt(1e4)
+        }
     }
 
     /* Handle UI (value) formatting. */
-    if (_token.decimal_places > 0) {
+    if (_token?.decimal_places > 0) {
         bigIntValue = decimalValue / BigInt(10**_token.decimal_places)
     } else {
         bigIntValue = decimalValue
