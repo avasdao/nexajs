@@ -8,7 +8,7 @@ export default async () => {
     let ticker
 
     /* Request ticker. */
-    response = await fetch('https://nexa.exchange/ticker')
+    response = await fetch('https://nexa.exchange/_ticker')
         .catch(err => console.error(err))
 
     /* Validate response. */

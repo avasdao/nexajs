@@ -95,7 +95,7 @@ export default async function (_fiat = 'USD') {
     // console.log('ASSETS', this.assets)
 
     /* Requet NEXA ticker. */
-    response = await fetch('https://nexa.exchange/ticker')
+    response = await fetch('https://nexa.exchange/_ticker')
         .catch(err => console.error(err))
 
     /* Validate response. */
