@@ -1,78 +1,21 @@
-/* Import core modules. */
-const crypto = require('crypto')
+/* Import modules. */
 const bigInt = require('big-integer')
+import { randomBytes } from '@nexajs/crypto'
+
+import ZkpMaths from './Maths.js'
 
 /* Initialize bit security. */
 const bitSecurity = 32
 
-/**
- * Big Math
- */
-const bigMath = {
-    /**
-     * Add
-     */
-    add(a, b, c) {
-        if (c) {
-            return bigInt(a.toString()).add(b.toString()).mod(c)
-        }
-
-        return bigInt(a.toString()).add(b.toString())
-    },
-
-    /**
-     * Subtract
-     */
-    subtract(a, b, c) {
-        if (c) {
-            return bigInt(a.toString()).sub(b.toString()).mod(c)
-        }
-
-        return bigInt(a.toString()).sub(b.toString())
-    },
-
-    /**
-     * Multiply
-     */
-    multiply(a, b, c)  {
-        if (c) {
-            return bigInt(a.toString()).multiply(b.toString()).mod(c)
-        }
-
-        return bigInt(a.toString()).multiply(b.toString())
-    },
-
-    /**
-     * Divide
-     */
-    divide(a, b, c) {
-        if (c) {
-            return bigInt(a.toString()).divide(b.toString()).mod(c)
-        }
-
-        return bigInt(a.toString()).divide(b.toString())
-    },
-
-    /**
-     * Power
-     */
-    power(p, s, c)  {
-        if (c) {
-            return bigInt(p.toString()).modPow(s, c)
-        }
-
-        return bigInt(p.toString()).pow(s)
-    }
-}
 
 /**
  * Pedersen (Class)
  */
-class Pedersen {
+export default class Pedersen {
     /**
      * Constructor
      */
-    constructor(p, g, absctractMath = bigMath) {
+    constructor(p, g, absctractMath = ZkpMaths) {
         /* Set abstraction math. */
         this.absctractMath = absctractMath
 
@@ -99,7 +42,7 @@ class Pedersen {
         /* Loop. */
         // NOTE: r value MUST be greater than zero, but less than p.
         while (r.compare(0) !== 1 || r.compare(this.p) !== -1) {
-            r = bigInt.fromArray([...crypto.randomBytes(bitSecurity)], 256)
+            r = bigInt.fromArray([ ...randomBytes(bitSecurity) ], 256)
             r = r.mod(this.p)
         }
 
@@ -193,6 +136,3 @@ class Pedersen {
         return [c.toString(16), r.toString(16)]
     }
 }
-
-/* Export module. */
-module.exports = Pedersen

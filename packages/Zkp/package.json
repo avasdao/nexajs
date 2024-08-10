@@ -1,10 +1,14 @@
 {
   "name": "@nexajs/zkp",
-  "version": "23.3.19",
-  "description": "TBD",
+  "version": "24.8.8",
+  "description": "Zero-knowledge proof utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NEXA.js developers",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@nexajs/crypto": "24.7.20",
+    "big-integer": "1.6.52"
+  }
 }

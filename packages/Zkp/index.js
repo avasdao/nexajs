@@ -1,11 +1,10 @@
 /* Import modules. */
-import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// TBD
+import _Pedersen from './src/Pedersen.js'
 
 /* Export (local) modules. */
-// TBD
+export const Pedersen = _Pedersen
 
 
 /**
@@ -13,15 +12,8 @@ import { EventEmitter } from 'events'
  *
  * Manages zero-knowledge proof functions.
  */
-export class Zkp extends EventEmitter {
-    constructor(_params) {
-        /* Initialize ZK class. */
-        // console.info('Initializing Zero-knowledge proof...')
-        // console.log(JSON.stringify(_params, null, 2))
-        super()
-
-        // TBD
-    }
+export class Zkp {
+    // NOTE: We won't use a constructor, as this is a "pure" class.
 
     test() {
         return 'Zero-knowledge proof (Instance) is working!'
@@ -37,6 +29,7 @@ const Nexa = {}
 
 /* Initialize Zkp class. */
 Nexa.Zkp = Zkp
+Nexa.Pedersen = Pedersen
 
 /* Initialize Zkp modules. */
 // TBD
