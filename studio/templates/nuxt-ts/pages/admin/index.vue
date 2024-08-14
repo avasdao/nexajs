@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 useHead({
-    title: `Blank — Nexa Studio`,
+    title: `Admin — Nexa Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -28,7 +28,7 @@ const System = useSystemStore()
 <template>
     <main class="max-w-5xl mx-auto py-5 flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Blank
+            Admin Dashboard
         </h1>
 
         <p>
