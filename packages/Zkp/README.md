@@ -1,3 +1,3 @@
-# NEXA.js Zero-knowledge Proof
+# NEXA.js Zero Knowledge Protocol
 
 TBD...

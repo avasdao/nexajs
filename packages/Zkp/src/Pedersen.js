@@ -1,5 +1,5 @@
 /* Import modules. */
-const bigInt = require('big-integer')
+import bigInt from 'big-integer'
 import { randomBytes } from '@nexajs/crypto'
 
 import ZkpMaths from './Maths.js'
@@ -15,9 +15,10 @@ export default class Pedersen {
     /**
      * Constructor
      */
-    constructor(p, g, absctractMath = ZkpMaths) {
+    constructor(p, g, AbsctractMath = ZkpMaths) {
         /* Set abstraction math. */
-        this.absctractMath = absctractMath
+        this.absctractMath = new AbsctractMath()
+        // console.log('ABS MATHS', this.absctractMath)
 
         /* Set p. */
         this.p = bigInt(p, 16)
