@@ -1,3 +1,0 @@
-# NEXA.js Zero Knowledge Protocol
-
-TBD...

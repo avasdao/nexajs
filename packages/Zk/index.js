@@ -8,7 +8,7 @@ export const Pedersen = _Pedersen
 
 
 /**
- * Zero Knowledge Protocol Class
+ * Zero Knowledge Class
  *
  * Manages zero-knowledge functions.
  */
@@ -16,10 +16,10 @@ export class Zkp {
     // NOTE: We won't use a constructor, as this is a "pure" class.
 
     test() {
-        return 'Zero Knowledge Protocol (Instance) is working!'
+        return 'Zero Knowledge (Instance) is working!'
     }
     static test() {
-        return 'Zero Knowledge Protocol (Static) is working!'
+        return 'Zero Knowledge (Static) is working!'
     }
 }
 

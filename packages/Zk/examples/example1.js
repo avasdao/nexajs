@@ -1,5 +1,5 @@
 /* Import modules. */
-import { example1 } from '../index.js' // use @nexajs/zkp in production
+import { example1 } from '../index.js' // use @nexajs/zk in production
 
 ;(async () => {
     console.log('Example1')

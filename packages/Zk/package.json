@@ -1,7 +1,7 @@
 {
-  "name": "@nexajs/zkp",
-  "version": "24.8.8",
-  "description": "Zero Knowledge Protocol utilities.",
+  "name": "@nexajs/zk",
+  "version": "24.8.15",
+  "description": "Zero Knowledge utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
   "author": "NEXA.js developers",

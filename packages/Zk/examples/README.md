@@ -1,6 +1,6 @@
-# NEXA.js Zero Knowledge Protocol Examples
+# NEXA.js Zero Knowledge Examples
 
-A complete guide to ALL the Zero Knowledge Protocol commands available from the protocol.
+A complete guide to ALL the Zero Knowledge commands available from the protocol.
 
 # Table of contents
 
