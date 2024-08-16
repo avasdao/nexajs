@@ -146,23 +146,23 @@ const showProfileMenu = ref(true)
                                     <ul role="list" class="-mx-2 mt-2 space-y-1">
                                         <li>
                                             <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                                            <NuxtLink to="/admin" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">H</span>
+                                            <NuxtLink to="https://nexa.studio" target="_blank" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">NS</span>
+                                                <span class="truncate">NEXA.studio</span>
+                                            </NuxtLink>
+                                        </li>
+
+                                        <li>
+                                            <NuxtLink to="https://nexajs.org" target="_blank" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">JS</span>
+                                                <span class="truncate">NEXA.js</span>
+                                            </NuxtLink>
+                                        </li>
+
+                                        <li>
+                                            <NuxtLink to="https://heroicons.dev" target="_blank" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">HI</span>
                                                 <span class="truncate">Heroicons</span>
-                                            </NuxtLink>
-                                        </li>
-
-                                        <li>
-                                            <NuxtLink to="/admin" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">T</span>
-                                                <span class="truncate">Tailwind Labs</span>
-                                            </NuxtLink>
-                                        </li>
-
-                                        <li>
-                                            <NuxtLink to="/admin" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">W</span>
-                                                <span class="truncate">Workcation</span>
                                             </NuxtLink>
                                         </li>
                                     </ul>
@@ -270,7 +270,7 @@ const showProfileMenu = ref(true)
 
                         <li>
                             <div class="text-xs font-semibold leading-6 text-gray-400">
-                                Resource Centers
+                                Resource Center
                             </div>
 
                             <ul role="list" class="-mx-2 mt-2 space-y-1">
