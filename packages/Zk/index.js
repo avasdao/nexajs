@@ -1,4 +1,5 @@
 /* Import modules. */
+import { Point } from '@nexajs/crypto'
 
 /* Import (local) modules. */
 import _Pedersen from './src/Pedersen.js'
@@ -12,7 +13,7 @@ export const Pedersen = _Pedersen
  *
  * Manages zero-knowledge functions.
  */
-export class Zkp {
+export class Zk {
     // NOTE: We won't use a constructor, as this is a "pure" class.
 
     test() {
@@ -21,17 +22,33 @@ export class Zkp {
     static test() {
         return 'Zero Knowledge (Static) is working!'
     }
+
+    static G() {
+        return Point.getG()
+    }
+
+    static g() { // an alias for `G`
+        return this.G
+    }
+
+    static Gx() {
+        return this.G.x
+    }
+
+    static Gy() {
+        return this.G.y
+    }
 }
 
 
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Zkp class. */
-Nexa.Zkp = Zkp
+/* Initialize Zk class. */
+Nexa.Zk = Zk
 Nexa.Pedersen = Pedersen
 
-/* Initialize Zkp modules. */
+/* Initialize Zk modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

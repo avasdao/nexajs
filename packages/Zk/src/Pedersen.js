@@ -1,8 +1,11 @@
 /* Import modules. */
 import bigInt from 'big-integer'
 import { randomBytes } from '@nexajs/crypto'
+import { binToHex } from '@nexajs/utils'
 
-import ZkpMaths from './Maths.js'
+import ZkMaths from './Maths.js'
+
+// import { Zk } from '../index.js'
 
 /* Initialize bit security. */
 const bitSecurity = 32
@@ -15,16 +18,26 @@ export default class Pedersen {
     /**
      * Constructor
      */
-    constructor(p, g, AbsctractMath = ZkpMaths) {
+    constructor(_p, _G, _AbsctractMath = ZkMaths) {
         /* Set abstraction math. */
-        this.absctractMath = new AbsctractMath()
+        this.absctractMath = _AbsctractMath
         // console.log('ABS MATHS', this.absctractMath)
 
+        /* Validate `P` value. */
+        if (typeof _p === 'undefined' || !_p) {
+            _p = binToHex(randomBytes(32)) // FIXME Verify less than N
+        }
+
+        /* Validate Generator. */
+        // if (typeof _G === 'undefined' || !_G) {
+        //     _G = Zk.G()
+        // }
+
         /* Set p. */
-        this.p = bigInt(p, 16)
+        this.p = bigInt(_p, 16)
 
         /* Set g (Generator). */
-        this.g = bigInt(g, 16)
+        this.G = bigInt(_G, 16)
 
         /* Calculate q. */
         // NOTE: Double `p`, then add `1`.
@@ -47,7 +60,8 @@ export default class Pedersen {
             r = r.mod(this.p)
         }
 
-        r = r.mod(this.p) // FIXME: Why do we need this??
+        /* Set `r` to within our set. */
+        r = r.mod(this.p)
 
         /* Return a padded 20-byte string. */
         return r.toString(16).padStart(40, '0')
@@ -83,11 +97,11 @@ export default class Pedersen {
         }
 
         /* Generate h value. */
-        const h = bigInt(this.g).modPow(bigInt(secret, 16), this.q)
+        const h = bigInt(this.G).modPow(bigInt(secret, 16), this.q)
 
         /* Generate c (Commitment) value. */
         const c = this.absctractMath.multiply(
-            this.absctractMath.power(this.g, m, this.q),
+            this.absctractMath.power(this.G, m, this.q),
             this.absctractMath.power(h, r, this.q),
             this.q
         )

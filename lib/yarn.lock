@@ -653,6 +653,15 @@
     events "3.3.0"
     numeral "2.0.6"
 
+"@nexajs/zk@24.8.15":
+  version "24.8.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/zk/-/zk-24.8.15.tgz#b7c6765e83eb1449791880466d94356650c4cb00"
+  integrity sha512-weV1wa9S8GIwodHkW9dSyLtDBuEbigyfU/kdyrIxgmtr7dFOn4f6ie+nJVex4HGBfZihn8ufsetYDU8ALAnOQw==
+  dependencies:
+    "@nexajs/crypto" "24.7.20"
+    "@nexajs/utils" "24.7.15"
+    big-integer "1.6.52"
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
@@ -929,6 +938,11 @@ big-integer@1.6.51:
   version "1.6.51"
   resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.51.tgz#0df92a5d9880560d3ff2d5fd20245c889d130686"
   integrity sha512-GPEid2Y9QU1Exl1rpO9B2IPJGHPSupF5GnVIP0blYvNOMer2bTvSWs1jGOUg04hTmu67nmLsQ9TBo1puaotBHg==
+
+big-integer@1.6.52:
+  version "1.6.52"
+  resolved "https://registry.yarnpkg.com/big-integer/-/big-integer-1.6.52.tgz#60a887f3047614a8e1bffe5d7173490a97dc8c85"
+  integrity sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==
 
 binary-extensions@^2.0.0:
   version "2.3.0"
