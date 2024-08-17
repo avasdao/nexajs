@@ -74,7 +74,7 @@ const DEFAULT_ADDRESS_IDX = '0'
  *
  * Will return the max of range of valid private keys as governed by the secp256k1 ECDSA standard.
  */
-const _getECDSARandom = function(){
+const _getECDSARandom = function () {
     /* Initialize locals. */
     let condition
     let bn
