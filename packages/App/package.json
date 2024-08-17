@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/app",
-  "version": "23.10.10",
+  "version": "24.8.15",
   "description": "A suite of decentralized application (dApp) helpers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
