@@ -2,7 +2,11 @@
 import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
-// TBD
+import _randomOutputsForTier from './libs/randomOutputsForTier.js'
+
+/* Export (local) modules. */
+export const randomOutputsForTier = _randomOutputsForTier
+
 
 /**
  * Prvacy Status
@@ -67,11 +71,12 @@ const Nexa = {}
 
 /* Initialize Privacy class. */
 Nexa.Privacy = Privacy
+Nexa.PrivacyStatus = PrivacyStatus
 
 /* Initialize Privacy modules. */
+Nexa.randomOutputsForTier = randomOutputsForTier
 Nexa.sendToPeer = sendToPeer
 Nexa.shuffleCoin = shuffleCoin
-Nexa.PrivacyStatus = PrivacyStatus
 
 /* Export Nexa to globalThis. */
 // NOTE: We merge to avoid conflict with other libraries.
