@@ -21,6 +21,7 @@ rm -rf ../node_modules/@nexajs/token
 rm -rf ../node_modules/@nexajs/transaction
 rm -rf ../node_modules/@nexajs/utils
 rm -rf ../node_modules/@nexajs/wallet
+rm -rf ../node_modules/@nexajs/zk
 
 echo
 echo "  Initializing [ node_modules/@nexajs ] folder..."
@@ -48,6 +49,7 @@ ln -s ../../../packages/Token ../node_modules/@nexajs/token
 ln -s ../../../packages/Transaction ../node_modules/@nexajs/transaction
 ln -s ../../../packages/Utils ../node_modules/@nexajs/utils
 ln -s ../../../packages/Wallet ../node_modules/@nexajs/wallet
+ln -s ../../../packages/Zk ../node_modules/@nexajs/zk
 
 echo
 echo "  All mounts created successfully!"
