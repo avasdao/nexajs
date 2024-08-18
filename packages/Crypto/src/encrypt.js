@@ -1,32 +1,18 @@
 /* Import modules. */
+import crypto from 'crypto'
 import CryptoJS from 'crypto-js'
 import AES from 'crypto-js/aes.js'
 
-CryptoJS.pad.NoPadding = { pad: function(){}, unpad: function(){} }
+import { randomBytes } from '../index.js'
 
-/**
- * AES Encrypt
- */
-const _aesEncrypt = (_plainBody, _key, _iv) => {
-    /* Encrypt plain body. */
-    const encryptedBody = AES.encrypt(_plainBody, _key)
+// FIXME What is this for??
+CryptoJS.pad.NoPadding = { pad: function (){}, unpad: function (){} }
 
-    // // const text = "My Secret text\0\0"
-    // const text = "My Secret text\0\0"
-    // const key  = CryptoJS.enc.Hex.parse("253d3fb468a0e24677c28a624be0f939")
-    // const iv   = CryptoJS.enc.Hex.parse("00000000000000000000000000000000")
-    //
-    // const encrypted = CryptoJS.AES.encrypt(text, key, { iv })
-    // // var encrypted = CryptoJS.AES.encrypt(text, key);
-    //
-    // console.log(encrypted.toString());
-
-    // console.log(`Plain body (formatted): [ ${_plainBody} ]`)
-    // console.log(`Encrypted body: [ ${encryptedBody} ]`)
-
-    /* Return encrypted body. */
-    return encryptedBody
-}
+/* Set constants. */
+const AES_ALGO = 'aes-128-cbc' // NOTE: Offers greatest compatibility (with legacy systems).
+// const AES_ALGO = 'aes-256-cbc'
+// const AES_ALGO = 'aes-256-ctr' // NOTE: Offers the least compatibility (with legacy systems).
+const IV_LENGTH = 16
 
 /**
  * Encrypt
@@ -37,25 +23,40 @@ const _aesEncrypt = (_plainBody, _key, _iv) => {
  *   - body (required)
  *   - key | password (required)
  */
-export default (_params, _key) => {
-    // console.log(`Encrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
-
+export default (_privkey, _iv, _plaintext) => {
+    /* Initialize locals. */
     let bodyType
-    let key
+    let hexBody
+    let iv
     let plainBody
-    let encryptedBody
+    let privateKey
 
-    /* Handle Basic encryption request. */
-    if (_params && _key) {
+    /* Validate parameters. */
+    // NOTE: Initialization vector is an OPTIONAL parameter.
+    if (typeof _plaintext === 'undefined' || _plaintext === null) {
+        /* Set plain body. */
+        plainBody = _iv
 
+        /* Set initialization vector. */
+        // NOTE: This value MUST be unique for EVERY encryption.
+        iv = Buffer.from(randomBytes(IV_LENGTH))
+    } else {
+        /* Set plain body. */
+        plainBody = _plaintext
+
+        /* Set initialization vector. */
+        // NOTE: This value MUST be unique for EVERY encryption.
+        iv = _iv
     }
-
-    /* Set plain body. */
-    plainBody = _params?.body
 
     /* Validate plain body. */
     if (!plainBody) {
         throw new Error(`Oops! You're missing a BODY in your parameters.`)
+    }
+
+    /* Validate initialization vector. */
+    if (!iv) {
+        throw new Error(`Oops! You're missing the INITIALIZATION VECTOR in your parameters.`)
     }
 
     /* Validate (String) body. */
@@ -76,15 +77,38 @@ export default (_params, _key) => {
         } catch (e) { /* do nothing */ }
     }
 
-    /* Set (password) key. */
-    // key = _params?.key || _params?.password
-    key = _key
+    /* Set private key. */
+    // TODO Validate and convert, if necessary.
+    privateKey = Buffer.from(_privkey, 'hex')
+    console.log('****PRIVATE KEY', privateKey)
 
-    /* Validate (password) key. */
-    if (!key) {
+    /* Validate private key. */
+    if (!privateKey) {
         throw new Error(`Oops! You're missing a KEY or PASSWORD in your parameters.`)
     }
 
-    /* Return encrypted body. */
-    return _aesEncrypt(plainBody, key)
+    /* Initialize locals. */
+    let crypted
+console.log('****AES_ALGO', AES_ALGO);
+console.log('****privateKey', privateKey);
+console.log('****iv', iv);
+    /* Initialize AES cipher. */
+    const cipher = crypto.createCipheriv(AES_ALGO, privateKey, iv)
+    console.log('******CIPHER', cipher)
+
+    /* Set auto-padding flag. */
+    cipher.setAutoPadding(true)
+
+    /* Convert plain body to Hex. */
+    hexBody = Buffer.from(plainBody, 'utf8').toString('hex')
+    console.log('HEX BODY', hexBody)
+
+    /* Update cipher. */
+    crypted = cipher.update(hexBody, 'hex', 'hex')
+
+    /* Append the final (data block). */
+    crypted += cipher.final('hex')
+
+    /* Return the (final) buffer. */
+    return Buffer.from(crypted, 'hex')
 }

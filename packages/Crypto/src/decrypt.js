@@ -1,55 +1,54 @@
 /* Import modules. */
+import crypto from 'crypto'
 import CryptoJS from 'crypto-js'
 import AES from 'crypto-js/aes.js'
+
+/* Set constants. */
+// const AES_ALGO = 'aes-128-cbc' // NOTE: Offers greatest compatibility (with legacy systems).
+const AES_ALGO = 'aes-256-cbc'
+// const AES_ALGO = 'aes-256-ctr' // NOTE: Offers the least compatibility (with legacy systems).
 
 /**
  * Decrypt
  *
  * Performs AES decryption on the encrypted body provided to the function.
  */
-export default (_params, _key) => {
+export default (_privkey, _iv, _ciphertext) => {
     // console.log(`Decrypt (params): [ ${JSON.stringify(_params, null, 2)} ]`)
 
     let bodyType
+    let cipher
+    let crypted
+    let encryptedBody
+    let iv
     let key
     let plainBody
-    let encryptedBody
 
-    /* Handle Basic encryption request. */
-    if (_params && _key) {
+    iv = _ciphertext.slice(0, 4)
+    console.log('(parsed) IV', iv)
 
-    }
+    encryptedBody = _ciphertext.slice(4)
+    console.log('ENCRYPTED BODY', encryptedBody)
 
-    /* Set plain body. */
-    encryptedBody = _params?.body
-
-    /* Validate plain body. */
+    /* Validate encrypted body. */
     if (typeof encryptedBody === 'string' || encryptedBody instanceof String) {
         bodyType = 'string'
 
         // encryptedBody = encryptedBody
     }
 
-    /* Set (password) key. */
-    // key = _params?.key || _params?.password
-    key = _key
+    /* Initialize AES cipher. */
+    cipher = crypto.createDecipheriv(AES_ALGO, _key, iv)
 
-    /* Validate body type. */
-    if (!bodyType) {
-        try {
-            /* Parse plain body. */
-            encryptedBody = JSON.stringify(JSON.parse(encryptedBody))
+    /* Set auto-padding flag. */
+    cipher.setAutoPadding(true)
 
-            /* Set body type. */
-            bodyType = 'json'
-        } catch (e) { /* do nothing */ }
-    }
+    /* Update cipher. */
+    crypted = cipher.update(encryptedBody, 'hex', 'hex')
 
-    /* Encrypt plain body. */
-    plainBody = AES.decrypt(encryptedBody, key)
-    // console.log(`Plain body (formatted): [ ${plainBody} ]`)
-    // console.log(`Encrypted body: [ ${encryptedBody} ]`)
+    /* Append the final (data block). */
+    crypted += cipher.final('hex')
 
-    /* Return encrypted body. */
-    return plainBody.toString(CryptoJS.enc.Utf8)
+    /* Return the (final) buffer. */
+    return Buffer.from(crypted, 'hex')
 }

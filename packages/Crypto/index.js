@@ -5,8 +5,10 @@ import './libs/Buffer.js'
 
 /* Import (local) modules. */
 import _decrypt from './src/decrypt.js'
+import _decryptForPubkey from './src/decryptForPubkey.js'
 import _derivePublicKeyCompressed from './src/derivePublicKeyCompressed.js'
 import _encrypt from './src/encrypt.js'
+import _encryptForPubkey from './src/encryptForPubkey.js'
 // import _passwordToSafu from './src/passwordToSafu.js'
 import _getHmac from './src/getHmac.js'
 import _ripemd160 from './src/ripemd160.js'
@@ -16,9 +18,11 @@ import _signMessageHashEcdsa from './src/signMessageHashEcdsa.js'
 import _signMessageHashSchnorr from './src/signMessageHashSchnorr.js'
 import _validateSecp256k1PrivateKey from './src/validateSecp256k1PrivateKey.js'
 import _verifyMessageHashEcdsa from './src/verifyMessageHashEcdsa.js'
+import _verifyMessageHashSchnorr from './src/verifyMessageHashSchnorr.js'
 
 /* Import (local) libraries. */
 import _Base58Check from './libs/Base58Check.js'
+import _BN from './libs/BN.js'
 import _ECDSA from './libs/ECDSA.js'
 import _Hash from './libs/Hash.js'
 import _HDPrivateKey from './libs/HDPrivateKey.js'
@@ -32,8 +36,10 @@ import { defaultNetwork as _defaultNetwork } from './libs/Network.js'
 
 /* Export (local) modules. */
 export const decrypt = _decrypt
+export const decryptForPubkey = _decryptForPubkey
 export const derivePublicKeyCompressed = _derivePublicKeyCompressed
 export const encrypt = _encrypt
+export const encryptForPubkey = _encryptForPubkey
 // export const passwordToSafu = _passwordToSafu
 export const getHmac = _getHmac
 export const ripemd160 = _ripemd160
@@ -43,9 +49,11 @@ export const signMessageHashEcdsa = _signMessageHashEcdsa
 export const signMessageHashSchnorr = _signMessageHashSchnorr
 export const validateSecp256k1PrivateKey = _validateSecp256k1PrivateKey
 export const verifyMessageHashEcdsa = _verifyMessageHashEcdsa
+export const verifyMessageHashSchnorr = _verifyMessageHashSchnorr
 
 /* Export (local) libraries. */
 export const Base58Check = _Base58Check
+export const BN = _BN
 export const ECDSA = _ECDSA
 export const Hash = _Hash
 export const HDPrivateKey = _HDPrivateKey
@@ -84,10 +92,23 @@ const Nexa = {}
 /* Initialize Crypto class. */
 Nexa.Crypto = Crypto
 
+/* Initialize Crypto libraries. */
+Nexa.Base58Check = Base58Check
+Nexa.BN = BN
+Nexa.ECDSA = ECDSA
+Nexa.Hash = Hash
+Nexa.HDPrivateKey = HDPrivateKey
+Nexa.HDPublicKey = HDPublicKey
+Nexa.Point = Point
+Nexa.PrivateKey = PrivateKey
+Nexa.PublicKey = PublicKey
+
 /* Initialize Crypto modules. */
 Nexa.decrypt = decrypt
+Nexa.decryptForPubkey = decryptForPubkey
 Nexa.derivePublicKeyCompressed = derivePublicKeyCompressed
 Nexa.encrypt = encrypt
+Nexa.encryptForPubkey = encryptForPubkey
 // Nexa.passwordToSafu = passwordToSafu
 Nexa.getHmac = getHmac
 Nexa.randomBytes = randomBytes
@@ -98,16 +119,7 @@ Nexa.signMessageHashEcdsa = signMessageHashEcdsa
 Nexa.signMessageHashSchnorr = signMessageHashSchnorr
 Nexa.validateSecp256k1PrivateKey = validateSecp256k1PrivateKey
 Nexa.verifyMessageHashEcdsa = verifyMessageHashEcdsa
-
-/* Initialize Crypto libraries. */
-Nexa.Base58Check = Base58Check
-Nexa.ECDSA = ECDSA
-Nexa.Hash = Hash
-Nexa.HDPrivateKey = HDPrivateKey
-Nexa.HDPublicKey = HDPublicKey
-Nexa.Point = Point
-Nexa.PrivateKey = PrivateKey
-Nexa.PublicKey = PublicKey
+Nexa.verifyMessageHashSchnorr = verifyMessageHashSchnorr
 
 /* Initialize Crypto settings. */
 Nexa.defaultNetwork = defaultNetwork
