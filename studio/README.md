@@ -1,12 +1,25 @@
 # NEXA.js Application Creator
 
-Create a new Nexa application from a selection of customizable templates.
+Quickly and easily design and launch your next __Unstoppable Web__ application.
 
 ```shell
 npm create nexa
 ```
 
-### Pre-built App Modules
+```shell
+yarn create nexa
+```
+
+```shell
+pnpm create nexa
+```
+
+#### To update to the LATEST version, please run:
+```shell
+npx create-nexa@latest
+```
+
+### Pre-built Boilerplate App Modules
 
 - [ ] Vanilla JS
 - [x] Vue.js _(default)_
@@ -16,4 +29,7 @@ npm create nexa
 - [ ] Preact
 - [ ] Lit
 
-Configure and build a brand new decentralized Nexa application with just a few clicks.
+Configure and build a brand new decentralized application with just a few clicks, featuring:
+- Decentralization
+- Trustless security
+- and more...

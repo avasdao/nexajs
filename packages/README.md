@@ -188,5 +188,6 @@ A polyfill that allows WebAssembly (WASM) to be supported in environments that d
 ## Zero Knowledge
 
 Manages functions requiring use of zero knowledge proofs, including:
+- Pedersen commitments
 - ZK-SNARKs
 - ZK-STARKs

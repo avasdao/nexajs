@@ -79,6 +79,11 @@ yarn create nexa
 pnpm create nexa
 ```
 
+#### To update to the LATEST version, please run:
+```shell
+npx create-nexa@latest
+```
+
 ![NPM Create Nexa](screenshots/npm-create-nexa.png)
 
 The default setup takes just 2 minutes to build and deploy with the following features:

@@ -3,7 +3,7 @@ services:
   # CouchDB
   # (https://couchdb.apache.org/)
   couchdb:
-    image: couchdb:3.3.2
+    image: couchdb:3.3.3
     container_name: couchdb
     restart: unless-stopped
     ports:
@@ -27,8 +27,8 @@ services:
     depends_on:
       - couchdb
     build: .
-    image: my-app
-    container_name: my-app
+    image: myapp
+    container_name: myapp
     restart: unless-stopped
     network_mode: 'host'
     # ports:
@@ -48,7 +48,7 @@ services:
   # (https://nginx.org/en/)
   # webserver:
   #   depends_on:
-  #     - nexapp
+  #     - myapp
   #   image: nginx:1.15.12-alpine
   #   container_name: webserver
   #   restart: unless-stopped
@@ -56,12 +56,11 @@ services:
   #     - '80:80'
   #     # - '443:443'
   #   volumes:
-  #     - nexapp:/var/www/html
+  #     - myapp:/var/www/html
   #     - ./nginx-conf:/etc/nginx/conf.d
   #     - certbot-etc:/etc/letsencrypt
   #   networks:
-  #     - nexapp-network
-
+  #     - myapp-network
   # Certbot
   # (https://certbot.eff.org/)
   # certbot:
@@ -71,13 +70,13 @@ services:
   #   container_name: certbot
   #   volumes:
   #     - certbot-etc:/etc/letsencrypt
-  #     - nexapp:/var/www/html
+  #     - myapp:/var/www/html
   #   command: certonly --webroot --webroot-path=/var/www/html --email satoshi@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
 # Volumes
 volumes:
   certbot-etc:
-  nexapp:
+  myapp:
 # Networks
 networks:
-  nexapp-network:
+  myapp-network:
     driver: bridge

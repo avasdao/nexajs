@@ -10,18 +10,22 @@ A comprehensive suite of FREE tools & services providing Nexican builders with e
 
 Execute one of the following commands, then follow the step-by-step guide to quickly bootstrap each of your Nexa projects and/or BIG ideas.
 
-```bash
+```shell
 npm create nexa
 ```
 
-```bash
+```shell
 yarn create nexa
 ```
 
-```bash
+```shell
 pnpm create nexa
 ```
 
+#### To update to the LATEST version, please run:
+```shell
+npx create-nexa@latest
+```
 
 ## Creating a New Project
 

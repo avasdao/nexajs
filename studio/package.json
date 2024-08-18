@@ -1,8 +1,8 @@
 {
   "name": "create-nexa",
-  "version": "24.7.7",
+  "version": "24.8.15",
   "license": "MIT",
-  "description": "Create a new Nexa application from a selection of customizable templates.",
+  "description": "Quickly and easily design and launch your next Unstoppable Web application.",
   "author": "Ava's DAO",
   "bin": "src/index.js",
   "type": "module",
