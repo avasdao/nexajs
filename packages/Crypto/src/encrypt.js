@@ -9,9 +9,9 @@ import { randomBytes } from '../index.js'
 CryptoJS.pad.NoPadding = { pad: function (){}, unpad: function (){} }
 
 /* Set constants. */
-const AES_ALGO = 'aes-128-cbc' // NOTE: Offers greatest compatibility (with legacy systems).
+// const AES_ALGO = 'aes-128-cbc' // NOTE: Offers greatest compatibility (with legacy systems).
 // const AES_ALGO = 'aes-256-cbc'
-// const AES_ALGO = 'aes-256-ctr' // NOTE: Offers the least compatibility (with legacy systems).
+const AES_ALGO = 'aes-256-ctr' // NOTE: Offers the least compatibility (with legacy systems).
 const IV_LENGTH = 16
 
 /**
@@ -20,10 +20,11 @@ const IV_LENGTH = 16
  * Performs AES encryption on the plain body provided to the function.
  *
  * Parameters:
- *   - body (required)
- *   - key | password (required)
+ *   - private key (required)
+ *   - initialization vector (optional)
+ *   - plain text (required)
  */
-export default (_privkey, _iv, _plaintext) => {
+export default (_privkey, _iv, _plaintext, _algo = AES_ALGO) => {
     /* Initialize locals. */
     let bodyType
     let hexBody
@@ -46,17 +47,17 @@ export default (_privkey, _iv, _plaintext) => {
 
         /* Set initialization vector. */
         // NOTE: This value MUST be unique for EVERY encryption.
-        iv = _iv
+        iv = Buffer.from(_iv, 'hex')
     }
 
     /* Validate plain body. */
     if (!plainBody) {
-        throw new Error(`Oops! You're missing a BODY in your parameters.`)
+        throw new Error(`Oops! You're missing a Body in your parameters.`)
     }
 
     /* Validate initialization vector. */
     if (!iv) {
-        throw new Error(`Oops! You're missing the INITIALIZATION VECTOR in your parameters.`)
+        throw new Error(`Oops! You're missing the Initialization Vector (IV) in your parameters.`)
     }
 
     /* Validate (String) body. */
@@ -80,7 +81,6 @@ export default (_privkey, _iv, _plaintext) => {
     /* Set private key. */
     // TODO Validate and convert, if necessary.
     privateKey = Buffer.from(_privkey, 'hex')
-    console.log('****PRIVATE KEY', privateKey)
 
     /* Validate private key. */
     if (!privateKey) {
@@ -89,19 +89,16 @@ export default (_privkey, _iv, _plaintext) => {
 
     /* Initialize locals. */
     let crypted
-console.log('****AES_ALGO', AES_ALGO);
-console.log('****privateKey', privateKey);
-console.log('****iv', iv);
+
     /* Initialize AES cipher. */
-    const cipher = crypto.createCipheriv(AES_ALGO, privateKey, iv)
-    console.log('******CIPHER', cipher)
+    const cipher = crypto.createCipheriv(_algo, privateKey, iv)
 
     /* Set auto-padding flag. */
     cipher.setAutoPadding(true)
 
     /* Convert plain body to Hex. */
     hexBody = Buffer.from(plainBody, 'utf8').toString('hex')
-    console.log('HEX BODY', hexBody)
+    // console.log('HEX BODY', hexBody)
 
     /* Update cipher. */
     crypted = cipher.update(hexBody, 'hex', 'hex')
@@ -110,5 +107,10 @@ console.log('****iv', iv);
     crypted += cipher.final('hex')
 
     /* Return the (final) buffer. */
-    return Buffer.from(crypted, 'hex')
+    return {
+        ciphertext: crypted,
+        hex: crypted,
+        base64: Buffer.from(crypted, 'hex').toString('base64'),
+        iv: iv.toString('hex'),
+    }
 }

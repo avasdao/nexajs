@@ -13,28 +13,33 @@ const ec = new EC('secp256k1')
 const COMPACT_FORMAT = true
 const KEY_FORMAT = 'hex'
 
-export default (_privateKey) => {
-    // console.log('DERIVE (privateKey)', _privateKey)
 
+/**
+ * Derive Public Key (Compressed)
+ *
+ * Will provide a public key for the provided private key.
+ *
+ * FIXME Rename this method to allow for available UNCOMPRESSED FORMAT.
+ */
+export default (_privateKey, _isCompact = COMPACT_FORMAT) => {
     /* Initialize locals. */
     let privateKey
 
     /* Validate private key. */
     if (typeof _privateKey === 'string') {
+        /* Set private key. */
         privateKey = _privateKey
     } else {
+        /* Set private key. */
         privateKey = binToHex(_privateKey)
     }
 
     /* Calculate key. */
     const key = ec.keyFromPrivate(privateKey, KEY_FORMAT)
-    // const key = ec.keyFromPrivate(privateKey)
-    // console.log('KEY', key`)
 
-    /* Retrieve public key. */
-    const pub = key.getPublic(COMPACT_FORMAT, KEY_FORMAT)
-    // console.log('PUB', pub)
+    /* Set public key. */
+    const publicKey = key.getPublic(_isCompact, KEY_FORMAT)
 
     /* Return (binary) public key. */
-    return hexToBin(pub)
+    return hexToBin(publicKey)
 }

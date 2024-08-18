@@ -8,6 +8,9 @@ import {
     PublicKey,
 } from '../index.js'
 
+/* Set constants. */
+const AES_ALGO = 'aes-128-cbc'
+
 
 /**
  * Encrypt (Message) For Public Key
@@ -43,7 +46,8 @@ export default (_pubkey, _msg) => {
         key.slice(16, 32),
         key.slice(0, 16),
         Buffer.from(_msg, 'utf8'),
-    )
+        AES_ALGO,
+    ).ciphertext
     // console.log('CIPHERTEXT', ciphertext)
 
     /* Set encrypted. */
@@ -54,7 +58,7 @@ export default (_pubkey, _msg) => {
     const encrypted = Buffer.concat([
         Buffer.from('HUSH'),
         ephemeral.publicKey.toBuffer(),
-        ciphertext,
+        Buffer.from(ciphertext, 'hex'),
     ])
     // console.log('ENCRYPTED', encrypted)
 

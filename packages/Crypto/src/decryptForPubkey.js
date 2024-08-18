@@ -1,7 +1,16 @@
 /* Import modules. */
+import crypto from 'crypto'
+
 import decrypt from './decrypt.js'
 
-import { PrivateKey } from '../index.js'
+import {
+    PrivateKey,
+    PublicKey,
+} from '../index.js'
+
+/* Set constants. */
+const AES_ALGO = 'aes-128-cbc'
+
 
 /**
  * Decrypt (Message) For Public Key
@@ -16,7 +25,7 @@ export default (_privkey, _encrypted) => {
 
     /* Initialize encrypted (message). */
     const encrypted = Buffer.from(_encrypted, 'base64')
-    console.log('ENCRYPTED', encrypted.toString('hex'))
+    // console.log('ENCRYPTED', encrypted.toString('hex'))
 
     /* Valiate encrypted (message). */
     if (encrypted.length < 85) {
@@ -25,19 +34,19 @@ export default (_privkey, _encrypted) => {
 
     /* Set magic (bytes). */
     const magic = encrypted.slice(0, 4)
-    console.log('MAGIC', magic)
+    // console.log('MAGIC', magic)
 
     /* Initialize ephemeral public key. */
-    let ephemeralPubkey = encrypted.slice(4, 37)
-    console.log('EPHERMAL PUBLIC KEY', ephemeralPubkey);
+    let ephemeralPubkey = Buffer.from(encrypted.slice(4, 37))
+    // console.log('EPHERMAL PUBLIC KEY', ephemeralPubkey)
 
     /* Set ciphertext. */
     const ciphertext = encrypted.slice(37, -32)
-    console.log('CIPHERTEXT', ciphertext);
+    // console.log('CIPHERTEXT', ciphertext)
 
     /* Set MAC. */
     const mac = encrypted.slice(-32)
-    console.log('MAC', mac);
+    // console.log('MAC', mac);
 
     /* Validate magic (bytes). */
     if (magic.toString() !== 'HUSH') {
@@ -92,5 +101,5 @@ export default (_privkey, _encrypted) => {
     }
 
     /* Return decrypted string. */
-    return decrypt(keyE, iv, ciphertext)
+    return decrypt(keyE, iv, ciphertext, AES_ALGO)
 }
