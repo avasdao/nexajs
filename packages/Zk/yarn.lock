@@ -22,12 +22,13 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/crypto@24.7.20":
-  version "24.7.20"
-  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.7.20.tgz#1c5253716330fad450243023225399354e8de4be"
-  integrity sha512-szGhquJWFFggklYq1zwfrR61rSMgSnXHd3KKmKqH1JMwrPzU/UrtYNiUPbB5VnnDRmXw6nk9tsmgSfE5jtzrJg==
+"@nexajs/crypto@24.8.16":
+  version "24.8.16"
+  resolved "https://registry.yarnpkg.com/@nexajs/crypto/-/crypto-24.8.16.tgz#1ec6b94b87a4b2a7a1d50e5c21f5e413f87ebffe"
+  integrity sha512-+Yraj8wLndReZWIWxW8e++yx5hrsOtknyMMqtpQTYGOOyJs/joVOQzSJJwp0KKtyutDIyCUHazI/nMG/PGtyiQ==
   dependencies:
     "@ethersproject/random" "5.7.0"
+    "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
     bn.js "5.2.1"
     bs58 "6.0.0"
@@ -36,6 +37,13 @@
     lodash "4.17.21"
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
+
+"@nexajs/script@24.7.15":
+  version "24.7.15"
+  resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-24.7.15.tgz#2af82c392805c8a1e9794d77d4e0b962f8b8daed"
+  integrity sha512-mhGqfT7EAQMfxTx4v6FgPKzCQvo/Thy5XMXxREXJ5I8LccVKce/OiWVllWs73BXUd8BbTVrERuhTwj1EMnNPqw==
+  dependencies:
+    "@nexajs/utils" "24.7.15"
 
 "@nexajs/utils@24.7.15":
   version "24.7.15"

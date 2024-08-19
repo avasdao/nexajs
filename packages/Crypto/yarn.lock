@@ -22,7 +22,7 @@
     "@ethersproject/bytes" "^5.7.0"
     "@ethersproject/logger" "^5.7.0"
 
-"@nexajs/script@^24.7.15":
+"@nexajs/script@24.7.15":
   version "24.7.15"
   resolved "https://registry.yarnpkg.com/@nexajs/script/-/script-24.7.15.tgz#2af82c392805c8a1e9794d77d4e0b962f8b8daed"
   integrity sha512-mhGqfT7EAQMfxTx4v6FgPKzCQvo/Thy5XMXxREXJ5I8LccVKce/OiWVllWs73BXUd8BbTVrERuhTwj1EMnNPqw==
