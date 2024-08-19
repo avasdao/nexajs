@@ -1,9 +1,14 @@
 /* Import modules. */
 import {
+    encodeDataPush,
+    OP,
+} from '@nexajs/script'
+
+import {
+    binToHex,
     hexToBin,
     utf8ToBin,
 } from '@nexajs/utils'
-// import { encodeDataPush } from '@nexajs/script'
 
 import Signature from '../libs/Signature.js'
 
@@ -13,9 +18,9 @@ import {
     sha256,
 } from '../index.js'
 
-export default (_address, _signature, _msgbuf) => {
+export default (_address, _signature, _msgbuf, _addressEncoder) => {
     let prefix
-    let result
+    let response
     let signatureAddress
 
     prefix = 'nexa'
@@ -53,45 +58,50 @@ export default (_address, _signature, _msgbuf) => {
     ecdsa.pubkey = publicKey
     // console.log('PUBLIC KEY', publicKey.toString())
 
-// FIXME
+    /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
+    const scriptData = encodeDataPush(hexToBin(publicKey.toString()))
 
-    // /* Hash the public key hash according to the P2PKH/P2PKT scheme. */
-    // scriptData = encodeDataPush(hexToBin(publicKey.toString()))
-    //
-    // publicKeyHash = ripemd160(sha256(scriptData))
-    //
-    // scriptPubKey = new Uint8Array([
-    //     OP.ZERO,
-    //     OP.ONE,
-    //     ...encodeDataPush(publicKeyHash),
-    // ])
-    // // console.info('\n  Script Public Key:', binToHex(scriptPubKey))
-    //
-    // /* Encode the public key hash into a P2PKH nexa address. */
-    // signatureAddress = encodeAddress(
-    //     prefix,
-    //     'TEMPLATE',
-    //     scriptPubKey,
-    // )
-    // console.info('SIG ADDRESS', signatureAddress)
+    const publicKeyHash = ripemd160(sha256(scriptData))
 
-// FIXME
+    const scriptPubKey = new Uint8Array([
+        OP.ZERO,
+        OP.ONE,
+        ...encodeDataPush(publicKeyHash),
+    ])
+    // console.info('\n  Script Public Key:', binToHex(scriptPubKey))
 
-    // check that the recovered address and specified address match
-    // if (_address !== signatureAddress.toString()) {
-    //     throw new Error('The signature did not match the message digest')
-    //     // return false
-    // }
+    if (typeof _addressEncoder === 'undefined' || !_addressEncoder) {
+        throw new Error('TEMP FIX: Please add an ADDRESS ENCODER as a (4th) parameter `verifyMessageHashEcdsa(p1, p2, p3, ADDRESS_ENCODER)`.')
+    }
 
-    result = ecdsa.verify(hash, signature, publicKey)
-    // console.log('RESULT', result)
+    /* Encode the public key hash into a P2PKH nexa address. */
+    signatureAddress = _addressEncoder(
+        prefix,
+        'TEMPLATE',
+        scriptPubKey,
+    )
+    // console.info('SIG ADDRESS (recovered)', signatureAddress)
 
-    if (!result) {
+    /* Verify recovered address and specified address match. */
+    if (_address !== signatureAddress) {
+        // throw new Error('The signature did not match the message digest')
+        console.error('The signature DOES NOT match the message digest.')
+
+        return {
+            publicKey: hexToBin(publicKey.toString()),
+            isValid: false,
+        }
+    }
+
+    response = ecdsa.verify(hash, signature, publicKey)
+    // console.log('RESPONSE', response)
+
+    if (!response) {
         throw new Error('The signature was invalid')
     }
 
     return {
         publicKey: hexToBin(publicKey.toString()),
-        isValid: result.verified
+        isValid: response.verified,
     }
 }

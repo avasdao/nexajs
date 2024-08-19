@@ -50,6 +50,7 @@ export default (_privkey, _msgbuf) => {
     ecdsa.pubkey = privkey.toPublicKey()
 
     /* Sign. */
+    // FIXME Is there an option to make this deterministic??
     ecdsa.signRandomK()
 
     /* Calculate. */

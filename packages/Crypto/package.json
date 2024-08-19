@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/crypto",
-  "version": "24.7.20",
+  "version": "24.8.15",
   "description": "Suite of useful cryptographic functions for decentralized applications.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -9,6 +9,7 @@
   "type": "module",
   "dependencies": {
     "@ethersproject/random": "5.7.0",
+    "@nexajs/script": "24.7.15",
     "@nexajs/utils": "24.7.15",
     "bn.js": "5.2.1",
     "bs58": "6.0.0",
