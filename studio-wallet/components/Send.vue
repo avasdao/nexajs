@@ -25,6 +25,7 @@ const error = ref(null)
 const addressBalance = ref(null)
 const addressFirstUse = ref(null)
 const firstTx = ref(null)
+const consolidation = ref(null)
 
 const video = ref(null)
 const scanner = ref(null)
@@ -142,14 +143,38 @@ const send = async () => {
 
             /* Set transaction idem. */
             txidem.value = response.txidem
-
-            // TODO Add "proper" notification system.
-            // alert(`Transaction sent successfully!\n\n${response.result}`)
         } else if (response?.error) {
             /* Set error. */
             error.value = response?.error?.message || JSON.stringify(response?.error)
+        }
+    }
+}
 
-            // alert(JSON.stringify(response, null, 2))
+const consolidate = async () => {
+    if (confirm(`Are you sure you want to consolidate ${consolidation.value.coins} coin inputs to ${Wallet.address}?`)) {
+        /* Start wallet consolidation. */
+        const response = await Wallet.consolidate()
+        // console.log('RESPONSE', response)
+
+        let json
+
+        try {
+            json = JSON.parse(response)
+        } catch (err) {
+            return alert(JSON.stringify(err))
+        }
+
+        /* Validate transaction idem. */
+        if (json?.result) {
+            /* Reset user inputs. */
+            amount.value = null
+            receiver.value = null
+
+            /* Set transaction idem. */
+            txidem.value = json.result
+        } else if (json?.error) {
+            /* Set error. */
+            error.value = json?.error?.message || JSON.stringify(json?.error)
         }
     }
 }
@@ -170,10 +195,24 @@ const updateAddressDetails = async () => {
     console.log('FIRST TX', firstTx.value)
 }
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+const init = async () => {
+    const coins = Wallet.wallet?.coins
+    // console.log('COINS', coins)
+
+    const tokens = Wallet.wallet?.tokens
+    // console.log('TOKENS', tokens)
+
+    if (typeof coins !== 'undefined' && typeof tokens !== 'undefined') {
+        consolidation.value = {
+            coins: coins.length,
+            tokens: tokens.length,
+        }
+    }
+}
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
@@ -233,12 +272,12 @@ const updateAddressDetails = async () => {
                 </h4> -->
             </section>
 
-            <div
+            <button
                 @click="send"
                 class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
             >
                 Send {{Wallet.asset?.ticker}}
-            </div>
+            </button>
 
             <section v-if="txidem" class="my-10">
                 <div>
@@ -305,7 +344,20 @@ const updateAddressDetails = async () => {
                     Manage Assets
                 </h1>
 
-                TBD...
+                <section>
+                    <button
+                        @click="consolidate"
+                        class="w-fit cursor-pointer my-5 block px-5 py-2 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
+                    >
+                        Consolidate Wallet
+                    </button>
+
+                    <div class="-mt-3 pl-3">
+                        <span class="block text-sm"># of coin inputs: {{consolidation ? consolidation.coins : 'n/a'}}</span>
+                        <span class="block text-sm"># of token inputs: {{consolidation ? consolidation.tokens : 'n/a'}}</span>
+                    </div>
+                </section>
+
             </div>
 
             <div>
