@@ -1,4 +1,5 @@
 <script setup>
+import { copyToClipboard } from '@nexajs/app'
 import QRCode from 'qrcode'
 
 /* Define properties. */
@@ -46,11 +47,13 @@ const isShowingCurrencyOptions = ref(false)
     dataUrl.value = await QRCode.toDataURL(bip21Url)
 }
 
-const copyToClipboard = () => {
+const clipboardHandler = () => {
     /* Copy address to clipboard. */
-    Clipboard.copy(Wallet.address)
-
-    alert(`[ ${Wallet.address} ] has been copied to the clipboard.`)
+    if (copyToClipboard(Wallet.address)) {
+        alert(`[ ${Wallet.address} ] has been copied to the clipboard.`)
+    } else {
+        alert(`Oops! Unfortunately, something went wrong.`)
+    }
 }
 
 onMounted(() => {
@@ -172,7 +175,7 @@ onMounted(() => {
 
             <div class="mb-5 flex flex-row gap-3">
                 <button
-                    @click="copyToClipboard"
+                    @click="clipboardHandler"
                     class="w-full block px-3 py-1 text-2xl font-medium bg-blue-200 border-2 border-blue-400 rounded-md shadow hover:bg-blue-300"
                 >
                     Copy

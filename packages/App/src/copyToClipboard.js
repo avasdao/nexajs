@@ -1,4 +1,9 @@
-export default () => {
+/**
+ * Copy To Clipboard
+ *
+ * Will save the text to the user's clipboard.
+ */
+export default (_text) => {
     /* Validate client. */
     // NOTE: We ONLY run this on the (web) client.
     if (
@@ -6,8 +11,8 @@ export default () => {
         typeof document !== 'undefined' &&
         typeof navigator !== 'undefined'
     ) {
-        /* Inject new object into `window`. */
-        window.Clipboard = (function (window, document, navigator) {
+        /* Initialize clipboard handler. */
+        const clipboardHandler = (function (window, document, navigator) {
             /* Initialize locals. */
             let copy
             let textArea
@@ -51,5 +56,14 @@ export default () => {
 
             return { copy }
         })(window, document, navigator)
+
+        /* Execute clipboard handler. */
+        clipboardHandler.copy(_text)
+
+        // Success!
+        return true
     }
+
+    // Failed!
+    return false
 }
