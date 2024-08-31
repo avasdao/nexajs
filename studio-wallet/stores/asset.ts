@@ -2,9 +2,9 @@
 import { defineStore } from 'pinia'
 
 /**
- * Profile Store
+ * Asset Store
  */
-export const useProfileStore = defineStore('profile', {
+export const useAssetStore = defineStore('asset', {
     state: () => ({
             /* Initialize session. */
             _session: null,
