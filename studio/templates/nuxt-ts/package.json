@@ -10,14 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pinia/nuxt": "0.5.3",
+    "@pinia/nuxt": "0.5.4",
     "nexajs": "24.8.16",
     "nuxt": "3.12.4",
     "pinia": "2.2.2"
   },
   "devDependencies": {
     "@kevinmarrec/nuxt-pwa": "0.17.0",
-    "@nuxtjs/i18n": "8.4.0",
+    "@nuxtjs/i18n": "8.5.1",
     "@nuxtjs/tailwindcss": "6.12.1"
   }
 }
