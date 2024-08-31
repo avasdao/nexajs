@@ -49,25 +49,6 @@ const displayBalance = computed(() => {
     }
 
     return numeral(parseFloat(bigIntValue) / 1e4).format('0,0[.]00[0000]')
-
-    /* Initialize locals. */
-    // let amount
-    // let balance
-
-//     if (Wallet.asset?.decimal_places > 0 && Wallet.asset?.group !== '0') {
-//         /* Adjust for decimals. */
-// // FIXME: Preserve decimal precision/accuracy.
-//         amount = Wallet.asset.amount / BigInt(10**Wallet.asset.decimal_places)
-
-//         /* Set balance. */
-//         balance = amount || 0.00
-//     } else {
-//         /* Set balance. */
-//         balance = Wallet.asset.amount || 0.00
-//     }
-
-//     /* Return (formatted) balance. */
-//     return numeral(balance).format('0,0[.]00[0000]') + '*'
 })
 
 const displayBalanceUsd = computed(() => {

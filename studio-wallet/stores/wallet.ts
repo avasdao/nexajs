@@ -1,16 +1,14 @@
 /* Import modules. */
 import { defineStore } from 'pinia'
-import moment from 'moment'
 
 import { mnemonicToEntropy } from '@nexajs/hdnode'
-
 import { sendCoins } from '@nexajs/purse'
-
 import {
     Wallet,
     WalletStatus,
 } from '@nexajs/wallet'
 
+/* Import (local) modules. */
 import _setEntropy from './wallet/setEntropy.ts'
 
 /* Set constants. */

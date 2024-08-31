@@ -1,12 +1,4 @@
 <script setup lang="ts">
-/* Define properties. */
-// https://vuejs.org/guide/components/props.html#props-declaration
-const props = defineProps({
-    data: {
-        type: [Object],
-    },
-})
-
 /* Initialize stores. */
 import { useWalletStore } from '@/stores/wallet'
 const Wallet = useWalletStore()
