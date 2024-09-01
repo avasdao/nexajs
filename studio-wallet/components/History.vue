@@ -1,24 +1,28 @@
 <script setup>
 /* Import modules. */
 import moment from 'moment'
+import numeral from 'numeral'
+import { getSender } from '@nexajs/address'
 import {
     getAddressHistory,
     getTransaction,
 } from '@nexajs/rostrum'
 
-import getSender from './history/getSender.js'
-
 /* Initialize stores. */
-import { useSystemStore } from '@/stores/system'
 import { useWalletStore } from '@/stores/wallet'
-const System = useSystemStore()
 const Wallet = useWalletStore()
 
+/* Set constants. */
 const MAX_RESULTS_PER_PAGE = 20
 
-const history = ref(null)
+/* Set responsive. */
 const txs = ref(null)
 
+/**
+ * Initialization
+ *
+ * Setup the wallet history.
+ */
 const init = async () => {
     /* Initialize locals. */
     let history
@@ -109,7 +113,6 @@ onMounted(() => {
 //     console.log('Before Unmount!')
 //     // Now is the time to perform all cleanup operations.
 // })
-
 </script>
 
 <template>
@@ -126,7 +129,7 @@ onMounted(() => {
             class="px-2 p-1 bg-amber-50 border border-amber-300 rounded-md shadow hover:bg-amber-100"
         >
             <h3 class="text-xs font-medium truncate">
-                TXID {{tx.txidem}}
+                ID {{tx.txidem}}
             </h3>
 
             <h3>
@@ -162,9 +165,9 @@ onMounted(() => {
                         <span class="font-medium">{{input.address}}</span>
                     </NuxtLink>
 
-                    <h3 class="text-xs text-amber-800 truncate">
+                    <h3 v-if="input.satoshis" class="text-xs text-amber-800 truncate">
                         Satoshis:
-                        <span class="font-medium">{{input.satoshis}}</span>
+                        <span class="font-medium">{{numeral(Number(input.satoshis)).format('0,0')}}</span>
                     </h3>
                     <!-- {{input}} -->
                 </div>
