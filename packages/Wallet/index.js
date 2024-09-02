@@ -489,6 +489,18 @@ export class Wallet extends EventEmitter {
         return encodePrivateKeyWif(this.privateKey, 'mainnet')
     }
 
+    /***************************************************************************
+     * BEGIN METHODS
+     */
+
+    addInput() {
+        // TODO
+    }
+
+    addOutput() {
+        // TODO
+    }
+
     async build(_tokenid, _receiver, _amount) {
         return _build.bind(this)(_tokenid, _receiver, _amount)
     }

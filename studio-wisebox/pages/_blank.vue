@@ -2,7 +2,7 @@
 useHead({
     title: `Blank — Wisebox`,
     meta: [
-        { name: 'description', content: `Wisebox makes building your next BIG idea effortless.` }
+        { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
 })
 
