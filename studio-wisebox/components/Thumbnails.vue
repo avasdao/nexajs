@@ -25,7 +25,7 @@ const props = defineProps({
             class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
         >
             <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                Add Cover
+                Add Script
             </h3>
 
             <span class="text-gray-700">
@@ -49,7 +49,7 @@ const props = defineProps({
             class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
         >
             <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                Add Front
+                Add Contract
             </h3>
 
             <span class="text-gray-700">
@@ -71,7 +71,7 @@ const props = defineProps({
             class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
         >
             <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                Add Back
+                Add Profile
             </h3>
 
             <span class="text-gray-700">
@@ -93,7 +93,7 @@ const props = defineProps({
             class="relative group flex-1 flex flex-col justify-center items-center bg-gray-50 border border-gray-300 rounded-xl shadow cursor-pointer hover:bg-sky-100"
         >
             <h3 class="text-xl text-gray-600 font-medium group-hover:text-sky-600">
-                Add Play
+                Add Asset
             </h3>
 
             <span class="text-gray-700">

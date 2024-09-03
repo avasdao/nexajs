@@ -37,7 +37,7 @@ const System = useSystemStore()
     <section class="my-5 flex flex-row gap-4">
         <div class="flex-1 h-96">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Asset Designer
+                My Contracts
             </h2>
 
             <div class="h-full bg-rose-100 border border-rose-300 rounded-xl shadow">
@@ -45,17 +45,30 @@ const System = useSystemStore()
             </div>
         </div>
 
-        <div class="mt-5 w-32 h-96">
+        <div class="mt-5 w-48 h-96">
             <Thumbnails />
         </div>
 
-        <div class="w-[500px]">
+        <div class="w-[350px]">
             <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
-                Cover Preview
+                My Recent Activity
             </h2>
 
             <div class="w-full h-96 bg-gray-50 border border-gray-300 rounded-xl shadow" />
         </div>
+    </section>
+
+    <section class="my-5 py-5 flex flex-row gap-4">
+        <div class="flex-1 h-96">
+            <h2 class="pl-3 text-gray-500 text-sm font-medium uppercase">
+                Transaction Builder
+            </h2>
+
+            <div class="h-full bg-fuchsia-100 border border-fuchsia-300 rounded-xl shadow">
+                <!-- preview windows -->
+            </div>
+        </div>
+
     </section>
 
 </template>
