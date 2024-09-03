@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/* Import modules. */
+// import * as monaco from 'monaco-editor'
+import TransferWithTimeout from '@/static/scripts/TransferWithTimeout.js'
+
 useHead({
     title: `Editor — Wisebox`,
     meta: [
@@ -12,23 +16,19 @@ const System = useSystemStore()
 
 const monacoEditor = ref(null)
 
+// const monacoOptions = monaco.editor.IEditorConstructionOptions = {
+//   automaticLayout: true
+// }
+const monacoOptions = JSON.stringify({
+    automaticLayout: true,
+    theme: 'vs-dark',
+    lineNumbers: 'off',
+})
+console.log('MONOCO OPTIONS', monacoOptions)
+
 const init = () => {
     /* Initialize editor. */
-    monacoEditor.value = `
-pragma nexscript >= 1.0.0;
-
-contract TransferWithTimeout(pubkey sender, pubkey recipient, int timeout) {
-    // Require recipient's signature to match
-    function transfer(sig recipientSig) {
-        require(checkSig(recipientSig, recipient));
-    }
-
-    // Require timeout time to be reached and sender's signature to match
-    function timeout(sig senderSig) {
-        require(checkSig(senderSig, sender));
-        require(tx.time >= timeout);
-    }
-}`
+    monacoEditor.value = TransferWithTimeout
     console.log('MONACO EDITOR', monacoEditor)
 
     // const aceEditor = ace.edit('ace-editor')
@@ -55,7 +55,9 @@ onMounted(() => {
 
         <MonacoEditor
             v-model="monacoEditor"
+            :options="{monacoOptions}"
             lang="sol"
+            theme="vs-dark"
             class="w-full h-[450px]"
         />
 

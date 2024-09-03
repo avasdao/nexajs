@@ -37,8 +37,29 @@ const System = useSystemStore()
             </h2>
 
             <p>
-                Get started here...
+                Get started here with Guides designed to be simple and yet educational.
             </p>
+
+            <section class="">
+                <h3>
+                    Select a Guide
+                </h3>
+
+                <div class="grid grid-cols-6 gap-8">
+                    <div class="col-span-4 p-5 bg-amber-50 border-4 border-amber-300 rounded-xl shadow overflow-x-scroll">
+                        <GuideTransferWithTimeout />
+                    </div>
+
+                    <div class="col-span-2 p-5 bg-gray-800 border-4 border-amber-400 rounded-xl shadow">
+                        <p class="text-gray-200">
+                            Click on a line to get detailed info.
+                        </p>
+
+                    </div>
+                </div>
+
+            </section>
+
         </section>
 
         <section>

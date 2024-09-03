@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Assets — Wisebox`,
+    title: `Profiles — Wisebox`,
     meta: [
         { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
@@ -24,7 +24,7 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Assets
+            Profiles
         </h1>
 
         <div>
