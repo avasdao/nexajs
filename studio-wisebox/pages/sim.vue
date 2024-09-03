@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useHead({
-    title: `Multimedia — Wisebox`,
+    title: `Simulator — Wisebox`,
     meta: [
-        { name: 'description', content: `Wisebox makes building your next BIG idea effortless.` }
+        { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
 })
 
@@ -24,15 +24,11 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Multimedia
+            Simulator
         </h1>
 
         <p>
-            Find the perfect media for your NFT masterpiece.
+            Coming soon...
         </p>
-
-        <ol class="pl-10 list-decimal">
-            <li>https://media.com</li>
-        </ol>
     </main>
 </template>

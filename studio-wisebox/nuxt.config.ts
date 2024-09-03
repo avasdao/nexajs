@@ -14,6 +14,7 @@ export default defineNuxtConfig({
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             ],
             script: [
+                { src: 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js' },
                 { src: '/js/matomo.js' },
             ],
         },

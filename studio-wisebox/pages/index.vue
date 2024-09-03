@@ -27,6 +27,7 @@ const System = useSystemStore()
 
             <p class="mt-2 lg:mt-5 text-sm lg:text-base">
                 Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.
+                Deliver unparalleled digital experiences for real world enterprises.
             </p>
         </div>
 
