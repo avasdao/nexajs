@@ -341,6 +341,10 @@ export class Wallet extends EventEmitter {
         })()
     }
 
+    /***************************************************************************
+     * BEGIN GETTERS
+     */
+
     /* Return a short address. */
     get abbr() {
         if (!this.address) return null
@@ -493,11 +497,19 @@ export class Wallet extends EventEmitter {
      * BEGIN METHODS
      */
 
+    addData() {
+        // TODO
+    }
+
     addInput() {
         // TODO
     }
 
     addOutput() {
+        // TODO
+    }
+
+    addScript() {
         // TODO
     }
 
@@ -507,17 +519,6 @@ export class Wallet extends EventEmitter {
 
     getAddress(_addressIdx, _isChange) {
         return _getAddress.bind(this)(_addressIdx, _isChange)
-    }
-
-    getNewAddress(_isChange = false) {
-        /* Set the next address index. */
-        const nextIdx = this.addressIdx + 1
-
-        /* Set new (address) index to path. */
-        this.setPathAddress(nextIdx)
-
-        /* Return (incremented) address. */
-        return this.address
     }
 
     /**
@@ -538,6 +539,21 @@ export class Wallet extends EventEmitter {
         return this.assets[_tokenid]?.coins.satoshis
     }
 
+    getNewAddress(_isChange = false) {
+        /* Set the next address index. */
+        const nextIdx = this.addressIdx + 1
+
+        /* Set new (address) index to path. */
+        this.setPathAddress(nextIdx)
+
+        /* Return (incremented) address. */
+        return this.address
+    }
+
+    async send(_tokenid, _receiver, _amount) {
+        return _send.bind(this)(_tokenid, _receiver, _amount)
+    }
+
     /* Set the (active) asset displayed on the UI. */
     setAsset(_assetid) {
         this._assetid = _assetid
@@ -551,10 +567,6 @@ export class Wallet extends EventEmitter {
     setPathAddress(_index) {
         /* Set address index. */
         this._addressIdx = parseInt(_index).toString()
-    }
-
-    async send(_tokenid, _receiver, _amount) {
-        return _send.bind(this)(_tokenid, _receiver, _amount)
     }
 
     async updateAssets(_subscribe, _fiat) {
@@ -594,10 +606,24 @@ const Nexa = {}
 Nexa.Wallet = Wallet
 
 /* Initialize Wallet modules. */
+Nexa.addData = addData
+Nexa.addInput = addInput
+Nexa.addOutput = addOutput
+Nexa.addScript = addScript
 Nexa.build = build
+Nexa.getAddress = getAddress
+Nexa.getBalance = getBalance
+Nexa.getNewAddress = getNewAddress
 Nexa.getDerivationPath = getDerivationPath
 Nexa.parseDerivationPath = parseDerivationPath
 Nexa.send = send
+Nexa.setAsset = setAsset
+Nexa.setPathAccount = setPathAccount
+Nexa.setPathAddress = setPathAddress
+Nexa.updateAssets = updateAssets
+Nexa.updateBalances = updateBalances
+Nexa.toObject = toObject
+Nexa.toString = toString
 Nexa.WalletStatus = WalletStatus
 
 /* Export Nexa to globalThis. */
