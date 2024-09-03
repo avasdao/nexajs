@@ -14,7 +14,6 @@ export default defineNuxtConfig({
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             ],
             script: [
-                { src: 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js' },
                 { src: '/js/matomo.js' },
             ],
         },
@@ -30,6 +29,9 @@ export default defineNuxtConfig({
 
         /* Internationalization for Nuxt */
         '@nuxtjs/i18n',
+
+        /* Monaco Editor for Nuxt */
+        'nuxt-monaco-editor',
     ],
 
     /* Set compatibility date. */

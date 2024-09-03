@@ -344,7 +344,7 @@ const isShowingMenu = ref(false)
 
                         <li>
                             <div class="text-xs font-semibold leading-6 text-gray-400">
-                                Builder Studios
+                                More Builder Studios...
                             </div>
 
                             <ul role="list" class="-mx-2 space-y-1">
