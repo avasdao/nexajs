@@ -5,6 +5,8 @@ import { useSystemStore } from '@/stores/system'
 const Profile = useProfileStore()
 const System = useSystemStore()
 
+const showProfileMenu = ref(null)
+
 onBeforeMount(() => {
     // TODO Move this block to @nexajs/app
     try {
@@ -414,7 +416,7 @@ const isShowingMenu = ref(false)
                         <input id="search-field" class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm" placeholder="Search..." type="search" name="search" />
                     </form>
                     <div class="flex items-center gap-x-4 lg:gap-x-6">
-                        <NuxtLink to="/assets">
+                        <NuxtLink to="/profiles">
                             <span class="sr-only">Open assets</span>
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                 <path

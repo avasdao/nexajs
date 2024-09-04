@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Simulator — Wisebox`,
+    title: `Bob — Wisebox`,
     meta: [
         { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
@@ -24,16 +24,11 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Simulator
+            Bob
         </h1>
 
         <p>
-            Nexa transactions run on a virtual machine (VM) called <NuxtLink to="https://debug.nexa.org/" target="_blank" class="text-blue-500 hover:underline">Nexa Script</NuxtLink>.
-
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
         </p>
-
-        <h3 class="italic font-light text-rose-500 text-4xl tracking-widest">
-            Coming soon...
-        </h3>
     </main>
 </template>

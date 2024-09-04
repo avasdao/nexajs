@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Profiles — Wisebox`,
+    title: `Alice — Wisebox`,
     meta: [
         { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
@@ -24,17 +24,11 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Profiles
+            Alice
         </h1>
 
-        <div>
-            <h4 class="font-bold">
-                PLEASE NOTE:
-            </h4>
-
-            <p>
-                Your Wisebox assets are 100% independent from your <NuxtLink to="https://nexa.studio/wallet" target="_blank" class="text-blue-500 font-medium hover:underline">Studio Wallet</NuxtLink> assets.
-            </p>
-        </div>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+        </p>
     </main>
 </template>

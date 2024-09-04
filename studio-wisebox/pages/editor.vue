@@ -26,6 +26,10 @@ const monacoOptions = JSON.stringify({
 })
 console.log('MONOCO OPTIONS', monacoOptions)
 
+const compile = async () => {
+    alert('Temporarily offline...')
+}
+
 const init = () => {
     /* Initialize editor. */
     monacoEditor.value = TransferWithTimeout
@@ -53,13 +57,32 @@ onMounted(() => {
             Editor
         </h1>
 
-        <MonacoEditor
-            v-model="monacoEditor"
-            :options="{monacoOptions}"
-            lang="sol"
-            theme="vs-dark"
-            class="w-full h-[450px]"
-        />
+        <div class="grid grid-cols-6 gap-8">
+            <MonacoEditor
+                v-model="monacoEditor"
+                :options="{monacoOptions}"
+                lang="sol"
+                theme="vs-dark"
+                class="col-span-4 w-full h-[450px]"
+            />
+
+            <section class="col-span-2">
+                <button @click="compile" class="px-3 py-2 text-sm text-green-900 font-bold bg-green-400 border border-green-600 rounded-lg shadow hover:bg-green-300">
+                    Run Compiler...
+                </button>
+
+                <h3 class="mt-5 pl-2 text-sm text-gray-400 font-medium uppercase tracking-widest">
+                    Compiler Output
+                </h3>
+
+                <div class="p-5 bg-gray-800 border-2 border-amber-400 rounded-xl shadow">
+                    <p class="text-gray-200">
+                        ready for input...
+                    </p>
+
+                </div>
+            </section>
+        </div>
 
     </main>
 </template>
