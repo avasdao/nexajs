@@ -1,7 +1,9 @@
 /* Import modules. */
 import CryptoJS from 'crypto-js'
-import { binToHex } from '@nexajs/utils'
-import { hexToBin } from '@nexajs/utils'
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
 
 /**
  * SHA-512
@@ -11,8 +13,6 @@ import { hexToBin } from '@nexajs/utils'
  * Allows specification of the response format.
  */
 export default (_body, _format) => {
-    // console.log(`Decrypt (params): [ ${JSON.stringify(_body, null, 2)} ]`)
-
     /* Initialize locals. */
     let body
     let format
@@ -29,7 +29,6 @@ export default (_body, _format) => {
 
     /* Hash body. */
     hash = CryptoJS.SHA512(body).toString()
-    // console.log(`Hashed: [ ${hash} ]`)
 
     /* Handle format conversion. */
     if (format === 'binary') {

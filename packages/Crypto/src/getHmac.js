@@ -1,16 +1,10 @@
 /* Import modules. */
-// import CryptoJS from 'crypto-js'
 import { flattenBinArray } from '@nexajs/utils'
-
 import { sha512 } from '../index.js'
 
-// export default (_secret, _body) => {
-//     const signature = CryptoJS.HmacSHA512(_body, _secret).toString()
-//     // console.log(`HMAC-512 signature: [ ${signature} ]`)
-//
-//     return signature
-// }
-
+/**
+ * Get HMAC
+ */
 export default (_secret, _message, _size = 512) => {
     /* Calculate byte length. */
     const blockByteLength = (_size / 4) // 128
