@@ -80,6 +80,17 @@ onMounted(() => {
                         ready for input...
                     </p>
 
+<pre>PrimitiveType:
+{ INT: 'int',
+    BOOL: 'bool',
+    STRING: 'string',
+    PUBKEY: 'pubkey',
+    SIG: 'sig',
+    DATASIG: 'datasig',
+    ANY: 'any'
+}
+</pre>
+
                 </div>
             </section>
         </div>

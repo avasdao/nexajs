@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/* Import modules. */
+// import nexc from '@nexscript/nexc'
+
+
 useHead({
     title: `Simulator — Wisebox`,
     meta: [
@@ -10,10 +14,9 @@ useHead({
 import { useSystemStore } from '@/stores/system'
 const System = useSystemStore()
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+onMounted(() => {
+    // console.log('NEXC', nexc)
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')
