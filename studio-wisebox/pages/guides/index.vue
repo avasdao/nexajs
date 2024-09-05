@@ -45,6 +45,14 @@ const System = useSystemStore()
                     Select a Guide
                 </h3>
 
+                <h4>
+                    Multi-Function
+                </h4>
+
+                <h4>
+                    Introspection Emulation
+                </h4>
+
                 <div class="grid grid-cols-6 gap-8">
                     <div class="col-span-4 p-5 bg-amber-50 border-4 border-amber-300 rounded-xl shadow overflow-x-scroll">
                         <GuideTransferWithTimeout />

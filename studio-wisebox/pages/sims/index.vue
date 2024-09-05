@@ -4,7 +4,7 @@
 
 
 useHead({
-    title: `Simulator — Wisebox`,
+    title: `Simulators — Wisebox`,
     meta: [
         { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
@@ -27,7 +27,7 @@ onMounted(() => {
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Simulator
+            Simulators
         </h1>
 
         <p>
