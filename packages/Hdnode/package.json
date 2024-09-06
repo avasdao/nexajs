@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "@ethersproject/hdnode": "5.7.0",
-    "@nexajs/address": "24.8.16",
+    "@nexajs/address": "24.9.5",
     "@nexajs/crypto": "24.9.5",
     "@nexajs/script": "24.7.15",
     "@nexajs/utils": "24.7.15"

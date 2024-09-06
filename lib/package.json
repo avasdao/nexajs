@@ -11,7 +11,7 @@
   },
   "repository": "https://github.com/avasdao/nexajs.git",
   "dependencies": {
-    "@nexajs/address": "24.8.16",
+    "@nexajs/address": "24.9.5",
     "@nexajs/app": "24.8.17",
     "@nexajs/crypto": "24.9.5",
     "@nexajs/hdnode": "24.8.16",
