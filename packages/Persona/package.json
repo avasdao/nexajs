@@ -1,6 +1,6 @@
 {
-  "name": "@nexajs/account",
-  "version": "23.2.22",
+  "name": "@nexajs/persona",
+  "version": "24.9.6",
   "description": "TBD",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

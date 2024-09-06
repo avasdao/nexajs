@@ -1,6 +1,6 @@
-# NEXA.js Account Examples
+# NEXA.js Persona Examples
 
-A complete guide to ALL the Account commands available from the protocol.
+A complete guide to ALL the Persona commands available from the protocol.
 
 # Table of contents
 

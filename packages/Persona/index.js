@@ -9,14 +9,14 @@ import { EventEmitter } from 'events'
 
 
 /**
- * Account Class
+ * Persona Class
  *
  * Manages account functions.
  */
-export class Account extends EventEmitter {
+export class Persona extends EventEmitter {
     constructor(_params) {
-        /* Initialize Account class. */
-        // console.info('Initializing Account...')
+        /* Initialize Persona class. */
+        // console.info('Initializing Persona...')
         // console.log(JSON.stringify(_params, null, 2))
         super()
 
@@ -24,10 +24,10 @@ export class Account extends EventEmitter {
     }
 
     test() {
-        return 'Account (Instance) is working!'
+        return 'Persona (Instance) is working!'
     }
     static test() {
-        return 'Account (Static) is working!'
+        return 'Persona (Static) is working!'
     }
 }
 
@@ -35,10 +35,10 @@ export class Account extends EventEmitter {
 /* Initialize (globalThis) Nexa class. */
 const Nexa = {}
 
-/* Initialize Account class. */
-Nexa.Account = Account
+/* Initialize Persona class. */
+Nexa.Persona = Persona
 
-/* Initialize Account modules. */
+/* Initialize Persona modules. */
 // TBD
 
 /* Export Nexa to globalThis. */

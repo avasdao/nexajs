@@ -3,11 +3,6 @@
 The following suite of 33 packages compose the entire NEXA.js Library and Software Development Kit (SDK).
 
 
-## Account
-
-_TBD_
-
-
 ## [Address](/packages/Address)
 
 Performs various address functions like:
@@ -100,6 +95,11 @@ _TBD_
 
 
 ## Nuxt
+
+_TBD_
+
+
+## Persona
 
 _TBD_
 
