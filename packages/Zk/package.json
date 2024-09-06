@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/zk",
-  "version": "24.8.16",
+  "version": "24.9.5",
   "description": "Zero Knowledge utilities.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@nexajs/crypto": "24.8.16",
+    "@nexajs/crypto": "24.9.5",
     "@nexajs/utils": "24.7.15",
     "big-integer": "1.6.52"
   }
