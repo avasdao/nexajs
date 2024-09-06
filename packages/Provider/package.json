@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/provider",
-  "version": "24.4.20",
+  "version": "23.12.25",
   "description": "Manages individual (on-chain) service providers.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

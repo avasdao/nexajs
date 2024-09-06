@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/market",
-  "version": "24.8.16",
+  "version": "24.9.5",
   "description": "Access and trade with Nexa's exchange partners all from one place.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@nexajs/provider": "23.12.25",
-    "@nexajs/transaction": "24.8.16",
+    "@nexajs/transaction": "24.9.5",
     "events": "3.3.0",
     "moment": "2.29.4",
     "numeral": "2.0.6",
