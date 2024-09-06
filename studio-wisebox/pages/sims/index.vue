@@ -35,8 +35,7 @@ onMounted(() => {
 
         </p>
 
-        <h3 class="italic font-light text-rose-500 text-4xl tracking-widest">
-            Coming soon...
-        </h3>
+        <SimChooser />
+
     </main>
 </template>

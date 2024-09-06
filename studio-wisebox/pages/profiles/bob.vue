@@ -28,7 +28,11 @@ const System = useSystemStore()
         </h1>
 
         <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+            Introduces an active wallet with on-chain transaction activity.
+        </p>
+
+        <p>
+            Introduces a NEW non-fungible token (NFTs) with on-chain activity.
         </p>
     </main>
 </template>

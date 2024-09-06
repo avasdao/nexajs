@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Snippets — Wisebox`,
+    title: `Sybil — Wisebox`,
     meta: [
         { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
@@ -24,44 +24,11 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Snippets
+            Sybil
         </h1>
 
         <p>
-            A collection of Scripts ready to drop-in to your own smart contracts.
+            Introduces multiple wallet, each with on-chain activity.
         </p>
-
-        <section>
-            <h2>
-                Beginner
-            </h2>
-
-            <p>
-                Get started here...
-            </p>
-
-            <SnippetBlank />
-        </section>
-
-        <section>
-            <h2>
-                Advanced
-            </h2>
-
-            <p>
-                These Scripts require a basic understanding of stacks and OPs.
-            </p>
-        </section>
-
-        <section>
-            <h2>
-                Expert
-            </h2>
-
-            <p>
-                For the elite scripters.
-            </p>
-        </section>
-
     </main>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Snippets — Wisebox`,
+    title: `Help — Wisebox`,
     meta: [
         { name: 'description', content: `Wisebox is the Ultimate Playground for UTXO Script developers to design, test and deploy their smart contracts.` }
     ],
@@ -24,44 +24,11 @@ const System = useSystemStore()
 <template>
     <main class="flex flex-col gap-4">
         <h1 class="text-5xl font-medium">
-            Snippets
+            Help &amp; Support Center
         </h1>
 
         <p>
-            A collection of Scripts ready to drop-in to your own smart contracts.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
         </p>
-
-        <section>
-            <h2>
-                Beginner
-            </h2>
-
-            <p>
-                Get started here...
-            </p>
-
-            <SnippetBlank />
-        </section>
-
-        <section>
-            <h2>
-                Advanced
-            </h2>
-
-            <p>
-                These Scripts require a basic understanding of stacks and OPs.
-            </p>
-        </section>
-
-        <section>
-            <h2>
-                Expert
-            </h2>
-
-            <p>
-                For the elite scripters.
-            </p>
-        </section>
-
     </main>
 </template>

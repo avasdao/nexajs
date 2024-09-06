@@ -28,7 +28,7 @@ const System = useSystemStore()
         </h1>
 
         <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
+            Introduces a fresh NEW wallet without ANY on-chain or off-chian activity.
         </p>
     </main>
 </template>
