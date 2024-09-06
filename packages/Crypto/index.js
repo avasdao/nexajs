@@ -11,6 +11,8 @@ import _encrypt from './src/encrypt.js'
 import _encryptForPubkey from './src/encryptForPubkey.js'
 // import _passwordToSafu from './src/passwordToSafu.js'
 import _getHmac from './src/getHmac.js'
+import _hash160 from './src/hash160.js'
+import _hash256 from './src/hash256.js'
 import _ripemd160 from './src/ripemd160.js'
 import _sha256 from './src/sha256.js'
 import _sha512 from './src/sha512.js'
@@ -42,6 +44,8 @@ export const encrypt = _encrypt
 export const encryptForPubkey = _encryptForPubkey
 // export const passwordToSafu = _passwordToSafu
 export const getHmac = _getHmac
+export const hash160 = _hash160
+export const hash256 = _hash256
 export const ripemd160 = _ripemd160
 export const sha256 = _sha256
 export const sha512 = _sha512
@@ -111,6 +115,8 @@ Nexa.encrypt = encrypt
 Nexa.encryptForPubkey = encryptForPubkey
 // Nexa.passwordToSafu = passwordToSafu
 Nexa.getHmac = getHmac
+Nexa.hash160 = hash160
+Nexa.hash256 = hash256
 Nexa.randomBytes = randomBytes
 Nexa.ripemd160 = ripemd160
 Nexa.sha256 = sha256

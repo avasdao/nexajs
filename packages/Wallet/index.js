@@ -606,24 +606,9 @@ const Nexa = {}
 Nexa.Wallet = Wallet
 
 /* Initialize Wallet modules. */
-Nexa.addData = addData
-Nexa.addInput = addInput
-Nexa.addOutput = addOutput
-Nexa.addScript = addScript
 Nexa.build = build
-Nexa.getAddress = getAddress
-Nexa.getBalance = getBalance
-Nexa.getNewAddress = getNewAddress
-Nexa.getDerivationPath = getDerivationPath
 Nexa.parseDerivationPath = parseDerivationPath
 Nexa.send = send
-Nexa.setAsset = setAsset
-Nexa.setPathAccount = setPathAccount
-Nexa.setPathAddress = setPathAddress
-Nexa.updateAssets = updateAssets
-Nexa.updateBalances = updateBalances
-Nexa.toObject = toObject
-Nexa.toString = toString
 Nexa.WalletStatus = WalletStatus
 
 /* Export Nexa to globalThis. */
