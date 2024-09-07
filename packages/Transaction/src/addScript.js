@@ -1,5 +1,5 @@
 /**
- * Sign
+ * Add Script
  *
  * TBD...
  */

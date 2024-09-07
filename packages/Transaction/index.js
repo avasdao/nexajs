@@ -26,7 +26,7 @@ const SIGHASH_ALL = 0x0
  * Transaction Class
  *
  * Manage the construction of a new or existing Transaction; as well as
- * handle the unlocking (by use of redeem scripts) to validate the
+ * handle the unlocking (by use of redeem scripts) and authorize the
  * transaction for on-chain broadcast.
  */
 export class Transaction {
@@ -221,7 +221,12 @@ export class Transaction {
         // TODO
     }
 
-    async sign(_wifs) {
+    /**
+     * Sign
+     *
+     * Sign a hash of the serialized transaction (using Schnorr).
+     */
+    async sign(_locksmith) {
         /* Initialize unspent holder. */
         const unspents = []
 
@@ -239,8 +244,8 @@ export class Transaction {
 
         /* Generate raw transaction. */
         this._raw = await createTransaction(
-            _wifs,
-            unspents,
+            _locksmith,
+            unspents, // FIXME Why not use `this.inputs`??
             this.outputs,
             this.lockTime,
             this.locking,
@@ -249,10 +254,6 @@ export class Transaction {
 
         /* Set flag. */
         this._isSigned = true
-    }
-
-    withoutTokenChange() {
-        // TODO
     }
 }
 
