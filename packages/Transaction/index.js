@@ -1,6 +1,5 @@
 /* Import modules. */
 import { OP } from '@nexajs/script'
-
 import { binToHex } from '@nexajs/utils'
 
 /* Import (local) modules. */
@@ -15,10 +14,9 @@ const SCRIPT_TEMPLATE_1 = new Uint8Array([
         OP.CHECKSIGVERIFY,
 ])
 
+/* Set constants. */
 const MAXINT = 0xffffffff
-
 const DEFAULT_SEQNUMBER = MAXINT - 1 // NOTE: Enables nLocktime
-
 // TODO Add support for ALL signature types.
 //      (source: https://spec.nexa.org/nexa/sighashtype.md)
 const SIGHASH_ALL = 0x0
@@ -27,22 +25,26 @@ const SIGHASH_ALL = 0x0
 /**
  * Transaction Class
  *
- * Manages transaction functions.
+ * Manage the construction of a new or existing Transaction; as well as
+ * handle the unlocking (by use of redeem scripts) to validate the
+ * transaction for on-chain broadcast.
  */
 export class Transaction {
     constructor(_params) {
-        /* Initialize Transaction class. */
-        // console.info('Initializing Transaction...')
-        // console.log(JSON.stringify(_params, null, 2))
-
         /* Initialize flags. */
         this._isSigned = false
+
+        /* Initialize data. */
+        this._data = []
 
         /* Initialize inputs. */
         this._inputs = []
 
         /* Initialize outputs. */
         this._outputs = []
+
+        /* Initialize scripts. */
+        this._scripts = []
 
         /* Initialize raw (hex) output. */
         this._raw = null
@@ -57,6 +59,8 @@ export class Transaction {
 
         /* Validate lock time. */
         // NOTE: A Unix timestamp or block number. (4 bytes)
+        //       It is very common for this value to be set to the
+        //       current block height.
         if (_params?.lockTime) {
             this._lockTime = _params.lockTime
         } else {
@@ -102,6 +106,10 @@ export class Transaction {
         return 'Transaction (Static) is working!'
     }
 
+    get data() {
+        return this._data
+    }
+
     get inputs() {
         return this._inputs
     }
@@ -118,6 +126,10 @@ export class Transaction {
         return this._outputs
     }
 
+    get scripts() {
+        return this._scripts
+    }
+
     get json() {
         /* Validate raw transaction data. */
         if (!this._raw) {
@@ -125,7 +137,8 @@ export class Transaction {
         }
 
         return {
-            hash: 'TODO',
+            hash: this._raw,
+            tbd: 'TODO',
         }
     }
 
@@ -149,6 +162,14 @@ export class Transaction {
 
     get unlocking() {
         return this._unlocking
+    }
+
+    /***************************************************************************
+     * BEGIN METHODS
+     */
+
+    addData() {
+        // TODO
     }
 
     addInput({
@@ -183,7 +204,7 @@ export class Transaction {
         if (satoshis === null || typeof satoshis === 'undefined') {
             // TODO Validate output.
             this._outputs.push({
-                data: address
+                data: address,
             })
         } else {
             // TODO Validate output.
@@ -194,6 +215,10 @@ export class Transaction {
                 tokens,
             })
         }
+    }
+
+    addScript() {
+        // TODO
     }
 
     async sign(_wifs) {
@@ -224,6 +249,10 @@ export class Transaction {
 
         /* Set flag. */
         this._isSigned = true
+    }
+
+    withoutTokenChange() {
+        // TODO
     }
 }
 

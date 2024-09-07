@@ -517,6 +517,10 @@ export class Wallet extends EventEmitter {
         return _build.bind(this)(_tokenid, _receiver, _amount)
     }
 
+    from(_inputs) {
+        // TODO -- Add one (ore more) specific UTXO(s).
+    }
+
     getAddress(_addressIdx, _isChange) {
         return _getAddress.bind(this)(_addressIdx, _isChange)
     }
@@ -577,6 +581,10 @@ export class Wallet extends EventEmitter {
         return _updateBalances.bind(this)(_fiat)
     }
 
+    to(_tokenid, _address, _amount) {
+        // TODO -- Add one (or more) Receipient(s).
+    }
+
     toObject() {
         /* Return primary details. */
         return {
@@ -595,6 +603,40 @@ export class Wallet extends EventEmitter {
     toString() {
         /* Return mnemonic. */
         return this.mnemonic
+    }
+
+    withAge(_age) {
+        // TODO
+    }
+
+    // NOTE: Will use the smallest size (min # inputs) to build the transaction.
+    withMinSize() {
+        // TODO
+    }
+
+    // NOTE: This is a fixed fee. (often required by contracts)
+    withFee(_satoshis) {
+        // TODO
+    }
+
+    // NOTE: By default, NEXA.js fee rate is set to 2.0 satoshis per byte;
+    // NOTE: By default, Nexa Core fee rate is set to 1.0 satoshis per byte.
+    withFeeRate(_satoshis) {
+        // TODO
+    }
+
+    // NOTE: By default, the transaction's `lock_time` is set to the
+    //       most recent block number, which is the most common use case.
+    withTime(_time) {
+        // TODO
+    }
+
+    withoutChange() {
+        // TODO
+    }
+
+    withoutTokenChange() {
+        // TODO
     }
 }
 
