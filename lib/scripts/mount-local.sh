@@ -16,7 +16,6 @@ rm -rf ../node_modules/@nexajs/request
 rm -rf ../node_modules/@nexajs/rostrum
 rm -rf ../node_modules/@nexajs/rpc
 rm -rf ../node_modules/@nexajs/script
-rm -rf ../node_modules/@nexajs/swap
 rm -rf ../node_modules/@nexajs/token
 rm -rf ../node_modules/@nexajs/transaction
 rm -rf ../node_modules/@nexajs/utils
@@ -44,7 +43,6 @@ ln -s ../../../packages/Request ../node_modules/@nexajs/request
 ln -s ../../../packages/Rostrum ../node_modules/@nexajs/rostrum
 ln -s ../../../packages/Rpc ../node_modules/@nexajs/rpc
 ln -s ../../../packages/Script ../node_modules/@nexajs/script
-ln -s ../../../packages/Swap ../node_modules/@nexajs/swap
 ln -s ../../../packages/Token ../node_modules/@nexajs/token
 ln -s ../../../packages/Transaction ../node_modules/@nexajs/transaction
 ln -s ../../../packages/Utils ../node_modules/@nexajs/utils
