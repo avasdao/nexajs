@@ -1,10 +1,12 @@
+/* Import modules. */
 import { decodeAddress } from '@nexajs/address'
 import {
     binToHex,
     flattenBinArray,
 } from '@nexajs/utils'
 
-import signTransactionInput from '../REF/signTransactionInput.js'
+/* Import (local) modules. */
+import signTransactionInput from '../shared/signTransactionInput.js'
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.

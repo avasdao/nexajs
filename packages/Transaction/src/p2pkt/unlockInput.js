@@ -1,14 +1,13 @@
 /* Import modules. */
 import { decodeAddress } from '@nexajs/address'
-
 import {
     encodeDataPush,
     OP,
 } from '@nexajs/script'
-
 import { binToHex } from '@nexajs/utils'
 
-import signTransactionInput from '../REF/signTransactionInput.js'
+/* Import (local) modules. */
+import signTransactionInput from '../shared/signTransactionInput.js'
 
 /* Initialize default script bytecode. */
 const SCRIPT_TEMPLATE_1 = new Uint8Array([

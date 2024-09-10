@@ -21,9 +21,12 @@ const MAX_INPUTS_ALLOWED = 250
  */
 export const useWalletStore = defineStore('wallet', {
     state: () => ({
+        /**
+         * Assets
+         *
+         * Will hold ALL assets that the wallet manages.
+         */
         _assets: null,
-
-        // _forceUI: null,
 
         /**
          * Entropy

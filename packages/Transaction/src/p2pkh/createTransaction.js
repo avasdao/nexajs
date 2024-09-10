@@ -1,13 +1,10 @@
 /* Import modules. */
-import encodeTransaction from '../REF/encodeTransaction.js'
-
 import { parseWif } from '@nexajs/hdnode'
+import { binToHex } from '@nexajs/utils'
 
-import {
-    binToHex,
-} from '@nexajs/utils'
-
-import createUnsignedInput from '../REF/createUnsignedInput.js'
+/* Import (local) modules. */
+import encodeTransaction from '../shared/encodeTransaction.js'
+import createUnsignedInput from '../shared/createUnsignedInput.js'
 import unlockP2PKHInput from './unlockInput.js'
 
 /**
