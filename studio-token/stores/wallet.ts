@@ -182,7 +182,7 @@ export const useWalletStore = defineStore('wallet', {
 
             /* Validate unspent outputs. */
             if (unspent.length === 0) {
-                return console.error('There are NO unspent outputs available.')
+                return console.info('There are NO unspent outputs available.')
             }
 
             /* Retrieve coins. */

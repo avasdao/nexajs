@@ -51,7 +51,7 @@ export default async (_wif, _scriptPubKey = null) => {
 
     /* Validate unspent. */
     if (unspent.length === 0) {
-        console.error('There are NO unspent outputs available.')
+        console.info('There are NO unspent outputs available.')
 
         /* Return empty array. */
         return []

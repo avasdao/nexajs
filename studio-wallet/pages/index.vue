@@ -100,7 +100,6 @@ const tokensBalanceUsd = computed(() => {
     return '~' + numeral(totalUsd).format('$0,0.00')
 })
 
-
 /**
  * Set Tab
  */
