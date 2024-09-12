@@ -4,7 +4,10 @@ import {
     encodeDataPush,
     OP,
 } from '@nexajs/script'
-import { binToHex } from '@nexajs/utils'
+import {
+    binToHex,
+    hexToBin,
+} from '@nexajs/utils'
 
 /* Import (local) modules. */
 import signTransactionInput from '../shared/signTransactionInput.js'
@@ -14,6 +17,9 @@ const SCRIPT_TEMPLATE_1 = new Uint8Array([
     OP.FROMALTSTACK,
         OP.CHECKSIGVERIFY,
 ])
+
+/* Initialize signature placeholder. */
+const SIGNATURE_PLACEHOLDER = binToHex([...new Uint8Array(64)])
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.
@@ -45,7 +51,7 @@ export default async (
 
     /* Initialize locals. */
     let lockingBytecode
-    let scriptPubKey
+    let scriptPubkey
     let signature
     let signedInput
     let unlockingBytecode
@@ -57,7 +63,7 @@ export default async (
         typeof input.unlockingBytecode === 'undefined'
     ) {
         /* Add data push to script public key. */
-        scriptPubKey = encodeDataPush(publicKey)
+        scriptPubkey = encodeDataPush(publicKey)
 
         // Generate a transaction signature for this input.
         // TODO We DO NOT always require a signature.
@@ -75,7 +81,7 @@ export default async (
         // NOTE: This is the MOST common (aka default) unlocking script.
         unlockingBytecode = new Uint8Array(
             [
-                ...encodeDataPush(scriptPubKey),
+                ...encodeDataPush(scriptPubkey),
                 ...encodeDataPush(signature),
             ]
         )
@@ -116,8 +122,8 @@ export default async (
         } else {
             /* Validate signature (replacement) request. */
             if (
-                unlockingBytecode.length > 64 &&
-                binToHex(unlockingBytecode.slice(0, 64)) === binToHex([...new Uint8Array(64)])
+                (unlockingBytecode.length > 64) &&
+                binToHex(unlockingBytecode).includes(SIGNATURE_PLACEHOLDER)
             ) {
                 // Generate a transaction signature for this input.
                 // TODO We DO NOT always require a signature.
@@ -130,11 +136,19 @@ export default async (
                     privateKey,
                 )
 
-                /* Add new signature to unlocking bytecode. */
-                unlockingBytecode = new Uint8Array([
-                    ...encodeDataPush(signature),
-                    ...unlockingBytecode.slice(64), // NOTE: Removes placeholder.
-                ])
+                /* Set initial bytes. */
+                const initialBytes = binToHex(unlockingBytecode)
+                // console.log('INITIAL BYTES', initialBytes)
+
+                /* Initialize script signature. */
+                const scriptSignature = encodeDataPush(signature)
+
+                /* Build final (authorized) bytes. */
+                const finalBytes = initialBytes.replace(SIGNATURE_PLACEHOLDER, binToHex(scriptSignature))
+                // console.log('FINAL BYTES', finalBytes)
+
+                /* Complete unlocking bytecode (with valid signature). */
+                unlockingBytecode = hexToBin(finalBytes)
             }
 
             /* Create a FINAL unlocking bytecode. */
