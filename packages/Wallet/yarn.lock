@@ -277,15 +277,15 @@
     isomorphic-ws "5.0.0"
     ws "8.13.0"
 
-"@nexajs/purse@24.9.10":
-  version "24.9.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.10.tgz#86c877902728dcb129cc45672f060d4c545a6df1"
-  integrity sha512-gIIlSIMeecFFfe/x7UXM1fmYO9N2Tf+r+81X3UxHHRM8B5YoQFPTCdfIvsxADFNE8ukNdZob44vdRSqVtRDw9A==
+"@nexajs/purse@24.9.11":
+  version "24.9.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.11.tgz#c2b533a38ea902baddc457caad6b5df80900a269"
+  integrity sha512-OKNqg5eJ7iyBLeB+amR3R8aLGPtRIDavvG7gtMR6CKkMpKpcb+D6VvRjpUE9tLTO0DckNeW5XDaCsb/QN7N9Jw==
   dependencies:
     "@nexajs/address" "24.9.5"
     "@nexajs/hdnode" "24.9.5"
     "@nexajs/provider" "23.12.25"
-    "@nexajs/transaction" "24.9.10"
+    "@nexajs/transaction" "24.9.11"
     events "3.3.0"
 
 "@nexajs/rostrum@24.6.23":
@@ -305,23 +305,23 @@
   dependencies:
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/token@24.9.10":
-  version "24.9.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.10.tgz#c52dc073fc66ddba790beb5021aa8202a3b41824"
-  integrity sha512-GrSDtxxQ+/xFn0ZWLAMIQbeAMRaDVlsEnhuZfeqL/d3knpHqTcLGXt2NGITfOLXwwS962m8nahN8QOaqyfa8TQ==
+"@nexajs/token@24.9.11":
+  version "24.9.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.11.tgz#614da51ff3bd508ff2f45d1c176f00ef13fa3dff"
+  integrity sha512-QZIYts68U++CHSm+KZ88Zi/uPnBcy1WAKNiPPLxsbiRb23+BPltQHWNZRJktM2HAiUyC7/xBzGj5vRE5iQIcAQ==
   dependencies:
     "@nexajs/address" "24.9.5"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.9.5"
     "@nexajs/provider" "23.12.25"
     "@nexajs/script" "24.7.15"
-    "@nexajs/transaction" "24.9.10"
+    "@nexajs/transaction" "24.9.11"
     events "3.3.0"
 
-"@nexajs/transaction@24.9.10":
-  version "24.9.10"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.9.10.tgz#590115ef18c37b8ad6857108704fdb7469574086"
-  integrity sha512-hcZZurjvquJ9pOn0DNqjWV/xdhwWAbQfTPnaoIsCV6EfD+1/7mgYOqj+nzo4nrPBytHaUgzuyKWlIlG7+f4oLw==
+"@nexajs/transaction@24.9.11":
+  version "24.9.11"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.9.11.tgz#7fcc59e5cc5a4f9fe517d57604165e1f69d7e84d"
+  integrity sha512-77SSbyJn3IsTPG3xnGCVtasHpb5L2XyvhoQAhGQPAPlvcYYSKpHLmB6IcF8JhFbUlC6uQ9gp5u9lx/lO24mx5Q==
   dependencies:
     "@nexajs/address" "24.9.5"
     "@nexajs/crypto" "24.9.5"
