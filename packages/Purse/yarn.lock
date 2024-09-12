@@ -294,10 +294,10 @@
   dependencies:
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/transaction@24.9.5":
-  version "24.9.5"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.9.5.tgz#a74e66e68d3583a8de96de9db68aba8b4f782a3b"
-  integrity sha512-0eTLqWojrs2iG+4G2fpxUpDROouVXWa07NA48Bgt2caQZwi1qG4fjW6P/abdpnEA3IGdlxIpqfo7i1jta6n5Cg==
+"@nexajs/transaction@24.9.10":
+  version "24.9.10"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.9.10.tgz#590115ef18c37b8ad6857108704fdb7469574086"
+  integrity sha512-hcZZurjvquJ9pOn0DNqjWV/xdhwWAbQfTPnaoIsCV6EfD+1/7mgYOqj+nzo4nrPBytHaUgzuyKWlIlG7+f4oLw==
   dependencies:
     "@nexajs/address" "24.9.5"
     "@nexajs/crypto" "24.9.5"

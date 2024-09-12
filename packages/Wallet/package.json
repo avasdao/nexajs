@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/wallet",
-  "version": "24.9.5",
+  "version": "24.9.10",
   "description": "Manage a collection of assets spread across multiple blockchains.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -11,10 +11,10 @@
     "@nexajs/address": "24.9.5",
     "@nexajs/crypto": "24.9.5",
     "@nexajs/hdnode": "24.9.5",
-    "@nexajs/purse": "24.9.5",
+    "@nexajs/purse": "24.9.10",
     "@nexajs/rostrum": "24.6.23",
     "@nexajs/script": "24.7.15",
-    "@nexajs/token": "24.9.5",
+    "@nexajs/token": "24.9.10",
     "cross-fetch": "4.0.0",
     "events": "3.3.0",
     "numeral": "2.0.6"
