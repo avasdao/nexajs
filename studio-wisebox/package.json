@@ -1,6 +1,6 @@
 {
   "name": "wisebox",
-  "version": "24.9.4",
+  "version": "24.9.12",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -14,7 +14,7 @@
     "@pinia/nuxt": "0.5.4",
     "moment": "2.29.4",
     "monaco-editor": "0.51.0",
-    "nexajs": "24.9.5",
+    "nexajs": "24.9.10",
     "numeral": "2.0.6",
     "nuxt": "3.12.4",
     "nuxt-monaco-editor": "1.2.9",
