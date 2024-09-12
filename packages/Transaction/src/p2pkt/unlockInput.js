@@ -7,6 +7,7 @@ import {
 import {
     binToHex,
     hexToBin,
+    utf8ToBin,
 } from '@nexajs/utils'
 
 /* Import (local) modules. */
@@ -19,7 +20,7 @@ const SCRIPT_TEMPLATE_1 = new Uint8Array([
 ])
 
 /* Initialize signature placeholder. */
-const SIGNATURE_PLACEHOLDER = binToHex([...new Uint8Array(64)])
+const SIGNATURE_PLACEHOLDER = binToHex(utf8ToBin('{{SIGNATURE}}'))
 
 /**
  * Signs and builds the unlocking script for a P2PKH Input.
@@ -121,10 +122,7 @@ export default async (
             unlockingBytecode = encodeDataPush(lockingBytecode)
         } else {
             /* Validate signature (replacement) request. */
-            if (
-                (unlockingBytecode.length > 64) &&
-                binToHex(unlockingBytecode).includes(SIGNATURE_PLACEHOLDER)
-            ) {
+            if (binToHex(unlockingBytecode).includes(SIGNATURE_PLACEHOLDER)) {
                 // Generate a transaction signature for this input.
                 // TODO We DO NOT always require a signature.
                 signature = await signTransactionInput(
