@@ -11,9 +11,9 @@
     "@nexajs/address": "24.9.20",
     "@nexajs/crypto": "24.9.5",
     "@nexajs/hdnode": "24.9.20",
-    "@nexajs/purse": "24.9.11",
+    "@nexajs/purse": "24.9.20",
     "@nexajs/script": "24.7.15",
-    "@nexajs/token": "24.9.11",
+    "@nexajs/token": "24.9.20",
     "cross-fetch": "4.0.0",
     "events": "3.3.0",
     "numeral": "2.0.6"
