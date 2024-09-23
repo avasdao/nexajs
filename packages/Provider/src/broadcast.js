@@ -85,56 +85,48 @@ const broadcastBch = async (_rawTx) => {
  */
 const broadcastNexa = async (_rawTx) => {
     /* Initialize locals. */
-    let request
-    let resolve
-    let reject
+    let bytecode
+    let query
+    let response
+    let txidem
 
-    // TODO Add (a secondary) broadcast request directly to NexaShell's GraphQL
-    // USE `fetch()` -> NEXASH_DEFAULT_MAINNET
+    bytecode = _rawTx
+    // TODO Validate bytecode.
 
-    /* Import WebSocket. */
-    // NOTE: MUST BE EXCLUDED WHEN BUILDING FOR BROWSER VIA USING ROLLUP.
-    const WebSocket = (await import('isomorphic-ws')).default
-
-    /* Initialize socket connection. */
-    // TODO Enable connection pooling.
-    const socket = new WebSocket(rostrumProvider)
-
-    /* Handle open connection. */
-    socket.onopen = () => {
-        // console.log('SOCKET OPENDED!')
-
-        /* Build request. */
-        request = {
-            id: 'nexajs',
-            method: 'blockchain.transaction.broadcast',
-            params: [_rawTx],
-        }
-
-        /* Send request. */
-        socket.send(JSON.stringify(request) + '\n')
+    /* Validate bytecode. */
+    if (!bytecode || bytecode === '') {
+        throw new Error('Oops! You MUST provide a valid bytecode.')
     }
 
-    /* Handle socket messages. */
-    socket.onmessage = (msg) => {
-        // console.log('MESSAGE (data):', msg.data)
+    /* Build query. */
+    query = `
+    mutation Broadcast {
+        broadcast(hexstring: "${bytecode}")
+    }`
+    console.log('QUERY', query)
 
-        /* Resolve message data. */
-        resolve(msg.data)
+    /* Make query request. */
+    response = await fetch(NEXASH_DEFAULT_MAINNET,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({ query }),
+        }).catch(err => console.error(err))
 
-        /* Close connection. */
-        // TODO Add support for connection pooling.
-        socket.close()
+    if (response) {
+        response = await response.json()
     }
+    // console.log('GRAPHQL RESPONSE', response)
 
-    /* Handle socket errors. */
-    socket.onerror = (err) => {
-        reject(err)
+    /* Validate response. */
+    if (response?.data?.broadcast) {
+        txidem = response.data.broadcast
+
+        return txidem
+    } else {
+        return 'Broadcast failed!'
     }
-
-    /* Return (response) promise. */
-    return new Promise((_resolve, _reject) => {
-        resolve = _resolve
-        reject = _reject // FIXME Handle socket errors.
-    })
 }

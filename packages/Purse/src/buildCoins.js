@@ -201,11 +201,9 @@ export default async (_coins, _receivers) => {
     // FIXME Allow WIFs for each input.
     await transaction.sign(wifs)
 
-    // console.log('TX LENGTH', transaction.raw.length / 2)
-
     // NOTE: 33 bytes for a Type-1 change output.
     // FIXME: Calculate length based on address type.
-    feeTotal = BigInt((transaction.raw.length / 2) * feeRate)
+    feeTotal = BigInt((transaction.raw.length) * feeRate)
     // console.log('FEE TOTAL (w/out change):', feeTotal)
 
     /* Calculate change amount. */
@@ -218,7 +216,7 @@ export default async (_coins, _receivers) => {
 
     /* Validate change amount. */
     if (change >= DUST_LIMIT) {
-        feeTotalWithChange = BigInt(((transaction.raw.length / 2) + TYPE1_OUTPUT_LENGTH) * feeRate)
+        feeTotalWithChange = BigInt(((transaction.raw.length) + TYPE1_OUTPUT_LENGTH) * feeRate)
         // console.log('FEE TOTAL (w/ change):', feeTotalWithChange)
 
         /* Validate dust limit w/ additional output. */

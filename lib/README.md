@@ -244,11 +244,12 @@ If you have a use case that you feel could be listed here, please [ask for it](h
 cd nexajs/lib/package/<package-name>
 rm -rf node_modules/ yarn.lock
 yarn
+
+# update package.json version
+# !cdn, !daemon, !yarn.lock
+
+npm publish
 ```
-
-update `package.json` version
-
-`npm publish`
 
 
 ## Contributing

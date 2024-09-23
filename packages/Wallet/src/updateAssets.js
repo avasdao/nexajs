@@ -1,14 +1,37 @@
 /* Import modules. */
-import {
-    // encodeAddress,
-    listUnspent,
-} from '@nexajs/address'
+import { listUnspent } from '@nexajs/address'
 
-import {
-    getTokenInfo,
-    subscribeAddress,
-} from '@nexajs/rostrum'
+/* Set (REST) API endpoints. */
+const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
+const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
 
+/* Set constants. */
+const ROSTRUM_METHOD = 'POST'
+
+/* Initialize globals. */
+let body
+let response
+
+const headers = new Headers()
+headers.append('Content-Type', 'application/json')
+
+const getTokenInfo = async (_tokenid) => {
+    body = JSON.stringify({
+        request: 'token.genesis.info',
+        params: _tokenid,
+    })
+
+    response = await fetch(ROSTRUM_ENDPOINT, {
+        method: ROSTRUM_METHOD,
+        headers,
+        body,
+    }).catch(err => console.error(err))
+    response = await response.json()
+    // console.log('RESPONSE', response)
+
+    return response
+
+}
 
 /**
  * Update Assets (Coins & Tokens)
@@ -27,11 +50,12 @@ export default async function (_subscribe = false, _fiat = 'USD') {
 
     /* Subscribe to (receiving) addresses. */
     if (_subscribe === true) {
+        // FIXME This is has been DISABLED after Rostrum refactoring.
         /* Subscribe to address. */
-        await subscribeAddress(this.address, async () => {
-            /* Update (latest) assets. */
-            await this.updateAssets(false, _fiat)
-        })
+        // await subscribeAddress(this.address, async () => {
+        //     /* Update (latest) assets. */
+        //     await this.updateAssets(false, _fiat)
+        // })
     }
 
     /* Validate assets. */

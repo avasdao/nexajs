@@ -110,6 +110,11 @@ export class Transaction {
         return this._data
     }
 
+    get hex() {
+        /* Return (hex-formatted) raw transaction data. */
+        return binToHex(this.raw)
+    }
+
     get inputs() {
         return this._inputs
     }
@@ -148,8 +153,8 @@ export class Transaction {
             return ''
         }
 
-        /* Return (hex-formatted) raw transaction data. */
-        return binToHex(this._raw)
+        /* Return raw transaction data. */
+        return this._raw
     }
 
     get locking() {

@@ -51,7 +51,7 @@ console.log(tx) // with signatures
 //   outputs: [...],
 // }
 
-console.log(tx.raw) // in hexadecimal format (for broadcast via node)
+console.log(tx.hex) // in hexadecimal format (for broadcast via node)
 // abc123...
 ```
 

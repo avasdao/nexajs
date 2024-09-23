@@ -28,5 +28,5 @@ export default async (_coins, _receivers) => {
     // console.log('RAW TRANSACTION', transaction)
 
     /* Broadcast raw transaction (in hex format). */
-    return broadcast(transaction.raw)
+    return broadcast(transaction.hex)
 }
