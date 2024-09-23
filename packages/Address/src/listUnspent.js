@@ -1,10 +1,53 @@
 /* Import modules. */
-import { getAddressUnspent } from '@nexajs/rostrum'
-import { getAddressTokenUnspent } from '@nexajs/rostrum'
+import fetch from 'node-fetch'
 
-/* Set API endpoints. */
-const BCH_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
-const NEXA_ENDPOINT = 'https://nexa.sh/v1'
+/* Set (REST) API endpoints. */
+const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
+const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
+
+/* Set constants. */
+const ROSTRUM_METHOD = 'POST'
+
+/* Initialize globals. */
+let body
+let response
+
+const headers = new Headers()
+headers.append('Content-Type', 'application/json')
+
+const getAddressUnspent = async (_address) => {
+    body = JSON.stringify({
+        request: 'blockchain.address.listunspent',
+        params: _address,
+    })
+
+    response = await fetch(ROSTRUM_ENDPOINT, {
+        method: ROSTRUM_METHOD,
+        headers,
+        body,
+    }).catch(err => console.error(err))
+    response = await response.json()
+    // console.log('RESPONSE', response)
+
+    return response
+}
+
+const getAddressTokenUnspent = async (_address) => {
+    body = JSON.stringify({
+        request: 'token.address.listunspent',
+        params: _address,
+    })
+
+    response = await fetch(ROSTRUM_ENDPOINT, {
+        method: ROSTRUM_METHOD,
+        headers,
+        body,
+    }).catch(err => console.error(err))
+    response = await response.json()
+    // console.log('RESPONSE', response)
+
+    return response
+}
 
 /**
  * List Unspent Outputs
