@@ -1,3 +1,6 @@
+/* Import modules. */
+import fetch from 'node-fetch' // NOTE: native as of Node v21.
+
 /* Initialize constants. */
 const INSOMNIA_DEFAULT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
 const NEXASH_DEFAULT_MAINNET = 'https://nexa.sh/graphql'
@@ -103,7 +106,7 @@ const broadcastNexa = async (_rawTx) => {
     mutation Broadcast {
         broadcast(hexstring: "${bytecode}")
     }`
-    console.log('QUERY', query)
+    // console.log('QUERY', query)
 
     /* Make query request. */
     response = await fetch(NEXASH_DEFAULT_MAINNET,

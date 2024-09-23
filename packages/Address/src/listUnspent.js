@@ -1,5 +1,5 @@
 /* Import modules. */
-import fetch from 'node-fetch'
+import fetch from 'node-fetch' // NOTE: native as of Node v21.
 
 /* Set (REST) API endpoints. */
 const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'

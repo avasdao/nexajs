@@ -10,10 +10,10 @@
   "dependencies": {
     "@nexajs/address": "24.9.20",
     "@nexajs/crypto": "24.9.5",
-    "@nexajs/hdnode": "24.9.5",
-    "@nexajs/provider": "23.12.25",
+    "@nexajs/hdnode": "24.9.20",
+    "@nexajs/provider": "24.9.21",
     "@nexajs/script": "24.7.15",
-    "@nexajs/transaction": "24.9.11",
+    "@nexajs/transaction": "24.9.21",
     "events": "3.3.0"
   },
   "engines": {
