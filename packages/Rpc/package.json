@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/rpc",
-  "version": "23.5.15",
+  "version": "24.9.22",
   "description": "Provides a programmable interface to a (local or remote) Nexa full node using JSON-RPC.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,7 +8,6 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "events": "3.3.0",
-    "superagent": "8.0.6"
+    "events": "3.3.0"
   }
 }

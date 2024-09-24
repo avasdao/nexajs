@@ -139,7 +139,7 @@ const System = useSystemStore()
                     <li class="flex items-center">
                         <NuxtLink
                             class="px-3 py-2 w-full flex flex-col items-center bg-blue-300 border-2 border-blue-500 rounded-lg shadow hover:bg-blue-200"
-                            to="https://nexa.exchange/token/9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000"
+                            to="https://telr.exchange/token/9732745682001b06e332b6a4a0dd0fffc4837c707567f8cbfe0f6a9b12080000"
                             target="_blank"
                         >
                             <h3 class="text-sm sm:text-lg text-blue-700 font-medium uppercase">

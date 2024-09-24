@@ -1,6 +1,5 @@
 /* Import modules. */
 import { EventEmitter } from 'events'
-import superagent from 'superagent'
 
 /* Initialize (global) package constants. */
 let host = '127.0.0.1'
@@ -10,7 +9,9 @@ let port = '7227'
 let username
 let password
 
-
+/**
+ * Connect To Node
+ */
 export const connectToNode = async (_username, _password) => {
     // TODO: Test to make sure the connnection is available and ready.
 
@@ -54,7 +55,8 @@ export const callNode = async (_method, _params, _options) => {
 
     try {
         /* Set endpoint. */
-        endpoint = `http://${username}:${password}@${host}:${port}`
+        // endpoint = `http://${username}:${password}@${host}:${port}`
+        endpoint = `http://${host}:${port}`
         // console.log('ENDPOINT', endpoint)
 
         /* Build package. */
@@ -66,27 +68,38 @@ export const callNode = async (_method, _params, _options) => {
         }
         // console.log('PKG', pkg)
 
-        /* Request Elasticsearch query. */
-        response = await superagent
-            .post(endpoint)
-            .set('accept', 'json')
-            .send(pkg)
-            .catch(_err => {
-                // console.error(_err)
+        /* Set method. */
+        const method = 'POST'
 
-                if (_err && _err.response && _err.response.text) {
-                    error = JSON.parse(_err.response.text)
-                } else if (_err && _err.response) {
-                    error = _err.response
-                } else {
-                    error = _err
-                }
-            })
+        /* Set headers. */
+        const headers = new Headers()
+        headers.append('Authorization', `Basic ${btoa(username + ':' + password)}`)
+        headers.append('Content-Type', 'application/json')
+
+        /* Make request. */
+        response = await fetch(endpoint, {
+            method,
+            headers,
+            body: JSON.stringify(pkg),
+        }).catch(_err => {
+            // console.error(_err)
+
+            if (_err && _err.response && _err.response.text) {
+                error = JSON.parse(_err.response.text)
+            } else if (_err && _err.response) {
+                error = _err.response
+            } else {
+                error = _err
+            }
+        })
 
         /* Validate error. */
         if (error) {
             return error
         }
+
+        /* Decode response. */
+        response = await response.json()
 
         /* Validate response. */
         if (!response) {
@@ -95,14 +108,11 @@ export const callNode = async (_method, _params, _options) => {
         // console.log('\nRPC CALL (response):', response)
 
         /* Validate response. */
-        if (response.body && response.body.result) {
-            return response.body.result
-        } else if (response.text) {
-            return response.text
+        if (response && response.result) {
+            return response.result
         } else {
             return null
         }
-
     } catch (err) {
         return err
     }

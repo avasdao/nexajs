@@ -158,7 +158,7 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                 document_url: info.document_url,
 
                 /* Request from Exchange API. */
-                // https://nexa.exchange/v1/ticker/quote/<token-id>
+                // https://telr.exchange/v1/ticker/quote/<token-id>
                 markets: {
                     'USD': {
                         price: 0.0000,

@@ -12,7 +12,6 @@ import coinUtils from '../libs/coinUtils.js'
 /* Import core modules. */
 // const _ = require('lodash')
 // const EventEmitter = require('events').EventEmitter
-const superagent = require('superagent')
 // const URL = require(s'url')
 
 // const ShuffleRound = require('./ShuffleRound.js')
@@ -527,11 +526,15 @@ export class Client extends EventEmitter {
      */
     async updateServerStats (newServerUri) {
         /* Initialize server stats. */
+        let response
         let serverStats
 
         try {
-            serverStats = await superagent
-                .get(newServerUri || this.serverStatsUri)
+            /* Request server stats. */
+            response = await fetch(newServerUri || this.serverStatsUri)
+
+            /* Decode response. */
+            serverStats = await response.json()
         } catch (nope) {
             // If we fail to reach the server, try again with
             // an increasing infrequency with the maximum time

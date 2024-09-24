@@ -1,6 +1,3 @@
-/* Import modules. */
-import fetch from 'node-fetch' // NOTE: native as of Node v21.
-
 /* Initialize constants. */
 const INSOMNIA_DEFAULT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
 const NEXASH_DEFAULT_MAINNET = 'https://nexa.sh/graphql'
@@ -55,6 +52,7 @@ export default (_rawTx) => {
  */
 const broadcastBch = async (_rawTx) => {
     /* Call remote API. */
+    // NOTE: Native `fetch` requires Node v21+.
     const response = await fetch(INSOMNIA_DEFAULT, {
         method: 'POST',
         headers: {
@@ -109,6 +107,7 @@ const broadcastNexa = async (_rawTx) => {
     // console.log('QUERY', query)
 
     /* Make query request. */
+    // NOTE: Native `fetch` requires Node v21+.
     response = await fetch(NEXASH_DEFAULT_MAINNET,
         {
             method: 'POST',

@@ -33,6 +33,9 @@ function _decrypt(_encrypted, _key) {
  * Get Metadata
  */
 const getMeta = async (state, getters, rootState, rootGetters) => {
+    /* Initialize locals. */
+    let response
+    
     /* Validate state. */
     if (!state || !state.meta) {
         /* Set profile index. */
@@ -61,9 +64,9 @@ const getMeta = async (state, getters, rootState, rootGetters) => {
         const target = `${API_PROVIDER}/profiles/${address}`
 
         /* Set contract path. */
-        const response = await superagent
-            .get(target)
+        response = await fetch(target)
             .catch(Bugsnag.notify)
+        response = await response.json()
         // console.log('GET META (response):', response)
 
         /* Validate resopnse. */

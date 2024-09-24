@@ -1,6 +1,3 @@
-/* Import modules. */
-import fetch from 'node-fetch' // NOTE: native as of Node v21.
-
 /* Set (REST) API endpoints. */
 const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
 const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
@@ -21,6 +18,7 @@ const getAddressUnspent = async (_address) => {
         params: _address,
     })
 
+    // NOTE: Native `fetch` requires Node v21+.
     response = await fetch(ROSTRUM_ENDPOINT, {
         method: ROSTRUM_METHOD,
         headers,

@@ -42,8 +42,9 @@ const buy1000 = computed(() => {
 const init = async () => {
     let response
 
-    mex.value = await $fetch('https://nexa.exchange/mex')
+    response = await $fetch('https://telr.exchange/v1/ticker/price/NEXA')
         .catch(err => console.error(err))
+    mex.value = (Number(response) * 1000000)
     console.log('MEX', mex.value)
 
 }

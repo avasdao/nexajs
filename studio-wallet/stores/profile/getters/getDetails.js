@@ -6,6 +6,9 @@ import { Address } from '@nexajs/address'
  * Get Details
  */
 const getDetails = async (state, getter, rootState, rootGetters) => {
+    /* Initialize locals. */
+    let results
+
     /* Set profile index. */
     const profileIndex = 0
 
@@ -28,9 +31,10 @@ const getDetails = async (state, getter, rootState, rootGetters) => {
     /* Retrieve API provider. */
     const API_PROVIDER = rootGetters.getApiProvider
 
-    const results = await superagent
-        .get(`${API_PROVIDER}/profiles/${address}`)
+    /* Request profile. */
+    results = await fetch(`${API_PROVIDER}/profiles/${address}`)
         .catch(Bugsnag.notify)
+    results = await results.json()
     // console.log('GET DETAILS (profile):', results)
 
     if (results && results.body) {

@@ -1,5 +1,5 @@
 /* Set endpoint. */
-const ENDPOINT = 'https://nexa.exchange/v1'
+const ENDPOINT = 'https://telr.exchange/v1'
 
 /**
  * Get Price
@@ -19,7 +19,8 @@ export default async (_baseCurrency = 'NEXA', _quoteCurrency = 'USD') => {
     console.log('getQuote (target):', target)
 
     /* Call (remote) API. */
-    const data = await superagent.get(target)
+    const response = await fetch(target)
+    const data = await response.json()
     console.log('getQuote (response):', target)
 
     /* Validate (response) data. */

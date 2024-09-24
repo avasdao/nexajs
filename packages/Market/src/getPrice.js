@@ -8,7 +8,7 @@ export default async () => {
     let response
 
     /* Request price. */
-    response = await fetch('https://nexa.exchange/price')
+    response = await fetch('https://telr.exchange/v1/ticker/price/NEXA')
         .catch(err => console.error(err))
 
     /* Validate response. */

@@ -1,6 +1,3 @@
-/* Import modules. */
-import fetch from 'node-fetch'
-
 export default async (_target) => {
     /* Initialize locals. */
     let errors
@@ -8,6 +5,7 @@ export default async (_target) => {
     let response
 
     /* Request (data) target. */
+    // NOTE: Native `fetch` requires Node v21+.
     response = await fetch(_target)
         .catch(err => {
             console.error(err)

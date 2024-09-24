@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/request",
-  "version": "23.5.15",
+  "version": "24.9.21",
   "description": "Manages ALL data connections and requests.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -8,7 +8,10 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "events": "3.3.0",
-    "node-fetch": "3.3.1"
+    "events": "3.3.0"
+  },
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=21.0.0"
   }
 }

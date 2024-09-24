@@ -63,7 +63,7 @@ const updateMeta = async ({ commit, getters, rootGetters }, _meta) => {
     //        for multiple devices).
 
     /* Call api. */
-    return await superagent
+    return await fetch
         .put(target)
         .send(signedPkg)
         .catch(Bugsnag.notify)

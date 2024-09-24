@@ -95,7 +95,7 @@ export default async function (_fiat = 'USD') {
     // console.log('ASSETS', this.assets)
 
     /* Requet NEXA ticker. */
-    response = await fetch('https://nexa.exchange/_ticker')
+    response = await fetch('https://telr.exchange/v1/ticker/quote/NEXA')
         .catch(err => console.error(err))
 
     /* Validate response. */
@@ -193,7 +193,7 @@ export default async function (_fiat = 'USD') {
             if (!this._assets[tokenid].fiat['USD']) {
                 try {
                     /* Request (ticker) quote. */
-                    response = await fetch(`https://nexa.exchange/v1/ticker/quote/${tokenid}`)
+                    response = await fetch(`https://telr.exchange/v1/ticker/quote/${tokenid}`)
                         .catch(err => console.error(err))
                 } catch (err) {
                     console.error(err)
