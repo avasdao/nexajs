@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/privacy",
-  "version": "24.8.15",
+  "version": "24.9.22",
   "description": "Provides support for the most popular UTXO- and EVM-based blockchain privacy protocols.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",

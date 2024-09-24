@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/request",
-  "version": "24.9.21",
+  "version": "24.9.22",
   "description": "Manages ALL data connections and requests.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
