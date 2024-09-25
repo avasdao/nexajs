@@ -1,5 +1,4 @@
 /* Import module. */
-import fetch from 'cross-fetch'
 import numeral from 'numeral'
 
 /* Set (general) constants. */
