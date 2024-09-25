@@ -241,25 +241,17 @@ const consolidate = async () => {
         const response = await Wallet.consolidate()
         // console.log('RESPONSE', response)
 
-        let json
-
-        try {
-            json = JSON.parse(response)
-        } catch (err) {
-            return alert(JSON.stringify(err))
-        }
-
         /* Validate transaction idem. */
-        if (json?.result) {
+        if (response?.result) {
             /* Reset user inputs. */
             amount.value = null
             receiver.value = null
 
             /* Set transaction idem. */
-            txidem.value = json.result
-        } else if (json?.error) {
+            txidem.value = response.result
+        } else if (response?.error) {
             /* Set error. */
-            errorMsgs.value = json?.error?.message || JSON.stringify(json?.error)
+            errorMsgs.value = response?.error?.message || JSON.stringify(response?.error)
         }
     }
 }
@@ -435,16 +427,16 @@ onMounted(() => {
                     <pre>{{addressFirstUse}}</pre>
                 </section> -->
 
-                <section v-if="firstTx">
+                <section v-if="firstTx?.blocktime">
                     <h2 class="text-xl font-medium tracking-widest">
                         First Transaction
                     </h2>
 
                     <h3>
-                        Block Time: {{firstTx?.blocktime}}
+                        Block Time: {{firstTx.blocktime}}
                         <span class="block text-rose-500 font-bold">
-                            {{moment.unix(firstTx?.blocktime).format('llll')}}
-                            <span class="italic text-rose-400">{{moment.unix(firstTx?.blocktime).fromNow()}}</span>
+                            {{moment.unix(firstTx.blocktime).format('llll')}}
+                            <span class="italic text-rose-400">{{moment.unix(firstTx.blocktime).fromNow()}}</span>
                         </span>
                     </h3>
 

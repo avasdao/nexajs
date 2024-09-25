@@ -1165,12 +1165,12 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/market@24.9.23":
-  version "24.9.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/market/-/market-24.9.23.tgz#69132d79c19942b08cf20ec1b625571f0165f71e"
-  integrity sha512-dnVo0fOaEqVQFdOZWe4qdXKvXVwdVKLzy+RzmMNY/i3076jsMBRPu371S+MUevRkOVpqYJ+0xQ5bq6FlIUzjjg==
+"@nexajs/market@24.9.24":
+  version "24.9.24"
+  resolved "https://registry.yarnpkg.com/@nexajs/market/-/market-24.9.24.tgz#8f9a31cb7026b792161e4da7543a5629248be0b3"
+  integrity sha512-qc1Ij4lRZHEYxaj4HhvL/vU8ormNpCuJBdPrJZFXe0IvPWdeRqLc1vLbbpfSjDeINLG66WHnWad2UNyL3wX7GA==
   dependencies:
-    "@nexajs/provider" "24.9.23"
+    "@nexajs/provider" "24.9.24"
     "@nexajs/transaction" "24.9.22"
     events "3.3.0"
     moment "2.29.4"
@@ -1194,22 +1194,22 @@
   dependencies:
     events "3.3.0"
 
-"@nexajs/provider@24.9.23":
-  version "24.9.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.23.tgz#f1379a3e3d1509dc62a1d7adeee4a916938f9c76"
-  integrity sha512-GzVxkKmU7iCFMxbet69xc8cy3K0Ev6wQL/VmPMn6+xt6io/7SGGs/D7wCy0wM9zmvZhZTrp8FF9mQ/gHpQjydQ==
+"@nexajs/provider@24.9.24":
+  version "24.9.24"
+  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.24.tgz#0611b2314f50bbf8a83923f7733b331f39b52988"
+  integrity sha512-oFdX3mlixA32CO+UVBM+TcWaqY4cUFakFw4UIQFOEBwZYO+NLFujHNe6VrSqGiiv2ntVBrPyP9EJNkvjbdGB0g==
   dependencies:
     "@nexajs/utils" "24.7.15"
     events "3.3.0"
 
-"@nexajs/purse@24.9.23":
-  version "24.9.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.23.tgz#f45b48b7bd685f50b95cee667f1b81380e3995be"
-  integrity sha512-XqDWCf7xLIrr0dl3nV7MO2LsSt/C6WDRw0tIzoj53qfUsvMjZQmadmFj1T5p7njvGe9oplKRsX4EDYmFQEzIzQ==
+"@nexajs/purse@24.9.24":
+  version "24.9.24"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.24.tgz#185ec447b9a65125022b582a29b46c15be5ac894"
+  integrity sha512-/ZZwrThmJIYK3HFXgxg3Y/4SoBWBkpc76x32IuOTn1d/g3r3jwUxUfzWhzRu0jUe1k/Ys6w9Q7t45otqU4X7lw==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/hdnode" "24.9.22"
-    "@nexajs/provider" "24.9.23"
+    "@nexajs/provider" "24.9.24"
     "@nexajs/transaction" "24.9.22"
     events "3.3.0"
 
@@ -1244,15 +1244,15 @@
   dependencies:
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/token@24.9.23":
-  version "24.9.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.23.tgz#14e10fccfec7601e27ba53c8244f5534a0c33915"
-  integrity sha512-BxDE3MkA+WYTaYy9MVsPAD/0WEQwwtCW5qKYftCszmw6UKkeoxSi+EVZC0qvT73ci1QkIXaJU5qGj1tKqz8GZg==
+"@nexajs/token@24.9.24":
+  version "24.9.24"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.24.tgz#f8ea114908e83ff59f08b6369f8813efa5a171e3"
+  integrity sha512-mLfwx5UKepB9NVd8PLkHfIJqXSjGvrzOtORQQoAVznv/ZbVA28E01vjggLqQc4YtWVy84PNLKNBYP9MBTNMg8w==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.9.22"
-    "@nexajs/provider" "24.9.23"
+    "@nexajs/provider" "24.9.24"
     "@nexajs/script" "24.7.15"
     "@nexajs/transaction" "24.9.22"
     events "3.3.0"
@@ -1273,17 +1273,17 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
   integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
 
-"@nexajs/wallet@24.9.23":
-  version "24.9.23"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.9.23.tgz#c380a83deb4a9ce38dee7f6498f8ba0beb813cef"
-  integrity sha512-A0vvLcIizf8gRIdRcvRXHw0z5bbutp1tv8mFYbmVBRbeLQKDcGvqK7iXBJK5zo5ftl+bU0SvfzajLHWqVj3oCw==
+"@nexajs/wallet@24.9.24":
+  version "24.9.24"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.9.24.tgz#f598fb268aba51e43befddd0c0b7a9438dbf6177"
+  integrity sha512-8wZ+nDdAXOlT44bapIUkGXg0knFCHPgGddJpdD2TjrZB+CxDtokBIzFoQOJyRd7RNUr6jXpl9/IMansRjwFaWw==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.9.22"
-    "@nexajs/purse" "24.9.23"
+    "@nexajs/purse" "24.9.24"
     "@nexajs/script" "24.7.15"
-    "@nexajs/token" "24.9.23"
+    "@nexajs/token" "24.9.24"
     events "3.3.0"
     numeral "2.0.6"
 
@@ -5464,29 +5464,29 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-nexajs@24.9.23:
-  version "24.9.23"
-  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-24.9.23.tgz#08131a7670bc6c32b54974d4f8fe32e0ead86318"
-  integrity sha512-1ViTs6ITWilS42TnmmuuW3PcGtwlp9A/zGdTUNa/PbpgY6soj0iB7HknHICNSR93F8YaU7iA+4DgvRbohuBqvw==
+nexajs@24.9.24:
+  version "24.9.24"
+  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-24.9.24.tgz#14459f4346a8e6947199b2c9ec8a464db9f97980"
+  integrity sha512-+RHQSxLZR7UvGCp9DUeh0uObWBJBuk+ttrVxkiLpSNDlhvB1DJkH3aYxMOpVKZZ/sK+Lor5PJugccYuVgShEcQ==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/app" "24.8.19"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.9.22"
     "@nexajs/id" "23.5.15"
-    "@nexajs/market" "24.9.23"
+    "@nexajs/market" "24.9.24"
     "@nexajs/message" "24.9.22"
     "@nexajs/privacy" "24.9.22"
-    "@nexajs/provider" "24.9.23"
-    "@nexajs/purse" "24.9.23"
+    "@nexajs/provider" "24.9.24"
+    "@nexajs/purse" "24.9.24"
     "@nexajs/request" "24.9.22"
     "@nexajs/rostrum" "24.6.23"
     "@nexajs/rpc" "24.9.22"
     "@nexajs/script" "24.7.15"
-    "@nexajs/token" "24.9.23"
+    "@nexajs/token" "24.9.24"
     "@nexajs/transaction" "24.9.22"
     "@nexajs/utils" "24.7.15"
-    "@nexajs/wallet" "24.9.23"
+    "@nexajs/wallet" "24.9.24"
     "@nexajs/zk" "24.9.5"
     events "3.3.0"
 
@@ -7764,9 +7764,9 @@ vite-plugin-vue-inspector@^5.2.0:
     magic-string "^0.30.4"
 
 vite@^5.0.0, vite@^5.3.4:
-  version "5.4.7"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.7.tgz#d226f57c08b61379e955f3836253ed3efb2dcf00"
-  integrity sha512-5l2zxqMEPVENgvzTuBpHer2awaetimj2BGkhBPdnwKbPNOlHsODU+oiazEZzLK7KhAnOrO+XGYJYn4ZlUhDtDQ==
+  version "5.4.8"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.8.tgz#af548ce1c211b2785478d3ba3e8da51e39a287e8"
+  integrity sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==
   dependencies:
     esbuild "^0.21.3"
     postcss "^8.4.43"
