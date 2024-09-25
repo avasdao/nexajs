@@ -151,6 +151,9 @@ export default async function (_fiat = 'USD') {
         }
     }
 
+    /* Emit (asset) changes to subscribers. */
+    this.emit('balances', this.assets)
+
     /* Initialize tokens list. */
     // tokens = {}
     tokenList = []
@@ -159,25 +162,34 @@ export default async function (_fiat = 'USD') {
         /* Set token id. */
         tokenid = _token.tokenidHex
 
-        /* Initialize token. */
-        this._assets[tokenid].amount = BigInt(0)
-        this._assets[tokenid].satoshis = BigInt(0)
+        /* Validate (token) asset. */
+        if (this._assets[tokenid]) {
+            /* Initialize token. */
+            this._assets[tokenid].amount = BigInt(0)
+            this._assets[tokenid].satoshis = BigInt(0)
 
-        /* Add to token list. */
-        tokenList.push(tokenid)
+            /* Add to token list. */
+            tokenList.push(tokenid)
+        }
     })
 
     this.tokens.forEach(_token => {
         /* Set token id. */
         tokenid = _token.tokenidHex
 
-        /* Add tokens to total. */
-        this._assets[tokenid].amount += _token.tokens
+        /* Validate (token) asset. */
+        if (this._assets[tokenid]) {
+            /* Add tokens to total. */
+            this._assets[tokenid].amount += _token.tokens
 
-        /* Add satoshis to total. */
-        this._assets[tokenid].satoshis += _token.satoshis
+            /* Add satoshis to total. */
+            this._assets[tokenid].satoshis += _token.satoshis
+        }
     })
     // console.log('TOKEN LIST', tokenList)
+
+    /* Emit (asset) changes to subscribers. */
+    this.emit('balances', this.assets)
 
     if (_fiat) {
         /* Handle token list. */
@@ -242,11 +254,10 @@ export default async function (_fiat = 'USD') {
                 )
             }
         }
-    }
 
-    /* Emit (asset) changes to subscribers. */
-    this.emit('balances', this.assets)
-    // console.log('BALANCES UPDATE', this.assets)
+        /* Emit (asset) changes to subscribers. */
+        this.emit('balances', this.assets)
+    }
 
     /* Set a timeout (delay) for the next update. */
     // NOTE: Use an "arrow function" to resolve (this) issue.

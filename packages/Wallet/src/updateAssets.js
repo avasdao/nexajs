@@ -113,6 +113,9 @@ export default async function (_subscribe = false, _fiat = 'USD') {
         })
     // console.log('\nCOINS', this.coins)
 
+    /* Emit (asset) changes to subscribers. */
+    this.emit('assets', this.assets)
+
     /* Retrieve tokens. */
     this._tokens = unspent
         .filter(_u => _u.hasToken === true)
@@ -182,7 +185,7 @@ export default async function (_subscribe = false, _fiat = 'USD') {
                         details = await response
                             .json()
                             .catch(err => console.error(err))
-                        // console.log('INFO', info)
+                        // console.log('DETAILS', details)
                     }
                 } catch (err) {
                     console.error(err)
@@ -234,7 +237,6 @@ export default async function (_subscribe = false, _fiat = 'USD') {
 
     /* Emit (asset) changes to subscribers. */
     this.emit('assets', this.assets)
-    // console.log('ASSETS UPDATE', this.assets)
 
     /* Completed successfully. */
     return true
