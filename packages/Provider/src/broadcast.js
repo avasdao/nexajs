@@ -1,3 +1,6 @@
+/* Import modules. */
+import { isHex } from '@nexajs/utils'
+
 /* Initialize constants. */
 const INSOMNIA_DEFAULT = 'https://insomnia.fountainhead.cash/v1/tx/broadcast'
 const NEXASH_DEFAULT_MAINNET = 'https://nexa.sh/graphql'
@@ -118,17 +121,37 @@ const broadcastNexa = async (_rawTx) => {
             body: JSON.stringify({ query }),
         }).catch(err => console.error(err))
 
+    /* Validate response. */
     if (response) {
         response = await response.json()
+    } else {
+        throw new Error('Transaction broadcast FAILED!')
     }
-    // console.log('GRAPHQL RESPONSE', response)
+    // console.log('RESPONSE (graphql)', response)
 
     /* Validate response. */
     if (response?.data?.broadcast) {
-        txidem = response.data.broadcast
-
-        return txidem
+        /* Validate (txidem) response. */
+        if (isHex(response) && response.length === 64) {
+            response = {
+                // NOTE: This should be a transaction idem.
+                result: response.data.broadcast
+            }
+        } else {
+            response = {
+                error: typeof response.data.broadcast === 'string' ? response.data.broadcast : JSON.stringify(response.data.broadcast)
+            }
+        }
+    } else if (response?.data) {
+        response = {
+            error: typeof response.data === 'string' ? response?.data : JSON.stringify(response?.data)
+        }
     } else {
-        return 'Broadcast failed!'
+        response = {
+            error: typeof response === 'string' ? response : JSON.stringify(response)
+        }
     }
+
+    /* Return response. */
+    return response
 }
