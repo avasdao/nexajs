@@ -266,11 +266,12 @@
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/provider@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.22.tgz#207acb9ee31b18f2cecd3d4a93bde7e580a991e5"
-  integrity sha512-RAwm/D6QYO5cwJOb77S6AL/Gtq4yzdTLd79OnixEiJX4np6vLwuA3EkErHshc82KGIL66MRmh26vNA2mTr0paw==
+"@nexajs/provider@24.9.23":
+  version "24.9.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.23.tgz#f1379a3e3d1509dc62a1d7adeee4a916938f9c76"
+  integrity sha512-GzVxkKmU7iCFMxbet69xc8cy3K0Ev6wQL/VmPMn6+xt6io/7SGGs/D7wCy0wM9zmvZhZTrp8FF9mQ/gHpQjydQ==
   dependencies:
+    "@nexajs/utils" "24.7.15"
     events "3.3.0"
 
 "@nexajs/script@24.7.15":
