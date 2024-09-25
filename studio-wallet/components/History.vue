@@ -3,14 +3,59 @@
 import moment from 'moment'
 import numeral from 'numeral'
 import { getSender } from '@nexajs/address'
-import {
-    getAddressHistory,
-    getTransaction,
-} from '@nexajs/rostrum'
 
 /* Initialize stores. */
 import { useWalletStore } from '@/stores/wallet'
 const Wallet = useWalletStore()
+
+/* Set (REST) API endpoints. */
+const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
+
+/* Set constants. */
+const ROSTRUM_METHOD = 'POST'
+
+/* Initialize globals. */
+let body
+let response
+
+const headers = new Headers()
+headers.append('Content-Type', 'application/json')
+
+const getAddressHistory = async (_address) => {
+    body = JSON.stringify({
+        request: 'blockchain.address.get_history',
+        params: _address,
+    })
+
+    // NOTE: Native `fetch` requires Node v21+.
+    response = await fetch(ROSTRUM_ENDPOINT, {
+        method: ROSTRUM_METHOD,
+        headers,
+        body,
+    }).catch(err => console.error(err))
+    response = await response.json()
+    // console.log('RESPONSE', response)
+
+    return response
+}
+
+const getTransaction = async (_id) => {
+    body = JSON.stringify({
+        request: 'blockchain.transaction.get',
+        params: [_id, true],
+    })
+
+    // NOTE: Native `fetch` requires Node v21+.
+    response = await fetch(ROSTRUM_ENDPOINT, {
+        method: ROSTRUM_METHOD,
+        headers,
+        body,
+    }).catch(err => console.error(err))
+    response = await response.json()
+    // console.log('RESPONSE', response)
+
+    return response
+}
 
 /* Set constants. */
 const MAX_RESULTS_PER_PAGE = 20
@@ -61,38 +106,48 @@ const init = async () => {
 }
 
 const displayInputs = (_inputs) => {
+    /* Initialize inputs. */
     const inputs = []
 
-    _inputs.forEach(_input => {
-        inputs.push({
-            outpoint: _input.outpoint,
-            address: getSender(_input),
-            satoshis: _input.value_satoshi,
+    /* Validate inputs. */
+    if (_inputs) {
+        _inputs.forEach(_input => {
+            inputs.push({
+                outpoint: _input.outpoint,
+                address: getSender(_input),
+                satoshis: _input.value_satoshi,
+            })
         })
-    })
+    }
 
+    /* Return inputs. */
     return inputs
 }
 
 const displayOutputs = (_outputs) => {
+    /* Initialize outputs. */
     const outputs = []
 
-    _outputs.forEach(_output => {
-        outputs.push({
-            outpoint: _output.outpoint_hash,
-            address: _output.scriptPubKey.addresses[0],
-            satoshis: _output.value_satoshi,
-            script: {
-                hash: _output.scriptPubKey.scriptHash,
-                args: _output.scriptPubKey.argsHash,
-            },
-            group: _output.scriptPubKey.group,
-            groupAuthority: _output.scriptPubKey.groupAuthority,
-            groupQuantity: _output.scriptPubKey.groupQuantity,
-            hex: _output.scriptPubKey.hex,
+    /* Validate outputs. */
+    if (_outputs) {
+        _outputs.forEach(_output => {
+            outputs.push({
+                outpoint: _output.outpoint_hash,
+                address: _output.scriptPubKey.addresses[0],
+                satoshis: _output.value_satoshi,
+                script: {
+                    hash: _output.scriptPubKey.scriptHash,
+                    args: _output.scriptPubKey.argsHash,
+                },
+                group: _output.scriptPubKey.group,
+                groupAuthority: _output.scriptPubKey.groupAuthority,
+                groupQuantity: _output.scriptPubKey.groupQuantity,
+                hex: _output.scriptPubKey.hex,
+            })
         })
-    })
+    }
 
+    /* Return outputs. */
     return outputs
 }
 
