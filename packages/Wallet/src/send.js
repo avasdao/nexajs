@@ -1,6 +1,7 @@
 /* Import modules. */
 import { sendCoins } from '@nexajs/purse'
 import { sendTokens } from '@nexajs/token'
+import { sleep } from '@nexajs/utils'
 
 import { WalletStatus } from '../index.js'
 
@@ -10,10 +11,6 @@ import { WalletStatus } from '../index.js'
  * Receives parameters for transferring any form of Nexa asset(s).
  */
 export default async function (_tokenid, _receiver, _amount) {
-    const _sleep = (_ms) => {
-        return new Promise(resolve => setTimeout(resolve, _ms))
-    }
-
     /* Initialize locals. */
     let address
     let coins
@@ -24,7 +21,6 @@ export default async function (_tokenid, _receiver, _amount) {
     let nullData
     let receiver
     let receivers
-    let response
     let satoshis
     let sequence
     let suggestions
@@ -39,7 +35,7 @@ export default async function (_tokenid, _receiver, _amount) {
     /* Re-try for up to 10 seconds. */
     while (this.status !== WalletStatus.ONLINE && maxTries < 100) {
         maxTries++
-        await _sleep(100)
+        await sleep(100)
     }
 
     /* Validate wallet (online) status. */
@@ -94,8 +90,8 @@ export default async function (_tokenid, _receiver, _amount) {
         // console.log('RECEIVERS', receivers)
 
         /* Send UTXO request. */
-        response = await sendTokens(this.coins, tokens, receivers)
-        // console.log('Send UTXO (response):', response)
+        txResult = await sendTokens(this.coins, tokens, receivers)
+        // console.log('Send UTXO (txResult):', txResult)
     } else if (typeof _receiver === 'bigint') {
         /* Set receiver. */
         receiver = _tokenid
@@ -117,8 +113,8 @@ export default async function (_tokenid, _receiver, _amount) {
         // console.log('RECEIVERS', receivers)
 
         /* Send UTXO request. */
-        response = await sendCoins(this.coins, receivers)
-        // console.log('Send UTXO (response):', response)
+        txResult = await sendCoins(this.coins, receivers)
+        // console.log('Send UTXO (txResult):', txResult)
     } else if (
         (_tokenid.coins || _tokenid.tokens) &&
         _tokenid.receivers.length > 0
@@ -152,51 +148,43 @@ export default async function (_tokenid, _receiver, _amount) {
         /* Validate tokens. */
         if (txBuilder.tokens) {
             /* Send CUSTOM token(s). */
-            response = await sendTokens(txBuilder)
+            txResult = await sendTokens(txBuilder)
         } else {
             /* Send CUSTOM coin(s). */
-            response = await sendCoins(txBuilder)
+            txResult = await sendCoins(txBuilder)
         }
     } else {
         throw new Error('Oops! Your transaction parameters are invalid.')
     }
 
-    /* Handle transaction result. */
-    try {
-        txResult = JSON.parse(response)
-        // console.log('TX RESULT', txResult)
+    /* Validate transaction result. */
+    if (txResult.result) {
+        console.log(txResult.result)
 
-        /* Validate result (txidem). */
-        if (txResult.result) {
-            console.log(txResult.result)
+        /* Set transaction idem. */
+        txidem = txResult.result
 
-            /* Set transaction idem. */
-            txidem = txResult.result
+        /* Set error. */
+        error = null
+    }
 
-            /* Set error. */
-            error = null
+    /* Validate error. */
+    if (txResult.error) {
+        // console.error(txResult.error)
+        /* Set transaction idem. */
+        txidem = null
+
+        /* Initialize suggestions. */
+        suggestions = []
+
+        // FIXME FOR DEV PURPOSES ONLY
+        suggestions.push(`Sorry, no advice.`)
+
+        /* Set error. */
+        error = {
+            message: txResult.error,
+            suggestions,
         }
-
-        /* Validate error. */
-        if (txResult.error?.message) {
-            // console.error(txResult.error.message)
-            /* Set transaction idem. */
-            txidem = null
-
-            /* Initialize suggestions. */
-            suggestions = []
-
-            // FIXME FOR DEV PURPOSES ONLY
-            suggestions.push('Sorry, no advice.')
-
-            /* Set error. */
-            error = {
-                ...txResult.error,
-                suggestions,
-            }
-        }
-    } catch (err) {
-        console.error(err)
     }
 
     return {

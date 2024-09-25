@@ -1,6 +1,7 @@
 /* Import modules. */
 import { buildCoins } from '@nexajs/purse'
 import { buildTokens } from '@nexajs/token'
+import { sleep } from '@nexajs/utils'
 
 import { WalletStatus } from '../index.js'
 
@@ -10,10 +11,6 @@ import { WalletStatus } from '../index.js'
  * Receives parameters for transferring any form of Nexa asset(s).
  */
 export default async function (_tokenid, _receiver, _amount) {
-    const _sleep = (_ms) => {
-        return new Promise(resolve => setTimeout(resolve, _ms))
-    }
-
     /* Initialize locals. */
     let address
     let coins
@@ -39,7 +36,7 @@ export default async function (_tokenid, _receiver, _amount) {
     /* Re-try for up to 10 seconds. */
     while (this.status !== WalletStatus.ONLINE && maxTries < 100) {
         maxTries++
-        await _sleep(100)
+        await sleep(100)
     }
 
     /* Validate wallet (online) status. */

@@ -27,6 +27,7 @@ import {
 import {
     binToHex,
     hexToBin,
+    sleep,
 } from '@nexajs/utils'
 
 /* Import (local) modules. */
@@ -254,10 +255,6 @@ export class Wallet extends EventEmitter {
      * parameters).
      */
     static init(_primary, _secondary) {
-        const _sleep = (_ms) => {
-            return new Promise(resolve => setTimeout(resolve, _ms))
-        }
-
         /* Initialize locals. */
         let fiat
         let maxTries = 0
@@ -295,7 +292,7 @@ export class Wallet extends EventEmitter {
             // NOTE: We pause 1/10 second (~100ms) to allow
             //       the wallet time to complete its setup.
             // FIXME Reduce setup by properly detecting wallet setup completion.
-            await _sleep(100)
+            await sleep(100)
 
             /* Request an update for asset data. */
             // TODO Support "user-defined" updates.
@@ -324,7 +321,7 @@ export class Wallet extends EventEmitter {
             /* Re-try for up to 10 seconds. */
             while (wallet.address === null && maxTries < 100) {
                 maxTries++
-                await _sleep(100)
+                await sleep(100)
             }
 
             /* Validate (wallet) address. */

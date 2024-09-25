@@ -522,12 +522,12 @@
     uuid "9.0.0"
     zxcvbn "4.4.2"
 
-"@nexajs/market@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/market/-/market-24.9.22.tgz#babc0361741667241505daaf12379dd557e083df"
-  integrity sha512-JQdwHuLWgrf1L6Oy8bIY0tnu/YYGI2RYAsCGrueZhGe6YhiwsL3HvSnModb69BuUb0ubJ7fM+lk91GZuHAFlbQ==
+"@nexajs/market@24.9.23":
+  version "24.9.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/market/-/market-24.9.23.tgz#69132d79c19942b08cf20ec1b625571f0165f71e"
+  integrity sha512-dnVo0fOaEqVQFdOZWe4qdXKvXVwdVKLzy+RzmMNY/i3076jsMBRPu371S+MUevRkOVpqYJ+0xQ5bq6FlIUzjjg==
   dependencies:
-    "@nexajs/provider" "24.9.22"
+    "@nexajs/provider" "24.9.23"
     "@nexajs/transaction" "24.9.22"
     events "3.3.0"
     moment "2.29.4"
@@ -551,21 +551,22 @@
   dependencies:
     events "3.3.0"
 
-"@nexajs/provider@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.22.tgz#207acb9ee31b18f2cecd3d4a93bde7e580a991e5"
-  integrity sha512-RAwm/D6QYO5cwJOb77S6AL/Gtq4yzdTLd79OnixEiJX4np6vLwuA3EkErHshc82KGIL66MRmh26vNA2mTr0paw==
+"@nexajs/provider@24.9.23":
+  version "24.9.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.23.tgz#f1379a3e3d1509dc62a1d7adeee4a916938f9c76"
+  integrity sha512-GzVxkKmU7iCFMxbet69xc8cy3K0Ev6wQL/VmPMn6+xt6io/7SGGs/D7wCy0wM9zmvZhZTrp8FF9mQ/gHpQjydQ==
   dependencies:
+    "@nexajs/utils" "24.7.15"
     events "3.3.0"
 
-"@nexajs/purse@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.22.tgz#827486c1be7ea2ce09805c618e1e16b25f1605a6"
-  integrity sha512-lv55Rwk+XRP3bf6pRsoSI3/qwXxZsmiIqKSJANe7zWAarlZKPrCHlM+i/rexWLu5cMttkr8vVKOZIGCtKhLQ7w==
+"@nexajs/purse@24.9.23":
+  version "24.9.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.23.tgz#f45b48b7bd685f50b95cee667f1b81380e3995be"
+  integrity sha512-XqDWCf7xLIrr0dl3nV7MO2LsSt/C6WDRw0tIzoj53qfUsvMjZQmadmFj1T5p7njvGe9oplKRsX4EDYmFQEzIzQ==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/hdnode" "24.9.22"
-    "@nexajs/provider" "24.9.22"
+    "@nexajs/provider" "24.9.23"
     "@nexajs/transaction" "24.9.22"
     events "3.3.0"
 
@@ -600,15 +601,15 @@
   dependencies:
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/token@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.22.tgz#8a3caf254f63925a6060de573a338c00119f71b4"
-  integrity sha512-Hr03ZvIxapcvr7W2otcLrOBVDexvY+AjCssJLypU3SorvXksAo0IAto3KUQnlRE0U47OVz+EiRv5ZaCb/t4NDw==
+"@nexajs/token@24.9.23":
+  version "24.9.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.23.tgz#14e10fccfec7601e27ba53c8244f5534a0c33915"
+  integrity sha512-BxDE3MkA+WYTaYy9MVsPAD/0WEQwwtCW5qKYftCszmw6UKkeoxSi+EVZC0qvT73ci1QkIXaJU5qGj1tKqz8GZg==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.9.22"
-    "@nexajs/provider" "24.9.22"
+    "@nexajs/provider" "24.9.23"
     "@nexajs/script" "24.7.15"
     "@nexajs/transaction" "24.9.22"
     events "3.3.0"
@@ -629,17 +630,17 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
   integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
 
-"@nexajs/wallet@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.9.22.tgz#fc7aabf4b76931c3cc11aa36ab49028948447a6d"
-  integrity sha512-kyJc3y+RsmdamK4LcTyHUQheAWc3ZaoBvMOfoHcFO75gxEqMUGvZAgiJjeVNyPpn+Ik1+D7sA/XZPqCZlcClKw==
+"@nexajs/wallet@24.9.23":
+  version "24.9.23"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.9.23.tgz#c380a83deb4a9ce38dee7f6498f8ba0beb813cef"
+  integrity sha512-A0vvLcIizf8gRIdRcvRXHw0z5bbutp1tv8mFYbmVBRbeLQKDcGvqK7iXBJK5zo5ftl+bU0SvfzajLHWqVj3oCw==
   dependencies:
     "@nexajs/address" "24.9.22"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.9.22"
-    "@nexajs/purse" "24.9.22"
+    "@nexajs/purse" "24.9.23"
     "@nexajs/script" "24.7.15"
-    "@nexajs/token" "24.9.22"
+    "@nexajs/token" "24.9.23"
     events "3.3.0"
     numeral "2.0.6"
 
@@ -1107,12 +1108,12 @@ browserify@17.0.0:
     xtend "^4.0.0"
 
 browserslist@^4.23.1:
-  version "4.23.3"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.23.3.tgz#debb029d3c93ebc97ffbc8d9cbb03403e227c800"
-  integrity sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==
+  version "4.24.0"
+  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.24.0.tgz#a1325fe4bc80b64fda169629fc01b3d6cecd38d4"
+  integrity sha512-Rmb62sR1Zpjql25eSanFGEhAxcFwfA1K0GuQcLoaJBAcENegrQut3hYdhXFF1obQfiDyqIW/cLM5HSJ/9k884A==
   dependencies:
-    caniuse-lite "^1.0.30001646"
-    electron-to-chromium "^1.5.4"
+    caniuse-lite "^1.0.30001663"
+    electron-to-chromium "^1.5.28"
     node-releases "^2.0.18"
     update-browserslist-db "^1.1.0"
 
@@ -1172,7 +1173,7 @@ camelcase@^6.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.3.0.tgz#5685b95eb209ac9c0c177467778c9c84df58ba9a"
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
-caniuse-lite@^1.0.30001646:
+caniuse-lite@^1.0.30001663:
   version "1.0.30001663"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001663.tgz#1529a723505e429fdfd49532e9fc42273ba7fed7"
   integrity sha512-o9C3X27GLKbLeTYZ6HBOLU1tsAcBZsLis28wrVzddShCS16RujjHp9GDHKZqrB3meE0YjhawvMFsGb/igqiPzA==
@@ -1537,7 +1538,7 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
-electron-to-chromium@^1.5.4:
+electron-to-chromium@^1.5.28:
   version "1.5.28"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.28.tgz#aee074e202c6ee8a0030a9c2ef0b3fe9f967d576"
   integrity sha512-VufdJl+rzaKZoYVUijN13QcXVF5dWPZANeFTLNy+OSpHdDL5ynXTF35+60RSBbaQYB1ae723lQXHCrf4pyLsMw==
