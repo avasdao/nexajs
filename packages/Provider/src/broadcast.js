@@ -131,20 +131,26 @@ const broadcastNexa = async (_rawTx) => {
 
     /* Validate response. */
     if (response?.data?.broadcast) {
+        /* Set response. */
+        response = response.data.broadcast
+
         /* Validate (txidem) response. */
         if (isHex(response) && response.length === 64) {
             response = {
                 // NOTE: This should be a transaction idem.
-                result: response.data.broadcast
+                result: response
             }
         } else {
             response = {
-                error: typeof response.data.broadcast === 'string' ? response.data.broadcast : JSON.stringify(response.data.broadcast)
+                error: typeof response === 'string' ? response : JSON.stringify(response)
             }
         }
     } else if (response?.data) {
+        /* Set response. */
+        response = response.data
+
         response = {
-            error: typeof response.data === 'string' ? response?.data : JSON.stringify(response?.data)
+            error: typeof response === 'string' ? response : JSON.stringify(response)
         }
     } else {
         response = {

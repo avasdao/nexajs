@@ -159,7 +159,7 @@ export default async function (_tokenid, _receiver, _amount) {
 
     /* Validate transaction result. */
     if (txResult.result) {
-        console.log(txResult.result)
+        // console.log(txResult.result)
 
         /* Set transaction idem. */
         txidem = txResult.result
