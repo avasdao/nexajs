@@ -10,7 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nexajs/app": "24.8.19",
     "@pinia/nuxt": "0.5.4",
     "@trezor/connect-web": "9.1.4",
     "moment": "2.30.1",
