@@ -2,21 +2,13 @@
 import { defineStore } from 'pinia'
 
 import { encodeAddress } from '@nexajs/address'
-import {
-    hash160,
-    ripemd160,
-    sha256,
-} from '@nexajs/crypto'
+import { hash160 } from '@nexajs/crypto'
 import { mnemonicToEntropy } from '@nexajs/hdnode'
 import { sendCoins } from '@nexajs/purse'
 import {
     encodeDataPush,
     OP,
 } from '@nexajs/script'
-import {
-    binToHex,
-    hexToBin,
-} from '@nexajs/utils'
 import {
     Wallet,
     WalletStatus,
@@ -82,12 +74,16 @@ export const useWalletStore = defineStore('wallet', {
         /**
          * Networks
          *
-         * Manages all Layer 1 Networks and Layer 1+ (Plus) Supernets
-         * running on the Nexa blockchain.
+         * Manages all Layer1 Networks, Layer1+ (Plus) Supernets,
+         * and Layer1 (EVM) MetaNets "managed by" the Nexa Core blockchain.
          */
         _networks: [
-            'NEXA',     // Nexa Core
-            'NXY',      // Nxy Social
+            'METANEXA', // Nexa (MetaNet)
+            'METANXY',  // Nxy  (MetaNet)
+            'METATELR', // TΞLR (MetaNet)
+            'NEXA',     // Nexa (Core/Base Network)
+            'NXY',      // Nxy  (Supernet)
+            'TELR',     // TΞLR (Supernet)
         ],
 
         /**
@@ -234,7 +230,11 @@ export const useWalletStore = defineStore('wallet', {
         },
 
         getNetwork(_networkid) {
-            if (this.networks.includes(_networkid.toUpperCase())) {
+            if (
+                this.wallet &&
+                this.wallet.publicKey &&
+                this.networks.includes(_networkid.toUpperCase())
+            ) {
                 /* Initialize locals. */
                 let publicKeyHash
                 let scriptData
@@ -249,18 +249,18 @@ export const useWalletStore = defineStore('wallet', {
                 /* Set address prefix. */
                 network.prefix = _networkid.toLowerCase()
 
-                console.log('PUBLIC KEY', binToHex(this.wallet.publicKey))
+                /* Set (Script PUSH) public key. */
                 scriptData = encodeDataPush(this.wallet.publicKey)
 
-                publicKeyHash = ripemd160(sha256(scriptData))
-                // publicKeyHash = hash160(scriptData)
+                /* Set public key hash. */
+                publicKeyHash = hash160(scriptData)
 
+                /* Set script pubkey. */
                 scriptPubkey = new Uint8Array([
                     OP.ZERO,
                     OP.ONE,
                     ...encodeDataPush(publicKeyHash),
                 ])
-                console.log('SCRIPT PUBKEY', binToHex(scriptPubkey))
 
                 /* Set address. */
                 network.address = encodeAddress(

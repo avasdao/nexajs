@@ -69,9 +69,13 @@ currency.value = 'USD'
 <template>
     <main class="flex flex-col gap-4">
 
-        <section class="pr-1 sm:px-3 flex items-center justify-between gap-4">
+        <ChooseNetwork />
+
+        <div class="mx-5 my-5 border-t border-gray-300" />
+
+        <section class="pr-1 flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
-                <span class="text-base font-medium leading-6 text-gray-900" id="availability-label">
+                <span class="text-base font-medium leading-6 text-gray-700" id="availability-label">
                     ENABLE password protection
                 </span>
 
@@ -80,16 +84,16 @@ currency.value = 'USD'
                 </span>
             </span>
 
-            <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+            <!-- Enabled: "bg-sky-600", Not Enabled: "bg-gray-200" -->
+            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
                 <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
                 <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 duration-200 ease-in-out"></span>
             </button>
         </section>
 
-        <section class="pr-1 sm:px-3 flex items-center justify-between gap-4">
+        <section class="pr-1 flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
-                <span class="text-base font-medium leading-6 text-gray-900" id="availability-label">
+                <span class="text-base font-medium leading-6 text-gray-700" id="availability-label">
                     ENABLE address privacy
                 </span>
 
@@ -98,16 +102,16 @@ currency.value = 'USD'
                 </span>
             </span>
 
-            <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+            <!-- Enabled: "bg-sky-600", Not Enabled: "bg-gray-200" -->
+            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
                 <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
                 <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 duration-200 ease-in-out"></span>
             </button>
         </section>
 
-        <section class="pr-1 sm:px-3 flex items-center justify-between gap-4">
+        <section class="pr-1 flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
-                <span class="text-base font-medium leading-6 text-gray-900" id="availability-label">
+                <span class="text-base font-medium leading-6 text-gray-700" id="availability-label">
                     ENABLE transaction privacy
                 </span>
 
@@ -116,8 +120,8 @@ currency.value = 'USD'
                 </span>
             </span>
 
-            <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+            <!-- Enabled: "bg-sky-600", Not Enabled: "bg-gray-200" -->
+            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
                 <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
                 <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 duration-200 ease-in-out"></span>
             </button>
