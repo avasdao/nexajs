@@ -226,10 +226,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.9.22.tgz#569527d12639bd12af8042c39a8a6089ec828799"
-  integrity sha512-fbkQywnZZ8wUUDsesa5CyNeyH5X8B+CSjOmYOe+Bk3CZEtPKqXt8PawVwj6ueUNeephnqYg5+MsdykWFTn8uWw==
+"@nexajs/address@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.9.25.tgz#d0f735a56fd31ae10a82d625f791391d9e49dc16"
+  integrity sha512-doQYbm89i45COzhYcw4QEonqPJso4kz19l9kgZZa2hpMDTXsH42/ky0QjMvsnwj6LOS47xzq2FnXaIr7td7sgg==
   dependencies:
     "@nexajs/crypto" "24.9.5"
     "@nexajs/script" "24.7.15"
@@ -255,13 +255,13 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.9.22.tgz#eeeea53eaf3db98768720e9e544d3f85909d88d9"
-  integrity sha512-u856++dEvfowga2bBjmnYVHA7v7ro3j4oqhDFfM0yHAWXhhsKvBIbvgH2XDPfM6veljrEtrhi5ljz+8QNqkbrg==
+"@nexajs/hdnode@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.9.25.tgz#34fa12dc8cff1377d7e46357480761db85908670"
+  integrity sha512-m58drNUgdfWPimHvHqm9OF6X2LxTTjit7jNmQiDwAPTE2v4r/kokWCz5yGf6eokSwytvvKM1d7jeg4Us9a+RZQ==
   dependencies:
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "24.9.22"
+    "@nexajs/address" "24.9.25"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"

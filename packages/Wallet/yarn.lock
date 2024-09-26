@@ -226,10 +226,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.9.22.tgz#569527d12639bd12af8042c39a8a6089ec828799"
-  integrity sha512-fbkQywnZZ8wUUDsesa5CyNeyH5X8B+CSjOmYOe+Bk3CZEtPKqXt8PawVwj6ueUNeephnqYg5+MsdykWFTn8uWw==
+"@nexajs/address@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.9.25.tgz#d0f735a56fd31ae10a82d625f791391d9e49dc16"
+  integrity sha512-doQYbm89i45COzhYcw4QEonqPJso4kz19l9kgZZa2hpMDTXsH42/ky0QjMvsnwj6LOS47xzq2FnXaIr7td7sgg==
   dependencies:
     "@nexajs/crypto" "24.9.5"
     "@nexajs/script" "24.7.15"
@@ -255,13 +255,13 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.9.22.tgz#eeeea53eaf3db98768720e9e544d3f85909d88d9"
-  integrity sha512-u856++dEvfowga2bBjmnYVHA7v7ro3j4oqhDFfM0yHAWXhhsKvBIbvgH2XDPfM6veljrEtrhi5ljz+8QNqkbrg==
+"@nexajs/hdnode@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.9.25.tgz#34fa12dc8cff1377d7e46357480761db85908670"
+  integrity sha512-m58drNUgdfWPimHvHqm9OF6X2LxTTjit7jNmQiDwAPTE2v4r/kokWCz5yGf6eokSwytvvKM1d7jeg4Us9a+RZQ==
   dependencies:
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "24.9.22"
+    "@nexajs/address" "24.9.25"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
@@ -274,15 +274,15 @@
     "@nexajs/utils" "24.7.15"
     events "3.3.0"
 
-"@nexajs/purse@24.9.24":
-  version "24.9.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.24.tgz#185ec447b9a65125022b582a29b46c15be5ac894"
-  integrity sha512-/ZZwrThmJIYK3HFXgxg3Y/4SoBWBkpc76x32IuOTn1d/g3r3jwUxUfzWhzRu0jUe1k/Ys6w9Q7t45otqU4X7lw==
+"@nexajs/purse@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.9.25.tgz#6a49abd47082140fafc04aad450c0ee42f5e498d"
+  integrity sha512-NHsylS5daXMYSTEiemOcnSTO2fWpTw1B7juBvlYGndCb/lr++UELXABv5QNc8zincBMd8j+nQMZzHQXa9AxU0Q==
   dependencies:
-    "@nexajs/address" "24.9.22"
-    "@nexajs/hdnode" "24.9.22"
+    "@nexajs/address" "24.9.25"
+    "@nexajs/hdnode" "24.9.25"
     "@nexajs/provider" "24.9.24"
-    "@nexajs/transaction" "24.9.22"
+    "@nexajs/transaction" "24.9.25"
     events "3.3.0"
 
 "@nexajs/script@24.7.15":
@@ -292,27 +292,27 @@
   dependencies:
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/token@24.9.24":
-  version "24.9.24"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.24.tgz#f8ea114908e83ff59f08b6369f8813efa5a171e3"
-  integrity sha512-mLfwx5UKepB9NVd8PLkHfIJqXSjGvrzOtORQQoAVznv/ZbVA28E01vjggLqQc4YtWVy84PNLKNBYP9MBTNMg8w==
+"@nexajs/token@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.9.25.tgz#8fb2ee08a2b340069b6961ff7b3a10c2e55a54f1"
+  integrity sha512-9OHv3qVnjPptMthf7CYd8/KUrCzQtLeGxRVWwuu9J93vn4sTUdBqJOM0DbMPvF6bkuMy3zn7Ndl0AI7Ev/ur4A==
   dependencies:
-    "@nexajs/address" "24.9.22"
+    "@nexajs/address" "24.9.25"
     "@nexajs/crypto" "24.9.5"
-    "@nexajs/hdnode" "24.9.22"
+    "@nexajs/hdnode" "24.9.25"
     "@nexajs/provider" "24.9.24"
     "@nexajs/script" "24.7.15"
-    "@nexajs/transaction" "24.9.22"
+    "@nexajs/transaction" "24.9.25"
     events "3.3.0"
 
-"@nexajs/transaction@24.9.22":
-  version "24.9.22"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.9.22.tgz#92bcb8a1d7efad26558a429229357a724352f8b0"
-  integrity sha512-77Qcou+LYse1DQ3FrttIUuoH4cI7Y85c0sdBtBZvhDQcUJ9T7rC23cqcatJjZ4gZe7qiI8f6V5uQ7qqE34BAqw==
+"@nexajs/transaction@24.9.25":
+  version "24.9.25"
+  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.9.25.tgz#64695b829225da511a5583280c9a306f85b0122d"
+  integrity sha512-8UusKsbTGynHwsr99ypYmqXVgwvDxY0CdYkUfr6m59F1C3DxBYznxXH9wDgwNlOjzeCYWOjPLaE4okTwzcKB7A==
   dependencies:
-    "@nexajs/address" "24.9.22"
+    "@nexajs/address" "24.9.25"
     "@nexajs/crypto" "24.9.5"
-    "@nexajs/hdnode" "24.9.22"
+    "@nexajs/hdnode" "24.9.25"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
 

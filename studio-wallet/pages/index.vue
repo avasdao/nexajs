@@ -148,8 +148,8 @@ onMounted(() => {
 
 <template>
     <small class="text-xs italic">
-        <span class="-mb-2 block font-bold">My Address</span>
-        {{ Wallet.address }}
+        <span class="-mb-2 block font-bold">My Nxy Address</span>
+        {{ Wallet.getNetwork('nxy').address }}
     </small>
     <Loading v-if="Wallet.isLoading" />
 
