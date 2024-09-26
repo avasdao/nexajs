@@ -146,7 +146,11 @@ export function decodeAddress (address) {
  *
  * @private
  */
-const VALID_PREFIXES = ['nexa', 'nexatest', 'nexareg']
+// const VALID_PREFIXES = [
+//     'nexa',
+//     'nexatest',
+//     'nexareg'
+// ]
 
 /**
  * Checks whether a string is a valid prefix; ie., it has a single letter case
@@ -156,8 +160,9 @@ const VALID_PREFIXES = ['nexa', 'nexatest', 'nexareg']
  * @param {string} prefix
  * @returns {boolean}
  */
-function isValidPrefix(prefix) {
-    return hasSingleCase(prefix) && VALID_PREFIXES.indexOf(prefix.toLowerCase()) !== -1;
+const isValidPrefix = (prefix) => {
+    // return hasSingleCase(prefix) && VALID_PREFIXES.indexOf(prefix.toLowerCase()) !== -1
+    return hasSingleCase(prefix)
 }
 
 /**
@@ -168,7 +173,7 @@ function isValidPrefix(prefix) {
  * @param {string} prefix Network prefix. E.g.: 'nexa'.
  * @returns {Uint8Array}
  */
-function prefixToUint5Array(prefix) {
+const prefixToUint5Array = (prefix) => {
     const result = new Uint8Array(prefix.length)
 
     for (var i = 0; i < prefix.length; ++i) {
@@ -186,7 +191,7 @@ function prefixToUint5Array(prefix) {
  * @param {BigInteger} checksum Computed checksum.
  * @returns {Uint8Array}
  */
-function checksumToUint5Array(checksum) {
+const checksumToUint5Array = (checksum) => {
     const result = new Uint8Array(8)
 
     for (var i = 0; i < 8; ++i) {
@@ -207,7 +212,7 @@ function checksumToUint5Array(checksum) {
  * @returns {number}
  * @throws {ValidationError}
  */
-function getTypeBits(type) {
+const getTypeBits = (type) => {
     switch (type) {
     case 'P2PKH':
         return 0
@@ -231,7 +236,7 @@ function getTypeBits(type) {
  * @returns {string}
  * @throws {ValidationError}
  */
-function getType(versionByte) {
+const getType = (versionByte) => {
     switch (versionByte & 248) {
     case 0:
         return 'P2PKH'
@@ -255,8 +260,9 @@ function getType(versionByte) {
  * @returns {number}
  * @throws {ValidationError}
  */
-function getHashSizeBits(hash) {
+const getHashSizeBits = (hash) => {
     hash.length  // Fake use of this
+
     return 0  // nexa hash size bits are always 0
 }
 
@@ -268,7 +274,7 @@ function getHashSizeBits(hash) {
  * @param {Uint8Array} data
  * @returns {Uint8Array}
  */
-function toUint5Array(data) {
+const toUint5Array = (data) => {
     return convertBits(data, 8, 5)
 }
 
@@ -282,7 +288,7 @@ function toUint5Array(data) {
  * @returns {Uint8Array}
  * @throws {ValidationError}
  */
-function fromUint5Array(data) {
+const fromUint5Array = (data) => {
     return convertBits(data, 5, 8, true)
 }
 
@@ -295,7 +301,7 @@ function fromUint5Array(data) {
  * @returns {Uint8Array}
  * @throws {ValidationError}
  */
-function concat(a, b) {
+const concat = (a, b) => {
     const ab = new Uint8Array(a.length + b.length)
 
     ab.set(a)
@@ -312,13 +318,14 @@ function concat(a, b) {
  * @param {Uint8Array} data Array of 5-bit integers over which the checksum is to be computed.
  * @returns {BigInteger}
  */
-function polymod(data) {
+const polymod = (data) => {
+    /* Define Generator. */
     const GENERATOR = [
         0x98f2bc8e61,
         0x79b76d99e2,
         0xf33e5fb3c4,
         0xae2eabe2a8,
-        0x1e4f43e470
+        0x1e4f43e470,
     ]
 
     var checksum = bigInt(1)
@@ -348,8 +355,12 @@ function polymod(data) {
  * @param {Uint8Array} payload Array of 5-bit integers containing the address' payload.
  * @returns {boolean}
  */
-function validChecksum(prefix, payload) {
-    const prefixData = concat(prefixToUint5Array(prefix), new Uint8Array(1))
+const validChecksum = (prefix, payload) => {
+    const prefixData = concat(
+        prefixToUint5Array(prefix),
+        new Uint8Array(1)
+    )
+
     const checksumData = concat(prefixData, payload)
 
     return polymod(checksumData).equals(0)
@@ -363,6 +374,6 @@ function validChecksum(prefix, payload) {
  * @param {string} string Input string.
  * @returns {boolean}
  */
-function hasSingleCase(string) {
+const hasSingleCase = (string) => {
     return string === string.toLowerCase() || string === string.toUpperCase()
 }
