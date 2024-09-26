@@ -26,7 +26,7 @@ const enableMetaNet = () => {
 
 <template>
     <main>
-        <legend class="text-2xl font-medium text-sky-400 tracking-tighter">
+        <legend class="pl-3 text-xs font-medium tracking-widest text-gray-400 uppercase">
             Choose Your Preferred Experience
         </legend>
 

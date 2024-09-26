@@ -7,7 +7,7 @@ import mintGroup from './src/mintGroup.js'
 import mintSubgroup from './src/mintSubgroup.js'
 import signMessage from './src/signMessage.js'
 
-console.log('Starting NEXA.js Daemon...')
+console.info('Starting NEXA.js Daemon...')
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
