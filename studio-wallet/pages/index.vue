@@ -147,6 +147,10 @@ onMounted(() => {
 </script>
 
 <template>
+    <small class="text-xs italic">
+        <span class="-mb-2 block font-bold">My Address</span>
+        {{ Wallet.address }}
+    </small>
     <Loading v-if="Wallet.isLoading" />
 
     <Setup v-else-if="!Wallet.isReady" />

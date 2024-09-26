@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Blank — Wallet Studio`,
+    title: `Lounge — Wallet Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
@@ -22,13 +22,5 @@ const System = useSystemStore()
 </script>
 
 <template>
-    <main class="flex flex-col gap-4">
-        <h1 class="text-5xl font-medium">
-            Blank
-        </h1>
-
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id eius voluptatem minus natus at eveniet dolorum eos mollitia, maxime animi excepturi harum omnis illum odit recusandae pariatur! Unde, explicabo molestias.
-        </p>
-    </main>
+    <Lounge :isFullScreen="true" />
 </template>

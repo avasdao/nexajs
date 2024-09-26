@@ -71,7 +71,7 @@ currency.value = 'USD'
 
         <section class="pr-1 sm:px-3 flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
-                <span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">
+                <span class="text-base font-medium leading-6 text-gray-900" id="availability-label">
                     ENABLE password protection
                 </span>
 
@@ -89,7 +89,7 @@ currency.value = 'USD'
 
         <section class="pr-1 sm:px-3 flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
-                <span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">
+                <span class="text-base font-medium leading-6 text-gray-900" id="availability-label">
                     ENABLE address privacy
                 </span>
 
@@ -107,7 +107,7 @@ currency.value = 'USD'
 
         <section class="pr-1 sm:px-3 flex items-center justify-between gap-4">
             <span class="flex flex-grow flex-col">
-                <span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">
+                <span class="text-base font-medium leading-6 text-gray-900" id="availability-label">
                     ENABLE transaction privacy
                 </span>
 

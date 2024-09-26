@@ -490,23 +490,23 @@ onMounted(() => {
                 -->
                             <div
                                 v-if="isShowingProfileMenu"
-                                class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                                class="absolute right-0 z-10 mt-2.5 w-40 origin-top-right rounded-md bg-gradient-to-r from-gray-800 to-gray-700 py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                                 role="menu"
                                 aria-orientation="vertical"
                                 aria-labelledby="user-menu-button"
                                 tabindex="-1"
                             >
                                 <!-- Active: "bg-gray-50", Not Active: "" -->
-                                <NuxtLink to="/settings" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-0" @click="closeAll">
-                                    My Profile
+                                <NuxtLink to="/" class="block px-3 py-2 text-base text-center tracking-wide leading-6 text-lime-100 hover:text-lime-900 hover:bg-lime-200" role="menuitem" tabindex="-1" id="user-menu-item-0" @click="closeAll">
+                                    My Wallet
                                 </NuxtLink>
 
-                                <NuxtLink to="/settings" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-0" @click="closeAll">
+                                <NuxtLink to="/lounge" class="block px-3 py-2 text-base text-center tracking-wide leading-6 text-lime-100 hover:text-lime-900 hover:bg-lime-200" role="menuitem" tabindex="-1" id="user-menu-item-0" @click="closeAll">
+                                    My Lounge
+                                </NuxtLink>
+
+                                <NuxtLink to="/settings" class="block px-3 py-2 text-base text-center tracking-wide leading-6 text-lime-100 hover:text-lime-900 hover:bg-lime-200" role="menuitem" tabindex="-1" id="user-menu-item-0" @click="closeAll">
                                     My Settings
-                                </NuxtLink>
-
-                                <NuxtLink to="/settings" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="user-menu-item-1" @click="closeAll">
-                                    Destroy Wallet
                                 </NuxtLink>
                             </div>
                         </div>

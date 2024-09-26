@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `Send — NFT/SFT Studio`,
+    title: `Send — Wallet Studio`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],
