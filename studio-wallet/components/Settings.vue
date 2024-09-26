@@ -69,7 +69,7 @@ currency.value = 'USD'
 <template>
     <main class="flex flex-col gap-4">
 
-        <ChooseNetwork />
+        <ChooseYourXp />
 
         <div class="mx-5 my-5 border-t border-gray-300" />
 

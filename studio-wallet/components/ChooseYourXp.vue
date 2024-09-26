@@ -7,6 +7,12 @@ const props = defineProps({
     },
 })
 
+const enableMetaNet = () => {
+    if (confirm('Would you like to take a moment and learn how YOU CAN HELP to enable MetaNet in this wallet?')) {
+        window.open('https://causes.cash/c/f900d1b8-1ae0-4e18-8a2f-212631b62562')
+    }
+}
+
 // onMounted(() => {
 //     console.log('Mounted!')
 //     // Now it's safe to perform setup operations.
@@ -20,14 +26,14 @@ const props = defineProps({
 
 <template>
     <main>
-        <legend class="text-3xl font-light leading-6 text-sky-500 italic tracking-tighter">
-            Choose Your ACTIVE Network
+        <legend class="text-2xl font-medium text-sky-400 tracking-tighter">
+            Choose Your Preferred Experience
         </legend>
 
-        <div class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
+        <div class="mt-3 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
             <!-- Active: "border-sky-600 ring-2 ring-sky-600", Not Active: "border-gray-300" -->
-            <label aria-label="Newsletter" aria-description="Last activity was an hour ago to 621 users" class="relative flex cursor-pointer rounded-lg border border-gray-300 bg-white p-4 shadow-sm focus:outline-none">
-                <input type="radio" name="project-type" value="Newsletter" class="sr-only" />
+            <label aria-label="Nexa Core" aria-description="Last activity was an hour ago to 621 users" class="relative flex cursor-pointer rounded-lg border border-gray-300 bg-white p-4 shadow-sm focus:outline-none">
+                <input type="radio" name="project-type" value="Nexa Core" class="sr-only" />
                 <span class="flex flex-1">
                     <span class="flex flex-col">
                         <span class="block text-lg font-medium text-gray-700 tracking-tighter">
@@ -55,8 +61,8 @@ const props = defineProps({
             </label>
 
             <!-- Active: "border-sky-600 ring-2 ring-sky-600", Not Active: "border-gray-300" -->
-            <label aria-label="Existing Customers" aria-description="Last activity was 2 weeks ago to 1200 users" class="relative flex cursor-pointer rounded-lg border border-sky-600 ring-2 ring-sky-600 bg-white p-4 shadow-sm focus:outline-none">
-                <input type="radio" name="project-type" value="Existing Customers" class="sr-only" />
+            <label aria-label="Nxy Supernet" aria-description="Last activity was 2 weeks ago to 1200 users" class="relative flex cursor-pointer rounded-lg border border-sky-600 ring-2 ring-sky-600 bg-white p-4 shadow-sm focus:outline-none">
+                <input type="radio" name="project-type" value="Nxy Supernet" class="sr-only" />
                 <span class="flex flex-1">
                     <span class="flex flex-col">
                         <span class="block text-lg font-medium text-gray-700 tracking-tighter">
@@ -84,8 +90,8 @@ const props = defineProps({
             </label>
 
             <!-- Active: "border-sky-600 ring-2 ring-sky-600", Not Active: "border-gray-300" -->
-            <label aria-label="Trial Users" aria-description="Last activity was 4 days ago to 2740 users" class="relative flex cursor-pointer rounded-lg border border-gray-300 bg-white p-4 shadow-sm focus:outline-none">
-                <input type="radio" name="project-type" value="Trial Users" class="sr-only" />
+            <label @click.prevent="enableMetaNet" aria-label="Nxy MetaNet" aria-description="Last activity was 4 days ago to 2740 users" class="relative flex cursor-pointer rounded-lg border border-gray-300 bg-white p-4 shadow-sm focus:outline-none">
+                <input type="radio" name="project-type" value="Nxy MetaNet" class="sr-only" />
                 <span class="flex flex-1">
                     <span class="flex flex-col">
                         <span class="block text-lg font-medium text-gray-700 tracking-tighter">
