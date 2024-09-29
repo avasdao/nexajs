@@ -109,8 +109,8 @@ export default async function (_fiat = 'USD') {
     // console.log('MARKETS', this._markets)
 
     /* Validate NEXA market. */
-    if (!this._markets['NEXA']) {
-        throw new Error(`There is NO $NEXA data available at this time.`)
+    if (!this._markets['NEXA']?.quote?.USD?.price) {
+        return console.error('There is NO $NEXA data available at this time.')
     }
 
     /* Set (ticker) price. */
