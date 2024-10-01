@@ -3,9 +3,11 @@ import { EventEmitter } from 'events'
 
 /* Import (local) modules. */
 import _broadcast from './src/broadcast.js'
+import _getAddressBalance from './src/getAddressBalance.js'
 
 /* Export (local) modules. */
 export const broadcast = _broadcast
+export const getAddressBalance = _getAddressBalance
 
 
 /**
@@ -28,6 +30,10 @@ export class Provider extends EventEmitter {
     }
     static test() {
         return 'Provider (Static) is working!'
+    }
+
+    static getAddressBalance(_address, _filter) {
+        return getAddressBalance(_address, _filter)
     }
 }
 
