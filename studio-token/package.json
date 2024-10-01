@@ -1,6 +1,6 @@
 {
   "name": "token-studio",
-  "version": "24.7.7",
+  "version": "24.9.30",
   "license": "MIT",
   "scripts": {
     "build": "nuxt build",
@@ -10,20 +10,20 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pinia/nuxt": "0.4.7",
+    "@pinia/nuxt": "0.5.4",
     "fflate": "0.8.0",
     "formidable": "3.5.1",
     "html2canvas": "1.4.1",
     "moment": "2.29.4",
-    "nexajs": "24.6.24",
+    "nexajs": "24.9.25",
     "numeral": "2.0.6",
-    "nuxt": "3.0.0",
-    "pinia": "2.0.32",
-    "pouchdb": "8.0.1",
-    "uuid": "9.0.0"
+    "nuxt": "3.12.4",
+    "pinia": "2.2.2",
+    "pouchdb": "9.0.0",
+    "uuid": "10.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/i18n": "8.0.0-rc.2",
-    "@nuxtjs/tailwindcss": "6.4.1"
+    "@nuxtjs/i18n": "8.3.3",
+    "@nuxtjs/tailwindcss": "6.12.1"
   }
 }
