@@ -226,12 +226,13 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@nexajs/address@24.9.25":
-  version "24.9.25"
-  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.9.25.tgz#d0f735a56fd31ae10a82d625f791391d9e49dc16"
-  integrity sha512-doQYbm89i45COzhYcw4QEonqPJso4kz19l9kgZZa2hpMDTXsH42/ky0QjMvsnwj6LOS47xzq2FnXaIr7td7sgg==
+"@nexajs/address@24.10.1":
+  version "24.10.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/address/-/address-24.10.1.tgz#941986c08a7652f4be813e58a97e9306fe7f321a"
+  integrity sha512-lCp7ZIHF/zIHtcsAZRUH8sQBtDLemyh9ZM1htfK1jMF25Ok/fGkLu7ifsrMrpFDbswAyBpsVSXRBSq3dROtPQA==
   dependencies:
     "@nexajs/crypto" "24.9.5"
+    "@nexajs/provider" "24.9.30"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
     big-integer "1.6.51"
@@ -255,16 +256,24 @@
     scrypt-js "3.0.1"
     secure-ls "1.2.6"
 
-"@nexajs/hdnode@24.9.25":
-  version "24.9.25"
-  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.9.25.tgz#34fa12dc8cff1377d7e46357480761db85908670"
-  integrity sha512-m58drNUgdfWPimHvHqm9OF6X2LxTTjit7jNmQiDwAPTE2v4r/kokWCz5yGf6eokSwytvvKM1d7jeg4Us9a+RZQ==
+"@nexajs/hdnode@24.10.1":
+  version "24.10.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/hdnode/-/hdnode-24.10.1.tgz#2bd7f8df5e250a440d5a8c333a677f2e69f592be"
+  integrity sha512-yf72xkLd4/3tTPZv8bKCBALDvIaWHsDrRIRJ9aS3aSJ1SKUm2ozThCGpjdoJvQiZdGXOvu30JapBsHRqsbG5ZA==
   dependencies:
     "@ethersproject/hdnode" "5.7.0"
-    "@nexajs/address" "24.9.25"
+    "@nexajs/address" "24.10.1"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/script" "24.7.15"
     "@nexajs/utils" "24.7.15"
+
+"@nexajs/provider@24.9.30":
+  version "24.9.30"
+  resolved "https://registry.yarnpkg.com/@nexajs/provider/-/provider-24.9.30.tgz#f876f0732fb3f31fb4cc75a9b695e710a04e10a0"
+  integrity sha512-mRaFwzfW4xtPEdt3XPR67uV7SpSK13Ek33E74lKcP+AhQljzzJ1VZO2xAFYs7GUsVUBdSmC/V2mJ0RrOgk0sOg==
+  dependencies:
+    "@nexajs/utils" "24.7.15"
+    events "3.3.0"
 
 "@nexajs/script@24.7.15":
   version "24.7.15"
@@ -345,6 +354,11 @@ elliptic@6.5.5:
     inherits "^2.0.4"
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
+
+events@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 graphql-ws@5.12.0:
   version "5.12.0"

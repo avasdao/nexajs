@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "0.5.4",
-    "nexajs": "24.9.30",
+    "nexajs": "24.10.1",
     "nuxt": "3.12.4",
     "pinia": "2.2.2"
   },
