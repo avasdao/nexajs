@@ -1274,10 +1274,10 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
   integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
 
-"@nexajs/wallet@24.10.3":
-  version "24.10.3"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.10.3.tgz#8a9aed549c6faa49b72beba5eae2708d3c2de0b4"
-  integrity sha512-qGMFcVTtHXC6OSRhGQkOPmkVBWnv9DSvln12DuKbxshvebjIOS4VSPaq+GfuwvzOKD/Sk+dVuUrF8cpEyuCYeg==
+"@nexajs/wallet@24.10.4":
+  version "24.10.4"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.10.4.tgz#bf93971bc9506eb024ba5af79495a1a4c550284c"
+  integrity sha512-jiYbw9Y9sFiPd9pIiH/xOhrFy/mUUYEEDzLOhy4gj1LUxqaMhUIGXJ7fnALaZy1f/kxfWtk9JIDglT4+PMC74g==
   dependencies:
     "@nexajs/address" "24.10.1"
     "@nexajs/crypto" "24.9.5"
@@ -3720,9 +3720,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.5.28:
-  version "1.5.30"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.30.tgz#5b264b489cfe0c3dd71097c164d795444834e7c7"
-  integrity sha512-sXI35EBN4lYxzc/pIGorlymYNzDBOqkSlVRe6MkgBsW/hW1tpC/HDJ2fjG7XnjakzfLEuvdmux0Mjs6jHq4UOA==
+  version "1.5.31"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.31.tgz#b1478418769dec72ea70d9fdf147a81491857f10"
+  integrity sha512-QcDoBbQeYt0+3CWcK/rEbuHvwpbT/8SV9T3OSgs6cX1FlcUAkgrkqbg9zLnDrMM/rLamzQwal4LYFCiWk861Tg==
 
 elliptic@6.5.4:
   version "6.5.4"
@@ -5466,10 +5466,10 @@ negotiator@0.6.3:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.3.tgz#58e323a72fedc0d6f9cd4d31fe49f51479590ccd"
   integrity sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==
 
-nexajs@24.10.3:
-  version "24.10.3"
-  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-24.10.3.tgz#4d1e14232547c86653cf6ffd7e1c0633a45fe2de"
-  integrity sha512-Xq08EAei+5UWee01jV4ulwRu2iCfRpVvIYSoSbSRoGwFa8PesgsoJvk3kgYVCLijy+qL7PsycyOFsAAd0ojJOQ==
+nexajs@24.10.4:
+  version "24.10.4"
+  resolved "https://registry.yarnpkg.com/nexajs/-/nexajs-24.10.4.tgz#929183274b0f7c45e2f9402dc625b5a82fdfa027"
+  integrity sha512-0kI3+12SHRBDlgf9RxXvj+9Wn1/4aJfWLHLZd9PpHflB45YsVEJIRl3wdhARSbRULzEtNwTXjr1EgJ+IdynKYQ==
   dependencies:
     "@nexajs/address" "24.10.1"
     "@nexajs/app" "24.8.19"
@@ -5488,7 +5488,7 @@ nexajs@24.10.3:
     "@nexajs/token" "24.10.1"
     "@nexajs/transaction" "24.10.1"
     "@nexajs/utils" "24.7.15"
-    "@nexajs/wallet" "24.10.3"
+    "@nexajs/wallet" "24.10.4"
     "@nexajs/zk" "24.9.5"
     events "3.3.0"
 
