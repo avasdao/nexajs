@@ -197,11 +197,19 @@ export default async function (_fiat = 'USD') {
     if (_fiat) {
         /* Handle token list. */
         for (let i = 0; i < tokenList.length; i++) {
+            /* Reset handlers. */
+            assetTotal = null
+            rate = null
+            response = null
+
             /* Set token id. */
             tokenid = tokenList[i]
 
-            /* Initialize fiat handler. */
-            this._assets[tokenid].fiat = {}
+            /* Validate fiat handler. */
+            if (!this._assets[tokenid].fiat || typeof this._assets[tokenid].fiat === 'undefined') {
+                /* Initialize fiat handler. */
+                this._assets[tokenid].fiat = {}
+            }
 
             /* Validate fiat currency. */
             if (!this._assets[tokenid].fiat['USD']) {
@@ -260,10 +268,11 @@ export default async function (_fiat = 'USD') {
                     this._assets[tokenid].decimal_places,
                 )
             }
-        }
 
-        /* Emit (asset) changes to subscribers. */
-        this.emit('balances', this.assets)
+            /* Emit (asset) changes to subscribers. */
+            // NOTE: This is emitted after EACH asset.
+            this.emit('balances', this.assets)
+        }
     }
 
     /* Set a timeout (delay) for the next update. */

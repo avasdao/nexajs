@@ -10,7 +10,7 @@ import isCachedAsset from './isCachedAsset.js'
 export default async function (_tokenid) {
     if (isCachedAsset(_tokenid)) {
 // FOR TEMP USE ONLY
-console.log('[CACHED] GENESIS INFO FOUND!!', _tokenid)
+console.info('[CACHED] getGenesisInfo', _tokenid)
         return isCachedAsset(_tokenid)
     }
 

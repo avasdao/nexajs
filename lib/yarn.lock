@@ -631,10 +631,10 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
   integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
 
-"@nexajs/wallet@24.10.1":
-  version "24.10.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.10.1.tgz#529c62f3005f47f2381a88024d3f5bdf5c9698e9"
-  integrity sha512-aG4ps7S20Tgvjjr9eQdSo5nyKP0269KrfoABcKvR2t3BUsy35yaVpYcv2QfZLsvea8DZmt7cutxkUYyz4wRN9w==
+"@nexajs/wallet@24.10.3":
+  version "24.10.3"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.10.3.tgz#8a9aed549c6faa49b72beba5eae2708d3c2de0b4"
+  integrity sha512-qGMFcVTtHXC6OSRhGQkOPmkVBWnv9DSvln12DuKbxshvebjIOS4VSPaq+GfuwvzOKD/Sk+dVuUrF8cpEyuCYeg==
   dependencies:
     "@nexajs/address" "24.10.1"
     "@nexajs/crypto" "24.9.5"
