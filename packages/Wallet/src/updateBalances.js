@@ -109,12 +109,12 @@ export default async function (_fiat = 'USD') {
     // console.log('MARKETS', this._markets)
 
     /* Validate NEXA market. */
-    if (!this._markets['NEXA']?.quote?.USD?.price) {
+    if (!this._markets['NEXA']?.quote || !this._markets['NEXA'].quote[_fiat]?.price) {
         return console.error('There is NO $NEXA data available at this time.')
     }
 
     /* Set (ticker) price. */
-    price = Number(this._markets['NEXA'].quote.USD.price)
+    price = Number(this._markets['NEXA'].quote[_fiat].price)
     // console.log('PRICE', price)
 
     /* Validate price. */
@@ -211,63 +211,66 @@ export default async function (_fiat = 'USD') {
                 this._assets[tokenid].fiat = {}
             }
 
-            /* Validate fiat currency. */
-            if (!this._assets[tokenid].fiat['USD']) {
-                try {
-                    /* Request (ticker) quote. */
-                    response = await fetch(`https://telr.exchange/v1/ticker/quote/${tokenid}`)
-                        .catch(err => console.error(err))
-                    // console.log('RESPONSE (ticker)', response)
-                } catch (err) {
-                    console.error(err)
-                }
-
-                /* Validate response. */
-                if (!response || typeof response === 'undefined') {
-                    continue
-                }
-
-                /* Set markets. */
-                this._markets[tokenid] = await response
-                    .json()
-                    .catch(err => console.error(err))
-                // console.log('TICKER', this._markets[tokenid])
-
-                /* Validate (token) markets. */
-                if (
-                    !this._markets[tokenid] ||
-                    typeof this._markets[tokenid] === 'undefined'
-                ) {
-                    continue
-                }
-
-                if (this._markets[tokenid]?.quote && this._markets[tokenid].quote[_fiat]?.price) {
-                    /* Set rate (ie. price). */
-                    rate = this._markets[tokenid].quote[_fiat].price
-                }
-                // console.log('RATE', rate)
-
-                /* Validate rate. */
-                if (!rate || typeof rate === 'undefined') {
-                    continue
-                }
-
-                /* Set asset total. */
-                assetTotal = this._assets[tokenid].amount
-                // console.log('ASSET TOTAL', assetTotal)
-
-                /* Validate asset total. */
-                if (!assetTotal || typeof assetTotal === 'undefined') {
-                    continue
-                }
-
-                /* Set market (to asset). */
-                this._assets[tokenid].fiat['USD'] = satsToFiat(
-                    assetTotal,
-                    rate,
-                    this._assets[tokenid].decimal_places,
-                )
+            /* Validate fiat (CURRENCY) handler. */
+            if (!this._assets[tokenid].fiat[_fiat] || typeof this._assets[tokenid].fiat[_fiat] === 'undefined') {
+                /* Initialize fiat handler. */
+                this._assets[tokenid].fiat[_fiat] = {}
             }
+
+            try {
+                /* Request (ticker) quote. */
+                response = await fetch(`https://telr.exchange/v1/ticker/quote/${tokenid}`)
+                    .catch(err => console.error(err))
+                // console.log('RESPONSE (ticker)', response)
+            } catch (err) {
+                console.error(err)
+            }
+
+            /* Validate response. */
+            if (!response || typeof response === 'undefined') {
+                continue
+            }
+
+            /* Set markets. */
+            this._markets[tokenid] = await response
+                .json()
+                .catch(err => console.error(err))
+            // console.log('TICKER', this._markets[tokenid])
+
+            /* Validate (token) markets. */
+            if (
+                !this._markets[tokenid] ||
+                typeof this._markets[tokenid] === 'undefined'
+            ) {
+                continue
+            }
+
+            if (this._markets[tokenid]?.quote && this._markets[tokenid].quote[_fiat]?.price) {
+                /* Set rate (ie. price). */
+                rate = this._markets[tokenid].quote[_fiat].price
+            }
+            // console.log('RATE', rate)
+
+            /* Validate rate. */
+            if (!rate || typeof rate === 'undefined') {
+                continue
+            }
+
+            /* Set asset total. */
+            assetTotal = this._assets[tokenid].amount
+            // console.log('ASSET TOTAL', assetTotal)
+
+            /* Validate asset total. */
+            if (!assetTotal || typeof assetTotal === 'undefined') {
+                continue
+            }
+
+            /* Set market (to asset). */
+            this._assets[tokenid].fiat[_fiat] = satsToFiat(
+                assetTotal,
+                rate,
+                this._assets[tokenid].decimal_places,
+            )
 
             /* Emit (asset) changes to subscribers. */
             // NOTE: This is emitted after EACH asset.
