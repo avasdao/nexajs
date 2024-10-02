@@ -9,6 +9,7 @@
   "type": "module",
   "dependencies": {
     "@nexajs/crypto": "24.9.5",
+    "@nexajs/provider": "24.9.30",
     "@nexajs/script": "24.7.15",
     "@nexajs/utils": "24.7.15",
     "big-integer": "1.6.51",

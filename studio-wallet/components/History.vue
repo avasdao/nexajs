@@ -3,59 +3,14 @@
 import moment from 'moment'
 import numeral from 'numeral'
 import { getSender } from '@nexajs/address'
+import {
+    getAddressHistory,
+    getTransaction,
+} from '@nexajs/provider'
 
 /* Initialize stores. */
 import { useWalletStore } from '@/stores/wallet'
 const Wallet = useWalletStore()
-
-/* Set (REST) API endpoints. */
-const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
-
-/* Set constants. */
-const ROSTRUM_METHOD = 'POST'
-
-/* Initialize globals. */
-let body
-let response
-
-const headers = new Headers()
-headers.append('Content-Type', 'application/json')
-
-const getAddressHistory = async (_address) => {
-    body = JSON.stringify({
-        request: 'blockchain.address.get_history',
-        params: _address,
-    })
-
-    // NOTE: Native `fetch` requires Node v21+.
-    response = await fetch(ROSTRUM_ENDPOINT, {
-        method: ROSTRUM_METHOD,
-        headers,
-        body,
-    }).catch(err => console.error(err))
-    response = await response.json()
-    // console.log('RESPONSE', response)
-
-    return response
-}
-
-const getTransaction = async (_id) => {
-    body = JSON.stringify({
-        request: 'blockchain.transaction.get',
-        params: [_id, true],
-    })
-
-    // NOTE: Native `fetch` requires Node v21+.
-    response = await fetch(ROSTRUM_ENDPOINT, {
-        method: ROSTRUM_METHOD,
-        headers,
-        body,
-    }).catch(err => console.error(err))
-    response = await response.json()
-    // console.log('RESPONSE', response)
-
-    return response
-}
 
 /* Set constants. */
 const MAX_RESULTS_PER_PAGE = 20

@@ -1,37 +1,6 @@
 /* Import modules. */
 import { listUnspent } from '@nexajs/address'
-
-/* Set (REST) API endpoints. */
-const INSOMNIA_ENDPOINT = 'https://insomnia.fountainhead.cash/v1'
-const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
-
-/* Set constants. */
-const ROSTRUM_METHOD = 'POST'
-
-/* Initialize globals. */
-let body
-let response
-
-const headers = new Headers()
-headers.append('Content-Type', 'application/json')
-
-const getTokenInfo = async (_tokenid) => {
-    body = JSON.stringify({
-        request: 'token.genesis.info',
-        params: _tokenid,
-    })
-
-    response = await fetch(ROSTRUM_ENDPOINT, {
-        method: ROSTRUM_METHOD,
-        headers,
-        body,
-    }).catch(err => console.error(err))
-    response = await response.json()
-    // console.log('RESPONSE', response)
-
-    return response
-
-}
+import { getTokenInfo } from '@nexajs/provider'
 
 /**
  * Update Assets (Coins & Tokens)

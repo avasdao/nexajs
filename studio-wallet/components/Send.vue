@@ -2,79 +2,17 @@
 import numeral from 'numeral'
 import moment from 'moment'
 import QrScanner from 'qr-scanner'
+import {
+    getAddressBalance,
+    getAddressFirstUse,
+    getTransaction,
+} from '@nexajs/provider'
 
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
 import { useWalletStore } from '@/stores/wallet'
 const System = useSystemStore()
 const Wallet = useWalletStore()
-
-/* Set (REST) API endpoints. */
-const ROSTRUM_ENDPOINT = 'https://nexa.sh/v1/rostrum'
-
-/* Set constants. */
-const ROSTRUM_METHOD = 'POST'
-
-/* Initialize globals. */
-let body
-let response
-
-const headers = new Headers()
-headers.append('Content-Type', 'application/json')
-
-const getAddressBalance = async (_address) => {
-    body = JSON.stringify({
-        request: 'blockchain.address.get_balance',
-        params: _address,
-    })
-
-    // NOTE: Native `fetch` requires Node v21+.
-    response = await fetch(ROSTRUM_ENDPOINT, {
-        method: ROSTRUM_METHOD,
-        headers,
-        body,
-    }).catch(err => console.error(err))
-    response = await response.json()
-    // console.log('RESPONSE', response)
-
-    return response
-}
-
-const getAddressFirstUse = async (_address) => {
-    body = JSON.stringify({
-        request: 'blockchain.address.get_first_use',
-        params: _address,
-    })
-
-    // NOTE: Native `fetch` requires Node v21+.
-    response = await fetch(ROSTRUM_ENDPOINT, {
-        method: ROSTRUM_METHOD,
-        headers,
-        body,
-    }).catch(err => console.error(err))
-    response = await response.json()
-    // console.log('RESPONSE', response)
-
-    return response
-}
-
-const getTransaction = async (_id) => {
-    body = JSON.stringify({
-        request: 'blockchain.transaction.get',
-        params: [_id, true],
-    })
-
-    // NOTE: Native `fetch` requires Node v21+.
-    response = await fetch(ROSTRUM_ENDPOINT, {
-        method: ROSTRUM_METHOD,
-        headers,
-        body,
-    }).catch(err => console.error(err))
-    response = await response.json()
-    // console.log('RESPONSE', response)
-
-    return response
-}
 
 
 const amount = ref(null)
