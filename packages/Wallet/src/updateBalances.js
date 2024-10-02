@@ -168,8 +168,11 @@ export default async function (_fiat = 'USD') {
             this._assets[tokenid].amount = BigInt(0)
             this._assets[tokenid].satoshis = BigInt(0)
 
-            /* Add to token list. */
-            tokenList.push(tokenid)
+            /* Validate token ID. */
+            if (!tokenList.includes(tokenid)) {
+                /* Add to token list. */
+                tokenList.push(tokenid)
+            }
         }
     })
 
@@ -206,6 +209,7 @@ export default async function (_fiat = 'USD') {
                     /* Request (ticker) quote. */
                     response = await fetch(`https://telr.exchange/v1/ticker/quote/${tokenid}`)
                         .catch(err => console.error(err))
+                    // console.log('RESPONSE (ticker)', response)
                 } catch (err) {
                     console.error(err)
                 }
@@ -219,7 +223,7 @@ export default async function (_fiat = 'USD') {
                 this._markets[tokenid] = await response
                     .json()
                     .catch(err => console.error(err))
-                // console.log('TICKER', ticker)
+                // console.log('TICKER', this._markets[tokenid])
 
                 /* Validate (token) markets. */
                 if (
@@ -229,9 +233,11 @@ export default async function (_fiat = 'USD') {
                     continue
                 }
 
-                /* Set rate (ie. price). */
-                rate = this._markets[tokenid].price
-                // console.log('PRICE', price);
+                if (this._markets[tokenid]?.quote && this._markets[tokenid].quote[_fiat]?.price) {
+                    /* Set rate (ie. price). */
+                    rate = this._markets[tokenid].quote[_fiat].price
+                }
+                // console.log('RATE', rate)
 
                 /* Validate rate. */
                 if (!rate || typeof rate === 'undefined') {
@@ -240,6 +246,7 @@ export default async function (_fiat = 'USD') {
 
                 /* Set asset total. */
                 assetTotal = this._assets[tokenid].amount
+                // console.log('ASSET TOTAL', assetTotal)
 
                 /* Validate asset total. */
                 if (!assetTotal || typeof assetTotal === 'undefined') {
