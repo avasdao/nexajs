@@ -110,6 +110,8 @@ export const callNode = async (_method, _params, _options) => {
         /* Validate response. */
         if (response && response.result) {
             return response.result
+        } else if (response && response.error) {
+            return response.error.message || JSON.stringify(response.error)
         } else {
             return null
         }
