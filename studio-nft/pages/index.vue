@@ -366,13 +366,78 @@ const build = async () => {
 }
 
 const init = async () => {
-    console.log('Arweave', Arweave)
-
     /* Initialize locals. */
+    let address
     let arweave
+    let balance
+    let decoded
+    let lastTx
+    let privateKey
+    let status
+    let transaction
+    let uploader
 
     arweave = Arweave.init({})
     console.log('arweave', arweave)
+
+    privateKey = await arweave.wallets
+        .generate()
+        .catch(err => console.error(err))
+    console.log('PRIVATE KEY', privateKey)
+
+    address = await arweave.wallets
+        .jwkToAddress(privateKey)
+        .catch(err => console.error(err))
+    console.log('ADDRESS', address)
+
+    balance = await arweave.wallets
+        .getBalance(address)
+        .catch(err => console.error(err))
+    console.log('BALANCE', balance)
+    console.log('BALANCE ($AR)', arweave.ar.winstonToAr(balance))
+
+    lastTx = await arweave.wallets
+        .getLastTransactionID(address)
+        .catch(err => console.error(err))
+    console.log('LAST TX', lastTx)
+
+    transaction = await arweave
+        .createTransaction({
+            data: '<html><head><meta charset="UTF-8"><title>Hello world!</title></head><body></body></html>',
+        }, privateKey)
+        .catch(err => console.error(err))
+    transaction.addTag('Content-Type', 'text/html')
+    transaction.addTag('creator', 'Satoshi')
+    await arweave.transactions
+        .sign(transaction, privateKey)
+        .catch(err => console.error(err))
+    console.log('TRANSACTION', transaction)
+
+    transaction['tags'].forEach(tag => {
+        let key = tag.get('name', {decode: true, string: true})
+        let value = tag.get('value', {decode: true, string: true})
+        console.log(`${key} : ${value}`);
+    })
+
+    uploader = await arweave.transactions
+        .getUploader(transaction)
+        .catch(err => console.error(err))
+    console.log('UPLOADER', uploader)
+
+    // while (!uploader.isComplete) {
+    //     await uploader.uploadChunk()
+    //     console.log(`${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`)
+    // }
+
+    // status = await arweave.transactions
+    //     .getStatus('')
+    //     .catch(err => console.error(err))
+    // console.log('STATUS', status)
+
+    // decoded = await arweave.transactions
+    //     .getData('', {decode: true, string: true})
+    //     .catch(err => console.error(err))
+    // console.log('DECODED', decoded)
 }
 
 onMounted(() => {
