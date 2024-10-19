@@ -1,5 +1,6 @@
 <script setup lang="ts">
 /* Import modules. */
+import Arweave from 'arweave'
 import * as fflate from 'fflate'
 import numeral from 'numeral'
 import { sha256 } from '@nexajs/crypto'
@@ -9,16 +10,16 @@ import { binToHex } from '@nexajs/utils'
 import { useSystemStore } from '@/stores/system'
 const System = useSystemStore()
 
-const _jsonToArray = function(json) {
-    const str = JSON.stringify(json, null, 0)
-    const ret = new Uint8Array(str.length)
+// const _jsonToArray = function(json) {
+//     const str = JSON.stringify(json, null, 0)
+//     const ret = new Uint8Array(str.length)
 
-    for (var i = 0; i < str.length; i++) {
-        ret[i] = str.charCodeAt(i)
-    }
+//     for (var i = 0; i < str.length; i++) {
+//         ret[i] = str.charCodeAt(i)
+//     }
 
-    return ret
-}
+//     return ret
+// }
 
 
 const ENDPOINT = 'https://nexa.garden/v1/asset'
@@ -102,15 +103,15 @@ const mint = async () => {
     let cardPublic
     let cardPublicId
     let data
-    let gardenVer
+    let eternalVer
     let hash256
     let json
     let license
     let title
     let zipped
 
-    /* Set garden version. */
-    gardenVer = '0.1'
+    /* Set EternalDB version. */
+    eternalVer = '0.1'
 
     /* Set title. */
     title = `A Builder's Breakfast`
@@ -179,7 +180,7 @@ const mint = async () => {
 
     /* Build JSON package. */
     json = {
-        gardenVer,
+        eternalVer,
         title,
         author,
         series: `The Nexican Gallery`,
@@ -364,10 +365,19 @@ const build = async () => {
     console.log('RESPONSE (upload):', response)
 }
 
-// onMounted(() => {
-//     console.log('Mounted!')
-//     // Now it's safe to perform setup operations.
-// })
+const init = async () => {
+    console.log('Arweave', Arweave)
+
+    /* Initialize locals. */
+    let arweave
+
+    arweave = Arweave.init({})
+    console.log('arweave', arweave)
+}
+
+onMounted(() => {
+    init()
+})
 
 // onBeforeUnmount(() => {
 //     console.log('Before Unmount!')

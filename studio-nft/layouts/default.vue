@@ -61,6 +61,7 @@ watch([Profile.$state, System.$state, Wallet.$state], (_state) => {
 })
 
 const isShowingMenu = ref(false)
+const showProfileMenu = ref(false)
 
 // onMounted(() => {
 //     console.log('Mounted!')
