@@ -5,13 +5,6 @@ import numeral from 'numeral'
 import { sha256 } from '@nexajs/crypto'
 import { binToHex } from '@nexajs/utils'
 
-useHead({
-    title: `Asset Studio for Creators`,
-    meta: [
-        { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
-    ],
-})
-
 /* Initialize stores. */
 import { useSystemStore } from '@/stores/system'
 const System = useSystemStore()
@@ -34,7 +27,6 @@ const imagePreviewUrl = ref(null)
 const imageData = ref(null)
 
 const README = `
-       N E X A
    _______  ______________________   _________ __            .___.__
    \\      \\ \\_   _____/\\__    ___/  /   _____//  |_ __ __  __| _/|__| ____
    /   |   \\ |    __)    |    |     \\_____  \\\\   __\\  |  \\/ __ | |  |/  _ \\
@@ -42,9 +34,9 @@ const README = `
   \\____|__  /\\___  /     |____|    /_______  /|__| |____/\\____ | |__|\\____/
           \\/     \\/                        \\/                 \\/
 
-                                                    https://nexa.studio/asset
+                                                      https://nft.nexa.studio
 
-                                     Thank you for choosing Nexa Asset Studio
+                               Thank you for choosing NFT Studio for Creators
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-    title: `AI Generator — Asset Studio`,
+    title: `AI Generator — NFT Studio for Creators`,
     meta: [
         { name: 'description', content: `Nexa Studio makes building your next BIG idea effortless.` }
     ],

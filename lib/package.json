@@ -1,6 +1,6 @@
 {
   "name": "nexajs",
-  "version": "24.10.4",
+  "version": "24.10.10",
   "license": "MIT",
   "description": "A comprehensive JavaScript Library + SDK for building Nexa applications on Node.js (back-end) and web browsers (front-end).",
   "author": "Ava's DAO",
@@ -23,7 +23,7 @@
     "@nexajs/purse": "24.10.1",
     "@nexajs/request": "24.9.22",
     "@nexajs/rostrum": "24.6.23",
-    "@nexajs/rpc": "24.9.22",
+    "@nexajs/rpc": "24.10.10",
     "@nexajs/script": "24.7.15",
     "@nexajs/token": "24.10.1",
     "@nexajs/transaction": "24.10.1",
