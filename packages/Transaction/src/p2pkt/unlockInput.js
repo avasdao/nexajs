@@ -57,6 +57,12 @@ export default async (
     let signedInput
     let unlockingBytecode
 
+    /* Validate (Input) locking script. */
+    if (typeof input.lockingBytecode !== 'undefined') {
+        /* Override locking script (defined by the Input, NOT the Transaction). */
+        lockingScript = input.lockingBytecode
+    }
+
     /* Validate unlocking script. */
     // NOTE: We exclude all "well-known" script templates.
     if (
@@ -103,15 +109,19 @@ export default async (
     }
 
     /* Validate locking script. */
-    if (typeof input.lockingBytecode !== 'undefined') {
-        // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
-        lockingBytecode = input.lockingBytecode
-    } else if (
+    // if (typeof input.lockingBytecode !== 'undefined') {
+    //     // NOTE: Push the "locking" script as a prefix to the "unlocking" script.
+    //     // NOTE: Sourced from the (individual) inputs.
+    //     lockingBytecode = input.lockingBytecode
+    // } else if (
+    if (
         lockingScript !== null &&
         typeof lockingScript !== 'undefined' &&
         binToHex(lockingScript) !== (binToHex(SCRIPT_TEMPLATE_1)) // NOTE: Compare as strings (easier).
         // TODO add support for ALL script templates...
     ) {
+        // NOTE: May be provided from either the Transaction instance
+        //       OR from the individual Input.
         lockingBytecode = lockingScript
     }
 

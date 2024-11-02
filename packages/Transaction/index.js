@@ -180,6 +180,7 @@ export class Transaction {
     addInput({
         outpoint,
         satoshis,
+        sequence,
         locking,
         unlocking,
         hashType,
@@ -194,6 +195,7 @@ export class Transaction {
         this._inputs.push({
             outpoint,
             satoshis,
+            sequence,
             locking,
             unlocking,
             hashType,
@@ -240,9 +242,9 @@ export class Transaction {
             unspents.push({
                 outpoint: _input.outpoint,
                 satoshis: _input.satoshis,
+                sequence: _input.sequence || this.sequence,
                 locking: _input.locking,
                 unlocking: _input.unlocking,
-                sequence: _input.sequence || this.sequence,
                 hashType: _input.hashType,
             })
         })

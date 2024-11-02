@@ -1,6 +1,6 @@
 {
   "name": "@nexajs/token",
-  "version": "24.10.1",
+  "version": "24.11.1",
   "description": "Manage group token assets.",
   "main": "index.js",
   "repository": "https://github.com/avasdao/nexajs",
@@ -13,7 +13,7 @@
     "@nexajs/hdnode": "24.10.1",
     "@nexajs/provider": "24.9.30",
     "@nexajs/script": "24.7.15",
-    "@nexajs/transaction": "24.10.1",
+    "@nexajs/transaction": "24.11.1",
     "events": "3.3.0"
   },
   "engines": {
