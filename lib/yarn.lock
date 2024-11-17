@@ -550,17 +550,6 @@
     "@nexajs/utils" "24.7.15"
     events "3.3.0"
 
-"@nexajs/purse@24.10.1":
-  version "24.10.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.10.1.tgz#d21672d4e2461dbad7f58c572a8b33739328d71b"
-  integrity sha512-vyZ/HR1napdsVUP6rM/8GrSep4S7xkeOdZIRdML60Evsg/uNOsBOa9Feb2+r3vDhKe+zSXccEni5HzTn87ZTmQ==
-  dependencies:
-    "@nexajs/address" "24.10.1"
-    "@nexajs/hdnode" "24.10.1"
-    "@nexajs/provider" "24.9.30"
-    "@nexajs/transaction" "24.10.1"
-    events "3.3.0"
-
 "@nexajs/purse@24.11.1":
   version "24.11.1"
   resolved "https://registry.yarnpkg.com/@nexajs/purse/-/purse-24.11.1.tgz#f59f7231d3a78c82c264b473d2a0bd19fafc2cdd"
@@ -603,19 +592,6 @@
   dependencies:
     "@nexajs/utils" "24.7.15"
 
-"@nexajs/token@24.10.1":
-  version "24.10.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.10.1.tgz#47a2a931412a9d96c714fa7fd8412e5516b149b8"
-  integrity sha512-Uvyl21+xp3TcYIvjcWc+fAj6VV7fBj5GfurqyfIwPtzr7P+i4Zh8AncKZpQpuStt+YPoNUIX75GZmcqRNdvOXg==
-  dependencies:
-    "@nexajs/address" "24.10.1"
-    "@nexajs/crypto" "24.9.5"
-    "@nexajs/hdnode" "24.10.1"
-    "@nexajs/provider" "24.9.30"
-    "@nexajs/script" "24.7.15"
-    "@nexajs/transaction" "24.10.1"
-    events "3.3.0"
-
 "@nexajs/token@24.11.1":
   version "24.11.1"
   resolved "https://registry.yarnpkg.com/@nexajs/token/-/token-24.11.1.tgz#81861ce1e8ba3e4c484e3d809ebbf741fd279964"
@@ -628,17 +604,6 @@
     "@nexajs/script" "24.7.15"
     "@nexajs/transaction" "24.11.1"
     events "3.3.0"
-
-"@nexajs/transaction@24.10.1":
-  version "24.10.1"
-  resolved "https://registry.yarnpkg.com/@nexajs/transaction/-/transaction-24.10.1.tgz#b3367db8cd2481051a92a90f23ac4b73fe56526e"
-  integrity sha512-/PmFh2AiOW8+h/hkYgu/NuSBXg2W02zvRNNH0cybdOHfwPj8eBY1JPEbevfxxq+fBnVB3FTm52bj/xJn4S24Iw==
-  dependencies:
-    "@nexajs/address" "24.10.1"
-    "@nexajs/crypto" "24.9.5"
-    "@nexajs/hdnode" "24.10.1"
-    "@nexajs/script" "24.7.15"
-    "@nexajs/utils" "24.7.15"
 
 "@nexajs/transaction@24.11.1":
   version "24.11.1"
@@ -656,18 +621,18 @@
   resolved "https://registry.yarnpkg.com/@nexajs/utils/-/utils-24.7.15.tgz#499bf20e1643e7c7bad91529a3f30c80512b6c5a"
   integrity sha512-kI2GSorfBmylBjmnuwqeIeJWqlaIONX2MLPZ1FyGSviXFfd9H91Yr5KrHyDTh+BIV2dIfhPDqu/Lk5caG6XiiA==
 
-"@nexajs/wallet@24.10.4":
-  version "24.10.4"
-  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.10.4.tgz#bf93971bc9506eb024ba5af79495a1a4c550284c"
-  integrity sha512-jiYbw9Y9sFiPd9pIiH/xOhrFy/mUUYEEDzLOhy4gj1LUxqaMhUIGXJ7fnALaZy1f/kxfWtk9JIDglT4+PMC74g==
+"@nexajs/wallet@24.11.1":
+  version "24.11.1"
+  resolved "https://registry.yarnpkg.com/@nexajs/wallet/-/wallet-24.11.1.tgz#ba479b016e1d6231bb50927cfaeeac1bb7a398de"
+  integrity sha512-L4ylo/uy+4gdSP2P7b1XVYuFWhStBmzH7JKwsriOFcrmWjfRKeQSEoKgOni7TErDB2xlPFBsBjp8DCaCwnDC2g==
   dependencies:
     "@nexajs/address" "24.10.1"
     "@nexajs/crypto" "24.9.5"
     "@nexajs/hdnode" "24.10.1"
     "@nexajs/provider" "24.9.30"
-    "@nexajs/purse" "24.10.1"
+    "@nexajs/purse" "24.11.1"
     "@nexajs/script" "24.7.15"
-    "@nexajs/token" "24.10.1"
+    "@nexajs/token" "24.11.1"
     events "3.3.0"
     numeral "2.0.6"
 
@@ -956,9 +921,9 @@ bn.js@5.2.1, bn.js@^5.2.1:
   integrity sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.11.9:
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.12.0.tgz#775b3f278efbb9718eec7361f483fb36fbbfea88"
-  integrity sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==
+  version "4.12.1"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.12.1.tgz#215741fe3c9dba2d7e12c001d0cfdbae43975ba7"
+  integrity sha512-k8TVBiPkPJT9uHLdOKfFpqcfprwBFOAAXXozRubr7R7PfIuKvQlzcI4M0pALeqXN09vdaMbUdUj+pass+uULAg==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1195,9 +1160,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001669:
-  version "1.0.30001676"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001676.tgz#fe133d41fe74af8f7cc93b8a714c3e86a86e6f04"
-  integrity sha512-Qz6zwGCiPghQXGJvgQAem79esjitvJ+CxSbSQkW9H/UX5hg8XM88d4lp2W+MEQ81j+Hip58Il+jGVdazk1z9cw==
+  version "1.0.30001680"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001680.tgz#5380ede637a33b9f9f1fc6045ea99bd142f3da5e"
+  integrity sha512-rPQy70G6AGUMnbwS1z6Xg+RkHYPAi18ihs47GH0jcxIG7wArmPgY3XbS2sRdBbxJljp3thdT8BIqv9ccCypiPA==
 
 chai@4.3.6:
   version "4.3.6"
@@ -1374,9 +1339,9 @@ create-hmac@^1.1.4, create-hmac@^1.1.7:
     sha.js "^2.4.8"
 
 cross-spawn@^7.0.0:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
-  integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.5.tgz#910aac880ff5243da96b728bc6521a5f6c2f2f82"
+  integrity sha512-ZVJrKKYunU38/76t0RMOulHOnUcbU9GbpWKAOZ0mhjr7CX6FVrH+4FrAapSOekrgFQ3f/8gwMEuIft0aKq6Hug==
   dependencies:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
@@ -1540,9 +1505,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.41:
-  version "1.5.50"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.50.tgz#d9ba818da7b2b5ef1f3dd32bce7046feb7e93234"
-  integrity sha512-eMVObiUQ2LdgeO1F/ySTXsvqvxb6ZH2zPGaMYsWzRDdOddUa77tdmI0ltg+L16UpbWdhPmuF3wIQYyQq65WfZw==
+  version "1.5.62"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.62.tgz#8289468414b0b0b3e9180ef619a763555debe612"
+  integrity sha512-t8c+zLmJHa9dJy96yBZRXGQYoiCEnHYgFwn1asvSPZSUdVxnB62A4RASd7k41ytG3ErFBA0TpHlKg9D9SQBmLg==
 
 elliptic@6.5.4:
   version "6.5.4"
@@ -1571,9 +1536,9 @@ elliptic@6.5.5:
     minimalistic-crypto-utils "^1.0.1"
 
 elliptic@^6.5.3, elliptic@^6.5.5:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.6.0.tgz#5919ec723286c1edf28685aa89261d4761afa210"
-  integrity sha512-dpwoQcLc/2WLQvJvLRHKZ+f9FgOdjnq11rurqwekGQygGPsYSK29OMMD2WalatiqQ+XGFDglTNixpPfI+lpaAA==
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.6.1.tgz#3b8ffb02670bf69e382c7f65bf524c97c5405c06"
+  integrity sha512-RaddvvMatK2LJHqFJ+YA4WysVN5Ita9E35botqIYspQ4TkRAlCicdzKOjlyv/1Za5RyTNn7di//eEV0uTAfe3g==
   dependencies:
     bn.js "^4.11.9"
     brorand "^1.1.0"
@@ -2347,9 +2312,9 @@ numeral@2.0.6:
   integrity sha512-qaKRmtYPZ5qdw4jWJD6bxEf1FJEqllJrwxCLIm0sQU/A7v2/czigzOb+C2uSiFsa9lBUzeH7M1oK+Q+OLxL3kA==
 
 object-inspect@^1.13.1:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.13.2.tgz#dea0088467fb991e67af4058147a24824a3043ff"
-  integrity sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.13.3.tgz#f14c183de51130243d6d18ae149375ff50ea488a"
+  integrity sha512-kDCGIbxkDSXE3euJZZXzc6to7fCrKHNI/hSRQnRuQ+BWjFNzZwiFF8fj/6o2t2G9/jTj8PSIYTfCLelLZEeRpA==
 
 object-keys@^1.1.1:
   version "1.1.1"
