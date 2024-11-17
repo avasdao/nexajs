@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@kevinmarrec/nuxt-pwa": "0.17.0",
-    "@nuxtjs/i18n": "8.3.3",
+    "@nuxtjs/i18n": "9.0.0",
     "@nuxtjs/tailwindcss": "6.12.1",
     "@pinia/nuxt": "0.5.4",
-    "nexajs": "24.11.1",
+    "nexajs": "24.11.15",
     "nuxt": "3.12.4",
-    "pinia": "2.2.2"
+    "pinia": "2.2.2",
+    "typescript": "5.6.3"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }
