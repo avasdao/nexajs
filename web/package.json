@@ -1,6 +1,6 @@
 {
   "name": "nexajs-web",
-  "version": "24.11.17",
+  "version": "25.1.13",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -33,5 +33,9 @@
     "eslint-config-next": "13.0.2",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13"
+  },
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=21.0.0"
   }
 }
