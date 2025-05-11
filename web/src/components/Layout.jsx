@@ -23,24 +23,10 @@ const navigation = [
         ],
     },
     {
-        title: 'Client-side / Web browser',
+        title: 'dApp Builder',
         links: [
             { title: 'Introduction', href: '/client' },
-            { title: 'NexID web client API', href: '/nexid#web-client-api' },
-        ],
-    },
-    {
-        title: 'Server-side (Node.js)',
-        links: [
-            { title: 'Introduction', href: '/server' },
-            { title: 'CashLib', href: '/cashlib' },
-            { title: 'NexID Server', href: '/nexid#id-server' },
-        ],
-    },
-    {
-        title: 'Server-side (Deno)',
-        links: [
-            { title: 'Introduction', href: '/deno' },
+            { title: 'NexID Authentication', href: '/nexid#web-client-api' },
         ],
     },
     {
@@ -48,7 +34,10 @@ const navigation = [
         links: [
             { title: 'Introduction', href: '/packages' },
             { title: 'Address', href: '/pkg/address' },
+            { title: 'Application', href: '/pkg/app' },
+            { title: 'Market', href: '/pkg/market' },
             { title: 'Rostrum', href: '/pkg/rostrum' },
+            { title: 'Script', href: '/pkg/script' },
             { title: 'Wallet', href: '/pkg/wallet' },
         ],
     },
@@ -56,19 +45,23 @@ const navigation = [
         title: 'Examples & Use-cases',
         links: [
             { title: 'Introduction', href: '/examples' },
+            { title: 'Addressing', href: '/example/addressing' },
+            { title: 'Markets', href: '/example/markets' },
             { title: 'Scripts', href: '/example/scripts' },
             { title: 'Wallets', href: '/example/wallets' },
         ],
     },
     {
-        title: 'References',
+        title: 'Additional References',
         links: [
             { title: 'Builder Experience (BX)', href: '/bx' },
+            { title: 'Nexa APIs', href: '/apis' },
             { title: 'Design principles', href: '/principles' },
             { title: 'Modular framework', href: '/modules' },
             { title: 'Environment variables', href: '/env' },
             { title: 'OP codes', href: '/opcodes' },
             { title: 'Nexa Identity Protocol', href: '/nexid' },
+            { title: 'Building with Deno', href: '/deno' },
         ],
     },
     {
