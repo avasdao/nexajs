@@ -1,9 +1,9 @@
 ---
-title: Market
-description: A convenient gateway to all marketplaces.
+title: Utilities
+description: A full suite of useful functions and utilities.
 ---
 
-A convenient gateway to all marketplaces.
+A full suite of useful functions and utilities.
 
 
 ## Introduction

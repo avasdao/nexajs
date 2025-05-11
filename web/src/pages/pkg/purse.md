@@ -1,9 +1,9 @@
 ---
-title: Market
-description: A convenient gateway to all marketplaces.
+title: Purse
+description: A full suite of useful functions for managing coins.
 ---
 
-A convenient gateway to all marketplaces.
+A full suite of useful functions for managing coins.
 
 
 ## Introduction

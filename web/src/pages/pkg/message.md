@@ -1,9 +1,9 @@
 ---
-title: Market
-description: A convenient gateway to all marketplaces.
+title: Message
+description: A full suite of useful functions for messaging.
 ---
 
-A convenient gateway to all marketplaces.
+A full suite of useful functions for messaging.
 
 
 ## Introduction
