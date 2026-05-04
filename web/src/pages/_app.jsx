@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Head from 'next/head'
+import Script from 'next/script'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
-import { init as matomo } from '@socialgouv/matomo-next'
 
 import { Layout } from '@/components/Layout'
 
 import 'focus-visible'
 import '@/styles/tailwind.css'
-
-/* Initialize Matomo parameters. */
-const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL || '//matomo.avasdao.org'
-const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID || 15
 
 function getNodeText(node) {
     let text = ''
@@ -73,11 +69,6 @@ export default function App({ Component, pageProps }) {
         ? collectHeadings(pageProps.markdoc.content)
         : []
 
-    /* Handle (Matomo) analytics. */
-    useEffect(() => {
-        matomo({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
-    }, [])
-
     return (
         <>
             <Head>
@@ -88,6 +79,11 @@ export default function App({ Component, pageProps }) {
             <Layout title={title} tableOfContents={tableOfContents}>
                 <Component {...pageProps} />
             </Layout>
+
+            <Script
+                src="https://scripts.simpleanalyticscdn.com/latest.js"
+                strategy="afterInteractive"
+            />
         </>
     )
 }

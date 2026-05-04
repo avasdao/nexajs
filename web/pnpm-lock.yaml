@@ -23,15 +23,12 @@ importers:
       '@sindresorhus/slugify':
         specifier: 2.1.0
         version: 2.1.0
-      '@socialgouv/matomo-next':
-        specifier: 1.6.1
-        version: 1.6.1(next@13.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@tailwindcss/typography':
         specifier: 0.5.7
-        version: 0.5.7(tailwindcss@3.2.1(postcss@8.4.14))
+        version: 0.5.7(tailwindcss@3.2.1(postcss@8.5.13))
       autoprefixer:
         specifier: 10.4.12
-        version: 10.4.12(postcss@8.4.14)
+        version: 10.4.12(postcss@8.5.13)
       clsx:
         specifier: 1.2.1
         version: 1.2.1
@@ -43,10 +40,10 @@ importers:
         version: 13.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       postcss-focus-visible:
         specifier: 6.0.4
-        version: 6.0.4(postcss@8.4.14)
+        version: 6.0.4(postcss@8.5.13)
       postcss-import:
         specifier: 14.1.0
-        version: 14.1.0(postcss@8.4.14)
+        version: 14.1.0(postcss@8.5.13)
       prism-react-renderer:
         specifier: 1.3.5
         version: 1.3.5(react@18.2.0)
@@ -58,7 +55,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       tailwindcss:
         specifier: 3.2.1
-        version: 3.2.1(postcss@8.4.14)
+        version: 3.2.1(postcss@8.5.13)
     devDependencies:
       eslint:
         specifier: 8.26.0
@@ -66,6 +63,9 @@ importers:
       eslint-config-next:
         specifier: 13.0.2
         version: 13.0.2(eslint@8.26.0)(typescript@5.8.3)
+      postcss:
+        specifier: 8.5.13
+        version: 8.5.13
       prettier:
         specifier: 2.7.1
         version: 2.7.1
@@ -293,11 +293,6 @@ packages:
   '@sindresorhus/transliterate@1.6.0':
     resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
     engines: {node: '>=12'}
-
-  '@socialgouv/matomo-next@1.6.1':
-    resolution: {integrity: sha512-O2lxMKZHVzvXGZNsKOnsSS+hzqxIX35CPRuVkuU8Z+EFORuO2R/iiBBfyY1d+XvexIsJOA2uHnxhJxsdeFIrRw==}
-    peerDependencies:
-      next: '>= 9.5.5'
 
   '@swc/helpers@0.4.11':
     resolution: {integrity: sha512-rEUrBSGIoSFuYxwBYtlUFMlE2CwGhmW+w9355/5oduSw8e5h2+Tj4UrAGNNgP9915++wj5vkQo0UuOBqOAq4nw==}
@@ -1302,6 +1297,10 @@ packages:
     resolution: {integrity: sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.13:
+    resolution: {integrity: sha512-qif0+jGGZoLWdHey3UFHHWP0H7Gbmsk8T5VEqyYFbWqPr1XqvLGBbk/sl8V5exGmcYJklJOhOQq1pV9IcsiFag==}
+    engines: {node: ^10 || ^12 || >=14}
+
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
@@ -1849,21 +1848,17 @@ snapshots:
     dependencies:
       escape-string-regexp: 5.0.0
 
-  '@socialgouv/matomo-next@1.6.1(next@13.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0))':
-    dependencies:
-      next: 13.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-
   '@swc/helpers@0.4.11':
     dependencies:
       tslib: 2.8.1
 
-  '@tailwindcss/typography@0.5.7(tailwindcss@3.2.1(postcss@8.4.14))':
+  '@tailwindcss/typography@0.5.7(tailwindcss@3.2.1(postcss@8.5.13))':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.1(postcss@8.4.14)
+      tailwindcss: 3.2.1(postcss@8.5.13)
 
   '@types/json5@0.0.29': {}
 
@@ -2034,14 +2029,14 @@ snapshots:
 
   async-function@1.0.0: {}
 
-  autoprefixer@10.4.12(postcss@8.4.14):
+  autoprefixer@10.4.12(postcss@8.5.13):
     dependencies:
       browserslist: 4.24.5
       caniuse-lite: 1.0.30001717
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.4.14
+      postcss: 8.5.13
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -2320,7 +2315,7 @@ snapshots:
       eslint: 8.26.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 2.7.1(eslint-plugin-import@2.31.0(eslint@8.26.0))(eslint@8.26.0)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.26.0)(typescript@5.8.3))(eslint-import-resolver-typescript@2.7.1)(eslint@8.26.0)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.26.0)(typescript@5.8.3))(eslint-import-resolver-typescript@2.7.1(eslint-plugin-import@2.31.0(eslint@8.26.0))(eslint@8.26.0))(eslint@8.26.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.26.0)
       eslint-plugin-react: 7.37.5(eslint@8.26.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.26.0)
@@ -2342,7 +2337,7 @@ snapshots:
     dependencies:
       debug: 4.4.0
       eslint: 8.26.0
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.26.0)(typescript@5.8.3))(eslint-import-resolver-typescript@2.7.1)(eslint@8.26.0)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.26.0)(typescript@5.8.3))(eslint-import-resolver-typescript@2.7.1(eslint-plugin-import@2.31.0(eslint@8.26.0))(eslint@8.26.0))(eslint@8.26.0)
       glob: 7.2.3
       is-glob: 4.0.3
       resolve: 1.22.10
@@ -2361,7 +2356,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.26.0)(typescript@5.8.3))(eslint-import-resolver-typescript@2.7.1)(eslint@8.26.0):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.26.0)(typescript@5.8.3))(eslint-import-resolver-typescript@2.7.1(eslint-plugin-import@2.31.0(eslint@8.26.0))(eslint@8.26.0))(eslint@8.26.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -3020,33 +3015,33 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-focus-visible@6.0.4(postcss@8.4.14):
+  postcss-focus-visible@6.0.4(postcss@8.5.13):
     dependencies:
-      postcss: 8.4.14
+      postcss: 8.5.13
       postcss-selector-parser: 6.1.2
 
-  postcss-import@14.1.0(postcss@8.4.14):
+  postcss-import@14.1.0(postcss@8.5.13):
     dependencies:
-      postcss: 8.4.14
+      postcss: 8.5.13
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.10
 
-  postcss-js@4.0.1(postcss@8.4.14):
+  postcss-js@4.0.1(postcss@8.5.13):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.14
+      postcss: 8.5.13
 
-  postcss-load-config@3.1.4(postcss@8.4.14):
+  postcss-load-config@3.1.4(postcss@8.5.13):
     dependencies:
       lilconfig: 2.1.0
       yaml: 1.10.2
     optionalDependencies:
-      postcss: 8.4.14
+      postcss: 8.5.13
 
-  postcss-nested@6.0.0(postcss@8.4.14):
+  postcss-nested@6.0.0(postcss@8.5.13):
     dependencies:
-      postcss: 8.4.14
+      postcss: 8.5.13
       postcss-selector-parser: 6.1.2
 
   postcss-selector-parser@6.0.10:
@@ -3062,6 +3057,12 @@ snapshots:
   postcss-value-parser@4.2.0: {}
 
   postcss@8.4.14:
+    dependencies:
+      nanoid: 3.3.11
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.13:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -3313,7 +3314,7 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  tailwindcss@3.2.1(postcss@8.4.14):
+  tailwindcss@3.2.1(postcss@8.5.13):
     dependencies:
       arg: 5.0.2
       chokidar: 3.6.0
@@ -3329,11 +3330,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.4.14
-      postcss-import: 14.1.0(postcss@8.4.14)
-      postcss-js: 4.0.1(postcss@8.4.14)
-      postcss-load-config: 3.1.4(postcss@8.4.14)
-      postcss-nested: 6.0.0(postcss@8.4.14)
+      postcss: 8.5.13
+      postcss-import: 14.1.0(postcss@8.5.13)
+      postcss-js: 4.0.1(postcss@8.5.13)
+      postcss-load-config: 3.1.4(postcss@8.5.13)
+      postcss-nested: 6.0.0(postcss@8.5.13)
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1

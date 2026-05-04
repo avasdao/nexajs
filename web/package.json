@@ -1,6 +1,6 @@
 {
   "name": "nexajs-web",
-  "version": "25.1.13",
+  "version": "26.5.4",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
@@ -15,7 +15,6 @@
     "@markdoc/markdoc": "0.1.7",
     "@markdoc/next.js": "0.1.6",
     "@sindresorhus/slugify": "2.1.0",
-    "@socialgouv/matomo-next": "1.6.1",
     "@tailwindcss/typography": "0.5.7",
     "autoprefixer": "10.4.12",
     "clsx": "1.2.1",
@@ -31,6 +30,7 @@
   "devDependencies": {
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
+    "postcss": "8.5.13",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13"
   },
